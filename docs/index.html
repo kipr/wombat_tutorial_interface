@@ -8,6 +8,10 @@
   <style>
     body { background: var(--dark); min-height: 100vh; display: flex; flex-direction: column; }
 
+    /* Brand text: full on desktop, short on mobile (see media query) */
+    .brand-short { display: none; }
+    .brand-full { display: inline; }
+
     /* Hero */
     .hero {
       flex: 1;
@@ -192,6 +196,22 @@
 
     /* ── Mobile portrait (phones) ── */
     @media (max-width: 640px) {
+      /* Nav: allow two rows — brand on top, links wrap below */
+      .nav {
+        height: auto;
+        flex-wrap: wrap;
+        row-gap: 0.5rem;
+        padding: 0.6rem 1rem;
+      }
+      .nav-brand { flex: 0 0 100%; }
+      .nav-links {
+        flex: 0 0 100%;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.1rem;
+      }
+      /* Swap full brand text for the shorter mobile version */
+      .brand-full { display: none; }
+      .brand-short { display: inline; }
       /* Hero: flow from the top instead of vertical-centering */
       .hero {
         justify-content: flex-start;
@@ -214,7 +234,7 @@
   <nav class="nav">
     <a class="nav-brand" href="index.html">
       <img src="kipr-logo.png" alt="KIPR">
-      <span>Botball Explorer 2026</span>
+      <span><span class="brand-full">Botball Explorer 2026</span><span class="brand-short">Explorer 2026</span></span>
     </a>
     <div class="nav-links">
       <a href="index.html" class="active">Home</a>
