@@ -189,13 +189,32 @@
     @media (prefers-reduced-motion: reduce) {
       .cheat-banner { animation: none; }
     }
+
+    /* ── Mobile portrait (phones) ── */
+    @media (max-width: 640px) {
+      /* Hero: flow from the top instead of vertical-centering */
+      .hero {
+        justify-content: flex-start;
+        padding: 1.75rem 1.25rem 2.5rem;
+      }
+      .hero-logo { height: 44px; margin-bottom: 1.25rem; }
+      .hero h1 { font-size: clamp(2.25rem, 11vw, 3rem); }
+      .hero-sub { margin: 1rem 0 2rem; font-size: 1rem; }
+
+      /* Cards: one per row, full width, with breathing room */
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .doc-card { padding: 1.5rem; }
+    }
   </style>
 </head>
 <body>
   <nav class="nav">
     <a class="nav-brand" href="index.html">
       <img src="kipr-logo.png" alt="KIPR">
-      <span>Botball 2026</span>
+      <span>Botball Explorer 2026</span>
     </a>
     <div class="nav-links">
       <a href="index.html" class="active">Home</a>
