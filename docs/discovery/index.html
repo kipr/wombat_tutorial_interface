@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discovery Projects — KIPR Botball 2026</title>
+  <link rel="stylesheet" href="../shared.css">
+  <style>
+    body { background: var(--dark); min-height: 100vh; display: flex; flex-direction: column; }
+    .wrap { flex: 1; max-width: 900px; margin: 0 auto; width: 100%; padding: 3.5rem 2rem 4rem; }
+    .page-eyebrow {
+      font-family: var(--font-display); font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem;
+    }
+    .page-title {
+      font-family: var(--font-display); font-weight: 800; font-size: clamp(2.5rem, 7vw, 4rem);
+      line-height: 1; color: var(--white); letter-spacing: -0.01em; margin-bottom: 0.9rem;
+    }
+    .page-title span { color: var(--red); }
+    .page-sub { color: rgba(255,255,255,0.55); max-width: 580px; margin-bottom: 3rem; font-size: 1.05rem; }
+
+    .choice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .choice-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px;
+      padding: 2.25rem; text-decoration: none; display: flex; flex-direction: column; gap: 0.75rem;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s; position: relative; overflow: hidden;
+    }
+    .choice-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .choice-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(192,57,43,0.4); transform: translateY(-3px); }
+    .choice-card:hover::before { transform: scaleX(1); }
+    .choice-kicker {
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em;
+      color: var(--red); text-transform: uppercase;
+    }
+    .choice-title { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--white); line-height: 1; }
+    .choice-desc { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .choice-meta {
+      font-size: 0.78rem; color: rgba(255,255,255,0.35); letter-spacing: 0.04em;
+      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.85rem; margin-top: 0.4rem;
+    }
+    .choice-arrow {
+      margin-top: auto; padding-top: 1rem; font-family: var(--font-display); font-size: 0.8rem;
+      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red);
+    }
+
+    /* Disabled / in-development card */
+    .choice-card.soon { opacity: 0.5; pointer-events: none; }
+    .choice-card.soon .choice-kicker, .choice-card.soon .choice-arrow { color: rgba(255,255,255,0.4); }
+
+    .note {
+      margin-top: 3rem; padding: 1.1rem 1.25rem; background: rgba(255,255,255,0.03);
+      border-left: 3px solid var(--red); border-radius: 0 4px 4px 0;
+      font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.6;
+    }
+    .note strong { color: rgba(255,255,255,0.85); }
+
+    .footer-strip {
+      background: rgba(0,0,0,0.4); text-align: center; padding: 1rem; font-size: 0.75rem;
+      color: rgba(255,255,255,0.25); letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 640px) {
+      .nav { height: auto; flex-wrap: wrap; row-gap: 0.5rem; padding: 0.6rem 1rem; }
+      .nav-brand { flex: 0 0 100%; }
+      .nav-links { flex: 0 0 100%; flex-wrap: wrap; gap: 0.75rem 1.1rem; }
+      .wrap { padding: 2rem 1.25rem 3rem; }
+      .choice-grid { grid-template-columns: 1fr; }
+      .choice-card { padding: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-brand" href="../index.html">
+      <img src="../kipr-logo.png" alt="KIPR">
+      <span>Botball 2026</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../2026-missions.html">2026 Missions</a>
+      <a href="index.html" class="active">Discovery</a>
+      <a href="../labs/index.html">C Labs</a>
+      <a href="../Python_Labs/index.html">Python Labs</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <p class="page-eyebrow">Botball Explorer · Entry Tier</p>
+    <h1 class="page-title">Discovery <span>Projects</span></h1>
+    <p class="page-sub">Two strands you can work through independently. Everything you build gets tested against a real Stack Attack mission.</p>
+
+    <div class="choice-grid">
+      <a class="choice-card" href="coding/index.html">
+        <span class="choice-kicker">Strand One</span>
+        <span class="choice-title">Coding</span>
+        <span class="choice-desc">Connect to your Wombat, make it move, make it grab, make it sense. Written in KISS-C, one project at a time, each one anchored to a mission you can actually score.</span>
+        <span class="choice-meta">17 projects · 6 phases</span>
+        <span class="choice-arrow">Open Coding →</span>
+      </a>
+
+      <span class="choice-card soon">
+        <span class="choice-kicker">Strand Two</span>
+        <span class="choice-title">Systems</span>
+        <span class="choice-desc">How things get designed, how machines and people pass information back and forth, how to stay safe online, and how to work as a team that finishes what it starts.</span>
+        <span class="choice-meta">In development</span>
+        <span class="choice-arrow">Coming soon</span>
+      </span>
+    </div>
+
+    <div class="note">
+      <strong>Which one first?</strong> Either. The strands do not depend on each other — pick whichever your team is ready for. The one exception: your claw needs to be built before Coding Project 7, and that build lives in Systems.
+    </div>
+  </div>
+
+  <div class="footer-strip">KIPR Botball © 2026 — All rights reserved</div>
+</body>
+</html>

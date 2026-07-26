@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 3 — Motors and Ports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #5b6270;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #6b7280;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #24200f; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d9b464; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #fff8e6;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #fffaef; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+
+  /* Anatomy list */
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 190px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 15px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  /* Port map */
+  .portmap {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    margin: 16px 0; text-align: center;
+  }
+  .portmap .port {
+    border: 2px solid var(--navy); border-radius: 6px; padding: 12px 6px; background: #f2f4fa;
+  }
+  .portmap .pnumber {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 30px; color: var(--navy); line-height: 1;
+  }
+  .portmap .pside {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 14px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--grey); margin-top: 4px;
+  }
+
+  .ledkey { display: flex; gap: 14px; flex-wrap: wrap; margin: 14px 0; }
+  .ledkey .k {
+    flex: 1 1 200px; border: 1px solid var(--line); border-radius: 6px;
+    padding: 12px 14px; display: flex; align-items: center; gap: 12px; background: var(--field);
+  }
+  .ledkey .dot { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; }
+  .ledkey .dot.g { background: #1E8449; }
+  .ledkey .dot.r { background: #C0392B; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .portmap { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .ledkey .dot { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Coding · Project 3</p>
+    <h1>Motors and Ports</h1>
+    <p class="sub">Your robot stops talking and starts moving — with its wheels safely off the ground.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Plugging in motors, checking their direction, and writing your first program that makes something turn.</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Built robot · 2 motors · Wombat · battery · a block or thick book to raise the wheels · your computer</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Projects 1 and 2 — you must be able to connect, write, compile, and run a program.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+
+    <div class="callout warn">
+      <p class="ctitle">⚠ Wheels Off the Ground — All Project</p>
+      <p>Put your robot on a block or a thick book so the wheels spin freely in the air. Every single thing you do in this project happens with the robot up on a block.</p>
+      <p>A robot that drives off a table lands on the floor. Do not find out.</p>
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Which Way Does It Go?</h2>
+
+    <p>Think about walking across the room. Your brain does not send one signal to "your body." It sends a signal to your <em>left</em> leg and a separate signal to your <em>right</em> leg.</p>
+
+    <p>The Wombat works the same way. Two motors, two wheels, two separate commands.</p>
+
+    <h3 class="sub">Find the ports</h3>
+
+    <p>Look at the Wombat. There are four <span class="def-term" data-term="PORT">PORT</span>s for motors. Two on the left, two on the right.</p>
+
+    <div class="portmap">
+      <div class="port"><div class="pnumber">0</div><div class="pside">Left side</div></div>
+      <div class="port"><div class="pnumber">1</div><div class="pside">Left side</div></div>
+      <div class="port"><div class="pnumber">2</div><div class="pside">Right side</div></div>
+      <div class="port"><div class="pnumber">3</div><div class="pside">Right side</div></div>
+    </div>
+
+    <div class="callout navy">
+      <p class="ctitle">Counting Starts at Zero</p>
+      <p>The ports are numbered 0, 1, 2, 3 — not 1, 2, 3, 4. Computer scientists start counting at zero, and you will see this everywhere from now on. There is no port 4.</p>
+    </div>
+
+    <h3 class="sub">Find your motors and plug them in</h3>
+
+    <p>A motor has a <strong>two-prong plug</strong> and a <strong>double wire</strong> — one red, one black.</p>
+
+    <p>Plug one motor into <strong>port 0</strong> and the other into <strong>port 3</strong>.</p>
+
+    <ul class="check">
+      <li><input type="checkbox" id="c1" data-key="p1_found_ports"><label for="c1">I found all four motor ports and can point to 0, 1, 2, and 3</label></li>
+      <li><input type="checkbox" id="c2" data-key="p1_plugged_in"><label for="c2">One motor is in port 0 and one is in port 3</label></li>
+      <li><input type="checkbox" id="c3" data-key="p1_on_block"><label for="c3">My robot is on a block with the wheels in the air</label></li>
+    </ul>
+
+    <h3 class="sub">The plug goes in two ways — and it matters</h3>
+
+    <p>There is no mark on the motor plug telling you which way is right. You can put it in either way around, and the two ways do opposite things.</p>
+
+    <p>A motor spins in whichever direction the electricity flows through it. Flip the plug, and the wheel spins the other way.</p>
+
+    <div class="callout gold">
+      <p class="ctitle">The Wheel-Spin Trick</p>
+      <p>You do not need a program to find out which way a motor is wired. <strong>Turn the wheel with your hand</strong> and watch the little light next to that port number on the board.</p>
+    </div>
+
+    <div class="ledkey">
+      <div class="k"><span class="dot g"></span><span><strong>Green</strong> — that direction is forward (+)</span></div>
+      <div class="k"><span class="dot r"></span><span><strong>Red</strong> — that direction is reverse (−)</span></div>
+    </div>
+
+    <p>Spin both wheels the direction you want the robot to drive <em>forward</em>. Record what you see.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:22%">Port</th><th style="width:39%">LED color when I spin it forward</th><th>Do I need to flip this plug?</th></tr></thead>
+      <tbody>
+        <tr><td class="ctr">0</td><td><input type="text" data-key="p1_led_port0" aria-label="LED color port 0"></td><td><input type="text" data-key="p1_flip_port0" aria-label="Flip port 0"></td></tr>
+        <tr><td class="ctr">3</td><td><input type="text" data-key="p1_led_port3" aria-label="LED color port 3"></td><td><input type="text" data-key="p1_flip_port3" aria-label="Flip port 3"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p class="ctitle">If One Is Green and One Is Red</p>
+      <p>Unplug the red one, turn the plug 180°, and plug it back in. Spin the wheel again. Both should now be green when the wheels turn forward.</p>
+      <p>If you skip this, your robot will not drive forward — it will spin in a circle, because one wheel is going forward and the other backward.</p>
+    </div>
+
+    <ul class="check">
+      <li><input type="checkbox" id="c4" data-key="p1_both_green"><label for="c4">Both LEDs are green when I spin the wheels forward</label></li>
+    </ul>
+
+    <p class="q">Why does a robot spin in a circle when one motor runs forward and the other runs backward?</p>
+    <textarea class="answer" data-key="p1_why_circle" aria-label="Why the robot spins in a circle"></textarea>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> The motor() Command</h2>
+
+    <p>One command runs a motor. It needs two pieces of information: <em>which</em> motor, and <em>how hard</em>.</p>
+
+    <pre class="code">motor(<span class="nu">0</span>, <span class="nu">50</span>);
+<span class="cm">      ↑   ↑</span>
+<span class="cm">   port  power</span></pre>
+
+    <p>Each piece of information inside the parentheses is called an <span class="def-term" data-term="ARGUMENT">ARGUMENT</span>. <code>printf()</code> took one argument. <code>motor()</code> takes two, separated by a comma.</p>
+
+    <div class="callout gold">
+      <p class="ctitle">Remember This From Project 2?</p>
+      <p>"Too many arguments to function" was one of the errors you triggered on purpose. Now you know what an argument is — and why <code>msleep(2,000)</code> looked like two of them.</p>
+    </div>
+
+    <h3 class="sub">Power runs from −100 to 100</h3>
+
+    <table class="grid">
+      <thead><tr><th style="width:28%">Power value</th><th>What the wheel does</th></tr></thead>
+      <tbody>
+        <tr><td class="ctr">100</td><td>Full speed forward</td></tr>
+        <tr><td class="ctr">50</td><td>About half speed forward</td></tr>
+        <tr><td class="ctr">0</td><td>Nothing</td></tr>
+        <tr><td class="ctr">−50</td><td>About half speed backward</td></tr>
+        <tr><td class="ctr">−100</td><td>Full speed backward</td></tr>
+      </tbody>
+    </table>
+
+    <p class="muted">A minus sign in front of the power number reverses that motor. This is how you back up, and later, how you turn.</p>
+
+    <h3 class="sub">Turning motors off</h3>
+
+    <p><code>ao()</code> stands for <strong>a</strong>ll <strong>o</strong>ff. It stops every motor at once and takes no arguments — just empty parentheses.</p>
+
+    <h3 class="sub">Why you always need msleep()</h3>
+
+    <p>Here is the thing that surprises everyone. Look at this program:</p>
+
+    <pre class="code">motor(<span class="nu">0</span>, <span class="nu">50</span>);
+motor(<span class="nu">3</span>, <span class="nu">50</span>);
+ao();</pre>
+
+    <p>The wheels will not move. Not even a twitch.</p>
+
+    <p>The controller turns both motors on, and then — faster than you can blink — reads the next line and turns them off again. Remember from Project 2: it moves through lines far quicker than your eye can follow.</p>
+
+    <p><strong>Turning a motor on does not mean "run for a while." It means "run, starting now, until something tells you to stop."</strong> The <code>msleep()</code> is what gives it that while.</p>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="acode">motor(0, 50);</div>
+        <div class="adesc">Start motor 0 at half power. Keep going.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">motor(3, 50);</div>
+        <div class="adesc">Start motor 3 at half power. Keep going.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">msleep(2000);</div>
+        <div class="adesc">Wait 2 seconds. The motors are still running the whole time.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">ao();</div>
+        <div class="adesc">Stop everything.</div>
+      </div>
+    </div>
+
+    <p class="q">In your own words: what is <code>msleep()</code> actually doing while the motors run?</p>
+    <textarea class="answer" data-key="p2_msleep_role" aria-label="What msleep does while motors run"></textarea>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Make It Turn</h2>
+
+    <p>Robot on the block. Wheels in the air. Every time.</p>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Drive the motors by hand first</span>
+        <p>Before writing any code, use the Wombat's own screen. From the Home Screen, tap <strong>Motors</strong>.</p>
+        <p>Find the red line for a port and drag it left and right with your finger.</p>
+        <p class="q">What do the wheels do as you drag?</p>
+        <input type="text" data-key="p3_widget_wheels" aria-label="What the wheels do">
+        <p class="q" style="margin-top:14px">Watch the position number for that motor. Does it change?</p>
+        <input type="text" data-key="p3_widget_position" aria-label="Does the position number change">
+        <p class="muted" style="margin-top:12px">Remember that number. You will use it in a much later project to drive exact distances.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Write your first motor program</span>
+        <p>Make a new project called <code>Motors</code>. Do not forget your attribution comments at the top.</p>
+        <pre class="code"><span class="ln">1</span>  <span class="kw">#include</span> &lt;kipr/wombat.h&gt;
+<span class="ln">2</span>
+<span class="ln">3</span>  <span class="kw">int</span> main ()
+<span class="ln">4</span>  {
+<span class="ln">5</span>      motor(<span class="nu">0</span>, <span class="nu">50</span>);      <span class="cm">// Motor 0 on at 50% power</span>
+<span class="ln">6</span>      motor(<span class="nu">3</span>, <span class="nu">50</span>);      <span class="cm">// Motor 3 on at 50% power</span>
+<span class="ln">7</span>      msleep(<span class="nu">2000</span>);      <span class="cm">// Keep them running for 2 seconds</span>
+<span class="ln">8</span>      ao();               <span class="cm">// All off</span>
+<span class="ln">9</span>      <span class="kw">return</span> <span class="nu">0</span>;
+<span class="ln">10</span> }</pre>
+        <p>Compile and run it. Watch the wheels.</p>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_step_first_run"><label for="d1">Both wheels spun the same direction for about 2 seconds</label></li></ul>
+        <p class="q">Did both wheels spin the same way? If not, what does that tell you about your plugs?</p>
+        <textarea class="answer" data-key="p3_same_direction" aria-label="Did both wheels spin the same way"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Prove that msleep matters</span>
+        <p>Delete the <code>msleep(2000);</code> line. Compile. Run.</p>
+        <p class="q">What happened?</p>
+        <input type="text" data-key="p3_no_msleep" aria-label="What happened without msleep">
+        <p style="margin-top:14px">Now put it back.</p>
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_step_msleep_back"><label for="d2">msleep is back and the program works again</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Prove that ao() matters</span>
+        <p>Now delete the <code>ao();</code> line instead. Compile. Run. Watch carefully.</p>
+        <p class="q">What happened this time?</p>
+        <input type="text" data-key="p3_no_ao" aria-label="What happened without ao">
+        <p style="margin-top:14px">Put it back. Leaving motors running with no <code>ao()</code> is one of the most common bugs in Botball — and on a real field it means a robot that will not stop.</p>
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_step_ao_back"><label for="d3">ao() is back</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Explore power</span>
+        <p>Change both power numbers, run, and record what you notice. Keep <code>msleep(2000)</code> the same every time so it is a fair test.</p>
+        <table class="grid">
+          <thead><tr><th style="width:22%">Power</th><th>What I noticed</th></tr></thead>
+          <tbody>
+            <tr><td class="ctr">25</td><td><input type="text" data-key="p3_power_25" aria-label="Observation at power 25"></td></tr>
+            <tr><td class="ctr">50</td><td><input type="text" data-key="p3_power_50" aria-label="Observation at power 50"></td></tr>
+            <tr><td class="ctr">75</td><td><input type="text" data-key="p3_power_75" aria-label="Observation at power 75"></td></tr>
+            <tr><td class="ctr">100</td><td><input type="text" data-key="p3_power_100" aria-label="Observation at power 100"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Is power 100 exactly twice as fast as power 50? What makes you say that?</p>
+        <textarea class="answer" data-key="p3_power_double" aria-label="Is 100 twice as fast as 50"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Go backward</span>
+        <p>Put a minus sign in front of both power numbers:</p>
+        <pre class="code">motor(<span class="nu">0</span>, <span class="nu">-50</span>);
+motor(<span class="nu">3</span>, <span class="nu">-50</span>);</pre>
+        <p>Run it and watch the LEDs by the ports as well as the wheels.</p>
+        <p class="q">What color are the LEDs now?</p>
+        <input type="text" data-key="p3_reverse_leds" aria-label="LED color in reverse">
+        <ul class="check" style="margin-top:12px"><li><input type="checkbox" id="d4" data-key="p3_step_reverse"><label for="d4">Both wheels spun backward</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Make it disagree with itself</span>
+        <p>Now give the two motors opposite powers:</p>
+        <pre class="code">motor(<span class="nu">0</span>, <span class="nu">50</span>);
+motor(<span class="nu">3</span>, <span class="nu">-50</span>);</pre>
+        <p>Run it. The wheels are in the air, so watch what <em>would</em> happen on the ground.</p>
+        <p class="q">If this robot were on the floor, what would it do?</p>
+        <textarea class="answer" data-key="p3_opposite_prediction" aria-label="What the robot would do on the floor"></textarea>
+        <p class="muted">Hold on to this. It is exactly how you will make the robot turn in Project 5.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Write three of your own</span>
+        <p>Write a command for each of these. Do not run them yet — just write them.</p>
+        <table class="grid">
+          <thead><tr><th style="width:52%">I want to...</th><th>The command is</th></tr></thead>
+          <tbody>
+            <tr><td>Run port 0 at full power forward</td><td><input type="text" data-key="p3_write_full" aria-label="Command for full power"></td></tr>
+            <tr><td>Run port 3 at 80% power forward</td><td><input type="text" data-key="p3_write_80" aria-label="Command for 80 percent"></td></tr>
+            <tr><td>Run port 1 at quarter power backward</td><td><input type="text" data-key="p3_write_quarter_rev" aria-label="Command for quarter power reverse"></td></tr>
+            <tr><td>Stop everything</td><td><input type="text" data-key="p3_write_stop" aria-label="Command to stop"></td></tr>
+            <tr><td>Wait three seconds</td><td><input type="text" data-key="p3_write_wait3" aria-label="Command to wait three seconds"></td></tr>
+          </tbody>
+        </table>
+        <p>Now pick one and actually run it, to check you were right.</p>
+        <ul class="check"><li><input type="checkbox" id="d5" data-key="p3_step_own_command"><label for="d5">I tested one of my own commands and it did what I expected</label></li></ul>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <p>No field mission yet — that starts in Project 4. This checkpoint is about whether your motors are set up correctly and whether you can control them on purpose.</p>
+
+    <h3 class="sub">My robot's setup</h3>
+    <p class="muted">Write this down. Every program you write from now on depends on it.</p>
+    <table class="grid">
+      <thead><tr><th style="width:46%">Question</th><th>My answer</th></tr></thead>
+      <tbody>
+        <tr><td>Which port is my left wheel in?</td><td><input type="text" data-key="p4_left_port" aria-label="Left wheel port"></td></tr>
+        <tr><td>Which port is my right wheel in?</td><td><input type="text" data-key="p4_right_port" aria-label="Right wheel port"></td></tr>
+        <tr><td>Did I have to flip either plug?</td><td><input type="text" data-key="p4_flipped" aria-label="Did I flip a plug"></td></tr>
+        <tr><td>What power makes a good steady speed?</td><td><input type="text" data-key="p4_good_power" aria-label="Good steady power"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Read the code</h3>
+    <p>What will this program do? Write it out before you run it.</p>
+    <pre class="code"><span class="ln">1</span>  motor(<span class="nu">0</span>, <span class="nu">100</span>);
+<span class="ln">2</span>  motor(<span class="nu">3</span>, <span class="nu">100</span>);
+<span class="ln">3</span>  msleep(<span class="nu">1000</span>);
+<span class="ln">4</span>  motor(<span class="nu">0</span>, <span class="nu">-100</span>);
+<span class="ln">5</span>  motor(<span class="nu">3</span>, <span class="nu">-100</span>);
+<span class="ln">6</span>  msleep(<span class="nu">1000</span>);
+<span class="ln">7</span>  ao();</pre>
+    <textarea class="answer" data-key="p4_predict_program" aria-label="Predict what the program does"></textarea>
+    <p class="q">Now run it. Were you right? If not, what did you miss?</p>
+    <textarea class="answer" data-key="p4_predict_result" aria-label="Were you right"></textarea>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_ports"><label for="s1">I can name all four motor ports and know counting starts at 0</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_led"><label for="s2">I can use the wheel-spin trick to check a motor's direction without running a program</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_fix_plug"><label for="s3">I can fix a backward motor by flipping the plug</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_motor"><label for="s4">I can write <code>motor()</code> with the right port and power</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_negative"><label for="s5">I can make a motor run backward using a negative power</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_explain_msleep"><label for="s6">I can explain why a motor program needs <code>msleep()</code></label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_ao"><label for="s7">I always finish a motor program with <code>ao()</code></label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">A teammate says their robot "just doesn't work" — they run the program and nothing moves. Name two things you would check first, and why.</p>
+    <textarea class="answer" data-key="p4_troubleshoot" aria-label="Two things to check"></textarea>
+
+    <p class="q">Nothing in this project told the robot how far to go — only how hard to push and for how long. Do you think that is enough to hit a target on the field? Why or why not?</p>
+    <textarea class="answer" data-key="p4_far_enough" aria-label="Is power and time enough"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>In <strong>Project 4 — Out and Back</strong>, the robot comes off the block and onto the field. You will drive out of the starting box, park in the zone, and drive back — and that scores a real mission.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
+    'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) openDef(el.dataset.term);
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_coding_03";
+  var MISSION_TITLE = "Discovery Project 3 — Motors and Ports";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>

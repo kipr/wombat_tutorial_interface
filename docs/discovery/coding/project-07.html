@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 7 — Your Robot's Arm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #5b6270;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #6b7280;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #24200f; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d9b464; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+  .meta dd.anchor { font-weight: 600; color: var(--red); }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #fff8e6;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #fffaef; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+  .callout.danger { border-left-color: #922B21; background: #fdf0ef; }
+  .callout.danger .ctitle { color: #922B21; }
+
+  /* Mission card */
+  .mission { border: 2px solid var(--red); border-radius: 6px; overflow: hidden; margin: 18px 0; }
+  .mission-head {
+    background: var(--red); color: #fff; padding: 11px 18px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .mission-head .mtitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 20px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .mission-head .mpts {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 15px; letter-spacing: .08em; color: rgba(255,255,255,.85);
+  }
+  .mission-body { padding: 4px 18px 14px; }
+  .mpart { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .mpart:last-child { border-bottom: none; }
+  .mpart .mlabel {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--navy); display: block; margin-bottom: 3px;
+  }
+  .mpart.later { background: #f6f7f9; margin: 0 -18px; padding-left: 18px; padding-right: 18px; color: var(--grey); }
+  .mpart.later .mlabel { color: var(--grey); }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+  ol.dosteps .spts {
+    display: inline-block; background: var(--gold); color: #24200f;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px;
+    border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+  table.grid tr.total td { background: #f2f4fa; font-weight: 700; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 230px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  /* Servo range bar */
+  .rangebar { margin: 18px 0; }
+  .rangebar .bar {
+    height: 42px; border-radius: 5px; overflow: hidden; display: flex;
+    border: 1px solid var(--line); font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 14px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .rangebar .seg { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 4px; }
+  .rangebar .danger-seg { background: #f2c4c0; color: #7d1a12; }
+  .rangebar .safe-seg { background: #cfe3d4; color: #145a32; flex: 1; }
+  .rangebar .scale {
+    display: flex; justify-content: space-between; font-size: 14px;
+    color: var(--grey); margin-top: 5px; font-family: 'Courier New', monospace;
+  }
+
+  .scorepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .scorepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .scorepair .chead {
+    padding: 9px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #fff;
+  }
+  .scorepair .yes .chead { background: #1E8449; }
+  .scorepair .no .chead { background: #922B21; }
+  .scorepair ul { margin: 10px 0 12px; padding-left: 22px; font-size: 16px; }
+  .scorepair li { margin: 6px 0; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .scorepair { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+    .rangebar .bar { font-size: 11px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .mission-head, .scorepair .chead, ol.dosteps .spts, .rangebar .seg { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Coding · Project 7</p>
+    <h1>Your Robot's Arm</h1>
+    <p class="sub">A motor that goes to a place instead of just going. Seven points for touching one plastic guy.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Wiring up a servo, finding its safe positions, and using an arm to reach into the enclosure and touch Botguy.</dd></div>
+        <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 9 — Recover Botguy (base)</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Built robot with one servo and a servo horn · Wombat · charged battery · the game field · a small screwdriver · your Project 4 and 5 numbers</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 6 — and your arm must be built. The build lives in the Systems strand.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> A Different Kind of Motor</h2>
+
+    <p>Hold a wheel motor in one hand and a <span class="def-term" data-term="SERVO">SERVO</span> in the other. They look similar. They are not.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:26%"></th><th style="width:37%">Wheel motor</th><th>Servo</th></tr></thead>
+      <tbody>
+        <tr><td class="ctr">Wires</td><td>Two — red and black</td><td><strong>Three</strong> — orange, red, brown</td></tr>
+        <tr><td class="ctr">Plug</td><td>Two metal prongs</td><td>Black plastic plug</td></tr>
+        <tr><td class="ctr">How far it turns</td><td>Round and round, forever</td><td>About half a circle, then stops</td></tr>
+        <tr><td class="ctr">What you tell it</td><td>How hard to push</td><td><strong>Where to go</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout navy">
+      <p class="ctitle">The Real Difference</p>
+      <p>You never tell a wheel motor <em>where</em> to stop — only how hard to push and for how long. A servo is the opposite: you tell it a position and it goes there and holds.</p>
+      <p>That is exactly what an arm needs. "Up" is a place, not a push.</p>
+    </div>
+
+    <h3 class="sub">Plug it in — the wire order matters</h3>
+
+    <p>There are four servo ports, numbered <strong>0 to 3</strong>. Each one has three pins, and putting the plug in backwards will not work.</p>
+
+    <div class="anat">
+      <div class="arow"><div class="acode">S — orange wire</div><div class="adesc">Signal. This is the wire that carries the position you asked for.</div></div>
+      <div class="arow"><div class="acode">+ — red wire</div><div class="adesc">Power.</div></div>
+      <div class="arow"><div class="acode">− — brown wire</div><div class="adesc">Ground. Remember it as: <em>the ground is down, and down is negative.</em></div></div>
+    </div>
+
+    <p>Plug your servo into <strong>port 0</strong>, brown wire toward the minus side.</p>
+
+    <ul class="check">
+      <li><input type="checkbox" id="c1" data-key="p1_wired"><label for="c1">My servo is in port 0 with the wires the right way round</label></li>
+      <li><input type="checkbox" id="c2" data-key="p1_horn"><label for="c2">A servo horn is attached — washer first, then horn, then the small screw</label></li>
+    </ul>
+
+    <h3 class="sub">Try the widget before you write anything</h3>
+
+    <p>On the Wombat's Home Screen, tap <strong>Servos</strong>. Enable port 0 and drag the slider slowly.</p>
+
+    <p class="q">What does the arm do as you drag?</p>
+    <input type="text" data-key="p1_widget_watch" aria-label="What the arm does">
+
+    <p class="q" style="margin-top:14px">Now let go of the slider and try to push the arm with your finger. What happens?</p>
+    <textarea class="answer" data-key="p1_push_arm" aria-label="Pushing the arm"></textarea>
+
+    <div class="callout gold">
+      <p class="ctitle">It Pushes Back</p>
+      <p>A servo does not just move to a position — it <em>holds</em> that position and fights anything that tries to move it. That is why it can lift something and keep holding it there.</p>
+    </div>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Positions, Not Powers</h2>
+
+    <p>A servo turns about 180°, and that half circle is divided into <strong>2048 positions</strong>, numbered 0 to 2047.</p>
+
+    <p class="muted">Counting from zero again — same as the motor ports.</p>
+
+    <p>Position <strong>1024</strong> is the middle. That is where a servo goes by default.</p>
+
+    <div class="callout danger">
+      <p class="ctitle">⚠ Never Below 150 or Above 1900</p>
+      <p>The numbers go to 2047, but your servo physically cannot reach the ends. Sending it past its limit makes it strain against its own stop, and <strong>it will burn out.</strong> A burnt servo does not come back.</p>
+      <p><strong>Stay between 150 and 1900. Always.</strong></p>
+    </div>
+
+    <div class="rangebar">
+      <div class="bar">
+        <span class="seg danger-seg" style="width:7.3%">0–149<br>burn</span>
+        <span class="seg safe-seg">150 — 1900 · safe range · centre is 1024</span>
+        <span class="seg danger-seg" style="width:7.2%">1901+<br>burn</span>
+      </div>
+      <div class="scale"><span>0</span><span>1024</span><span>2047</span></div>
+    </div>
+
+    <h3 class="sub">The four commands</h3>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="acode">enable_servos();</div>
+        <div class="adesc">Turns on all four servo ports. Nothing works until you call this.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">set_servo_position(0, 800);</div>
+        <div class="adesc">Sends the servo in port 0 to position 800. Two arguments — port first, then position.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">msleep(500);</div>
+        <div class="adesc">Gives the servo time to actually get there. Not optional.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">disable_servos();</div>
+        <div class="adesc">Turns the servo ports off at the end of your program.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p class="ctitle">Why msleep Again?</p>
+      <p>Same reason as the wheel motors. <code>set_servo_position()</code> tells the servo to <em>start</em> moving — it does not wait for it to arrive. Without an <code>msleep()</code>, the next line runs while the arm is still halfway there.</p>
+    </div>
+
+    <h3 class="sub">The gotcha that catches everybody</h3>
+
+    <p>When you call <code>enable_servos()</code>, every servo immediately jumps to <strong>whatever position it was in last time.</strong> Which might be anywhere.</p>
+
+    <p>If your arm was down when you last ran a program, it will slam down again the instant your new program enables the servos — possibly into the field, or into a cube, or into your hand.</p>
+
+    <div class="callout gold">
+      <p class="ctitle">The Preset Trick</p>
+      <p>Call <code>set_servo_position()</code> <em>before</em> <code>enable_servos()</code>. The servo then wakes up already knowing where to go, and moves there instead of to its old position.</p>
+    </div>
+
+    <pre class="code"><span class="cm">// Risky — arm snaps to wherever it was last</span>
+enable_servos();
+set_servo_position(<span class="nu">0</span>, <span class="nu">524</span>);
+
+<span class="cm">// Better — arm wakes up already aimed at 524</span>
+set_servo_position(<span class="nu">0</span>, <span class="nu">524</span>);
+enable_servos();</pre>
+
+    <h3 class="sub">Write your positions down</h3>
+
+    <p>Position numbers mean nothing on their own. <code>set_servo_position(0, 1746);</code> tells you nothing about what the arm is doing. Comment every one:</p>
+
+    <pre class="code"><span class="cm">// up         = 524</span>
+<span class="cm">// horizontal = 1566</span>
+<span class="cm">// down       = 1746</span></pre>
+
+    <p class="muted">Use the format <strong>name = number</strong>. There is a reason for that — in Project 9 those names stop being comments and become part of the program.</p>
+
+    <h3 class="sub">Where you are headed</h3>
+
+    <div class="mission">
+      <div class="mission-head">
+        <span class="mtitle">Mission 9 — Recover Botguy</span>
+        <span class="mpts">16 points possible · Live judged</span>
+      </div>
+      <div class="mission-body">
+        <div class="mpart">
+          <span class="mlabel">Base Mission — 7 pts</span>
+          A robot is <span class="def-term" data-term="TOUCHING">TOUCHING</span> Botguy.
+        </div>
+        <div class="mpart later">
+          <span class="mlabel">Bonus Mission — 9 pts — not yet</span>
+          Botguy is completely outside the enclosure <em>and</em> touching the warehouse floor, both true at the same moment. Getting him out needs a claw. That is Project 8.
+        </div>
+      </div>
+    </div>
+
+    <div class="scorepair">
+      <div class="col yes">
+        <div class="chead">✓ Scores</div>
+        <ul>
+          <li>A robot is touching Botguy.</li>
+        </ul>
+      </div>
+      <div class="col no">
+        <div class="chead">✗ Does Not Score</div>
+        <ul>
+          <li>A robot is near Botguy but not touching him.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="muted">Seven points for one touch. It is the best points-per-effort deal on the field — as long as you actually make contact.</p>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Reach and Touch</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Centre the horn first</span>
+        <p>Your servo can only reach half a circle — but looking at it, you cannot tell <em>which</em> half. Fix that mechanically before you write any code.</p>
+        <ul class="plain">
+          <li>Unscrew the servo horn.</li>
+          <li>In the Servo Widget, enable the servo and set it to <strong>1024</strong>.</li>
+          <li>Put the horn back on pointing at the middle of the range you actually want.</li>
+          <li>Check both directions with the widget. Screw it back down when it is right.</li>
+        </ul>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_centered"><label for="d1">My horn is centred and screwed down</label></li></ul>
+        <p class="muted">Skip this and you will spend the rest of the project fighting an arm that runs out of travel halfway through a move.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Find your three positions</span>
+        <p>Using the widget, find the number for each of these and write it down. Stay inside 150–1900.</p>
+        <table class="grid">
+          <thead><tr><th style="width:34%">Arm position</th><th style="width:22%">Number</th><th>What it looks like</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">Up (straight up)</td><td><input type="text" data-key="p3_pos_up" aria-label="Up position"></td><td><input type="text" data-key="p3_pos_up_desc" aria-label="Up description"></td></tr>
+            <tr class="trial"><td class="ctr">Horizontal (level)</td><td><input type="text" data-key="p3_pos_horiz" aria-label="Horizontal position"></td><td><input type="text" data-key="p3_pos_horiz_desc" aria-label="Horizontal description"></td></tr>
+            <tr class="trial"><td class="ctr">Down (not touching the floor)</td><td><input type="text" data-key="p3_pos_down" aria-label="Down position"></td><td><input type="text" data-key="p3_pos_down_desc" aria-label="Down description"></td></tr>
+          </tbody>
+        </table>
+        <div class="callout warn">
+          <p class="ctitle">⚠ Down Means Nearly Down</p>
+          <p>Do not find a "down" that presses the arm into the floor. The servo will keep straining to reach a position it cannot get to, and that is exactly how servos die.</p>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">The Wave</span>
+        <p>New project called <code>Wave</code>. Move the arm to all three positions with a one-second pause between each. Put your position comments at the top.</p>
+        <pre class="code"><span class="ln">1</span>  <span class="kw">#include</span> &lt;kipr/wombat.h&gt;
+<span class="ln">2</span>
+<span class="ln">3</span>  <span class="kw">int</span> main ()
+<span class="ln">4</span>  {
+<span class="ln">5</span>      <span class="cm">// up         = 524</span>
+<span class="ln">6</span>      <span class="cm">// horizontal = 1566</span>
+<span class="ln">7</span>      <span class="cm">// down       = 1746</span>
+<span class="ln">8</span>
+<span class="ln">9</span>      set_servo_position(<span class="nu">0</span>, <span class="nu">1746</span>);   <span class="cm">// preset to down</span>
+<span class="ln">10</span>     enable_servos();
+<span class="ln">11</span>     msleep(<span class="nu">1000</span>);
+<span class="ln">12</span>
+<span class="ln">13</span>     set_servo_position(<span class="nu">0</span>, <span class="nu">1566</span>);   <span class="cm">// horizontal</span>
+<span class="ln">14</span>     msleep(<span class="nu">1000</span>);
+<span class="ln">15</span>
+<span class="ln">16</span>     set_servo_position(<span class="nu">0</span>, <span class="nu">524</span>);    <span class="cm">// up</span>
+<span class="ln">17</span>     msleep(<span class="nu">1000</span>);
+<span class="ln">18</span>
+<span class="ln">19</span>     disable_servos();
+<span class="ln">20</span>     <span class="kw">return</span> <span class="nu">0</span>;
+<span class="ln">21</span> }</pre>
+        <p>Use <em>your</em> numbers, not these. Compile and run.</p>
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_wave_works"><label for="d2">My arm moves to all three positions with a pause between each</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Prove the msleep matters</span>
+        <p>Delete all three <code>msleep()</code> lines. Compile. Run. Watch closely.</p>
+        <p class="q">What did the arm do?</p>
+        <textarea class="answer" data-key="p3_no_msleep" aria-label="Arm without msleep"></textarea>
+        <p>Put them back.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Prove the preset trick matters</span>
+        <p>Run your Wave program so the arm finishes <strong>up</strong>. Now swap lines 9 and 10 so <code>enable_servos()</code> comes first, and run it again.</p>
+        <p class="q">What did the arm do the instant the program started?</p>
+        <textarea class="answer" data-key="p3_preset_test" aria-label="Preset test"></textarea>
+        <p class="q">Why could that be a problem in the middle of a match?</p>
+        <textarea class="answer" data-key="p3_preset_why" aria-label="Why preset matters"></textarea>
+        <p>Put it back the safe way round.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Drive and touch</span>
+        <p>New project called <code>Reach</code>. Practice away from the field first: put any object a short drive away, then drive to it and touch it with the arm.</p>
+        <p>Two rules, borrowed from how the mission works:</p>
+        <ul class="plain">
+          <li>The arm must <strong>start up</strong> and move down to touch. No driving around with the arm already out front.</li>
+          <li>Touch it with the arm only — not with the robot's body.</li>
+        </ul>
+        <pre class="code"><span class="cm">// 1. Arm starts up</span>
+<span class="cm">// 2. Drive to the object</span>
+<span class="cm">// 3. Stop</span>
+<span class="cm">// 4. Lower the arm to touch it</span>
+<span class="cm">// 5. Raise the arm again</span></pre>
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_reach_works"><label for="d3">I can drive to an object and touch it with the arm</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 9 — touch Botguy<span class="spts">7 pts</span></span>
+        <p>Onto the field. New project called <code>Botguy</code>.</p>
+        <p>Botguy is inside the enclosure. Your robot has to reach in and make contact — direct contact, arm to Botguy.</p>
+        <div class="callout navy">
+          <p class="ctitle">TOUCHING Means Direct Contact</p>
+          <p>Two objects are TOUCHING when they are in direct physical contact. Contact through something else — a cube, a wall, another field element — does not count. Your arm has to reach Botguy himself.</p>
+        </div>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Try</th><th style="width:40%">What I changed</th><th>Did the arm reach him?</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_bg_t1_chg" aria-label="Botguy try 1 change"></td><td><input type="text" data-key="p3_bg_t1_res" aria-label="Botguy try 1 result"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_bg_t2_chg" aria-label="Botguy try 2 change"></td><td><input type="text" data-key="p3_bg_t2_res" aria-label="Botguy try 2 result"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_bg_t3_chg" aria-label="Botguy try 3 change"></td><td><input type="text" data-key="p3_bg_t3_res" aria-label="Botguy try 3 result"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_bg_t4_chg" aria-label="Botguy try 4 change"></td><td><input type="text" data-key="p3_bg_t4_res" aria-label="Botguy try 4 result"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check">
+          <li><input type="checkbox" id="d4" data-key="p3_m9_touch"><label for="d4">My arm makes direct contact with Botguy</label></li>
+          <li><input type="checkbox" id="d5" data-key="p3_m9_no_knock"><label for="d5">I did not knock the enclosure out of place getting there</label></li>
+        </ul>
+        <p class="q">Which was harder — getting the robot into position, or getting the arm to the right height?</p>
+        <input type="text" data-key="p3_harder_part" aria-label="Which was harder">
+      </li>
+
+      <li>
+        <span class="stitle">Run it five times</span>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Run</th><th>Touched Botguy?</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_r1" aria-label="Run 1"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_r2" aria-label="Run 2"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_r3" aria-label="Run 3"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_r4" aria-label="Run 4"></td></tr>
+            <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p3_r5" aria-label="Run 5"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">My score</h3>
+    <table class="grid">
+      <thead><tr><th style="width:56%">Mission part</th><th style="width:24%">Scored?</th><th>Points</th></tr></thead>
+      <tbody>
+        <tr><td>Mission 9 — Base (robot TOUCHING Botguy)</td><td><input type="text" data-key="p4_s_m9" aria-label="Score M9"></td><td class="ctr">7</td></tr>
+        <tr class="total"><td>My total</td><td><input type="text" data-key="p4_total" aria-label="Total"></td><td class="ctr">7</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">My servo card</h3>
+    <p class="muted">Keep these next to your driving numbers. Everything from here uses them.</p>
+    <table class="grid">
+      <thead><tr><th style="width:56%">Setting</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Servo port my arm is in</td><td><input type="text" data-key="p4_arm_port" aria-label="Arm port"></td></tr>
+        <tr><td>Arm up position</td><td><input type="text" data-key="p4_arm_up" aria-label="Arm up"></td></tr>
+        <tr><td>Arm horizontal position</td><td><input type="text" data-key="p4_arm_horiz" aria-label="Arm horizontal"></td></tr>
+        <tr><td>Arm down position</td><td><input type="text" data-key="p4_arm_down" aria-label="Arm down"></td></tr>
+        <tr><td>Arm position for touching Botguy</td><td><input type="text" data-key="p4_arm_botguy" aria-label="Botguy position"></td></tr>
+        <tr><td>msleep needed for a full up-to-down move</td><td><input type="text" data-key="p4_arm_ms" aria-label="Arm move time"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_tell"><label for="s1">I can tell a servo from a wheel motor by looking at it</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_wire"><label for="s2">I can plug a servo in with the wires the right way round</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_limits"><label for="s3">I know the safe range is 150 to 1900 and I never leave it</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_commands"><label for="s4">I can write all four servo commands in the right order</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_preset"><label for="s5">I set a position before enabling, so the arm never snaps somewhere unexpected</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_center"><label for="s6">I can centre a servo horn using the widget</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_combine"><label for="s7">I can combine driving and arm movement in one run</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">A wheel motor takes a power. A servo takes a position. Why does an arm need a position and a wheel does not?</p>
+    <textarea class="answer" data-key="p4_why_position" aria-label="Why position vs power"></textarea>
+
+    <p class="q">Your position numbers are scattered through your program as bare numbers with comments next to them. If you rebuilt your arm slightly differently tomorrow, how many places would you have to change?</p>
+    <textarea class="answer" data-key="p4_scattered_numbers" aria-label="Scattered numbers problem"></textarea>
+
+    <p class="q">You can touch Botguy but you cannot get him out of the enclosure. What exactly can a claw do that a single arm cannot?</p>
+    <textarea class="answer" data-key="p4_claw_need" aria-label="What a claw adds"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>In <strong>Project 8 — Arm and Claw Together</strong>, a second servo joins the first. Two servos working as one system means you can finally grab, carry, and release — and a whole set of missions opens up at once.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'SERVO': ['Servo', 'A motor that rotates to a position you choose, rather than simply spinning. It turns about 180 degrees, divided into 2048 numbered positions, and holds whatever position you send it to.'],
+    'TOUCHING': ['Touching', 'Two objects are TOUCHING when they are in direct physical contact with one another. Contact through a third object (robot, field element, or game piece) does not count as TOUCHING.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) openDef(el.dataset.term);
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_coding_07";
+  var MISSION_TITLE = "Discovery Project 7 — Your Robot's Arm";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>
