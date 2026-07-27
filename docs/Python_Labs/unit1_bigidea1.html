@@ -518,6 +518,40 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
   }
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;
+               align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;
+           box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden;animation:def-pop .16s ease}
+  @keyframes def-pop{from{opacity:0;transform:scale(.93) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;
+            justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;
+                 letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;
+             line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;
+             display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs,.def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
+
 </style>
 </head>
 <body>
@@ -526,6 +560,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 1 · Big Idea 1</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -554,7 +589,7 @@
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine understand and act within the world?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>Computers Follow Instructions</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems require instructions before they can act.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd>Algorithms · Sequencing · Precision · Debugging · Inputs &amp; Outputs</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd><span class="def-term" data-term="ALGORITHM">Algorithm</span>s · Sequencing · Precision · <span class="def-term" data-term="DEBUGGING">Debugging</span> · Inputs &amp; Outputs</dd></div>
       <div class="row"><dt>Game Context</dt><dd>Mission 1 — Waypoint Alpha</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Explorer robot kit · game field · this lab sheet</dd></div>
     </dl>
@@ -582,11 +617,11 @@
     </ul>
 
     <h3 class="sub">Commands You Will Use</h3>
-    <p class="muted">These are built-in commands the robot already understands. You will use them inside your program. You don't have to write them — they come with the controller.</p>
+    <p class="muted">These are built-in commands the robot already understands. You will use them inside your program. You don't have to write them — they come with the <span class="def-term" data-term="CONTROLLER">controller</span>.</p>
     <table class="cmd-table">
       <thead><tr><th style="width:34%">Command</th><th>What it does</th></tr></thead>
       <tbody>
-        <tr><td><code>motor(port, power)</code></td><td>Turns the motor on the given port at a power level from −100 to 100. Example: <code>motor(0, 100)</code> runs motor 0 forward at full power.</td></tr>
+        <tr><td><code>motor(port, power)</code></td><td>Turns the motor on the given <span class="def-term" data-term="PORT">port</span> at a power level from −100 to 100. Example: <code>motor(0, 100)</code> runs motor 0 forward at full power.</td></tr>
         <tr><td><code>msleep(ms)</code></td><td>Pauses the program for the given number of milliseconds (1000 ms = 1 second). The robot keeps doing whatever it was last told to do during the pause.</td></tr>
         <tr><td><code>ao()</code></td><td>“All off.” Turns every motor port off at once. Use it to make the robot stop.</td></tr>
         <tr><td><code>alloff()</code></td><td>Turns all motors off — the same idea as <code>ao()</code>. Either one brings the robot to a complete stop.</td></tr>
@@ -623,7 +658,7 @@
   <!-- ===== Phase 2 ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 2</span> — Concept: What Is an Algorithm?</h2>
-    <p>An algorithm is a precise, ordered sequence of instructions that tells a system exactly what to do. Every program you write is an algorithm. Every autonomous robot runs an algorithm.</p>
+    <p>An algorithm is a precise, ordered sequence of instructions that tells a system exactly what to do. Every program you write is an algorithm. Every <span class="def-term" data-term="AUTONOMOUS">autonomous</span> robot runs an algorithm.</p>
     <h3 class="sub">Four Properties of a Good Algorithm</h3>
     <ol>
       <li><strong>Complete</strong> — every step needed to finish the task is included.</li>
@@ -646,9 +681,9 @@
     <h2 class="phase-head"><span class="pnum">Phase 3</span> — Plan</h2>
     <h3 class="sub">Mission 1 — Waypoint Alpha: What Must Happen?</h3>
     <div class="callout">
-      <p class="ctitle">Mission Requirement</p>
-      <p><strong>Base Mission:</strong> A robot enters the Waypoint Alpha zone and comes to a clear, complete stop while IN the zone.</p>
-      <p><strong>Bonus Mission:</strong> The same robot subsequently returns FULLY WITHIN a starting box and stops.</p>
+      <p class="ctitle">Mission <span class="def-term" data-term="REQUIREMENT">Requirement</span></p>
+      <p><strong>Base Mission:</strong> A robot enters the Waypoint Alpha zone and comes to a clear, complete stop while <span class="def-term" data-term="IN THE ZONE">IN THE ZONE</span>.</p>
+      <p><strong>Bonus Mission:</strong> The same robot subsequently returns <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> a starting box and stops.</p>
       <p><strong>Judging note:</strong> If you cannot clearly see that the robot stopped, the mission does not score.</p>
     </div>
 
@@ -711,7 +746,7 @@
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 4</span> — Build &amp; Run</h2>
     <h3 class="sub">Starting Code Template</h3>
-    <p>Type this program into your robot controller exactly as shown. Each line has a comment (after the <code>//</code>) that explains what it does. The comments are notes for you — the robot ignores them.</p>
+    <p>Type this program into your robot controller exactly as shown. Each line has a <span class="def-term" data-term="COMMENT">comment</span> (after the <code>//</code>) that explains what it does. The comments are notes for you — the robot ignores them.</p>
     <div class="code">#!/usr/bin/python3
 <span class="c"># Unit 1 · Big Idea 1 — Waypoint Navigator</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
@@ -729,7 +764,7 @@ def main():
 
 main()</div>
 
-    <h3 class="sub">Before You Press Run — Checklist</h3>
+    <h3 class="sub">Before You Press Run — <span class="def-term" data-term="CHECKLIST">Checklist</span></h3>
     <ul>
       <li>Your program is typed in exactly as shown, with indentation matching the template</li>
       <li>Robot is fully inside the starting box</li>
@@ -795,7 +830,7 @@ main()</div>
     </div>
     <p class="q"><span class="n">1.</span> What is an algorithm? Write a definition in your own words — do not use the word “instructions.”</p>
     <textarea class="answer" data-key="p7_q1_definition" aria-label="Reflection 1"></textarea>
-    <p class="q"><span class="n">2.</span> What was the most important variable in your program today? How did changing it affect the robot's behavior?</p>
+    <p class="q"><span class="n">2.</span> What was the most important <span class="def-term" data-term="VARIABLE">variable</span> in your program today? How did changing it affect the robot's behavior?</p>
     <textarea class="answer" data-key="p7_q2_variable" aria-label="Reflection 2"></textarea>
     <p class="q"><span class="n">3.</span> Precision matters in algorithms. Give one example from today where being imprecise caused a problem, and explain how you fixed it.</p>
     <textarea class="answer" data-key="p7_q3_precision" aria-label="Reflection 3"></textarea>
@@ -980,5 +1015,52 @@ main()</div>
   $("#submitTop").addEventListener("click", handleSubmit);
   $("#submitBottom").addEventListener("click", handleSubmit);
 </script>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">&#10005;</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFS = {
+    'DEBUGGING': ['Debugging', 'Finding out why a program does not do what you meant, and fixing it. The skill is not writing perfect code; it is narrowing down where the trouble actually is.'],
+    'ALGORITHM': ['Algorithm', 'A list of steps that solves a problem. A recipe is an algorithm. So is the set of instructions you write for a robot.'],
+    'AUTONOMOUS': ['Autonomous', 'The machine moves around on its own. No person is controlling it while it runs. You start it and step back.'],
+    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],
+    'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
+    'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
+    'FULLY WITHIN': ['Fully Within', 'An object or robot is FULLY WITHIN an area when every part of the object or robot lies inside the boundary of that area — no portion may touch or cross the boundary line.'],
+    'IN THE ZONE': ['In The Zone', 'A robot is IN THE ZONE when the robot is touching the interior of the specified zone and no part of the robot is touching the zone’s boundary line.'],
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
+    'REQUIREMENT': ['Requirement', 'Something your design must do to count as working, written so it can actually be tested. "Strong" is not a requirement. "Holds a full can for thirty seconds without leaning" is.'],
+    'VARIABLE': ['Variable', 'A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it.']
+  };
+  function openDef(t){
+    var e = DEFS[t]; if(!e) return;
+    document.getElementById('defTerm').textContent = e[0];
+    document.getElementById('defBody').textContent = e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow='hidden';
+  }
+  function closeDef(){
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el) openDef(el.dataset.term); });
+  document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
 </body>
 </html>

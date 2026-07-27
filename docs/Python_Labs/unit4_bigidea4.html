@@ -135,6 +135,40 @@
     .topbar .brand { width: 100%; margin-bottom: 4px; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;
+               align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;
+           box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden;animation:def-pop .16s ease}
+  @keyframes def-pop{from{opacity:0;transform:scale(.93) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;
+            justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;
+                 letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;
+             line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;
+             display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs,.def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
+
 </style>
 </head>
 <body>
@@ -142,6 +176,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 4 · Big Idea 4</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -165,10 +200,10 @@
     <dl>
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine know where it is and where it is going?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>A Program Can Track Its Own Progress</dd></div>
-      <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems track their own state and report what they have done.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd>Accumulating Variables · State · Console Output (f-strings) · Integration</dd></div>
-      <div class="row"><dt>Game Context</dt><dd>Stack the red cubes, then dock the pallet — scoring as you go</dd></div>
-      <div class="row"><dt>What You Need</dt><dd>Explorer robot · your full library · red cubes · pallet · dock · this lab sheet</dd></div>
+      <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems track their own <span class="def-term" data-term="STATE">state</span> and report what they have done.</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd>Accumulating <span class="def-term" data-term="VARIABLE">Variable</span>s · State · Console Output (f-strings) · Integration</dd></div>
+      <div class="row"><dt>Game Context</dt><dd>Stack the red cubes, then dock the <span class="def-term" data-term="PALLET">pallet</span> — scoring as you go</dd></div>
+      <div class="row"><dt>What You Need</dt><dd>Explorer robot · your full <span class="def-term" data-term="LIBRARY">library</span> · red cubes · pallet · dock · this lab sheet</dd></div>
     </dl>
   </div>
 
@@ -257,7 +292,7 @@ score = score + 11   <span class="c"># add 11 — score is now 20</span></div>
   <!-- ===== Phase 4: plan ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 4</span> — Plan the Run</h2>
-    <p>Before coding, map your run as a list of actions and the points each scores. Think through the whole path: find the wall to reset, square up, drive and turn to the cubes, stack them, then move the pallet to the dock. Mark which library function does each step.</p>
+    <p>Before coding, map your run as a list of actions and the points each scores. Think through the whole path: find the wall to reset, square up, drive and turn to the cubes, stack them, then move the pallet to the dock. Mark which library <span class="def-term" data-term="FUNCTION">function</span> does each step.</p>
     <table class="grid">
       <thead><tr><th style="width:8%">#</th><th style="width:48%">What the robot does</th><th style="width:24%">Library call(s)</th><th>Points (if any)</th></tr></thead>
       <tbody id="planBody"><!-- rows injected --></tbody>
@@ -313,7 +348,7 @@ def main():
 
 main()</div>
     <div class="callout gold">
-      <p class="ctitle">Requirement check</p>
+      <p class="ctitle"><span class="def-term" data-term="REQUIREMENT">Requirement</span> check</p>
       <p>Your finished run must use all six: <code>back_until_pressed</code>, <code>square_up</code>, <code>Drive</code>, <code>Turn</code>, <code>move_arm</code>, and <code>move_claw</code>. Fill the planning blanks with real calls so each one appears.</p>
     </div>
   </section>
@@ -343,7 +378,7 @@ main()</div>
       <p class="ctitle">AI Literacy Thread</p>
       <p>Intelligent systems track their own state and report what they have done.</p>
     </div>
-    <p>Your robot didn't just act — it <em>kept track of its own progress and reported it</em>. That's everywhere in real systems. A delivery robot logs each package dropped; a game tracks your score; a fitness band counts your steps and tells you the total. Keeping a running state and reporting it is how machines stay accountable — to their users and to the people debugging them. The printed log you built is exactly the kind of record engineers rely on to see what a system actually did, step by step.</p>
+    <p>Your robot didn't just act — it <em>kept track of its own progress and reported it</em>. That's everywhere in real systems. A delivery robot logs each package dropped; a game tracks your score; a fitness band counts your steps and tells you the total. Keeping a running state and reporting it is how machines stay accountable — to their users and to the people <span class="def-term" data-term="DEBUGGING">debugging</span> them. The printed log you built is exactly the kind of record engineers rely on to see what a system actually did, step by step.</p>
     <p class="muted">Complete the reflection on your own.</p>
     <div class="namebar">
       <div class="nb"><label for="r_name">Name</label><input id="r_name" type="text" data-key="reflect_name" autocomplete="off" /></div>
@@ -364,7 +399,7 @@ main()</div>
     <h2 class="phase-head">Extension Challenges</h2>
     <p class="muted">Finished early? Try one or more of these.</p>
 
-    <h3 class="sub">Extension A — Use the Turn Return Value</h3>
+    <h3 class="sub">Extension A — Use the Turn <span class="def-term" data-term="RETURN VALUE">Return Value</span></h3>
     <ul>
       <li>Your <code>Turn</code> returns 1 for success. Only add points if a maneuver's setup turn succeeded. How would you use the return value to protect your score?</li>
     </ul>
@@ -390,7 +425,7 @@ main()</div>
 
     <h3 class="sub">Extension E — One Combined Message</h3>
     <ul>
-      <li>Right now your score report prints as several separate <code>print</code> lines. Build one combined summary string with an f-string — for example, your score and maneuver count in a single sentence — before printing it in one call.</li>
+      <li>Right now your score report prints as several separate <code>print</code> lines. Build one combined summary <span class="def-term" data-term="STRING">string</span> with an f-string — for example, your score and maneuver count in a single sentence — before printing it in one call.</li>
       <li>What's one advantage of building one complete string before printing, instead of printing pieces as you go?</li>
     </ul>
     <textarea class="answer" data-key="ext_e" aria-label="Extension E"></textarea>
@@ -502,5 +537,49 @@ main()</div>
   $("#submitTop").addEventListener("click", handleSubmit);
   $("#submitBottom").addEventListener("click", handleSubmit);
 </script>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">&#10005;</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFS = {
+    'STATE': ['State', 'What a system is currently doing or holding — where the robot is, what it is carrying, how many cubes it has stacked. State is the information a program keeps track of as it runs.'],
+    'DEBUGGING': ['Debugging', 'Finding out why a program does not do what you meant, and fixing it. The skill is not writing perfect code; it is narrowing down where the trouble actually is.'],
+    'RETURN VALUE': ['Return Value', 'The answer a function hands back to whatever called it. A function that returns a value can be used inside a calculation; a void function cannot.'],
+    'STRING': ['String', 'Text stored as data — letters, digits, and spaces treated as characters rather than as a number you can do arithmetic with.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
+    'PALLET': ['Pallet', 'A flat platform on the game field that a load sits on. Several missions ask you to move a pallet and whatever is stacked on it, together.'],
+    'REQUIREMENT': ['Requirement', 'Something your design must do to count as working, written so it can actually be tested. "Strong" is not a requirement. "Holds a full can for thirty seconds without leaning" is.'],
+    'VARIABLE': ['Variable', 'A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it.']
+  };
+  function openDef(t){
+    var e = DEFS[t]; if(!e) return;
+    document.getElementById('defTerm').textContent = e[0];
+    document.getElementById('defBody').textContent = e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow='hidden';
+  }
+  function closeDef(){
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el) openDef(el.dataset.term); });
+  document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
 </body>
 </html>

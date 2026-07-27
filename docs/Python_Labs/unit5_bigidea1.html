@@ -137,6 +137,40 @@
     .topbar .brand { width: 100%; margin-bottom: 4px; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;
+               align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;
+           box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden;animation:def-pop .16s ease}
+  @keyframes def-pop{from{opacity:0;transform:scale(.93) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;
+            justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;
+                 letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;
+             line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;
+             display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs,.def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
+
 </style>
 </head>
 <body>
@@ -144,6 +178,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 5 · Big Idea 1</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -168,9 +203,9 @@
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine operate reliably in an imperfect world?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>Systems Must Handle Failure</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>A system can't catch its own failures unless it keeps track of what it believes about itself.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd>Arrays · Indexed State · Helper Functions · Conditional State Updates</dd></div>
-      <div class="row"><dt>Game Context</dt><dd>Mission 7 — deliver 2 orange + 2 blue poms to two different PVC enclosures</dd></div>
-      <div class="row"><dt>What You Need</dt><dd>Explorer robot · full library · 4 poms (2 orange, 2 blue) · two PVC enclosures · the game field · this lab sheet</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd><span class="def-term" data-term="ARRAY">Array</span>s · Indexed State · Helper <span class="def-term" data-term="FUNCTION">Function</span>s · Conditional State Updates</dd></div>
+      <div class="row"><dt>Game Context</dt><dd>Mission 7 — deliver 2 orange + 2 blue poms to two different PVC <span class="def-term" data-term="ENCLOSURE">enclosure</span>s</dd></div>
+      <div class="row"><dt>What You Need</dt><dd>Explorer robot · full <span class="def-term" data-term="LIBRARY">library</span> · 4 poms (2 orange, 2 blue) · two PVC enclosures · the game field · this lab sheet</dd></div>
     </dl>
   </div>
 
@@ -181,7 +216,7 @@
   <!-- ===== Overview ===== -->
   <section>
     <h2 class="phase-head">Overview</h2>
-    <p>The Long Run taught you that error piles up over a mission, and that square-ups and backward touches reset it back to zero. But here's a question those labs never asked: <strong>how would the robot know it had drifted, if nobody ever wrote the number down?</strong> A reset only helps if something is keeping track of what the robot currently believes about its own position. Today you build that something: a small list that holds your robot's <strong>believed pose</strong> — its x, y, and heading — and you update it honestly every time you get a real chance to check it against the truth.</p>
+    <p>The Long Run taught you that error piles up over a mission, and that square-ups and backward touches reset it back to zero. But here's a question those labs never asked: <strong>how would the robot know it had drifted, if nobody ever wrote the number down?</strong> A reset only helps if something is keeping track of what the robot currently believes about its own position. Today you build that something: a small <span class="def-term" data-term="LIST">list</span> that holds your robot's <strong>believed pose</strong> — its x, y, and heading — and you update it honestly every time you get a real chance to check it against the truth.</p>
     <div class="callout red">
       <p class="ctitle">The Big Idea of This Unit</p>
       <p>A system can't recognize failure it isn't tracking. Before a robot can debug itself, recover from a bad turn, or know its plan has gone wrong, it needs some internal record of where it thinks it is — a record it can compare against reality.</p>
@@ -204,7 +239,7 @@
     </div>
     <h3 class="sub">What counts</h3>
     <ul>
-      <li>A pom counts as "in" an enclosure if any part of it crosses into the enclosure's interior, or it's touching the interior-facing surface.</li>
+      <li>A pom counts as "in" an enclosure if any part of it crosses into the enclosure's interior, or it's <span class="def-term" data-term="TOUCHING">TOUCHING</span> the interior-facing surface.</li>
       <li>Base and Bonus must use <strong>different</strong> enclosures — the field has three to choose from.</li>
       <li>A pom used for the Base Mission can't also be counted for the Bonus Mission.</li>
     </ul>
@@ -218,7 +253,7 @@
     <div class="concept">
       <div class="chead">What is a list?</div>
       <div class="cbody">
-        <p>So far, every value you've stored has had its own variable name — <code>score</code>, <code>ticks_per_inch</code>, <code>pin</code>. A <strong>list</strong> is what you use when you have several <em>related</em> values and giving each one a separate name would hide the fact that they belong together.</p>
+        <p>So far, every value you've stored has had its own <span class="def-term" data-term="VARIABLE">variable</span> name — <code>score</code>, <code>ticks_per_inch</code>, <code>pin</code>. A <strong>list</strong> is what you use when you have several <em>related</em> values and giving each one a separate name would hide the fact that they belong together.</p>
         <div class="code small"><span class="c"># three separate variables — works, but they're not obviously connected</span>
 x = 0.0
 y = 0.0
@@ -233,7 +268,7 @@ pose = [0.0, 0.0, 0.0]</div>
     <textarea class="answer" data-key="p2_array" aria-label="List concept"></textarea>
 
     <div class="concept" style="margin-top:18px;">
-      <div class="chead">Naming an index: ALL_CAPS is a promise, not a rule</div>
+      <div class="chead">Naming an <span class="def-term" data-term="INDEX">index</span>: ALL_CAPS is a promise, not a rule</div>
       <div class="cbody">
         <p>A bare <code>pose[0]</code> doesn't say what it means. Give the index a name instead, so <code>pose[POSE_X]</code> reads exactly like what it is:</p>
         <div class="code small">POSE_X = 0
@@ -277,7 +312,7 @@ POSE_R = 2   <span class="c"># R = heading, in degrees</span>
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 4</span> — Concept: Turn() Now Updates R Too</h2>
     <div class="concept">
-      <div class="chead">The return value finally does something</div>
+      <div class="chead">The <span class="def-term" data-term="RETURN VALUE">return value</span> finally does something</div>
       <div class="cbody">
         <p>Back in Unit 4, <code>Turn(direction, angle)</code> already returned <code>True</code> for success or <code>False</code> for an invalid direction — but nothing in your code actually <em>used</em> that value. Today it matters: <code>Turn()</code> should only update <code>pose[POSE_R]</code> when the turn actually succeeds. A failed call shouldn't change what the robot believes about its own heading.</p>
       </div>
@@ -388,7 +423,7 @@ def main():
 
 main()</div>
     <div class="callout gold">
-      <p class="ctitle">Requirement check</p>
+      <p class="ctitle"><span class="def-term" data-term="REQUIREMENT">Requirement</span> check</p>
       <p>2 orange + 2 blue poms delivered, split across <strong>two different</strong> PVC enclosures. <code>initPose</code> called once. At least <strong>2 real resets</strong> each paired with a <code>setX</code>/<code>setY</code> call. <strong>5 total</strong> <code>printPose()</code> calls. <code>Turn()</code> only updates <code>pose[POSE_R]</code> on success.</p>
     </div>
   </section>
@@ -413,7 +448,7 @@ main()</div>
       <p class="ctitle">AI Literacy Thread</p>
       <p>A system can't catch its own failures unless it keeps track of what it believes about itself.</p>
     </div>
-    <p>Every intelligent system that operates reliably keeps some version of what you built today: a running record of its own believed state, updated honestly at moments of real evidence and left alone otherwise. A GPS-guided drone tracks believed position between satellite fixes. A robot vacuum tracks believed position between wall bumps. None of them are ever perfectly right — but because they keep the number written down, they can catch the moment it drifts too far, and that is the very first requirement for debugging a failure at all: you have to know what you expected before you can recognize that something went wrong.</p>
+    <p>Every intelligent system that operates reliably keeps some version of what you built today: a running record of its own believed state, updated honestly at moments of real evidence and left alone otherwise. A GPS-guided drone tracks believed position between satellite fixes. A robot vacuum tracks believed position between wall bumps. None of them are ever perfectly right — but because they keep the number written down, they can catch the moment it drifts too far, and that is the very first requirement for <span class="def-term" data-term="DEBUGGING">debugging</span> a failure at all: you have to know what you expected before you can recognize that something went wrong.</p>
     <p class="muted">Complete the reflection on your own.</p>
     <div class="namebar">
       <div class="nb"><label for="r_name">Name</label><input id="r_name" type="text" data-key="reflect_name" autocomplete="off" /></div>
@@ -468,7 +503,7 @@ main()</div>
 
     <h3 class="sub">Extension F — Lists Are Already Passed by Reference</h3>
     <ul>
-      <li>Right now, <code>printPose()</code> and friends reach out and grab the global <code>pose</code> list directly. Try rewriting <code>printPose</code> to instead take the list as a parameter: <code>def printPose(p):</code> called as <code>printPose(pose)</code>. Python passes the list itself — the function works with the exact same list in memory, not a copy. You didn't have to ask for that; it's just how Python handles lists.</li>
+      <li>Right now, <code>printPose()</code> and friends reach out and grab the global <code>pose</code> list directly. Try rewriting <code>printPose</code> to instead take the list as a <span class="def-term" data-term="PARAMETER">parameter</span>: <code>def printPose(p):</code> called as <code>printPose(pose)</code>. Python passes the list itself — the function works with the exact same list in memory, not a copy. You didn't have to ask for that; it's just how Python handles lists.</li>
       <li>Now compare: if a function took a plain number instead (<code>def addOne(n): n = n + 1</code>) and you called it with a variable, would the caller's variable change? Try it. Why does a list behave differently from a plain number when you pass it into a function?</li>
     </ul>
     <textarea class="answer" data-key="ext_f" aria-label="Extension F"></textarea>
@@ -588,5 +623,52 @@ main()</div>
   $("#submitTop").addEventListener("click", handleSubmit);
   $("#submitBottom").addEventListener("click", handleSubmit);
 </script>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">&#10005;</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFS = {
+    'LIST': ['List', 'Python’s way of holding a row of values under one name, reached by index. It does the job that an array does in C.'],
+    'ARRAY': ['Array', 'A single name that holds a whole row of values instead of just one. You reach each value by its position number, so one name and a number can stand in for a dozen separate variables.'],
+    'DEBUGGING': ['Debugging', 'Finding out why a program does not do what you meant, and fixing it. The skill is not writing perfect code; it is narrowing down where the trouble actually is.'],
+    'INDEX': ['Index', 'The position number that picks one item out of an array or list. Indexes usually start at 0, so the first item is index 0, not index 1.'],
+    'PARAMETER': ['Parameter', 'A named slot in a function that receives a value when the function is called. The parameter is the slot; the argument is the value that gets put into it.'],
+    'RETURN VALUE': ['Return Value', 'The answer a function hands back to whatever called it. A function that returns a value can be used inside a calculation; a void function cannot.'],
+    'ENCLOSURE': ['Enclosure', 'A PVC frame on the game field that objects can be placed inside. Missions that ask for something to be IN an enclosure are asking you to get it past those walls.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
+    'REQUIREMENT': ['Requirement', 'Something your design must do to count as working, written so it can actually be tested. "Strong" is not a requirement. "Holds a full can for thirty seconds without leaning" is.'],
+    'TOUCHING': ['Touching', 'Two objects are TOUCHING when they are in direct physical contact with one another. Contact through a third object (robot, field element, or game piece) does not count as TOUCHING.'],
+    'VARIABLE': ['Variable', 'A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it.']
+  };
+  function openDef(t){
+    var e = DEFS[t]; if(!e) return;
+    document.getElementById('defTerm').textContent = e[0];
+    document.getElementById('defBody').textContent = e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow='hidden';
+  }
+  function closeDef(){
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el) openDef(el.dataset.term); });
+  document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
 </body>
 </html>

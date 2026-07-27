@@ -146,6 +146,40 @@
     .topbar .brand { width: 100%; margin-bottom: 4px; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;
+               align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;
+           box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden;animation:def-pop .16s ease}
+  @keyframes def-pop{from{opacity:0;transform:scale(.93) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;
+            justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;
+                 letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;
+             line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;
+             display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs,.def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
+
 </style>
 </head>
 <body>
@@ -153,6 +187,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 2 · Big Idea 4</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -176,8 +211,8 @@
     <dl>
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine sense and respond to the world around it?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>Information Must Be Interpreted Before It Becomes Useful</dd></div>
-      <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems transform raw sensor data into meaningful information.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd>Analog Sensors · Raw Data · Calibration · Thresholds · if/else on a live sensor</dd></div>
+      <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems transform raw <span class="def-term" data-term="SENSOR">sensor</span> data into meaningful information.</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd><span class="def-term" data-term="ANALOG">Analog</span> Sensors · Raw Data · <span class="def-term" data-term="CALIBRATION">Calibration</span> · <span class="def-term" data-term="THRESHOLD">Threshold</span>s · if/else on a live sensor</dd></div>
       <div class="row"><dt>Game Context</dt><dd>Detecting tape — steering along a line</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Explorer robot · Tophat sensor · ruler · black tape on white board · this lab sheet</dd></div>
     </dl>
@@ -193,7 +228,7 @@
     <p>Your touch sensor gave a clean yes-or-no. Today's sensor is different. A <strong>Tophat</strong> sensor shines infrared light at the floor and measures how much bounces back — white reflects a lot, black tape reflects little. But it doesn't return 0 or 1. It returns a <strong>number</strong> from a big range, and that number is <em>noisy</em> — it jumps around even when nothing moves. Before this sensor is useful, you have to <strong>interpret</strong> it: figure out what counts as "black" and what counts as "white." That work is most of this lab, and almost all of it happens before you write a single line of code.</p>
     <div class="callout">
       <p class="ctitle">Core Insight</p>
-      <p>Raw sensor data is messy and meaningless on its own. The intelligence is in turning a jumpy number into a clear decision: "this means line, that means floor."</p>
+      <p>Raw sensor data is messy and meaningless on its own. The intelligence is in turning a jumpy number into a clear <span class="def-term" data-term="DECISION">decision</span>: "this means line, that means floor."</p>
     </div>
     <h3 class="sub">By the end of this activity you will be able to:</h3>
     <ul class="obj">
@@ -216,10 +251,10 @@
     <div class="callout navy">
       <p class="ctitle">Setup</p>
       <p>Mount the <strong>Tophat sensor</strong> on the <strong>front</strong> of your robot, facing down at the floor, about <strong>1/4 inch</strong> off the surface.</p>
-      <p>Plug it into <strong>analog port 0</strong>. In code, <code>analog(0)</code> reads this sensor.</p>
+      <p>Plug it into <strong>analog <span class="def-term" data-term="PORT">port</span> 0</strong>. In code, <code>analog(0)</code> reads this sensor.</p>
     </div>
 
-    <h3 class="sub">Find It on the Controller</h3>
+    <h3 class="sub">Find It on the <span class="def-term" data-term="CONTROLLER">Controller</span></h3>
     <div class="widget-step no-print">
       <p class="ctitle">Watch the raw values</p>
       <p>On the Wombat, open the <strong>Motors and Sensors</strong> widget, then the <strong>sensor list</strong>. Find the <strong>analog port 0</strong> reading.</p>
@@ -316,7 +351,7 @@
     <div class="concept">
       <div class="chead">Analog: a range, not a switch</div>
       <div class="cbody">
-        <p>Your touch sensor was <em>digital</em> — only 0 or 1. The Tophat is <em>analog</em> — it returns a number across a wide range. That's more information, but it's also messier: it bounces, and there's no single "line" value. You have to decide where the line <em>is</em>.</p>
+        <p>Your touch sensor was <em><span class="def-term" data-term="DIGITAL">Digital</span></em> — only 0 or 1. The Tophat is <em>analog</em> — it returns a number across a wide range. That's more information, but it's also messier: it bounces, and there's no single "line" value. You have to decide where the line <em>is</em>.</p>
       </div>
     </div>
     <div class="concept">
@@ -328,7 +363,7 @@
 } else {                       <span class="c">// reading is LOW — that's WHITE</span>
     <span class="c">// ...we're on the floor</span>
 }</div>
-        <p>This is the same <code>if/else</code> you learned in Unit 1 — but now the condition reads a <strong>live sensor</strong>, not a number you typed. The robot is interpreting the real world.</p>
+        <p>This is the same <code>if/else</code> you learned in Unit 1 — but now the <span class="def-term" data-term="CONDITION">condition</span> reads a <strong>live sensor</strong>, not a number you typed. The robot is interpreting the real world.</p>
       </div>
     </div>
     <div class="concept">
@@ -346,14 +381,14 @@
 
   <!-- ===== Phase 5: Build ===== -->
   <section>
-    <h2 class="phase-head"><span class="pnum">Phase 5</span> — Build the line_follow Function</h2>
+    <h2 class="phase-head"><span class="pnum">Phase 5</span> — Build the line_follow <span class="def-term" data-term="FUNCTION">Function</span></h2>
 
     <div class="safety no-print">
       <p class="ctitle">⚠ Test in your hands first</p>
       <p>Hold the robot up and pass the line under the sensor by hand. Watch the wheels change speed as you move from white to black. Only put it on the board once the steering reacts the right way.</p>
     </div>
 
-    <p>You'll reuse the encoder skeleton from <code>Tick_Drive</code> — clear the counter, loop to a tick target, brake at the end — but inside the loop you'll put the <code>if/else</code> that steers. Type your own <code>MIDPOINT</code> from Phase 3 at the top. Prototype above <code>main()</code>, definition below.</p>
+    <p>You'll reuse the <span class="def-term" data-term="ENCODER">encoder</span> skeleton from <code>Tick_Drive</code> — clear the counter, loop to a <span class="def-term" data-term="TICK">tick</span> target, brake at the end — but inside the loop you'll put the <code>if/else</code> that steers. Type your own <code>MIDPOINT</code> from Phase 3 at the top. <span class="def-term" data-term="PROTOTYPE">Prototype</span> above <code>main()</code>, definition below.</p>
     <div class="code">// Unit 2 · Big Idea 4 — Reading the Line
 // Name: _______________________   Date: ___________
 
@@ -388,7 +423,7 @@ void line_follow(int ticks) {
 
     <div class="callout gold">
       <p class="ctitle">If your robot steers the WRONG way — flip the branches</p>
-      <p>Every robot is wired a little differently. If your robot veers off the line instead of hugging it, swap the two motor blocks: put the white block's speeds in the black branch and the black block's speeds in the white branch. The logic is right; it just needs to match how <em>your</em> motors are wired.</p>
+      <p>Every robot is wired a little differently. If your robot veers off the line instead of hugging it, swap the two motor <span class="def-term" data-term="BLOCK">block</span>s: put the white block's speeds in the black branch and the black block's speeds in the white branch. The logic is right; it just needs to match how <em>your</em> motors are wired.</p>
     </div>
 
     <h3 class="sub">Tuning Log</h3>
@@ -398,7 +433,7 @@ void line_follow(int ticks) {
       <tbody id="tuneBody"><!-- rows injected --></tbody>
     </table>
 
-    <h3 class="sub">Checklist</h3>
+    <h3 class="sub"><span class="def-term" data-term="CHECKLIST">Checklist</span></h3>
     <ul>
       <li>You typed your own measured <code>MIDPOINT</code> at the top</li>
       <li>The <code>if</code> tests <code>analog(0) &gt; MIDPOINT</code></li>
@@ -569,5 +604,55 @@ void line_follow(int ticks) {
   $("#submitTop").addEventListener("click", handleSubmit);
   $("#submitBottom").addEventListener("click", handleSubmit);
 </script>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">&#10005;</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFS = {
+    'CALIBRATION': ['Calibration', 'Measuring your own robot to find the numbers that describe it — ticks per inch, a light threshold, a turn count. Calibration is why one team’s numbers do not work on another team’s robot.'],
+    'ENCODER': ['Encoder', 'The counter built into a motor that reports how far its shaft has turned. It is what makes ticks possible, and it is how a robot measures its own movement instead of guessing.'],
+    'ANALOG': ['Analog', 'An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers "how dark is this?" with a number, so you have to decide for yourself where dark begins.'],
+    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],
+    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
+    'DECISION': ['Decision', 'A point where a plan splits two ways depending on the answer to a question. On a flowchart it is drawn as a diamond, with one arrow in and two labelled arrows out.'],
+    'DIGITAL': ['Digital', 'A digital sensor has only two possible readings: 0 or 1. It works like a light switch — pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
+    'PROTOTYPE': ['Prototype', 'A single line near the top of your program announcing that a function name exists, before the compiler ever reaches the code that does the work. Like listing a word in a vocabulary list before defining it.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'THRESHOLD': ['Threshold', 'The number you choose as your dividing line. Readings below it count as one thing, readings above it count as another. A common starting point is halfway between your white and black readings, then you adjust from there.'],
+    'TICK': ['Tick', 'One small step of the motor shaft. There are about 1820 ticks in one full revolution of the shaft. Ticks count the motor turning, not the distance travelled — how far that is depends on your wheels.']
+  };
+  function openDef(t){
+    var e = DEFS[t]; if(!e) return;
+    document.getElementById('defTerm').textContent = e[0];
+    document.getElementById('defBody').textContent = e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow='hidden';
+  }
+  function closeDef(){
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el) openDef(el.dataset.term); });
+  document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
 </body>
 </html>

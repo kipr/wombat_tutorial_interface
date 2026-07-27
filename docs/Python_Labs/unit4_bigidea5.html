@@ -142,6 +142,40 @@
     .topbar .brand { width: 100%; margin-bottom: 4px; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;
+               align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;
+           box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden;animation:def-pop .16s ease}
+  @keyframes def-pop{from{opacity:0;transform:scale(.93) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;
+            justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;
+                 letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;
+             line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;
+             display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs,.def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
+
 </style>
 </head>
 <body>
@@ -149,6 +183,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 4 · Big Idea 5 · Capstone</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -175,7 +210,7 @@
       <div class="row"><dt>AI Literacy Thread</dt><dd>Reliable systems constantly re-check reality and reset their accumulated error.</dd></div>
       <div class="row"><dt>CS1 Concepts</dt><dd>Integration · Error Correction · Robust Sequencing · State Reset</dd></div>
       <div class="row"><dt>Game Context</dt><dd>Touch Botguy and return both cones to the starting box — one run</dd></div>
-      <div class="row"><dt>What You Need</dt><dd>Explorer robot · full library · Botguy · two cones · the game field · this lab sheet</dd></div>
+      <div class="row"><dt>What You Need</dt><dd>Explorer robot · full <span class="def-term" data-term="LIBRARY">library</span> · Botguy · two cones · the game field · this lab sheet</dd></div>
     </dl>
   </div>
 
@@ -186,7 +221,7 @@
   <!-- ===== Overview ===== -->
   <section>
     <h2 class="phase-head">Overview</h2>
-    <p>Every lab so far taught you that the real world is imperfect — motors overshoot, turns drift, batteries fade, models are never exact. A short move can hide those errors. But a <strong>long run</strong> with many steps? The tiny errors pile up until the robot is completely lost. Today's capstone is the reliability answer: a long, multi-part mission where the robot <strong>constantly re-checks reality and wipes out its accumulated error</strong> along the way. You'll touch Botguy and return both cones to the starting box — and stay accurate the whole time by squaring up again and again.</p>
+    <p>Every lab so far taught you that the real world is imperfect — motors <span class="def-term" data-term="OVERSHOOT">overshoot</span>, turns drift, batteries fade, models are never exact. A short move can hide those errors. But a <strong>long run</strong> with many steps? The tiny errors pile up until the robot is completely lost. Today's capstone is the reliability answer: a long, multi-part mission where the robot <strong>constantly re-checks reality and wipes out its accumulated error</strong> along the way. You'll touch Botguy and return both cones to the starting box — and stay accurate the whole time by squaring up again and again.</p>
     <div class="callout red">
       <p class="ctitle">The Big Idea of This Unit</p>
       <p>You cannot stop errors from happening. But you <em>can</em> keep resetting them. A reliable robot doesn't trust its own dead reckoning across a long run — it keeps re-referencing known features (walls, tape lines) to zero out drift before it grows dangerous.</p>
@@ -210,7 +245,7 @@
     <h3 class="sub">The rules that make it hard</h3>
     <ul>
       <li><strong>Verify your start:</strong> begin with a <strong>backward touch</strong> (<code>back_until_pressed</code>) against the wall — this confirms you're really in the starting box and resets your origin before you move.</li>
-      <li><strong>Avoid the large cube:</strong> there's a large cube on the pallet right next to the starting box. Your path must <strong>not touch it</strong>. Plan around it.</li>
+      <li><strong>Avoid the large cube:</strong> there's a large cube on the <span class="def-term" data-term="PALLET">pallet</span> right next to the starting box. Your path must <strong>not touch it</strong>. Plan around it.</li>
       <li><strong>Stay accurate:</strong> your run must include <strong>at least 6 square-ups</strong>, placed as error-reset checkpoints throughout.</li>
     </ul>
     <p class="q">Say the mission back in your own words, including the three rules. Why does starting with a backward touch make the whole rest of the run more trustworthy?</p>
@@ -250,7 +285,7 @@
   <!-- ===== Phase 4: place the resets ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 4</span> — Plan: Place Your 6+ Error Resets</h2>
-    <p>Now walk your path and decide <em>where</em> each square-up goes. Good reset points are right before something precise (touching Botguy, grabbing a cone, entering the box) — so you're accurate exactly when it matters. List each leg of the run and mark where you reset.</p>
+    <p>Now walk your path and decide <em>where</em> each square-up goes. Good reset points are right before something precise (<span class="def-term" data-term="TOUCHING">TOUCHING</span> Botguy, grabbing a cone, entering the box) — so you're accurate exactly when it matters. List each leg of the run and mark where you reset.</p>
     <table class="grid">
       <caption>Plan each leg — mark your resets (need at least 6)</caption>
       <thead><tr><th style="width:8%">#</th><th style="width:52%">Leg of the run (what the robot does)</th><th style="width:18%">Library call(s)</th><th>Reset here?</th></tr></thead>
@@ -304,7 +339,7 @@ def main():
 
 main()</div>
     <div class="callout gold">
-      <p class="ctitle">Requirement check</p>
+      <p class="ctitle"><span class="def-term" data-term="REQUIREMENT">Requirement</span> check</p>
       <p>At least <strong>6</strong> square-ups, a <strong>backward touch</strong> to start, a path that <strong>avoids the large cube</strong>, and it must <strong>touch Botguy</strong> and <strong>return both cones</strong>. The skeleton shows six reset points — fill the driving/turning/collecting from your Phase 3–4 plan.</p>
     </div>
   </section>
@@ -403,9 +438,9 @@ k.graphics_print_string("RUN STATUS", 10, 50, 255, 255, 255, 1.0)
 
 k.graphics_update()   <span class="c"># nothing appears on screen until you call this</span></div>
       </li>
-      <li>Use <code>k.graphics_line()</code> to plot 2-3 points of a sensor reading over time as connected line segments — a simple live trend graph.</li>
+      <li>Use <code>k.graphics_line()</code> to plot 2-3 points of a <span class="def-term" data-term="SENSOR">sensor</span> reading over time as connected line segments — a simple live trend graph.</li>
       <li>Update your progress bar's filled width as your mission runs (recall <code>k.graphics_rectangle_fill</code> from above), instead of drawing it once at a fixed size. What would you need to know to calculate how "full" the bar should be at any moment?</li>
-      <li><code>k.graphics_blit_enc()</code> can display a real bitmap image — a small array of pixel color values — instead of shapes. What's the difference between drawing a rectangle with <code>k.graphics_rectangle_fill</code> (a formula the computer calculates) and displaying a bitmap with <code>k.graphics_blit_enc</code> (stored pixel-by-pixel data)?</li>
+      <li><code>k.graphics_blit_enc()</code> can display a real bitmap image — a small <span class="def-term" data-term="ARRAY">array</span> of pixel color values — instead of shapes. What's the difference between drawing a rectangle with <code>k.graphics_rectangle_fill</code> (a formula the computer calculates) and displaying a bitmap with <code>k.graphics_blit_enc</code> (stored pixel-by-pixel data)?</li>
       <li><code>k.get_key_state()</code> and <code>k.get_mouse_position()</code> read live keyboard/mouse input from the same graphics window. Add a check so your status screen only advances to the next step when a specific key is pressed — a simple interactive interface, not just a fixed display.</li>
     </ul>
     <textarea class="answer" data-key="ext_f" aria-label="Extension F"></textarea>
@@ -518,5 +553,47 @@ k.graphics_update()   <span class="c"># nothing appears on screen until you call
   $("#submitTop").addEventListener("click", handleSubmit);
   $("#submitBottom").addEventListener("click", handleSubmit);
 </script>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">&#10005;</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFS = {
+    'ARRAY': ['Array', 'A single name that holds a whole row of values instead of just one. You reach each value by its position number, so one name and a number can stand in for a dozen separate variables.'],
+    'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
+    'OVERSHOOT': ['Overshoot', 'How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot.'],
+    'PALLET': ['Pallet', 'A flat platform on the game field that a load sits on. Several missions ask you to move a pallet and whatever is stacked on it, together.'],
+    'REQUIREMENT': ['Requirement', 'Something your design must do to count as working, written so it can actually be tested. "Strong" is not a requirement. "Holds a full can for thirty seconds without leaning" is.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'TOUCHING': ['Touching', 'Two objects are TOUCHING when they are in direct physical contact with one another. Contact through a third object (robot, field element, or game piece) does not count as TOUCHING.']
+  };
+  function openDef(t){
+    var e = DEFS[t]; if(!e) return;
+    document.getElementById('defTerm').textContent = e[0];
+    document.getElementById('defBody').textContent = e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow='hidden';
+  }
+  function closeDef(){
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el) openDef(el.dataset.term); });
+  document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
 </body>
 </html>

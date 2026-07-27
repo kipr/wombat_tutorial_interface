@@ -137,6 +137,40 @@
     .topbar .brand { width: 100%; margin-bottom: 4px; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;
+               align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;
+           box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden;animation:def-pop .16s ease}
+  @keyframes def-pop{from{opacity:0;transform:scale(.93) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;
+            justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;
+                 letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;
+             line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;
+             display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs,.def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
+
 </style>
 </head>
 <body>
@@ -144,6 +178,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 4 · Big Idea 2</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -168,7 +203,7 @@
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine know where it is and where it is going?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>A Robot Can Correct Its Own Heading</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems use feedback from multiple inputs to correct themselves.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd>Two Sensors at Once · Boolean Operators (&amp;&amp;) · Independent Conditions</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd>Two <span class="def-term" data-term="SENSOR">Sensor</span>s at Once · <span class="def-term" data-term="BOOLEAN">Boolean</span> Operators (&amp;&amp;) · Independent <span class="def-term" data-term="CONDITION">Condition</span>s</dd></div>
       <div class="row"><dt>Game Context</dt><dd>Squaring up in the right starting box to set up the spilled cubes</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Explorer robot · two front IR sensors · right starting box with two tape lines · this lab sheet</dd></div>
     </dl>
@@ -203,7 +238,7 @@
       <p class="ctitle">Wiring and names</p>
       <p>Mount one IR sensor at the front-left, one at the front-right. Plug them in so:</p>
       <p><code>IR_LEFT</code> = <code>analog(0)</code> &nbsp;·&nbsp; <code>IR_RIGHT</code> = <code>analog(1)</code></p>
-      <p>You'll add these names to your library as variables, so your code reads <code>analog(IR_LEFT)</code> instead of a bare number — much easier to understand.</p>
+      <p>You'll add these names to your <span class="def-term" data-term="LIBRARY">library</span> as <span class="def-term" data-term="VARIABLE">variable</span>s, so your code reads <code>analog(IR_LEFT)</code> instead of a bare number — much easier to understand.</p>
     </div>
     <div class="code small">// add these to your library, with your other variables
 int IR_LEFT  = 0;    <span class="c">// front-left IR sensor on analog port 0</span>
@@ -275,8 +310,8 @@ int IR_RIGHT = 1;    <span class="c">// front-right IR sensor on analog port 1</
 
   <!-- ===== Phase 4: build square_up ===== -->
   <section>
-    <h2 class="phase-head"><span class="pnum">Phase 4</span> — Build: The square_up Function</h2>
-    <p>Put it together. The loop runs until both sensors are on black. Inside, each wheel has its <strong>own</strong> <code>if</code> statement, checking its own sensor and either driving or freezing. Use a slow speed so it has time to react.</p>
+    <h2 class="phase-head"><span class="pnum">Phase 4</span> — Build: The square_up <span class="def-term" data-term="FUNCTION">Function</span></h2>
+    <p>Put it together. The loop runs until both sensors are on black. Inside, each wheel has its <strong>own</strong> <code>if</code> <span class="def-term" data-term="STATEMENT">Statement</span>, checking its own sensor and either driving or freezing. Use a slow speed so it has time to react.</p>
     <div class="code">// Unit 4 · Big Idea 2 — Squaring Up
 // Name: _______________________   Date: ___________
 
@@ -390,7 +425,7 @@ void square_up() {
 
     <h3 class="sub">Extension B — Tune the Speed</h3>
     <ul>
-      <li>Try the square-up at speed 20, then 50. Does slower square up more accurately? Does faster overshoot the line? Find your best speed.</li>
+      <li>Try the square-up at speed 20, then 50. Does slower square up more accurately? Does faster <span class="def-term" data-term="OVERSHOOT">overshoot</span> the line? Find your best speed.</li>
     </ul>
     <textarea class="answer" data-key="ext_b" aria-label="Extension B"></textarea>
 
@@ -510,5 +545,49 @@ void square_up() {
   $("#submitTop").addEventListener("click", handleSubmit);
   $("#submitBottom").addEventListener("click", handleSubmit);
 </script>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">&#10005;</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFS = {
+    'BOOLEAN': ['Boolean', 'A value that can only be true or false — nothing in between. Every condition you write comes out as a boolean, which is how the robot decides which way to go.'],
+    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
+    'OVERSHOOT': ['Overshoot', 'How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'STATEMENT': ['Statement', 'One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.'],
+    'VARIABLE': ['Variable', 'A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it.']
+  };
+  function openDef(t){
+    var e = DEFS[t]; if(!e) return;
+    document.getElementById('defTerm').textContent = e[0];
+    document.getElementById('defBody').textContent = e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow='hidden';
+  }
+  function closeDef(){
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el) openDef(el.dataset.term); });
+  document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
 </body>
 </html>
