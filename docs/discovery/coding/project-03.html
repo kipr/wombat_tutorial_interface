@@ -330,6 +330,24 @@
     pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
     .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .ledkey .dot { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .botnav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+          margin:34px 40px 0;padding:14px 0 0;border-top:1px solid var(--line)}
+  .botnav a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+            font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+            letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
+            border:1px solid var(--line);border-radius:5px;padding:9px 14px;background:#fff}
+  .botnav a:hover{border-color:var(--gold);background:#fffaef;color:var(--red)}
+  .botnav a.next{margin-left:auto}
+  .botnav a.gloss{color:#8a6d2f;border-color:rgba(200,161,75,.55);background:#fffaef}
+  .botnav a.gloss:hover{background:rgba(200,161,75,.16)}
+  .botnav .spacer{flex:1}
+  @media (max-width:700px){
+    .botnav{margin-left:20px;margin-right:20px;gap:8px}
+    .botnav a{font-size:13.5px;padding:8px 11px;flex:1 1 auto;justify-content:center}
+    .botnav a.next{margin-left:0}
+  }
+  @media print{ .botnav{display:none} }
+
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
@@ -346,6 +364,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -379,7 +406,16 @@
     <div class="meta">
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Plugging in motors, checking their direction, and writing your first program that makes something turn.</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Built robot · 2 motors · Wombat · battery · a block or thick book to raise the wheels · your computer</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod031" data-key="need_1"><label for="ndcod031">Built robot</label></li>
+          <li><input type="checkbox" id="ndcod032" data-key="need_2"><label for="ndcod032">2 motors</label></li>
+          <li><input type="checkbox" id="ndcod033" data-key="need_3"><label for="ndcod033">Wombat</label></li>
+          <li><input type="checkbox" id="ndcod034" data-key="need_4"><label for="ndcod034">Battery</label></li>
+          <li><input type="checkbox" id="ndcod035" data-key="need_5"><label for="ndcod035">A block or thick book to raise the wheels</label></li>
+          <li><input type="checkbox" id="ndcod036" data-key="need_6"><label for="ndcod036">Your computer</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Projects 1 and 2 — you must be able to connect, write, <span class="def-term" data-term="COMPILE">compile</span>, and run a program.</dd></div>
       </dl>
     </div>
@@ -503,9 +539,53 @@
 
     <p class="muted">A minus sign in front of the power number reverses that motor. This is how you back up, and later, how you turn.</p>
 
+    <h3 class="sub">Which end is the front?</h3>
+
+    <p>Your robot has two driven wheels and one small free-rolling wheel called a <span class="def-term" data-term="CASTER">caster</span>.
+    Before you send it anywhere, decide which end is the front &mdash; because that decides what
+    <code>motor(0, 100)</code> actually does.</p>
+
+    <div class="callout gold">
+      <p class="ctitle">Pull the Caster, Do Not Push It</p>
+      <p>A caster swivels. Pushed from behind it wanders, wobbles, and takes a moment to swing round every
+      time you change direction. <strong>Pulled along behind the driven wheels it tracks straight.</strong></p>
+      <p>So the driven wheels go at the <strong>front</strong>, and the caster trails.</p>
+    </div>
+
+    <p>Set your robot up so that the <strong>green power LED and the ports face forward</strong> &mdash; the same end
+    the arm will eventually go on. That end is the front, and everything you write from now on assumes it.</p>
+
+    <div class="callout warn">
+      <p class="ctitle">&#9888; Decide Now, Not Later</p>
+      <p>If half your team calls one end the front and the other half calls the other end the front, your turns
+      will go the wrong way and nobody will be able to see why.</p>
+      <p>Agree it, and write it in your notebook: <em>the front of our robot is the end with ___ on it.</em></p>
+    </div>
+
     <h3 class="sub">Turning motors off</h3>
 
     <p><code>ao()</code> stands for <strong>a</strong>ll <strong>o</strong>ff. It stops every motor at once and takes no arguments — just empty parentheses.</p>
+
+    <h3 class="sub">A stop is not instant either</h3>
+
+    <p><code>ao()</code> cuts the power. It does not grab the wheels and hold them &mdash; the robot is still
+    moving when that line finishes, and it coasts a little further before it truly stops.</p>
+
+    <p>So give it a moment to settle before you do anything else:</p>
+
+    <pre class="code">motor(0, 50);
+motor(3, 50);
+msleep(2000);
+ao();
+msleep(30);
+<span class="cm">msleep(30);   // let it come to rest</span></pre>
+
+    <p>Thirty milliseconds is not long enough to notice, and it is long enough to matter. Without it, your next
+    command starts while the robot is still drifting &mdash; and a turn that begins mid-drift ends up somewhere
+    you did not ask for.</p>
+
+    <p class="muted">From here on, every <code>ao()</code> in this curriculum is followed by
+    <code>msleep(30)</code>. Get in the habit now.</p>
 
     <h3 class="sub">Why you always need msleep()</h3>
 
@@ -513,7 +593,8 @@
 
     <pre class="code">motor(<span class="nu">0</span>, <span class="nu">50</span>);
 motor(<span class="nu">3</span>, <span class="nu">50</span>);
-ao();</pre>
+ao();
+msleep(30);</pre>
 
     <p>The wheels will not move. Not even a twitch.</p>
 
@@ -573,7 +654,8 @@ ao();</pre>
 <span class="ln">5</span>      motor(<span class="nu">0</span>, <span class="nu">50</span>);      <span class="cm">// Motor 0 on at 50% power</span>
 <span class="ln">6</span>      motor(<span class="nu">3</span>, <span class="nu">50</span>);      <span class="cm">// Motor 3 on at 50% power</span>
 <span class="ln">7</span>      msleep(<span class="nu">2000</span>);      <span class="cm">// Keep them running for 2 seconds</span>
-<span class="ln">8</span>      ao();               <span class="cm">// All off</span>
+<span class="ln">8</span>      ao();
+      msleep(30);               <span class="cm">// All off</span>
 <span class="ln">9</span>      <span class="kw">return</span> <span class="nu">0</span>;
 <span class="ln">10</span> }</pre>
         <p><span class="def-term" data-term="COMPILE">compile</span> and run it. Watch the wheels.</p>
@@ -684,7 +766,8 @@ motor(<span class="nu">3</span>, <span class="nu">-50</span>);</pre>
 <span class="ln">4</span>  motor(<span class="nu">0</span>, <span class="nu">-100</span>);
 <span class="ln">5</span>  motor(<span class="nu">3</span>, <span class="nu">-100</span>);
 <span class="ln">6</span>  msleep(<span class="nu">1000</span>);
-<span class="ln">7</span>  ao();</pre>
+<span class="ln">7</span>  ao();
+  msleep(30);</pre>
     <textarea class="answer" data-key="p4_predict_program" aria-label="Predict what the program does"></textarea>
     <p class="q">Now run it. Were you right? If not, what did you miss?</p>
     <textarea class="answer" data-key="p4_predict_result" aria-label="Were you right"></textarea>
@@ -716,6 +799,13 @@ motor(<span class="nu">3</span>, <span class="nu">-50</span>);</pre>
     <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
     <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
   </div>
+  <nav class="botnav no-print" aria-label="Page navigation">
+    <a href="index.html">&larr; Coding Projects</a>
+    <a href="project-02.html">&larr; Project 2</a>
+    <a class="gloss" href="../../glossary.html">Glossary</a>
+    <a class="next" href="project-04.html">Project 4 &rarr;</a>
+  </nav>
+
 
   <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
 </main>
@@ -734,6 +824,7 @@ motor(<span class="nu">3</span>, <span class="nu">-50</span>);</pre>
 <script>
 (function() {
   var DEFS = {
+    'CASTER': ['Caster', 'A small wheel that swivels freely instead of being driven. Pulled along behind the driven wheels it tracks straight; pushed from in front it wanders and has to swing round every time the robot changes direction.'],
     'ATTRIBUTION': ['Attribution', 'Naming the author of a piece of code in a comment. It says who wrote what, so anyone reading knows whose work it is and who to ask before borrowing it.'],
     'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
     'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
@@ -766,7 +857,7 @@ motor(<span class="nu">3</span>, <span class="nu">-50</span>);</pre>
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();

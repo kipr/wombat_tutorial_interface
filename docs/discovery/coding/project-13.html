@@ -378,6 +378,24 @@
     pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
     .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .mission-head, .scorepair .chead, .codepair .chead, .scen .shead, ol.dosteps .spts, .mpart .jtag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .botnav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+          margin:34px 40px 0;padding:14px 0 0;border-top:1px solid var(--line)}
+  .botnav a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+            font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+            letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
+            border:1px solid var(--line);border-radius:5px;padding:9px 14px;background:#fff}
+  .botnav a:hover{border-color:var(--gold);background:#fffaef;color:var(--red)}
+  .botnav a.next{margin-left:auto}
+  .botnav a.gloss{color:#8a6d2f;border-color:rgba(200,161,75,.55);background:#fffaef}
+  .botnav a.gloss:hover{background:rgba(200,161,75,.16)}
+  .botnav .spacer{flex:1}
+  @media (max-width:700px){
+    .botnav{margin-left:20px;margin-right:20px;gap:8px}
+    .botnav a{font-size:13.5px;padding:8px 11px;flex:1 1 auto;justify-content:center}
+    .botnav a.next{margin-left:0}
+  }
+  @media print{ .botnav{display:none} }
+
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
@@ -394,6 +412,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -428,7 +455,15 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Writing code that asks a question once and picks a path based on the answer — then using it to build two stacks that have to come out different.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 3 — Mixed Freight (advanced bonus) — 13 points</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Robot with arm, claw, and touch <span class="def-term" data-term="SENSOR">sensor</span> · Wombat · charged battery · the game field · your <span class="def-term" data-term="FUNCTION">function</span> list from Project 12</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod131" data-key="need_1"><label for="ndcod131">Robot with arm, claw, and touch <span class="def-term" data-term="SENSOR">sensor</span></label></li>
+          <li><input type="checkbox" id="ndcod132" data-key="need_2"><label for="ndcod132">Wombat</label></li>
+          <li><input type="checkbox" id="ndcod133" data-key="need_3"><label for="ndcod133">Charged battery</label></li>
+          <li><input type="checkbox" id="ndcod134" data-key="need_4"><label for="ndcod134">The game field</label></li>
+          <li><input type="checkbox" id="ndcod135" data-key="need_5"><label for="ndcod135">Your <span class="def-term" data-term="FUNCTION">function</span> list from Project 12</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Projects 10 and 12 — you need <code>while</code> loops and your own <span class="def-term" data-term="FUNCTION">function</span>s.</dd></div>
       </dl>
     </div>
@@ -859,6 +894,13 @@ msleep(<span class="nu">3000</span>);</pre>
     <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
     <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
   </div>
+  <nav class="botnav no-print" aria-label="Page navigation">
+    <a href="index.html">&larr; Coding Projects</a>
+    <a href="project-12.html">&larr; Project 12</a>
+    <a class="gloss" href="../../glossary.html">Glossary</a>
+    <a class="next" href="project-14.html">Project 14 &rarr;</a>
+  </nav>
+
 
   <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
 </main>
@@ -908,7 +950,7 @@ msleep(<span class="nu">3000</span>);</pre>
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();

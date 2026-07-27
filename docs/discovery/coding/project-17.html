@@ -385,6 +385,24 @@
     .finale { background: #f4f4f4 !important; color: #000 !important; border-left: 4px solid #333; }
     .finale h3, .finale p, .finale strong { color: #000 !important; }
     .mission-head, .scorepair .chead, .codepair .chead, ol.dosteps .spts, .mpart .jtag, table.grid tr.grand td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .botnav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+          margin:34px 40px 0;padding:14px 0 0;border-top:1px solid var(--line)}
+  .botnav a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+            font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+            letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
+            border:1px solid var(--line);border-radius:5px;padding:9px 14px;background:#fff}
+  .botnav a:hover{border-color:var(--gold);background:#fffaef;color:var(--red)}
+  .botnav a.next{margin-left:auto}
+  .botnav a.gloss{color:#8a6d2f;border-color:rgba(200,161,75,.55);background:#fffaef}
+  .botnav a.gloss:hover{background:rgba(200,161,75,.16)}
+  .botnav .spacer{flex:1}
+  @media (max-width:700px){
+    .botnav{margin-left:20px;margin-right:20px;gap:8px}
+    .botnav a{font-size:13.5px;padding:8px 11px;flex:1 1 auto;justify-content:center}
+    .botnav a.next{margin-left:0}
+  }
+  @media print{ .botnav{display:none} }
+
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
@@ -401,6 +419,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -435,7 +462,15 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Learning the loop that counts, then using it to collect every bonus that just means "now do that again."</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 7 · 11 · 16 · 17 bonuses — 38 points</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Robot with arm, claw, and <span class="def-term" data-term="SENSOR">sensor</span>s · Wombat · charged battery · the game field · your <span class="def-term" data-term="LIBRARY">library</span> from Project 16</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod171" data-key="need_1"><label for="ndcod171">Robot with arm, claw, and <span class="def-term" data-term="SENSOR">sensor</span>s</label></li>
+          <li><input type="checkbox" id="ndcod172" data-key="need_2"><label for="ndcod172">Wombat</label></li>
+          <li><input type="checkbox" id="ndcod173" data-key="need_3"><label for="ndcod173">Charged battery</label></li>
+          <li><input type="checkbox" id="ndcod174" data-key="need_4"><label for="ndcod174">The game field</label></li>
+          <li><input type="checkbox" id="ndcod175" data-key="need_5"><label for="ndcod175">Your <span class="def-term" data-term="LIBRARY">library</span> from Project 16</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Project 16 — your <span class="def-term" data-term="FUNCTION">function</span>s should live in your <span class="def-term" data-term="LIBRARY">library</span> by now.</dd></div>
       </dl>
     </div>
@@ -850,6 +885,13 @@
     <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
     <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
   </div>
+  <nav class="botnav no-print" aria-label="Page navigation">
+    <a href="index.html">&larr; Coding Projects</a>
+    <a href="project-16.html">&larr; Project 16</a>
+    <a class="gloss" href="../../glossary.html">Glossary</a>
+    <span class="spacer"></span>
+  </nav>
+
 
   <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
 </main>
@@ -907,7 +949,7 @@
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();

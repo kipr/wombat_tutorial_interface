@@ -349,6 +349,24 @@
     pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
     .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .mission-head, .scorepair .chead, ol.dosteps .spts { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .botnav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+          margin:34px 40px 0;padding:14px 0 0;border-top:1px solid var(--line)}
+  .botnav a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+            font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+            letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
+            border:1px solid var(--line);border-radius:5px;padding:9px 14px;background:#fff}
+  .botnav a:hover{border-color:var(--gold);background:#fffaef;color:var(--red)}
+  .botnav a.next{margin-left:auto}
+  .botnav a.gloss{color:#8a6d2f;border-color:rgba(200,161,75,.55);background:#fffaef}
+  .botnav a.gloss:hover{background:rgba(200,161,75,.16)}
+  .botnav .spacer{flex:1}
+  @media (max-width:700px){
+    .botnav{margin-left:20px;margin-right:20px;gap:8px}
+    .botnav a{font-size:13.5px;padding:8px 11px;flex:1 1 auto;justify-content:center}
+    .botnav a.next{margin-left:0}
+  }
+  @media print{ .botnav{display:none} }
+
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
@@ -365,6 +383,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -399,7 +426,16 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Putting driving and turning together to clear objects off the black line, one mission at a time, then chaining them into a single run.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 2 · Mission 4 · Mission 13 base · Mission 14 base</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Built robot · Wombat · charged battery · the game field with all elements set · a stopwatch · your Project 4 and 5 numbers</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod061" data-key="need_1"><label for="ndcod061">Built robot</label></li>
+          <li><input type="checkbox" id="ndcod062" data-key="need_2"><label for="ndcod062">Wombat</label></li>
+          <li><input type="checkbox" id="ndcod063" data-key="need_3"><label for="ndcod063">Charged battery</label></li>
+          <li><input type="checkbox" id="ndcod064" data-key="need_4"><label for="ndcod064">The game field with all elements set</label></li>
+          <li><input type="checkbox" id="ndcod065" data-key="need_5"><label for="ndcod065">A stopwatch</label></li>
+          <li><input type="checkbox" id="ndcod066" data-key="need_6"><label for="ndcod066">Your Project 4 and 5 numbers</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Projects 4 and 5 — you need straight driving, a repeatable 90° turn, and a consistent starting position.</dd></div>
       </dl>
     </div>
@@ -704,7 +740,67 @@
 
   <!-- ================= SCORE IT ================= -->
   <section>
-    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+      <section>
+    <h3 class="sub">One last thing before the arm</h3>
+
+    <p>You have been stopping with <code>ao()</code> &mdash; <strong>a</strong>ll <strong>o</strong>ff. It cuts power to
+    every motor and lets them coast to a halt.</p>
+
+    <p>That has been fine so far. From the next project it will not be, because you are about to add an arm, and an
+    arm changes where the weight sits. A robot that coasts is a robot that keeps creeping after you told it to stop.</p>
+
+    <h3 class="sub">Freezing instead of switching off</h3>
+
+    <p>Setting a motor's power to <strong>zero</strong> is not the same as switching it off. Zero power is still a
+    command &mdash; the motor actively holds position instead of rolling free.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:34%">This</th><th style="width:24%">Does</th><th>Robot behaves like</th></tr></thead>
+      <tbody>
+        <tr><td class="thing"><code>ao();</code></td><td>Cuts the power</td><td>A bike with the pedals let go &mdash; it rolls on</td></tr>
+        <tr><td class="thing"><code>motor(0, 0); motor(3, 0);</code></td><td>Commands zero</td><td>A bike with the brakes held &mdash; it stops where it is</td></tr>
+      </tbody>
+    </table>
+
+    <p>So from Project 7 onwards, every stop looks like this:</p>
+
+    <pre class="code">motor(0, 0);
+motor(3, 0);
+msleep(30);</pre>
+
+    <p>Three lines instead of one. You still give it the thirty milliseconds to settle, because even a held motor
+    takes a moment for the robot to stop rocking.</p>
+
+    <div class="callout gold">
+      <p class="ctitle">Try Both, Right Now</p>
+      <p>Drive forward for two seconds and stop with <code>ao();</code>. Mark where the robot ends up.</p>
+      <p>Reset, run it again, and stop with the three-line freeze instead. Mark that spot too.</p>
+    </div>
+
+    <table class="grid">
+      <thead><tr><th style="width:44%">Stopped with</th><th style="width:28%">Where it finished</th><th>Any creep after stopping?</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td class="thing"><code>ao();</code></td><td><input type="text" data-key="p3_stop_ao" aria-label="ao stop position"></td><td><input type="text" data-key="p3_stop_ao_creep" aria-label="ao creep"></td></tr>
+        <tr class="trial"><td class="thing">the three-line freeze</td><td><input type="text" data-key="p3_stop_frz" aria-label="freeze stop position"></td><td><input type="text" data-key="p3_stop_frz_creep" aria-label="freeze creep"></td></tr>
+      </tbody>
+    </table>
+
+    <p class="q">How far apart were the two finishing points?</p>
+    <input type="text" data-key="p3_stop_gap" aria-label="Gap between the two stops">
+
+    <div class="callout warn">
+      <p class="ctitle">&#9888; From Here On</p>
+      <p>Every project after this one uses the freeze. If you go back and reuse code you wrote in Projects 3 to 6,
+      swap the <code>ao();</code> for the three lines before you trust it.</p>
+    </div>
+
+    <ul class="check">
+      <li><input type="checkbox" id="fz1" data-key="p3_freeze_tested"><label for="fz1">I tested both kinds of stop and measured the difference</label></li>
+      <li><input type="checkbox" id="fz2" data-key="p3_freeze_get"><label for="fz2">I can explain why zero power is not the same as no power</label></li>
+    </ul>
+  </section>
+
+  <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
 
     <h3 class="sub">My best run</h3>
     <table class="grid">
@@ -761,6 +857,13 @@
     <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
     <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
   </div>
+  <nav class="botnav no-print" aria-label="Page navigation">
+    <a href="index.html">&larr; Coding Projects</a>
+    <a href="project-05.html">&larr; Project 5</a>
+    <a class="gloss" href="../../glossary.html">Glossary</a>
+    <a class="next" href="project-07.html">Project 7 &rarr;</a>
+  </nav>
+
 
   <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
 </main>
@@ -810,7 +913,7 @@
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();

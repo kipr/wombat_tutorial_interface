@@ -19,6 +19,30 @@
     .page-title span { color: var(--red); }
     .page-sub { color: rgba(255,255,255,0.55); max-width: 620px; margin-bottom: 2.75rem; }
 
+
+    /* build gate banner */
+    .buildgate {
+      display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap;
+      background: rgba(192,57,43,0.13); border: 1px solid rgba(192,57,43,0.45);
+      border-left: 5px solid #C0392B; border-radius: 6px;
+      padding: 1rem 1.2rem; margin: 0 0 1.15rem;
+    }
+    .buildgate .bg-txt { flex: 1 1 300px; min-width: 0; }
+    .buildgate .bg-t {
+      font-family: var(--font-display); font-weight: 800; font-size: 0.78rem;
+      letter-spacing: 0.13em; text-transform: uppercase; color: #ff9f96; margin: 0 0 0.3rem;
+    }
+    .buildgate .bg-d { color: rgba(255,255,255,0.72); font-size: 0.95rem; margin: 0; line-height: 1.5; }
+    .buildgate .bg-btn {
+      flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #C0392B; color: #fff; text-decoration: none;
+      font-family: var(--font-display); font-weight: 700; font-size: 0.82rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.68rem 1.1rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15);
+    }
+    .buildgate .bg-btn:hover { background: #d8483a; }
+    @media (max-width: 640px) { .buildgate .bg-btn { width: 100%; justify-content: center; } }
+
     .phase-label {
       font-family: var(--font-display); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.18em;
       text-transform: uppercase; color: rgba(255,255,255,0.45); margin: 2.5rem 0 1rem;
@@ -129,6 +153,13 @@
       </a>
     </div>
 
+    <div class="buildgate">
+      <div class="bg-txt">
+        <p class="bg-t">Build required first &mdash; the bulldozer blade</p>
+        <p class="bg-d">Project 6 pushes cubes, poms and cones off the black line. Your robot needs a blade before any of that scores &mdash; design and build it in Systems Project 6.</p>
+      </div>
+      <a class="bg-btn" href="../systems/project-06.html">Go build the blade &rarr;</a>
+    </div>
     <p class="phase-label"><span>Phase 2 · Make It Move</span><span class="pcount">4 projects</span></p>
     <div class="card-grid">
       <a class="proj-card" href="project-03.html">
@@ -162,6 +193,13 @@
       </a>
     </div>
 
+    <div class="buildgate">
+      <div class="bg-txt">
+        <p class="bg-t">Build required first &mdash; the arm and the claw</p>
+        <p class="bg-d">Everything from Project 7 onward needs a working arm and claw. Twelve illustrated steps in Systems Project 7 &mdash; do that first, then come back.</p>
+      </div>
+      <a class="bg-btn" href="../systems/project-07.html">Go build the claw &rarr;</a>
+    </div>
     <p class="phase-label"><span>Phase 3 · Make It Grab</span><span class="pcount">2 projects</span></p>
     <div class="card-grid">
       <a class="proj-card" href="project-07.html">

@@ -365,6 +365,24 @@
     pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
     .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .mission-head, .scorepair .chead, .codepair .chead, ol.dosteps .spts, .mpart .jtag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .botnav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+          margin:34px 40px 0;padding:14px 0 0;border-top:1px solid var(--line)}
+  .botnav a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+            font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+            letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
+            border:1px solid var(--line);border-radius:5px;padding:9px 14px;background:#fff}
+  .botnav a:hover{border-color:var(--gold);background:#fffaef;color:var(--red)}
+  .botnav a.next{margin-left:auto}
+  .botnav a.gloss{color:#8a6d2f;border-color:rgba(200,161,75,.55);background:#fffaef}
+  .botnav a.gloss:hover{background:rgba(200,161,75,.16)}
+  .botnav .spacer{flex:1}
+  @media (max-width:700px){
+    .botnav{margin-left:20px;margin-right:20px;gap:8px}
+    .botnav a{font-size:13.5px;padding:8px 11px;flex:1 1 auto;justify-content:center}
+    .botnav a.next{margin-left:0}
+  }
+  @media print{ .botnav{display:none} }
+
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
@@ -381,6 +399,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -415,7 +442,15 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Writing your own commands — drive, turn, grab — and calling them instead of retyping them. Then using one of them twice to double a score.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 15 — Hazard Disposal #2 (base + bonus) — 18 points</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Robot with arm and claw · Wombat · charged battery · the game field · your <span class="def-term" data-term="TICK">tick</span> card from Project 11</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod121" data-key="need_1"><label for="ndcod121">Robot with arm and claw</label></li>
+          <li><input type="checkbox" id="ndcod122" data-key="need_2"><label for="ndcod122">Wombat</label></li>
+          <li><input type="checkbox" id="ndcod123" data-key="need_3"><label for="ndcod123">Charged battery</label></li>
+          <li><input type="checkbox" id="ndcod124" data-key="need_4"><label for="ndcod124">The game field</label></li>
+          <li><input type="checkbox" id="ndcod125" data-key="need_5"><label for="ndcod125">Your <span class="def-term" data-term="TICK">tick</span> card from Project 11</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Project 11 — your drive and turn code must already work in <span class="def-term" data-term="TICK">tick</span>s.</dd></div>
       </dl>
     </div>
@@ -523,7 +558,9 @@
         motor(left, <span class="nu">50</span>);
         motor(right, <span class="nu">50</span>);
     }
-    ao();
+    motor(0, 0);
+    motor(3, 0);
+    msleep(30);
     msleep(<span class="nu">500</span>);
 
     cmpc(left);
@@ -532,7 +569,9 @@
         motor(left, <span class="nu">50</span>);
         motor(right, <span class="nu">50</span>);
     }
-    ao();
+    motor(0, 0);
+    motor(3, 0);
+    msleep(30);
     msleep(<span class="nu">500</span>);
 
     <span class="kw">return</span> <span class="nu">0</span>;
@@ -560,7 +599,9 @@
         motor(left, <span class="nu">50</span>);
         motor(right, <span class="nu">50</span>);
     }
-    ao();
+    motor(0, 0);
+    motor(3, 0);
+    msleep(30);
     msleep(<span class="nu">500</span>);
 }</pre>
       </div>
@@ -596,7 +637,9 @@ drive_forward(<span class="nu">1200</span>);                  <span class="cm">/
         motor(left, <span class="nu">50</span>);
         motor(right, <span class="nu">50</span>);
     }
-    ao();
+    motor(0, 0);
+    motor(3, 0);
+    msleep(30);
     msleep(<span class="nu">500</span>);
 }</pre>
 
@@ -841,6 +884,13 @@ fetch_blue_pom();</pre>
     <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
     <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
   </div>
+  <nav class="botnav no-print" aria-label="Page navigation">
+    <a href="index.html">&larr; Coding Projects</a>
+    <a href="project-11.html">&larr; Project 11</a>
+    <a class="gloss" href="../../glossary.html">Glossary</a>
+    <a class="next" href="project-13.html">Project 13 &rarr;</a>
+  </nav>
+
 
   <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
 </main>
@@ -894,7 +944,7 @@ fetch_blue_pom();</pre>
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();
