@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Systems Project 3 — Who's Driving?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #5b6270;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-ink: #e7e3d8;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #24200f; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d9b464; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+  .meta dd.link { font-weight: 600; color: var(--red); }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #fff8e6;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #fffaef; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+  table.grid td.thing { font-weight: 600; }
+
+  /* three control types */
+  .kinds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0; }
+  .kind { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; background: var(--field); }
+  .kind .khead {
+    color: #fff; padding: 10px 12px; text-align: center;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px;
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  .kind.rc .khead { background: #7e8595; }
+  .kind.semi .khead { background: var(--gold); color: #24200f; }
+  .kind.auto .khead { background: var(--navy); }
+  .kind .kbody { padding: 12px 13px; font-size: 16.5px; flex: 1; }
+  .kind .kbody p { margin: 0 0 8px; }
+  .kind .kbody p:last-child { margin-bottom: 0; }
+  .kind .kex { color: var(--grey); font-size: 15px; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    .kinds { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    .kind .khead { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Systems · Project 3</p>
+    <h1>Who's Driving?</h1>
+    <p class="sub">Some machines wait for you. Some don't need you at all.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Moving a person across the room two different ways. Then sorting machines into three kinds of control.</dd></div>
+        <div class="row"><dt>Strand Link</dt><dd class="link">Do this before Coding Project 4</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Paper and a pencil · a clear space to walk in · a few chairs or boxes · three big sheets of paper for the class</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Systems Project 2. You should know the six parts of a robot.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Move a Person</h2>
+
+    <p>Pick a partner. One of you is the <strong>driver</strong>. One of you is the <strong>robot</strong>.</p>
+
+    <p>Put a chair in the middle of the room. The robot has to walk around it and touch the far wall.</p>
+
+    <div class="callout warn">
+      <p class="ctitle">⚠ Rules for the Robot</p>
+      <p>Keep your eyes open. But do <strong>only</strong> what you are told. Do not help. Do not guess.</p>
+      <p>If the driver says "walk," you walk. You do not stop until you are told to stop.</p>
+    </div>
+
+    <h3 class="sub">Round 1 — talk them through it</h3>
+
+    <p>The driver stands and watches. Say each step out loud as the robot goes.</p>
+
+    <p>You can see what happens. You can fix it right away.</p>
+
+    <p class="q">How long did Round 1 take?</p>
+    <input type="text" data-key="p1_r1_time" aria-label="Round 1 time">
+
+    <p class="q" style="margin-top:14px">Did the robot bump the chair?</p>
+    <input type="text" data-key="p1_r1_bump" aria-label="Round 1 bump">
+
+    <h3 class="sub">Round 2 — write it down first</h3>
+
+    <p>Now swap jobs. This time the driver may not talk at all.</p>
+
+    <p>Write the whole plan on paper first. Every step. Then hand the paper to the robot.</p>
+
+    <p>The robot reads it and follows it. The driver stays quiet the whole time.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:14%">Step</th><th>What the robot must do</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p1_plan1" aria-label="Plan step 1"></td></tr>
+        <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p1_plan2" aria-label="Plan step 2"></td></tr>
+        <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p1_plan3" aria-label="Plan step 3"></td></tr>
+        <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p1_plan4" aria-label="Plan step 4"></td></tr>
+        <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p1_plan5" aria-label="Plan step 5"></td></tr>
+        <tr class="trial"><td class="ctr">6</td><td><input type="text" data-key="p1_plan6" aria-label="Plan step 6"></td></tr>
+      </tbody>
+    </table>
+
+    <p class="q">What went wrong in Round 2?</p>
+    <textarea class="answer" data-key="p1_r2_wrong" aria-label="What went wrong"></textarea>
+
+    <p class="q">Which round was harder for the driver? Say why.</p>
+    <textarea class="answer" data-key="p1_harder" aria-label="Which was harder"></textarea>
+
+    <div class="callout gold">
+      <p class="ctitle">You Just Did Both Kinds</p>
+      <p>In Round 1 you were in charge the whole time. You could fix things as they went wrong.</p>
+      <p>In Round 2 you had to think of everything first. Once you handed over the paper, you were done.</p>
+      <p><strong>Round 2 is how your Botball robot works.</strong></p>
+    </div>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Three Kinds of Control</h2>
+
+    <p>Machines can be sorted by one question. <strong>Who is in charge while it runs?</strong></p>
+
+    <div class="kinds">
+      <div class="kind rc">
+        <div class="khead">Remote Control</div>
+        <div class="kbody">
+          <p>It does not move on its own. A person must control it.</p>
+          <p>Let go of the buttons and it stops.</p>
+          <p class="kex">A toy car. A drone with a pilot. A crane.</p>
+        </div>
+      </div>
+      <div class="kind semi">
+        <div class="khead">Semi-Autonomous</div>
+        <div class="kbody">
+          <p>A person controls some of it. The machine does the rest by itself.</p>
+          <p>You share the job.</p>
+          <p class="kex">A car that parks itself. A plane on autopilot.</p>
+        </div>
+      </div>
+      <div class="kind auto">
+        <div class="khead">Autonomous</div>
+        <div class="kbody">
+          <p>It moves around on its own. No person is controlling it.</p>
+          <p>You start it and step back.</p>
+          <p class="kex">A robot vacuum. A Mars rover. Your Botball robot.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub">Which one is your robot?</h3>
+
+    <p>Your Botball robot is <span class="def-term" data-term="AUTONOMOUS">AUTONOMOUS</span>.</p>
+
+    <p>You may touch it before the match. You may not touch it during the match.</p>
+
+    <p>That is the whole reason your code has to be so careful. Nobody can help it once it starts.</p>
+
+    <div class="callout navy">
+      <p class="ctitle">Being Autonomous Costs You Something</p>
+      <p>A <span class="def-term" data-term="REMOTE CONTROL">REMOTE CONTROL</span> robot has a person watching. If a cube rolls away, the person just steers around it.</p>
+      <p>An autonomous robot has nobody. If a cube rolls away, it drives right into the empty spot anyway.</p>
+      <p>You get speed and you get to run many robots at once. You give up the chance to fix things.</p>
+    </div>
+
+    <h3 class="sub">The line is fuzzy</h3>
+
+    <p>Some machines are easy to sort. Many are not.</p>
+
+    <p>A dishwasher runs by itself once you press start. But it never moves anywhere.</p>
+
+    <p>A <span class="def-term" data-term="SEMI-AUTONOMOUS">SEMI-AUTONOMOUS</span> machine sits in the middle. You do part of the job. It does the rest.</p>
+
+    <p class="muted">When two people sort the same machine differently, that is worth talking about. Both of you noticed something real.</p>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Sort the World</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Build a course</span>
+        <p>Set up three or four things to walk around. Chairs and boxes work well.</p>
+        <p>Pick a start spot and a finish spot. Mark them both.</p>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_course"><label for="d1">Our course is set up and marked</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Program a person</span>
+        <p>Write a plan that gets your robot through the whole course. Write it before anyone moves.</p>
+        <div class="callout warn">
+          <p class="ctitle">⚠ One Leg at a Time</p>
+          <p>To move forward you must tell each leg to move. And you must say how far.</p>
+          <p>"Walk to the door" is not a step. "Move your left leg one step forward" is a step.</p>
+        </div>
+        <p>Hand it over. Say nothing. Watch what happens.</p>
+        <p class="q">Where did your robot end up?</p>
+        <input type="text" data-key="p3_ended_up" aria-label="Where robot ended up">
+      </li>
+
+      <li>
+        <span class="stitle">Fix it and run it again</span>
+        <p>Find the step that went wrong. Change it. Run the whole plan again.</p>
+        <p>Keep going until your robot finishes the course.</p>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Try</th><th style="width:44%">What I changed</th><th>How far it got</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_t1_chg" aria-label="Try 1 change"></td><td><input type="text" data-key="p3_t1_got" aria-label="Try 1 got"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_t2_chg" aria-label="Try 2 change"></td><td><input type="text" data-key="p3_t2_got" aria-label="Try 2 got"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_t3_chg" aria-label="Try 3 change"></td><td><input type="text" data-key="p3_t3_got" aria-label="Try 3 got"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_t4_chg" aria-label="Try 4 change"></td><td><input type="text" data-key="p3_t4_got" aria-label="Try 4 got"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_finished"><label for="d2">My robot finished the course</label></li></ul>
+        <p class="q">How many tries did it take?</p>
+        <input type="text" data-key="p3_tries" aria-label="Number of tries">
+      </li>
+
+      <li>
+        <span class="stitle">Talk about what was hard</span>
+        <p>Tell your partner what you learned. Then write down the two biggest things.</p>
+        <table class="grid">
+          <thead><tr><th style="width:44%">Thing I learned</th><th>Why it caused trouble</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td><input type="text" data-key="p3_l1" aria-label="Learned 1"></td><td><input type="text" data-key="p3_l1_why" aria-label="Learned 1 why"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_l2" aria-label="Learned 2"></td><td><input type="text" data-key="p3_l2_why" aria-label="Learned 2 why"></td></tr>
+          </tbody>
+        </table>
+        <p class="muted">Most teams find the same things. Left and right get mixed up. Steps are too big. Nobody said when to stop.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Three posters</span>
+        <p>Your class needs three big sheets of paper. Head them <strong>Remote Control</strong>, <strong>Semi-Autonomous</strong>, and <strong>Autonomous</strong>.</p>
+        <p>Think of machines. Write each one on a sticky note. Stick it on the poster where you think it goes.</p>
+        <p>Write down four of your own here.</p>
+        <table class="grid">
+          <thead><tr><th style="width:50%">Machine</th><th>Which poster</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td><input type="text" data-key="p3_m1" aria-label="Machine 1"></td><td><input type="text" data-key="p3_m1_kind" aria-label="Machine 1 kind"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_m2" aria-label="Machine 2"></td><td><input type="text" data-key="p3_m2_kind" aria-label="Machine 2 kind"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_m3" aria-label="Machine 3"></td><td><input type="text" data-key="p3_m3_kind" aria-label="Machine 3 kind"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_m4" aria-label="Machine 4"></td><td><input type="text" data-key="p3_m4_kind" aria-label="Machine 4 kind"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+      <li>
+        <span class="stitle">Walk around and look</span>
+        <p>Now visit all three posters. Read what other people put up.</p>
+        <p>Look for one you would move to a different poster.</p>
+        <p class="q">Which one would you move, and where to?</p>
+        <input type="text" data-key="p3_would_move" aria-label="Would move">
+        <p class="q" style="margin-top:14px">Why does it belong there instead?</p>
+        <textarea class="answer" data-key="p3_move_why" aria-label="Why move it"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">The hard ones</span>
+        <p>Some machines will not sit still in one group. Try these.</p>
+        <table class="grid">
+          <thead><tr><th style="width:38%">Machine</th><th style="width:26%">Which kind?</th><th>What makes it tricky</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="thing">A dishwasher</td><td><input type="text" data-key="p3_h1" aria-label="Dishwasher kind"></td><td><input type="text" data-key="p3_h1_why" aria-label="Dishwasher why"></td></tr>
+            <tr class="trial"><td class="thing">A lift in a building</td><td><input type="text" data-key="p3_h2" aria-label="Lift kind"></td><td><input type="text" data-key="p3_h2_why" aria-label="Lift why"></td></tr>
+            <tr class="trial"><td class="thing">A robot vacuum you send to one room</td><td><input type="text" data-key="p3_h3" aria-label="Vacuum kind"></td><td><input type="text" data-key="p3_h3_why" aria-label="Vacuum why"></td></tr>
+            <tr class="trial"><td class="thing">A traffic light</td><td><input type="text" data-key="p3_h4" aria-label="Traffic light kind"></td><td><input type="text" data-key="p3_h4_why" aria-label="Traffic light why"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Did your class agree on all four? Which one caused the biggest argument?</p>
+        <textarea class="answer" data-key="p3_argument" aria-label="Biggest argument"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Your own robot, minute by minute</span>
+        <p>Your Botball robot is autonomous during a match. But not every minute of the day.</p>
+        <p>Write which kind it is at each of these times.</p>
+        <table class="grid">
+          <thead><tr><th style="width:56%">Right now my robot is…</th><th>Which kind?</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>Sitting on the table with no program</td><td><input type="text" data-key="p3_o1" aria-label="Own 1"></td></tr>
+            <tr class="trial"><td>Being dragged by me on the Motors screen</td><td><input type="text" data-key="p3_o2" aria-label="Own 2"></td></tr>
+            <tr class="trial"><td>Waiting for me to press the A button</td><td><input type="text" data-key="p3_o3" aria-label="Own 3"></td></tr>
+            <tr class="trial"><td>Running its program in a match</td><td><input type="text" data-key="p3_o4" aria-label="Own 4"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">One of those four is the moment it changes. Which one?</p>
+        <input type="text" data-key="p3_changes" aria-label="When it changes">
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">Sort these</h3>
+    <table class="grid">
+      <thead><tr><th style="width:56%">Machine</th><th>Which kind?</th></tr></thead>
+      <tbody>
+        <tr><td>A drone with a person holding the controls</td><td><input type="text" data-key="p4_s1" aria-label="Sort 1"></td></tr>
+        <tr><td>A Mars rover driving across a crater</td><td><input type="text" data-key="p4_s2" aria-label="Sort 2"></td></tr>
+        <tr><td>A car that steers itself but needs your hands on the wheel</td><td><input type="text" data-key="p4_s3" aria-label="Sort 3"></td></tr>
+        <tr><td>Your Botball robot during a match</td><td><input type="text" data-key="p4_s4" aria-label="Sort 4"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_three"><label for="s1">I can name all three kinds of control</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_sort"><label for="s2">I can sort a machine into one of them and say why</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_own"><label for="s3">I know which kind my Botball robot is during a match</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_steps"><label for="s4">I can write steps small enough for a robot to follow</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_before"><label for="s5">I know I have to think of everything before the robot starts</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_cost"><label for="s6">I can say one good thing and one hard thing about being autonomous</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">In Round 1 you could fix mistakes right away. In Round 2 you could not. Which felt safer? Which got the job done faster?</p>
+    <textarea class="answer" data-key="p4_safer_faster" aria-label="Safer or faster"></textarea>
+
+    <p class="q">Your robot cannot see that a cube has rolled away. It drives to the empty spot anyway. Whose mistake is that?</p>
+    <textarea class="answer" data-key="p4_whose_mistake" aria-label="Whose mistake"></textarea>
+
+    <p class="q">A Mars rover takes about 20 minutes to get a message from Earth. Why does that make it autonomous, whether anyone wanted it that way or not?</p>
+    <textarea class="answer" data-key="p4_mars" aria-label="Mars rover"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>Writing your plan on paper worked. But a long list of steps is hard to read.</p>
+    <p>In <strong>Systems Project 4 — Draw the Plan</strong>, you learn to draw a plan instead of writing one.</p>
+    <p class="muted">You are also ready for <strong>Coding Project 4</strong>. That is the first run your robot does on its own.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'AUTONOMOUS': ['Autonomous', 'The machine moves around on its own. No person is controlling it while it runs. You start it and step back.'],
+    'SEMI-AUTONOMOUS': ['Semi-Autonomous', 'A person controls part of what the machine does. The machine does the rest by itself. The two of you share the job.'],
+    'REMOTE CONTROL': ['Remote Control', 'The machine does not move on its own. A person has to control it the whole time. Let go and it stops.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) openDef(el.dataset.term);
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_systems_03";
+  var MISSION_TITLE = "Systems Project 3 — Who's Driving?";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>
