@@ -278,7 +278,7 @@ unsigned long minutes = total_sec / 60;
 unsigned long seconds = total_sec % 60;     <span class="c">// &lt;-- THIS % is the modulo operator (math), not the %lu below (text formatting)</span>
 printf("Elapsed: %lu:%02lu\n", minutes, seconds);</div>
         <p><code>%</code> is new — you've used <code>/</code> plenty, but division only gives you how many whole groups fit. Modulo gives you what's left over after those whole groups are removed.</p>
-        <p>Careful: you're about to see <strong>two completely different jobs</strong> for the <code>%</code> symbol in the same few lines. In <code>total_sec % 60</code>, it's <strong>math</strong> — the modulo operator, computing a remainder. In <code>"%lu"</code> inside a <code>printf</code> <span class="def-term" data-term="STRING">String</span>, it's not math at all — it's a placeholder telling <code>printf</code> "put a number here." Same symbol, two unrelated meanings, depending on whether it's sitting inside quotes or out in your code doing arithmetic.</p>
+        <p>Careful: you're about to see <strong>two completely different jobs</strong> for the <code>%</code> symbol in the same few lines. In <code>total_sec % 60</code>, it's <strong>math</strong> — the modulo operator, computing a remainder. In <code>"%lu"</code> inside a <code>printf</code> <span class="def-term" data-term="STRING">string</span>, it's not math at all — it's a placeholder telling <code>printf</code> "put a number here." Same symbol, two unrelated meanings, depending on whether it's sitting inside quotes or out in your code doing arithmetic.</p>
       </div>
     </div>
     <p class="q">If <code>total_sec</code> is 197, what do <code>197 / 60</code> and <code>197 % 60</code> each give you, and what do those two numbers mean together?</p>
@@ -389,7 +389,7 @@ times[i + 1] = temp;           <span class="c">// 3. copy the saved-aside value 
     <div class="concept">
       <div class="chead">Sorting: stopping early with a stored boolean</div>
       <div class="cbody">
-        <p>The version above always does all 3 passes, even if the line was already sorted after pass 1. You've used booleans <em>inline</em> before, inside an <code>if</code> <span class="def-term" data-term="CONDITION">Condition</span> with <code>&amp;&amp;</code> or <code>||</code>. Here's a new use: store a boolean's answer <strong>in a variable</strong> that carries a true/false memory from one pass into the next.</p>
+        <p>The version above always does all 3 passes, even if the line was already sorted after pass 1. You've used booleans <em>inline</em> before, inside an <code>if</code> <span class="def-term" data-term="CONDITION">condition</span> with <code>&amp;&amp;</code> or <code>||</code>. Here's a new use: store a boolean's answer <strong>in a variable</strong> that carries a true/false memory from one pass into the next.</p>
         <div class="code small">int swapped = 1;                 <span class="c">// start true, just to make sure the loop runs at least once</span>
 while (swapped) {
     swapped = 0;                 <span class="c">// assume this pass finds nothing to fix...</span>

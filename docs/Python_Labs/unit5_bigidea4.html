@@ -380,7 +380,7 @@ times[i + 1] = temp       <span class="c"># 3. copy the saved-aside value into t
     <div class="concept">
       <div class="chead">Sorting: stopping early with a stored boolean</div>
       <div class="cbody">
-        <p>The version above always does all 3 passes, even if the line was already sorted after pass 1. You've used booleans <em>inline</em> before, inside an <code>if</code> <span class="def-term" data-term="CONDITION">Condition</span> with <code>and</code> or <code>or</code>. Here's a new use: store a boolean's answer <strong>in a variable</strong> that carries a true/false memory from one pass into the next.</p>
+        <p>The version above always does all 3 passes, even if the line was already sorted after pass 1. You've used booleans <em>inline</em> before, inside an <code>if</code> <span class="def-term" data-term="CONDITION">condition</span> with <code>and</code> or <code>or</code>. Here's a new use: store a boolean's answer <strong>in a variable</strong> that carries a true/false memory from one pass into the next.</p>
         <div class="code small">swapped = True                   <span class="c"># start true, just to make sure the loop runs at least once</span>
 while swapped:
     swapped = False               <span class="c"># assume this pass finds nothing to fix...</span>
