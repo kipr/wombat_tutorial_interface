@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Systems Project 11 — Living Well Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{--red:#9E1B32;--red-dark:#7d1526;--navy:#1F2D5A;--gold:#C8A14B;--ink:#1c1c1e;--grey:#5b6270;
+        --line:#d8dbe2;--bg:#f0f0f0;--panel:#fff;--field:#fcfcfd;--field-focus:#fffdf5}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Barlow',system-ui,sans-serif;font-size:19px;line-height:1.6}
+  .topbar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;border-bottom:3px solid var(--gold)}
+  .topbar-inner{max-width:920px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar .brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.06em;text-transform:uppercase;margin-right:auto}
+  .topbar .brand span{color:var(--gold)}
+  .pin-field{display:flex;align-items:center;gap:8px}
+  .pin-field label{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .pin-field input{width:92px;padding:7px 10px;border:2px solid rgba(255,255,255,.3);border-radius:4px;background:rgba(255,255,255,.1);color:#fff;font-family:'Barlow',sans-serif;font-size:17px;letter-spacing:.12em}
+  .pin-field input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.18)}
+  .submit-btn{background:var(--gold);color:#24200f;border:none;border-radius:4px;padding:9px 18px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  .submit-btn:hover{background:#d9b464}
+  .status{font-size:14px;color:var(--gold);min-height:1em}
+  .status.err{color:#ffb4b4}
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  .sheet{max-width:920px;margin:26px auto 60px;background:var(--panel);padding:0 0 40px;box-shadow:0 2px 14px rgba(0,0,0,.09)}
+  .hero{background:var(--navy);color:#fff;padding:30px 40px 26px;border-bottom:5px solid var(--gold)}
+  .hero .eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+  .hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:44px;line-height:1.05;margin:0 0 8px}
+  .hero .sub{margin:0;color:rgba(255,255,255,.72);font-size:18px}
+  section{padding:0 40px}
+  .meta{margin:26px 0 0;border:1px solid var(--line);border-radius:5px;overflow:hidden}
+  .meta dl{margin:0}
+  .meta .row{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}
+  .meta .row:last-child{border-bottom:none}
+  .meta dt{background:#f6f7f9;padding:10px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+  .meta dd{margin:0;padding:10px 14px;font-size:17px}
+  .meta dd.link{font-weight:600;color:var(--red)}
+  .pin-reminder{margin:20px 0 0;padding:14px 16px;background:#fff8e6;border:1px solid var(--gold);border-radius:5px;font-size:17px}
+  .pin-reminder strong{color:var(--navy)}
+  .phase-head{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;color:var(--navy);margin:40px 0 4px;padding-bottom:8px;border-bottom:3px solid var(--red);display:flex;align-items:baseline;gap:12px}
+  .phase-head .pnum{background:var(--red);color:#fff;font-size:14px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:3px;font-weight:700}
+  h3.sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--red);margin:26px 0 6px}
+  p{margin:10px 0}
+  .muted{color:var(--grey);font-size:17px}
+  .callout{background:#f6f7f9;border-left:5px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 5px 5px 0}
+  .callout.navy{border-left-color:var(--navy);background:#f2f4fa}
+  .callout.gold{border-left-color:var(--gold);background:#fffaef}
+  .callout .ctitle{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin:0 0 6px}
+  .callout.warn{border-left-color:#b3541e;background:#fff4ec}
+  .callout.warn .ctitle{color:#8a3d12}
+  .callout.help{border-left-color:#1E8449;background:#eef7f1}
+  .callout.help .ctitle{color:#145a32}
+  ul.plain{margin:10px 0 10px 22px;padding:0}
+  ul.plain li{margin:6px 0}
+  ul.check{list-style:none;margin:14px 0;padding:0}
+  ul.check li{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:5px;margin-bottom:8px;background:var(--field)}
+  ul.check input[type="checkbox"]{flex-shrink:0;width:24px;height:24px;margin-top:2px;accent-color:var(--red);cursor:pointer}
+  ul.check label{cursor:pointer;font-size:18px}
+  ol.dosteps{margin:14px 0;padding-left:0;list-style:none;counter-reset:ds}
+  ol.dosteps>li{counter-increment:ds;position:relative;padding:4px 0 16px 46px;margin-bottom:4px;border-left:2px solid var(--line);margin-left:15px}
+  ol.dosteps>li:last-child{border-left-color:transparent}
+  ol.dosteps>li::before{content:counter(ds);position:absolute;left:-16px;top:2px;width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center}
+  ol.dosteps .stitle{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;color:var(--navy);display:block;margin-bottom:2px}
+  .answer{width:100%;min-height:76px;padding:10px 12px;border:1px solid var(--line);border-radius:5px;background:var(--field);font-family:'Barlow',sans-serif;font-size:18px;line-height:1.55;resize:vertical}
+  .answer:focus,input[type="text"]:focus{outline:none;border-color:var(--gold);background:var(--field-focus)}
+  .q{font-weight:600;margin:18px 0 6px}
+  input[type="text"]{padding:9px 11px;border:1px solid var(--line);border-radius:5px;background:var(--field);font-family:'Barlow',sans-serif;font-size:18px;width:100%}
+  table.grid{width:100%;border-collapse:collapse;margin:14px 0;font-size:17px}
+  table.grid th{background:var(--navy);color:#fff;text-align:left;padding:9px 11px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+  table.grid td{border:1px solid var(--line);padding:7px 9px;vertical-align:middle}
+  table.grid td input[type="text"]{border:none;background:transparent;padding:4px 2px}
+  table.grid td.ctr{text-align:center;font-weight:600}
+  table.grid tr.trial td.ctr{background:#f6f7f9}
+  table.grid td.thing{font-weight:600}
+  .msg{background:#eef0f4;border-radius:14px;padding:12px 16px;margin:10px 0;font-size:18px;max-width:78%}
+  .msg.them{background:#e3e7f5}
+  .privatebox{border:2px solid #1E8449;border-radius:6px;background:#eef7f1;padding:14px 18px;margin:18px 0}
+  .privatebox .ptitle{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:17px;letter-spacing:.08em;text-transform:uppercase;color:#145a32;margin:0 0 6px}
+  .bottom-submit{padding:30px 40px 0;text-align:center}
+  .bottom-submit .status{color:var(--navy);margin-top:8px}
+  .credit{margin:34px 40px 0;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--grey);text-align:center}
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){
+    body{font-size:18px}
+    .sheet{margin:0}
+    .hero{padding:22px 20px 20px}
+    .hero h1{font-size:32px}
+    section,.bottom-submit{padding-left:20px;padding-right:20px}
+    .credit{margin-left:20px;margin-right:20px}
+    .meta .row{grid-template-columns:1fr}
+    .meta dt{border-bottom:1px solid var(--line)}
+    .phase-head{font-size:25px;flex-wrap:wrap;gap:8px}
+    .topbar .brand{font-size:15px}
+    .crumbs{font-size:12.5px;gap:4px}
+    .msg{max-width:100%}
+    table.grid{font-size:15px}
+  }
+  @media print{
+    .no-print{display:none!important}
+    body{background:#fff;font-size:12pt}
+    .sheet{box-shadow:none;margin:0;max-width:none}
+    .hero{background:#fff!important;color:#000;border-bottom:3px solid #000}
+    .hero .eyebrow,.hero .sub{color:#333}
+    .phase-head{break-after:avoid}
+    .answer,input[type="text"]{border:1px solid #999;background:#fff}
+    .crumbs,.def-overlay{display:none}
+    .print-pin{display:block!important}
+    ol.dosteps>li::before{background:#333!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .privatebox,.msg{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  .print-pin{display:none;margin:14px 40px 0;font-size:16px}
+</style>
+</head>
+<body>
+
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Systems</a><span class="sep">/</span><span class="here">Project 11</span><a class="gloss" href="../../glossary.html">Glossary</a></nav>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Systems · Project 11</p>
+    <h1>Living Well Online</h1>
+    <p class="sub">The same six words land differently on different people.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Finding out how easily a message is read the wrong way, what to do when someone is being hurt, and writing the rules your own team will work by.</dd></div>
+        <div class="row"><dt>Strand Link</dt><dd class="link">Any time</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Your notebook · a pencil · coloured pens if you have them · a partner</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Systems Project 10. You should know what counts as private information.</dd></div>
+      </dl>
+    </div>
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ===================== TRY IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Draw How You Feel</h2>
+
+    <p>In your notebook, draw four small faces or emojis — one for each feeling below. Draw them your own way.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:34%">Feeling</th><th>How I drew it</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td class="thing">Pleased</td><td><input type="text" data-key="p1_e1" aria-label="Pleased"></td></tr>
+        <tr class="trial"><td class="thing">Tired of this</td><td><input type="text" data-key="p1_e2" aria-label="Tired"></td></tr>
+        <tr class="trial"><td class="thing">Just joking</td><td><input type="text" data-key="p1_e3" aria-label="Joking"></td></tr>
+        <tr class="trial"><td class="thing">Leave me alone</td><td><input type="text" data-key="p1_e4" aria-label="Leave me alone"></td></tr>
+      </tbody>
+    </table>
+
+    <p>Now show your drawings to a partner — <strong>without telling them which is which</strong>. Let them guess.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:52%">Question</th><th>My answer</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>How many did they get right?</td><td><input type="text" data-key="p1_right" aria-label="How many right"></td></tr>
+        <tr class="trial"><td>Which one did they read <span class="def-term" data-term="COMPLETELY">COMPLETELY</span> differently?</td><td><input type="text" data-key="p1_diff" aria-label="Read differently"></td></tr>
+      </tbody>
+    </table>
+
+    <p class="q">Their reading was different from what you meant. Does that make <em>them</em> wrong?</p>
+    <textarea class="answer" data-key="p1_wrong" aria-label="Are they wrong"></textarea>
+
+    <h3 class="sub">Now try it with words</h3>
+
+    <p>Read this message three times — once as a joke between friends, once as annoyed, once as genuinely unkind.</p>
+
+    <div class="msg them">"wow. nice job."</div>
+
+    <p class="q">Could all three readings be right? What is missing that would tell you which one was meant?</p>
+    <textarea class="answer" data-key="p1_missing" aria-label="What is missing"></textarea>
+
+    <div class="callout gold">
+      <p class="ctitle">Online, Everything Helpful Is Missing</p>
+      <p>Face to face you get a voice, a face, and a pause. In a message you get none of it.</p>
+      <p>So the person reading fills the gap themselves — with whatever mood they happen to be in.</p>
+    </div>
+  </section>
+
+  <!-- ===================== LEARN IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Being Good at This</h2>
+
+    <p><span class="def-term" data-term="DIGITAL CITIZENSHIP">Digital citizenship</span> means behaving well in a place where you cannot see anybody's face.</p>
+
+    <p>It is harder than being decent in person, for four reasons.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:34%">What is missing</th><th>What that causes</th></tr></thead>
+      <tbody>
+        <tr><td class="thing">No tone of voice</td><td>A joke reads as an insult</td></tr>
+        <tr><td class="thing">No face in front of you</td><td>It is easier to be harsher than you would ever be out loud</td></tr>
+        <tr><td class="thing">No pause</td><td>You send before you have thought</td></tr>
+        <tr><td class="thing">It does not go away</td><td>A message can be screenshotted and kept for years</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub"><span class="def-term" data-term="CYBERBULLYING">Cyberbullying</span></h3>
+
+    <p><span class="def-term" data-term="CYBERBULLYING">Cyberbullying</span> is using messages, posts, photos, or group chats to hurt, frighten, or humiliate somebody.</p>
+
+    <p>It is not the same as a disagreement, and it is not the same as one unkind remark that gets apologised for. It usually keeps going, and it usually has an audience.</p>
+
+    <div class="callout help">
+      <p class="ctitle">If It Happens to You</p>
+      <ul class="plain" style="margin-bottom:0">
+        <li><strong>Do not reply.</strong> A reply is what the person is hoping for.</li>
+        <li><strong>Keep it.</strong> Screenshot it, even though you want it gone. It is proof.</li>
+        <li><strong>Block or report</strong> if the app lets you.</li>
+        <li><strong>Tell an adult you trust</strong> — a parent, a teacher, a coach, an older relative.</li>
+      </ul>
+    </div>
+
+    <div class="callout navy">
+      <p class="ctitle">Telling Someone Is Not Telling Tales</p>
+      <p>Some people worry that reporting it will make things worse or get them called a snitch.</p>
+      <p>Telling a trusted adult about someone being hurt is not the same as getting somebody into trouble for nothing. Adults have ways to help that you do not have.</p>
+    </div>
+
+    <h3 class="sub">The third person in the room</h3>
+
+    <p>Most online unkindness has three parts — the person doing it, the person it is aimed at, and everybody watching.</p>
+
+    <p>That last group is the <span class="def-term" data-term="BYSTANDER">bystander</span>, and it is usually the biggest.</p>
+
+    <div class="callout warn">
+      <p class="ctitle">⚠ Doing Nothing Is a Choice</p>
+      <p>Laughing, sharing, adding an emoji, or just leaving it there all tell the person doing it that this is fine.</p>
+      <p>You do not have to fight anybody. Sending one private message to the person being targeted — <em>that was not okay, are you alright?</em> — changes the whole thing.</p>
+    </div>
+
+    <h3 class="sub">Working well with your own team</h3>
+
+    <p>The same thing applies to how you build robots together.</p>
+
+    <ul class="plain">
+      <li>Give proper <span class="def-term" data-term="ATTRIBUTION">attribution</span> for code that is not yours. Somebody wrote it, and it is their <span class="def-term" data-term="INTELLECTUAL PROPERTY">intellectual property</span>.</li>
+      <li>Find the goal you share, and work toward that rather than toward being right.</li>
+      <li>Keep everybody safe — with tools, with the robot, and with what you say.</li>
+    </ul>
+  </section>
+
+  <!-- ===================== DO IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Say It Better</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Rewrite the sharp message</span>
+        <p>Somebody on your team sends this after a bad practice run:</p>
+        <div class="msg them">"that was useless. you broke it again."</div>
+        <p class="q">Rewrite it so it says the same thing about the <em>problem</em> without being about the person.</p>
+        <textarea class="answer" data-key="p3_rewrite1" aria-label="Rewrite 1"></textarea>
+        <p class="q">What did you have to change?</p>
+        <input type="text" data-key="p3_changed" aria-label="What changed">
+      </li>
+
+      <li>
+        <span class="stitle">Add what is missing</span>
+        <p>Take the message <em>"wow. nice job."</em> and write it three ways so that nobody could mistake which one you meant.</p>
+        <table class="grid">
+          <thead><tr><th style="width:26%">Meant as…</th><th>How I would write it</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="thing">A real compliment</td><td><input type="text" data-key="p3_w1" aria-label="Compliment"></td></tr>
+            <tr class="trial"><td class="thing">A friendly joke</td><td><input type="text" data-key="p3_w2" aria-label="Joke"></td></tr>
+            <tr class="trial"><td class="thing">Honest frustration</td><td><input type="text" data-key="p3_w3" aria-label="Frustration"></td></tr>
+          </tbody>
+        </table>
+        <p class="muted">Most people reach for more words, or an emoji, or a name. All three are ways of putting the missing tone back in.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Where could this happen?</span>
+        <p>List the kinds of place where people your age talk to each other online — apps, games, group chats, <span class="def-term" data-term="COMMENT">comment</span> sections, school systems.</p>
+        <table class="grid">
+          <thead><tr><th style="width:44%">Kind of place</th><th>Could unkindness happen here?</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td><input type="text" data-key="p3_p1" aria-label="Place 1"></td><td><input type="text" data-key="p3_p1_c" aria-label="Place 1 could"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_p2" aria-label="Place 2"></td><td><input type="text" data-key="p3_p2_c" aria-label="Place 2 could"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_p3" aria-label="Place 3"></td><td><input type="text" data-key="p3_p3_c" aria-label="Place 3 could"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_p4" aria-label="Place 4"></td><td><input type="text" data-key="p3_p4_c" aria-label="Place 4 could"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Was there any place on your list where it could not happen at all?</p>
+        <input type="text" data-key="p3_nowhere" aria-label="Nowhere safe">
+
+        <div class="privatebox">
+          <p class="ptitle">This next part stays in your notebook</p>
+          <p style="margin:0 0 8px">Look back over your list. Quietly, just for yourself, mark any place where you have seen this happen — to you, to someone else, or where you were part of it.</p>
+          <p style="margin:0"><strong>Do not write that here and do not share it.</strong> It is yours. If any of it is still bothering you, that is exactly the thing to take to an adult you trust.</p>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">What would you do?</span>
+        <p>Work through these with a partner.</p>
+        <table class="grid">
+          <thead><tr><th style="width:46%">Situation</th><th>What I would do</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>A group chat starts making fun of someone who is not in it.</td><td><input type="text" data-key="p3_s1" aria-label="Situation 1"></td></tr>
+            <tr class="trial"><td>Someone sends you a mean photo of a classmate and asks you to pass it on.</td><td><input type="text" data-key="p3_s2" aria-label="Situation 2"></td></tr>
+            <tr class="trial"><td>You post something as a joke and someone replies that it upset them.</td><td><input type="text" data-key="p3_s3" aria-label="Situation 3"></td></tr>
+            <tr class="trial"><td>A message keeps arriving from an account you do not recognise.</td><td><input type="text" data-key="p3_s4" aria-label="Situation 4"></td></tr>
+            <tr class="trial"><td>A teammate takes credit for code you wrote.</td><td><input type="text" data-key="p3_s5" aria-label="Situation 5"></td></tr>
+          </tbody>
+        </table>
+        <div class="callout gold">
+          <p class="ctitle">The Third One Is the Hard One</p>
+          <p>You meant no harm and somebody was hurt anyway. Both of those are true at once.</p>
+          <p>What you meant explains it. What they felt is still real. A good apology deals with the second without arguing about the first.</p>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">Who would you tell?</span>
+        <p>Name three adults you could go to. Different ones, so that you always have somebody.</p>
+        <table class="grid">
+          <thead><tr><th style="width:14%">#</th><th style="width:44%">Who</th><th>Where I would find them</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_a1" aria-label="Adult 1"></td><td><input type="text" data-key="p3_a1_w" aria-label="Adult 1 where"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_a2" aria-label="Adult 2"></td><td><input type="text" data-key="p3_a2_w" aria-label="Adult 2 where"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_a3" aria-label="Adult 3"></td><td><input type="text" data-key="p3_a3_w" aria-label="Adult 3 where"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_three"><label for="d1">I have three names written down</label></li></ul>
+        <p class="muted">Write them somewhere you will still have them in six months. The time you need this list is not the time you want to be thinking about it.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Write your team agreement</span>
+        <p>Your team needs its own rules for working together. Agree five. Everybody signs.</p>
+        <table class="grid">
+          <thead><tr><th style="width:14%">#</th><th>On this team, we…</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_r1" aria-label="Rule 1"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_r2" aria-label="Rule 2"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_r3" aria-label="Rule 3"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_r4" aria-label="Rule 4"></td></tr>
+            <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p3_r5" aria-label="Rule 5"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">One of your rules should cover what happens when somebody breaks a rule. Which one is it?</p>
+        <input type="text" data-key="p3_breaks" aria-label="Rule about breaking rules">
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_signed"><label for="d2">Everyone on my team has agreed and signed it</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Credit where it is due</span>
+        <p>Go through your <span class="def-term" data-term="LIBRARY">library</span> file. Find anything you did not write yourself — a snippet from another team, something a teacher showed you, code from a website.</p>
+        <table class="grid">
+          <thead><tr><th style="width:40%">What I used</th><th style="width:30%">Where it came from</th><th>Credited?</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td><input type="text" data-key="p3_c1" aria-label="Code 1"></td><td><input type="text" data-key="p3_c1_s" aria-label="Source 1"></td><td><input type="text" data-key="p3_c1_d" aria-label="Credited 1"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_c2" aria-label="Code 2"></td><td><input type="text" data-key="p3_c2_s" aria-label="Source 2"></td><td><input type="text" data-key="p3_c2_d" aria-label="Credited 2"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_c3" aria-label="Code 3"></td><td><input type="text" data-key="p3_c3_s" aria-label="Source 3"></td><td><input type="text" data-key="p3_c3_d" aria-label="Credited 3"></td></tr>
+          </tbody>
+        </table>
+        <p>Add a <span class="def-term" data-term="COMMENT">comment</span> naming the source above anything that was missing one.</p>
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_credited"><label for="d3">Everything in my <span class="def-term" data-term="LIBRARY">library</span> that came from somewhere else now says so</label></li></ul>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ===================== SCORE IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">What would help most?</h3>
+    <table class="grid">
+      <thead><tr><th style="width:56%">Situation</th><th>Best first move</th></tr></thead>
+      <tbody>
+        <tr><td>Someone is being picked on in a group chat</td><td><input type="text" data-key="p4_b1" aria-label="Best 1"></td></tr>
+        <tr><td>An unkind message arrives about you</td><td><input type="text" data-key="p4_b2" aria-label="Best 2"></td></tr>
+        <tr><td>You realise something you sent hurt somebody</td><td><input type="text" data-key="p4_b3" aria-label="Best 3"></td></tr>
+        <tr><td>It keeps happening after you blocked them</td><td><input type="text" data-key="p4_b4" aria-label="Best 4"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_tone"><label for="s1">I know why a message is easier to misread than a conversation</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_write"><label for="s2">I can rewrite something sharp so it is about the problem, not the person</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_cb"><label for="s3">I can say what cyberbullying is and how it differs from a disagreement</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_steps"><label for="s4">I know the four steps: do not reply, keep it, block or report, tell an adult</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_by"><label for="s5">I know what a <span class="def-term" data-term="BYSTANDER">bystander</span> can do that costs almost nothing</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_adults"><label for="s6">I have three trusted adults written down</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_credit"><label for="s7">I give credit for code that is not mine</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">Your partner read one of your emojis <span class="def-term" data-term="COMPLETELY">COMPLETELY</span> differently. If that can happen with a drawing you made on purpose, what does it say about sending things quickly?</p>
+    <textarea class="answer" data-key="p4_quickly" aria-label="Sending quickly"></textarea>
+
+    <p class="q">Most people watching unkindness online do nothing at all. It is not that they approve. So why is it so hard to be the one who says something?</p>
+    <textarea class="answer" data-key="p4_hard" aria-label="Why hard"></textarea>
+
+    <p class="q">Your team agreement only matters on the day somebody breaks it. What makes a team actually keep to rules it wrote itself?</p>
+    <textarea class="answer" data-key="p4_keep" aria-label="Keeping to rules"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>You have looked at what technology does to the way people treat each other. Technology also changes what people are able to do at all.</p>
+    <p>In <strong>Systems Project 12 — Technology and People</strong>, you weigh up what it has given us, what it has cost, and who gets left out.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFS = {
+    'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
+    'COMPLETELY': ['COMPLETELY', 'An object is COMPLETELY outside an enclosure or boundary when no portion of the object is touching or overlapping that enclosure or boundary.'],
+    'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
+    'DIGITAL CITIZENSHIP': ['Digital Citizenship', 'Behaving well in a place where you cannot see anybody\u2019s face. It covers how you treat other people online, how you protect your own information, and what you do when you see somebody being hurt.'],
+    'CYBERBULLYING': ['Cyberbullying', 'Using messages, posts, photos, or group chats to hurt, frighten, or humiliate somebody. It is different from a disagreement \u2014 it usually keeps going, and it usually has an audience.'],
+    'BYSTANDER': ['Bystander', 'Somebody who sees unkindness happening but is not the one doing it or the one it is aimed at. Bystanders are usually the largest group, which is why what they do matters so much.'],
+    'ATTRIBUTION': ['Attribution', 'Saying clearly where something came from when it is not yours. In code it means a comment naming whoever wrote the part you borrowed.'],
+    'INTELLECTUAL PROPERTY': ['Intellectual Property', 'Something a person made with their mind rather than their hands \u2014 code, writing, music, a design. It still belongs to whoever made it, even though you can copy it in a second.']
+  };
+  function openDef(t){
+    var e=DEFS[t]; if(!e) return;
+    document.getElementById('defTerm').textContent=e[0];
+    document.getElementById('defBody').textContent=e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow='hidden';
+  }
+  function closeDef(){
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el) openDef(el.dataset.term); });
+  document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_systems_11";
+  var MISSION_TITLE = "Systems Project 11 — Living Well Online";
+  var $=function(s){return document.querySelector(s);};
+  var pinInput=$("#pin"),statusEl=$("#status"),statusBottom=$("#statusBottom"),pinEcho=$("#pinEcho");
+  function collectAnswers(){var a={};document.querySelectorAll("[data-key]").forEach(function(el){a[el.getAttribute("data-key")]=(el.type==="checkbox")?(el.checked?"yes":""):el.value;});return a;}
+  var SAVE_KEY="kipr_"+MISSION_ID+"_draft";
+  function restoreDraft(){var raw=null;try{raw=window.localStorage.getItem(SAVE_KEY);}catch(e){return;}if(!raw)return;
+    var d;try{d=JSON.parse(raw);}catch(e){return;}
+    if(d.pin)pinInput.value=d.pin;
+    if(d.answers)document.querySelectorAll("[data-key]").forEach(function(el){var k=el.getAttribute("data-key");
+      if(k in d.answers){if(el.type==="checkbox")el.checked=d.answers[k]==="yes";else el.value=d.answers[k];}});
+    syncPinEcho();}
+  function saveDraft(){try{window.localStorage.setItem(SAVE_KEY,JSON.stringify({pin:pinInput.value.trim(),answers:collectAnswers()}));}catch(e){}}
+  function syncPinEcho(){pinEcho.textContent=pinInput.value.trim();}
+  restoreDraft();
+  document.addEventListener("input",function(e){if(e.target.matches("[data-key], #pin")){saveDraft();syncPinEcho();}});
+  document.addEventListener("change",function(e){if(e.target.matches("[data-key]"))saveDraft();});
+  function setStatus(msg,kind){statusEl.textContent=msg;statusEl.className="status"+(kind?" "+kind:"");statusBottom.textContent=msg;}
+  function submit(){
+    var pin=pinInput.value.trim();
+    if(!pin){setStatus("Enter your PIN first.","err");pinInput.focus();return;}
+    var payload={mission:MISSION_ID,missionTitle:MISSION_TITLE,pin:pin,submittedAt:new Date().toISOString(),answers:collectAnswers()};
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+    var url=URL.createObjectURL(blob),a=document.createElement("a");
+    a.href=url;a.download=MISSION_ID+"_pin"+pin+".json";
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+    saveDraft();setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function(){window.print();},600);
+  }
+  $("#submitTop").addEventListener("click",submit);
+  $("#submitBottom").addEventListener("click",submit);
+</script>
+
+</body>
+</html>

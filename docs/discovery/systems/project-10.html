@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Systems Project 10 — Guarding Your Information</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{--red:#9E1B32;--red-dark:#7d1526;--navy:#1F2D5A;--gold:#C8A14B;--ink:#1c1c1e;--grey:#5b6270;
+        --line:#d8dbe2;--bg:#f0f0f0;--panel:#fff;--field:#fcfcfd;--field-focus:#fffdf5}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Barlow',system-ui,sans-serif;font-size:19px;line-height:1.6}
+  .topbar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;border-bottom:3px solid var(--gold)}
+  .topbar-inner{max-width:920px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar .brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.06em;text-transform:uppercase;margin-right:auto}
+  .topbar .brand span{color:var(--gold)}
+  .pin-field{display:flex;align-items:center;gap:8px}
+  .pin-field label{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .pin-field input{width:92px;padding:7px 10px;border:2px solid rgba(255,255,255,.3);border-radius:4px;background:rgba(255,255,255,.1);color:#fff;font-family:'Barlow',sans-serif;font-size:17px;letter-spacing:.12em}
+  .pin-field input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.18)}
+  .submit-btn{background:var(--gold);color:#24200f;border:none;border-radius:4px;padding:9px 18px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  .submit-btn:hover{background:#d9b464}
+  .status{font-size:14px;color:var(--gold);min-height:1em}
+  .status.err{color:#ffb4b4}
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  .sheet{max-width:920px;margin:26px auto 60px;background:var(--panel);padding:0 0 40px;box-shadow:0 2px 14px rgba(0,0,0,.09)}
+  .hero{background:var(--navy);color:#fff;padding:30px 40px 26px;border-bottom:5px solid var(--gold)}
+  .hero .eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+  .hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:44px;line-height:1.05;margin:0 0 8px}
+  .hero .sub{margin:0;color:rgba(255,255,255,.72);font-size:18px}
+  section{padding:0 40px}
+  .meta{margin:26px 0 0;border:1px solid var(--line);border-radius:5px;overflow:hidden}
+  .meta dl{margin:0}
+  .meta .row{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}
+  .meta .row:last-child{border-bottom:none}
+  .meta dt{background:#f6f7f9;padding:10px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+  .meta dd{margin:0;padding:10px 14px;font-size:17px}
+  .meta dd.link{font-weight:600;color:var(--red)}
+  .pin-reminder{margin:20px 0 0;padding:14px 16px;background:#fff8e6;border:1px solid var(--gold);border-radius:5px;font-size:17px}
+  .pin-reminder strong{color:var(--navy)}
+  .phase-head{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;color:var(--navy);margin:40px 0 4px;padding-bottom:8px;border-bottom:3px solid var(--red);display:flex;align-items:baseline;gap:12px}
+  .phase-head .pnum{background:var(--red);color:#fff;font-size:14px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:3px;font-weight:700}
+  h3.sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--red);margin:26px 0 6px}
+  p{margin:10px 0}
+  .muted{color:var(--grey);font-size:17px}
+  .callout{background:#f6f7f9;border-left:5px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 5px 5px 0}
+  .callout.navy{border-left-color:var(--navy);background:#f2f4fa}
+  .callout.gold{border-left-color:var(--gold);background:#fffaef}
+  .callout .ctitle{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin:0 0 6px}
+  .callout.warn{border-left-color:#b3541e;background:#fff4ec}
+  .callout.warn .ctitle{color:#8a3d12}
+  .callout.danger{border-left-color:#922B21;background:#fdf0ef}
+  .callout.danger .ctitle{color:#922B21}
+  ul.plain{margin:10px 0 10px 22px;padding:0}
+  ul.plain li{margin:6px 0}
+  ul.check{list-style:none;margin:14px 0;padding:0}
+  ul.check li{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:5px;margin-bottom:8px;background:var(--field)}
+  ul.check input[type="checkbox"]{flex-shrink:0;width:24px;height:24px;margin-top:2px;accent-color:var(--red);cursor:pointer}
+  ul.check label{cursor:pointer;font-size:18px}
+  ol.dosteps{margin:14px 0;padding-left:0;list-style:none;counter-reset:ds}
+  ol.dosteps>li{counter-increment:ds;position:relative;padding:4px 0 16px 46px;margin-bottom:4px;border-left:2px solid var(--line);margin-left:15px}
+  ol.dosteps>li:last-child{border-left-color:transparent}
+  ol.dosteps>li::before{content:counter(ds);position:absolute;left:-16px;top:2px;width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center}
+  ol.dosteps .stitle{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;color:var(--navy);display:block;margin-bottom:2px}
+  .answer{width:100%;min-height:76px;padding:10px 12px;border:1px solid var(--line);border-radius:5px;background:var(--field);font-family:'Barlow',sans-serif;font-size:18px;line-height:1.55;resize:vertical}
+  .answer:focus,input[type="text"]:focus{outline:none;border-color:var(--gold);background:var(--field-focus)}
+  .q{font-weight:600;margin:18px 0 6px}
+  input[type="text"]{padding:9px 11px;border:1px solid var(--line);border-radius:5px;background:var(--field);font-family:'Barlow',sans-serif;font-size:18px;width:100%}
+  table.grid{width:100%;border-collapse:collapse;margin:14px 0;font-size:17px}
+  table.grid th{background:var(--navy);color:#fff;text-align:left;padding:9px 11px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+  table.grid td{border:1px solid var(--line);padding:7px 9px;vertical-align:middle}
+  table.grid td input[type="text"]{border:none;background:transparent;padding:4px 2px}
+  table.grid td.ctr{text-align:center;font-weight:600}
+  table.grid tr.trial td.ctr{background:#f6f7f9}
+  table.grid td.thing{font-weight:600}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+  .twocol .col{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--field)}
+  .twocol .chead{padding:9px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+  .twocol .safe .chead{background:#1E8449}
+  .twocol .unsafe .chead{background:#922B21}
+  .twocol .cbody{padding:12px 14px}
+  .twocol .cbody textarea{min-height:130px}
+  .scen{border:1px solid var(--line);border-radius:6px;padding:13px 15px;margin:10px 0;background:var(--field)}
+  .scen .sn{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:4px}
+  .scen p{margin:0 0 8px;font-size:17px}
+  .pwbar{display:grid;grid-template-columns:1fr;gap:8px;margin:14px 0}
+  .pwrow{display:grid;grid-template-columns:150px 1fr;border:1px solid var(--line);border-radius:5px;overflow:hidden;align-items:stretch}
+  .pwrow .pw{font-family:'Courier New',monospace;padding:10px 12px;background:#1f2330;color:#e7e3d8;font-size:15px;display:flex;align-items:center}
+  .pwrow .why{padding:10px 12px;font-size:16px}
+  .pwrow.weak .pw{background:#5a1f1f}
+  .pwrow.ok .pw{background:#1E8449}
+  .bottom-submit{padding:30px 40px 0;text-align:center}
+  .bottom-submit .status{color:var(--navy);margin-top:8px}
+  .credit{margin:34px 40px 0;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--grey);text-align:center}
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){
+    body{font-size:18px}
+    .sheet{margin:0}
+    .hero{padding:22px 20px 20px}
+    .hero h1{font-size:32px}
+    section,.bottom-submit{padding-left:20px;padding-right:20px}
+    .credit{margin-left:20px;margin-right:20px}
+    .meta .row{grid-template-columns:1fr}
+    .meta dt{border-bottom:1px solid var(--line)}
+    .phase-head{font-size:25px;flex-wrap:wrap;gap:8px}
+    .topbar .brand{font-size:15px}
+    .crumbs{font-size:12.5px;gap:4px}
+    .twocol{grid-template-columns:1fr}
+    .pwrow{grid-template-columns:1fr}
+    table.grid{font-size:15px}
+  }
+  @media print{
+    .no-print{display:none!important}
+    body{background:#fff;font-size:12pt}
+    .sheet{box-shadow:none;margin:0;max-width:none}
+    .hero{background:#fff!important;color:#000;border-bottom:3px solid #000}
+    .hero .eyebrow,.hero .sub{color:#333}
+    .phase-head{break-after:avoid}
+    .answer,input[type="text"]{border:1px solid #999;background:#fff}
+    .crumbs,.def-overlay{display:none}
+    .pwrow .pw{background:#f4f4f4!important;color:#000!important}
+    .print-pin{display:block!important}
+    ol.dosteps>li::before{background:#333!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .twocol .chead{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  .print-pin{display:none;margin:14px 40px 0;font-size:16px}
+</style>
+</head>
+<body>
+
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Systems</a><span class="sep">/</span><span class="here">Project 10</span><a class="gloss" href="../../glossary.html">Glossary</a></nav>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Systems · Project 10</p>
+    <h1>Guarding Your Information</h1>
+    <p class="sub">It takes fewer clues than you think to work out who someone is.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Working out what counts as private, where it leaks out, how people try to trick you into handing it over, and how to build a <span class="def-term" data-term="PASSWORD">password</span> worth having.</dd></div>
+        <div class="row"><dt>Strand Link</dt><dd class="link">Any time</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Your notebook · a pencil · a partner · a large sheet of paper for the class chart</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Systems Project 9. You should know what <span class="def-term" data-term="ENCRYPTION">encryption</span> is and why HTTPS matters.</dd></div>
+      </dl>
+    </div>
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ===================== TRY IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> How Many Clues Does It Take?</h2>
+
+    <p>Your teacher is going to describe somebody in a story — not anyone in the room — one clue at a time.</p>
+
+    <p>Put your hand up the moment you think you could pick that person out of a crowd. Then count how many clues it took.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:56%">Question</th><th>My answer</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>How many clues before I was sure?</td><td><input type="text" data-key="p1_clues" aria-label="Number of clues"></td></tr>
+        <tr class="trial"><td>Which clue narrowed it down the most?</td><td><input type="text" data-key="p1_biggest" aria-label="Biggest clue"></td></tr>
+        <tr class="trial"><td>Was any single clue enough on its own?</td><td><input type="text" data-key="p1_single" aria-label="Single clue enough"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold">
+      <p class="ctitle">No Single Clue Gave It Away</p>
+      <p>Hair colour on its own tells you almost nothing. Neither does a town, or a school, or a birthday.</p>
+      <p>Put four of them together and there is usually only one person left. <strong>That is how information about you works.</strong> Each piece looks harmless on its own.</p>
+    </div>
+
+    <h3 class="sub">Sort it yourself</h3>
+
+    <p>Which of these would you happily tell a stranger, and which would you not?</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:44%">This information</th><th style="width:24%">Fine to share?</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td class="thing">My favourite colour</td><td><input type="text" data-key="p1_s1" aria-label="Colour share"></td><td><input type="text" data-key="p1_s1_w" aria-label="Colour why"></td></tr>
+        <tr class="trial"><td class="thing">The name of my school</td><td><input type="text" data-key="p1_s2" aria-label="School share"></td><td><input type="text" data-key="p1_s2_w" aria-label="School why"></td></tr>
+        <tr class="trial"><td class="thing">My birthday</td><td><input type="text" data-key="p1_s3" aria-label="Birthday share"></td><td><input type="text" data-key="p1_s3_w" aria-label="Birthday why"></td></tr>
+        <tr class="trial"><td class="thing">A photo of my street</td><td><input type="text" data-key="p1_s4" aria-label="Street share"></td><td><input type="text" data-key="p1_s4_w" aria-label="Street why"></td></tr>
+        <tr class="trial"><td class="thing">My favourite animal</td><td><input type="text" data-key="p1_s5" aria-label="Animal share"></td><td><input type="text" data-key="p1_s5_w" aria-label="Animal why"></td></tr>
+      </tbody>
+    </table>
+
+    <p class="q">Two of those are riskier than they look. Which two, and what could someone work out from them?</p>
+    <textarea class="answer" data-key="p1_riskier" aria-label="Riskier ones"></textarea>
+  </section>
+
+  <!-- ===================== LEARN IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> What to Keep, and How</h2>
+
+    <p><span class="def-term" data-term="PERSONAL INFORMATION">Personal information</span> is anything that could be used to work out who you are, where you are, or how to reach you.</p>
+
+    <div class="twocol">
+      <div class="col safe">
+        <div class="chead">Usually safe to share</div>
+        <div class="cbody">
+          <p class="muted" style="margin-top:0;font-size:15px">Things that describe your taste, not your life</p>
+          <textarea class="answer" data-key="p2_safe" aria-label="Safe information" placeholder="Favourite ice cream, favourite animal, favourite colour…"></textarea>
+        </div>
+      </div>
+      <div class="col unsafe">
+        <div class="chead">Keep to yourself</div>
+        <div class="cbody">
+          <p class="muted" style="margin-top:0;font-size:15px">Things that lead someone to you</p>
+          <textarea class="answer" data-key="p2_unsafe" aria-label="Unsafe information" placeholder="Address, phone number, date of birth, passwords…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub">Four rules that cover most of it</h3>
+
+    <ul class="plain">
+      <li>Share private things only with people you <strong>actually know and trust</strong>.</li>
+      <li>Never post anything you would mind being seen by everybody.</li>
+      <li>Do not over-share. Fewer clues is always safer.</li>
+      <li><strong>Do not post where you are.</strong> Not your address, and not a photo that shows it.</li>
+    </ul>
+
+    <div class="callout navy">
+      <p class="ctitle">The Internet Does Not Forget</p>
+      <p>Something deleted has usually already been copied, saved, or screenshotted by somebody. The safest moment to protect information is <em>before</em> you post it.</p>
+    </div>
+
+    <h3 class="sub"><span class="def-term" data-term="PHISHING">Phishing</span></h3>
+
+    <p><span class="def-term" data-term="PHISHING">Phishing</span> is when a message pretends to be from someone you trust so that you hand over information without thinking.</p>
+
+    <p>It usually looks like an email or a message from a real company, a game, or even a friend. The signs are nearly always the same.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:40%">Warning sign</th><th>Why it works</th></tr></thead>
+      <tbody>
+        <tr><td class="thing">"Act now or your account closes"</td><td>Panic stops people checking</td></tr>
+        <tr><td class="thing">"You have won a prize"</td><td>Excitement stops people checking</td></tr>
+        <tr><td class="thing">Asks for a password or a code</td><td>No real company ever does this</td></tr>
+        <tr><td class="thing">Spelling mistakes, odd address</td><td>Real companies proofread</td></tr>
+        <tr><td class="thing">A link that looks nearly right</td><td>One changed letter is easy to miss</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout danger">
+      <p class="ctitle">⚠ The One Rule That Always Works</p>
+      <p>If a message asks for private information, <strong>do not answer it</strong> — even if it looks real. Show it to a parent or your teacher instead.</p>
+      <p>You will never get in trouble for checking with an adult first.</p>
+    </div>
+
+    <h3 class="sub">Passwords</h3>
+
+    <p>A <span class="def-term" data-term="PASSWORD">password</span> is the lock on everything else. A weak one takes seconds to guess.</p>
+
+    <div class="pwbar">
+      <div class="pwrow weak"><div class="pw">12345</div><div class="why">The first thing anyone tries. Guessed instantly.</div></div>
+      <div class="pwrow weak"><div class="pw">password</div><div class="why">The second thing anyone tries.</div></div>
+      <div class="pwrow weak"><div class="pw">Rufus2015</div><div class="why">Your dog's name and your birth year are both findable.</div></div>
+      <div class="pwrow ok"><div class="pw">Blue7Camel!Sock</div><div class="why">Long, mixed, and means nothing to anybody else.</div></div>
+    </div>
+
+    <ul class="plain">
+      <li><strong>Long beats complicated.</strong> Four odd words together are stronger than one word with a 3 in it.</li>
+      <li>Mix letters, numbers, and symbols.</li>
+      <li>Do not reuse one password everywhere. One break-in then opens everything.</li>
+      <li>Do not use anything someone could look up — pet, birthday, team, town.</li>
+    </ul>
+
+    <div class="callout warn">
+      <p class="ctitle">⚠ This Includes Your Robot</p>
+      <p>Your Wombat has a password. Do not share it outside your team unless your teacher says so. Somebody with it could change or delete every program you have written.</p>
+    </div>
+  </section>
+
+  <!-- ===================== DO IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Find the Leaks</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Where does information get out?</span>
+        <p>As a class, list the places and moments where somebody might get information about you. Write down five here.</p>
+        <table class="grid">
+          <thead><tr><th style="width:44%">Where or when</th><th>What could be given away</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td><input type="text" data-key="p3_l1" aria-label="Leak 1"></td><td><input type="text" data-key="p3_l1_w" aria-label="Leak 1 what"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_l2" aria-label="Leak 2"></td><td><input type="text" data-key="p3_l2_w" aria-label="Leak 2 what"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_l3" aria-label="Leak 3"></td><td><input type="text" data-key="p3_l3_w" aria-label="Leak 3 what"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_l4" aria-label="Leak 4"></td><td><input type="text" data-key="p3_l4_w" aria-label="Leak 4 what"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_l5" aria-label="Leak 5"></td><td><input type="text" data-key="p3_l5_w" aria-label="Leak 5 what"></td></tr>
+          </tbody>
+        </table>
+        <p class="muted">Most classes end up with: someone asking you directly, shopping sites, social media, any site with a login, and photos that show more than you meant.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Write the class definition of phishing</span>
+        <p>On your own first, without looking back: what do you think phishing is?</p>
+        <textarea class="answer" data-key="p3_phish_mine" aria-label="My phishing definition"></textarea>
+        <p>Now compare with a partner, then agree one definition as a class.</p>
+        <p class="q">Our class definition:</p>
+        <textarea class="answer" data-key="p3_phish_class" aria-label="Class phishing definition"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Spot the fake</span>
+        <p>For each message, decide whether it is safe or phishing, and say what gave it away.</p>
+        <table class="grid">
+          <thead><tr><th style="width:46%">The message says</th><th style="width:20%">Safe or phishing?</th><th>What gave it away</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>"Your game account will be deleted in 24 hours unless you confirm your password here."</td><td><input type="text" data-key="p3_f1" aria-label="Fake 1"></td><td><input type="text" data-key="p3_f1_w" aria-label="Fake 1 why"></td></tr>
+            <tr class="trial"><td>"Hi, this is your school. Parents evening is on Thursday at 6pm."</td><td><input type="text" data-key="p3_f2" aria-label="Fake 2"></td><td><input type="text" data-key="p3_f2_w" aria-label="Fake 2 why"></td></tr>
+            <tr class="trial"><td>"CONGRATULATIONS!! You are our 1000th visiter! Click to claim your free tablet."</td><td><input type="text" data-key="p3_f3" aria-label="Fake 3"></td><td><input type="text" data-key="p3_f3_w" aria-label="Fake 3 why"></td></tr>
+            <tr class="trial"><td>"Hey it's me, I lost my phone — what's your address again? I'll come round."</td><td><input type="text" data-key="p3_f4" aria-label="Fake 4"></td><td><input type="text" data-key="p3_f4_w" aria-label="Fake 4 why"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">The last one comes from someone you know. Does that make it safe?</p>
+        <textarea class="answer" data-key="p3_known_sender" aria-label="Known sender"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Build a password worth having</span>
+        <p>Do <strong>not</strong> write a password you actually use. Invent a new one for practice.</p>
+        <p>Pick four unrelated words, join them, then add a number and a symbol somewhere.</p>
+        <p class="q">My practice password:</p>
+        <input type="text" data-key="p3_pw" aria-label="Practice password">
+        <table class="grid">
+          <thead><tr><th style="width:56%">Check</th><th>Yes or no</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>Is it at least twelve characters?</td><td><input type="text" data-key="p3_pw_len" aria-label="Length check"></td></tr>
+            <tr class="trial"><td>Does it mix letters, numbers, and a symbol?</td><td><input type="text" data-key="p3_pw_mix" aria-label="Mix check"></td></tr>
+            <tr class="trial"><td>Could somebody who knows me guess it?</td><td><input type="text" data-key="p3_pw_guess" aria-label="Guess check"></td></tr>
+            <tr class="trial"><td>Is it different from every other password I use?</td><td><input type="text" data-key="p3_pw_unique" aria-label="Unique check"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Swap with a partner. How long did it take them to guess yours? Be honest.</p>
+        <input type="text" data-key="p3_pw_partner" aria-label="Partner guess">
+      </li>
+
+      <li>
+        <span class="stitle">What would you do?</span>
+        <p>Work through these with a partner. There is no trick — just say what you would do and why.</p>
+
+        <div class="scen">
+          <span class="sn">Scenario 1</span>
+          <p>You are at the library with a parent. A member of staff walks over and asks for your birthday. What do you do?</p>
+          <input type="text" data-key="p3_sc1" aria-label="Scenario 1">
+        </div>
+        <div class="scen">
+          <span class="sn">Scenario 2</span>
+          <p>You left your lunch at home again. Your teacher asks for your parent's mobile number so they can call. What do you do?</p>
+          <input type="text" data-key="p3_sc2" aria-label="Scenario 2">
+        </div>
+        <div class="scen">
+          <span class="sn">Scenario 3</span>
+          <p>A free game site at school asks for your address. It says the field is optional. What do you do?</p>
+          <input type="text" data-key="p3_sc3" aria-label="Scenario 3">
+        </div>
+        <div class="scen">
+          <span class="sn">Scenario 4</span>
+          <p>You need a password for a school blog. You are thinking of using 12345. Is that a good idea?</p>
+          <input type="text" data-key="p3_sc4" aria-label="Scenario 4">
+        </div>
+        <div class="scen">
+          <span class="sn">Scenario 5</span>
+          <p>Someone in your group says they know how to switch off the school's firewall to reach a blocked site. What do you do?</p>
+          <input type="text" data-key="p3_sc5" aria-label="Scenario 5">
+        </div>
+        <div class="scen">
+          <span class="sn">Scenario 6</span>
+          <p>A family member has left their account logged in on a shared computer and has gone out. What do you do?</p>
+          <input type="text" data-key="p3_sc6" aria-label="Scenario 6">
+        </div>
+        <div class="scen">
+          <span class="sn">Scenario 7</span>
+          <p>You need a new password but you already have one you remember. You know you should not reuse it. What do you do?</p>
+          <input type="text" data-key="p3_sc7" aria-label="Scenario 7">
+        </div>
+
+        <div class="callout gold">
+          <p class="ctitle">Two of Those Are About Trust, Not Rules</p>
+          <p>Scenarios 1 and 2 both involve an adult asking for real information — and the answers are different. Working out <em>why</em> they are different is the whole point.</p>
+        </div>
+        <p class="q">Which scenario did you and your partner disagree on?</p>
+        <input type="text" data-key="p3_disagree" aria-label="Disagreed scenario">
+      </li>
+
+      <li>
+        <span class="stitle">Match the locks</span>
+        <p>Every <span class="def-term" data-term="DIGITAL">digital</span> protection has a real-world twin. Match them up.</p>
+        <table class="grid">
+          <thead><tr><th style="width:46%">In the real world</th><th>The <span class="def-term" data-term="DIGITAL">digital</span> version is…</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="thing">A key on your front door</td><td><input type="text" data-key="p3_m1" aria-label="Match 1"></td></tr>
+            <tr class="trial"><td class="thing">A fence with a gate and a guard</td><td><input type="text" data-key="p3_m2" aria-label="Match 2"></td></tr>
+            <tr class="trial"><td class="thing">A spare copy of your photos at your grandparents' house</td><td><input type="text" data-key="p3_m3" aria-label="Match 3"></td></tr>
+            <tr class="trial"><td class="thing">Shredding old letters before you bin them</td><td><input type="text" data-key="p3_m4" aria-label="Match 4"></td></tr>
+            <tr class="trial"><td class="thing">Writing a note in a code only your friend knows</td><td><input type="text" data-key="p3_m5" aria-label="Match 5"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Add one of your own — a real-world protection and its digital twin.</p>
+        <input type="text" data-key="p3_own_match" aria-label="Own match">
+      </li>
+
+      <li>
+        <span class="stitle">Protect your own work</span>
+        <p>Everything you have built this season is worth protecting too.</p>
+        <table class="grid">
+          <thead><tr><th style="width:56%">Question</th><th>My answer</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>Where is my <span class="def-term" data-term="LIBRARY">library</span> file backed up?</td><td><input type="text" data-key="p3_backup" aria-label="Backup"></td></tr>
+            <tr class="trial"><td>Who outside my team knows the robot's password?</td><td><input type="text" data-key="p3_who_knows" aria-label="Who knows"></td></tr>
+            <tr class="trial"><td>If the Wombat were wiped today, what would I lose?</td><td><input type="text" data-key="p3_lose" aria-label="What I'd lose"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check">
+          <li><input type="checkbox" id="d1" data-key="p3_backed"><label for="d1">My code is saved somewhere other than the robot</label></li>
+          <li><input type="checkbox" id="d2" data-key="p3_pwsafe"><label for="d2">Our robot's password is not written anywhere public</label></li>
+        </ul>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ===================== SCORE IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">Share or keep?</h3>
+    <table class="grid">
+      <thead><tr><th style="width:62%">Someone online asks for…</th><th>Share or keep?</th></tr></thead>
+      <tbody>
+        <tr><td>Your favourite band</td><td><input type="text" data-key="p4_a1" aria-label="A1"></td></tr>
+        <tr><td>Your home address</td><td><input type="text" data-key="p4_a2" aria-label="A2"></td></tr>
+        <tr><td>The password to your school account</td><td><input type="text" data-key="p4_a3" aria-label="A3"></td></tr>
+        <tr><td>Your favourite kind of pizza</td><td><input type="text" data-key="p4_a4" aria-label="A4"></td></tr>
+        <tr><td>A photo of you outside your house with the number showing</td><td><input type="text" data-key="p4_a5" aria-label="A5"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Strong or weak?</h3>
+    <table class="grid">
+      <thead><tr><th style="width:40%">Password</th><th style="width:22%">Strong or weak?</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td class="thing">qwerty</td><td><input type="text" data-key="p4_p1" aria-label="P1"></td><td><input type="text" data-key="p4_p1_w" aria-label="P1 why"></td></tr>
+        <tr><td class="thing">Fluffy2014</td><td><input type="text" data-key="p4_p2" aria-label="P2"></td><td><input type="text" data-key="p4_p2_w" aria-label="P2 why"></td></tr>
+        <tr><td class="thing">Lamp9Toaster&amp;Moon</td><td><input type="text" data-key="p4_p3" aria-label="P3"></td><td><input type="text" data-key="p4_p3_w" aria-label="P3 why"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_pi"><label for="s1">I can tell safe information from private information</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_add"><label for="s2">I understand that harmless clues add up to something that is not harmless</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_phish"><label for="s3">I can spot the warning signs of a phishing message</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_ask"><label for="s4">I know to check with an adult instead of replying</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_pw"><label for="s5">I can build a strong password and say why it is strong</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_reuse"><label for="s6">I know why reusing one password everywhere is risky</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_protect"><label for="s7">I have protected my own code and my robot</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">In Try It, no single clue identified anyone. Why does that make sharing "just one small thing" harder to judge than it sounds?</p>
+    <textarea class="answer" data-key="p4_one_thing" aria-label="Just one thing"></textarea>
+
+    <p class="q">A phishing message works by making you feel something — panic, excitement, sympathy. Why do those feelings make people skip checking?</p>
+    <textarea class="answer" data-key="p4_feelings" aria-label="Why feelings work"></textarea>
+
+    <p class="q">You built a strong password and then had to remember it. What is the trade between safe and easy, and where would you draw the line?</p>
+    <textarea class="answer" data-key="p4_tradeoff" aria-label="Trade-off"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>Protecting your own information is half of it. The other half is how you treat everybody else's.</p>
+    <p>In <strong>Systems Project 11 — Living Well Online</strong>, you look at what your words do once they leave your hands.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFS = {
+    'DIGITAL': ['Digital', 'A digital sensor has only two possible readings: 0 or 1. It works like a light switch — pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off.'],
+    'ENCRYPTION': ['Encryption', 'Scrambling a message so that only the intended reader can unscramble it. Anyone who intercepts it along the way sees nonsense.'],
+    'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
+    'PERSONAL INFORMATION': ['Personal Information', 'Anything that could be used to work out who you are, where you are, or how to reach you. Single pieces often look harmless \u2014 it is putting several together that identifies somebody.'],
+    'PHISHING': ['Phishing', 'A message that pretends to be from someone you trust so that you hand over private information without thinking. It usually creates panic or excitement so you act before you check.'],
+    'PASSWORD': ['Password', 'The lock on everything else you own online. A strong one is long, mixes different kinds of character, and contains nothing anybody could look up about you.'],
+    'FIREWALL': ['Firewall', 'Software that decides what is allowed in and out of a network, like a gate with a guard on it. Schools use them to keep harmful things off their computers.']
+  };
+  function openDef(t){
+    var e=DEFS[t]; if(!e) return;
+    document.getElementById('defTerm').textContent=e[0];
+    document.getElementById('defBody').textContent=e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow='hidden';
+  }
+  function closeDef(){
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el) openDef(el.dataset.term); });
+  document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_systems_10";
+  var MISSION_TITLE = "Systems Project 10 — Guarding Your Information";
+  var $=function(s){return document.querySelector(s);};
+  var pinInput=$("#pin"),statusEl=$("#status"),statusBottom=$("#statusBottom"),pinEcho=$("#pinEcho");
+  function collectAnswers(){var a={};document.querySelectorAll("[data-key]").forEach(function(el){a[el.getAttribute("data-key")]=(el.type==="checkbox")?(el.checked?"yes":""):el.value;});return a;}
+  var SAVE_KEY="kipr_"+MISSION_ID+"_draft";
+  function restoreDraft(){var raw=null;try{raw=window.localStorage.getItem(SAVE_KEY);}catch(e){return;}if(!raw)return;
+    var d;try{d=JSON.parse(raw);}catch(e){return;}
+    if(d.pin)pinInput.value=d.pin;
+    if(d.answers)document.querySelectorAll("[data-key]").forEach(function(el){var k=el.getAttribute("data-key");
+      if(k in d.answers){if(el.type==="checkbox")el.checked=d.answers[k]==="yes";else el.value=d.answers[k];}});
+    syncPinEcho();}
+  function saveDraft(){try{window.localStorage.setItem(SAVE_KEY,JSON.stringify({pin:pinInput.value.trim(),answers:collectAnswers()}));}catch(e){}}
+  function syncPinEcho(){pinEcho.textContent=pinInput.value.trim();}
+  restoreDraft();
+  document.addEventListener("input",function(e){if(e.target.matches("[data-key], #pin")){saveDraft();syncPinEcho();}});
+  document.addEventListener("change",function(e){if(e.target.matches("[data-key]"))saveDraft();});
+  function setStatus(msg,kind){statusEl.textContent=msg;statusEl.className="status"+(kind?" "+kind:"");statusBottom.textContent=msg;}
+  function submit(){
+    var pin=pinInput.value.trim();
+    if(!pin){setStatus("Enter your PIN first.","err");pinInput.focus();return;}
+    var payload={mission:MISSION_ID,missionTitle:MISSION_TITLE,pin:pin,submittedAt:new Date().toISOString(),answers:collectAnswers()};
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+    var url=URL.createObjectURL(blob),a=document.createElement("a");
+    a.href=url;a.download=MISSION_ID+"_pin"+pin+".json";
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+    saveDraft();setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function(){window.print();},600);
+  }
+  $("#submitTop").addEventListener("click",submit);
+  $("#submitBottom").addEventListener("click",submit);
+</script>
+
+</body>
+</html>

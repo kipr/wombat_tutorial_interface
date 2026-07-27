@@ -334,7 +334,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Systems</a><span class="sep">/</span><span class="here">Project 2</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Systems</a><span class="sep">/</span><span class="here">Project 2</span><a class="gloss" href="../../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -386,7 +386,7 @@
         <tr class="trial"><td class="thing">A remote-control car</td><td><input type="text" data-key="p1_r3" aria-label="RC car yes no"></td><td><input type="text" data-key="p1_r3_why" aria-label="RC car why"></td></tr>
         <tr class="trial"><td class="thing">A thermostat on the wall</td><td><input type="text" data-key="p1_r4" aria-label="Thermostat yes no"></td><td><input type="text" data-key="p1_r4_why" aria-label="Thermostat why"></td></tr>
         <tr class="trial"><td class="thing">A factory welding arm</td><td><input type="text" data-key="p1_r5" aria-label="Welding arm yes no"></td><td><input type="text" data-key="p1_r5_why" aria-label="Welding arm why"></td></tr>
-        <tr class="trial"><td class="thing">A doll that talks when you pull a string</td><td><input type="text" data-key="p1_r6" aria-label="Doll yes no"></td><td><input type="text" data-key="p1_r6_why" aria-label="Doll why"></td></tr>
+        <tr class="trial"><td class="thing">A doll that talks when you pull a <span class="def-term" data-term="STRING">string</span></td><td><input type="text" data-key="p1_r6" aria-label="Doll yes no"></td><td><input type="text" data-key="p1_r6_why" aria-label="Doll why"></td></tr>
         <tr class="trial"><td class="thing">A self-checkout till</td><td><input type="text" data-key="p1_r7" aria-label="Self checkout yes no"></td><td><input type="text" data-key="p1_r7_why" aria-label="Self checkout why"></td></tr>
         <tr class="trial"><td class="thing">A drone flown by a person</td><td><input type="text" data-key="p1_r8" aria-label="Drone yes no"></td><td><input type="text" data-key="p1_r8_why" aria-label="Drone why"></td></tr>
         <tr class="trial"><td class="thing">A car that parks itself</td><td><input type="text" data-key="p1_r9" aria-label="Self parking car yes no"></td><td><input type="text" data-key="p1_r9_why" aria-label="Self parking car why"></td></tr>
@@ -434,7 +434,7 @@
       <div class="comp">
         <div class="chead"><span class="def-term" data-term="EFFECTOR">Effector</span>s</div>
         <div class="cbody">
-          <p>An <span class="def-term" data-term="EFFECTOR">effector</span> changes the state of the robot, or changes the state of the world.</p>
+          <p>An <span class="def-term" data-term="EFFECTOR">effector</span> changes the <span class="def-term" data-term="STATE">state</span> of the robot, or changes the state of the world.</p>
           <p class="cex">Motors, arms, legs, thrusters — and also buzzers, lights, and speakers</p>
         </div>
       </div>
@@ -728,6 +728,8 @@
 <script>
 (function() {
   var DEFS = {
+    'STATE': ['State', 'What a system is currently doing or holding — where the robot is, what it is carrying, how many cubes it has stacked. State is the information a program keeps track of as it runs.'],
+    'STRING': ['String', 'Text stored as data — letters, digits, and spaces treated as characters rather than as a number you can do arithmetic with.'],
     'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.'],
     'COMPUTATION': ['Computation', 'The part of a robot that works things out. It reads the sensor values, decides what they mean, and chooses which command to send to the effectors.'],
     'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
