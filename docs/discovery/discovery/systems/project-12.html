@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Systems Project 12 — Technology and People</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{--red:#9E1B32;--red-dark:#7d1526;--navy:#1F2D5A;--gold:#C8A14B;--ink:#1c1c1e;--grey:#5b6270;
+        --line:#d8dbe2;--bg:#f0f0f0;--panel:#fff;--field:#fcfcfd;--field-focus:#fffdf5}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Barlow',system-ui,sans-serif;font-size:19px;line-height:1.6}
+  .topbar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;border-bottom:3px solid var(--gold)}
+  .topbar-inner{max-width:920px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar .brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.06em;text-transform:uppercase;margin-right:auto}
+  .topbar .brand span{color:var(--gold)}
+  .pin-field{display:flex;align-items:center;gap:8px}
+  .pin-field label{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .pin-field input{width:92px;padding:7px 10px;border:2px solid rgba(255,255,255,.3);border-radius:4px;background:rgba(255,255,255,.1);color:#fff;font-family:'Barlow',sans-serif;font-size:17px;letter-spacing:.12em}
+  .pin-field input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.18)}
+  .submit-btn{background:var(--gold);color:#24200f;border:none;border-radius:4px;padding:9px 18px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  .submit-btn:hover{background:#d9b464}
+  .status{font-size:14px;color:var(--gold);min-height:1em}
+  .status.err{color:#ffb4b4}
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  .sheet{max-width:920px;margin:26px auto 60px;background:var(--panel);padding:0 0 40px;box-shadow:0 2px 14px rgba(0,0,0,.09)}
+  .hero{background:var(--navy);color:#fff;padding:30px 40px 26px;border-bottom:5px solid var(--gold)}
+  .hero .eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+  .hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:44px;line-height:1.05;margin:0 0 8px}
+  .hero .sub{margin:0;color:rgba(255,255,255,.72);font-size:18px}
+  section{padding:0 40px}
+  .meta{margin:26px 0 0;border:1px solid var(--line);border-radius:5px;overflow:hidden}
+  .meta dl{margin:0}
+  .meta .row{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}
+  .meta .row:last-child{border-bottom:none}
+  .meta dt{background:#f6f7f9;padding:10px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+  .meta dd{margin:0;padding:10px 14px;font-size:17px}
+  .meta dd.link{font-weight:600;color:var(--red)}
+  .pin-reminder{margin:20px 0 0;padding:14px 16px;background:#fff8e6;border:1px solid var(--gold);border-radius:5px;font-size:17px}
+  .pin-reminder strong{color:var(--navy)}
+  .phase-head{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;color:var(--navy);margin:40px 0 4px;padding-bottom:8px;border-bottom:3px solid var(--red);display:flex;align-items:baseline;gap:12px}
+  .phase-head .pnum{background:var(--red);color:#fff;font-size:14px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:3px;font-weight:700}
+  h3.sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--red);margin:26px 0 6px}
+  p{margin:10px 0}
+  .muted{color:var(--grey);font-size:17px}
+  .callout{background:#f6f7f9;border-left:5px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 5px 5px 0}
+  .callout.navy{border-left-color:var(--navy);background:#f2f4fa}
+  .callout.gold{border-left-color:var(--gold);background:#fffaef}
+  .callout .ctitle{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin:0 0 6px}
+  .callout.warn{border-left-color:#b3541e;background:#fff4ec}
+  .callout.warn .ctitle{color:#8a3d12}
+  ul.plain{margin:10px 0 10px 22px;padding:0}
+  ul.plain li{margin:6px 0}
+  ul.check{list-style:none;margin:14px 0;padding:0}
+  ul.check li{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:5px;margin-bottom:8px;background:var(--field)}
+  ul.check input[type="checkbox"]{flex-shrink:0;width:24px;height:24px;margin-top:2px;accent-color:var(--red);cursor:pointer}
+  ul.check label{cursor:pointer;font-size:18px}
+  ol.dosteps{margin:14px 0;padding-left:0;list-style:none;counter-reset:ds}
+  ol.dosteps>li{counter-increment:ds;position:relative;padding:4px 0 16px 46px;margin-bottom:4px;border-left:2px solid var(--line);margin-left:15px}
+  ol.dosteps>li:last-child{border-left-color:transparent}
+  ol.dosteps>li::before{content:counter(ds);position:absolute;left:-16px;top:2px;width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center}
+  ol.dosteps .stitle{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;color:var(--navy);display:block;margin-bottom:2px}
+  .answer{width:100%;min-height:76px;padding:10px 12px;border:1px solid var(--line);border-radius:5px;background:var(--field);font-family:'Barlow',sans-serif;font-size:18px;line-height:1.55;resize:vertical}
+  .answer:focus,input[type="text"]:focus{outline:none;border-color:var(--gold);background:var(--field-focus)}
+  .q{font-weight:600;margin:18px 0 6px}
+  input[type="text"]{padding:9px 11px;border:1px solid var(--line);border-radius:5px;background:var(--field);font-family:'Barlow',sans-serif;font-size:18px;width:100%}
+  table.grid{width:100%;border-collapse:collapse;margin:14px 0;font-size:17px}
+  table.grid th{background:var(--navy);color:#fff;text-align:left;padding:9px 11px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+  table.grid td{border:1px solid var(--line);padding:7px 9px;vertical-align:middle}
+  table.grid td input[type="text"]{border:none;background:transparent;padding:4px 2px}
+  table.grid td.ctr{text-align:center;font-weight:600}
+  table.grid tr.trial td.ctr{background:#f6f7f9}
+  table.grid td.thing{font-weight:600}
+  .venn{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin:16px 0}
+  .venn .vcol{border:1px solid var(--line)}
+  .venn .vcol:nth-child(2){border-left:none;border-right:none;background:#fffaef}
+  .venn .vhead{padding:9px 12px;text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--navy)}
+  .venn .vcol:nth-child(2) .vhead{background:var(--gold);color:#24200f}
+  .venn .vbody{padding:10px}
+  .venn .vbody textarea{min-height:150px}
+  .techs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+  .tech{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--field);text-align:center}
+  .tech .th{background:var(--navy);color:#fff;padding:8px 6px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;letter-spacing:.05em;text-transform:uppercase}
+  .tech .tb{padding:10px 9px;font-size:15px;color:var(--grey)}
+  .draw{border:2px dashed var(--line);border-radius:6px;background:#fff;min-height:170px;margin:14px 0;display:flex;align-items:center;justify-content:center;color:var(--grey);font-size:16px}
+  .bottom-submit{padding:30px 40px 0;text-align:center}
+  .bottom-submit .status{color:var(--navy);margin-top:8px}
+  .credit{margin:34px 40px 0;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--grey);text-align:center}
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){
+    body{font-size:18px}
+    .sheet{margin:0}
+    .hero{padding:22px 20px 20px}
+    .hero h1{font-size:32px}
+    section,.bottom-submit{padding-left:20px;padding-right:20px}
+    .credit{margin-left:20px;margin-right:20px}
+    .meta .row{grid-template-columns:1fr}
+    .meta dt{border-bottom:1px solid var(--line)}
+    .phase-head{font-size:25px;flex-wrap:wrap;gap:8px}
+    .topbar .brand{font-size:15px}
+    .crumbs{font-size:12.5px;gap:4px}
+    .venn{grid-template-columns:1fr}
+    .venn .vcol{border:1px solid var(--line)!important;margin-bottom:10px}
+    .techs{grid-template-columns:1fr 1fr}
+    table.grid{font-size:15px}
+  }
+  @media print{
+    .no-print{display:none!important}
+    body{background:#fff;font-size:12pt}
+    .sheet{box-shadow:none;margin:0;max-width:none}
+    .hero{background:#fff!important;color:#000;border-bottom:3px solid #000}
+    .hero .eyebrow,.hero .sub{color:#333}
+    .phase-head{break-after:avoid}
+    .answer,input[type="text"]{border:1px solid #999;background:#fff}
+    .crumbs,.def-overlay{display:none}
+    .print-pin{display:block!important}
+    ol.dosteps>li::before{background:#333!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .venn .vhead,.tech .th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  .print-pin{display:none;margin:14px 40px 0;font-size:16px}
+</style>
+</head>
+<body>
+
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Systems</a><span class="sep">/</span><span class="here">Project 12</span><a class="gloss" href="../../glossary.html">Glossary</a></nav>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Systems · Project 12</p>
+    <h1>Technology and People</h1>
+    <p class="sub">Everything it gave us, everything it cost, and who got left out.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Tracing what one technology replaced, weighing what technology gives against what it takes, and designing something that lets somebody do a thing they currently cannot.</dd></div>
+        <div class="row"><dt>Strand Link</dt><dd class="link">Any time</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Your notebook · drawing paper · a way to look things up · somebody older to interview</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Systems Project 11. Nothing else required.</dd></div>
+      </dl>
+    </div>
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ===================== TRY IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> How Did People Do It Before?</h2>
+
+    <p>Pick five things you did this week using a screen. For each one, work out how somebody would have done the same thing thirty years ago.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:34%">What I did</th><th style="width:34%">How it was done before</th><th>Which was better?</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td><input type="text" data-key="p1_t1" aria-label="Thing 1"></td><td><input type="text" data-key="p1_t1_b" aria-label="Before 1"></td><td><input type="text" data-key="p1_t1_w" aria-label="Better 1"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p1_t2" aria-label="Thing 2"></td><td><input type="text" data-key="p1_t2_b" aria-label="Before 2"></td><td><input type="text" data-key="p1_t2_w" aria-label="Better 2"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p1_t3" aria-label="Thing 3"></td><td><input type="text" data-key="p1_t3_b" aria-label="Before 3"></td><td><input type="text" data-key="p1_t3_w" aria-label="Better 3"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p1_t4" aria-label="Thing 4"></td><td><input type="text" data-key="p1_t4_b" aria-label="Before 4"></td><td><input type="text" data-key="p1_t4_w" aria-label="Better 4"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p1_t5" aria-label="Thing 5"></td><td><input type="text" data-key="p1_t5_b" aria-label="Before 5"></td><td><input type="text" data-key="p1_t5_w" aria-label="Better 5"></td></tr>
+      </tbody>
+    </table>
+
+    <p class="q">Was there one where the old way was actually better in some respect? Which, and how?</p>
+    <textarea class="answer" data-key="p1_old_better" aria-label="Old way better"></textarea>
+
+    <div class="callout gold">
+      <p class="ctitle">Ask Somebody Who Was There</p>
+      <p>Find an adult and ask them one question: <em>what is something you miss that technology replaced?</em></p>
+      <p>Write down what they said, even if you disagree with it.</p>
+    </div>
+
+    <p class="q">They said:</p>
+    <textarea class="answer" data-key="p1_interview" aria-label="Interview answer"></textarea>
+  </section>
+
+  <!-- ===================== LEARN IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Everything Has a Price</h2>
+
+    <p>New technology does not simply add things. It swaps one set of problems for another.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:26%">Technology</th><th style="width:36%">What it gave</th><th>What it cost</th></tr></thead>
+      <tbody>
+        <tr><td class="thing">The car</td><td>Go anywhere, quickly</td><td>Traffic, accidents, dirty air</td></tr>
+        <tr><td class="thing">The mobile phone</td><td>Reach anybody from anywhere</td><td>Never being unreachable yourself</td></tr>
+        <tr><td class="thing">The washing machine</td><td>Hours of every week given back</td><td>Machines to buy, power to run them</td></tr>
+      </tbody>
+    </table>
+
+    <p>That swap is a <span class="def-term" data-term="TRADE-OFF">trade-off</span>. Judging a technology means looking at both sides, not just the side being advertised.</p>
+
+    <h3 class="sub">Four that changed things recently</h3>
+
+    <div class="techs">
+      <div class="tech"><div class="th">Mobile phones</div><div class="tb">A computer, camera, map, and telephone in one pocket</div></div>
+      <div class="tech"><div class="th">Voice assistants</div><div class="tb">Machines you talk to instead of type at</div></div>
+      <div class="tech"><div class="th">3D printers</div><div class="tb">Make a physical object from a file</div></div>
+      <div class="tech"><div class="th"><span class="def-term" data-term="ARTIFICIAL INTELLIGENCE">Artificial intelligence</span></div><div class="tb"><span class="def-term" data-term="SOFTWARE">Software</span> that finds patterns and makes predictions</div></div>
+    </div>
+
+    <div class="callout navy">
+      <p class="ctitle">You Have Been Building One of These</p>
+      <p><span class="def-term" data-term="ARTIFICIAL INTELLIGENCE">Artificial intelligence</span> is not one thing. At its simplest it means a machine using information to decide what to do next.</p>
+      <p>Your robot reads a <span class="def-term" data-term="SENSOR">sensor</span>, compares it against a <span class="def-term" data-term="THRESHOLD">threshold</span>, and picks an action. That is the same shape as the thing everyone is arguing about — just small enough that you can see all of it.</p>
+    </div>
+
+    <h3 class="sub">Who does it work for?</h3>
+
+    <p><span class="def-term" data-term="ACCESSIBILITY">Accessibility</span> means designing so that as many people as possible can actually use the thing.</p>
+
+    <p>A design that only works for some people is not finished.</p>
+
+    <div class="callout gold">
+      <p class="ctitle">Built for Some, Useful to Everyone</p>
+      <p>Dropped kerbs at road crossings were built for wheelchairs. They are now used by prams, suitcases, delivery trolleys, and anybody on crutches.</p>
+      <p>Subtitles were built for deaf viewers. Most people watching a video on a noisy bus use them too.</p>
+      <p>Designing for the people who are usually left out tends to make the thing better for everybody.</p>
+    </div>
+  </section>
+
+  <!-- ===================== DO IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Weigh It Up</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Pick one and find out about it</span>
+        <p>Choose one: mobile phones, voice assistants, 3D printers, or artificial intelligence.</p>
+        <table class="grid">
+          <thead><tr><th style="width:34%">Question</th><th>What I found out</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="thing">I chose</td><td><input type="text" data-key="p3_chose" aria-label="Chosen tech"></td></tr>
+            <tr class="trial"><td class="thing">Roughly when did it arrive?</td><td><input type="text" data-key="p3_when" aria-label="When"></td></tr>
+            <tr class="trial"><td class="thing">What did people do before it?</td><td><input type="text" data-key="p3_before" aria-label="Before"></td></tr>
+            <tr class="trial"><td class="thing">Who benefits most from it?</td><td><input type="text" data-key="p3_benefits" aria-label="Benefits"></td></tr>
+            <tr class="trial"><td class="thing">One thing it made worse</td><td><input type="text" data-key="p3_worse" aria-label="Made worse"></td></tr>
+            <tr class="trial"><td class="thing">Something surprising I learnt</td><td><input type="text" data-key="p3_surprise" aria-label="Surprise"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_presented"><label for="d1">I presented what I found to the class</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Two lists and a middle</span>
+        <p>As a group, fill in all three columns. The middle is the interesting one — things that are good and bad at the same time.</p>
+        <div class="venn">
+          <div class="vcol">
+            <div class="vhead">Good about technology</div>
+            <div class="vbody"><textarea class="answer" data-key="p3_v_good" aria-label="Good"></textarea></div>
+          </div>
+          <div class="vcol">
+            <div class="vhead">Both at once</div>
+            <div class="vbody"><textarea class="answer" data-key="p3_v_both" aria-label="Both"></textarea></div>
+          </div>
+          <div class="vcol">
+            <div class="vhead">Bad about technology</div>
+            <div class="vbody"><textarea class="answer" data-key="p3_v_bad" aria-label="Bad"></textarea></div>
+          </div>
+        </div>
+        <p class="q">Pick one thing from the middle and explain how it manages to be both.</p>
+        <textarea class="answer" data-key="p3_both_explain" aria-label="Both explained"></textarea>
+        <p class="q">Why is it worth knowing the bad side of something you like using?</p>
+        <textarea class="answer" data-key="p3_why_bad" aria-label="Why know the bad"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Find a task somebody cannot do</span>
+        <p>Think of an everyday task and somebody who would find it hard or impossible — because of sight, hearing, movement, memory, height, strength, or language.</p>
+        <table class="grid">
+          <thead><tr><th style="width:44%">The task</th><th>Who finds it hard, and why</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td><input type="text" data-key="p3_task" aria-label="Task"></td><td><input type="text" data-key="p3_who" aria-label="Who"></td></tr>
+          </tbody>
+        </table>
+        <div class="callout warn">
+          <p class="ctitle">⚠ Ask, Do Not Assume</p>
+          <p>It is easy to guess wrong about what somebody actually needs. Real designers ask the person first, and then keep asking while they build.</p>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">Invent something for it</span>
+        <p>Design a device or a change that would let that person do the task themselves. Draw it and label the parts.</p>
+        <div class="draw no-print">Your invention, drawn and labelled</div>
+        <table class="grid">
+          <thead><tr><th style="width:34%">Question</th><th>My answer</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="thing">What it is called</td><td><input type="text" data-key="p3_inv_name" aria-label="Invention name"></td></tr>
+            <tr class="trial"><td class="thing">What it does</td><td><input type="text" data-key="p3_inv_does" aria-label="What it does"></td></tr>
+            <tr class="trial"><td class="thing">Which of the six robot parts does it use?</td><td><input type="text" data-key="p3_inv_parts" aria-label="Robot parts"></td></tr>
+            <tr class="trial"><td class="thing">Could it be built today?</td><td><input type="text" data-key="p3_inv_today" aria-label="Buildable"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Who else — not the person you designed it for — would end up using it?</p>
+        <textarea class="answer" data-key="p3_who_else" aria-label="Who else"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Share and improve</span>
+        <p>Show your invention to another group. Ask them one question: <em>what did I not think of?</em></p>
+        <p class="q">They said:</p>
+        <textarea class="answer" data-key="p3_feedback" aria-label="Their feedback"></textarea>
+        <p class="q">What would you change?</p>
+        <input type="text" data-key="p3_change" aria-label="What to change">
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_shared"><label for="d2">Another group reviewed my invention</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Check your own robot</span>
+        <p>Your robot is a piece of technology too. Turn the same questions on it.</p>
+        <table class="grid">
+          <thead><tr><th style="width:52%">Question</th><th>My answer</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>Who could not use my robot as it is now?</td><td><input type="text" data-key="p3_r_cant" aria-label="Who cannot use"></td></tr>
+            <tr class="trial"><td>What would I change so they could?</td><td><input type="text" data-key="p3_r_change" aria-label="Robot change"></td></tr>
+            <tr class="trial"><td>Does it need a screen, or could it beep and buzz instead?</td><td><input type="text" data-key="p3_r_screen" aria-label="Screen alternative"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+      <li>
+        <span class="stitle">Ten years ahead</span>
+        <p>Make one prediction about how technology will have changed things by the time you leave school.</p>
+        <textarea class="answer" data-key="p3_predict" aria-label="Prediction"></textarea>
+        <p class="q">And one thing you hope does <em>not</em> change:</p>
+        <input type="text" data-key="p3_hope" aria-label="Hope unchanged">
+        <p class="muted">Date this page. It will be worth reading again later.</p>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ===================== SCORE IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">Name the <span class="def-term" data-term="TRADE-OFF">trade-off</span></h3>
+    <table class="grid">
+      <thead><tr><th style="width:30%">Technology</th><th style="width:34%">What it gives</th><th>What it costs</th></tr></thead>
+      <tbody>
+        <tr><td class="thing">Video calls</td><td><input type="text" data-key="p4_t1_g" aria-label="Video gives"></td><td><input type="text" data-key="p4_t1_c" aria-label="Video costs"></td></tr>
+        <tr><td class="thing">Online maps</td><td><input type="text" data-key="p4_t2_g" aria-label="Maps gives"></td><td><input type="text" data-key="p4_t2_c" aria-label="Maps costs"></td></tr>
+        <tr><td class="thing">A robot that does a job</td><td><input type="text" data-key="p4_t3_g" aria-label="Robot gives"></td><td><input type="text" data-key="p4_t3_c" aria-label="Robot costs"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Accessible or not?</h3>
+    <table class="grid">
+      <thead><tr><th style="width:62%">A design that…</th><th>Accessible?</th></tr></thead>
+      <tbody>
+        <tr><td>Only shows information as colour</td><td><input type="text" data-key="p4_a1" aria-label="A1"></td></tr>
+        <tr><td>Has both a beep and a flashing light</td><td><input type="text" data-key="p4_a2" aria-label="A2"></td></tr>
+        <tr><td>Needs both hands at once to operate</td><td><input type="text" data-key="p4_a3" aria-label="A3"></td></tr>
+        <tr><td>Can be used by voice or by button</td><td><input type="text" data-key="p4_a4" aria-label="A4"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_replace"><label for="s1">I can say what a technology replaced and what was lost</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_trade"><label for="s2">I can name the trade-off in a technology I use every day</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_both"><label for="s3">I can give an example of something that is good and bad at once</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_access"><label for="s4">I can explain what <span class="def-term" data-term="ACCESSIBILITY">accessibility</span> means</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_design"><label for="s5">I designed something that lets somebody do a task themselves</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_ai"><label for="s6">I can say what my robot has in common with artificial intelligence</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_ask"><label for="s7">I know to ask the person rather than guess what they need</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">Dropped kerbs and subtitles were built for a few people and ended up used by nearly everyone. Why do you think that keeps happening?</p>
+    <textarea class="answer" data-key="p4_why_universal" aria-label="Why universal"></textarea>
+
+    <p class="q">Your robot decides what to do by reading a <span class="def-term" data-term="SENSOR">sensor</span> and comparing it to a number. Is that intelligence? Where would you draw the line?</p>
+    <textarea class="answer" data-key="p4_intelligence" aria-label="Is it intelligence"></textarea>
+
+    <p class="q">Somebody invents something genuinely useful that also causes real harm. Whose job is it to think about the harm — the inventor, the people using it, or somebody else?</p>
+    <textarea class="answer" data-key="p4_whose_job" aria-label="Whose job"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>You have thought about technology and the people who use it. The last two projects are about the people you build it with.</p>
+    <p>In <strong>Systems Project 13 — Goals and Roles</strong>, your team decides what it is actually trying to do, and who does what.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFS = {
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'SOFTWARE': ['Software', 'The instructions a machine follows. Software can decide things but cannot move anything on its own. It needs hardware to act, and hardware needs it to know what to do.'],
+    'THRESHOLD': ['Threshold', 'The number you choose as your dividing line. Readings below it count as one thing, readings above it count as another. A common starting point is halfway between your white and black readings, then you adjust from there.'],
+    'TRADE-OFF': ['Trade-off', 'What you give up in order to get something else. New technology rarely just adds \u2014 it swaps one set of problems for another, and judging it means looking at both sides.'],
+    'ARTIFICIAL INTELLIGENCE': ['Artificial Intelligence', 'Software that uses information to work out what to do next, rather than following a fixed list of steps. Your robot reading a sensor and choosing an action is the same shape, just small enough to see all of.'],
+    'ACCESSIBILITY': ['Accessibility', 'Designing so that as many people as possible can actually use the thing \u2014 including people who cannot see it, hear it, reach it, or hold it. A design that only works for some people is not finished.']
+  };
+  function openDef(t){
+    var e=DEFS[t]; if(!e) return;
+    document.getElementById('defTerm').textContent=e[0];
+    document.getElementById('defBody').textContent=e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow='hidden';
+  }
+  function closeDef(){
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el) openDef(el.dataset.term); });
+  document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_systems_12";
+  var MISSION_TITLE = "Systems Project 12 — Technology and People";
+  var $=function(s){return document.querySelector(s);};
+  var pinInput=$("#pin"),statusEl=$("#status"),statusBottom=$("#statusBottom"),pinEcho=$("#pinEcho");
+  function collectAnswers(){var a={};document.querySelectorAll("[data-key]").forEach(function(el){a[el.getAttribute("data-key")]=(el.type==="checkbox")?(el.checked?"yes":""):el.value;});return a;}
+  var SAVE_KEY="kipr_"+MISSION_ID+"_draft";
+  function restoreDraft(){var raw=null;try{raw=window.localStorage.getItem(SAVE_KEY);}catch(e){return;}if(!raw)return;
+    var d;try{d=JSON.parse(raw);}catch(e){return;}
+    if(d.pin)pinInput.value=d.pin;
+    if(d.answers)document.querySelectorAll("[data-key]").forEach(function(el){var k=el.getAttribute("data-key");
+      if(k in d.answers){if(el.type==="checkbox")el.checked=d.answers[k]==="yes";else el.value=d.answers[k];}});
+    syncPinEcho();}
+  function saveDraft(){try{window.localStorage.setItem(SAVE_KEY,JSON.stringify({pin:pinInput.value.trim(),answers:collectAnswers()}));}catch(e){}}
+  function syncPinEcho(){pinEcho.textContent=pinInput.value.trim();}
+  restoreDraft();
+  document.addEventListener("input",function(e){if(e.target.matches("[data-key], #pin")){saveDraft();syncPinEcho();}});
+  document.addEventListener("change",function(e){if(e.target.matches("[data-key]"))saveDraft();});
+  function setStatus(msg,kind){statusEl.textContent=msg;statusEl.className="status"+(kind?" "+kind:"");statusBottom.textContent=msg;}
+  function submit(){
+    var pin=pinInput.value.trim();
+    if(!pin){setStatus("Enter your PIN first.","err");pinInput.focus();return;}
+    var payload={mission:MISSION_ID,missionTitle:MISSION_TITLE,pin:pin,submittedAt:new Date().toISOString(),answers:collectAnswers()};
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+    var url=URL.createObjectURL(blob),a=document.createElement("a");
+    a.href=url;a.download=MISSION_ID+"_pin"+pin+".json";
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+    saveDraft();setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function(){window.print();},600);
+  }
+  $("#submitTop").addEventListener("click",submit);
+  $("#submitBottom").addEventListener("click",submit);
+</script>
+
+</body>
+</html>

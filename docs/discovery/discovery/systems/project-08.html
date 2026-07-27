@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Systems Project 8 — Hardware and Software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{--red:#9E1B32;--red-dark:#7d1526;--navy:#1F2D5A;--gold:#C8A14B;--ink:#1c1c1e;--grey:#5b6270;
+        --line:#d8dbe2;--bg:#f0f0f0;--panel:#fff;--field:#fcfcfd;--field-focus:#fffdf5}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Barlow',system-ui,sans-serif;font-size:19px;line-height:1.6}
+  .topbar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;border-bottom:3px solid var(--gold)}
+  .topbar-inner{max-width:920px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar .brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.06em;text-transform:uppercase;margin-right:auto}
+  .topbar .brand span{color:var(--gold)}
+  .pin-field{display:flex;align-items:center;gap:8px}
+  .pin-field label{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .pin-field input{width:92px;padding:7px 10px;border:2px solid rgba(255,255,255,.3);border-radius:4px;background:rgba(255,255,255,.1);color:#fff;font-family:'Barlow',sans-serif;font-size:17px;letter-spacing:.12em}
+  .pin-field input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.18)}
+  .submit-btn{background:var(--gold);color:#24200f;border:none;border-radius:4px;padding:9px 18px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  .submit-btn:hover{background:#d9b464}
+  .status{font-size:14px;color:var(--gold);min-height:1em}
+  .status.err{color:#ffb4b4}
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+
+  .sheet{max-width:920px;margin:26px auto 60px;background:var(--panel);padding:0 0 40px;box-shadow:0 2px 14px rgba(0,0,0,.09)}
+  .hero{background:var(--navy);color:#fff;padding:30px 40px 26px;border-bottom:5px solid var(--gold)}
+  .hero .eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+  .hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:44px;line-height:1.05;margin:0 0 8px}
+  .hero .sub{margin:0;color:rgba(255,255,255,.72);font-size:18px}
+  section{padding:0 40px}
+  .meta{margin:26px 0 0;border:1px solid var(--line);border-radius:5px;overflow:hidden}
+  .meta dl{margin:0}
+  .meta .row{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}
+  .meta .row:last-child{border-bottom:none}
+  .meta dt{background:#f6f7f9;padding:10px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+  .meta dd{margin:0;padding:10px 14px;font-size:17px}
+  .meta dd.link{font-weight:600;color:var(--red)}
+  .pin-reminder{margin:20px 0 0;padding:14px 16px;background:#fff8e6;border:1px solid var(--gold);border-radius:5px;font-size:17px}
+  .pin-reminder strong{color:var(--navy)}
+  .phase-head{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;color:var(--navy);margin:40px 0 4px;padding-bottom:8px;border-bottom:3px solid var(--red);display:flex;align-items:baseline;gap:12px}
+  .phase-head .pnum{background:var(--red);color:#fff;font-size:14px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:3px;font-weight:700}
+  h3.sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--red);margin:26px 0 6px}
+  p{margin:10px 0}
+  .muted{color:var(--grey);font-size:17px}
+  .callout{background:#f6f7f9;border-left:5px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 5px 5px 0}
+  .callout.navy{border-left-color:var(--navy);background:#f2f4fa}
+  .callout.gold{border-left-color:var(--gold);background:#fffaef}
+  .callout .ctitle{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin:0 0 6px}
+  .callout.warn{border-left-color:#b3541e;background:#fff4ec}
+  .callout.warn .ctitle{color:#8a3d12}
+  ul.plain{margin:10px 0 10px 22px;padding:0}
+  ul.plain li{margin:6px 0}
+  ul.check{list-style:none;margin:14px 0;padding:0}
+  ul.check li{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:5px;margin-bottom:8px;background:var(--field)}
+  ul.check input[type="checkbox"]{flex-shrink:0;width:24px;height:24px;margin-top:2px;accent-color:var(--red);cursor:pointer}
+  ul.check label{cursor:pointer;font-size:18px}
+  ol.dosteps{margin:14px 0;padding-left:0;list-style:none;counter-reset:ds}
+  ol.dosteps>li{counter-increment:ds;position:relative;padding:4px 0 16px 46px;margin-bottom:4px;border-left:2px solid var(--line);margin-left:15px}
+  ol.dosteps>li:last-child{border-left-color:transparent}
+  ol.dosteps>li::before{content:counter(ds);position:absolute;left:-16px;top:2px;width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center}
+  ol.dosteps .stitle{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;color:var(--navy);display:block;margin-bottom:2px}
+  .answer{width:100%;min-height:76px;padding:10px 12px;border:1px solid var(--line);border-radius:5px;background:var(--field);font-family:'Barlow',sans-serif;font-size:18px;line-height:1.55;resize:vertical}
+  .answer:focus,input[type="text"]:focus{outline:none;border-color:var(--gold);background:var(--field-focus)}
+  .q{font-weight:600;margin:18px 0 6px}
+  input[type="text"]{padding:9px 11px;border:1px solid var(--line);border-radius:5px;background:var(--field);font-family:'Barlow',sans-serif;font-size:18px;width:100%}
+  table.grid{width:100%;border-collapse:collapse;margin:14px 0;font-size:17px}
+  table.grid th{background:var(--navy);color:#fff;text-align:left;padding:9px 11px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+  table.grid td{border:1px solid var(--line);padding:7px 9px;vertical-align:middle}
+  table.grid td input[type="text"]{border:none;background:transparent;padding:4px 2px}
+  table.grid td.ctr{text-align:center;font-weight:600}
+  table.grid tr.trial td.ctr{background:#f6f7f9}
+  table.grid td.thing{font-weight:600}
+  .chain{border:1px solid var(--line);border-radius:6px;padding:16px;margin:16px 0;background:var(--field);text-align:center}
+  .chain svg{max-width:100%;height:auto}
+  .chain .ccap{margin:10px 0 0;font-size:15px;color:var(--grey)}
+  .roles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+  .role{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--field);display:flex;flex-direction:column}
+  .role .rhead{color:#fff;padding:9px 12px;text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+  .role.sw .rhead{background:#2a6099}
+  .role.tr .rhead{background:var(--gold);color:#24200f}
+  .role.hw .rhead{background:var(--navy)}
+  .role .rbody{padding:11px 13px;font-size:16px;flex:1}
+  .role .rbody p{margin:0 0 7px}
+  .role .rbody p:last-child{margin-bottom:0}
+  .draw{border:2px dashed var(--line);border-radius:6px;background:#fff;min-height:150px;margin:14px 0;display:flex;align-items:center;justify-content:center;color:var(--grey);font-size:16px}
+  .bottom-submit{padding:30px 40px 0;text-align:center}
+  .bottom-submit .status{color:var(--navy);margin-top:8px}
+  .credit{margin:34px 40px 0;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--grey);text-align:center}
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){
+    body{font-size:18px}
+    .sheet{margin:0}
+    .hero{padding:22px 20px 20px}
+    .hero h1{font-size:32px}
+    section,.bottom-submit{padding-left:20px;padding-right:20px}
+    .credit{margin-left:20px;margin-right:20px}
+    .meta .row{grid-template-columns:1fr}
+    .meta dt{border-bottom:1px solid var(--line)}
+    .phase-head{font-size:25px;flex-wrap:wrap;gap:8px}
+    .topbar .brand{font-size:15px}
+    .crumbs{font-size:12.5px;gap:4px}
+    .roles{grid-template-columns:1fr}
+    table.grid{font-size:15px}
+  }
+  @media print{
+    .no-print{display:none!important}
+    body{background:#fff;font-size:12pt}
+    .sheet{box-shadow:none;margin:0;max-width:none}
+    .hero{background:#fff!important;color:#000;border-bottom:3px solid #000}
+    .hero .eyebrow,.hero .sub{color:#333}
+    .phase-head{break-after:avoid}
+    .answer,input[type="text"]{border:1px solid #999;background:#fff}
+    .crumbs,.def-overlay{display:none}
+    .print-pin{display:block!important}
+    ol.dosteps>li::before{background:#333!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .role .rhead,.chain svg{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  .print-pin{display:none;margin:14px 40px 0;font-size:16px}
+</style>
+</head>
+<body>
+
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Systems</a><span class="sep">/</span><span class="here">Project 8</span><a class="gloss" href="../../glossary.html">Glossary</a></nav>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Systems · Project 8</p>
+    <h1>Hardware and Software</h1>
+    <p class="sub">One of you is the body. One of you is the instructions. Neither works alone.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Being the <span class="def-term" data-term="HARDWARE">hardware</span> and the <span class="def-term" data-term="SOFTWARE">software</span> in turn, adding a translator between them, then drawing the whole system your robot actually is.</dd></div>
+        <div class="row"><dt>Strand Link</dt><dd class="link">Do this before Coding Project 10</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>A clear space to walk in · an object to pick up · paper and a pencil · a folder or box · two or three people</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Systems Project 2. You should know the six parts of a robot.</dd></div>
+      </dl>
+    </div>
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ===================== TRY IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Be the Machine</h2>
+
+    <p>Work in pairs. One of you is the <strong>software</strong>. One of you is the <strong>hardware</strong>.</p>
+
+    <p>Put an object across the room. The hardware has to walk over and pick it up.</p>
+
+    <div class="callout warn">
+      <p class="ctitle">⚠ The Rules Are Strict</p>
+      <p><strong>Software</strong> may only speak. No pointing, no walking over, no doing it yourself.</p>
+      <p><strong>Hardware</strong> may not speak at all, and does <em>exactly</em> what it is told. Not what it thinks you meant.</p>
+      <p>If the software says "walk forward," you keep walking forward until you are told to stop.</p>
+    </div>
+
+    <p>Run it. Then swap and run it again.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:52%">Question</th><th>My answer</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>How long did it take?</td><td><input type="text" data-key="p1_time" aria-label="Time"></td></tr>
+        <tr class="trial"><td>Did the hardware walk into anything?</td><td><input type="text" data-key="p1_bump" aria-label="Walked into"></td></tr>
+        <tr class="trial"><td>Which instruction was hardest to give?</td><td><input type="text" data-key="p1_hardest" aria-label="Hardest instruction"></td></tr>
+      </tbody>
+    </table>
+
+    <p class="q">Being the hardware, was there a moment you knew what your partner meant but had to do something else? What happened?</p>
+    <textarea class="answer" data-key="p1_knew_meant" aria-label="Knew what they meant"></textarea>
+
+    <h3 class="sub">What went in, what came out</h3>
+
+    <p>Every system takes something in and puts something out. Work out what yours were.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:34%">Part of the system</th><th>In this activity, that was…</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td class="thing">The input</td><td><input type="text" data-key="p1_input" aria-label="Input"></td></tr>
+        <tr class="trial"><td class="thing">The output</td><td><input type="text" data-key="p1_output" aria-label="Output"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold">
+      <p class="ctitle">Neither One Is the Robot</p>
+      <p>The software could not move. The hardware could not decide. Only the two together got the object picked up.</p>
+      <p>That is exactly the deal between your program and your Wombat.</p>
+    </div>
+  </section>
+
+  <!-- ===================== LEARN IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> They Do Not Speak the Same Language</h2>
+
+    <p><span class="def-term" data-term="HARDWARE">Hardware</span> is the body of a machine — the parts you can drop on your foot. <span class="def-term" data-term="SOFTWARE">Software</span> is the instructions you give it.</p>
+
+    <p>There is a problem. You write instructions in something close to English. The hardware only understands numbers.</p>
+
+    <div class="chain">
+      <svg viewBox="0 0 640 120" role="img" aria-label="A chain: software, then translator, then hardware, with input arriving and output leaving">
+        <defs>
+          <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#5b6270"/>
+          </marker>
+        </defs>
+        <g font-family="Barlow, sans-serif" font-size="13" text-anchor="middle">
+          <rect x="20" y="34" width="140" height="48" rx="5" fill="#2a6099"/>
+          <text x="90" y="63" fill="#fff" font-weight="600">SOFTWARE</text>
+          <line x1="162" y1="58" x2="222" y2="58" stroke="#5b6270" stroke-width="2" marker-end="url(#a1)"/>
+          <rect x="226" y="34" width="140" height="48" rx="5" fill="#C8A14B"/>
+          <text x="296" y="63" fill="#24200f" font-weight="600">TRANSLATOR</text>
+          <line x1="368" y1="58" x2="428" y2="58" stroke="#5b6270" stroke-width="2" marker-end="url(#a1)"/>
+          <rect x="432" y="34" width="140" height="48" rx="5" fill="#1F2D5A"/>
+          <text x="502" y="63" fill="#fff" font-weight="600">HARDWARE</text>
+          <text x="90" y="24" fill="#5b6270" font-size="12">what you wrote</text>
+          <text x="296" y="24" fill="#5b6270" font-size="12">turns it into numbers</text>
+          <text x="502" y="24" fill="#5b6270" font-size="12">does the work</text>
+          <text x="502" y="104" fill="#5b6270" font-size="12">wheels turn, claw closes</text>
+        </g>
+      </svg>
+      <p class="ccap">The middle box is the part you have been using without noticing.</p>
+    </div>
+
+    <div class="callout navy">
+      <p class="ctitle">You Have Met the Translator Already</p>
+      <p>Every time you press <strong><span class="def-term" data-term="COMPILE">Compile</span></strong>, a translator turns what you typed into numbers the Wombat can follow.</p>
+      <p>That is why a spelling mistake stops everything. The translator cannot guess — it can only translate.</p>
+    </div>
+
+    <h3 class="sub">Input, output, and the bit in between</h3>
+
+    <table class="grid">
+      <thead><tr><th style="width:26%">Word</th><th style="width:36%">Means</th><th>On your robot</th></tr></thead>
+      <tbody>
+        <tr><td class="thing"><span class="def-term" data-term="INPUT">Input</span></td><td>Information coming in</td><td>A <span class="def-term" data-term="SENSOR">sensor</span> reading, a button press</td></tr>
+        <tr><td class="thing">Processing</td><td>Working out what to do</td><td>Your program deciding</td></tr>
+        <tr><td class="thing"><span class="def-term" data-term="OUTPUT">Output</span></td><td>Something happening in the world</td><td>A motor turning, a claw closing</td></tr>
+        <tr><td class="thing">Storage</td><td>Keeping it for later</td><td>Your saved program, your <span class="def-term" data-term="LIBRARY">library</span> file</td></tr>
+      </tbody>
+    </table>
+
+    <p class="muted">Every computer system you will ever meet is some arrangement of those four.</p>
+  </section>
+
+  <!-- ===================== DO IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Add a Translator</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Three roles this time</span>
+        <p>Work in threes. Same task — cross the room and pick up an object — but now nobody can talk to the person they need to reach.</p>
+        <div class="roles">
+          <div class="role sw">
+            <div class="rhead">Software</div>
+            <div class="rbody">
+              <p>You know what has to happen.</p>
+              <p><strong>You may not speak.</strong> Act it out, like charades, to the translator only.</p>
+            </div>
+          </div>
+          <div class="role tr">
+            <div class="rhead">Translator</div>
+            <div class="rbody">
+              <p>You watch the charades.</p>
+              <p>You <strong>write</strong> instructions on paper, then read them aloud to the hardware.</p>
+            </div>
+          </div>
+          <div class="role hw">
+            <div class="rhead">Hardware</div>
+            <div class="rbody">
+              <p>You must <strong>not watch</strong> the charades. Face away.</p>
+              <p>You may not speak. Do exactly what is read to you.</p>
+            </div>
+          </div>
+        </div>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_ran3"><label for="d1">Our hardware picked up the object</label></li></ul>
+        <p class="q">Where did meaning get lost — between software and translator, or between translator and hardware?</p>
+        <textarea class="answer" data-key="p3_lost" aria-label="Where meaning was lost"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Swap roles and go again</span>
+        <p>Everyone should be the translator once. It is the hardest job and the most interesting one.</p>
+        <p class="q">As translator, what did you have to guess at?</p>
+        <textarea class="answer" data-key="p3_guess" aria-label="What you guessed"></textarea>
+        <p class="q">Was your guess right?</p>
+        <input type="text" data-key="p3_guess_right" aria-label="Was the guess right">
+        <div class="callout warn">
+          <p class="ctitle">⚠ A Real Translator Never Guesses</p>
+          <p>You could guess because you are a person. The <span class="def-term" data-term="COMPILER">compiler</span> on your Wombat cannot. If your instruction is unclear, it stops and shows you an error instead.</p>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">Put the instructions away</span>
+        <p>Label your written instructions and put them in a folder or box. Do not throw them out.</p>
+        <p class="q">Tomorrow someone could take those out and run them again without the software person being there. What does that folder do for a computer?</p>
+        <textarea class="answer" data-key="p3_storage" aria-label="What storage does"></textarea>
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_stored"><label for="d2">Our instructions are labelled and stored</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Do the same thing again, faster</span>
+        <p>Get the instructions back out and have a <em>different</em> hardware person run them, with no software and no translator in the room.</p>
+        <table class="grid">
+          <thead><tr><th style="width:52%">Question</th><th>My answer</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>Did it work with a different person?</td><td><input type="text" data-key="p3_reuse" aria-label="Worked with different person"></td></tr>
+            <tr class="trial"><td>Was it faster than the first time?</td><td><input type="text" data-key="p3_faster" aria-label="Faster"></td></tr>
+            <tr class="trial"><td>What had to be written more clearly?</td><td><input type="text" data-key="p3_clearer" aria-label="Clearer"></td></tr>
+          </tbody>
+        </table>
+        <p class="muted">This is why programs are worth saving. Written down once, run any number of times, by anybody.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Map your own robot</span>
+        <p>Draw your actual robot as a system. Show every input, where the processing happens, every output, and where things are stored.</p>
+        <div class="draw no-print">Your robot as a system diagram</div>
+        <table class="grid">
+          <thead><tr><th style="width:26%">Part</th><th>On my robot, this is…</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="thing">Inputs</td><td><input type="text" data-key="p3_m_in" aria-label="My inputs"></td></tr>
+            <tr class="trial"><td class="thing">Processing</td><td><input type="text" data-key="p3_m_proc" aria-label="My processing"></td></tr>
+            <tr class="trial"><td class="thing">Outputs</td><td><input type="text" data-key="p3_m_out" aria-label="My outputs"></td></tr>
+            <tr class="trial"><td class="thing">Storage</td><td><input type="text" data-key="p3_m_store" aria-label="My storage"></td></tr>
+            <tr class="trial"><td class="thing">Where the translating happens</td><td><input type="text" data-key="p3_m_trans" aria-label="My translator"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+      <li>
+        <span class="stitle">Present it</span>
+        <p>Show your diagram to another team. Have them find one thing you left out.</p>
+        <p class="q">What did they spot?</p>
+        <input type="text" data-key="p3_spotted" aria-label="What they spotted">
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_presented"><label for="d3">Another team checked my diagram and I fixed what they found</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Sort the machines</span>
+        <p>For each machine, name one input and one output.</p>
+        <table class="grid">
+          <thead><tr><th style="width:32%">Machine</th><th style="width:34%">An input</th><th>An output</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="thing">A microwave</td><td><input type="text" data-key="p3_s1_i" aria-label="Microwave input"></td><td><input type="text" data-key="p3_s1_o" aria-label="Microwave output"></td></tr>
+            <tr class="trial"><td class="thing">A cash machine</td><td><input type="text" data-key="p3_s2_i" aria-label="Cash machine input"></td><td><input type="text" data-key="p3_s2_o" aria-label="Cash machine output"></td></tr>
+            <tr class="trial"><td class="thing">Your Wombat</td><td><input type="text" data-key="p3_s3_i" aria-label="Wombat input"></td><td><input type="text" data-key="p3_s3_o" aria-label="Wombat output"></td></tr>
+            <tr class="trial"><td class="thing">A set of traffic lights</td><td><input type="text" data-key="p3_s4_i" aria-label="Traffic input"></td><td><input type="text" data-key="p3_s4_o" aria-label="Traffic output"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ===================== SCORE IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">Hardware or software?</h3>
+    <table class="grid">
+      <thead><tr><th style="width:62%">This is…</th><th>Which one</th></tr></thead>
+      <tbody>
+        <tr><td>The motor on the left wheel</td><td><input type="text" data-key="p4_h1" aria-label="H1"></td></tr>
+        <tr><td>Your <code>drive_forward()</code> <span class="def-term" data-term="FUNCTION">Function</span></td><td><input type="text" data-key="p4_h2" aria-label="H2"></td></tr>
+        <tr><td>The touch <span class="def-term" data-term="SENSOR">sensor</span></td><td><input type="text" data-key="p4_h3" aria-label="H3"></td></tr>
+        <tr><td>The <span class="def-term" data-term="LIBRARY">library</span> file you wrote</td><td><input type="text" data-key="p4_h4" aria-label="H4"></td></tr>
+        <tr><td>The Wombat's screen</td><td><input type="text" data-key="p4_h5" aria-label="H5"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_hs"><label for="s1">I can explain the difference between hardware and software</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_trans"><label for="s2">I can say what a translator does and why one is needed</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_compile"><label for="s3">I know what pressing <span class="def-term" data-term="COMPILE">Compile</span> actually does</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_io"><label for="s4">I can find the input and output of any machine</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_storage"><label for="s5">I can explain why saving a program matters</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_map"><label for="s6">I can draw my own robot as a system</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">As the hardware, you had to do exactly what you were told even when you knew better. Was that frustrating? Is a machine that behaves that way a good thing or a bad thing?</p>
+    <textarea class="answer" data-key="p4_frustrating" aria-label="Frustrating"></textarea>
+
+    <p class="q">A translator turns your instructions into numbers. Nothing is added and nothing is understood. So where does the cleverness in a robot actually come from?</p>
+    <textarea class="answer" data-key="p4_cleverness" aria-label="Where cleverness comes from"></textarea>
+
+    <p class="q">Your robot's software can be swapped in a minute. Its hardware takes an afternoon. Which one would you rather get wrong?</p>
+    <textarea class="answer" data-key="p4_rather_wrong" aria-label="Rather get wrong"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>One machine talking to itself is one thing. Machines talking to <em>each other</em> is a different problem, and it needs rules everybody agrees on.</p>
+    <p>In <strong>Systems Project 9 — Sending Messages</strong>, you take something apart, push it through a tube, and try to put it back together at the other end.</p>
+    <p class="muted">You are also ready for <strong>Coding Project 10</strong>, where your robot gets its first real input.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFS = {
+    'COMPILE': ['Compile', 'To translate the code you wrote into machine instructions the robot’s processor can actually carry out. If compiling fails, the program cannot run.'],
+    'COMPILER': ['Compiler', 'The program that turns the code you wrote into instructions the robot’s processor can carry out. When it finds something it cannot translate, it stops and tells you where.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'HARDWARE': ['Hardware', 'The physical body of a machine \u2014 the parts you could drop on your foot. Motors, sensors, wires, the controller board. Hardware can do things but cannot decide anything.'],
+    'SOFTWARE': ['Software', 'The instructions a machine follows. Software can decide things but cannot move anything on its own. It needs hardware to act, and hardware needs it to know what to do.'],
+    'INPUT': ['Input', 'Information coming into a system from outside \u2014 a sensor reading, a button press, a light coming on. Without input a machine has no idea what is going on around it.'],
+    'OUTPUT': ['Output', 'Something a system does to the world \u2014 a motor turning, a claw closing, a message on a screen. Output is the only part of a program anyone can actually see.']
+  };
+  function openDef(t){
+    var e=DEFS[t]; if(!e) return;
+    document.getElementById('defTerm').textContent=e[0];
+    document.getElementById('defBody').textContent=e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow='hidden';
+  }
+  function closeDef(){
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el) openDef(el.dataset.term); });
+  document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_systems_08";
+  var MISSION_TITLE = "Systems Project 8 — Hardware and Software";
+  var $=function(s){return document.querySelector(s);};
+  var pinInput=$("#pin"),statusEl=$("#status"),statusBottom=$("#statusBottom"),pinEcho=$("#pinEcho");
+  function collectAnswers(){var a={};document.querySelectorAll("[data-key]").forEach(function(el){a[el.getAttribute("data-key")]=(el.type==="checkbox")?(el.checked?"yes":""):el.value;});return a;}
+  var SAVE_KEY="kipr_"+MISSION_ID+"_draft";
+  function restoreDraft(){var raw=null;try{raw=window.localStorage.getItem(SAVE_KEY);}catch(e){return;}if(!raw)return;
+    var d;try{d=JSON.parse(raw);}catch(e){return;}
+    if(d.pin)pinInput.value=d.pin;
+    if(d.answers)document.querySelectorAll("[data-key]").forEach(function(el){var k=el.getAttribute("data-key");
+      if(k in d.answers){if(el.type==="checkbox")el.checked=d.answers[k]==="yes";else el.value=d.answers[k];}});
+    syncPinEcho();}
+  function saveDraft(){try{window.localStorage.setItem(SAVE_KEY,JSON.stringify({pin:pinInput.value.trim(),answers:collectAnswers()}));}catch(e){}}
+  function syncPinEcho(){pinEcho.textContent=pinInput.value.trim();}
+  restoreDraft();
+  document.addEventListener("input",function(e){if(e.target.matches("[data-key], #pin")){saveDraft();syncPinEcho();}});
+  document.addEventListener("change",function(e){if(e.target.matches("[data-key]"))saveDraft();});
+  function setStatus(msg,kind){statusEl.textContent=msg;statusEl.className="status"+(kind?" "+kind:"");statusBottom.textContent=msg;}
+  function submit(){
+    var pin=pinInput.value.trim();
+    if(!pin){setStatus("Enter your PIN first.","err");pinInput.focus();return;}
+    var payload={mission:MISSION_ID,missionTitle:MISSION_TITLE,pin:pin,submittedAt:new Date().toISOString(),answers:collectAnswers()};
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+    var url=URL.createObjectURL(blob),a=document.createElement("a");
+    a.href=url;a.download=MISSION_ID+"_pin"+pin+".json";
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+    saveDraft();setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function(){window.print();},600);
+  }
+  $("#submitTop").addEventListener("click",submit);
+  $("#submitBottom").addEventListener("click",submit);
+</script>
+
+</body>
+</html>

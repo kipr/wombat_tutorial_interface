@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Systems Project 13 — Goals and Roles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{--red:#9E1B32;--red-dark:#7d1526;--navy:#1F2D5A;--gold:#C8A14B;--ink:#1c1c1e;--grey:#5b6270;
+        --line:#d8dbe2;--bg:#f0f0f0;--panel:#fff;--field:#fcfcfd;--field-focus:#fffdf5}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Barlow',system-ui,sans-serif;font-size:19px;line-height:1.6}
+  .topbar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;border-bottom:3px solid var(--gold)}
+  .topbar-inner{max-width:920px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar .brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.06em;text-transform:uppercase;margin-right:auto}
+  .topbar .brand span{color:var(--gold)}
+  .pin-field{display:flex;align-items:center;gap:8px}
+  .pin-field label{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .pin-field input{width:92px;padding:7px 10px;border:2px solid rgba(255,255,255,.3);border-radius:4px;background:rgba(255,255,255,.1);color:#fff;font-family:'Barlow',sans-serif;font-size:17px;letter-spacing:.12em}
+  .pin-field input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.18)}
+  .submit-btn{background:var(--gold);color:#24200f;border:none;border-radius:4px;padding:9px 18px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  .submit-btn:hover{background:#d9b464}
+  .status{font-size:14px;color:var(--gold);min-height:1em}
+  .status.err{color:#ffb4b4}
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  .sheet{max-width:920px;margin:26px auto 60px;background:var(--panel);padding:0 0 40px;box-shadow:0 2px 14px rgba(0,0,0,.09)}
+  .hero{background:var(--navy);color:#fff;padding:30px 40px 26px;border-bottom:5px solid var(--gold)}
+  .hero .eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+  .hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:44px;line-height:1.05;margin:0 0 8px}
+  .hero .sub{margin:0;color:rgba(255,255,255,.72);font-size:18px}
+  section{padding:0 40px}
+  .meta{margin:26px 0 0;border:1px solid var(--line);border-radius:5px;overflow:hidden}
+  .meta dl{margin:0}
+  .meta .row{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}
+  .meta .row:last-child{border-bottom:none}
+  .meta dt{background:#f6f7f9;padding:10px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+  .meta dd{margin:0;padding:10px 14px;font-size:17px}
+  .meta dd.link{font-weight:600;color:var(--red)}
+  .pin-reminder{margin:20px 0 0;padding:14px 16px;background:#fff8e6;border:1px solid var(--gold);border-radius:5px;font-size:17px}
+  .pin-reminder strong{color:var(--navy)}
+  .phase-head{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;color:var(--navy);margin:40px 0 4px;padding-bottom:8px;border-bottom:3px solid var(--red);display:flex;align-items:baseline;gap:12px}
+  .phase-head .pnum{background:var(--red);color:#fff;font-size:14px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:3px;font-weight:700}
+  h3.sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--red);margin:26px 0 6px}
+  p{margin:10px 0}
+  .muted{color:var(--grey);font-size:17px}
+  .callout{background:#f6f7f9;border-left:5px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 5px 5px 0}
+  .callout.navy{border-left-color:var(--navy);background:#f2f4fa}
+  .callout.gold{border-left-color:var(--gold);background:#fffaef}
+  .callout .ctitle{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin:0 0 6px}
+  .callout.warn{border-left-color:#b3541e;background:#fff4ec}
+  .callout.warn .ctitle{color:#8a3d12}
+  ul.plain{margin:10px 0 10px 22px;padding:0}
+  ul.plain li{margin:6px 0}
+  ul.check{list-style:none;margin:14px 0;padding:0}
+  ul.check li{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:5px;margin-bottom:8px;background:var(--field)}
+  ul.check input[type="checkbox"]{flex-shrink:0;width:24px;height:24px;margin-top:2px;accent-color:var(--red);cursor:pointer}
+  ul.check label{cursor:pointer;font-size:18px}
+  ol.dosteps{margin:14px 0;padding-left:0;list-style:none;counter-reset:ds}
+  ol.dosteps>li{counter-increment:ds;position:relative;padding:4px 0 16px 46px;margin-bottom:4px;border-left:2px solid var(--line);margin-left:15px}
+  ol.dosteps>li:last-child{border-left-color:transparent}
+  ol.dosteps>li::before{content:counter(ds);position:absolute;left:-16px;top:2px;width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center}
+  ol.dosteps .stitle{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;color:var(--navy);display:block;margin-bottom:2px}
+  .answer{width:100%;min-height:76px;padding:10px 12px;border:1px solid var(--line);border-radius:5px;background:var(--field);font-family:'Barlow',sans-serif;font-size:18px;line-height:1.55;resize:vertical}
+  .answer:focus,input[type="text"]:focus{outline:none;border-color:var(--gold);background:var(--field-focus)}
+  .q{font-weight:600;margin:18px 0 6px}
+  input[type="text"]{padding:9px 11px;border:1px solid var(--line);border-radius:5px;background:var(--field);font-family:'Barlow',sans-serif;font-size:18px;width:100%}
+  table.grid{width:100%;border-collapse:collapse;margin:14px 0;font-size:17px}
+  table.grid th{background:var(--navy);color:#fff;text-align:left;padding:9px 11px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+  table.grid td{border:1px solid var(--line);padding:7px 9px;vertical-align:middle}
+  table.grid td input[type="text"]{border:none;background:transparent;padding:4px 2px}
+  table.grid td.ctr{text-align:center;font-weight:600}
+  table.grid tr.trial td.ctr{background:#f6f7f9}
+  table.grid td.thing{font-weight:600}
+  .roles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0}
+  .role{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--field);display:flex;flex-direction:column}
+  .role .rhead{color:#fff;padding:9px 12px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .role.dr .rhead{background:#2a6099}
+  .role.na .rhead{background:var(--gold);color:#24200f}
+  .role.st .rhead{background:var(--navy)}
+  .role.bu .rhead{background:#1E8449}
+  .role .rhead .tag{font-size:11px;opacity:.85;letter-spacing:.08em}
+  .role .rbody{padding:11px 13px;font-size:16px;flex:1}
+  .role .rbody p{margin:0 0 7px}
+  .role .rbody p:last-child{margin-bottom:0}
+  .role .rbody .no{color:#8a3d12;font-weight:600}
+  .bottom-submit{padding:30px 40px 0;text-align:center}
+  .bottom-submit .status{color:var(--navy);margin-top:8px}
+  .credit{margin:34px 40px 0;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--grey);text-align:center}
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){
+    body{font-size:18px}
+    .sheet{margin:0}
+    .hero{padding:22px 20px 20px}
+    .hero h1{font-size:32px}
+    section,.bottom-submit{padding-left:20px;padding-right:20px}
+    .credit{margin-left:20px;margin-right:20px}
+    .meta .row{grid-template-columns:1fr}
+    .meta dt{border-bottom:1px solid var(--line)}
+    .phase-head{font-size:25px;flex-wrap:wrap;gap:8px}
+    .topbar .brand{font-size:15px}
+    .crumbs{font-size:12.5px;gap:4px}
+    .roles{grid-template-columns:1fr}
+    table.grid{font-size:15px}
+  }
+  @media print{
+    .no-print{display:none!important}
+    body{background:#fff;font-size:12pt}
+    .sheet{box-shadow:none;margin:0;max-width:none}
+    .hero{background:#fff!important;color:#000;border-bottom:3px solid #000}
+    .hero .eyebrow,.hero .sub{color:#333}
+    .phase-head{break-after:avoid}
+    .answer,input[type="text"]{border:1px solid #999;background:#fff}
+    .crumbs,.def-overlay{display:none}
+    .print-pin{display:block!important}
+    ol.dosteps>li::before{background:#333!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .role .rhead{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  .print-pin{display:none;margin:14px 40px 0;font-size:16px}
+</style>
+</head>
+<body>
+
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Systems</a><span class="sep">/</span><span class="here">Project 13</span><a class="gloss" href="../../glossary.html">Glossary</a></nav>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Systems · Project 13</p>
+    <h1>Goals and Roles</h1>
+    <p class="sub">Everyone doing everything is the same as nobody doing anything.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Deciding what your team is actually trying to achieve, ranking it, then splitting the work into four jobs and taking a turn at each one.</dd></div>
+        <div class="row"><dt>Strand Link</dt><dd class="link">Any time — but the earlier the better</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Your team · your robot · your notebook · a challenge you have already solved once</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Systems Project 11, if you have done it. Your team agreement is useful here.</dd></div>
+      </dl>
+    </div>
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ===================== TRY IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Take Away One Player</h2>
+
+    <p>Pick a sport your group knows. List the positions people play, and what each one is there to do.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:30%">Position</th><th style="width:40%">What they do</th><th>If nobody did it…</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td><input type="text" data-key="p1_r1" aria-label="Position 1"></td><td><input type="text" data-key="p1_r1_d" aria-label="Does 1"></td><td><input type="text" data-key="p1_r1_x" aria-label="Missing 1"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p1_r2" aria-label="Position 2"></td><td><input type="text" data-key="p1_r2_d" aria-label="Does 2"></td><td><input type="text" data-key="p1_r2_x" aria-label="Missing 2"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p1_r3" aria-label="Position 3"></td><td><input type="text" data-key="p1_r3_d" aria-label="Does 3"></td><td><input type="text" data-key="p1_r3_x" aria-label="Missing 3"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p1_r4" aria-label="Position 4"></td><td><input type="text" data-key="p1_r4_d" aria-label="Does 4"></td><td><input type="text" data-key="p1_r4_x" aria-label="Missing 4"></td></tr>
+      </tbody>
+    </table>
+
+    <p class="q">Now imagine everyone on that team decided to play the most exciting position at once. What happens?</p>
+    <textarea class="answer" data-key="p1_all_same" aria-label="Everyone same position"></textarea>
+
+    <p class="q">Which position is least glamorous but most missed when it is empty?</p>
+    <input type="text" data-key="p1_unglam" aria-label="Least glamorous">
+
+    <div class="callout gold">
+      <p class="ctitle">Now Look at Your Own Team</p>
+      <p>Think about the last time you worked on the robot together. Was one person typing while everyone else watched? Did two people try to do the same job? Did anything get missed because everybody assumed somebody else had it?</p>
+    </div>
+
+    <p class="q">What actually happened last time your team worked together?</p>
+    <textarea class="answer" data-key="p1_last_time" aria-label="Last time"></textarea>
+  </section>
+
+  <!-- ===================== LEARN IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Goals First, Then Jobs</h2>
+
+    <p>A team without an agreed goal is several people working hard in different directions.</p>
+
+    <h3 class="sub">What makes a goal usable</h3>
+
+    <p>A good goal is <span class="def-term" data-term="TANGIBLE">tangible</span> — you can point at it and say whether it happened.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:46%">Not usable</th><th>Usable</th></tr></thead>
+      <tbody>
+        <tr><td>Get better at robotics</td><td>Every team member can write a complete program on their own</td></tr>
+        <tr><td>Do well this season</td><td>Score Mission 6 in under thirty seconds</td></tr>
+        <tr><td>Work together more</td><td>Everyone has been Driver at least twice</td></tr>
+      </tbody>
+    </table>
+
+    <p>And goals need <strong>ranking</strong>. When two goals pull against each other — and they will — the ranking is what settles it.</p>
+
+    <h3 class="sub">The four jobs</h3>
+
+    <p>Programming as a group only works if the jobs are separated. Here is the split.</p>
+
+    <div class="roles">
+      <div class="role dr">
+        <div class="rhead"><span>Driver</span><span class="tag">hands on keyboard</span></div>
+        <div class="rbody">
+          <p>Types the code. Only this person touches the keyboard.</p>
+          <p class="no">Does not decide what to type.</p>
+        </div>
+      </div>
+      <div class="role na">
+        <div class="rhead"><span>Navigator</span><span class="tag">eyes on the screen</span></div>
+        <div class="rbody">
+          <p>Says what to write and checks it as it appears. Catches the missing semicolon before it is compiled.</p>
+          <p class="no">Does not touch the keyboard.</p>
+        </div>
+      </div>
+      <div class="role st">
+        <div class="rhead"><span>Strategist</span><span class="tag">eyes on the field</span></div>
+        <div class="rbody">
+          <p>Works out the approach, watches the robot run, and decides whether it actually worked.</p>
+          <p class="no">Does not get pulled into typing.</p>
+        </div>
+      </div>
+      <div class="role bu">
+        <div class="rhead"><span>Builder</span><span class="tag">hands on the robot</span></div>
+        <div class="rbody">
+          <p>Keeps the robot in working order and makes changes to the hardware.</p>
+          <p class="muted" style="margin:0">Only needed on teams of four.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout navy">
+      <p class="ctitle">Two People, One Keyboard</p>
+      <p>Driver and Navigator are the oldest trick in programming, and the rule that makes it work is that the person typing is not the person deciding.</p>
+      <p>It feels slow. It catches an enormous number of mistakes.</p>
+    </div>
+
+    <div class="callout warn">
+      <p class="ctitle">⚠ Roles Rotate</p>
+      <p>If the same person is always Driver, that person gets good at programming and everybody else gets good at watching.</p>
+      <p>Rotate every challenge until each of you has done every job.</p>
+    </div>
+
+    <h3 class="sub">Holding each other to it</h3>
+
+    <p>Once people have jobs, they can be <span class="def-term" data-term="ACCOUNTABLE">accountable</span> for them — meaning the team can fairly ask how it is going, because everybody knows who had what.</p>
+
+    <p class="muted">That only works if it is kind. "You said you would have the turn <span class="def-term" data-term="FUNCTION">function</span> working — how is it going, do you need a hand?" is accountability. Blaming is not.</p>
+  </section>
+
+  <!-- ===================== DO IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Decide, Divide, Rotate</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Write your team goals</span>
+        <p>As a team, agree at least three goals. Each must be something you could point at and say yes or no.</p>
+        <table class="grid">
+          <thead><tr><th style="width:66%">Our goal</th><th>How we will know</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td><input type="text" data-key="p3_g1" aria-label="Goal 1"></td><td><input type="text" data-key="p3_g1_k" aria-label="Know 1"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_g2" aria-label="Goal 2"></td><td><input type="text" data-key="p3_g2_k" aria-label="Know 2"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_g3" aria-label="Goal 3"></td><td><input type="text" data-key="p3_g3_k" aria-label="Know 3"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_g4" aria-label="Goal 4"></td><td><input type="text" data-key="p3_g4_k" aria-label="Know 4"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Read them back. Is any of them vague enough that two people could disagree about whether it happened? Fix that one.</p>
+        <input type="text" data-key="p3_vague" aria-label="Vague goal fixed">
+      </li>
+
+      <li>
+        <span class="stitle">Rank them</span>
+        <p>Put them in order — 1 is the one you would protect if you could only keep one.</p>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Rank</th><th style="width:52%">Goal</th><th>Why it sits here</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_k1" aria-label="Rank 1"></td><td><input type="text" data-key="p3_k1_w" aria-label="Why 1"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_k2" aria-label="Rank 2"></td><td><input type="text" data-key="p3_k2_w" aria-label="Why 2"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_k3" aria-label="Rank 3"></td><td><input type="text" data-key="p3_k3_w" aria-label="Why 3"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_k4" aria-label="Rank 4"></td><td><input type="text" data-key="p3_k4_w" aria-label="Why 4"></td></tr>
+          </tbody>
+        </table>
+        <div class="callout gold">
+          <p class="ctitle">Ranking Is Where Teams Find Out What They Disagree About</p>
+          <p>"Win the tournament" and "everybody can program on their own" are both good goals. They ask for different things on a Tuesday afternoon.</p>
+          <p>Deciding now which one wins is far easier than deciding in the middle of an argument.</p>
+        </div>
+        <p class="q">Did your team disagree about the ranking? What was the disagreement?</p>
+        <textarea class="answer" data-key="p3_rank_disagree" aria-label="Ranking disagreement"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Five reasons and five struggles</span>
+        <p>As a class, work out why team structure matters — and what goes wrong even when you have it.</p>
+        <table class="grid">
+          <thead><tr><th style="width:50%">Reason to have structure</th><th>Struggle a team can have</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td><input type="text" data-key="p3_re1" aria-label="Reason 1"></td><td><input type="text" data-key="p3_st1" aria-label="Struggle 1"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_re2" aria-label="Reason 2"></td><td><input type="text" data-key="p3_st2" aria-label="Struggle 2"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_re3" aria-label="Reason 3"></td><td><input type="text" data-key="p3_st3" aria-label="Struggle 3"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_re4" aria-label="Reason 4"></td><td><input type="text" data-key="p3_st4" aria-label="Struggle 4"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_re5" aria-label="Reason 5"></td><td><input type="text" data-key="p3_st5" aria-label="Struggle 5"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+      <li>
+        <span class="stitle">Hand out the jobs</span>
+        <p>Assign roles for the first round. Write names down so nobody drifts.</p>
+        <table class="grid">
+          <thead><tr><th style="width:26%">Role</th><th style="width:34%">Who</th><th>One thing they must not do</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="thing">Driver</td><td><input type="text" data-key="p3_a_dr" aria-label="Driver"></td><td><input type="text" data-key="p3_a_dr_n" aria-label="Driver not"></td></tr>
+            <tr class="trial"><td class="thing">Navigator</td><td><input type="text" data-key="p3_a_na" aria-label="Navigator"></td><td><input type="text" data-key="p3_a_na_n" aria-label="Navigator not"></td></tr>
+            <tr class="trial"><td class="thing">Strategist</td><td><input type="text" data-key="p3_a_st" aria-label="Strategist"></td><td><input type="text" data-key="p3_a_st_n" aria-label="Strategist not"></td></tr>
+            <tr class="trial"><td class="thing">Builder <span class="muted">(if four)</span></td><td><input type="text" data-key="p3_a_bu" aria-label="Builder"></td><td><input type="text" data-key="p3_a_bu_n" aria-label="Builder not"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+      <li>
+        <span class="stitle">Round one — a challenge you have already beaten</span>
+        <p>Pick something your team has solved before. The point is not the challenge; it is working in role while you do it.</p>
+        <table class="grid">
+          <thead><tr><th style="width:40%">Question</th><th>Our answer</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>Which challenge?</td><td><input type="text" data-key="p3_r1_ch" aria-label="Round 1 challenge"></td></tr>
+            <tr class="trial"><td>Did it work?</td><td><input type="text" data-key="p3_r1_ok" aria-label="Round 1 worked"></td></tr>
+            <tr class="trial"><td>Who broke role first, and how?</td><td><input type="text" data-key="p3_r1_broke" aria-label="Round 1 broke role"></td></tr>
+            <tr class="trial"><td>Did the Navigator catch anything?</td><td><input type="text" data-key="p3_r1_caught" aria-label="Round 1 caught"></td></tr>
+          </tbody>
+        </table>
+        <div class="callout warn">
+          <p class="ctitle">⚠ Somebody Will Grab the Keyboard</p>
+          <p>It happens in almost every team on the first round. Say so out loud, laugh about it, and put the hands back.</p>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">Rotate and go again</span>
+        <p>Everybody moves one role along. New challenge. Repeat until everyone has done every job.</p>
+        <table class="grid">
+          <thead><tr><th style="width:16%">Round</th><th style="width:20%">Driver</th><th style="width:20%">Navigator</th><th style="width:20%">Strategist</th><th>Builder</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_rot1_d" aria-label="R1 driver"></td><td><input type="text" data-key="p3_rot1_n" aria-label="R1 nav"></td><td><input type="text" data-key="p3_rot1_s" aria-label="R1 strat"></td><td><input type="text" data-key="p3_rot1_b" aria-label="R1 build"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_rot2_d" aria-label="R2 driver"></td><td><input type="text" data-key="p3_rot2_n" aria-label="R2 nav"></td><td><input type="text" data-key="p3_rot2_s" aria-label="R2 strat"></td><td><input type="text" data-key="p3_rot2_b" aria-label="R2 build"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_rot3_d" aria-label="R3 driver"></td><td><input type="text" data-key="p3_rot3_n" aria-label="R3 nav"></td><td><input type="text" data-key="p3_rot3_s" aria-label="R3 strat"></td><td><input type="text" data-key="p3_rot3_b" aria-label="R3 build"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_rot4_d" aria-label="R4 driver"></td><td><input type="text" data-key="p3_rot4_n" aria-label="R4 nav"></td><td><input type="text" data-key="p3_rot4_s" aria-label="R4 strat"></td><td><input type="text" data-key="p3_rot4_b" aria-label="R4 build"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_all_rotated"><label for="d1">Everyone on my team has done every role at least once</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Which one suited you?</span>
+        <table class="grid">
+          <thead><tr><th style="width:44%">Question</th><th>My answer</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>The role I found easiest</td><td><input type="text" data-key="p3_easiest" aria-label="Easiest"></td></tr>
+            <tr class="trial"><td>The role I found hardest</td><td><input type="text" data-key="p3_hardest" aria-label="Hardest"></td></tr>
+            <tr class="trial"><td>The role I learnt the most in</td><td><input type="text" data-key="p3_learnt" aria-label="Learnt most"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Were the easiest and the most-learnt-in the same role? What does that tell you?</p>
+        <textarea class="answer" data-key="p3_easy_vs_learn" aria-label="Easy versus learnt"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Set a goal for each role</span>
+        <p>Now that everyone knows what each job feels like, give each role something to aim at for next session.</p>
+        <table class="grid">
+          <thead><tr><th style="width:26%">Role</th><th>Its goal for next time</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="thing">Driver</td><td><input type="text" data-key="p3_gr_dr" aria-label="Driver goal"></td></tr>
+            <tr class="trial"><td class="thing">Navigator</td><td><input type="text" data-key="p3_gr_na" aria-label="Navigator goal"></td></tr>
+            <tr class="trial"><td class="thing">Strategist</td><td><input type="text" data-key="p3_gr_st" aria-label="Strategist goal"></td></tr>
+            <tr class="trial"><td class="thing">Builder</td><td><input type="text" data-key="p3_gr_bu" aria-label="Builder goal"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">How will your team check whether these got done, without it turning into blame?</p>
+        <textarea class="answer" data-key="p3_check_kindly" aria-label="Checking kindly"></textarea>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ===================== SCORE IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">Whose job is it?</h3>
+    <table class="grid">
+      <thead><tr><th style="width:62%">Somebody needs to…</th><th>Which role</th></tr></thead>
+      <tbody>
+        <tr><td>Notice a missing <span class="def-term" data-term="SEMICOLON">semicolon</span> on line 14 as it is typed</td><td><input type="text" data-key="p4_w1" aria-label="W1"></td></tr>
+        <tr><td>Decide whether the run actually scored</td><td><input type="text" data-key="p4_w2" aria-label="W2"></td></tr>
+        <tr><td>Tighten the blade that came loose</td><td><input type="text" data-key="p4_w3" aria-label="W3"></td></tr>
+        <tr><td>Type what the team has agreed on</td><td><input type="text" data-key="p4_w4" aria-label="W4"></td></tr>
+        <tr><td>Work out a different approach after three failed runs</td><td><input type="text" data-key="p4_w5" aria-label="W5"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Usable goal or not?</h3>
+    <table class="grid">
+      <thead><tr><th style="width:50%">Goal</th><th style="width:18%">Usable?</th><th>Fix it if not</th></tr></thead>
+      <tbody>
+        <tr><td>Be a better team</td><td><input type="text" data-key="p4_g1" aria-label="G1"></td><td><input type="text" data-key="p4_g1_f" aria-label="G1 fix"></td></tr>
+        <tr><td>Score Mission 4 three times out of five</td><td><input type="text" data-key="p4_g2" aria-label="G2"></td><td><input type="text" data-key="p4_g2_f" aria-label="G2 fix"></td></tr>
+        <tr><td>Try harder at programming</td><td><input type="text" data-key="p4_g3" aria-label="G3"></td><td><input type="text" data-key="p4_g3_f" aria-label="G3 fix"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_goal"><label for="s1">I can write a goal you could point at and say yes or no</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_rank"><label for="s2">I understand why goals have to be ranked</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_roles"><label for="s3">I can name the four roles and what each is for</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_split"><label for="s4">I can be Navigator without grabbing the keyboard</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_rotate"><label for="s5">I have worked in every role at least once</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_acc"><label for="s6">I can ask a teammate how their job is going without it sounding like blame</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">Driver and Navigator is deliberately slower than one person just writing the code. Why is a team willing to pay that?</p>
+    <textarea class="answer" data-key="p4_slower" aria-label="Why slower"></textarea>
+
+    <p class="q">If one person is always Driver, the team gets faster in the short run. What does it lose over a season?</p>
+    <textarea class="answer" data-key="p4_always_driver" aria-label="Always driver"></textarea>
+
+    <p class="q">You ranked your goals before anything went wrong. How is that different from deciding in the middle of a bad afternoon?</p>
+    <textarea class="answer" data-key="p4_rank_early" aria-label="Ranking early"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>You know what you are aiming at and who is doing what. What you do not have yet is <em>when</em> — or any way of finding out whether it is working.</p>
+    <p>In <strong>Systems Project 14 — Plans and Feedback</strong>, you build a timeline and then go and ask somebody what you got wrong.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFS = {
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'SEMICOLON': ['Semicolon', 'The punctuation mark that ends a statement in C. It does the same job as the full stop at the end of a sentence — it says this instruction is finished, move on to the next one.'],
+    'TANGIBLE': ['Tangible', 'Something you could point at and agree on. A tangible goal is one where everybody would give the same answer to \u201cdid it happen?\u201d \u2014 unlike \u201cget better at robotics\u201d, which two people could argue about forever.'],
+    'ACCOUNTABLE': ['Accountable', 'Being the person a job belongs to, so the team can fairly ask how it is going. Accountability needs everybody to know who had what \u2014 and it only works when the asking is kind rather than accusing.']
+  };
+  function openDef(t){
+    var e=DEFS[t]; if(!e) return;
+    document.getElementById('defTerm').textContent=e[0];
+    document.getElementById('defBody').textContent=e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow='hidden';
+  }
+  function closeDef(){
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el) openDef(el.dataset.term); });
+  document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_systems_13";
+  var MISSION_TITLE = "Systems Project 13 — Goals and Roles";
+  var $=function(s){return document.querySelector(s);};
+  var pinInput=$("#pin"),statusEl=$("#status"),statusBottom=$("#statusBottom"),pinEcho=$("#pinEcho");
+  function collectAnswers(){var a={};document.querySelectorAll("[data-key]").forEach(function(el){a[el.getAttribute("data-key")]=(el.type==="checkbox")?(el.checked?"yes":""):el.value;});return a;}
+  var SAVE_KEY="kipr_"+MISSION_ID+"_draft";
+  function restoreDraft(){var raw=null;try{raw=window.localStorage.getItem(SAVE_KEY);}catch(e){return;}if(!raw)return;
+    var d;try{d=JSON.parse(raw);}catch(e){return;}
+    if(d.pin)pinInput.value=d.pin;
+    if(d.answers)document.querySelectorAll("[data-key]").forEach(function(el){var k=el.getAttribute("data-key");
+      if(k in d.answers){if(el.type==="checkbox")el.checked=d.answers[k]==="yes";else el.value=d.answers[k];}});
+    syncPinEcho();}
+  function saveDraft(){try{window.localStorage.setItem(SAVE_KEY,JSON.stringify({pin:pinInput.value.trim(),answers:collectAnswers()}));}catch(e){}}
+  function syncPinEcho(){pinEcho.textContent=pinInput.value.trim();}
+  restoreDraft();
+  document.addEventListener("input",function(e){if(e.target.matches("[data-key], #pin")){saveDraft();syncPinEcho();}});
+  document.addEventListener("change",function(e){if(e.target.matches("[data-key]"))saveDraft();});
+  function setStatus(msg,kind){statusEl.textContent=msg;statusEl.className="status"+(kind?" "+kind:"");statusBottom.textContent=msg;}
+  function submit(){
+    var pin=pinInput.value.trim();
+    if(!pin){setStatus("Enter your PIN first.","err");pinInput.focus();return;}
+    var payload={mission:MISSION_ID,missionTitle:MISSION_TITLE,pin:pin,submittedAt:new Date().toISOString(),answers:collectAnswers()};
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+    var url=URL.createObjectURL(blob),a=document.createElement("a");
+    a.href=url;a.download=MISSION_ID+"_pin"+pin+".json";
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+    saveDraft();setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function(){window.print();},600);
+  }
+  $("#submitTop").addEventListener("click",submit);
+  $("#submitBottom").addEventListener("click",submit);
+</script>
+
+</body>
+</html>
