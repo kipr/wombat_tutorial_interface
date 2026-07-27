@@ -405,7 +405,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Coding</a><span class="sep">/</span><span class="here">Project 14</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Coding</a><span class="sep">/</span><span class="here">Project 14</span><a class="gloss" href="../../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -567,7 +567,7 @@
 
     <ul class="plain">
       <li>You do not have to mount it on the robot.</li>
-      <li>It runs its own calibration routine on screen — follow the steps it gives you.</li>
+      <li>It runs its own <span class="def-term" data-term="CALIBRATION">calibration</span> routine on screen — follow the steps it gives you.</li>
       <li>Call it near the very top of your program.</li>
       <li>It senses infrared, so an <strong>incandescent bulb or a phone flashlight works — a plain LED usually will not.</strong></li>
       <li>More light means a <em>lower</em> reading, which is the opposite of what most people guess.</li>
@@ -645,7 +645,7 @@
 
       <li>
         <span class="stitle">Start on a light</span>
-        <p>Add <code>wait_for_light()</code> to the top of a program and follow the calibration routine on the Wombat's screen.</p>
+        <p>Add <code>wait_for_light()</code> to the top of a program and follow the <span class="def-term" data-term="CALIBRATION">calibration</span> routine on the Wombat's screen.</p>
         <p>Now your robot sits still until someone shines a light at it.</p>
         <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_light_start"><label for="d3">My robot waits for a light before it runs</label></li></ul>
         <p class="q">Why would every robot at a tournament need to start this way, rather than someone pressing a button on each one?</p>
@@ -860,6 +860,7 @@
 <script>
 (function() {
   var DEFS = {
+    'CALIBRATION': ['Calibration', 'Measuring your own robot to find the numbers that describe it — ticks per inch, a light threshold, a turn count. Calibration is why one team’s numbers do not work on another team’s robot.'],
     'BOUNDARY': ['Boundary', 'The line that marks the edge of a zone or area. Whether an object is inside, outside, or touching the boundary is often the difference between scoring and not scoring.'],
     'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
     'DIGITAL': ['Digital', 'A digital sensor has only two possible readings: 0 or 1. It works like a light switch — pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off.'],
