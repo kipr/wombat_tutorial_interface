@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 14 — Seeing Light and Dark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #5b6270;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #6b7280;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #24200f; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d9b464; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+  .meta dd.anchor { font-weight: 600; color: var(--red); }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #fff8e6;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #fffaef; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+  .callout.danger { border-left-color: #922B21; background: #fdf0ef; }
+  .callout.danger .ctitle { color: #922B21; }
+
+  /* Mission card */
+  .mission { border: 2px solid var(--red); border-radius: 6px; overflow: hidden; margin: 18px 0; }
+  .mission-head {
+    background: var(--red); color: #fff; padding: 11px 18px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .mission-head .mtitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 20px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .mission-head .mpts {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 15px; letter-spacing: .08em; color: rgba(255,255,255,.85);
+  }
+  .mission-body { padding: 4px 18px 14px; }
+  .mpart { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .mpart:last-child { border-bottom: none; }
+  .mpart .mlabel {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--navy); display: block; margin-bottom: 3px;
+  }
+  .mpart .jtag {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 1px 7px; border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+  .jtag.live { background: #d8ecdd; color: #145a32; }
+  .jtag.final { background: #e3e7f5; color: #23336b; }
+  .mpart.later { background: #f6f7f9; margin: 0 -18px; padding-left: 18px; padding-right: 18px; color: var(--grey); }
+  .mpart.later .mlabel { color: var(--grey); }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+  ol.dosteps .spts {
+    display: inline-block; background: var(--gold); color: #24200f;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px;
+    border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+  table.grid tr.total td { background: #f2f4fa; font-weight: 700; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 230px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  /* brightness scale */
+  .scale-bar { margin: 18px 0; }
+  .scale-bar .bar {
+    height: 46px; border-radius: 5px; overflow: hidden; display: flex;
+    border: 1px solid var(--line);
+    background: linear-gradient(to right, #ffffff 0%, #cccccc 35%, #666666 65%, #111111 100%);
+  }
+  .scale-bar .marks {
+    display: flex; justify-content: space-between; margin-top: 6px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 14px;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--grey);
+  }
+  .scale-bar .marks b { color: var(--navy); }
+
+  .codepair { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .codepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+  .codepair .chead {
+    padding: 8px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 13.5px; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--navy);
+  }
+  .codepair .col.after .chead { background: var(--red); }
+  .codepair pre.code { margin: 0; border-radius: 0; font-size: 13px; flex: 1; }
+  .codepair .cnote { padding: 9px 12px; font-size: 15px; background: var(--field); border-top: 1px solid var(--line); }
+
+  .scorepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .scorepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .scorepair .chead {
+    padding: 9px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #fff;
+  }
+  .scorepair .yes .chead { background: #1E8449; }
+  .scorepair .no .chead { background: #922B21; }
+  .scorepair ul { margin: 10px 0 12px; padding-left: 22px; font-size: 16px; }
+  .scorepair li { margin: 6px 0; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .codepair, .scorepair { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .mission-head, .scorepair .chead, .codepair .chead, ol.dosteps .spts, .mpart .jtag, .scale-bar .bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Coding · Project 14</p>
+    <h1>Seeing Light and Dark</h1>
+    <p class="sub">A sensor that answers with a number, not a yes.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Reading a sensor that measures brightness, choosing your own decision point, and using the black line to place things exactly inside the Loading Zone.</dd></div>
+        <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 14 bonus · Mission 18 bonus + advanced — 35 points</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Robot with arm and claw · reflectance (tophat) sensor · light sensor · Wombat · charged battery · the game field</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Projects 10, 11, and 13 — loops, ticks, and <code>if</code> statements.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> How Dark Is It?</h2>
+
+    <p>Your touch sensor answers one question: <em>am I touching something?</em> Yes or no. Nothing else.</p>
+
+    <p>This one is different. Plug the reflectance sensor — the little round one, sometimes called a tophat — into an <strong>analog</strong> port. Then open the Sensor List on the Wombat and watch the number while you hold it over things.</p>
+
+    <div class="callout warn">
+      <p class="ctitle">⚠ Hold It About a Quarter Inch Up</p>
+      <p>Pointed straight down, roughly 1/4 inch off the surface. Touching the surface or held way up both give you useless numbers.</p>
+    </div>
+
+    <table class="grid">
+      <thead><tr><th style="width:56%">Held over...</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>The white part of the game field</td><td><input type="text" data-key="p1_v_white" aria-label="White reading"></td></tr>
+        <tr class="trial"><td>A black line on the field</td><td><input type="text" data-key="p1_v_black" aria-label="Black reading"></td></tr>
+        <tr class="trial"><td>Your desk</td><td><input type="text" data-key="p1_v_desk" aria-label="Desk reading"></td></tr>
+        <tr class="trial"><td>Your hand</td><td><input type="text" data-key="p1_v_hand" aria-label="Hand reading"></td></tr>
+        <tr class="trial"><td>Something dark you find in the room</td><td><input type="text" data-key="p1_v_dark" aria-label="Dark object reading"></td></tr>
+        <tr class="trial"><td>Something light you find in the room</td><td><input type="text" data-key="p1_v_light" aria-label="Light object reading"></td></tr>
+      </tbody>
+    </table>
+
+    <p class="q">Which gives the bigger number — dark surfaces or light ones?</p>
+    <input type="text" data-key="p1_which_bigger" aria-label="Which is bigger">
+
+    <p class="q" style="margin-top:14px">The sensor shines a tiny light down and measures how much bounces back. Use that to explain why the numbers came out the way they did.</p>
+    <textarea class="answer" data-key="p1_why" aria-label="Why the numbers"></textarea>
+
+    <div class="callout gold">
+      <p class="ctitle">There Is No "Black" Reading</p>
+      <p>You did not get a yes or a no. You got a number somewhere in a big range, and it drifts a little every time you look.</p>
+      <p>So <em>you</em> have to decide where black starts. The sensor will not do it for you.</p>
+    </div>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Pick Your Own Dividing Line</h2>
+
+    <p>An <span class="def-term" data-term="ANALOG">ANALOG</span> sensor reports a value across a wide range instead of just 0 or 1.</p>
+
+    <div class="scale-bar">
+      <div class="bar"></div>
+      <div class="marks">
+        <span><b>~100</b> — white, lots of light bounced back</span>
+        <span><b>~2500</b> — black, most light absorbed</span>
+      </div>
+    </div>
+
+    <p class="muted">Your numbers will not match anyone else's. Different sensor, different mounting height, different room lighting.</p>
+
+    <h3 class="sub">Your threshold</h3>
+
+    <p>A <span class="def-term" data-term="THRESHOLD">THRESHOLD</span> is the number you pick as the dividing line. Below it, call it white. Above it, call it black.</p>
+
+    <p>The usual starting point is halfway between your two readings:</p>
+
+    <pre class="code">threshold = (white + black) / <span class="nu">2</span>
+
+<span class="cm">// for example: (100 + 2500) / 2 = 1300</span></pre>
+
+    <p>That is a starting guess, not a final answer. You will adjust it.</p>
+
+    <h3 class="sub">Reading it in code</h3>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="acode">analog(1);</div>
+        <div class="adesc">Gives you the number from the analog sensor in port 1. Compare it against your threshold to decide what the robot is looking at.</div>
+      </div>
+    </div>
+
+    <h3 class="sub">Your third kind of loop condition</h3>
+
+    <p>The loop has not changed at all. Only what it watches.</p>
+
+    <div class="codepair">
+      <div class="col">
+        <div class="chead">Project 10 — a switch</div>
+        <pre class="code"><span class="kw">while</span> (digital(bump)
+       == <span class="nu">0</span>)
+{
+    drive;
+}</pre>
+        <div class="cnote">Two possible values.</div>
+      </div>
+      <div class="col">
+        <div class="chead">Project 11 — a count</div>
+        <pre class="code"><span class="kw">while</span> (gmpc(left)
+       &lt; <span class="nu">4000</span>)
+{
+    drive;
+}</pre>
+        <div class="cnote">A number that climbs steadily.</div>
+      </div>
+      <div class="col after">
+        <div class="chead">Now — a brightness</div>
+        <pre class="code"><span class="kw">while</span> (analog(line)
+       &lt; threshold)
+{
+    drive;
+}</pre>
+        <div class="cnote">A number that jumps around a bit.</div>
+      </div>
+    </div>
+
+    <p>Read the new one out loud: <em>"While the sensor is seeing something lighter than my threshold, keep driving. The moment it sees something darker, stop."</em></p>
+
+    <div class="callout navy">
+      <p class="ctitle">When It Does Not Work, Move the Threshold</p>
+      <p><strong>Stops too early, before reaching black?</strong> Your threshold is too low. Move it up, toward your black value.</p>
+      <p><strong>Drives straight over the line and keeps going?</strong> Your threshold is too high. Move it down, toward your white value.</p>
+      <p>Also check the obvious: is the sensor pointed straight down, about a quarter inch off the surface?</p>
+    </div>
+
+    <h3 class="sub">Starting on a light</h3>
+
+    <p>The light sensor does one job, and it is the job every Botball robot needs: it waits for the lights to come on, then starts the match.</p>
+
+    <pre class="code">wait_for_light(<span class="nu">3</span>);   <span class="cm">// wait for light on port 3, then continue</span></pre>
+
+    <ul class="plain">
+      <li>You do not have to mount it on the robot.</li>
+      <li>It runs its own calibration routine on screen — follow the steps it gives you.</li>
+      <li>Call it near the very top of your program.</li>
+      <li>It senses infrared, so an <strong>incandescent bulb or a phone flashlight works — a plain LED usually will not.</strong></li>
+      <li>More light means a <em>lower</em> reading, which is the opposite of what most people guess.</li>
+    </ul>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Find the Line, Then Use It</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Mount it and set your threshold</span>
+        <p>Fix the reflectance sensor to the front underside of your robot, pointing straight down, about 1/4 inch clear of the mat. Then take fresh readings from the mounted position — they will not match what you got holding it in your hand.</p>
+        <table class="grid">
+          <thead><tr><th style="width:56%">Measurement</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>Analog port I used</td><td><input type="text" data-key="p3_port" aria-label="Analog port"></td></tr>
+            <tr class="trial"><td>White reading, mounted</td><td><input type="text" data-key="p3_white" aria-label="White mounted"></td></tr>
+            <tr class="trial"><td>Black reading, mounted</td><td><input type="text" data-key="p3_black" aria-label="Black mounted"></td></tr>
+            <tr class="trial"><td>My threshold — (white + black) / 2</td><td><input type="text" data-key="p3_threshold" aria-label="Threshold"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+      <li>
+        <span class="stitle">Find the Line</span>
+        <p>New project called <code>Find the Line</code>. Drive forward until the sensor sees black, then stop.</p>
+        <pre class="code"><span class="cm">// 1. Print "Looking for the black line"</span>
+<span class="cm">// 2. While the sensor reads less than my threshold, drive forward</span>
+<span class="cm">// 3. Fall out of the loop when it reads more than the threshold</span>
+<span class="cm">// 4. Stop everything</span></pre>
+        <p>Use variables for your motors and your threshold — you have known better than bare numbers since Project 9.</p>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Try</th><th style="width:30%">Threshold</th><th>What happened</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_t1_th" aria-label="Try 1 threshold"></td><td><input type="text" data-key="p3_t1_res" aria-label="Try 1 result"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_t2_th" aria-label="Try 2 threshold"></td><td><input type="text" data-key="p3_t2_res" aria-label="Try 2 result"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_t3_th" aria-label="Try 3 threshold"></td><td><input type="text" data-key="p3_t3_res" aria-label="Try 3 result"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_finds_line"><label for="d1">My robot stops on the black line</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Three lines, three distances</span>
+        <p>The real test of a threshold is whether it works when you did not tune it for that exact spot.</p>
+        <p>Set your robot at three different distances from a line and run the same program each time, changing nothing.</p>
+        <table class="grid">
+          <thead><tr><th style="width:30%">Starting distance</th><th>Did it stop on the line?</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td><input type="text" data-key="p3_l1_dist" aria-label="Line 1 distance"></td><td><input type="text" data-key="p3_l1_res" aria-label="Line 1 result"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_l2_dist" aria-label="Line 2 distance"></td><td><input type="text" data-key="p3_l2_res" aria-label="Line 2 result"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_l3_dist" aria-label="Line 3 distance"></td><td><input type="text" data-key="p3_l3_res" aria-label="Line 3 result"></td></tr>
+          </tbody>
+        </table>
+        <div class="callout gold">
+          <p class="ctitle">This Is Something Ticks Cannot Do</p>
+          <p>A tick count only works from a known starting point. This program finds the line from <em>anywhere</em> — it does not care where it began.</p>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">Drive to black, back up to black</span>
+        <p>Now do it twice in a row. Drive forward to a line, stop, then reverse until you find a line again.</p>
+        <div class="callout warn">
+          <p class="ctitle">⚠ Think Before You Write This One</p>
+          <p>When the robot stops, it is <em>sitting on black</em>. If you immediately start a loop that says "back up while you see white," what does the sensor see on the very first check?</p>
+        </div>
+        <p class="q">What did you have to do to get off the first line before looking for the next one?</p>
+        <textarea class="answer" data-key="p3_off_first_line" aria-label="Getting off the line"></textarea>
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_two_lines"><label for="d2">My robot finds a line going forward and another going backward</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Start on a light</span>
+        <p>Add <code>wait_for_light()</code> to the top of a program and follow the calibration routine on the Wombat's screen.</p>
+        <p>Now your robot sits still until someone shines a light at it.</p>
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_light_start"><label for="d3">My robot waits for a light before it runs</label></li></ul>
+        <p class="q">Why would every robot at a tournament need to start this way, rather than someone pressing a button on each one?</p>
+        <textarea class="answer" data-key="p3_why_light" aria-label="Why light start"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 14 Bonus — a cone in the zone<span class="spts">7 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 14 — Traffic Control</span>
+            <span class="mpts">Bonus 7 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart later">
+              <span class="mlabel">Base — 3 pts — done in Project 6</span>
+              Both Traffic Cones satisfy the OFF definition.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Bonus Mission — 7 pts<span class="jtag final">📋 Final</span></span>
+              A Traffic Cone is <span class="def-term" data-term="IN">IN</span> the Loading Zone.
+            </div>
+          </div>
+        </div>
+        <div class="callout danger">
+          <p class="ctitle">⚠ The Base Still Has to Hold</p>
+          <p>You cannot score this bonus unless <strong>both</strong> cones are OFF the black line — including the one you left behind. If your second cone drifted back onto the tape, the bonus is worth nothing.</p>
+        </div>
+        <p>Use your line-finding program to drive to the Loading Zone boundary, then place the cone.</p>
+        <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_m14_bonus"><label for="d4">A cone is IN the Loading Zone and the other is still OFF the line</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 18 — Botguy and both cones<span class="spts">28 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 18 — Safety First, All Hands on Deck</span>
+            <span class="mpts">39 points across all three parts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart later">
+              <span class="mlabel">Base — 11 pts — done in Project 11</span>
+              Botguy is IN the Loading Zone.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Bonus Mission — 13 pts<span class="jtag final">📋 Final</span></span>
+              Botguy is IN the Loading Zone <strong>and</strong> at least one Traffic Cone is <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> the Loading Zone.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Advanced Bonus — 15 pts<span class="jtag final">📋 Final</span></span>
+              Botguy is IN the Loading Zone <strong>and both</strong> Traffic Cones are FULLY WITHIN the Loading Zone.
+            </div>
+          </div>
+        </div>
+
+        <div class="callout danger">
+          <p class="ctitle">⚠ IN and FULLY WITHIN Are Not the Same Thing</p>
+          <p>Mission 14's bonus only needs a cone <strong>IN</strong> the zone — any part of it poking into the interior counts.</p>
+          <p>Mission 18 needs the cones <strong>FULLY WITHIN</strong> — every single part inside, nothing touching or crossing the boundary.</p>
+          <p>A cone half over the line scores Mission 14 and <em>nothing</em> from Mission 18. This is exactly why you need the sensor: it tells you where the boundary actually is.</p>
+        </div>
+
+        <div class="scorepair">
+          <div class="col yes">
+            <div class="chead">✓ Scores</div>
+            <ul>
+              <li>Botguy and one cone FULLY WITHIN the zone.</li>
+              <li>Botguy and both cones FULLY WITHIN the zone.</li>
+              <li>Botguy and the cones do not have to touch each other.</li>
+            </ul>
+          </div>
+          <div class="col no">
+            <div class="chead">✗ Does Not Score</div>
+            <ul>
+              <li>A cone is in the zone but Botguy is not.</li>
+              <li>Botguy touching only the outside boundary of the zone.</li>
+              <li>Botguy and only one cone, for the Advanced Bonus.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout gold">
+          <p class="ctitle">One Delivery, Three Scores</p>
+          <p>Put Botguy and <strong>both</strong> cones fully inside the Loading Zone and you collect Mission 14's bonus, Mission 18's bonus, and Mission 18's advanced — 35 points from one trip pattern.</p>
+          <p>Every part of this is final position, so nothing may drift out before the match ends.</p>
+        </div>
+
+        <p class="q">Which order will you deliver them in, and why that order?</p>
+        <textarea class="answer" data-key="p3_delivery_order" aria-label="Delivery order"></textarea>
+
+        <ul class="check">
+          <li><input type="checkbox" id="d5" data-key="p3_m18_botguy"><label for="d5">Botguy is IN the Loading Zone</label></li>
+          <li><input type="checkbox" id="d6" data-key="p3_m18_cone1"><label for="d6">One cone is FULLY WITHIN — no part over the boundary</label></li>
+          <li><input type="checkbox" id="d7" data-key="p3_m18_cone2"><label for="d7">The second cone is FULLY WITHIN too</label></li>
+          <li><input type="checkbox" id="d8" data-key="p3_m18_nothing_moved"><label for="d8">Nothing got knocked out while placing the last one</label></li>
+        </ul>
+      </li>
+
+      <li>
+        <span class="stitle">Run it five times</span>
+        <table class="grid">
+          <thead><tr><th style="width:12%">Run</th><th style="width:20%">M14 bonus</th><th style="width:20%">M18 bonus</th><th style="width:22%">M18 advanced</th><th>Points</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_r1_m14" aria-label="R1 M14"></td><td><input type="text" data-key="p3_r1_m18b" aria-label="R1 M18 bonus"></td><td><input type="text" data-key="p3_r1_m18a" aria-label="R1 M18 adv"></td><td><input type="text" data-key="p3_r1_pts" aria-label="R1 points"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_r2_m14" aria-label="R2 M14"></td><td><input type="text" data-key="p3_r2_m18b" aria-label="R2 M18 bonus"></td><td><input type="text" data-key="p3_r2_m18a" aria-label="R2 M18 adv"></td><td><input type="text" data-key="p3_r2_pts" aria-label="R2 points"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_r3_m14" aria-label="R3 M14"></td><td><input type="text" data-key="p3_r3_m18b" aria-label="R3 M18 bonus"></td><td><input type="text" data-key="p3_r3_m18a" aria-label="R3 M18 adv"></td><td><input type="text" data-key="p3_r3_pts" aria-label="R3 points"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_r4_m14" aria-label="R4 M14"></td><td><input type="text" data-key="p3_r4_m18b" aria-label="R4 M18 bonus"></td><td><input type="text" data-key="p3_r4_m18a" aria-label="R4 M18 adv"></td><td><input type="text" data-key="p3_r4_pts" aria-label="R4 points"></td></tr>
+            <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p3_r5_m14" aria-label="R5 M14"></td><td><input type="text" data-key="p3_r5_m18b" aria-label="R5 M18 bonus"></td><td><input type="text" data-key="p3_r5_m18a" aria-label="R5 M18 adv"></td><td><input type="text" data-key="p3_r5_pts" aria-label="R5 points"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">If a placement failed, was it the driving or the letting go?</p>
+        <input type="text" data-key="p3_what_failed" aria-label="What failed">
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">My score</h3>
+    <table class="grid">
+      <thead><tr><th style="width:52%">Mission part</th><th style="width:24%">Scored?</th><th>Points</th></tr></thead>
+      <tbody>
+        <tr><td>Mission 14 — Bonus (a cone IN the Loading Zone)</td><td><input type="text" data-key="p4_s_m14" aria-label="Score M14"></td><td class="ctr">7</td></tr>
+        <tr><td>Mission 18 — Bonus (Botguy + one cone FULLY WITHIN)</td><td><input type="text" data-key="p4_s_m18b" aria-label="Score M18 bonus"></td><td class="ctr">13</td></tr>
+        <tr><td>Mission 18 — Advanced (Botguy + both cones FULLY WITHIN)</td><td><input type="text" data-key="p4_s_m18a" aria-label="Score M18 advanced"></td><td class="ctr">15</td></tr>
+        <tr class="total"><td>My total</td><td><input type="text" data-key="p4_total" aria-label="Total"></td><td class="ctr">35</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">My sensor card</h3>
+    <table class="grid">
+      <thead><tr><th style="width:56%">Measurement</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Reflectance sensor analog port</td><td><input type="text" data-key="p4_port" aria-label="Port"></td></tr>
+        <tr><td>White reading</td><td><input type="text" data-key="p4_white" aria-label="White"></td></tr>
+        <tr><td>Black reading</td><td><input type="text" data-key="p4_black" aria-label="Black"></td></tr>
+        <tr><td>Threshold I actually use</td><td><input type="text" data-key="p4_thresh" aria-label="Threshold"></td></tr>
+        <tr><td>Light sensor port</td><td><input type="text" data-key="p4_light_port" aria-label="Light port"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">IN or FULLY WITHIN?</h3>
+    <p>Say whether each one satisfies IN, FULLY WITHIN, both, or neither.</p>
+    <table class="grid">
+      <thead><tr><th style="width:56%">The cone is...</th><th>Which definition?</th></tr></thead>
+      <tbody>
+        <tr><td>Sitting well inside the zone, nothing near the edge</td><td><input type="text" data-key="p4_def1" aria-label="Definition 1"></td></tr>
+        <tr><td>Mostly inside, with its base edge resting on the boundary line</td><td><input type="text" data-key="p4_def2" aria-label="Definition 2"></td></tr>
+        <tr><td>Just its tip poking over the boundary into the zone</td><td><input type="text" data-key="p4_def3" aria-label="Definition 3"></td></tr>
+        <tr><td>Right beside the zone, touching the outside of the line</td><td><input type="text" data-key="p4_def4" aria-label="Definition 4"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Fix the threshold</h3>
+    <table class="grid">
+      <thead><tr><th style="width:56%">The robot...</th><th>Move the threshold which way?</th></tr></thead>
+      <tbody>
+        <tr><td>Stops before it reaches the black line</td><td><input type="text" data-key="p4_fix1" aria-label="Fix 1"></td></tr>
+        <tr><td>Drives over the line and keeps going</td><td><input type="text" data-key="p4_fix2" aria-label="Fix 2"></td></tr>
+        <tr><td>Stops in a different place each run</td><td><input type="text" data-key="p4_fix3" aria-label="Fix 3"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_analog"><label for="s1">I can explain how an analog sensor differs from a digital one</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_mount"><label for="s2">I can mount a reflectance sensor at the right height and angle</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_readings"><label for="s3">I can take white and black readings and work out a threshold</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_findline"><label for="s4">I can write a loop that drives until the sensor sees black</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_tune"><label for="s5">I know which way to move my threshold when it stops too early or too late</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_light"><label for="s6">I can start a program with <code>wait_for_light()</code></label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_defs"><label for="s7">I can tell IN from FULLY WITHIN and place an object to satisfy the stricter one</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">Your threshold works perfectly in your classroom. The tournament room has huge windows and much brighter light. What might happen, and what would you do about it on the day?</p>
+    <textarea class="answer" data-key="p4_bright_room" aria-label="Bright room"></textarea>
+
+    <p class="q">Your robot now has three ways to know where it is: bumping something, counting ticks, and reading brightness. Which one would you trust most, and does the answer change depending on the job?</p>
+    <textarea class="answer" data-key="p4_which_trust" aria-label="Which to trust"></textarea>
+
+    <p class="q">Right now the sensor only tells your robot to stop. What if it kept reading while driving, and steered based on what it saw?</p>
+    <textarea class="answer" data-key="p4_keep_reading" aria-label="Keep reading"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>That last question is the whole of the next project. In <strong>Project 15 — Following the Line</strong>, the sensor stops being a stop sign and becomes a steering wheel.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'ANALOG': ['Analog', 'An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers "how dark is this?" with a number, so you have to decide for yourself where dark begins.'],
+    'THRESHOLD': ['Threshold', 'The number you choose as your dividing line. Readings below it count as one thing, readings above it count as another. A common starting point is halfway between your white and black readings, then you adjust from there.'],
+    'IN': ['In', 'An object is IN a container, enclosure, basket, or zone when any portion of the object extends into the interior space of that container, enclosure, basket, or zone — unless otherwise specified by a mission.'],
+    'FULLY WITHIN': ['Fully Within', 'An object or robot is FULLY WITHIN an area when every part of the object or robot lies inside the boundary of that area — no portion may touch or cross the boundary line.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) openDef(el.dataset.term);
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_coding_14";
+  var MISSION_TITLE = "Discovery Project 14 — Seeing Light and Dark";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>

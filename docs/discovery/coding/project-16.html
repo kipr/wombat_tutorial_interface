@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 16 — Building Your Toolbox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #5b6270;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #6b7280;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #24200f; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d9b464; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #fff8e6;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #fffaef; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+  .callout.danger { border-left-color: #922B21; background: #fdf0ef; }
+  .callout.danger .ctitle { color: #922B21; }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 230px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  /* file layout diagram */
+  .files { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .files .f { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .files .fname {
+    background: var(--navy); color: #fff; padding: 9px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; font-weight: bold;
+  }
+  .files .f.main .fname { background: var(--red); }
+  .files pre.code { margin: 0; border-radius: 0; font-size: 13.5px; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .files { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode, .files .fname { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Coding · Project 16</p>
+    <h1>Building Your Toolbox</h1>
+    <p class="sub">Write it once. Use it in every project you ever make.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Moving your functions out of one program and into a library file your whole team can share and carry forward.</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Wombat · your computer · every project you have written since Project 12</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 12 onward — you need a set of working functions worth keeping.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> How Many Copies Do You Have?</h2>
+
+    <p>Open your projects from 12 onwards, one at a time, and count.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:52%">Project</th><th style="width:24%">Has a drive function?</th><th>Has a turn function?</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>12 — Teaching Your Robot New Moves</td><td><input type="text" data-key="p1_p12_drive" aria-label="P12 drive"></td><td><input type="text" data-key="p1_p12_turn" aria-label="P12 turn"></td></tr>
+        <tr class="trial"><td>13 — Deciding What to Do</td><td><input type="text" data-key="p1_p13_drive" aria-label="P13 drive"></td><td><input type="text" data-key="p1_p13_turn" aria-label="P13 turn"></td></tr>
+        <tr class="trial"><td>14 — Seeing Light and Dark</td><td><input type="text" data-key="p1_p14_drive" aria-label="P14 drive"></td><td><input type="text" data-key="p1_p14_turn" aria-label="P14 turn"></td></tr>
+        <tr class="trial"><td>15 — Following the Line</td><td><input type="text" data-key="p1_p15_drive" aria-label="P15 drive"></td><td><input type="text" data-key="p1_p15_turn" aria-label="P15 turn"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Now find out whether they match</h3>
+
+    <p>Put the drive functions from two different projects side by side and compare them line for line.</p>
+
+    <p class="q">Are they identical?</p>
+    <input type="text" data-key="p1_identical" aria-label="Are they identical">
+
+    <p class="q" style="margin-top:14px">Somewhere along the way you improved one of these — a better overshoot number, a cleaner stop. Which project has your <em>best</em> version, and do the others have it?</p>
+    <textarea class="answer" data-key="p1_best_version" aria-label="Best version"></textarea>
+
+    <div class="callout danger">
+      <p class="ctitle">⚠ Your Good Work Is Trapped</p>
+      <p>Project 12 fixed the problem of writing the same code twice <em>inside one program</em>. It did nothing about writing it again in the <em>next</em> program.</p>
+      <p>Right now every improvement you make lives in exactly one project, and the others quietly keep the old broken version.</p>
+    </div>
+
+    <p class="q">Your team has four people, each working on a different mission in a different project. One of them finds a much better turn. How does that reach everyone else?</p>
+    <textarea class="answer" data-key="p1_team_sharing" aria-label="Team sharing"></textarea>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Your Own Header File</h2>
+
+    <p>A <span class="def-term" data-term="LIBRARY">LIBRARY</span> is a collection of functions kept in a separate file that any program can include.</p>
+
+    <p>You have been using one since Project 2. It is the very first line of every program you have ever written:</p>
+
+    <pre class="code"><span class="kw">#include</span> &lt;kipr/wombat.h&gt;</pre>
+
+    <p>That is the KIPR library. You cannot change it — but you can make your own beside it.</p>
+
+    <h3 class="sub">Two kinds of include</h3>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="acode">#include &lt;kipr/wombat.h&gt;</div>
+        <div class="adesc"><strong>Angle brackets</strong> mean "a library that came with the system." The Wombat knows where to find it.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">#include "myLibrary.h"</div>
+        <div class="adesc"><strong>Quotation marks</strong> mean "a file sitting in my own project." That is the one you are about to write.</div>
+      </div>
+    </div>
+
+    <p class="muted">Get the brackets wrong and the compiler goes looking in the wrong place. It is a small detail that causes a confusing error.</p>
+
+    <h3 class="sub">What goes in your <span class="def-term" data-term="HEADER FILE">HEADER FILE</span></h3>
+
+    <p>Everything. Your prototypes and your definitions, all in the one <code>.h</code> file.</p>
+
+    <div class="callout gold">
+      <p class="ctitle">Include the KIPR Library Inside Your Library</p>
+      <p>Your functions call <code>motor()</code>, <code>msleep()</code>, <code>analog()</code>. Those come from KIPR — so your <code>.h</code> file needs its own <code>#include &lt;kipr/wombat.h&gt;</code> at the top.</p>
+      <p>Leave it out and every function inside your library breaks, even though the code looks perfect.</p>
+    </div>
+
+    <div class="files">
+      <div class="f">
+        <div class="fname">myLibrary.h</div>
+        <pre class="code"><span class="kw">#include</span> &lt;kipr/wombat.h&gt;
+
+<span class="kw">void</span> drive_forward(<span class="kw">int</span> ticks);
+<span class="kw">void</span> turn_right();
+
+<span class="kw">void</span> drive_forward(<span class="kw">int</span> ticks)
+{
+    cmpc(<span class="nu">0</span>);
+    <span class="kw">while</span> (gmpc(<span class="nu">0</span>) &lt; ticks)
+    {
+        motor(<span class="nu">0</span>, <span class="nu">50</span>);
+        motor(<span class="nu">3</span>, <span class="nu">50</span>);
+    }
+    ao();
+    msleep(<span class="nu">500</span>);
+}
+
+<span class="kw">void</span> turn_right()
+{
+    <span class="cm">// your turn code</span>
+}</pre>
+      </div>
+      <div class="f main">
+        <div class="fname">main.c</div>
+        <pre class="code"><span class="kw">#include</span> &lt;kipr/wombat.h&gt;
+<span class="kw">#include</span> <span class="st">"myLibrary.h"</span>
+
+<span class="kw">int</span> main()
+{
+    drive_forward(<span class="nu">4000</span>);
+    turn_right();
+    drive_forward(<span class="nu">2000</span>);
+
+    <span class="kw">return</span> <span class="nu">0</span>;
+}</pre>
+      </div>
+    </div>
+
+    <p>Look at what <code>main.c</code> became. Two includes and a list of what the robot does. Nothing else.</p>
+
+    <h3 class="sub">Making one</h3>
+
+    <ul class="plain">
+      <li>On the KIPR Software Suite home screen, click <strong>User Preferences</strong> and switch on the advanced interface. Without this you will not see the file options.</li>
+      <li>In the KISS IDE, select your user folder.</li>
+      <li>Under <strong>Include File</strong>, click <strong>+ Add File</strong>.</li>
+      <li>Name it — something short and yours, like your team name.</li>
+      <li>Click <strong>Create</strong>.</li>
+    </ul>
+
+    <p class="muted">Include files are <code>.h</code> files. You may also see an option for source files, which are <code>.c</code> — you do not need those for this.</p>
+
+    <div class="callout danger">
+      <p class="ctitle">⚠ Save. Every Time.</p>
+      <p>Editing a <code>.h</code> file and forgetting to save it is the number one reason a library "does not work." Your changes are sitting in the editor and the compiler never saw them.</p>
+      <p>Save the <code>.h</code>, then compile.</p>
+    </div>
+
+    <h3 class="sub">When it will not compile</h3>
+
+    <table class="grid">
+      <thead><tr><th style="width:44%">Check this</th><th>In which file</th></tr></thead>
+      <tbody>
+        <tr><td>Did I include the KIPR library?</td><td>Both <code>main.c</code> and my <code>.h</code></td></tr>
+        <tr><td>Did I include my own library, with quotation marks?</td><td><code>main.c</code></td></tr>
+        <tr><td>Does the name in the include exactly match the file name?</td><td><code>main.c</code></td></tr>
+        <tr><td>Did I save the <code>.h</code> file after my last edit?</td><td>My <code>.h</code></td></tr>
+        <tr><td>Is every function's prototype above its definition?</td><td>My <code>.h</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Move In</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Turn on the advanced interface</span>
+        <p>Software Suite home screen → <strong>User Preferences</strong> → switch on the advanced interface.</p>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_prefs"><label for="d1">I can see the Include File option in the KISS IDE</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Create your library file</span>
+        <p>Add an include file and name it. Then put the KIPR include at the top and save it immediately, before you write anything else.</p>
+        <table class="grid">
+          <thead><tr><th style="width:56%">Question</th><th>My answer</th></tr></thead>
+          <tbody>
+            <tr><td>What did I name my library?</td><td><input type="text" data-key="p3_lib_name" aria-label="Library name"></td></tr>
+            <tr><td>What line do I put in <code>main.c</code> to use it?</td><td><input type="text" data-key="p3_include_line" aria-label="Include line"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+      <li>
+        <span class="stitle">Move one function — just one</span>
+        <p>Pick your drive function. Cut the prototype and the definition out of a project and paste both into your <code>.h</code> file. Save it.</p>
+        <p>Then add the include to <code>main.c</code> and compile.</p>
+        <div class="callout gold">
+          <p class="ctitle">One at a Time, Same as Always</p>
+          <p>Move one function, compile, run it on the robot. If it works, move the next. Moving six at once and finding it broken tells you nothing about which one broke it.</p>
+        </div>
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_one_moved"><label for="d2">One function lives in my library and my program still runs</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Break it four ways</span>
+        <p>Each of these is a mistake you will make for real one day. Make it now, on purpose, and write down what the compiler says.</p>
+        <table class="grid">
+          <thead><tr><th style="width:44%">Break this</th><th>What the error said</th></tr></thead>
+          <tbody>
+            <tr><td>Delete <code>#include "myLibrary.h"</code> from main.c</td><td><input type="text" data-key="p3_err_no_include" aria-label="No include error"></td></tr>
+            <tr><td>Delete the KIPR include from your <code>.h</code></td><td><input type="text" data-key="p3_err_no_kipr" aria-label="No KIPR error"></td></tr>
+            <tr><td>Edit the <code>.h</code> and compile <em>without</em> saving</td><td><input type="text" data-key="p3_err_no_save" aria-label="No save error"></td></tr>
+            <tr><td>Use <code>&lt;angle brackets&gt;</code> for your own library</td><td><input type="text" data-key="p3_err_brackets" aria-label="Brackets error"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Which of those four gave the least helpful error message?</p>
+        <input type="text" data-key="p3_least_helpful" aria-label="Least helpful error">
+      </li>
+
+      <li>
+        <span class="stitle">Move the rest</span>
+        <p>Go through the function list you wrote in Project 12 and move each one across, compiling as you go. For each function, take the <strong>best</strong> version you have written — not just the first one you find.</p>
+        <table class="grid">
+          <thead><tr><th style="width:38%">Function</th><th style="width:32%">Best version came from</th><th>Moved?</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td><input type="text" data-key="p3_f1" aria-label="Function 1"></td><td><input type="text" data-key="p3_f1_from" aria-label="Function 1 from"></td><td><input type="text" data-key="p3_f1_done" aria-label="Function 1 done"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_f2" aria-label="Function 2"></td><td><input type="text" data-key="p3_f2_from" aria-label="Function 2 from"></td><td><input type="text" data-key="p3_f2_done" aria-label="Function 2 done"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_f3" aria-label="Function 3"></td><td><input type="text" data-key="p3_f3_from" aria-label="Function 3 from"></td><td><input type="text" data-key="p3_f3_done" aria-label="Function 3 done"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_f4" aria-label="Function 4"></td><td><input type="text" data-key="p3_f4_from" aria-label="Function 4 from"></td><td><input type="text" data-key="p3_f4_done" aria-label="Function 4 done"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_f5" aria-label="Function 5"></td><td><input type="text" data-key="p3_f5_from" aria-label="Function 5 from"></td><td><input type="text" data-key="p3_f5_done" aria-label="Function 5 done"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_f6" aria-label="Function 6"></td><td><input type="text" data-key="p3_f6_from" aria-label="Function 6 from"></td><td><input type="text" data-key="p3_f6_done" aria-label="Function 6 done"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_f7" aria-label="Function 7"></td><td><input type="text" data-key="p3_f7_from" aria-label="Function 7 from"></td><td><input type="text" data-key="p3_f7_done" aria-label="Function 7 done"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_f8" aria-label="Function 8"></td><td><input type="text" data-key="p3_f8_from" aria-label="Function 8 from"></td><td><input type="text" data-key="p3_f8_done" aria-label="Function 8 done"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_all_moved"><label for="d3">All my functions are in my library and my program still scores</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Start fresh and pull it in</span>
+        <p>Make a brand new project. Do not write a single function in it.</p>
+        <pre class="code"><span class="kw">#include</span> &lt;kipr/wombat.h&gt;
+<span class="kw">#include</span> <span class="st">"myLibrary.h"</span>
+
+<span class="kw">int</span> main()
+{
+    <span class="cm">// write a short run using only functions from your library</span>
+
+    <span class="kw">return</span> <span class="nu">0</span>;
+}</pre>
+        <p>To use your library in a new project, add it under <strong>Include File</strong> and choose <strong>upload a file</strong>, then pick your <code>.h</code>.</p>
+        <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_new_project"><label for="d4">A brand new project runs a real sequence using only my library</label></li></ul>
+        <p class="q">How many lines is your new <code>main.c</code>?</p>
+        <input type="text" data-key="p3_new_lines" aria-label="New main lines">
+      </li>
+
+      <li>
+        <span class="stitle">Fix it once, watch it spread</span>
+        <p>Change something in your library — sharpen the turn, adjust the overshoot. Save. Then run <strong>two different projects</strong> that both include it.</p>
+        <p class="q">What happened in the project you did not touch?</p>
+        <textarea class="answer" data-key="p3_spread" aria-label="Change spread"></textarea>
+        <div class="callout gold">
+          <p class="ctitle">That Is the Whole Point</p>
+          <p>One edit, in one place, and every program that includes your library got better at the same instant. That is what a library buys you.</p>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">Write the instructions</span>
+        <p>A library nobody can use is not much good. Put a comment block at the top of your <code>.h</code> file listing what is in it.</p>
+        <pre class="code"><span class="cm">// ============================================</span>
+<span class="cm">// Team Bulldogs robot library</span>
+<span class="cm">// Last updated: 12 March</span>
+<span class="cm">//</span>
+<span class="cm">// drive_forward(ticks)  - drives straight, given distance</span>
+<span class="cm">// turn_right()          - zero radius 90 degrees right</span>
+<span class="cm">// grab()                - arm down, close claw, arm up</span>
+<span class="cm">// release()             - arm down, open claw, back away</span>
+<span class="cm">// follow_line(ticks)    - follows the left edge for a distance</span>
+<span class="cm">// ============================================</span></pre>
+        <p>Then hand your library to another team and ask them to write a short program with it — without asking you any questions.</p>
+        <ul class="check"><li><input type="checkbox" id="d5" data-key="p3_documented"><label for="d5">Another team used my library without me explaining it</label></li></ul>
+        <p class="q">What did they get stuck on? That is the thing your comments should have said.</p>
+        <textarea class="answer" data-key="p3_stuck_on" aria-label="What they got stuck on"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Back it up</span>
+        <p>Your library is now the most valuable file your team owns. Download it from the <strong>File Menu</strong> and keep a copy somewhere off the robot.</p>
+        <ul class="check"><li><input type="checkbox" id="d6" data-key="p3_backed_up"><label for="d6">My library is saved somewhere other than the Wombat</label></li></ul>
+        <p class="muted">Same lesson as Project 1. Code that only exists in one place is code you are about to lose.</p>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <p>No mission points this time. What you built is the thing that makes every future run faster to write.</p>
+
+    <h3 class="sub">My library</h3>
+    <table class="grid">
+      <thead><tr><th style="width:56%">Question</th><th>My answer</th></tr></thead>
+      <tbody>
+        <tr><td>Library file name</td><td><input type="text" data-key="p4_name" aria-label="Library name"></td></tr>
+        <tr><td>How many functions are in it?</td><td><input type="text" data-key="p4_count" aria-label="Function count"></td></tr>
+        <tr><td>Where is my backup copy?</td><td><input type="text" data-key="p4_backup" aria-label="Backup location"></td></tr>
+        <tr><td>Who else on my team has a copy?</td><td><input type="text" data-key="p4_who_has" aria-label="Who has it"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Which file?</h3>
+    <p>Say whether each line belongs in your <code>.h</code> file, in <code>main.c</code>, or in both.</p>
+    <table class="grid">
+      <thead><tr><th style="width:52%">Line</th><th>Which file</th></tr></thead>
+      <tbody>
+        <tr><td><code>#include &lt;kipr/wombat.h&gt;</code></td><td><input type="text" data-key="p4_which_kipr" aria-label="Which file KIPR"></td></tr>
+        <tr><td><code>#include "myLibrary.h"</code></td><td><input type="text" data-key="p4_which_mine" aria-label="Which file mine"></td></tr>
+        <tr><td><code>void turn_right();</code></td><td><input type="text" data-key="p4_which_proto" aria-label="Which file prototype"></td></tr>
+        <tr><td>The body of <code>turn_right()</code></td><td><input type="text" data-key="p4_which_def" aria-label="Which file definition"></td></tr>
+        <tr><td><code>int main()</code></td><td><input type="text" data-key="p4_which_main" aria-label="Which file main"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_explain"><label for="s1">I can explain what a library is and why one is worth building</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_create"><label for="s2">I can create a new include file in the KISS IDE</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_brackets"><label for="s3">I know when to use angle brackets and when to use quotation marks</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_kipr"><label for="s4">I know my library needs its own KIPR include</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_save"><label for="s5">I save the <code>.h</code> file before every compile</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_new"><label for="s6">I can pull my library into a brand new project</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_document"><label for="s7">My library has comments that let someone else use it</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">The KIPR library was written by people you will never meet, and you have used it in every program since Project 2 without ever seeing inside it. Is that a problem?</p>
+    <textarea class="answer" data-key="p4_never_seen" aria-label="Never seen inside"></textarea>
+
+    <p class="q">Next season the game changes and the field is completely different. Which parts of your library would still be useful, and which would you throw away?</p>
+    <textarea class="answer" data-key="p4_next_season" aria-label="Next season"></textarea>
+
+    <p class="q">Look at what you have built across sixteen projects. Which one thing made the biggest difference to how your code works — variables, functions, sensors, or the library?</p>
+    <textarea class="answer" data-key="p4_biggest_difference" aria-label="Biggest difference"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>One project left. Several missions still have a bonus that means nothing more than "now do that again" — and you are going to stop doing it by hand.</p>
+    <p>In <strong>Project 17 — Repeating Without Retyping</strong>, you meet the last loop.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'LIBRARY': ['Library', 'A collection of functions kept in a separate file that any program can include. The KIPR library gives you motor() and msleep(); your own library gives you the commands you invented.'],
+    'HEADER FILE': ['Header File', 'A file ending in .h that holds functions you want other programs to be able to use. You bring it into a program with an #include line at the top.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) openDef(el.dataset.term);
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_coding_16";
+  var MISSION_TITLE = "Discovery Project 16 — Building Your Toolbox";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 15 — Following the Line</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #5b6270;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #6b7280;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #24200f; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d9b464; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+  .meta dd.anchor { font-weight: 600; color: var(--red); }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #fff8e6;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #fffaef; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+  .callout.danger { border-left-color: #922B21; background: #fdf0ef; }
+  .callout.danger .ctitle { color: #922B21; }
+
+  /* Mission card */
+  .mission { border: 2px solid var(--red); border-radius: 6px; overflow: hidden; margin: 18px 0; }
+  .mission-head {
+    background: var(--red); color: #fff; padding: 11px 18px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .mission-head .mtitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 20px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .mission-head .mpts {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 15px; letter-spacing: .08em; color: rgba(255,255,255,.85);
+  }
+  .mission-body { padding: 4px 18px 14px; }
+  .mpart { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .mpart:last-child { border-bottom: none; }
+  .mpart .mlabel {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--navy); display: block; margin-bottom: 3px;
+  }
+  .mpart .jtag {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 1px 7px; border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+  .jtag.live { background: #d8ecdd; color: #145a32; }
+  .jtag.final { background: #e3e7f5; color: #23336b; }
+  .mpart.later { background: #f6f7f9; margin: 0 -18px; padding-left: 18px; padding-right: 18px; color: var(--grey); }
+  .mpart.later .mlabel { color: var(--grey); }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+  ol.dosteps .spts {
+    display: inline-block; background: var(--gold); color: #24200f;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px;
+    border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+  table.grid tr.total td { background: #f2f4fa; font-weight: 700; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 230px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  /* edge diagram */
+  .edge { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0; }
+  .edge .e { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .edge .estrip { height: 54px; display: flex; }
+  .edge .estrip .blk { background: #17171a; flex: 1; }
+  .edge .estrip .wht { background: #f4f4f6; flex: 1; }
+  .edge .edot {
+    width: 16px; height: 16px; border-radius: 50%; background: var(--red);
+    border: 2px solid #fff; align-self: center; margin: 0 -8px; z-index: 2; position: relative;
+  }
+  .edge .ebody { padding: 11px 13px; font-size: 15.5px; }
+  .edge .ehead {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--navy); margin-bottom: 3px;
+  }
+
+  .scorepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .scorepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .scorepair .chead {
+    padding: 9px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #fff;
+  }
+  .scorepair .yes .chead { background: #1E8449; }
+  .scorepair .no .chead { background: #922B21; }
+  .scorepair ul { margin: 10px 0 12px; padding-left: 22px; font-size: 16px; }
+  .scorepair li { margin: 6px 0; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .scorepair, .edge { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .mission-head, .scorepair .chead, ol.dosteps .spts, .mpart .jtag, .edge .estrip, .edge .edot { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Coding · Project 15</p>
+    <h1>Following the Line</h1>
+    <p class="sub">The sensor stops being a stop sign and becomes a steering wheel.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Steering from a sensor reading instead of driving blind, then using the lines to reach four of the hardest scoring targets on the field.</dd></div>
+        <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 6 · Mission 7 base · Mission 16 base · Mission 17 base — 51 points</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Robot with arm, claw, and reflectance sensor · Wombat · charged battery · the game field · your sensor card from Project 14</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 14 — you need a working threshold and a robot that can find a line.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Where Is the Line, Exactly?</h2>
+
+    <p>Put your robot on the field with the sensor over a black line. Open the Sensor List, then <strong>push the robot sideways by hand</strong>, slowly, across the line and off the other side. Watch the number the whole way.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:56%">Sensor sitting...</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>Well off the line, on white</td><td><input type="text" data-key="p1_v_white" aria-label="White"></td></tr>
+        <tr class="trial"><td>Right at the edge, half on and half off</td><td><input type="text" data-key="p1_v_edge" aria-label="Edge"></td></tr>
+        <tr class="trial"><td>Dead centre of the line</td><td><input type="text" data-key="p1_v_center" aria-label="Center"></td></tr>
+        <tr class="trial"><td>Right at the other edge</td><td><input type="text" data-key="p1_v_edge2" aria-label="Other edge"></td></tr>
+        <tr class="trial"><td>Well off the other side, on white</td><td><input type="text" data-key="p1_v_white2" aria-label="Other white"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Now the question that matters</h3>
+
+    <p class="q">Look at your first reading and your last reading — both on white, one either side of the line. Can the sensor tell them apart?</p>
+    <input type="text" data-key="p1_tell_apart" aria-label="Can it tell apart">
+
+    <p class="q" style="margin-top:14px">Your robot drifts off the line. Just from the number, can it work out <em>which way</em> it drifted?</p>
+    <textarea class="answer" data-key="p1_which_way" aria-label="Which way drifted"></textarea>
+
+    <div class="callout danger">
+      <p class="ctitle">⚠ One Sensor Cannot Stay on the Middle</p>
+      <p>Sitting on the centre of the line, everything looks the same in both directions. Drift left, the reading goes up. Drift right, the reading goes up. The robot has no idea which happened, so it cannot know how to correct.</p>
+      <p>Following the middle of a line with one sensor is impossible. So you do not.</p>
+    </div>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Follow the Edge, Not the Line</h2>
+
+    <p>Put the sensor on <strong>one edge</strong> of the line and everything becomes answerable. Now dark and light mean two different directions.</p>
+
+    <div class="edge">
+      <div class="e">
+        <div class="estrip"><span class="blk"></span><span class="edot"></span><span class="wht"></span></div>
+        <div class="ebody"><div class="ehead">On the edge</div>Exactly where you want to be. Reading sits near your threshold.</div>
+      </div>
+      <div class="e">
+        <div class="estrip"><span class="blk" style="flex:2.2"></span><span class="edot" style="margin-left:-8px"></span><span class="wht" style="flex:0.8"></span></div>
+        <div class="ebody"><div class="ehead">Drifted onto black</div>Reading is high. Steer <strong>away</strong> from the line.</div>
+      </div>
+      <div class="e">
+        <div class="estrip"><span class="blk" style="flex:0.8"></span><span class="edot"></span><span class="wht" style="flex:2.2"></span></div>
+        <div class="ebody"><div class="ehead">Drifted onto white</div>Reading is low. Steer <strong>back toward</strong> the line.</div>
+      </div>
+    </div>
+
+    <div class="callout gold">
+      <p class="ctitle">The Robot Never Drives Straight</p>
+      <p>It zigzags. Too dark, arc one way. Too light, arc back. Over and over, several times a second.</p>
+      <p>From a distance it looks like the robot is following the line. Up close it is constantly overcorrecting — and that is exactly what makes it work.</p>
+    </div>
+
+    <h3 class="sub">Two choices, checked forever</h3>
+
+    <p>This is a <code>while</code> loop with an <code>if</code> inside it. You have had both since Projects 10 and 13 — this is the first time they work together.</p>
+
+    <pre class="code"><span class="kw">while</span> (a_button() == <span class="nu">0</span>)          <span class="cm">// keep going until someone stops me</span>
+{
+    <span class="kw">if</span> (analog(line) &gt; threshold)   <span class="cm">// I see black — I drifted onto the line</span>
+    {
+        motor(left,  <span class="nu">20</span>);           <span class="cm">// arc away from it</span>
+        motor(right, <span class="nu">60</span>);
+    }
+    <span class="kw">else</span>                            <span class="cm">// I see white — I drifted off it</span>
+    {
+        motor(left,  <span class="nu">60</span>);           <span class="cm">// arc back toward it</span>
+        motor(right, <span class="nu">20</span>);
+    }
+}
+ao();</pre>
+
+    <div class="anat">
+      <div class="arow"><div class="acode">while (...)</div><div class="adesc">Keeps the whole thing repeating. Without it the robot checks once and gives up.</div></div>
+      <div class="arow"><div class="acode">if / else</div><div class="adesc">Picks one of two steering actions, every single time through.</div></div>
+      <div class="arow"><div class="acode">no ao() inside</div><div class="adesc">Never stop the motors inside a line-follow loop. The robot should steer continuously, not stutter.</div></div>
+    </div>
+
+    <div class="callout danger">
+      <p class="ctitle">⚠ Never One Motor Forward and One Backward</p>
+      <p>It is tempting to make the turns sharper by reversing a wheel. <strong>Do not.</strong> In a loop that switches direction several times a second, reversing a motor over and over will burn it out.</p>
+      <p>Use two <em>different positive</em> speeds. A big gap between them gives a sharp turn; a small gap gives a gentle one.</p>
+    </div>
+
+    <p class="muted">That is the same rule you found in Project 5 — the further apart the two power numbers, the sharper the curve. It has been true this whole time.</p>
+
+    <h3 class="sub">Tuning it</h3>
+
+    <table class="grid">
+      <thead><tr><th style="width:44%">Problem</th><th>Try this</th></tr></thead>
+      <tbody>
+        <tr><td>Wanders off the line and never comes back</td><td>Bigger gap between the two speeds — turn harder</td></tr>
+        <tr><td>Zigzags so wildly it barely moves forward</td><td>Smaller gap — turn more gently</td></tr>
+        <tr><td>Loses the line on sharp corners only</td><td>Slow the whole thing down, or sharpen just the inside turn</td></tr>
+        <tr><td>Follows for a while then drives off</td><td>Check your threshold — it may be right for one part of the field and wrong for another</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Following until something else happens</h3>
+
+    <p>Line following on its own goes forever. To be useful it has to <em>stop</em> for a reason — a tick count, a bump, or a second line crossing the first.</p>
+
+    <pre class="code">cmpc(left);
+
+<span class="kw">while</span> (gmpc(left) &lt; <span class="nu">5000</span>)      <span class="cm">// follow for this far, then move on</span>
+{
+    <span class="kw">if</span> (analog(line) &gt; threshold) { <span class="cm">/* arc away */</span> }
+    <span class="kw">else</span>                         { <span class="cm">/* arc back  */</span> }
+}
+ao();</pre>
+
+    <p>Now the line keeps you straight and the counter tells you when you have arrived. Two sensors doing two different jobs in one loop.</p>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Steer and Deliver</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Build the follower</span>
+        <p>New project called <code>Line Follow</code>. Start with the two-choice loop. Put the sensor on the <strong>left</strong> edge of a line and let it run until you press a button.</p>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Try</th><th style="width:22%">Slow motor</th><th style="width:22%">Fast motor</th><th>What it did</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_t1_slow" aria-label="Try 1 slow"></td><td><input type="text" data-key="p3_t1_fast" aria-label="Try 1 fast"></td><td><input type="text" data-key="p3_t1_res" aria-label="Try 1 result"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_t2_slow" aria-label="Try 2 slow"></td><td><input type="text" data-key="p3_t2_fast" aria-label="Try 2 fast"></td><td><input type="text" data-key="p3_t2_res" aria-label="Try 2 result"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_t3_slow" aria-label="Try 3 slow"></td><td><input type="text" data-key="p3_t3_fast" aria-label="Try 3 fast"></td><td><input type="text" data-key="p3_t3_res" aria-label="Try 3 result"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_t4_slow" aria-label="Try 4 slow"></td><td><input type="text" data-key="p3_t4_fast" aria-label="Try 4 fast"></td><td><input type="text" data-key="p3_t4_res" aria-label="Try 4 result"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_follows"><label for="d1">My robot follows a straight line without losing it</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Switch edges</span>
+        <p>Move the robot to the <strong>other</strong> edge of the same line and run the identical program.</p>
+        <p class="q">What happened, and why?</p>
+        <textarea class="answer" data-key="p3_other_edge" aria-label="Other edge"></textarea>
+        <p class="q">What single change makes it follow the right edge instead?</p>
+        <input type="text" data-key="p3_edge_fix" aria-label="Edge fix">
+      </li>
+
+      <li>
+        <span class="stitle">Follow a curve</span>
+        <p>Straight lines are easy. Find a line on the field that bends and follow that.</p>
+        <ul class="check">
+          <li><input type="checkbox" id="d2" data-key="p3_curve"><label for="d2">My robot stays on the line around a bend</label></li>
+          <li><input type="checkbox" id="d3" data-key="p3_no_reverse"><label for="d3">Neither motor ever runs backward in my loop</label></li>
+        </ul>
+        <p class="q">Did you have to change anything from your straight-line settings?</p>
+        <input type="text" data-key="p3_curve_change" aria-label="Curve change">
+      </li>
+
+      <li>
+        <span class="stitle">Follow, then stop for a reason</span>
+        <p>Wrap the follower in a tick count so it travels a set distance and then hands over to whatever comes next. This is the pattern every mission below uses.</p>
+        <p>Turn it into a function while you are at it — <code>follow_line(int ticks)</code>.</p>
+        <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_follow_fn"><label for="d4">I have a <code>follow_line()</code> function that stops after a set distance</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 16 — Freight Shelving<span class="spts">9 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 16 — Freight Shelving</span>
+            <span class="mpts">Base 9 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Base Mission — 9 pts<span class="jtag final">📋 Final</span></span>
+              At least one cube originating from the <strong>Spilled Cube area</strong> is <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the <strong>Large Green Cube</strong>.
+            </div>
+            <div class="mpart later">
+              <span class="mlabel">Not yet</span>
+              The 11-point Bonus wants two or more spilled cubes up there. That is Project 17.
+            </div>
+          </div>
+        </div>
+        <div class="callout warn">
+          <p class="ctitle">⚠ The Large Green Cube, Not a Small One</p>
+          <p>The target is the <strong>large palletized Green Cube</strong> field element — not the small green cubes you have been stacking since Project 8. Make sure your team is aiming at the right thing.</p>
+        </div>
+        <p class="muted">Robot support is permitted, but this is final position scored — so the cube has to still be up there at the end, which means letting go cleanly.</p>
+        <ul class="check"><li><input type="checkbox" id="d5" data-key="p3_m16"><label for="d5">A spilled cube is ON TOP OF the Large Green Cube and stays there</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 17 — Freight Racking<span class="spts">9 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 17 — Freight Racking</span>
+            <span class="mpts">Base 9 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Base Mission — 9 pts<span class="jtag final">📋 Final</span></span>
+              At least one cube originating from the <strong>Unstraight Cube area</strong> is ON TOP OF the <strong>Large Brown Cube</strong>.
+            </div>
+            <div class="mpart later">
+              <span class="mlabel">Not yet</span>
+              The 11-point Bonus wants two or more. Project 17.
+            </div>
+          </div>
+        </div>
+        <div class="callout gold">
+          <p class="ctitle">Same Job, Different Address</p>
+          <p>This is Mission 16 with two words changed. If you wrote Mission 16 as a function with arguments, this one costs you almost nothing — which is the reward for the work you did in Project 12.</p>
+        </div>
+        <div class="callout danger">
+          <p class="ctitle">⚠ Watch Your Cube Budget</p>
+          <p>The Unstraight Cubes are the same three you stacked for Mission 13 back in Project 10. A cube can only be in one place at the end of the match. Decide now which missions you are actually going for.</p>
+        </div>
+        <ul class="check"><li><input type="checkbox" id="d6" data-key="p3_m17"><label for="d6">An unstraight cube is ON TOP OF the Large Brown Cube and stays there</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 7 — Hazard Containment<span class="spts">11 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 7 — Hazard Containment</span>
+            <span class="mpts">Base 11 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Base Mission — 11 pts<span class="jtag final">📋 Final</span></span>
+              One Blue Pom and one Orange Pom are <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> the <strong>same</strong> PVC enclosure.
+            </div>
+            <div class="mpart later">
+              <span class="mlabel">Not yet</span>
+              The 9-point Bonus needs a second enclosure with one of each colour. Project 17.
+            </div>
+          </div>
+        </div>
+        <div class="scorepair">
+          <div class="col yes">
+            <div class="chead">✓ Scores</div>
+            <ul>
+              <li>One Blue and one Orange Pom FULLY WITHIN the same enclosure.</li>
+              <li>Several Blue Poms and one Orange Pom in the same enclosure.</li>
+            </ul>
+          </div>
+          <div class="col no">
+            <div class="chead">✗ Does Not Score</div>
+            <ul>
+              <li>A Blue Pom in one enclosure and an Orange Pom in a different one.</li>
+              <li>Only one colour in any enclosure.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted">Two colours, one enclosure. Poms roll, so the second delivery is the one that knocks the first one out — go slowly and back straight away.</p>
+        <ul class="check"><li><input type="checkbox" id="d7" data-key="p3_m7"><label for="d7">One blue and one orange pom are both FULLY WITHIN the same enclosure</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 6 — Pallet Builder<span class="spts">22 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 6 — Pallet Builder</span>
+            <span class="mpts">22 points possible</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Base Mission — 15 pts<span class="jtag live">⚡ Live</span></span>
+              <strong>All four</strong> Green and Yellow Cubes on a single pallet. A cube counts if it touches the pallet's upper surface, or is ON TOP OF another cube that is on the pallet.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Bonus Mission — 7 pts<span class="jtag final">📋 Final</span></span>
+              The pallet is FULLY WITHIN a starting box and not touching any black line.
+            </div>
+          </div>
+        </div>
+        <div class="callout gold">
+          <p class="ctitle">The Arrangement Does Not Matter</p>
+          <p>Four cubes flat on the pallet, a four-high tower, or anything in between — all of it scores, as long as every cube is part of one palletized load. Pick whatever your claw finds easiest.</p>
+          <p>Better still: the cubes are <strong>not required to stay on the pallet after the base is scored</strong>. It is live judged, so once the judge has seen four cubes on the pallet, you can go on and move the pallet without worrying about a cube rolling off.</p>
+        </div>
+        <div class="callout danger">
+          <p class="ctitle">⚠ Not Touching Any Black Line</p>
+          <p>The bonus is stricter than it looks. The pallet must be FULLY WITHIN the starting box <em>and</em> clear of every black line. Push it in too far or not far enough and you get nothing.</p>
+        </div>
+        <p class="q">These are the same four green and yellow cubes you used for Mission 3 in Projects 8 and 13. What is your plan — Mission 3's stacks or Mission 6's pallet?</p>
+        <textarea class="answer" data-key="p3_cube_plan" aria-label="Cube plan"></textarea>
+        <ul class="check">
+          <li><input type="checkbox" id="d8" data-key="p3_m6_base"><label for="d8">All four cubes are on one pallet</label></li>
+          <li><input type="checkbox" id="d9" data-key="p3_m6_bonus"><label for="d9">The pallet ends FULLY WITHIN a starting box, off every line</label></li>
+        </ul>
+      </li>
+
+      <li>
+        <span class="stitle">Run it five times</span>
+        <table class="grid">
+          <thead><tr><th style="width:12%">Run</th><th style="width:14%">M16</th><th style="width:14%">M17</th><th style="width:14%">M7</th><th style="width:16%">M6 base</th><th style="width:16%">M6 bonus</th><th>Points</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_r1_m16" aria-label="R1 M16"></td><td><input type="text" data-key="p3_r1_m17" aria-label="R1 M17"></td><td><input type="text" data-key="p3_r1_m7" aria-label="R1 M7"></td><td><input type="text" data-key="p3_r1_m6b" aria-label="R1 M6 base"></td><td><input type="text" data-key="p3_r1_m6bo" aria-label="R1 M6 bonus"></td><td><input type="text" data-key="p3_r1_pts" aria-label="R1 points"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_r2_m16" aria-label="R2 M16"></td><td><input type="text" data-key="p3_r2_m17" aria-label="R2 M17"></td><td><input type="text" data-key="p3_r2_m7" aria-label="R2 M7"></td><td><input type="text" data-key="p3_r2_m6b" aria-label="R2 M6 base"></td><td><input type="text" data-key="p3_r2_m6bo" aria-label="R2 M6 bonus"></td><td><input type="text" data-key="p3_r2_pts" aria-label="R2 points"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_r3_m16" aria-label="R3 M16"></td><td><input type="text" data-key="p3_r3_m17" aria-label="R3 M17"></td><td><input type="text" data-key="p3_r3_m7" aria-label="R3 M7"></td><td><input type="text" data-key="p3_r3_m6b" aria-label="R3 M6 base"></td><td><input type="text" data-key="p3_r3_m6bo" aria-label="R3 M6 bonus"></td><td><input type="text" data-key="p3_r3_pts" aria-label="R3 points"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_r4_m16" aria-label="R4 M16"></td><td><input type="text" data-key="p3_r4_m17" aria-label="R4 M17"></td><td><input type="text" data-key="p3_r4_m7" aria-label="R4 M7"></td><td><input type="text" data-key="p3_r4_m6b" aria-label="R4 M6 base"></td><td><input type="text" data-key="p3_r4_m6bo" aria-label="R4 M6 bonus"></td><td><input type="text" data-key="p3_r4_pts" aria-label="R4 points"></td></tr>
+            <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p3_r5_m16" aria-label="R5 M16"></td><td><input type="text" data-key="p3_r5_m17" aria-label="R5 M17"></td><td><input type="text" data-key="p3_r5_m7" aria-label="R5 M7"></td><td><input type="text" data-key="p3_r5_m6b" aria-label="R5 M6 base"></td><td><input type="text" data-key="p3_r5_m6bo" aria-label="R5 M6 bonus"></td><td><input type="text" data-key="p3_r5_pts" aria-label="R5 points"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">My score</h3>
+    <table class="grid">
+      <thead><tr><th style="width:52%">Mission part</th><th style="width:24%">Scored?</th><th>Points</th></tr></thead>
+      <tbody>
+        <tr><td>Mission 16 — Base (spilled cube on the Large Green Cube)</td><td><input type="text" data-key="p4_s_m16" aria-label="Score M16"></td><td class="ctr">9</td></tr>
+        <tr><td>Mission 17 — Base (unstraight cube on the Large Brown Cube)</td><td><input type="text" data-key="p4_s_m17" aria-label="Score M17"></td><td class="ctr">9</td></tr>
+        <tr><td>Mission 7 — Base (blue + orange in one enclosure)</td><td><input type="text" data-key="p4_s_m7" aria-label="Score M7"></td><td class="ctr">11</td></tr>
+        <tr><td>Mission 6 — Base (four cubes on one pallet)</td><td><input type="text" data-key="p4_s_m6b" aria-label="Score M6 base"></td><td class="ctr">15</td></tr>
+        <tr><td>Mission 6 — Bonus (pallet in a starting box)</td><td><input type="text" data-key="p4_s_m6bo" aria-label="Score M6 bonus"></td><td class="ctr">7</td></tr>
+        <tr class="total"><td>My total</td><td><input type="text" data-key="p4_total" aria-label="Total"></td><td class="ctr">51</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">My line-following settings</h3>
+    <table class="grid">
+      <thead><tr><th style="width:56%">Setting</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Threshold I use for following</td><td><input type="text" data-key="p4_thresh" aria-label="Threshold"></td></tr>
+        <tr><td>Slow motor power</td><td><input type="text" data-key="p4_slow" aria-label="Slow"></td></tr>
+        <tr><td>Fast motor power</td><td><input type="text" data-key="p4_fast" aria-label="Fast"></td></tr>
+        <tr><td>Which edge I follow (left or right)</td><td><input type="text" data-key="p4_edge" aria-label="Edge"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_edge"><label for="s1">I can explain why one sensor follows an edge and not the middle</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_loop"><label for="s2">I can put an <code>if</code>/<code>else</code> inside a <code>while</code> loop and say what each part does</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_sharp"><label for="s3">I can make a turn sharper or gentler without reversing a motor</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_swap"><label for="s4">I know what to change to follow the other edge</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_stop"><label for="s5">I can make a line follower stop for a reason instead of running forever</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_fn"><label for="s6">My line follower is a function I can call with a distance</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_budget"><label for="s7">I can work out which missions compete for the same cubes</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">Your line follower checks and steers several times a second and never drives perfectly straight. Would a person following a line with their eyes shut, feeling for the edge with a foot, do anything different?</p>
+    <textarea class="answer" data-key="p4_person_analogy" aria-label="Person analogy"></textarea>
+
+    <p class="q">A second sensor, mounted a few inches away from the first, would let the robot see both edges at once. What could it do then that it cannot do now?</p>
+    <textarea class="answer" data-key="p4_two_sensors" aria-label="Two sensors"></textarea>
+
+    <p class="q">Missions 16 and 17 want <em>two or more</em> cubes for the bonus, and Mission 7 wants a second enclosure. Look at how you wrote these runs. What would it take to do each one a second time?</p>
+    <textarea class="answer" data-key="p4_do_again" aria-label="Do it again"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>You have written every skill this game needs. What you have not done is tidy up — your functions live in one long file, and half your missions have a bonus that just means "now do that again."</p>
+    <p>In <strong>Project 16 — Building Your Toolbox</strong>, your functions move into a library you can carry between projects.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.'],
+    'FULLY WITHIN': ['Fully Within', 'An object or robot is FULLY WITHIN an area when every part of the object or robot lies inside the boundary of that area — no portion may touch or cross the boundary line.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) openDef(el.dataset.term);
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_coding_15";
+  var MISSION_TITLE = "Discovery Project 15 — Following the Line";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>
