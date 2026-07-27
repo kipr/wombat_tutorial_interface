@@ -176,7 +176,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 4 · Big Idea 3</span><a class="gloss" href="../discovery/glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 4 · Big Idea 3</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -201,7 +201,7 @@
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine know where it is and where it is going?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>One Smart <span class="def-term" data-term="FUNCTION">Function</span> Can Handle Many Cases</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>Models are best-fit approximations — never perfect, but good enough to act on.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd>Strings and len() · <span class="def-term" data-term="FOR LOOP">for loop</span>s · Multiple Parameters · Return Values · Defensive Code</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd><span class="def-term" data-term="STRING">String</span>s and len() · <span class="def-term" data-term="FOR LOOP">for loop</span>s · Multiple <span class="def-term" data-term="PARAMETER">Parameter</span>s · <span class="def-term" data-term="RETURN VALUE">Return Value</span>s · Defensive Code</dd></div>
       <div class="row"><dt>Game Context</dt><dd>One Turn function for every angle your missions need</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Explorer robot · open floor · protractor or angle marks · this lab sheet</dd></div>
     </dl>
@@ -272,7 +272,7 @@ print(len('R') == 1)   <span class="c"># True — this really is a single letter
   <!-- ===== Phase 3: calibration with for ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 3</span> — Calibrate: Find ticks_per_degree</h2>
-    <p>Just like <code>ticks_per_inch</code> told you ticks-to-inches, you now need <strong>ticks_per_degree</strong>: how many encoder ticks make one degree of turning. The clever way to measure it: make the robot spin all the way around — a full <strong>360°</strong> — counting ticks, then divide.</p>
+    <p>Just like <code>ticks_per_inch</code> told you ticks-to-inches, you now need <strong>ticks_per_degree</strong>: how many <span class="def-term" data-term="ENCODER">encoder</span> ticks make one degree of turning. The clever way to measure it: make the robot spin all the way around — a full <strong>360°</strong> — counting ticks, then divide.</p>
     <div class="calc">
       <p class="ctitle">The turning model</p>
       <div class="formula">ticks_per_degree = total ticks for a full spin &divide; 360</div>
@@ -290,7 +290,7 @@ print(len('R') == 1)   <span class="c"># True — this really is a single letter
     <div class="concept">
       <div class="chead">A test spin built with a for loop (uses mav)</div>
       <div class="cbody">
-        <p>This example pivots in chunks using a <code>for</code> loop. Notice it uses <strong><code>mav</code></strong>, not <code>motor</code> — velocity control is smoother for turning. Use a <strong>slow</strong> speed so the robot doesn't <span class="def-term" data-term="OVERSHOOT">overshoot</span> from its own momentum.</p>
+        <p>This example pivots in chunks using a <code>for</code> loop. Notice it uses <strong><code>mav</code></strong>, not <code>motor</code> — <span class="def-term" data-term="VELOCITY">velocity</span> control is smoother for turning. Use a <strong>slow</strong> speed so the robot doesn't <span class="def-term" data-term="OVERSHOOT">overshoot</span> from its own momentum.</p>
         <div class="code small">k.cmpc(0)                         <span class="c"># clear the counter once, before the spin</span>
 for i in range(4):                <span class="c"># four chunks = one full 360° spin</span>
     target = (i + 1) * CHUNK_TICKS   <span class="c"># how far we should be after this chunk</span>
@@ -303,7 +303,7 @@ print(f"total ticks = {k.gmpc(0)}")</div>
       </div>
     </div>
 
-    <h3 class="sub">Calibration Data</h3>
+    <h3 class="sub"><span class="def-term" data-term="CALIBRATION">Calibration</span> Data</h3>
     <table class="grid">
       <caption>Run each version — all should be 360°</caption>
       <thead><tr><th style="width:34%">Version</th><th style="width:33%">Total ticks for 360°</th><th>ticks ÷ 360 = ticks_per_degree</th></tr></thead>
@@ -340,7 +340,7 @@ Turn('L', 45.0)    <span class="c"># turn left 45 degrees</span></div>
     <div class="concept">
       <div class="chead">A function that returns True or False for success or failure</div>
       <div class="cbody">
-        <p>Every function you've built so far hasn't handed anything back. <code>Turn</code> is different: it <strong>returns</strong> a value that reports what happened. Python has a real type for exactly this — <strong>booleans</strong>, which are just <code>True</code> and <code>False</code>. We'll return <code>True</code> for success and <code>False</code> for failure (a bad direction). <code>return</code> also <em>immediately exits</em> the function — so a bad input never reaches the turning code.</p>
+        <p>Every function you've built so far hasn't handed anything back. <code>Turn</code> is different: it <strong>returns</strong> a value that reports what happened. Python has a real type for exactly this — <strong><span class="def-term" data-term="BOOLEAN">Boolean</span>s</strong>, which are just <code>True</code> and <code>False</code>. We'll return <code>True</code> for success and <code>False</code> for failure (a bad direction). <code>return</code> also <em>immediately exits</em> the function — so a bad input never reaches the turning code.</p>
       </div>
     </div>
     <div class="concept">
@@ -584,6 +584,13 @@ main()</div>
 <script>
 (function(){
   var DEFS = {
+    'BOOLEAN': ['Boolean', 'A value that can only be true or false — nothing in between. Every condition you write comes out as a boolean, which is how the robot decides which way to go.'],
+    'CALIBRATION': ['Calibration', 'Measuring your own robot to find the numbers that describe it — ticks per inch, a light threshold, a turn count. Calibration is why one team’s numbers do not work on another team’s robot.'],
+    'ENCODER': ['Encoder', 'The counter built into a motor that reports how far its shaft has turned. It is what makes ticks possible, and it is how a robot measures its own movement instead of guessing.'],
+    'PARAMETER': ['Parameter', 'A named slot in a function that receives a value when the function is called. The parameter is the slot; the argument is the value that gets put into it.'],
+    'RETURN VALUE': ['Return Value', 'The answer a function hands back to whatever called it. A function that returns a value can be used inside a calculation; a void function cannot.'],
+    'STRING': ['String', 'Text stored as data — letters, digits, and spaces treated as characters rather than as a number you can do arithmetic with.'],
+    'VELOCITY': ['Velocity', 'How fast something moves, measured in real units — ticks per second rather than a percentage of full power. Velocity holds steady as the battery drains; power does not.'],
     'FOR LOOP': ['For Loop', 'A loop that repeats a known number of times. Its three parts — where to start, when to stop, and how much to change each time — all sit together inside one set of parentheses, separated by semicolons.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
     'INERTIA': ['Inertia', 'A moving object keeps moving until something stops it. When your loop shuts the motors off, the robot is still rolling, so it coasts past the tick count you asked for. More speed means more coasting.'],

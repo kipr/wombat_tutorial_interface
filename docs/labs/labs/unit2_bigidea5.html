@@ -179,7 +179,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 2 · Big Idea 5</span><a class="gloss" href="../discovery/glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 2 · Big Idea 5</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -204,7 +204,7 @@
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine make increasingly intelligent <span class="def-term" data-term="DECISION">decision</span>s?</dd></div>
       <div class="row"><dt>Focus</dt><dd>Precision control, speed ratios, and tuning with data</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems are tuned and optimized using evidence, not guesses.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd>The mav command · Velocity vs. Power · Ratios · Experimental Tuning</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd>The mav command · <span class="def-term" data-term="VELOCITY">Velocity</span> vs. Power · Ratios · Experimental Tuning</dd></div>
       <div class="row"><dt>Game Context</dt><dd>Optimizing your line-follow from Unit 2</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Explorer robot · calibrated Tophat (<span class="def-term" data-term="ANALOG">analog</span> 0) · taped line · this lab sheet</dd></div>
     </dl>
@@ -237,7 +237,7 @@
       <div class="cbody">
         <p>You've used <code>motor(port, power)</code>, where power is a percent from −100 to 100. Now meet its precise cousin:</p>
         <div class="code small">mav(0, 750);   <span class="c">// move motor 0 at 750 ticks per second</span></div>
-        <p><code>mav</code> stands for <strong>move at velocity</strong>. Instead of a percent, you give it a speed in <em>ticks per second</em> — the same ticks your encoder counts. Its range is −1500 to 1500.</p>
+        <p><code>mav</code> stands for <strong>move at velocity</strong>. Instead of a percent, you give it a speed in <em>ticks per second</em> — the same ticks your <span class="def-term" data-term="ENCODER">encoder</span> counts. Its range is −1500 to 1500.</p>
       </div>
     </div>
     <div class="concept">
@@ -360,7 +360,7 @@ mav:   -1500  ... 1500     <span class="c">// 1500 steps each direction</span></
       <p class="ctitle">AI Literacy Thread</p>
       <p>Intelligent systems are tuned and optimized using evidence, not guesses.</p>
     </div>
-    <p>You didn't find your best settings by guessing — you ran an organized experiment, changed one thing at a time, and let the data guide you. This is exactly how real intelligent systems get good. Engineers tuning a self-driving car, or researchers training an AI model, adjust settings (called <em>parameters</em>), measure the result, and adjust again — thousands of times. The "intelligence" of a system is often the result of careful tuning, not a single lucky setting.</p>
+    <p>You didn't find your best settings by guessing — you ran an organized experiment, changed one thing at a time, and let the data guide you. This is exactly how real intelligent systems get good. Engineers tuning a self-driving car, or researchers training an AI model, adjust settings (called <em><span class="def-term" data-term="PARAMETER">parameter</span>s</em>), measure the result, and adjust again — thousands of times. The "intelligence" of a system is often the result of careful tuning, not a single lucky setting.</p>
     <p class="muted">Read each scenario. Think it through, then write your answer.</p>
     <p class="q">You changed only one thing at a time (first speed, then the gap). Why would changing both at once make it hard to know what actually helped?</p>
     <textarea class="answer" data-key="p6_one_at_a_time" aria-label="One at a time"></textarea>
@@ -526,6 +526,9 @@ mav:   -1500  ... 1500     <span class="c">// 1500 steps each direction</span></
 <script>
 (function(){
   var DEFS = {
+    'ENCODER': ['Encoder', 'The counter built into a motor that reports how far its shaft has turned. It is what makes ticks possible, and it is how a robot measures its own movement instead of guessing.'],
+    'PARAMETER': ['Parameter', 'A named slot in a function that receives a value when the function is called. The parameter is the slot; the argument is the value that gets put into it.'],
+    'VELOCITY': ['Velocity', 'How fast something moves, measured in real units — ticks per second rather than a percentage of full power. Velocity holds steady as the battery drains; power does not.'],
     'ANALOG': ['Analog', 'An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers "how dark is this?" with a number, so you have to decide for yourself where dark begins.'],
     'DECISION': ['Decision', 'A point where a plan splits two ways depending on the answer to a question. On a flowchart it is drawn as a diamond, with one arrow in and two labelled arrows out.'],
     'OVERSHOOT': ['Overshoot', 'How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot.'],

@@ -181,7 +181,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 3 · Big Idea 3</span><a class="gloss" href="../discovery/glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 3 · Big Idea 3</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -206,7 +206,7 @@
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine act on the world, not just move through it?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>Reusable Code Is Organized Into Libraries</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>Complex intelligent systems are built from organized, reusable building blocks.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd>Libraries · Modules · import · Code Organization · Documentation</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd>Libraries · <span class="def-term" data-term="MODULE">Module</span>s · import · Code Organization · Documentation</dd></div>
       <div class="row"><dt>Game Context</dt><dd>Packaging every tool you've built for use in any mission</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Computer with the KIPR <span class="def-term" data-term="IDE">IDE</span> · your programs from earlier labs · this lab sheet</dd></div>
     </dl>
@@ -219,7 +219,7 @@
   <!-- ===== Overview ===== -->
   <section>
     <h2 class="phase-head">Overview</h2>
-    <p>You've built a lot of useful <span class="def-term" data-term="FUNCTION">function</span>s — <code>move_arm</code>, <code>move_claw</code>, <code>back_until_pressed</code>, <code>Tick_Drive</code>, <code>line_follow</code> — but every time you start a new program, you've had to type them all again. That ends today. You'll gather all your best functions into one <strong><span class="def-term" data-term="LIBRARY">Library</span></strong>: a single file you write once and pull into <em>any</em> program with one line. Real programmers don't rewrite their tools; they build a toolbox and carry it everywhere.</p>
+    <p>You've built a lot of useful <span class="def-term" data-term="FUNCTION">function</span>s — <code>move_arm</code>, <code>move_claw</code>, <code>back_until_pressed</code>, <code>Tick_Drive</code>, <code>line_follow</code> — but every time you start a new program, you've had to type them all again. That ends today. You'll gather all your best functions into one <strong><span class="def-term" data-term="LIBRARY">library</span></strong>: a single file you write once and pull into <em>any</em> program with one line. Real programmers don't rewrite their tools; they build a toolbox and carry it everywhere.</p>
     <div class="callout">
       <p class="ctitle">Core Insight</p>
       <p>A library lets you write a function once and reuse it in every program forever. Your <code>main</code> stays short and readable, and all your tools live in one organized place.</p>
@@ -277,7 +277,7 @@
   <!-- ===== Phase 3: Fill the library ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 3</span> — Move Your Functions Into the Library</h2>
-    <p>Now fill your library with every reusable function you've built. Organize it in two clear sections, in this order: <strong><span class="def-term" data-term="VARIABLE">Variable</span>s at the top</strong>, then <strong>function definitions</strong>. This is the same structure you've used all along — now it lives in your library. Python doesn't use separate <span class="def-term" data-term="PROTOTYPE">prototype</span>s like you may have used before; a function just needs to be defined above the point where it's called.</p>
+    <p>Now fill your library with every reusable function you've built. Organize it in two clear sections, in this order: <strong><span class="def-term" data-term="VARIABLE">variable</span>s at the top</strong>, then <strong>function definitions</strong>. This is the same structure you've used all along — now it lives in your library. Python doesn't use separate <span class="def-term" data-term="PROTOTYPE">prototype</span>s like you may have used before; a function just needs to be defined above the point where it's called.</p>
 
     <span class="filetab">yourname.py</span>
     <div class="code">#!/usr/bin/python3
@@ -583,6 +583,7 @@ main()</div>
 <script>
 (function(){
   var DEFS = {
+    'MODULE': ['Module', 'A separate Python file holding functions you want to use elsewhere. You bring it into a program with an import line, the same way C brings in a header file.'],
     'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
     'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
     'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],

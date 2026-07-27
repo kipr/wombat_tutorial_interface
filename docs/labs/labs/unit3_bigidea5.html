@@ -185,7 +185,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 3 · Big Idea 5 · Capstone</span><a class="gloss" href="../discovery/glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 3 · Big Idea 5 · Capstone</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -258,7 +258,7 @@
   <!-- ===== Phase 2: Build Back_Drive ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 2</span> — Build a Missing Tool: Back_Drive</h2>
-    <p>Your library can drive <em>forward</em> a measured distance with <code>Tick_Drive</code> — but a real stack needs the robot to <strong>back away</strong> after placing a cube, so it doesn't knock the stack over. You don't have a backward version yet. Let's build one, and the trick is in the encoder math.</p>
+    <p>Your library can drive <em>forward</em> a measured distance with <code>Tick_Drive</code> — but a real stack needs the robot to <strong>back away</strong> after placing a cube, so it doesn't knock the stack over. You don't have a backward version yet. Let's build one, and the trick is in the <span class="def-term" data-term="ENCODER">encoder</span> math.</p>
     <div class="concept">
       <div class="chead">The number-line problem</div>
       <div class="cbody">
@@ -566,6 +566,7 @@ int main() {
 <script>
 (function(){
   var DEFS = {
+    'ENCODER': ['Encoder', 'The counter built into a motor that reports how far its shaft has turned. It is what makes ticks possible, and it is how a robot measures its own movement instead of guessing.'],
     'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],
     'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],

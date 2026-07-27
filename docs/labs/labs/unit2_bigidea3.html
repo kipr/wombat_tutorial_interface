@@ -180,7 +180,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 2 · Big Idea 3</span><a class="gloss" href="../discovery/glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 2 · Big Idea 3</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -203,7 +203,7 @@
   <div class="meta">
     <dl>
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine sense and respond to the world around it?</dd></div>
-      <div class="row"><dt>Focus</dt><dd>Encoders, measured driving, and <span class="def-term" data-term="FUNCTION">function</span>s that take a value</dd></div>
+      <div class="row"><dt>Focus</dt><dd><span class="def-term" data-term="ENCODER">Encoder</span>s, measured driving, and <span class="def-term" data-term="FUNCTION">function</span>s that take a value</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems sense their own actions and use that feedback to act precisely.</dd></div>
       <div class="row"><dt>CS1 Concepts</dt><dd>Function <span class="def-term" data-term="ARGUMENT">Argument</span>s · Encoders (gmpc / cmpc) · Numeric Loop <span class="def-term" data-term="CONDITION">Condition</span>s</dd></div>
       <div class="row"><dt>Game Context</dt><dd>Mission 9 — drive from the right starting box and touch Botguy</dd></div>
@@ -405,7 +405,7 @@ void Tick_Drive(int <span class="hl">ticks</span>) {     <span class="c">// DEFI
       <p><strong>Robot never stops:</strong> if the motors aren't actually turning port 0, <code>gmpc(0)</code> never climbs and the loop runs forever. Check your wiring and that you're reading the right port.</p>
       <p><strong>Brake missing:</strong> no <code>motor(0,0)</code> after the loop means the robot coasts past Botguy — remember last lab.</p>
     </div>
-    <h3 class="sub">Debugging Log</h3>
+    <h3 class="sub"><span class="def-term" data-term="DEBUGGING">Debugging</span> Log</h3>
     <table class="grid">
       <thead><tr><th style="width:8%">Try</th><th style="width:36%">What went wrong</th><th style="width:26%">Why (your best guess)</th><th>How you fixed it</th></tr></thead>
       <tbody id="debugBody"><!-- rows injected --></tbody>
@@ -591,6 +591,8 @@ void Tick_Drive(int <span class="hl">ticks</span>) {     <span class="c">// DEFI
 <script>
 (function(){
   var DEFS = {
+    'DEBUGGING': ['Debugging', 'Finding out why a program does not do what you meant, and fixing it. The skill is not writing perfect code; it is narrowing down where the trouble actually is.'],
+    'ENCODER': ['Encoder', 'The counter built into a motor that reports how far its shaft has turned. It is what makes ticks possible, and it is how a robot measures its own movement instead of guessing.'],
     'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.'],
     'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],
     'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],

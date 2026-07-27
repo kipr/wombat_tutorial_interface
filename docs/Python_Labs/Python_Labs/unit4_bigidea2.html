@@ -178,7 +178,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 4 · Big Idea 2</span><a class="gloss" href="../discovery/glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 4 · Big Idea 2</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -203,7 +203,7 @@
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine know where it is and where it is going?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>A Robot Can Correct Its Own Heading</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems use feedback from multiple inputs to correct themselves.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd>Two <span class="def-term" data-term="SENSOR">Sensor</span>s at Once · Boolean Operators (and) · Independent <span class="def-term" data-term="CONDITION">Condition</span>s</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd>Two <span class="def-term" data-term="SENSOR">Sensor</span>s at Once · <span class="def-term" data-term="BOOLEAN">Boolean</span> Operators (and) · Independent <span class="def-term" data-term="CONDITION">Condition</span>s</dd></div>
       <div class="row"><dt>Game Context</dt><dd>Squaring up in the right starting box to set up the spilled cubes</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Explorer robot · two front IR sensors · right starting box with two tape lines · this lab sheet</dd></div>
     </dl>
@@ -310,7 +310,7 @@ IR_RIGHT = 1    <span class="c"># front-right IR sensor on analog port 1</span><
   <!-- ===== Phase 4: build square_up ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 4</span> — Build: The square_up <span class="def-term" data-term="FUNCTION">Function</span></h2>
-    <p>Put it together. The loop runs until both sensors are on black. Inside, each wheel has its <strong>own</strong> <code>if</code> <span class="def-term" data-term="STATEMENT">Statement</span>, checking its own sensor and either driving or freezing. Use a slow speed so it has time to react.</p>
+    <p>Put it together. The loop runs until both sensors are on black. Inside, each wheel has its <strong>own</strong> <code>if</code> <span class="def-term" data-term="STATEMENT">statement</span>, checking its own sensor and either driving or freezing. Use a slow speed so it has time to react.</p>
     <div class="code">#!/usr/bin/python3
 <span class="c"># Unit 4 · Big Idea 2 — Squaring Up</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
@@ -554,6 +554,7 @@ main()</div>
 <script>
 (function(){
   var DEFS = {
+    'BOOLEAN': ['Boolean', 'A value that can only be true or false — nothing in between. Every condition you write comes out as a boolean, which is how the robot decides which way to go.'],
     'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
     'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],

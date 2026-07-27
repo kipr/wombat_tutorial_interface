@@ -183,7 +183,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 4 · Big Idea 5 · Capstone</span><a class="gloss" href="../discovery/glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 4 · Big Idea 5 · Capstone</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -440,7 +440,7 @@ k.graphics_update()   <span class="c"># nothing appears on screen until you call
       </li>
       <li>Use <code>k.graphics_line()</code> to plot 2-3 points of a <span class="def-term" data-term="SENSOR">sensor</span> reading over time as connected line segments — a simple live trend graph.</li>
       <li>Update your progress bar's filled width as your mission runs (recall <code>k.graphics_rectangle_fill</code> from above), instead of drawing it once at a fixed size. What would you need to know to calculate how "full" the bar should be at any moment?</li>
-      <li><code>k.graphics_blit_enc()</code> can display a real bitmap image — a small array of pixel color values — instead of shapes. What's the difference between drawing a rectangle with <code>k.graphics_rectangle_fill</code> (a formula the computer calculates) and displaying a bitmap with <code>k.graphics_blit_enc</code> (stored pixel-by-pixel data)?</li>
+      <li><code>k.graphics_blit_enc()</code> can display a real bitmap image — a small <span class="def-term" data-term="ARRAY">array</span> of pixel color values — instead of shapes. What's the difference between drawing a rectangle with <code>k.graphics_rectangle_fill</code> (a formula the computer calculates) and displaying a bitmap with <code>k.graphics_blit_enc</code> (stored pixel-by-pixel data)?</li>
       <li><code>k.get_key_state()</code> and <code>k.get_mouse_position()</code> read live keyboard/mouse input from the same graphics window. Add a check so your status screen only advances to the next step when a specific key is pressed — a simple interactive interface, not just a fixed display.</li>
     </ul>
     <textarea class="answer" data-key="ext_f" aria-label="Extension F"></textarea>
@@ -567,6 +567,7 @@ k.graphics_update()   <span class="c"># nothing appears on screen until you call
 <script>
 (function(){
   var DEFS = {
+    'ARRAY': ['Array', 'A single name that holds a whole row of values instead of just one. You reach each value by its position number, so one name and a number can stand in for a dozen separate variables.'],
     'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
     'OVERSHOOT': ['Overshoot', 'How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot.'],
     'PALLET': ['Pallet', 'A flat platform on the game field that a load sits on. Several missions ask you to move a pallet and whatever is stacked on it, together.'],

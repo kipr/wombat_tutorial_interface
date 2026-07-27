@@ -176,7 +176,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 4 · Big Idea 4</span><a class="gloss" href="../discovery/glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 4 · Big Idea 4</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -200,7 +200,7 @@
     <dl>
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine know where it is and where it is going?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>A Program Can Track Its Own Progress</dd></div>
-      <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems track their own state and report what they have done.</dd></div>
+      <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems track their own <span class="def-term" data-term="STATE">state</span> and report what they have done.</dd></div>
       <div class="row"><dt>CS1 Concepts</dt><dd>Accumulating <span class="def-term" data-term="VARIABLE">Variable</span>s · State · printf Logging · Integration</dd></div>
       <div class="row"><dt>Game Context</dt><dd>Stack the red cubes, then dock the <span class="def-term" data-term="PALLET">pallet</span> — scoring as you go</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Explorer robot · your full <span class="def-term" data-term="LIBRARY">library</span> · red cubes · pallet · dock · this lab sheet</dd></div>
@@ -376,7 +376,7 @@ int main() {
       <p class="ctitle">AI Literacy Thread</p>
       <p>Intelligent systems track their own state and report what they have done.</p>
     </div>
-    <p>Your robot didn't just act — it <em>kept track of its own progress and reported it</em>. That's everywhere in real systems. A delivery robot logs each package dropped; a game tracks your score; a fitness band counts your steps and tells you the total. Keeping a running state and reporting it is how machines stay accountable — to their users and to the people debugging them. The printed log you built is exactly the kind of record engineers rely on to see what a system actually did, step by step.</p>
+    <p>Your robot didn't just act — it <em>kept track of its own progress and reported it</em>. That's everywhere in real systems. A delivery robot logs each package dropped; a game tracks your score; a fitness band counts your steps and tells you the total. Keeping a running state and reporting it is how machines stay accountable — to their users and to the people <span class="def-term" data-term="DEBUGGING">debugging</span> them. The printed log you built is exactly the kind of record engineers rely on to see what a system actually did, step by step.</p>
     <p class="muted">Complete the reflection on your own.</p>
     <div class="namebar">
       <div class="nb"><label for="r_name">Name</label><input id="r_name" type="text" data-key="reflect_name" autocomplete="off" /></div>
@@ -397,7 +397,7 @@ int main() {
     <h2 class="phase-head">Extension Challenges</h2>
     <p class="muted">Finished early? Try one or more of these.</p>
 
-    <h3 class="sub">Extension A — Use the Turn Return Value</h3>
+    <h3 class="sub">Extension A — Use the Turn <span class="def-term" data-term="RETURN VALUE">Return Value</span></h3>
     <ul>
       <li>Your <code>Turn</code> returns 1 for success. Only add points if a maneuver's setup turn succeeded. How would you use the return value to protect your score?</li>
     </ul>
@@ -423,7 +423,7 @@ int main() {
 
     <h3 class="sub">Extension E — One Combined Message</h3>
     <ul>
-      <li>Right now your score report prints as several separate <code>printf</code> lines. Use <code>sprintf</code> to build one combined summary string — for example, your score and maneuver count in a single sentence — before printing it in one call.</li>
+      <li>Right now your score report prints as several separate <code>printf</code> lines. Use <code>sprintf</code> to build one combined summary <span class="def-term" data-term="STRING">string</span> — for example, your score and maneuver count in a single sentence — before printing it in one call.</li>
       <li>What's one advantage of building one complete string before printing, instead of printing pieces as you go?</li>
     </ul>
     <textarea class="answer" data-key="ext_e" aria-label="Extension E"></textarea>
@@ -549,6 +549,10 @@ int main() {
 <script>
 (function(){
   var DEFS = {
+    'STATE': ['State', 'What a system is currently doing or holding — where the robot is, what it is carrying, how many cubes it has stacked. State is the information a program keeps track of as it runs.'],
+    'DEBUGGING': ['Debugging', 'Finding out why a program does not do what you meant, and fixing it. The skill is not writing perfect code; it is narrowing down where the trouble actually is.'],
+    'RETURN VALUE': ['Return Value', 'The answer a function hands back to whatever called it. A function that returns a value can be used inside a calculation; a void function cannot.'],
+    'STRING': ['String', 'Text stored as data — letters, digits, and spaces treated as characters rather than as a number you can do arithmetic with.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
     'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
     'PALLET': ['Pallet', 'A flat platform on the game field that a load sits on. Several missions ask you to move a pallet and whatever is stacked on it, together.'],

@@ -187,7 +187,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 2 · Big Idea 4</span><a class="gloss" href="../discovery/glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 2 · Big Idea 4</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -212,7 +212,7 @@
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine sense and respond to the world around it?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>Information Must Be Interpreted Before It Becomes Useful</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems transform raw <span class="def-term" data-term="SENSOR">sensor</span> data into meaningful information.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd><span class="def-term" data-term="ANALOG">Analog</span> Sensors · Raw Data · Calibration · <span class="def-term" data-term="THRESHOLD">Threshold</span>s · if/else on a live sensor</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd><span class="def-term" data-term="ANALOG">Analog</span> Sensors · Raw Data · <span class="def-term" data-term="CALIBRATION">Calibration</span> · <span class="def-term" data-term="THRESHOLD">Threshold</span>s · if/else on a live sensor</dd></div>
       <div class="row"><dt>Game Context</dt><dd>Detecting tape — steering along a line</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Explorer robot · Tophat sensor · ruler · black tape on white board · this lab sheet</dd></div>
     </dl>
@@ -351,7 +351,7 @@
     <div class="concept">
       <div class="chead">Analog: a range, not a switch</div>
       <div class="cbody">
-        <p>Your touch sensor was <em><span class="def-term" data-term="DIGITAL">Digital</span></em> — only 0 or 1. The Tophat is <em>analog</em> — it returns a number across a wide range. That's more information, but it's also messier: it bounces, and there's no single "line" value. You have to decide where the line <em>is</em>.</p>
+        <p>Your touch sensor was <em><span class="def-term" data-term="DIGITAL">digital</span></em> — only 0 or 1. The Tophat is <em>analog</em> — it returns a number across a wide range. That's more information, but it's also messier: it bounces, and there's no single "line" value. You have to decide where the line <em>is</em>.</p>
       </div>
     </div>
     <div class="concept">
@@ -387,7 +387,7 @@ else:                          <span class="c"># reading is LOW — that's WHITE
       <p>Hold the robot up and pass the line under the sensor by hand. Watch the wheels change speed as you move from white to black. Only put it on the board once the steering reacts the right way.</p>
     </div>
 
-    <p>You'll reuse the encoder skeleton from <code>Tick_Drive</code> — clear the counter, loop to a <span class="def-term" data-term="TICK">tick</span> target, brake at the end — but inside the loop you'll put the <code>if/else</code> that steers. Type your own <code>MIDPOINT</code> from Phase 3 at the top. Define <code>line_follow</code> above <code>main()</code>, as always.</p>
+    <p>You'll reuse the <span class="def-term" data-term="ENCODER">encoder</span> skeleton from <code>Tick_Drive</code> — clear the counter, loop to a <span class="def-term" data-term="TICK">tick</span> target, brake at the end — but inside the loop you'll put the <code>if/else</code> that steers. Type your own <code>MIDPOINT</code> from Phase 3 at the top. Define <code>line_follow</code> above <code>main()</code>, as always.</p>
     <div class="code">#!/usr/bin/python3
 <span class="c"># Unit 2 · Big Idea 4 — Reading the Line</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
@@ -615,6 +615,8 @@ main()</div>
 <script>
 (function(){
   var DEFS = {
+    'CALIBRATION': ['Calibration', 'Measuring your own robot to find the numbers that describe it — ticks per inch, a light threshold, a turn count. Calibration is why one team’s numbers do not work on another team’s robot.'],
+    'ENCODER': ['Encoder', 'The counter built into a motor that reports how far its shaft has turned. It is what makes ticks possible, and it is how a robot measures its own movement instead of guessing.'],
     'ANALOG': ['Analog', 'An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers "how dark is this?" with a number, so you have to decide for yourself where dark begins.'],
     'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
     'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],

@@ -172,7 +172,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 5 · Big Idea 4</span><a class="gloss" href="../discovery/glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 5 · Big Idea 4</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -197,7 +197,7 @@
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine operate reliably in an imperfect world?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>Performance Can Be Measured</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>A system that never measures its own performance can't tell whether a change actually helped.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd>systime() &amp; Elapsed Time · Modulo &amp; Floor Division · Lists for Metrics · Boolean Flags · Linear Search · Sorting · <span class="def-term" data-term="ALGORITHM">Algorithm</span> Efficiency</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd>systime() &amp; Elapsed Time · <span class="def-term" data-term="MODULO">Modulo</span> &amp; Floor Division · Lists for Metrics · <span class="def-term" data-term="BOOLEAN">Boolean</span> Flags · Linear Search · Sorting · <span class="def-term" data-term="ALGORITHM">Algorithm</span> Efficiency</dd></div>
       <div class="row"><dt>Game Context</dt><dd>Mission 12 + Mission 16 — recover 2 spilled cubes, stack them on the Large Green Cube</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Explorer robot · full <span class="def-term" data-term="LIBRARY">library</span> · 2 spilled cubes · Large Green Cube · the game field · this lab sheet</dd></div>
     </dl>
@@ -339,7 +339,7 @@ main()</div>
         <p><code>range(4)</code> counts <code>0, 1, 2, 3</code> for you — one number per trip through the loop:</p>
         <div class="code small">for i in range(4):
     <span class="c"># this block runs once for i=0, once for i=1, once for i=2, once for i=3</span></div>
-        <p>The new part today isn't the loop itself — it's what you do with <code>i</code> inside it. Since list slots are numbered, <code>i</code> can walk straight into your list as an index: <code>times[i]</code> means "whichever slot <code>i</code> currently points to." As <code>i</code> counts <code>0, 1, 2, 3</code>, <code>times[i]</code> visits every slot in the list in order.</p>
+        <p>The new part today isn't the loop itself — it's what you do with <code>i</code> inside it. Since <span class="def-term" data-term="LIST">list</span> slots are numbered, <code>i</code> can walk straight into your list as an <span class="def-term" data-term="INDEX">index</span>: <code>times[i]</code> means "whichever slot <code>i</code> currently points to." As <code>i</code> counts <code>0, 1, 2, 3</code>, <code>times[i]</code> visits every slot in the list in order.</p>
       </div>
     </div>
     <div class="concept">
@@ -380,7 +380,7 @@ times[i + 1] = temp       <span class="c"># 3. copy the saved-aside value into t
     <div class="concept">
       <div class="chead">Sorting: stopping early with a stored boolean</div>
       <div class="cbody">
-        <p>The version above always does all 3 passes, even if the line was already sorted after pass 1. You've used booleans <em>inline</em> before, inside an <code>if</code> <span class="def-term" data-term="CONDITION">Condition</span> with <code>and</code> or <code>or</code>. Here's a new use: store a boolean's answer <strong>in a variable</strong> that carries a true/false memory from one pass into the next.</p>
+        <p>The version above always does all 3 passes, even if the line was already sorted after pass 1. You've used booleans <em>inline</em> before, inside an <code>if</code> <span class="def-term" data-term="CONDITION">condition</span> with <code>and</code> or <code>or</code>. Here's a new use: store a boolean's answer <strong>in a variable</strong> that carries a true/false memory from one pass into the next.</p>
         <div class="code small">swapped = True                   <span class="c"># start true, just to make sure the loop runs at least once</span>
 while swapped:
     swapped = False               <span class="c"># assume this pass finds nothing to fix...</span>
@@ -596,6 +596,10 @@ print(f"Sorted: {times[0]:.2f}, {times[1]:.2f}, {times[2]:.2f}, {times[3]:.2f}")
 <script>
 (function(){
   var DEFS = {
+    'LIST': ['List', 'Python’s way of holding a row of values under one name, reached by index. It does the job that an array does in C.'],
+    'BOOLEAN': ['Boolean', 'A value that can only be true or false — nothing in between. Every condition you write comes out as a boolean, which is how the robot decides which way to go.'],
+    'INDEX': ['Index', 'The position number that picks one item out of an array or list. Indexes usually start at 0, so the first item is index 0, not index 1.'],
+    'MODULO': ['Modulo', 'The remainder left over after dividing. 7 modulo 3 is 1, because 3 goes into 7 twice with 1 left. It is how a program makes something repeat in a cycle.'],
     'ALGORITHM': ['Algorithm', 'A list of steps that solves a problem. A recipe is an algorithm. So is the set of instructions you write for a robot.'],
     'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
     'FOR LOOP': ['For Loop', 'A loop that repeats a known number of times. Its three parts — where to start, when to stop, and how much to change each time — all sit together inside one set of parentheses, separated by semicolons.'],

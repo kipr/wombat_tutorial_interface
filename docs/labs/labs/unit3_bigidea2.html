@@ -178,7 +178,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 3 · Big Idea 2</span><a class="gloss" href="../discovery/glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 3 · Big Idea 2</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -223,7 +223,7 @@
     </div>
     <h3 class="sub">By the end of this activity you will be able to:</h3>
     <ul class="obj">
-      <li>Write a function that <em>clamps</em> a value so it can never exceed the safe range.</li>
+      <li>Write a function that <em><span class="def-term" data-term="CLAMP">clamp</span>s</em> a value so it can never exceed the safe range.</li>
       <li>Read a servo's current position with <code>get_servo_position</code>.</li>
       <li>Move a servo smoothly by stepping one position at a time in a loop.</li>
       <li>Experiment with timing to control how fast or smooth the motion is.</li>
@@ -452,7 +452,7 @@ void move_claw(int position) {
 
     <h3 class="sub">Extension D — Looking Ahead: Your Toolbox Is Growing</h3>
     <ul>
-      <li>You now have <code>move_arm</code> and <code>move_claw</code> that you'll want in <em>every</em> future mission. Wouldn't it be nice to write them once and reuse them everywhere, instead of copying them into each program? Next lab, you'll do exactly that — build a <strong><span class="def-term" data-term="LIBRARY">Library</span></strong>.</li>
+      <li>You now have <code>move_arm</code> and <code>move_claw</code> that you'll want in <em>every</em> future mission. Wouldn't it be nice to write them once and reuse them everywhere, instead of copying them into each program? Next lab, you'll do exactly that — build a <strong><span class="def-term" data-term="LIBRARY">library</span></strong>.</li>
     </ul>
     <textarea class="answer" data-key="ext_d" aria-label="Extension D"></textarea>
   </section>
@@ -567,6 +567,7 @@ void move_claw(int position) {
 <script>
 (function(){
   var DEFS = {
+    'CLAMP': ['Clamp', 'Forcing a value to stay inside a safe range. If a servo may only go from 200 to 1800, clamping turns any larger number into 1800 before it reaches the hardware.'],
     'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
     'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],

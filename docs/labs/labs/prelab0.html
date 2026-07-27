@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PreLab 0 — The Machine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #6b7280;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--navy);
+    color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 10px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-right: auto;
+    color: #fff;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: #d7dcea;
+  }
+  .pin-field input {
+    width: 120px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-align: center;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background: #fff;
+    color: var(--navy);
+    font-family: 'Barlow', sans-serif;
+  }
+  .pin-field input:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+  .submit-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--red);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background .15s ease, transform .05s ease;
+  }
+  .submit-btn:hover { background: var(--red-dark); }
+  .submit-btn:active { transform: translateY(1px); }
+
+  .status {
+    width: 100%;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14.5px;
+    padding: 2px 2px 0;
+    min-height: 0;
+    color: #d7dcea;
+  }
+  .status.ok { color: #b9e6b0; }
+  .status.warn { color: #ffd9a0; }
+  .status.err { color: #ffb3b3; }
+
+  /* ---------- Page shell ---------- */
+  .sheet {
+    max-width: 920px;
+    margin: 22px auto 80px;
+    padding: 0 22px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 26px 30px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-size: 15px;
+    color: #f4d9a0;
+    margin: 0 0 4px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 1.04;
+    margin: 0 0 6px;
+    letter-spacing: .01em;
+  }
+  .hero .sub {
+    font-size: 18px;
+    font-style: italic;
+    color: #ffe9e9;
+    margin: 0;
+  }
+
+  /* ---------- Meta table ---------- */
+  .meta {
+    margin-top: 18px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--panel);
+  }
+  .meta dl { margin: 0; }
+  .meta .row {
+    display: grid;
+    grid-template-columns: 215px 1fr;
+  }
+  .meta .row:nth-child(odd) { background: #eef0f5; }
+  .meta dt {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    font-size: 15px;
+    color: var(--navy);
+    padding: 9px 16px;
+  }
+  .meta dd {
+    margin: 0;
+    padding: 9px 16px;
+    font-size: 16px;
+    border-left: 1px solid var(--line);
+  }
+
+  /* ---------- Sections ---------- */
+  section { margin-top: 30px; }
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    color: var(--navy);
+    letter-spacing: .01em;
+    padding-bottom: 6px;
+    border-bottom: 2.5px solid var(--red);
+    margin: 0 0 4px;
+  }
+  .phase-head .pnum {
+    color: var(--red);
+    font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--navy);
+    margin: 18px 0 6px;
+  }
+  p { margin: 8px 0; }
+  .muted { color: var(--grey); font-style: italic; font-size: 15.5px; }
+  ul, ol { margin: 8px 0; padding-left: 24px; }
+  li { margin: 4px 0; }
+  .obj li { margin: 5px 0; }
+
+  /* ---------- Callout ---------- */
+  .callout {
+    border: 1px solid var(--line);
+    border-left: 6px solid var(--red);
+    background: #fbeef0;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #eef1f7; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: .02em;
+    color: var(--red);
+    margin: 0 0 4px;
+  }
+  .callout.navy .ctitle { color: var(--navy); }
+  .callout p { margin: 4px 0; }
+
+  /* ---------- Command reference ---------- */
+  .cmd-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .cmd-table th {
+    background: var(--navy);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    font-size: 15px;
+    text-align: left;
+    padding: 8px 14px;
+  }
+  .cmd-table td {
+    border-top: 1px solid var(--line);
+    padding: 9px 14px;
+    vertical-align: top;
+    font-size: 15.5px;
+  }
+  .cmd-table tr:nth-child(even) td { background: #f7f8fa; }
+  .cmd-table code {
+    font-family: 'Barlow', monospace;
+    font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+    color: var(--red);
+    font-weight: 600;
+    font-size: 14.5px;
+    white-space: nowrap;
+  }
+
+  /* ---------- Code block ---------- */
+  .code {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.65;
+    overflow-x: auto;
+    white-space: pre;
+    -webkit-overflow-scrolling: touch;
+  }
+  .code .c { color: var(--code-green); }
+
+  /* ---------- Inputs ---------- */
+  .answer {
+    width: 100%;
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink);
+    background: var(--field);
+    border: 1.5px solid var(--line);
+    border-radius: 9px;
+    padding: 10px 12px;
+    resize: vertical;
+    min-height: 76px;
+  }
+  .answer:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: var(--field-focus);
+    box-shadow: 0 0 0 3px rgba(200,161,75,.18);
+  }
+  .q {
+    font-weight: 600;
+    margin: 16px 0 6px;
+  }
+  .q .n { color: var(--red); }
+  .field-line { margin: 10px 0 4px; }
+
+  /* numbered short-answer rows */
+  .steps { list-style: none; padding: 0; margin: 8px 0; counter-reset: s; }
+  .steps li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 7px 0;
+  }
+  .steps li::before {
+    counter-increment: s;
+    content: counter(s) ".";
+    font-weight: 700;
+    color: var(--navy);
+    min-width: 22px;
+    font-size: 16px;
+  }
+  .steps input {
+    flex: 1;
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+    padding: 8px 11px;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    background: var(--field);
+  }
+  .steps input:focus {
+    outline: none; border-color: var(--gold);
+    background: var(--field-focus);
+    box-shadow: 0 0 0 3px rgba(200,161,75,.18);
+  }
+  .group-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 17px;
+    margin: 14px 0 2px;
+  }
+
+  /* ---------- Data tables (field orientation, trial log) ---------- */
+  .grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    border: 1px solid var(--line);
+  }
+  .grid th {
+    background: var(--navy);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: .02em;
+    padding: 8px 8px;
+    text-align: left;
+    vertical-align: bottom;
+  }
+  .grid td {
+    border: 1px solid var(--line);
+    padding: 0;
+  }
+  .grid td .label {
+    padding: 8px 10px;
+    font-size: 15px;
+    background: #eef0f5;
+    font-weight: 500;
+  }
+  .grid input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15.5px;
+    padding: 9px 10px;
+  }
+  .grid input:focus {
+    outline: none;
+    background: var(--field-focus);
+    box-shadow: inset 0 0 0 2px var(--gold);
+  }
+  .grid tr:nth-child(even) td:not(.has-label) { background: #fafbfc; }
+
+  /* ---------- Name/date inline ---------- */
+  .namebar {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin: 8px 0 4px;
+  }
+  .namebar .nb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1 1 220px;
+  }
+  .namebar label {
+    font-weight: 600;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+  .namebar input {
+    flex: 1;
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+    padding: 8px 11px;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    background: var(--field);
+  }
+  .namebar input:focus {
+    outline: none; border-color: var(--gold);
+    background: var(--field-focus);
+    box-shadow: 0 0 0 3px rgba(200,161,75,.18);
+  }
+
+  .pin-reminder {
+    background: #fff6e0;
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 0 0 6px;
+    font-size: 15.5px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  /* ---------- Footer / bottom submit ---------- */
+  .bottom-submit {
+    margin-top: 36px;
+    text-align: center;
+    padding: 24px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--gold);
+    border-radius: 12px;
+  }
+  .bottom-submit p { margin: 0 0 14px; color: var(--grey); font-size: 15.5px; }
+  .bottom-submit .submit-btn { font-size: 19px; padding: 13px 30px; }
+
+  .credit {
+    text-align: center;
+    color: var(--grey);
+    font-size: 13.5px;
+    margin: 26px 0 0;
+    letter-spacing: .02em;
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    @page { margin: 14mm; }
+    body { background: #fff; font-size: 12px; }
+    .topbar { position: static; border: none; }
+    .no-print { display: none !important; }
+    .sheet { margin: 0; max-width: none; padding: 0; }
+    .hero {
+      background: var(--red) !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      border-radius: 0;
+    }
+    .meta, .callout, .cmd-table, .grid, .bottom-submit { break-inside: avoid; }
+    section { break-inside: avoid-page; }
+    .code {
+      background: #f2f2f2 !important; color: #1a1a1a !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      border: 1px solid #ccc;
+    }
+    .code .c { color: #3c7a3c !important; }
+    .cmd-table th, .grid th {
+      background: var(--navy) !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    /* show typed values cleanly in print */
+    .answer, .steps input, .grid input, .namebar input, .pin-field input {
+      border: none !important;
+      border-bottom: 1px solid #999 !important;
+      border-radius: 0 !important;
+      background: #fff !important;
+      box-shadow: none !important;
+      color: #000 !important;
+    }
+    .answer { min-height: auto; }
+    .print-pin {
+      display: block !important;
+    }
+  }
+  .print-pin { display: none; }
+
+  @media (max-width: 600px) {
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dd { border-left: none; border-top: 1px solid var(--line); }
+    .hero h1 { font-size: 30px; }
+    .topbar .brand { width: 100%; margin-bottom: 4px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;
+               align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;
+           box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden;animation:def-pop .16s ease}
+  @keyframes def-pop{from{opacity:0;transform:scale(.93) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;
+            justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;
+                 letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;
+             line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;
+             display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs,.def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
+
+
+  /* ---- prelab: checklist-first, almost nothing to grade ---- */
+  .pl-sec{border:1px solid var(--line);border-radius:6px;margin:18px 0;overflow:hidden;background:#fff}
+  .pl-head{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;gap:12px}
+  .pl-head .pl-n{background:var(--gold);color:#24200f;font-family:var(--font-display);font-weight:800;
+                 font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;border-radius:3px;flex-shrink:0}
+  .pl-head .pl-t{font-family:var(--font-display);font-weight:700;font-size:1.12rem;line-height:1.2}
+  .pl-body{padding:6px 16px 14px}
+  .pl-body > p{margin:10px 0;font-size:1rem}
+  ul.tick{list-style:none;margin:10px 0 4px;padding:0}
+  ul.tick li{display:flex;align-items:flex-start;gap:11px;padding:9px 11px;border:1px solid var(--line);
+             border-radius:5px;margin-bottom:7px;background:var(--field)}
+  ul.tick input[type="checkbox"]{flex-shrink:0;width:23px;height:23px;margin-top:1px;accent-color:var(--red);cursor:pointer}
+  ul.tick label{cursor:pointer;font-size:1.02rem;line-height:1.45}
+  ul.tick li.key{background:#fffaef;border-color:rgba(200,161,75,.5)}
+  .rec{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:9px 14px;align-items:center;
+       margin:12px 0;padding:12px 14px;background:#f2f4fa;border:1px solid var(--line);border-radius:5px}
+  .rec label{font-family:var(--font-display);font-weight:700;font-size:.82rem;letter-spacing:.06em;
+             text-transform:uppercase;color:var(--navy)}
+  .rec input{padding:8px 10px;border:1px solid var(--line);border-radius:4px;background:#fff;
+             font-family:var(--font-body);font-size:1rem;width:100%}
+  .rec input:focus{outline:none;border-color:var(--gold)}
+  .signoff{border:2px solid var(--gold);border-radius:6px;background:#fffaef;padding:14px 18px;margin:22px 0 0}
+  .signoff .so-t{font-family:var(--font-display);font-weight:800;font-size:1rem;letter-spacing:.07em;
+                 text-transform:uppercase;color:var(--navy);margin:0 0 8px}
+  .gate{border-left:5px solid #922B21;background:#fdf0ef;padding:13px 17px;margin:18px 0;border-radius:0 5px 5px 0}
+  .gate .gt{font-family:var(--font-display);font-weight:800;font-size:1rem;letter-spacing:.07em;
+            text-transform:uppercase;color:#922B21;margin:0 0 5px}
+  @media (max-width:700px){ .rec{grid-template-columns:1fr;gap:5px} }
+  @media print{ .pl-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+                ul.tick input[type="checkbox"]{-webkit-appearance:none;appearance:none;border:1px solid #666;
+                border-radius:2px;width:14px;height:14px} }
+</style>
+</head>
+<body>
+
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Botball <span>Explorer</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">PreLab 0</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">PreLab 0 · Before Unit 1</p>
+    <h1>The Machine</h1>
+    <p class="sub">PreLab · C track — completion checklist</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <div class="meta">
+    <dl>
+      <div class="row"><dt>Purpose</dt><dd>Know your kit, your robot&rsquo;s six subsystems, and how to work safely &mdash; before you write any code.</dd></div>
+      <div class="row"><dt>Where This Sits</dt><dd><strong>Before Unit 1, Big Idea 1.</strong> Do PreLab 0, then PreLab 1, then start Lab 1.1.</dd></div>
+      <div class="row"><dt>How It Is Assessed</dt><dd>Completion only. Tick boxes and record four values &mdash; there is nothing to write up.</dd></div>
+      <div class="row"><dt>What You Need</dt><dd>Your robot kit &middot; your team &middot; about one session</dd></div>
+    </dl>
+  </div>
+
+
+  <h2 class="phase-head"><span class="pnum">PreLab 0</span> Know the Machine Before You Program It</h2>
+
+  <p class="muted">Nothing here is graded on how well you write. Work through it, tick each box honestly,
+  and record the four values you will need later. It should take one session.</p>
+
+  <div class="pl-sec">
+    <div class="pl-head"><span class="pl-n">Part 1</span><span class="pl-t">Check the kit against the list</span></div>
+    <div class="pl-body">
+      <p>Lay everything out. Anything missing is far cheaper to find now than in the middle of Unit 3.</p>
+      <ul class="tick">
+        <li><input type="checkbox" data-key="k_controller" id="k1"><label for="k1">KIPR Wombat <span class="def-term" data-term="CONTROLLER">controller</span>, charger, and battery</label></li>
+        <li><input type="checkbox" data-key="k_chassis" id="k2"><label for="k2">Chassis, wheels, and two drive motors</label></li>
+        <li><input type="checkbox" data-key="k_servos" id="k3"><label for="k3">Two <span class="def-term" data-term="SERVO">servo</span>s, two servo brackets, two 1&#215;5 servo horns</label></li>
+        <li><input type="checkbox" data-key="k_sensors" id="k4"><label for="k4">Touch sensors, Tophat reflectance sensors, ET distance sensor</label></li>
+        <li><input type="checkbox" data-key="k_lego" id="k5"><label for="k5">LEGO liftarms, pins, and axles</label></li>
+        <li><input type="checkbox" data-key="k_fixings" id="k6"><label for="k6">Bolts, nuts, and washers in their sizes</label></li>
+        <li><input type="checkbox" data-key="k_missing" id="k7"><label for="k7">I have reported anything missing to my teacher</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pl-sec">
+    <div class="pl-head"><span class="pl-n">Part 2</span><span class="pl-t">Find each subsystem on your own robot</span></div>
+    <div class="pl-body">
+      <p>Every robot is built from the same six kinds of part. Point at each one on your actual robot before you tick it.</p>
+      <ul class="tick">
+        <li><input type="checkbox" data-key="s_sensor" id="s1"><label for="s1"><strong><span class="def-term" data-term="SENSOR">Sensor</span>s</strong> &mdash; how it takes information in. I can point at two.</label></li>
+        <li><input type="checkbox" data-key="s_comp" id="s2"><label for="s2"><strong><span class="def-term" data-term="COMPUTATION">Computation</span></strong> &mdash; where the decisions happen. I can point at it.</label></li>
+        <li><input type="checkbox" data-key="s_act" id="s3"><label for="s3"><strong><span class="def-term" data-term="ACTUATOR">Actuator</span>s</strong> &mdash; what makes movement. I can point at three.</label></li>
+        <li><input type="checkbox" data-key="s_eff" id="s4"><label for="s4"><strong><span class="def-term" data-term="EFFECTOR">Effector</span>s</strong> &mdash; what acts on the world. I can name what mine will be.</label></li>
+        <li><input type="checkbox" data-key="s_power" id="s5"><label for="s5"><strong>Power</strong> &mdash; where the energy comes from and how it is charged.</label></li>
+        <li><input type="checkbox" data-key="s_prop" id="s6"><label for="s6"><strong><span class="def-term" data-term="PROPRIOCEPTIVE">Proprioceptive</span> sense</strong> &mdash; how it senses <em>itself</em>. Mine is the motor <span class="def-term" data-term="ENCODER">encoder</span>s.</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pl-sec">
+    <div class="pl-head"><span class="pl-n">Part 3</span><span class="pl-t">Know which kind of robot you are building</span></div>
+    <div class="pl-body">
+      <ul class="tick">
+        <li><input type="checkbox" data-key="a_auto" id="a1"><label for="a1">I can explain what <span class="def-term" data-term="AUTONOMOUS">autonomous</span> means, and I know that once a match starts nobody may touch the robot.</label></li>
+        <li><input type="checkbox" data-key="a_rc" id="a2"><label for="a2">I can say how that differs from <span class="def-term" data-term="REMOTE CONTROL">remote control</span> and <span class="def-term" data-term="SEMI-AUTONOMOUS">semi&#8209;autonomous</span>.</label></li>
+        <li><input type="checkbox" data-key="a_why" id="a3"><label for="a3">I understand why that makes testing matter more than it would otherwise.</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pl-sec">
+    <div class="pl-head"><span class="pl-n">Part 4</span><span class="pl-t">Safety and looking after the kit</span></div>
+    <div class="pl-body">
+      <ul class="tick">
+        <li><input type="checkbox" data-key="sf_hands" id="f1"><label for="f1">Hands clear of wheels, gears, and the claw whenever power is on.</label></li>
+        <li><input type="checkbox" data-key="sf_stop" id="f2"><label for="f2">I know how to stop a running program immediately.</label></li>
+        <li><input type="checkbox" data-key="sf_servo" id="f3"><label for="f3">I will not force a servo by hand &mdash; it strips the gears.</label></li>
+        <li><input type="checkbox" data-key="sf_batt" id="f4"><label for="f4">I know how the battery is charged and that it is never left on the floor.</label></li>
+        <li><input type="checkbox" data-key="sf_wires" id="f5"><label for="f5">Wires are routed so nothing is trapped or pulled when the robot moves.</label></li>
+        <li><input type="checkbox" data-key="sf_pack" id="f6"><label for="f6">Everything goes back in the kit at the end of every session.</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="signoff">
+    <p class="so-t">Sign off</p>
+    <ul class="tick">
+      <li class="key"><input type="checkbox" data-key="done_all" id="z1"><label for="z1">Every box above is ticked honestly, and my teacher has seen my robot.</label></li>
+    </ul>
+    <div class="rec">
+      <label for="r_team">Team name or number</label><input type="text" id="r_team" data-key="rec_team">
+      <label for="r_date">Date completed</label><input type="text" id="r_date" data-key="rec_date">
+    </div>
+  </div>
+
+  <div class="gate">
+    <p class="gt">Next</p>
+    <p style="margin:0"><strong>PreLab 1 &mdash; The Toolchain.</strong> You cannot start Lab 1.1 until your robot boots,
+    connects, and runs a program you wrote.</p>
+  </div>
+
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — CS1 + AI Literacy · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFS = {
+    'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
+    'SERVO': ['Servo', 'A motor that turns to a position you ask for and holds it there, instead of just spinning. That is why servos are used for arms and claws.'],
+    'SENSOR': ['Sensor', 'A part that takes in information from the world — light, distance, contact — and turns it into a number your program can read.'],
+    'COMPUTATION': ['Computation', 'The part of a robot that decides what to do. On your robot that is the Wombat running the program you wrote.'],
+    'ACTUATOR': ['Actuator', 'A part that produces movement. Motors and servos are actuators — they are the muscles of the machine.'],
+    'EFFECTOR': ['Effector', 'The part that acts on the world rather than just moving the robot — a claw, a blade, a buzzer, a light.'],
+    'PROPRIOCEPTIVE': ['Proprioceptive', 'Sensing your own body rather than the world outside it. Motor encoders are proprioceptive — they tell the robot how far its own wheels have turned.'],
+    'ENCODER': ['Encoder', 'The counter built into a motor that reports how far its shaft has turned. It is how a robot measures its own movement instead of guessing.'],
+    'AUTONOMOUS': ['Autonomous', 'Acting on its own, with no one controlling it. Once a Botball match starts, nobody may touch the robot — everything it does comes from the program.'],
+    'REMOTE CONTROL': ['Remote Control', 'A person drives every movement in real time. The machine makes no decisions of its own.'],
+    'SEMI-AUTONOMOUS': ['Semi-Autonomous', 'A mix — the machine handles some things itself while a person directs the rest.']
+  };
+  function openDef(t){
+    var e=DEFS[t]; if(!e) return;
+    document.getElementById('defTerm').textContent=e[0];
+    document.getElementById('defBody').textContent=e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow='hidden';
+  }
+  function closeDef(){
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el){ e.preventDefault(); openDef(el.dataset.term); } });
+  document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
+<script>
+  var MISSION_ID = "prelab0_labs";
+  var MISSION_TITLE = "PreLab 0 — The Machine";
+  var $=function(s){return document.querySelector(s);};
+  var pinInput=$("#pin"),statusEl=$("#status"),statusBottom=$("#statusBottom"),pinEcho=$("#pinEcho");
+  function collectAnswers(){var a={};document.querySelectorAll("[data-key]").forEach(function(el){a[el.getAttribute("data-key")]=(el.type==="checkbox")?(el.checked?"yes":""):el.value;});return a;}
+  var SAVE_KEY="kipr_"+MISSION_ID+"_draft";
+  function restoreDraft(){var raw=null;try{raw=window.localStorage.getItem(SAVE_KEY);}catch(e){return;}if(!raw)return;
+    var d;try{d=JSON.parse(raw);}catch(e){return;}
+    if(d.pin)pinInput.value=d.pin;
+    if(d.answers)document.querySelectorAll("[data-key]").forEach(function(el){var k=el.getAttribute("data-key");
+      if(k in d.answers){if(el.type==="checkbox")el.checked=d.answers[k]==="yes";else el.value=d.answers[k];}});
+    syncPinEcho();}
+  function saveDraft(){try{window.localStorage.setItem(SAVE_KEY,JSON.stringify({pin:pinInput.value.trim(),answers:collectAnswers()}));}catch(e){}}
+  function syncPinEcho(){pinEcho.textContent=pinInput.value.trim();}
+  restoreDraft();
+  document.addEventListener("input",function(e){if(e.target.matches("[data-key], #pin")){saveDraft();syncPinEcho();}});
+  document.addEventListener("change",function(e){if(e.target.matches("[data-key]"))saveDraft();});
+  function setStatus(msg,kind){statusEl.textContent=msg;statusEl.className="status"+(kind?" "+kind:"");statusBottom.textContent=msg;}
+  function submit(){
+    var pin=pinInput.value.trim();
+    if(!pin){setStatus("Enter your PIN first.","err");pinInput.focus();return;}
+    var payload={mission:MISSION_ID,missionTitle:MISSION_TITLE,pin:pin,submittedAt:new Date().toISOString(),answers:collectAnswers()};
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+    var url=URL.createObjectURL(blob),a=document.createElement("a");
+    a.href=url;a.download=MISSION_ID+"_pin"+pin+".json";
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+    saveDraft();setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function(){window.print();},600);
+  }
+  $("#submitTop").addEventListener("click",submit);
+  $("#submitBottom").addEventListener("click",submit);
+</script>
+
+</body>
+</html>

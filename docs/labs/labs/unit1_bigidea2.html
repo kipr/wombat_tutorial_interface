@@ -211,7 +211,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 1 · Big Idea 2</span><a class="gloss" href="../discovery/glossary.html">Glossary</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Labs</a><span class="sep">/</span><span class="here">Unit 1 · Big Idea 2</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
@@ -238,7 +238,7 @@
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine understand and act within the world?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>Problems Can Be Broken Into Smaller Problems</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>Intelligent systems solve complex problems by breaking them into smaller parts.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd>Decomposition · Computational Thinking · Planning · Abstraction</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd><span class="def-term" data-term="DECOMPOSITION">Decomposition</span> · Computational Thinking · Planning · <span class="def-term" data-term="ABSTRACTION">Abstraction</span></dd></div>
       <div class="row"><dt>Game Context</dt><dd>Mission 2 — Relocate the Red Cube (drive, push, return) · builds toward Mission 8 — Deliver the Red Cube</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Explorer robot kit · game field · this lab sheet · sticky notes (optional)</dd></div>
     </dl>
@@ -776,6 +776,8 @@ int main() {
 <script>
 (function(){
   var DEFS = {
+    'ABSTRACTION': ['Abstraction', 'Hiding the details behind a name so you can use something without thinking about how it works. You call drive_forward() without recalling every line inside it.'],
+    'DECOMPOSITION': ['Decomposition', 'Breaking a big problem into smaller problems you can solve one at a time. Almost every hard robot task becomes easy once it is decomposed far enough.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
     'INTEGER': ['Integer', 'A whole number — no fraction, no decimal point. Servo positions, motor ports, and power levels are all integers, which is why they are declared with int.'],
     'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.'],
