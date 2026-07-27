@@ -381,6 +381,18 @@
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
 </style>
 </head>
@@ -390,6 +402,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Coding</a><span class="sep">/</span><span class="here">Project 13</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -415,8 +428,8 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Writing code that asks a question once and picks a path based on the answer — then using it to build two stacks that have to come out different.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 3 — Mixed Freight (advanced bonus) — 13 points</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Robot with arm, claw, and touch sensor · Wombat · charged battery · the game field · your function list from Project 12</dd></div>
-        <div class="row"><dt>Before You Start</dt><dd>Projects 10 and 12 — you need <code>while</code> loops and your own functions.</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Robot with arm, claw, and touch <span class="def-term" data-term="SENSOR">sensor</span> · Wombat · charged battery · the game field · your <span class="def-term" data-term="FUNCTION">function</span> list from Project 12</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Projects 10 and 12 — you need <code>while</code> loops and your own <span class="def-term" data-term="FUNCTION">function</span>s.</dd></div>
       </dl>
     </div>
 
@@ -475,14 +488,14 @@
   <section>
     <h2 class="phase-head"><span class="pnum">Learn It</span> Ask Once, Then Choose</h2>
 
-    <p>An <code>if</code> statement asks a question and only runs its block when the answer is true.</p>
+    <p>An <code>if</code> <span class="def-term" data-term="STATEMENT">statement</span> asks a question and only runs its <span class="def-term" data-term="BLOCK">block</span> when the answer is true.</p>
 
     <pre class="code"><span class="kw">if</span> (digital(bump) == <span class="nu">1</span>)
 {
     printf(<span class="st">"I am touching something!\n"</span>);
 }</pre>
 
-    <p>The <span class="def-term" data-term="CONDITION">CONDITION</span> in the parentheses is written exactly the same way as a <code>while</code> condition — same symbols, same rules, same <code>==</code> trap.</p>
+    <p>The <span class="def-term" data-term="CONDITION">condition</span> in the parentheses is written exactly the same way as a <code>while</code> <span class="def-term" data-term="CONDITION">condition</span> — same symbols, same rules, same <code>==</code> trap.</p>
 
     <h3 class="sub">The one difference that matters</h3>
 
@@ -494,7 +507,7 @@
     motor(left, <span class="nu">50</span>);
     motor(right, <span class="nu">50</span>);
 }</pre>
-        <div class="cnote">Checks, runs the block, checks again, runs again… until the answer changes. <strong>The robot stays here.</strong></div>
+        <div class="cnote">Checks, runs the <span class="def-term" data-term="BLOCK">block</span>, checks again, runs again… until the answer changes. <strong>The robot stays here.</strong></div>
       </div>
       <div class="col after">
         <div class="chead">if — asks once</div>
@@ -541,7 +554,7 @@
 {
     watch TV;
 }</pre>
-        <div class="sfoot"><strong>Exactly one</strong> of these runs, always. <code>else</code> has no condition — it means "every other possibility."</div>
+        <div class="sfoot"><strong>Exactly one</strong> of these runs, always. <code>else</code> has no <span class="def-term" data-term="CONDITION">condition</span> — it means "every other possibility."</div>
       </div>
 
       <div class="s">
@@ -569,7 +582,7 @@
 
     <h3 class="sub">A decision inside a decision</h3>
 
-    <p>You can put an <code>if</code> inside another <code>if</code>. That is called <span class="def-term" data-term="NESTED">NESTED</span>.</p>
+    <p>You can put an <code>if</code> inside another <code>if</code>. That is called <span class="def-term" data-term="NESTED">nested</span>.</p>
 
     <pre class="code"><span class="kw">if</span> (digital(claw_switch) == <span class="nu">1</span>)     <span class="cm">// did I grab something?</span>
 {
@@ -592,8 +605,8 @@
     <p class="muted">Nesting more than two deep gets hard to read fast. If you need three, that is usually a sign the code wants to be a function.</p>
 
     <div class="callout danger">
-      <p class="ctitle">⚠ No Semicolon After the Condition</p>
-      <p><code>if (digital(bump) == 1);</code> — that stray semicolon makes an empty <code>if</code>. The block after it then runs <strong>every single time</strong>, condition or not.</p>
+      <p class="ctitle">⚠ No <span class="def-term" data-term="SEMICOLON">Semicolon</span> After the Condition</p>
+      <p><code>if (digital(bump) == 1);</code> — that stray <span class="def-term" data-term="SEMICOLON">semicolon</span> makes an empty <code>if</code>. The block after it then runs <strong>every single time</strong>, condition or not.</p>
       <p>Same rule as <code>while</code>, and it is just as hard to spot.</p>
     </div>
   </section>
@@ -606,7 +619,7 @@
 
       <li>
         <span class="stitle">Your first decision</span>
-        <p>New project called <code>Choices</code>. Write a program that checks the touch sensor once and prints a different message either way.</p>
+        <p>New project called <code>Choices</code>. Write a program that checks the touch <span class="def-term" data-term="SENSOR">sensor</span> once and prints a different message either way.</p>
         <pre class="code"><span class="kw">if</span> (digital(bump) == <span class="nu">1</span>)
 {
     printf(<span class="st">"Something is there\n"</span>);
@@ -622,7 +635,7 @@ msleep(<span class="nu">3000</span>);</pre>
 
       <li>
         <span class="stitle">Swap if for while and watch what breaks</span>
-        <p>Change your <code>if</code> to a <code>while</code>. Leave everything else alone. Run it without touching the sensor.</p>
+        <p>Change your <code>if</code> to a <code>while</code>. Leave everything else alone. Run it without <span class="def-term" data-term="TOUCHING">TOUCHING</span> the sensor.</p>
         <p class="q">What happened?</p>
         <textarea class="answer" data-key="p3_while_swap" aria-label="While swap result"></textarea>
         <p>Change it back. You have just seen the difference from the inside.</p>
@@ -705,7 +718,7 @@ msleep(<span class="nu">3000</span>);</pre>
           <div class="mission-body">
             <div class="mpart later">
               <span class="mlabel">Base — 7 pts — done in Project 8</span>
-              One stack: Green ON TOP OF Yellow, or Yellow ON TOP OF Green.
+              One stack: Green <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> Yellow, or Yellow <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> Green.
             </div>
             <div class="mpart">
               <span class="mlabel">Bonus — 9 pts<span class="jtag live">⚡ Live</span></span>
@@ -817,7 +830,7 @@ msleep(<span class="nu">3000</span>);</pre>
 
     <h3 class="sub">Can you do it again?</h3>
     <ul class="check">
-      <li><input type="checkbox" id="s1" data-key="p4_can_if"><label for="s1">I can write an <code>if</code> statement with a condition and a block</label></li>
+      <li><input type="checkbox" id="s1" data-key="p4_can_if"><label for="s1">I can write an <code>if</code> <span class="def-term" data-term="STATEMENT">statement</span> with a condition and a block</label></li>
       <li><input type="checkbox" id="s2" data-key="p4_can_ifwhile"><label for="s2">I can explain the difference between <code>if</code> and <code>while</code></label></li>
       <li><input type="checkbox" id="s3" data-key="p4_can_else"><label for="s3">I know that <code>else</code> takes no condition of its own</label></li>
       <li><input type="checkbox" id="s4" data-key="p4_can_chain"><label for="s4">I can write an <code>else if</code> chain and put the conditions in a sensible order</label></li>
@@ -864,6 +877,13 @@ msleep(<span class="nu">3000</span>);</pre>
 <script>
 (function() {
   var DEFS = {
+    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.'],
+    'SEMICOLON': ['Semicolon', 'The punctuation mark that ends a statement in C. It does the same job as the full stop at the end of a sentence — it says this instruction is finished, move on to the next one.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'STATEMENT': ['Statement', 'One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.'],
+    'TOUCHING': ['Touching', 'Two objects are TOUCHING when they are in direct physical contact with one another. Contact through a third object (robot, field element, or game piece) does not count as TOUCHING.'],
     'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
     'NESTED': ['Nested', 'One structure placed inside another — an if inside an if, or an if inside a while. The inner one is only reached when the outer one lets the robot get that far.']
   };

@@ -384,6 +384,18 @@
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
 </style>
 </head>
@@ -393,6 +405,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Coding</a><span class="sep">/</span><span class="here">Project 14</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -416,10 +429,10 @@
   <section>
     <div class="meta">
       <dl>
-        <div class="row"><dt>What You Are Doing</dt><dd>Reading a sensor that measures brightness, choosing your own decision point, and using the black line to place things exactly inside the Loading Zone.</dd></div>
+        <div class="row"><dt>What You Are Doing</dt><dd>Reading a <span class="def-term" data-term="SENSOR">sensor</span> that measures brightness, choosing your own decision point, and using the black line to place things exactly inside the Loading Zone.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 14 bonus · Mission 18 bonus + advanced — 35 points</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Robot with arm and claw · reflectance (tophat) sensor · light sensor · Wombat · charged battery · the game field</dd></div>
-        <div class="row"><dt>Before You Start</dt><dd>Projects 10, 11, and 13 — loops, ticks, and <code>if</code> statements.</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Robot with arm and claw · <span class="def-term" data-term="REFLECTANCE">reflectance</span> (tophat) <span class="def-term" data-term="SENSOR">sensor</span> · light sensor · Wombat · charged battery · the game field</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Projects 10, 11, and 13 — loops, <span class="def-term" data-term="TICK">tick</span>s, and <code>if</code> <span class="def-term" data-term="STATEMENT">statement</span>s.</dd></div>
       </dl>
     </div>
 
@@ -432,13 +445,13 @@
   <section>
     <h2 class="phase-head"><span class="pnum">Try It</span> How Dark Is It?</h2>
 
-    <p>Your touch sensor answers one question: <em>am I touching something?</em> Yes or no. Nothing else.</p>
+    <p>Your touch sensor answers one question: <em>am I <span class="def-term" data-term="TOUCHING">TOUCHING</span> something?</em> Yes or no. Nothing else.</p>
 
-    <p>This one is different. Plug the reflectance sensor — the little round one, sometimes called a tophat — into an <strong>analog</strong> port. Then open the Sensor List on the Wombat and watch the number while you hold it over things.</p>
+    <p>This one is different. Plug the <span class="def-term" data-term="REFLECTANCE">reflectance</span> sensor — the little round one, sometimes called a tophat — into an <strong><span class="def-term" data-term="ANALOG">analog</span></strong> <span class="def-term" data-term="PORT">port</span>. Then open the Sensor List on the Wombat and watch the number while you hold it over things.</p>
 
     <div class="callout warn">
       <p class="ctitle">⚠ Hold It About a Quarter Inch Up</p>
-      <p>Pointed straight down, roughly 1/4 inch off the surface. Touching the surface or held way up both give you useless numbers.</p>
+      <p>Pointed straight down, roughly 1/4 inch off the surface. <span class="def-term" data-term="TOUCHING">TOUCHING</span> the surface or held way up both give you useless numbers.</p>
     </div>
 
     <table class="grid">
@@ -470,7 +483,7 @@
   <section>
     <h2 class="phase-head"><span class="pnum">Learn It</span> Pick Your Own Dividing Line</h2>
 
-    <p>An <span class="def-term" data-term="ANALOG">ANALOG</span> sensor reports a value across a wide range instead of just 0 or 1.</p>
+    <p>An <span class="def-term" data-term="ANALOG">analog</span> sensor reports a value across a wide range instead of just 0 or 1.</p>
 
     <div class="scale-bar">
       <div class="bar"></div>
@@ -482,9 +495,9 @@
 
     <p class="muted">Your numbers will not match anyone else's. Different sensor, different mounting height, different room lighting.</p>
 
-    <h3 class="sub">Your threshold</h3>
+    <h3 class="sub">Your <span class="def-term" data-term="THRESHOLD">threshold</span></h3>
 
-    <p>A <span class="def-term" data-term="THRESHOLD">THRESHOLD</span> is the number you pick as the dividing line. Below it, call it white. Above it, call it black.</p>
+    <p>A <span class="def-term" data-term="THRESHOLD">threshold</span> is the number you pick as the dividing line. Below it, call it white. Above it, call it black.</p>
 
     <p>The usual starting point is halfway between your two readings:</p>
 
@@ -498,12 +511,12 @@
 
     <div class="anat">
       <div class="arow">
-        <div class="acode">analog(1);</div>
-        <div class="adesc">Gives you the number from the analog sensor in port 1. Compare it against your threshold to decide what the robot is looking at.</div>
+        <div class="acode"><span class="def-term" data-term="ANALOG">analog</span>(1);</div>
+        <div class="adesc">Gives you the number from the analog sensor in <span class="def-term" data-term="PORT">port</span> 1. Compare it against your <span class="def-term" data-term="THRESHOLD">threshold</span> to decide what the robot is looking at.</div>
       </div>
     </div>
 
-    <h3 class="sub">Your third kind of loop condition</h3>
+    <h3 class="sub">Your third kind of loop <span class="def-term" data-term="CONDITION">condition</span></h3>
 
     <p>The loop has not changed at all. Only what it watches.</p>
 
@@ -588,7 +601,7 @@
 <span class="cm">// 2. While the sensor reads less than my threshold, drive forward</span>
 <span class="cm">// 3. Fall out of the loop when it reads more than the threshold</span>
 <span class="cm">// 4. Stop everything</span></pre>
-        <p>Use variables for your motors and your threshold — you have known better than bare numbers since Project 9.</p>
+        <p>Use <span class="def-term" data-term="VARIABLE">variable</span>s for your motors and your threshold — you have known better than bare numbers since Project 9.</p>
         <table class="grid">
           <thead><tr><th style="width:14%">Try</th><th style="width:30%">Threshold</th><th>What happened</th></tr></thead>
           <tbody>
@@ -613,7 +626,7 @@
           </tbody>
         </table>
         <div class="callout gold">
-          <p class="ctitle">This Is Something Ticks Cannot Do</p>
+          <p class="ctitle">This Is Something <span class="def-term" data-term="TICK">Tick</span>s Cannot Do</p>
           <p>A tick count only works from a known starting point. This program finds the line from <em>anywhere</em> — it does not care where it began.</p>
         </div>
       </li>
@@ -640,7 +653,7 @@
       </li>
 
       <li>
-        <span class="stitle">Mission 14 Bonus — a cone in the zone<span class="spts">7 pts</span></span>
+        <span class="stitle">Mission 14 Bonus — a cone <span class="def-term" data-term="IN THE ZONE">IN THE ZONE</span><span class="spts">7 pts</span></span>
         <div class="mission">
           <div class="mission-head">
             <span class="mtitle">Mission 14 — Traffic Control</span>
@@ -661,7 +674,7 @@
           <p class="ctitle">⚠ The Base Still Has to Hold</p>
           <p>You cannot score this bonus unless <strong>both</strong> cones are OFF the black line — including the one you left behind. If your second cone drifted back onto the tape, the bonus is worth nothing.</p>
         </div>
-        <p>Use your line-finding program to drive to the Loading Zone boundary, then place the cone.</p>
+        <p>Use your line-finding program to drive to the Loading Zone <span class="def-term" data-term="BOUNDARY">boundary</span>, then place the cone.</p>
         <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_m14_bonus"><label for="d4">A cone is IN the Loading Zone and the other is still OFF the line</label></li></ul>
       </li>
 
@@ -683,15 +696,15 @@
             </div>
             <div class="mpart">
               <span class="mlabel">Advanced Bonus — 15 pts<span class="jtag final">📋 Final</span></span>
-              Botguy is IN the Loading Zone <strong>and both</strong> Traffic Cones are FULLY WITHIN the Loading Zone.
+              Botguy is IN the Loading Zone <strong>and both</strong> Traffic Cones are <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> the Loading Zone.
             </div>
           </div>
         </div>
 
         <div class="callout danger">
-          <p class="ctitle">⚠ IN and FULLY WITHIN Are Not the Same Thing</p>
+          <p class="ctitle">⚠ IN and <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> Are Not the Same Thing</p>
           <p>Mission 14's bonus only needs a cone <strong>IN</strong> the zone — any part of it poking into the interior counts.</p>
-          <p>Mission 18 needs the cones <strong>FULLY WITHIN</strong> — every single part inside, nothing touching or crossing the boundary.</p>
+          <p>Mission 18 needs the cones <strong>FULLY WITHIN</strong> — every single part inside, nothing touching or crossing the <span class="def-term" data-term="BOUNDARY">boundary</span>.</p>
           <p>A cone half over the line scores Mission 14 and <em>nothing</em> from Mission 18. This is exactly why you need the sensor: it tells you where the boundary actually is.</p>
         </div>
 
@@ -707,7 +720,7 @@
           <div class="col no">
             <div class="chead">✗ Does Not Score</div>
             <ul>
-              <li>A cone is in the zone but Botguy is not.</li>
+              <li>A cone is <span class="def-term" data-term="IN THE ZONE">IN THE ZONE</span> but Botguy is not.</li>
               <li>Botguy touching only the outside boundary of the zone.</li>
               <li>Botguy and only one cone, for the Advanced Bonus.</li>
             </ul>
@@ -801,7 +814,7 @@
 
     <h3 class="sub">Can you do it again?</h3>
     <ul class="check">
-      <li><input type="checkbox" id="s1" data-key="p4_can_analog"><label for="s1">I can explain how an analog sensor differs from a digital one</label></li>
+      <li><input type="checkbox" id="s1" data-key="p4_can_analog"><label for="s1">I can explain how an analog sensor differs from a <span class="def-term" data-term="DIGITAL">digital</span> one</label></li>
       <li><input type="checkbox" id="s2" data-key="p4_can_mount"><label for="s2">I can mount a reflectance sensor at the right height and angle</label></li>
       <li><input type="checkbox" id="s3" data-key="p4_can_readings"><label for="s3">I can take white and black readings and work out a threshold</label></li>
       <li><input type="checkbox" id="s4" data-key="p4_can_findline"><label for="s4">I can write a loop that drives until the sensor sees black</label></li>
@@ -847,6 +860,17 @@
 <script>
 (function() {
   var DEFS = {
+    'BOUNDARY': ['Boundary', 'The line that marks the edge of a zone or area. Whether an object is inside, outside, or touching the boundary is often the difference between scoring and not scoring.'],
+    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'DIGITAL': ['Digital', 'A digital sensor has only two possible readings: 0 or 1. It works like a light switch — pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off.'],
+    'IN THE ZONE': ['In The Zone', 'A robot is IN THE ZONE when the robot is touching the interior of the specified zone and no part of the robot is touching the zone’s boundary line.'],
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
+    'REFLECTANCE': ['Reflectance', 'A sensor that shines a small light downward and measures how much bounces back. Light surfaces bounce back a lot and give a low reading; dark surfaces absorb the light and give a high one.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'STATEMENT': ['Statement', 'One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.'],
+    'TICK': ['Tick', 'One small step of the motor shaft. There are about 1820 ticks in one full revolution of the shaft. Ticks count the motor turning, not the distance travelled — how far that is depends on your wheels.'],
+    'TOUCHING': ['Touching', 'Two objects are TOUCHING when they are in direct physical contact with one another. Contact through a third object (robot, field element, or game piece) does not count as TOUCHING.'],
+    'VARIABLE': ['Variable', 'A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it.'],
     'ANALOG': ['Analog', 'An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers "how dark is this?" with a number, so you have to decide for yourself where dark begins.'],
     'THRESHOLD': ['Threshold', 'The number you choose as your dividing line. Readings below it count as one thing, readings above it count as another. A common starting point is halfway between your white and black readings, then you adjust from there.'],
     'IN': ['In', 'An object is IN a container, enclosure, basket, or zone when any portion of the object extends into the interior space of that container, enclosure, basket, or zone — unless otherwise specified by a mission.'],

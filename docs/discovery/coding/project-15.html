@@ -376,6 +376,18 @@
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
 </style>
 </head>
@@ -385,6 +397,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Coding</a><span class="sep">/</span><span class="here">Project 15</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -408,10 +421,10 @@
   <section>
     <div class="meta">
       <dl>
-        <div class="row"><dt>What You Are Doing</dt><dd>Steering from a sensor reading instead of driving blind, then using the lines to reach four of the hardest scoring targets on the field.</dd></div>
+        <div class="row"><dt>What You Are Doing</dt><dd>Steering from a <span class="def-term" data-term="SENSOR">sensor</span> reading instead of driving blind, then using the lines to reach four of the hardest scoring targets on the field.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 6 · Mission 7 base · Mission 16 base · Mission 17 base — 51 points</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Robot with arm, claw, and reflectance sensor · Wombat · charged battery · the game field · your sensor card from Project 14</dd></div>
-        <div class="row"><dt>Before You Start</dt><dd>Project 14 — you need a working threshold and a robot that can find a line.</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Robot with arm, claw, and <span class="def-term" data-term="REFLECTANCE">reflectance</span> <span class="def-term" data-term="SENSOR">sensor</span> · Wombat · charged battery · the game field · your sensor card from Project 14</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 14 — you need a working <span class="def-term" data-term="THRESHOLD">threshold</span> and a robot that can find a line.</dd></div>
       </dl>
     </div>
 
@@ -461,7 +474,7 @@
     <div class="edge">
       <div class="e">
         <div class="estrip"><span class="blk"></span><span class="edot"></span><span class="wht"></span></div>
-        <div class="ebody"><div class="ehead">On the edge</div>Exactly where you want to be. Reading sits near your threshold.</div>
+        <div class="ebody"><div class="ehead">On the edge</div>Exactly where you want to be. Reading sits near your <span class="def-term" data-term="THRESHOLD">threshold</span>.</div>
       </div>
       <div class="e">
         <div class="estrip"><span class="blk" style="flex:2.2"></span><span class="edot" style="margin-left:-8px"></span><span class="wht" style="flex:0.8"></span></div>
@@ -526,7 +539,7 @@ ao();</pre>
 
     <h3 class="sub">Following until something else happens</h3>
 
-    <p>Line following on its own goes forever. To be useful it has to <em>stop</em> for a reason — a tick count, a bump, or a second line crossing the first.</p>
+    <p>Line following on its own goes forever. To be useful it has to <em>stop</em> for a reason — a <span class="def-term" data-term="TICK">tick</span> count, a bump, or a second line crossing the first.</p>
 
     <pre class="code">cmpc(left);
 
@@ -583,9 +596,9 @@ ao();</pre>
 
       <li>
         <span class="stitle">Follow, then stop for a reason</span>
-        <p>Wrap the follower in a tick count so it travels a set distance and then hands over to whatever comes next. This is the pattern every mission below uses.</p>
-        <p>Turn it into a function while you are at it — <code>follow_line(int ticks)</code>.</p>
-        <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_follow_fn"><label for="d4">I have a <code>follow_line()</code> function that stops after a set distance</label></li></ul>
+        <p>Wrap the follower in a <span class="def-term" data-term="TICK">tick</span> count so it travels a set distance and then hands over to whatever comes next. This is the pattern every mission below uses.</p>
+        <p>Turn it into a <span class="def-term" data-term="FUNCTION">function</span> while you are at it — <code>follow_line(int ticks)</code>.</p>
+        <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_follow_fn"><label for="d4">I have a <code>follow_line()</code> <span class="def-term" data-term="FUNCTION">function</span> that stops after a set distance</label></li></ul>
       </li>
 
       <li>
@@ -611,7 +624,7 @@ ao();</pre>
           <p>The target is the <strong>large palletized Green Cube</strong> field element — not the small green cubes you have been stacking since Project 8. Make sure your team is aiming at the right thing.</p>
         </div>
         <p class="muted">Robot support is permitted, but this is final position scored — so the cube has to still be up there at the end, which means letting go cleanly.</p>
-        <ul class="check"><li><input type="checkbox" id="d5" data-key="p3_m16"><label for="d5">A spilled cube is ON TOP OF the Large Green Cube and stays there</label></li></ul>
+        <ul class="check"><li><input type="checkbox" id="d5" data-key="p3_m16"><label for="d5">A spilled cube is <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the Large Green Cube and stays there</label></li></ul>
       </li>
 
       <li>
@@ -624,7 +637,7 @@ ao();</pre>
           <div class="mission-body">
             <div class="mpart">
               <span class="mlabel">Base Mission — 9 pts<span class="jtag final">📋 Final</span></span>
-              At least one cube originating from the <strong>Unstraight Cube area</strong> is ON TOP OF the <strong>Large Brown Cube</strong>.
+              At least one cube originating from the <strong>Unstraight Cube area</strong> is <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the <strong>Large Brown Cube</strong>.
             </div>
             <div class="mpart later">
               <span class="mlabel">Not yet</span>
@@ -634,7 +647,7 @@ ao();</pre>
         </div>
         <div class="callout gold">
           <p class="ctitle">Same Job, Different Address</p>
-          <p>This is Mission 16 with two words changed. If you wrote Mission 16 as a function with arguments, this one costs you almost nothing — which is the reward for the work you did in Project 12.</p>
+          <p>This is Mission 16 with two words changed. If you wrote Mission 16 as a function with <span class="def-term" data-term="ARGUMENT">argument</span>s, this one costs you almost nothing — which is the reward for the work you did in Project 12.</p>
         </div>
         <div class="callout danger">
           <p class="ctitle">⚠ Watch Your Cube Budget</p>
@@ -653,11 +666,11 @@ ao();</pre>
           <div class="mission-body">
             <div class="mpart">
               <span class="mlabel">Base Mission — 11 pts<span class="jtag final">📋 Final</span></span>
-              One Blue Pom and one Orange Pom are <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> the <strong>same</strong> PVC enclosure.
+              One Blue Pom and one Orange Pom are <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> the <strong>same</strong> PVC <span class="def-term" data-term="ENCLOSURE">enclosure</span>.
             </div>
             <div class="mpart later">
               <span class="mlabel">Not yet</span>
-              The 9-point Bonus needs a second enclosure with one of each colour. Project 17.
+              The 9-point Bonus needs a second <span class="def-term" data-term="ENCLOSURE">enclosure</span> with one of each colour. Project 17.
             </div>
           </div>
         </div>
@@ -665,7 +678,7 @@ ao();</pre>
           <div class="col yes">
             <div class="chead">✓ Scores</div>
             <ul>
-              <li>One Blue and one Orange Pom FULLY WITHIN the same enclosure.</li>
+              <li>One Blue and one Orange Pom <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> the same enclosure.</li>
               <li>Several Blue Poms and one Orange Pom in the same enclosure.</li>
             </ul>
           </div>
@@ -678,14 +691,14 @@ ao();</pre>
           </div>
         </div>
         <p class="muted">Two colours, one enclosure. Poms roll, so the second delivery is the one that knocks the first one out — go slowly and back straight away.</p>
-        <ul class="check"><li><input type="checkbox" id="d7" data-key="p3_m7"><label for="d7">One blue and one orange pom are both FULLY WITHIN the same enclosure</label></li></ul>
+        <ul class="check"><li><input type="checkbox" id="d7" data-key="p3_m7"><label for="d7">One blue and one orange pom are both <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> the same enclosure</label></li></ul>
       </li>
 
       <li>
-        <span class="stitle">Mission 6 — Pallet Builder<span class="spts">22 pts</span></span>
+        <span class="stitle">Mission 6 — <span class="def-term" data-term="PALLET">Pallet</span> Builder<span class="spts">22 pts</span></span>
         <div class="mission">
           <div class="mission-head">
-            <span class="mtitle">Mission 6 — Pallet Builder</span>
+            <span class="mtitle">Mission 6 — <span class="def-term" data-term="PALLET">Pallet</span> Builder</span>
             <span class="mpts">22 points possible</span>
           </div>
           <div class="mission-body">
@@ -695,7 +708,7 @@ ao();</pre>
             </div>
             <div class="mpart">
               <span class="mlabel">Bonus Mission — 7 pts<span class="jtag final">📋 Final</span></span>
-              The pallet is FULLY WITHIN a starting box and not touching any black line.
+              The pallet is FULLY WITHIN a starting box and not <span class="def-term" data-term="TOUCHING">TOUCHING</span> any black line.
             </div>
           </div>
         </div>
@@ -705,7 +718,7 @@ ao();</pre>
           <p>Better still: the cubes are <strong>not required to stay on the pallet after the base is scored</strong>. It is live judged, so once the judge has seen four cubes on the pallet, you can go on and move the pallet without worrying about a cube rolling off.</p>
         </div>
         <div class="callout danger">
-          <p class="ctitle">⚠ Not Touching Any Black Line</p>
+          <p class="ctitle">⚠ Not <span class="def-term" data-term="TOUCHING">TOUCHING</span> Any Black Line</p>
           <p>The bonus is stricter than it looks. The pallet must be FULLY WITHIN the starting box <em>and</em> clear of every black line. Push it in too far or not far enough and you get nothing.</p>
         </div>
         <p class="q">These are the same four green and yellow cubes you used for Mission 3 in Projects 8 and 13. What is your plan — Mission 3's stacks or Mission 6's pallet?</p>
@@ -785,7 +798,7 @@ ao();</pre>
 
     <h3 class="sub">Next</h3>
     <p>You have written every skill this game needs. What you have not done is tidy up — your functions live in one long file, and half your missions have a bonus that just means "now do that again."</p>
-    <p>In <strong>Project 16 — Building Your Toolbox</strong>, your functions move into a library you can carry between projects.</p>
+    <p>In <strong>Project 16 — Building Your Toolbox</strong>, your functions move into a <span class="def-term" data-term="LIBRARY">library</span> you can carry between projects.</p>
   </section>
 
   <div class="bottom-submit no-print">
@@ -810,6 +823,16 @@ ao();</pre>
 <script>
 (function() {
   var DEFS = {
+    'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.'],
+    'ENCLOSURE': ['Enclosure', 'A PVC frame on the game field that objects can be placed inside. Missions that ask for something to be IN an enclosure are asking you to get it past those walls.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
+    'PALLET': ['Pallet', 'A flat platform on the game field that a load sits on. Several missions ask you to move a pallet and whatever is stacked on it, together.'],
+    'REFLECTANCE': ['Reflectance', 'A sensor that shines a small light downward and measures how much bounces back. Light surfaces bounce back a lot and give a low reading; dark surfaces absorb the light and give a high one.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'THRESHOLD': ['Threshold', 'The number you choose as your dividing line. Readings below it count as one thing, readings above it count as another. A common starting point is halfway between your white and black readings, then you adjust from there.'],
+    'TICK': ['Tick', 'One small step of the motor shaft. There are about 1820 ticks in one full revolution of the shaft. Ticks count the motor turning, not the distance travelled — how far that is depends on your wheels.'],
+    'TOUCHING': ['Touching', 'Two objects are TOUCHING when they are in direct physical contact with one another. Contact through a third object (robot, field element, or game piece) does not count as TOUCHING.'],
     'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.'],
     'FULLY WITHIN': ['Fully Within', 'An object or robot is FULLY WITHIN an area when every part of the object or robot lies inside the boundary of that area — no portion may touch or cross the boundary line.']
   };

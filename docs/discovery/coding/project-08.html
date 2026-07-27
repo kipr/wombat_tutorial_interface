@@ -358,6 +358,18 @@
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
 </style>
 </head>
@@ -367,6 +379,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Coding</a><span class="sep">/</span><span class="here">Project 8</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -392,7 +405,7 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Adding a claw to your arm, learning to grab, carry, and release — then stacking cubes and dropping poms into baskets.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 12 complete · Mission 3 base · Mission 11 base · Mission 13 bonus — 37 points</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Robot with arm and claw (two servos) · Wombat · charged battery · the game field · your Project 5 and 7 numbers</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Robot with arm and claw (two <span class="def-term" data-term="SERVO">servo</span>s) · Wombat · charged battery · the game field · your Project 5 and 7 numbers</dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Project 7 — and your claw must be built. That build lives in the Systems strand.</dd></div>
       </dl>
     </div>
@@ -406,14 +419,14 @@
   <section>
     <h2 class="phase-head"><span class="pnum">Try It</span> Be the Robot</h2>
 
-    <p>A claw is an <span class="def-term" data-term="EFFECTOR">EFFECTOR</span> — the part of the robot that does work on the world. In Project 6 your effector was the front of the robot, and it could only shove. A claw can hold.</p>
+    <p>A claw is an <span class="def-term" data-term="EFFECTOR">effector</span> — the part of the robot that does work on the world. In Project 6 your <span class="def-term" data-term="EFFECTOR">effector</span> was the front of the robot, and it could only shove. A claw can hold.</p>
 
     <div class="callout navy">
       <p class="ctitle">Structure and Function</p>
       <p>A claw is <strong>bad at pushing</strong> and <strong>great at grabbing.</strong> The blade you used in Project 6 was the opposite. Neither one is better — they are shaped for different jobs, and the shape is what decides the job.</p>
     </div>
 
-    <h3 class="sub">Two servos, two jobs</h3>
+    <h3 class="sub">Two <span class="def-term" data-term="SERVO">servo</span>s, two jobs</h3>
 
     <table class="grid">
       <thead><tr><th style="width:26%">Servo</th><th style="width:30%">Its job</th><th>Its two or three positions</th></tr></thead>
@@ -472,7 +485,7 @@
 <span class="cm">// open       = 1246</span>
 <span class="cm">// closed     = 340</span></pre>
 
-    <p class="muted">Notice the first line of each group is the <em>port</em>, not a position. You now have seven numbers to keep straight, and every one of them is buried somewhere in your code.</p>
+    <p class="muted">Notice the first line of each group is the <em><span class="def-term" data-term="PORT">port</span></em>, not a position. You now have seven numbers to keep straight, and every one of them is buried somewhere in your code.</p>
 
     <h3 class="sub">Preset both servos</h3>
 
@@ -562,7 +575,7 @@ msleep(<span class="nu">1000</span>);</pre>
       <li>
         <span class="stitle">Grab it</span>
         <p>New project called <code>Grab</code>. No driving at all — place a cube inside the open claw by hand.</p>
-        <p>Write the pseudocode first. Two rules: the arm <strong>starts up</strong> and the claw <strong>starts open</strong>.</p>
+        <p>Write the <span class="def-term" data-term="PSEUDOCODE">pseudocode</span> first. Two rules: the arm <strong>starts up</strong> and the claw <strong>starts open</strong>.</p>
         <pre class="code"><span class="cm">// 1. Preset arm up and claw open, then enable</span>
 <span class="cm">// 2. Move the arm down</span>
 <span class="cm">// 3. Close the claw</span>
@@ -612,7 +625,7 @@ msleep(<span class="nu">1000</span>);</pre>
           <div class="mission-body">
             <div class="mpart">
               <span class="mlabel">Bonus Mission — 7 pts<span class="jtag live">⚡ Live</span></span>
-              Two Unstraight Cubes form a scoring stack — one Unstraight Cube is ON TOP OF another.
+              Two Unstraight Cubes form a scoring stack — one Unstraight Cube is <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> another.
             </div>
             <div class="mpart later">
               <span class="mlabel">Already done</span>
@@ -625,7 +638,7 @@ msleep(<span class="nu">1000</span>);</pre>
           <p class="ctitle">Both Cubes Must Come From the Same Area</p>
           <p>Both cubes have to originate from the Unstraight Cube area. Stacking an unstraight cube on a cube borrowed from somewhere else scores nothing.</p>
         </div>
-        <ul class="check"><li><input type="checkbox" id="d6" data-key="p3_m13_stack"><label for="d6">One Unstraight Cube is ON TOP OF another</label></li></ul>
+        <ul class="check"><li><input type="checkbox" id="d6" data-key="p3_m13_stack"><label for="d6">One Unstraight Cube is <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> another</label></li></ul>
       </li>
 
       <li>
@@ -642,7 +655,7 @@ msleep(<span class="nu">1000</span>);</pre>
             </div>
             <div class="mpart">
               <span class="mlabel">Bonus Mission — 5 pts<span class="jtag final">📋 Final</span></span>
-              The stack is <strong>still standing at the end</strong>, and the lower cube is touching the black line.
+              The stack is <strong>still standing at the end</strong>, and the lower cube is <span class="def-term" data-term="TOUCHING">TOUCHING</span> the black line.
             </div>
           </div>
         </div>
@@ -658,7 +671,7 @@ msleep(<span class="nu">1000</span>);</pre>
             <ul>
               <li>One spilled cube is ON TOP OF another spilled cube.</li>
               <li>A robot is supporting one or both cubes while the ON TOP OF relationship exists.</li>
-              <li>The stack exists and the lower cube is touching the black line.</li>
+              <li>The stack exists and the lower cube is <span class="def-term" data-term="TOUCHING">TOUCHING</span> the black line.</li>
             </ul>
           </div>
           <div class="col no">
@@ -731,7 +744,7 @@ msleep(<span class="nu">1000</span>);</pre>
 
       <li>
         <span class="stitle">Run the whole thing five times</span>
-        <p>Chain all four missions into one program, same as Project 6 — comment banners, one section at a time.</p>
+        <p>Chain all four missions into one program, same as Project 6 — <span class="def-term" data-term="COMMENT">comment</span> banners, one section at a time.</p>
         <table class="grid">
           <thead><tr><th style="width:12%">Run</th><th style="width:16%">M13 bonus</th><th style="width:16%">M12 base</th><th style="width:16%">M12 bonus</th><th style="width:14%">M3</th><th style="width:14%">M11</th><th>Points</th></tr></thead>
           <tbody>
@@ -771,7 +784,7 @@ msleep(<span class="nu">1000</span>);</pre>
     <table class="grid">
       <thead><tr><th style="width:56%">Setting</th><th>Value</th></tr></thead>
       <tbody>
-        <tr><td>Arm servo port</td><td><input type="text" data-key="p4_arm_port" aria-label="Arm port"></td></tr>
+        <tr><td>Arm servo <span class="def-term" data-term="PORT">port</span></td><td><input type="text" data-key="p4_arm_port" aria-label="Arm port"></td></tr>
         <tr><td>Arm up</td><td><input type="text" data-key="p4_arm_up" aria-label="Arm up"></td></tr>
         <tr><td>Arm horizontal</td><td><input type="text" data-key="p4_arm_horiz" aria-label="Arm horizontal"></td></tr>
         <tr><td>Arm down</td><td><input type="text" data-key="p4_arm_down" aria-label="Arm down"></td></tr>
@@ -817,7 +830,7 @@ msleep(<span class="nu">1000</span>);</pre>
     <textarea class="answer" data-key="p4_time_vs_distance" aria-label="Time vs distance"></textarea>
 
     <h3 class="sub">Next</h3>
-    <p>You are carrying seven numbers around in comments, retyping them everywhere, and one rebuild would break all of it.</p>
+    <p>You are carrying seven numbers around in <span class="def-term" data-term="COMMENT">comment</span>s, retyping them everywhere, and one rebuild would break all of it.</p>
     <p>In <strong>Project 9 — Names for Your Numbers</strong>, those comments become real. You give each number a name once, and the whole program starts using it.</p>
   </section>
 
@@ -843,6 +856,12 @@ msleep(<span class="nu">1000</span>);</pre>
 <script>
 (function() {
   var DEFS = {
+    'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
+    'PSEUDOCODE': ['Pseudocode', 'Literally "false code." Your plan written in plain language as comments, before you write any real code. It keeps you from getting lost in the middle of a program.'],
+    'SERVO': ['Servo', 'A motor that rotates to a position you choose, rather than simply spinning. It turns about 180 degrees, divided into 2048 numbered positions, and holds whatever position you send it to.'],
+    'TOUCHING': ['Touching', 'Two objects are TOUCHING when they are in direct physical contact with one another. Contact through a third object (robot, field element, or game piece) does not count as TOUCHING.'],
     'EFFECTOR': ['Effector', 'The part of a robot that does work on the world — a claw, an arm, a blade, a scoop. Its shape decides what jobs it is good at. A blade pushes well and grabs nothing; a claw grabs well and pushes badly.'],
     'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.'],
     'IN': ['In', 'An object is IN a container, enclosure, basket, or zone when any portion of the object extends into the interior space of that container, enclosure, basket, or zone — unless otherwise specified by a mission.']

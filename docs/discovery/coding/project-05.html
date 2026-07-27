@@ -350,6 +350,18 @@
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
 </style>
 </head>
@@ -359,6 +371,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Coding</a><span class="sep">/</span><span class="here">Project 5</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -469,9 +482,9 @@
 
     <div class="turns">
       <div class="turn">
-        <div class="thead">Radius Turn</div>
+        <div class="thead"><span class="def-term" data-term="RADIUS TURN">radius turn</span></div>
         <div class="tbody">
-          <p style="margin-top:0"><span class="def-term" data-term="RADIUS TURN">RADIUS TURN</span></p>
+          <p style="margin-top:0"><span class="def-term" data-term="RADIUS TURN">radius turn</span></p>
           <p>Both wheels go the same direction at different speeds. The robot sweeps a wide arc, like a car going around a bend.</p>
           <p class="muted" style="font-size:15px">Sharpness comes from how different the two numbers are.</p>
         </div>
@@ -479,9 +492,9 @@
       </div>
 
       <div class="turn">
-        <div class="thead">One-Wheel Turn</div>
+        <div class="thead"><span class="def-term" data-term="ONE-WHEEL TURN">one-wheel turn</span></div>
         <div class="tbody">
-          <p style="margin-top:0"><span class="def-term" data-term="ONE-WHEEL TURN">ONE-WHEEL TURN</span></p>
+          <p style="margin-top:0"><span class="def-term" data-term="ONE-WHEEL TURN">one-wheel turn</span></p>
           <p>One wheel drives, the other sits still. The robot swings around the stopped wheel — like ring around the rosie.</p>
           <p class="muted" style="font-size:15px">More power on the moving wheel means a faster swing, not a tighter one.</p>
         </div>
@@ -489,9 +502,9 @@
       </div>
 
       <div class="turn">
-        <div class="thead">Zero Radius Turn</div>
+        <div class="thead"><span class="def-term" data-term="ZERO RADIUS TURN">zero radius turn</span></div>
         <div class="tbody">
-          <p style="margin-top:0"><span class="def-term" data-term="ZERO RADIUS TURN">ZERO RADIUS TURN</span></p>
+          <p style="margin-top:0"><span class="def-term" data-term="ZERO RADIUS TURN">zero radius turn</span></p>
           <p>The wheels go opposite directions. The robot spins in place without moving forward or backward at all.</p>
           <p class="muted" style="font-size:15px">Also called a pivot or spin turn. This is what you use for precise angles.</p>
         </div>
@@ -508,7 +521,7 @@
 
     <div class="callout">
       <p class="ctitle">Friction Matters More Than You Think</p>
-      <p>Two moving wheels fight friction better than one moving wheel does. A one-wheel turn asks a stopped wheel to skid sideways, so it is the least repeatable of the three. If a turn will not come out the same twice, try the same turn as zero radius instead.</p>
+      <p>Two moving wheels fight friction better than one moving wheel does. A <span class="def-term" data-term="ONE-WHEEL TURN">one-wheel turn</span> asks a stopped wheel to skid sideways, so it is the least repeatable of the three. If a turn will not come out the same twice, try the same turn as zero radius instead.</p>
     </div>
 
     <h3 class="sub">Where you are headed</h3>
@@ -521,11 +534,11 @@
       <div class="mission-body">
         <div class="mpart">
           <span class="mlabel">Base Mission — 11 pts</span>
-          Two spilled cubes form a scoring stack — one spilled cube is ON TOP OF another spilled cube. Both cubes must come from the spilled cube area.
+          Two spilled cubes form a scoring stack — one spilled cube is <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> another spilled cube. Both cubes must come from the spilled cube area.
         </div>
         <div class="mpart">
           <span class="mlabel">Bonus Mission — 5 pts</span>
-          The stack is still standing at the end, and the lower cube is touching the black line.
+          The stack is still standing at the end, and the lower cube is <span class="def-term" data-term="TOUCHING">TOUCHING</span> the black line.
         </div>
         <div class="mpart partial">
           <span class="mlabel">⟶ Your job in this project</span>
@@ -544,7 +557,7 @@
       <li>
         <span class="stitle">Drive a big circle</span>
         <p>New project called <code>Circles</code>. Put a chair in the middle of an open floor.</p>
-        <p>Write a program that drives your robot in one big circle all the way around the chair, without touching it. Use <strong>only one set</strong> of <code>motor()</code>, <code>msleep()</code>, and <code>ao()</code> — no stopping and restarting.</p>
+        <p>Write a program that drives your robot in one big circle all the way around the chair, without <span class="def-term" data-term="TOUCHING">TOUCHING</span> it. Use <strong>only one set</strong> of <code>motor()</code>, <code>msleep()</code>, and <code>ao()</code> — no stopping and restarting.</p>
         <table class="grid">
           <thead><tr><th style="width:24%">Left power</th><th style="width:24%">Right power</th><th>msleep</th></tr></thead>
           <tbody><tr><td><input type="text" data-key="p3_big_l" aria-label="Big circle left"></td><td><input type="text" data-key="p3_big_r" aria-label="Big circle right"></td><td><input type="text" data-key="p3_big_ms" aria-label="Big circle msleep"></td></tr></tbody>
@@ -615,7 +628,7 @@
         <span class="stitle">Drive to the spilled cubes</span>
         <p>Onto the field. New project called <code>Approach 12</code>.</p>
         <p>Start in your starting box, exactly the way you decided in Project 4. Drive out, turn, and stop next to the spilled cube area — close enough and square enough that a claw could pick a cube up.</p>
-        <p>Write your plan as pseudocode first:</p>
+        <p>Write your plan as <span class="def-term" data-term="PSEUDOCODE">pseudocode</span> first:</p>
         <pre class="code"><span class="cm">// 1. Drive forward out of the starting box</span>
 <span class="cm">// 2. Turn toward the spilled cubes</span>
 <span class="cm">// 3. Drive up to them</span>
@@ -666,8 +679,8 @@
     <table class="grid">
       <thead><tr><th style="width:56%">Setting</th><th>Value</th></tr></thead>
       <tbody>
-        <tr><td>Zero radius turn — left power</td><td><input type="text" data-key="p4_spin_l" aria-label="Spin left power"></td></tr>
-        <tr><td>Zero radius turn — right power</td><td><input type="text" data-key="p4_spin_r" aria-label="Spin right power"></td></tr>
+        <tr><td><span class="def-term" data-term="ZERO RADIUS TURN">zero radius turn</span> — left power</td><td><input type="text" data-key="p4_spin_l" aria-label="Spin left power"></td></tr>
+        <tr><td>Zero <span class="def-term" data-term="RADIUS TURN">radius turn</span> — right power</td><td><input type="text" data-key="p4_spin_r" aria-label="Spin right power"></td></tr>
         <tr><td>msleep for a 90° turn</td><td><input type="text" data-key="p4_ms_90" aria-label="90 degree msleep"></td></tr>
         <tr><td>msleep for a 180° turn</td><td><input type="text" data-key="p4_ms_180" aria-label="180 degree msleep"></td></tr>
         <tr><td>msleep for a 45° turn</td><td><input type="text" data-key="p4_ms_45" aria-label="45 degree msleep"></td></tr>
@@ -702,7 +715,7 @@
     <p class="q">Your square test almost certainly did not close perfectly. Where did the error come from — was the robot doing the wrong thing, or was your program asking for something it cannot deliver?</p>
     <textarea class="answer" data-key="p4_error_source" aria-label="Where the error came from"></textarea>
 
-    <p class="q">A teammate's robot turns 90° perfectly on the carpet but overshoots on the field mat. Nothing in the program changed. What happened?</p>
+    <p class="q">A teammate's robot turns 90° perfectly on the carpet but <span class="def-term" data-term="OVERSHOOT">overshoot</span>s on the field mat. Nothing in the program changed. What happened?</p>
     <textarea class="answer" data-key="p4_surface_change" aria-label="Surface change question"></textarea>
 
     <p class="q">You now have a robot that gets to the right place and points the right way. What is the next thing it needs before Mission 12 can actually score?</p>
@@ -734,6 +747,10 @@
 <script>
 (function() {
   var DEFS = {
+    'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.'],
+    'OVERSHOOT': ['Overshoot', 'How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot.'],
+    'PSEUDOCODE': ['Pseudocode', 'Literally "false code." Your plan written in plain language as comments, before you write any real code. It keeps you from getting lost in the middle of a program.'],
+    'TOUCHING': ['Touching', 'Two objects are TOUCHING when they are in direct physical contact with one another. Contact through a third object (robot, field element, or game piece) does not count as TOUCHING.'],
     'RADIUS TURN': ['Radius Turn', 'Both wheels turn the same direction but at different speeds, so the robot sweeps a curved arc. How sharp the arc is depends on how different the two power numbers are. Also called an arc turn.'],
     'ONE-WHEEL TURN': ['One-Wheel Turn', 'One wheel drives while the other stays stopped. The robot swings around the stopped wheel. Giving the moving wheel more power makes the swing faster, not tighter.'],
     'ZERO RADIUS TURN': ['Zero Radius Turn', 'The two wheels turn in opposite directions, so the robot spins in place without traveling forward or backward. Also called a pivot turn or spin turn. This is the turn you use when you need an exact angle.']

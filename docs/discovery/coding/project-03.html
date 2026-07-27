@@ -333,6 +333,18 @@
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
 </style>
 </head>
@@ -342,6 +354,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Coding</a><span class="sep">/</span><span class="here">Project 3</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -367,7 +380,7 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Plugging in motors, checking their direction, and writing your first program that makes something turn.</dd></div>
         <div class="row"><dt>What You Need</dt><dd>Built robot · 2 motors · Wombat · battery · a block or thick book to raise the wheels · your computer</dd></div>
-        <div class="row"><dt>Before You Start</dt><dd>Projects 1 and 2 — you must be able to connect, write, compile, and run a program.</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Projects 1 and 2 — you must be able to connect, write, <span class="def-term" data-term="COMPILE">compile</span>, and run a program.</dd></div>
       </dl>
     </div>
 
@@ -390,9 +403,9 @@
 
     <p>The Wombat works the same way. Two motors, two wheels, two separate commands.</p>
 
-    <h3 class="sub">Find the ports</h3>
+    <h3 class="sub">Find the <span class="def-term" data-term="PORT">port</span>s</h3>
 
-    <p>Look at the Wombat. There are four <span class="def-term" data-term="PORT">PORT</span>s for motors. Two on the left, two on the right.</p>
+    <p>Look at the Wombat. There are four <span class="def-term" data-term="PORT">port</span>s for motors. Two on the left, two on the right.</p>
 
     <div class="portmap">
       <div class="port"><div class="pnumber">0</div><div class="pside">Left side</div></div>
@@ -403,7 +416,7 @@
 
     <div class="callout navy">
       <p class="ctitle">Counting Starts at Zero</p>
-      <p>The ports are numbered 0, 1, 2, 3 — not 1, 2, 3, 4. Computer scientists start counting at zero, and you will see this everywhere from now on. There is no port 4.</p>
+      <p>The <span class="def-term" data-term="PORT">port</span>s are numbered 0, 1, 2, 3 — not 1, 2, 3, 4. Computer scientists start counting at zero, and you will see this everywhere from now on. There is no port 4.</p>
     </div>
 
     <h3 class="sub">Find your motors and plug them in</h3>
@@ -426,7 +439,7 @@
 
     <div class="callout gold">
       <p class="ctitle">The Wheel-Spin Trick</p>
-      <p>You do not need a program to find out which way a motor is wired. <strong>Turn the wheel with your hand</strong> and watch the little light next to that port number on the board.</p>
+      <p>You do not need a program to find out which way a motor is wired. <strong>Turn the wheel with your hand</strong> and watch the little light next to that <span class="def-term" data-term="PORT NUMBER">port number</span> on the board.</p>
     </div>
 
     <div class="ledkey">
@@ -468,11 +481,11 @@
 <span class="cm">      ↑   ↑</span>
 <span class="cm">   port  power</span></pre>
 
-    <p>Each piece of information inside the parentheses is called an <span class="def-term" data-term="ARGUMENT">ARGUMENT</span>. <code>printf()</code> took one argument. <code>motor()</code> takes two, separated by a comma.</p>
+    <p>Each piece of information inside the parentheses is called an <span class="def-term" data-term="ARGUMENT">argument</span>. <code>printf()</code> took one <span class="def-term" data-term="ARGUMENT">argument</span>. <code>motor()</code> takes two, separated by a comma.</p>
 
     <div class="callout gold">
       <p class="ctitle">Remember This From Project 2?</p>
-      <p>"Too many arguments to function" was one of the errors you triggered on purpose. Now you know what an argument is — and why <code>msleep(2,000)</code> looked like two of them.</p>
+      <p>"Too many <span class="def-term" data-term="ARGUMENT">argument</span>s to <span class="def-term" data-term="FUNCTION">function</span>" was one of the errors you triggered on purpose. Now you know what an argument is — and why <code>msleep(2,000)</code> looked like two of them.</p>
     </div>
 
     <h3 class="sub">Power runs from −100 to 100</h3>
@@ -504,7 +517,7 @@ ao();</pre>
 
     <p>The wheels will not move. Not even a twitch.</p>
 
-    <p>The controller turns both motors on, and then — faster than you can blink — reads the next line and turns them off again. Remember from Project 2: it moves through lines far quicker than your eye can follow.</p>
+    <p>The <span class="def-term" data-term="CONTROLLER">controller</span> turns both motors on, and then — faster than you can blink — reads the next line and turns them off again. Remember from Project 2: it moves through lines far quicker than your eye can follow.</p>
 
     <p><strong>Turning a motor on does not mean "run for a while." It means "run, starting now, until something tells you to stop."</strong> The <code>msleep()</code> is what gives it that while.</p>
 
@@ -552,7 +565,7 @@ ao();</pre>
 
       <li>
         <span class="stitle">Write your first motor program</span>
-        <p>Make a new project called <code>Motors</code>. Do not forget your attribution comments at the top.</p>
+        <p>Make a new project called <code>Motors</code>. Do not forget your <span class="def-term" data-term="ATTRIBUTION">attribution</span> <span class="def-term" data-term="COMMENT">comment</span>s at the top.</p>
         <pre class="code"><span class="ln">1</span>  <span class="kw">#include</span> &lt;kipr/wombat.h&gt;
 <span class="ln">2</span>
 <span class="ln">3</span>  <span class="kw">int</span> main ()
@@ -563,7 +576,7 @@ ao();</pre>
 <span class="ln">8</span>      ao();               <span class="cm">// All off</span>
 <span class="ln">9</span>      <span class="kw">return</span> <span class="nu">0</span>;
 <span class="ln">10</span> }</pre>
-        <p>Compile and run it. Watch the wheels.</p>
+        <p><span class="def-term" data-term="COMPILE">compile</span> and run it. Watch the wheels.</p>
         <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_step_first_run"><label for="d1">Both wheels spun the same direction for about 2 seconds</label></li></ul>
         <p class="q">Did both wheels spin the same way? If not, what does that tell you about your plugs?</p>
         <textarea class="answer" data-key="p3_same_direction" aria-label="Did both wheels spin the same way"></textarea>
@@ -696,7 +709,7 @@ motor(<span class="nu">3</span>, <span class="nu">-50</span>);</pre>
     <textarea class="answer" data-key="p4_far_enough" aria-label="Is power and time enough"></textarea>
 
     <h3 class="sub">Next</h3>
-    <p>In <strong>Project 4 — Out and Back</strong>, the robot comes off the block and onto the field. You will drive out of the starting box, park in the zone, and drive back — and that scores a real mission.</p>
+    <p>In <strong>Project 4 — Out and Back</strong>, the robot comes off the block and onto the field. You will drive out of the starting box, park <span class="def-term" data-term="IN THE ZONE">IN THE ZONE</span>, and drive back — and that scores a real mission.</p>
   </section>
 
   <div class="bottom-submit no-print">
@@ -721,6 +734,14 @@ motor(<span class="nu">3</span>, <span class="nu">-50</span>);</pre>
 <script>
 (function() {
   var DEFS = {
+    'ATTRIBUTION': ['Attribution', 'Naming the author of a piece of code in a comment. It says who wrote what, so anyone reading knows whose work it is and who to ask before borrowing it.'],
+    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
+    'COMPILE': ['Compile', 'To translate the code you wrote into machine instructions the robot’s processor can actually carry out. If compiling fails, the program cannot run.'],
+    'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'IN THE ZONE': ['In The Zone', 'A robot is IN THE ZONE when the robot is touching the interior of the specified zone and no part of the robot is touching the zone’s boundary line.'],
+    'PORT NUMBER': ['Port Number', 'A number that tells the browser which service to reach on that machine — like which door to knock on. The Wombat’s programming tools always use 8888.'],
     'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
     'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.']
   };

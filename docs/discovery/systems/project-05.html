@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Systems Project 5 — The Design Process</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red:#9E1B32; --red-dark:#7d1526; --navy:#1F2D5A; --gold:#C8A14B;
+    --ink:#1c1c1e; --grey:#5b6270; --line:#d8dbe2; --bg:#f0f0f0;
+    --panel:#fff; --field:#fcfcfd; --field-focus:#fffdf5;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:'Barlow',system-ui,sans-serif;font-size:19px;line-height:1.6}
+
+  .topbar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;border-bottom:3px solid var(--gold)}
+  .topbar-inner{max-width:920px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar .brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;
+                 letter-spacing:.06em;text-transform:uppercase;margin-right:auto}
+  .topbar .brand span{color:var(--gold)}
+  .pin-field{display:flex;align-items:center;gap:8px}
+  .pin-field label{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.08em;
+                   text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .pin-field input{width:92px;padding:7px 10px;border:2px solid rgba(255,255,255,.3);border-radius:4px;
+                   background:rgba(255,255,255,.1);color:#fff;font-family:'Barlow',sans-serif;font-size:17px;letter-spacing:.12em}
+  .pin-field input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.18)}
+  .submit-btn{background:var(--gold);color:#24200f;border:none;border-radius:4px;padding:9px 18px;
+              font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;
+              letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  .submit-btn:hover{background:#d9b464}
+  .status{font-size:14px;color:var(--gold);min-height:1em}
+  .status.err{color:#ffb4b4}
+
+  .sheet{max-width:920px;margin:26px auto 60px;background:var(--panel);padding:0 0 40px;box-shadow:0 2px 14px rgba(0,0,0,.09)}
+  .hero{background:var(--navy);color:#fff;padding:30px 40px 26px;border-bottom:5px solid var(--gold)}
+  .hero .eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;
+                 letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+  .hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:44px;line-height:1.05;margin:0 0 8px}
+  .hero .sub{margin:0;color:rgba(255,255,255,.72);font-size:18px}
+
+  section{padding:0 40px}
+  .meta{margin:26px 0 0;border:1px solid var(--line);border-radius:5px;overflow:hidden}
+  .meta dl{margin:0}
+  .meta .row{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}
+  .meta .row:last-child{border-bottom:none}
+  .meta dt{background:#f6f7f9;padding:10px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+           font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+  .meta dd{margin:0;padding:10px 14px;font-size:17px}
+  .meta dd.link{font-weight:600;color:var(--red)}
+
+  .pin-reminder{margin:20px 0 0;padding:14px 16px;background:#fff8e6;border:1px solid var(--gold);border-radius:5px;font-size:17px}
+  .pin-reminder strong{color:var(--navy)}
+
+  .phase-head{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;color:var(--navy);
+              margin:40px 0 4px;padding-bottom:8px;border-bottom:3px solid var(--red);
+              display:flex;align-items:baseline;gap:12px}
+  .phase-head .pnum{background:var(--red);color:#fff;font-size:14px;letter-spacing:.12em;
+                    text-transform:uppercase;padding:4px 10px;border-radius:3px;font-weight:700}
+  h3.sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--red);margin:26px 0 6px}
+  p{margin:10px 0}
+  .muted{color:var(--grey);font-size:17px}
+
+  .callout{background:#f6f7f9;border-left:5px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 5px 5px 0}
+  .callout.navy{border-left-color:var(--navy);background:#f2f4fa}
+  .callout.gold{border-left-color:var(--gold);background:#fffaef}
+  .callout .ctitle{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;
+                   letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin:0 0 6px}
+  .callout.warn{border-left-color:#b3541e;background:#fff4ec}
+  .callout.warn .ctitle{color:#8a3d12}
+
+  ul.plain{margin:10px 0 10px 22px;padding:0}
+  ul.plain li{margin:6px 0}
+  ul.check{list-style:none;margin:14px 0;padding:0}
+  ul.check li{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1px solid var(--line);
+              border-radius:5px;margin-bottom:8px;background:var(--field)}
+  ul.check input[type="checkbox"]{flex-shrink:0;width:24px;height:24px;margin-top:2px;accent-color:var(--red);cursor:pointer}
+  ul.check label{cursor:pointer;font-size:18px}
+
+  ol.dosteps{margin:14px 0;padding-left:0;list-style:none;counter-reset:ds}
+  ol.dosteps>li{counter-increment:ds;position:relative;padding:4px 0 16px 46px;margin-bottom:4px;
+                border-left:2px solid var(--line);margin-left:15px}
+  ol.dosteps>li:last-child{border-left-color:transparent}
+  ol.dosteps>li::before{content:counter(ds);position:absolute;left:-16px;top:2px;width:32px;height:32px;
+                        border-radius:50%;background:var(--navy);color:#fff;font-family:'Barlow Condensed',sans-serif;
+                        font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center}
+  ol.dosteps .stitle{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;color:var(--navy);
+                     display:block;margin-bottom:2px}
+
+  .answer{width:100%;min-height:76px;padding:10px 12px;border:1px solid var(--line);border-radius:5px;
+          background:var(--field);font-family:'Barlow',sans-serif;font-size:18px;line-height:1.55;resize:vertical}
+  .answer:focus,input[type="text"]:focus{outline:none;border-color:var(--gold);background:var(--field-focus)}
+  .q{font-weight:600;margin:18px 0 6px}
+  input[type="text"]{padding:9px 11px;border:1px solid var(--line);border-radius:5px;background:var(--field);
+                     font-family:'Barlow',sans-serif;font-size:18px;width:100%}
+
+  table.grid{width:100%;border-collapse:collapse;margin:14px 0;font-size:17px}
+  table.grid th{background:var(--navy);color:#fff;text-align:left;padding:9px 11px;
+                font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;
+                letter-spacing:.06em;text-transform:uppercase}
+  table.grid td{border:1px solid var(--line);padding:7px 9px;vertical-align:middle}
+  table.grid td input[type="text"]{border:none;background:transparent;padding:4px 2px}
+  table.grid td.ctr{text-align:center;font-weight:600}
+  table.grid tr.trial td.ctr{background:#f6f7f9}
+  table.grid td.thing{font-weight:600}
+
+  /* the eight steps */
+  .steps{border:1px solid var(--line);border-radius:6px;overflow:hidden;margin:18px 0}
+  .steps .st{display:grid;grid-template-columns:52px 200px 1fr;border-bottom:1px solid var(--line);align-items:stretch}
+  .steps .st:last-child{border-bottom:none}
+  .steps .n{background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;
+            font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:19px}
+  .steps .nm{background:#f6f7f9;padding:11px 13px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+             font-size:17px;color:var(--navy);display:flex;align-items:center}
+  .steps .ds{padding:11px 14px;font-size:16.5px}
+  .steps .st.hot .n{background:var(--red)}
+
+  .draw{border:2px dashed var(--line);border-radius:6px;background:#fff;min-height:150px;margin:14px 0;
+        display:flex;align-items:center;justify-content:center;color:var(--grey);font-size:16px}
+
+  .bottom-submit{padding:30px 40px 0;text-align:center}
+  .bottom-submit .status{color:var(--navy);margin-top:8px}
+  .credit{margin:34px 40px 0;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--grey);text-align:center}
+
+  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
+  .def-term:hover{color:var(--red)}
+  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;
+               align-items:center;justify-content:center}
+  .def-overlay.open{display:flex}
+  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;box-shadow:0 12px 48px rgba(0,0,0,.4);
+           overflow:hidden;animation:def-pop .16s ease}
+  @keyframes def-pop{from{opacity:0;transform:scale(.93) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
+  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;
+                 letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;line-height:1;
+             cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;display:flex;align-items:center;
+             justify-content:center;border-radius:4px}
+  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
+  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
+  @media (max-width:600px){
+    .def-overlay{align-items:flex-end;padding:0}
+    .def-box{border-radius:12px 12px 0 0;max-width:100%;animation:def-slide .2s ease}
+    @keyframes def-slide{from{transform:translateY(100%)}to{transform:translateY(0)}}
+    .def-body{padding:1rem 1.1rem 2rem}
+  }
+  @media (max-width:700px){
+    body{font-size:18px}
+    .sheet{margin:0}
+    .hero{padding:22px 20px 20px}
+    .hero h1{font-size:32px}
+    section,.bottom-submit{padding-left:20px;padding-right:20px}
+    .credit{margin-left:20px;margin-right:20px}
+    .meta .row{grid-template-columns:1fr}
+    .meta dt{border-bottom:1px solid var(--line)}
+    .phase-head{font-size:25px;flex-wrap:wrap;gap:8px}
+    .topbar .brand{font-size:15px}
+    .steps .st{grid-template-columns:44px 1fr}
+    .steps .ds{grid-column:1 / -1;border-top:1px solid var(--line)}
+    table.grid{font-size:15px}
+  }
+  @media print{
+    .no-print{display:none!important}
+    body{background:#fff;font-size:12pt}
+    .sheet{box-shadow:none;margin:0;max-width:none}
+    .hero{background:#fff!important;color:#000;border-bottom:3px solid #000}
+    .hero .eyebrow,.hero .sub{color:#333}
+    .phase-head{break-after:avoid}
+    .answer,input[type="text"]{border:1px solid #999;background:#fff}
+    .steps .n,.steps .nm{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .print-pin{display:block!important}
+    ol.dosteps>li::before{background:#333!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
+  .print-pin{display:none;margin:14px 40px 0;font-size:16px}
+</style>
+</head>
+<body>
+
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Systems</a><span class="sep">/</span><span class="here">Project 5</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Systems · Project 5</p>
+    <h1>The Design Process</h1>
+    <p class="sub">Build it, watch it fall over, and find out that was the plan.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Building a tower that has to hold a can of soup, twice — once by guessing, and once by working through the process engineers use.</dd></div>
+        <div class="row"><dt>Strand Link</dt><dd class="link">Do this before Coding Project 6</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Your LEGO · a can of soup · a ruler or tape measure · your notebook · a timer</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Systems Project 4. You should be able to draw a plan before you build one.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ===================== TRY IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Five Minutes, No Planning</h2>
+
+    <p>Build the tallest tower you can that will hold a can of soup on top.</p>
+
+    <p>You get <strong>five minutes</strong>. Start now. Do not plan, do not sketch, just build.</p>
+
+    <div class="callout warn">
+      <p class="ctitle">⚠ One Rule</p>
+      <p>You may not just stack bricks in a straight pile. A tower has to be built, not piled.</p>
+    </div>
+
+    <p>When the time is up, put the can on top.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:56%">Question</th><th>My answer</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>How tall was it?</td><td><input type="text" data-key="p1_height" aria-label="Height"></td></tr>
+        <tr class="trial"><td>Did it hold the can?</td><td><input type="text" data-key="p1_held" aria-label="Held the can"></td></tr>
+        <tr class="trial"><td>If it fell, which part gave way first?</td><td><input type="text" data-key="p1_gave_way" aria-label="What gave way"></td></tr>
+        <tr class="trial"><td>How much of your five minutes was spent rebuilding?</td><td><input type="text" data-key="p1_rebuild" aria-label="Rebuild time"></td></tr>
+      </tbody>
+    </table>
+
+    <p class="q">If you got another five minutes right now, what is the first thing you would change?</p>
+    <textarea class="answer" data-key="p1_would_change" aria-label="What you would change"></textarea>
+
+    <div class="callout gold">
+      <p class="ctitle">You Just Did Engineering — Badly</p>
+      <p>You had a problem, you tried something, it worked or it did not, and you learned something.</p>
+      <p>That is the right idea. But you learned it slowly and by accident. Engineers do the same thing on purpose, in an order, and they write it down.</p>
+    </div>
+  </section>
+
+  <!-- ===================== LEARN IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Eight Steps, In Order</h2>
+
+    <p>The <span class="def-term" data-term="DESIGN PROCESS">design process</span> is how engineers turn a problem into something that works. It is not a straight line — you go back and around it many times.</p>
+
+    <div class="steps">
+      <div class="st hot"><div class="n">1</div><div class="nm">Define the problem</div><div class="ds">Say exactly what has to be solved. This is the most important step and the one most often rushed.</div></div>
+      <div class="st"><div class="n">2</div><div class="nm">Do background research</div><div class="ds">Find out what already exists. Somebody has probably solved something close to this.</div></div>
+      <div class="st"><div class="n">3</div><div class="nm">Specify requirements</div><div class="ds">List what your answer must do to count as working. A <span class="def-term" data-term="REQUIREMENT">requirement</span> is a test it has to pass.</div></div>
+      <div class="st"><div class="n">4</div><div class="nm">Brainstorm solutions</div><div class="ds">Get several different ideas out. Not one idea. Several.</div></div>
+      <div class="st"><div class="n">5</div><div class="nm">Choose the best one</div><div class="ds">Compare your ideas against the requirements and pick. Say why you picked it.</div></div>
+      <div class="st"><div class="n">6</div><div class="nm">Do development work</div><div class="ds">Work the chosen idea up properly. Sketch it. Decide the details.</div></div>
+      <div class="st"><div class="n">7</div><div class="nm">Build a <span class="def-term" data-term="PROTOTYPE">prototype</span></div><div class="ds">Make a first version. A <span class="def-term" data-term="PROTOTYPE">prototype</span> is meant to be tested, not admired.</div></div>
+      <div class="st hot"><div class="n">8</div><div class="nm">Test and redesign</div><div class="ds">Find out where it fails, change it, and go round again.</div></div>
+    </div>
+
+    <div class="callout navy">
+      <p class="ctitle">Step 1 Is Where Projects Go Wrong</p>
+      <p>"Build a tall tower" is not a defined problem. <strong>"Build the tallest tower that will hold a can of soup without falling over"</strong> is.</p>
+      <p>The second one tells you when you have finished and how to tell if you failed. The first one does not.</p>
+    </div>
+
+    <h3 class="sub">A real example</h3>
+
+    <p>When a car turns a corner, the outside wheel travels further than the inside wheel.</p>
+
+    <p>In the 1920s both back wheels were fixed to one bar, so the engine drove them at the same speed. The inside wheel had to skid across the road on every corner. Tyres wore out fast.</p>
+
+    <p><strong>The defined problem:</strong> let the two wheels turn at different speeds while the engine still drives them both.</p>
+
+    <p class="muted">Someone had to notice the skidding, work out why it happened, and say what a solution would have to do — before anyone could design one.</p>
+
+    <h3 class="sub">Steps 7 and 8 are a loop</h3>
+
+    <p>Build, test, find the weakness, change it, build again. Engineers expect to go round this several times.</p>
+
+    <p>A <span class="def-term" data-term="PROTOTYPE">prototype</span> that fails is not a wasted afternoon. It is the step that tells you what to fix.</p>
+
+    <div class="callout gold">
+      <p class="ctitle">Draw That Loop</p>
+      <p>In Systems Project 4 you learned to send an arrow back up to an earlier box. The design process is exactly that shape — test, and if it failed, go back to step 6.</p>
+    </div>
+  </section>
+
+  <!-- ===================== DO IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> The Tower, Properly</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Define the problem</span>
+        <p>Write it in one sentence. It must say what you are building, what it has to hold, and how you will know it worked.</p>
+        <p class="q">My problem:</p>
+        <textarea class="answer" data-key="p3_problem" aria-label="Defined problem"></textarea>
+        <p class="muted">Read it back. Could somebody else tell whether you had succeeded, just from that sentence? If not, rewrite it.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Look at towers that already exist</span>
+        <p>Think of tall structures you have seen — bridges, cranes, pylons, radio masts, scaffolding.</p>
+        <table class="grid">
+          <thead><tr><th style="width:34%">Structure</th><th style="width:33%">What makes it strong</th><th>What it costs</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td><input type="text" data-key="p3_r1" aria-label="Structure 1"></td><td><input type="text" data-key="p3_r1_s" aria-label="Strength 1"></td><td><input type="text" data-key="p3_r1_c" aria-label="Cost 1"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_r2" aria-label="Structure 2"></td><td><input type="text" data-key="p3_r2_s" aria-label="Strength 2"></td><td><input type="text" data-key="p3_r2_c" aria-label="Cost 2"></td></tr>
+            <tr class="trial"><td><input type="text" data-key="p3_r3" aria-label="Structure 3"></td><td><input type="text" data-key="p3_r3_s" aria-label="Strength 3"></td><td><input type="text" data-key="p3_r3_c" aria-label="Cost 3"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Look for the shape that keeps appearing. What is it?</p>
+        <input type="text" data-key="p3_shape" aria-label="Recurring shape">
+      </li>
+
+      <li>
+        <span class="stitle">Write your requirements</span>
+        <p>List what your tower must do. Each one has to be something you can measure or test.</p>
+        <table class="grid">
+          <thead><tr><th style="width:14%">#</th><th style="width:52%">My tower must…</th><th>How I will test it</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_q1" aria-label="Requirement 1"></td><td><input type="text" data-key="p3_q1_t" aria-label="Test 1"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_q2" aria-label="Requirement 2"></td><td><input type="text" data-key="p3_q2_t" aria-label="Test 2"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_q3" aria-label="Requirement 3"></td><td><input type="text" data-key="p3_q3_t" aria-label="Test 3"></td></tr>
+          </tbody>
+        </table>
+        <div class="callout warn">
+          <p class="ctitle">⚠ "Strong" Is Not a Requirement</p>
+          <p>You cannot test "strong." You can test "holds a full can of soup for thirty seconds without leaning."</p>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">Brainstorm — three ideas, not one</span>
+        <p>Sketch three different towers. Genuinely different, not the same one three times.</p>
+        <div class="draw no-print">Three sketches in your notebook</div>
+        <table class="grid">
+          <thead><tr><th style="width:20%">Idea</th><th style="width:40%">How it works</th><th>Its biggest weakness</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">A</td><td><input type="text" data-key="p3_iA" aria-label="Idea A"></td><td><input type="text" data-key="p3_iA_w" aria-label="Weakness A"></td></tr>
+            <tr class="trial"><td class="ctr">B</td><td><input type="text" data-key="p3_iB" aria-label="Idea B"></td><td><input type="text" data-key="p3_iB_w" aria-label="Weakness B"></td></tr>
+            <tr class="trial"><td class="ctr">C</td><td><input type="text" data-key="p3_iC" aria-label="Idea C"></td><td><input type="text" data-key="p3_iC_w" aria-label="Weakness C"></td></tr>
+          </tbody>
+        </table>
+        <p class="muted">Naming the weakness now is not pessimism. It is how you choose.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Choose, and say why</span>
+        <p>Compare all three against your requirements. Pick one.</p>
+        <p class="q">I chose idea ___ because:</p>
+        <textarea class="answer" data-key="p3_chose" aria-label="Which idea and why"></textarea>
+        <p class="q">What am I giving up by not choosing the other two?</p>
+        <input type="text" data-key="p3_giving_up" aria-label="Trade-off">
+      </li>
+
+      <li>
+        <span class="stitle">Build the prototype</span>
+        <p>Build your chosen design. Work from your sketch, not from memory.</p>
+        <ul class="check">
+          <li><input type="checkbox" id="d1" data-key="p3_built"><label for="d1">My tower is built and matches my sketch</label></li>
+          <li><input type="checkbox" id="d2" data-key="p3_no_stack"><label for="d2">It is a built structure, not a stack of bricks</label></li>
+        </ul>
+      </li>
+
+      <li>
+        <span class="stitle">Test it, three rounds</span>
+        <p>Put the can on. Measure the height. Write down what happened. Then improve it and go again.</p>
+        <table class="grid">
+          <thead><tr><th style="width:12%">Round</th><th style="width:18%">Height</th><th style="width:20%">Held the can?</th><th style="width:26%">What failed</th><th>What I changed next</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_t1_h" aria-label="R1 height"></td><td><input type="text" data-key="p3_t1_held" aria-label="R1 held"></td><td><input type="text" data-key="p3_t1_fail" aria-label="R1 failed"></td><td><input type="text" data-key="p3_t1_chg" aria-label="R1 changed"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_t2_h" aria-label="R2 height"></td><td><input type="text" data-key="p3_t2_held" aria-label="R2 held"></td><td><input type="text" data-key="p3_t2_fail" aria-label="R2 failed"></td><td><input type="text" data-key="p3_t2_chg" aria-label="R2 changed"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_t3_h" aria-label="R3 height"></td><td><input type="text" data-key="p3_t3_held" aria-label="R3 held"></td><td><input type="text" data-key="p3_t3_fail" aria-label="R3 failed"></td><td><input type="text" data-key="p3_t3_chg" aria-label="R3 changed"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Did your tower get taller each round, or did one change make it worse?</p>
+        <textarea class="answer" data-key="p3_trend" aria-label="Height trend"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Compare with Try It</span>
+        <table class="grid">
+          <thead><tr><th style="width:40%">Question</th><th style="width:30%">Try It (guessing)</th><th>Now (process)</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>Tallest height</td><td><input type="text" data-key="p3_c_h1" aria-label="Compare height 1"></td><td><input type="text" data-key="p3_c_h2" aria-label="Compare height 2"></td></tr>
+            <tr class="trial"><td>Held the can?</td><td><input type="text" data-key="p3_c_held1" aria-label="Compare held 1"></td><td><input type="text" data-key="p3_c_held2" aria-label="Compare held 2"></td></tr>
+            <tr class="trial"><td>Could I rebuild it exactly?</td><td><input type="text" data-key="p3_c_rb1" aria-label="Compare rebuild 1"></td><td><input type="text" data-key="p3_c_rb2" aria-label="Compare rebuild 2"></td></tr>
+          </tbody>
+        </table>
+        <div class="callout gold">
+          <p class="ctitle">The Last Row Is the Real Difference</p>
+          <p>A tower you got by guessing is a tower you cannot repeat. A tower you designed is one you can build again, explain to somebody else, and improve next week.</p>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">Make it harder</span>
+        <p>Two cans. Or a can balanced off to one side. Pick a harder test and run the loop again.</p>
+        <p class="q">What harder test did you try, and did it survive?</p>
+        <textarea class="answer" data-key="p3_harder" aria-label="Harder test"></textarea>
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_optimized"><label for="d3">I made at least one change that came from a failed test</label></li></ul>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ===================== SCORE IT ===================== -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">Which step is this?</h3>
+    <table class="grid">
+      <thead><tr><th style="width:60%">What the engineer is doing</th><th>Step number</th></tr></thead>
+      <tbody>
+        <tr><td>Writing down that the claw must hold a cube for ten seconds</td><td><input type="text" data-key="p4_s1" aria-label="Step 1"></td></tr>
+        <tr><td>Looking at how other teams built their arms last season</td><td><input type="text" data-key="p4_s2" aria-label="Step 2"></td></tr>
+        <tr><td>Sketching four different claw shapes</td><td><input type="text" data-key="p4_s3" aria-label="Step 3"></td></tr>
+        <tr><td>Dropping the cube on purpose to see what breaks</td><td><input type="text" data-key="p4_s4" aria-label="Step 4"></td></tr>
+        <tr><td>Deciding the real trouble is that cubes slip, not that the arm is weak</td><td><input type="text" data-key="p4_s5" aria-label="Step 5"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Problem or not?</h3>
+    <p>Say whether each one is properly defined. If not, rewrite it so it is.</p>
+    <table class="grid">
+      <thead><tr><th style="width:44%"><span class="def-term" data-term="STATEMENT">Statement</span></th><th style="width:18%">Defined?</th><th>Better version</th></tr></thead>
+      <tbody>
+        <tr><td>Make the robot better</td><td><input type="text" data-key="p4_p1" aria-label="Defined 1"></td><td><input type="text" data-key="p4_p1_b" aria-label="Better 1"></td></tr>
+        <tr><td>Build a claw that lifts a cube without dropping it</td><td><input type="text" data-key="p4_p2" aria-label="Defined 2"></td><td><input type="text" data-key="p4_p2_b" aria-label="Better 2"></td></tr>
+        <tr><td>Make it go fast</td><td><input type="text" data-key="p4_p3" aria-label="Defined 3"></td><td><input type="text" data-key="p4_p3_b" aria-label="Better 3"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_steps"><label for="s1">I can name the eight steps in order</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_define"><label for="s2">I can turn a vague wish into a defined problem</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_req"><label for="s3">I can write a requirement that can actually be tested</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_three"><label for="s4">I come up with several ideas before choosing one</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_why"><label for="s5">I can say why I picked one design over another</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_loop"><label for="s6">I treat a failed test as information, not as a wasted afternoon</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_record"><label for="s7">I write down what I changed, so I can rebuild it later</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">Your Try It tower may well have been taller than your designed one. Does that mean the process was a waste of time?</p>
+    <textarea class="answer" data-key="p4_taller" aria-label="Was it a waste"></textarea>
+
+    <p class="q">Step 1 is the one people rush. What actually goes wrong later when the problem was never properly defined?</p>
+    <textarea class="answer" data-key="p4_rush" aria-label="Rushing step 1"></textarea>
+
+    <p class="q">Your robot has to push objects off a line. Write that as a defined problem — one sentence, with a test in it.</p>
+    <textarea class="answer" data-key="p4_bulldoze" aria-label="Bulldoze problem"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>You have the process. Now you point it at a real part of your robot.</p>
+    <p>In <strong>Systems Project 6 — Structure and <span class="def-term" data-term="FUNCTION">function</span></strong>, you design the blade your robot needs — and your class cannot attempt Coding Project 6 until you do.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'STATEMENT': ['Statement', 'One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.'],
+    'DESIGN PROCESS': ['Design Process', 'The ordered set of steps engineers use to turn a problem into something that works. It is a loop, not a line \u2014 testing sends you back to change your design and try again.'],
+    'REQUIREMENT': ['Requirement', 'Something your design must do to count as working, written so it can actually be tested. "Strong" is not a requirement. "Holds a full can for thirty seconds without leaning" is.'],
+    'PROTOTYPE': ['Prototype', 'A first version built to be tested rather than kept. It is supposed to reveal problems, so a prototype that fails has done its job.']
+  };
+  function openDef(term) {
+    var e = DEFS[term]; if (!e) return;
+    document.getElementById('defTerm').textContent = e[0];
+    document.getElementById('defBody').textContent = e[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e){ if (e.target === this) closeDef(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e){ var el = e.target.closest('.def-term'); if (el) openDef(el.dataset.term); });
+  document.addEventListener('touchend', function(e){ if (e.target.closest('.def-term')) e.preventDefault(); }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_systems_05";
+  var MISSION_TITLE = "Systems Project 5 — The Design Process";
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin"), statusEl = $("#status"), statusBottom = $("#statusBottom"), pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var a = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      a[el.getAttribute("data-key")] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return a;
+  }
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var d; try { d = JSON.parse(raw); } catch (e) { return; }
+    if (d.pin) pinInput.value = d.pin;
+    if (d.answers) document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      if (k in d.answers) { if (el.type === "checkbox") el.checked = d.answers[k] === "yes"; else el.value = d.answers[k]; }
+    });
+    syncPinEcho();
+  }
+  function saveDraft() {
+    try { window.localStorage.setItem(SAVE_KEY, JSON.stringify({ pin: pinInput.value.trim(), answers: collectAnswers() })); } catch (e) {}
+  }
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+  restoreDraft();
+  document.addEventListener("input", function (e) { if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); } });
+  document.addEventListener("change", function (e) { if (e.target.matches("[data-key]")) saveDraft(); });
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg; statusEl.className = "status" + (kind ? " " + kind : ""); statusBottom.textContent = msg;
+  }
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) { setStatus("Enter your PIN first.", "err"); pinInput.focus(); return; }
+    var payload = { mission: MISSION_ID, missionTitle: MISSION_TITLE, pin: pin, submittedAt: new Date().toISOString(), answers: collectAnswers() };
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob), a = document.createElement("a");
+    a.href = url; a.download = MISSION_ID + "_pin" + pin + ".json";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    saveDraft(); setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>

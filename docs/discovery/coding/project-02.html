@@ -305,6 +305,18 @@
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
 </style>
 </head>
@@ -314,6 +326,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Coding</a><span class="sep">/</span><span class="here">Project 2</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -338,8 +351,8 @@
     <div class="meta">
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Reading the C template line by line, writing your own text to the screen, controlling timing, and learning to read error messages.</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Wombat controller · battery · your computer or Chromebook · this project sheet</dd></div>
-        <div class="row"><dt>Before You Start</dt><dd>Project 1 — you must be able to connect, create a project, compile, and run.</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Wombat <span class="def-term" data-term="CONTROLLER">controller</span> · battery · your computer or Chromebook · this project sheet</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 1 — you must be able to connect, create a project, <span class="def-term" data-term="COMPILE">compile</span>, and run.</dd></div>
       </dl>
     </div>
 
@@ -367,7 +380,7 @@
     <p class="q">Line 5 is the only line that made something happen on the screen. What do you think the other lines are for?</p>
     <textarea class="answer" data-key="p1_guess_other_lines" aria-label="Guess what the other lines do"></textarea>
 
-    <p class="q">Line 1 has a <code>#</code> and no semicolon at the end. Every other line looks different from it. Why might that be?</p>
+    <p class="q">Line 1 has a <code>#</code> and no <span class="def-term" data-term="SEMICOLON">semicolon</span> at the end. Every other line looks different from it. Why might that be?</p>
     <textarea class="answer" data-key="p1_guess_line1" aria-label="Guess about line 1"></textarea>
 
     <p class="q">There are exactly two curly braces, <code>{</code> and <code>}</code>. What do you think they are doing?</p>
@@ -388,37 +401,37 @@
     <div class="anat">
       <div class="arow">
         <div class="acode">#include &lt;kipr/wombat.h&gt;</div>
-        <div class="adesc">Brings in the KIPR <span class="def-term" data-term="LIBRARY">LIBRARY</span> — a big collection of ready-made commands for driving motors, moving servos, and reading sensors. Every program needs this line. Without it, the robot does not know what <code>printf</code> or <code>motor</code> mean.</div>
+        <div class="adesc">Brings in the KIPR <span class="def-term" data-term="LIBRARY">library</span> — a big collection of ready-made commands for driving motors, moving <span class="def-term" data-term="SERVO">servo</span>s, and reading <span class="def-term" data-term="SENSOR">sensor</span>s. Every program needs this line. Without it, the robot does not know what <code>printf</code> or <code>motor</code> mean.</div>
       </div>
       <div class="arow">
         <div class="acode">int main ()</div>
-        <div class="adesc">Defines the <code>main</code> <span class="def-term" data-term="FUNCTION">FUNCTION</span>. When you press Run, the robot always starts here. Every program has exactly one <code>main</code>.</div>
+        <div class="adesc">Defines the <code>main</code> <span class="def-term" data-term="FUNCTION">function</span>. When you press Run, the robot always starts here. Every program has exactly one <code>main</code>.</div>
       </div>
       <div class="arow">
         <div class="acode">{</div>
-        <div class="adesc">Opens a <span class="def-term" data-term="BLOCK">BLOCK</span>. Everything between this brace and its partner belongs to <code>main</code>.</div>
+        <div class="adesc">Opens a <span class="def-term" data-term="BLOCK">block</span>. Everything between this brace and its partner belongs to <code>main</code>.</div>
       </div>
       <div class="arow">
         <div class="acode">printf("Hello World!\n");</div>
-        <div class="adesc">A programming <span class="def-term" data-term="STATEMENT">STATEMENT</span> — one action for the robot to carry out. This one prints text to the Wombat's screen.</div>
+        <div class="adesc">A programming <span class="def-term" data-term="STATEMENT">statement</span> — one action for the robot to carry out. This one prints text to the Wombat's screen.</div>
       </div>
       <div class="arow">
         <div class="acode">return 0;</div>
-        <div class="adesc">Reports back to the controller that the program finished. <code>0</code> means "no problems." This is always the last statement before the closing brace.</div>
+        <div class="adesc">Reports back to the <span class="def-term" data-term="CONTROLLER">controller</span> that the program finished. <code>0</code> means "no problems." This is always the last <span class="def-term" data-term="STATEMENT">statement</span> before the closing brace.</div>
       </div>
       <div class="arow">
         <div class="acode">}</div>
-        <div class="adesc">Closes the block. The program stops here.</div>
+        <div class="adesc">Closes the <span class="def-term" data-term="BLOCK">block</span>. The program stops here.</div>
       </div>
     </div>
 
-    <h3 class="sub">Semicolons end statements</h3>
+    <h3 class="sub"><span class="def-term" data-term="SEMICOLON">Semicolon</span>s end <span class="def-term" data-term="STATEMENT">statement</span>s</h3>
 
     <p>Look at lines 5 and 6. Both end with a semicolon.</p>
 
-    <p>A semicolon does the same job as the period at the end of an English sentence: it says <em>this thought is finished, move on.</em> Leave one out and the compiler runs two statements together, the way a sentence without a period becomes a run-on.</p>
+    <p>A semicolon does the same job as the period at the end of an English sentence: it says <em>this thought is finished, move on.</em> Leave one out and the <span class="def-term" data-term="COMPILER">compiler</span> runs two statements together, the way a sentence without a period becomes a run-on.</p>
 
-    <p class="muted">Lines that open a new block — like <code>int main ()</code> — do <strong>not</strong> get a semicolon. The brace does that job instead.</p>
+    <p class="muted">Lines that open a new <span class="def-term" data-term="BLOCK">block</span> — like <code>int main ()</code> — do <strong>not</strong> get a semicolon. The brace does that job instead.</p>
 
     <h3 class="sub">Order matters, and speed is not the point</h3>
 
@@ -428,12 +441,12 @@
 
     <h3 class="sub">Colors are a hint</h3>
 
-    <p>The KISS IDE colors your code as you type. That coloring is a free error check — if something is the wrong color, you have made a mistake before you even compile.</p>
+    <p>The KISS <span class="def-term" data-term="IDE">IDE</span> colors your code as you type. That coloring is a free error check — if something is the wrong color, you have made a mistake before you even <span class="def-term" data-term="COMPILE">compile</span>.</p>
 
     <table class="grid">
       <thead><tr><th style="width:32%">Color</th><th>What it is</th></tr></thead>
       <tbody>
-        <tr><td>Green</td><td>Comments — the computer ignores these</td></tr>
+        <tr><td>Green</td><td><span class="def-term" data-term="COMMENT">comment</span>s — the computer ignores these</td></tr>
         <tr><td>Bold blue</td><td>Keywords, like <code>int</code> and <code>return</code></td></tr>
         <tr><td>Red</td><td>Text strings — anything inside quotation marks</td></tr>
         <tr><td>Aqua</td><td>Numbers</td></tr>
@@ -445,9 +458,9 @@
       <p>If you open a quotation mark and forget to close it, everything after it turns red. Spotting that color spreading down the page is faster than reading an error message.</p>
     </div>
 
-    <h3 class="sub">Comments</h3>
+    <h3 class="sub"><span class="def-term" data-term="COMMENT">Comment</span>s</h3>
 
-    <p>A <span class="def-term" data-term="COMMENT">COMMENT</span> starts with two slashes. The computer ignores everything after them on that line — comments are for people, not machines.</p>
+    <p>A <span class="def-term" data-term="COMMENT">comment</span> starts with two slashes. The computer ignores everything after them on that line — comments are for people, not machines.</p>
 
     <pre class="code"><span class="ln">1</span>  <span class="kw">#include</span> &lt;kipr/wombat.h&gt;
 <span class="ln">2</span>
@@ -462,26 +475,26 @@
 
     <ul class="plain">
       <li><strong>Explain</strong> what a line does, so you still understand it next week.</li>
-      <li><strong>Plan</strong> — writing your steps as comments first is called <span class="def-term" data-term="PSEUDOCODE">PSEUDOCODE</span>.</li>
+      <li><strong>Plan</strong> — writing your steps as comments first is called <span class="def-term" data-term="PSEUDOCODE">pseudocode</span>.</li>
       <li><strong>Give credit</strong> — if you borrow code, you say so in a comment.</li>
     </ul>
 
     <h3 class="sub">Commands you already have</h3>
 
-    <p class="muted">These come with the KIPR library. You do not have to write them. You will meet most of these in later projects — this list is here so you know they exist.</p>
+    <p class="muted">These come with the KIPR <span class="def-term" data-term="LIBRARY">library</span>. You do not have to write them. You will meet most of these in later projects — this list is here so you know they exist.</p>
 
     <table class="grid">
       <thead><tr><th style="width:44%">Command</th><th>What it does</th></tr></thead>
       <tbody>
         <tr><td><code>printf("text\n");</code></td><td>Prints text to the Wombat's screen</td></tr>
         <tr><td><code>msleep(milliseconds);</code></td><td>Pauses the program for that many milliseconds</td></tr>
-        <tr><td><code>motor(port, power);</code></td><td>Runs the motor in that port at that power level</td></tr>
+        <tr><td><code>motor(port, power);</code></td><td>Runs the motor in that <span class="def-term" data-term="PORT">port</span> at that power level</td></tr>
         <tr><td><code>ao();</code></td><td>"All off" — stops every motor at once</td></tr>
-        <tr><td><code>enable_servos();</code></td><td>Turns the servo ports on</td></tr>
+        <tr><td><code>enable_servos();</code></td><td>Turns the <span class="def-term" data-term="SERVO">servo</span> <span class="def-term" data-term="PORT">port</span>s on</td></tr>
         <tr><td><code>set_servo_position(port, position);</code></td><td>Moves the servo in that port to a position</td></tr>
         <tr><td><code>disable_servos();</code></td><td>Turns the servo ports off</td></tr>
-        <tr><td><code>digital(port);</code></td><td>Reads a digital sensor</td></tr>
-        <tr><td><code>analog(port);</code></td><td>Reads an analog sensor</td></tr>
+        <tr><td><code>digital(port);</code></td><td>Reads a <span class="def-term" data-term="DIGITAL">digital</span> <span class="def-term" data-term="SENSOR">sensor</span></td></tr>
+        <tr><td><code>analog(port);</code></td><td>Reads an <span class="def-term" data-term="ANALOG">analog</span> sensor</td></tr>
       </tbody>
     </table>
 
@@ -515,7 +528,7 @@
         <pre class="code"><span class="cm">// Author: your name here</span>
 <span class="cm">// Program purpose: prints text to the screen</span>
 <span class="cm">// Created: today's date</span></pre>
-        <p>This is called <span class="def-term" data-term="ATTRIBUTION">ATTRIBUTION</span>. From now on, every program you write gets these three lines.</p>
+        <p>This is called <span class="def-term" data-term="ATTRIBUTION">attribution</span>. From now on, every program you write gets these three lines.</p>
         <div class="callout navy">
           <p class="ctitle">Borrowing Code</p>
           <p>If you use part of a teammate's code, you say so in a comment — where it came from, and where the borrowed part ends. That holds even when you change their idea a little to fit your robot.</p>
@@ -528,7 +541,7 @@
         <span class="stitle">Start a new project and say hello yourself</span>
         <p>Go to <strong>Project Explorer</strong>, pick your folder, click <strong>+ Add Project</strong>, and name it <code>Printf Statements</code>.</p>
         <p>Write a program that prints <code>Hello World!</code> and then prints your own name on the next line.</p>
-        <p>Plan it as pseudocode first:</p>
+        <p>Plan it as <span class="def-term" data-term="PSEUDOCODE">pseudocode</span> first:</p>
         <pre class="code"><span class="cm">// 1. Display "Hello World!" on the screen</span>
 <span class="cm">// 2. Display my name on the screen</span></pre>
         <div class="callout gold">
@@ -560,7 +573,7 @@
       </li>
 
       <li>
-        <span class="stitle">Turn your pseudocode into real comments</span>
+        <span class="stitle">Turn your <span class="def-term" data-term="PSEUDOCODE">pseudocode</span> into real comments</span>
         <p>Good programmers leave the plan in the finished program. Add a comment to the end of each line describing what it does, so your program reads like this:</p>
         <pre class="code"><span class="ln">1</span>  <span class="kw">#include</span> &lt;kipr/wombat.h&gt;
 <span class="ln">2</span>
@@ -601,8 +614,8 @@
 
         <div class="callout">
           <p class="ctitle">Two Messages Worth Recognizing</p>
-          <p><strong>"implicit declaration of function"</strong> almost always means you spelled a command wrong.</p>
-          <p><strong>"too many arguments to function"</strong> means you gave a command more information than it wanted. <code>msleep</code> takes one number. Writing <code>2,000</code> looks like two things to the compiler: <code>2</code> and <code>000</code>. Never put commas in numbers in code.</p>
+          <p><strong>"implicit declaration of <span class="def-term" data-term="FUNCTION">function</span>"</strong> almost always means you spelled a command wrong.</p>
+          <p><strong>"too many <span class="def-term" data-term="ARGUMENT">argument</span>s to <span class="def-term" data-term="FUNCTION">function</span>"</strong> means you gave a command more information than it wanted. <code>msleep</code> takes one number. Writing <code>2,000</code> looks like two things to the <span class="def-term" data-term="COMPILER">compiler</span>: <code>2</code> and <code>000</code>. Never put commas in numbers in code.</p>
         </div>
 
         <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_step_all_fixed"><label for="d4">All five bugs broken, read, and fixed — program compiles cleanly</label></li></ul>
@@ -642,6 +655,17 @@
 <script>
 (function() {
   var DEFS = {
+    'ANALOG': ['Analog', 'An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers "how dark is this?" with a number, so you have to decide for yourself where dark begins.'],
+    'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.'],
+    'COMPILE': ['Compile', 'To translate the code you wrote into machine instructions the robot’s processor can actually carry out. If compiling fails, the program cannot run.'],
+    'COMPILER': ['Compiler', 'The program that turns the code you wrote into instructions the robot’s processor can carry out. When it finds something it cannot translate, it stops and tells you where.'],
+    'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
+    'DIGITAL': ['Digital', 'A digital sensor has only two possible readings: 0 or 1. It works like a light switch — pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off.'],
+    'IDE': ['IDE', 'Short for Integrated Development Environment. It is the place where you write your code, check it for mistakes, and send it to the robot. Yours is called the KISS IDE.'],
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
+    'SEMICOLON': ['Semicolon', 'The punctuation mark that ends a statement in C. It does the same job as the full stop at the end of a sentence — it says this instruction is finished, move on to the next one.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'SERVO': ['Servo', 'A motor that rotates to a position you choose, rather than simply spinning. It turns about 180 degrees, divided into 2048 numbered positions, and holds whatever position you send it to.'],
     'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
     'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],

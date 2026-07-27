@@ -369,6 +369,18 @@
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
 </style>
 </head>
@@ -378,6 +390,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Coding</a><span class="sep">/</span><span class="here">Project 7</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -401,9 +414,9 @@
   <section>
     <div class="meta">
       <dl>
-        <div class="row"><dt>What You Are Doing</dt><dd>Wiring up a servo, finding its safe positions, and using an arm to reach into the enclosure and touch Botguy.</dd></div>
+        <div class="row"><dt>What You Are Doing</dt><dd>Wiring up a <span class="def-term" data-term="SERVO">servo</span>, finding its safe positions, and using an arm to reach into the <span class="def-term" data-term="ENCLOSURE">enclosure</span> and touch Botguy.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 9 — Recover Botguy (base)</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Built robot with one servo and a servo horn · Wombat · charged battery · the game field · a small screwdriver · your Project 4 and 5 numbers</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Built robot with one <span class="def-term" data-term="SERVO">servo</span> and a servo horn · Wombat · charged battery · the game field · a small screwdriver · your Project 4 and 5 numbers</dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Project 6 — and your arm must be built. The build lives in the Systems strand.</dd></div>
       </dl>
     </div>
@@ -417,7 +430,7 @@
   <section>
     <h2 class="phase-head"><span class="pnum">Try It</span> A Different Kind of Motor</h2>
 
-    <p>Hold a wheel motor in one hand and a <span class="def-term" data-term="SERVO">SERVO</span> in the other. They look similar. They are not.</p>
+    <p>Hold a wheel motor in one hand and a <span class="def-term" data-term="SERVO">servo</span> in the other. They look similar. They are not.</p>
 
     <table class="grid">
       <thead><tr><th style="width:26%"></th><th style="width:37%">Wheel motor</th><th>Servo</th></tr></thead>
@@ -437,7 +450,7 @@
 
     <h3 class="sub">Plug it in — the wire order matters</h3>
 
-    <p>There are four servo ports, numbered <strong>0 to 3</strong>. Each one has three pins, and putting the plug in backwards will not work.</p>
+    <p>There are four servo <span class="def-term" data-term="PORT">port</span>s, numbered <strong>0 to 3</strong>. Each one has three pins, and putting the plug in backwards will not work.</p>
 
     <div class="anat">
       <div class="arow"><div class="acode">S — orange wire</div><div class="adesc">Signal. This is the wire that carries the position you asked for.</div></div>
@@ -445,7 +458,7 @@
       <div class="arow"><div class="acode">− — brown wire</div><div class="adesc">Ground. Remember it as: <em>the ground is down, and down is negative.</em></div></div>
     </div>
 
-    <p>Plug your servo into <strong>port 0</strong>, brown wire toward the minus side.</p>
+    <p>Plug your servo into <strong><span class="def-term" data-term="PORT">port</span> 0</strong>, brown wire toward the minus side.</p>
 
     <ul class="check">
       <li><input type="checkbox" id="c1" data-key="p1_wired"><label for="c1">My servo is in port 0 with the wires the right way round</label></li>
@@ -502,7 +515,7 @@
       </div>
       <div class="arow">
         <div class="acode">set_servo_position(0, 800);</div>
-        <div class="adesc">Sends the servo in port 0 to position 800. Two arguments — port first, then position.</div>
+        <div class="adesc">Sends the servo in port 0 to position 800. Two <span class="def-term" data-term="ARGUMENT">argument</span>s — port first, then position.</div>
       </div>
       <div class="arow">
         <div class="acode">msleep(500);</div>
@@ -540,13 +553,13 @@ enable_servos();</pre>
 
     <h3 class="sub">Write your positions down</h3>
 
-    <p>Position numbers mean nothing on their own. <code>set_servo_position(0, 1746);</code> tells you nothing about what the arm is doing. Comment every one:</p>
+    <p>Position numbers mean nothing on their own. <code>set_servo_position(0, 1746);</code> tells you nothing about what the arm is doing. <span class="def-term" data-term="COMMENT">Comment</span> every one:</p>
 
     <pre class="code"><span class="cm">// up         = 524</span>
 <span class="cm">// horizontal = 1566</span>
 <span class="cm">// down       = 1746</span></pre>
 
-    <p class="muted">Use the format <strong>name = number</strong>. There is a reason for that — in Project 9 those names stop being comments and become part of the program.</p>
+    <p class="muted">Use the format <strong>name = number</strong>. There is a reason for that — in Project 9 those names stop being <span class="def-term" data-term="COMMENT">comment</span>s and become part of the program.</p>
 
     <h3 class="sub">Where you are headed</h3>
 
@@ -562,7 +575,7 @@ enable_servos();</pre>
         </div>
         <div class="mpart later">
           <span class="mlabel">Bonus Mission — 9 pts — not yet</span>
-          Botguy is completely outside the enclosure <em>and</em> touching the warehouse floor, both true at the same moment. Getting him out needs a claw. That is Project 8.
+          Botguy is completely outside the <span class="def-term" data-term="ENCLOSURE">enclosure</span> <em>and</em> <span class="def-term" data-term="TOUCHING">TOUCHING</span> the warehouse floor, both true at the same moment. Getting him out needs a claw. That is Project 8.
         </div>
       </div>
     </div>
@@ -571,7 +584,7 @@ enable_servos();</pre>
       <div class="col yes">
         <div class="chead">✓ Scores</div>
         <ul>
-          <li>A robot is touching Botguy.</li>
+          <li>A robot is <span class="def-term" data-term="TOUCHING">TOUCHING</span> Botguy.</li>
         </ul>
       </div>
       <div class="col no">
@@ -645,13 +658,13 @@ enable_servos();</pre>
 <span class="ln">19</span>     disable_servos();
 <span class="ln">20</span>     <span class="kw">return</span> <span class="nu">0</span>;
 <span class="ln">21</span> }</pre>
-        <p>Use <em>your</em> numbers, not these. Compile and run.</p>
+        <p>Use <em>your</em> numbers, not these. <span class="def-term" data-term="COMPILE">Compile</span> and run.</p>
         <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_wave_works"><label for="d2">My arm moves to all three positions with a pause between each</label></li></ul>
       </li>
 
       <li>
         <span class="stitle">Prove the msleep matters</span>
-        <p>Delete all three <code>msleep()</code> lines. Compile. Run. Watch closely.</p>
+        <p>Delete all three <code>msleep()</code> lines. <span class="def-term" data-term="COMPILE">Compile</span>. Run. Watch closely.</p>
         <p class="q">What did the arm do?</p>
         <textarea class="answer" data-key="p3_no_msleep" aria-label="Arm without msleep"></textarea>
         <p>Put them back.</p>
@@ -800,6 +813,11 @@ enable_servos();</pre>
 <script>
 (function() {
   var DEFS = {
+    'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.'],
+    'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
+    'COMPILE': ['Compile', 'To translate the code you wrote into machine instructions the robot’s processor can actually carry out. If compiling fails, the program cannot run.'],
+    'ENCLOSURE': ['Enclosure', 'A PVC frame on the game field that objects can be placed inside. Missions that ask for something to be IN an enclosure are asking you to get it past those walls.'],
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
     'SERVO': ['Servo', 'A motor that rotates to a position you choose, rather than simply spinning. It turns about 180 degrees, divided into 2048 numbered positions, and holds whatever position you send it to.'],
     'TOUCHING': ['Touching', 'Two objects are TOUCHING when they are in direct physical contact with one another. Contact through a third object (robot, field element, or game piece) does not count as TOUCHING.']
   };

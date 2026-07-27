@@ -289,6 +289,18 @@
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
 </style>
 </head>
@@ -298,6 +310,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Systems</a><span class="sep">/</span><span class="here">Project 3</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -401,7 +414,7 @@
 
     <div class="kinds">
       <div class="kind rc">
-        <div class="khead">Remote Control</div>
+        <div class="khead"><span class="def-term" data-term="REMOTE CONTROL">Remote Control</span></div>
         <div class="kbody">
           <p>It does not move on its own. A person must control it.</p>
           <p>Let go of the buttons and it stops.</p>
@@ -409,7 +422,7 @@
         </div>
       </div>
       <div class="kind semi">
-        <div class="khead">Semi-Autonomous</div>
+        <div class="khead"><span class="def-term" data-term="SEMI-AUTONOMOUS">Semi-Autonomous</span></div>
         <div class="kbody">
           <p>A person controls some of it. The machine does the rest by itself.</p>
           <p>You share the job.</p>
@@ -417,7 +430,7 @@
         </div>
       </div>
       <div class="kind auto">
-        <div class="khead">Autonomous</div>
+        <div class="khead"><span class="def-term" data-term="AUTONOMOUS">Autonomous</span></div>
         <div class="kbody">
           <p>It moves around on its own. No person is controlling it.</p>
           <p>You start it and step back.</p>
@@ -428,15 +441,15 @@
 
     <h3 class="sub">Which one is your robot?</h3>
 
-    <p>Your Botball robot is <span class="def-term" data-term="AUTONOMOUS">AUTONOMOUS</span>.</p>
+    <p>Your Botball robot is <span class="def-term" data-term="AUTONOMOUS">autonomous</span>.</p>
 
     <p>You may touch it before the match. You may not touch it during the match.</p>
 
     <p>That is the whole reason your code has to be so careful. Nobody can help it once it starts.</p>
 
     <div class="callout navy">
-      <p class="ctitle">Being Autonomous Costs You Something</p>
-      <p>A <span class="def-term" data-term="REMOTE CONTROL">REMOTE CONTROL</span> robot has a person watching. If a cube rolls away, the person just steers around it.</p>
+      <p class="ctitle">Being <span class="def-term" data-term="AUTONOMOUS">Autonomous</span> Costs You Something</p>
+      <p>A <span class="def-term" data-term="REMOTE CONTROL">remote control</span> robot has a person watching. If a cube rolls away, the person just steers around it.</p>
       <p>An autonomous robot has nobody. If a cube rolls away, it drives right into the empty spot anyway.</p>
       <p>You get speed and you get to run many robots at once. You give up the chance to fix things.</p>
     </div>
@@ -447,7 +460,7 @@
 
     <p>A dishwasher runs by itself once you press start. But it never moves anywhere.</p>
 
-    <p>A <span class="def-term" data-term="SEMI-AUTONOMOUS">SEMI-AUTONOMOUS</span> machine sits in the middle. You do part of the job. It does the rest.</p>
+    <p>A <span class="def-term" data-term="SEMI-AUTONOMOUS">semi-autonomous</span> machine sits in the middle. You do part of the job. It does the rest.</p>
 
     <p class="muted">When two people sort the same machine differently, that is worth talking about. Both of you noticed something real.</p>
   </section>
@@ -511,7 +524,7 @@
 
       <li>
         <span class="stitle">Three posters</span>
-        <p>Your class needs three big sheets of paper. Head them <strong>Remote Control</strong>, <strong>Semi-Autonomous</strong>, and <strong>Autonomous</strong>.</p>
+        <p>Your class needs three big sheets of paper. Head them <strong><span class="def-term" data-term="REMOTE CONTROL">remote control</span></strong>, <strong><span class="def-term" data-term="SEMI-AUTONOMOUS">semi-autonomous</span></strong>, and <strong>Autonomous</strong>.</p>
         <p>Think of machines. Write each one on a sticky note. Stick it on the poster where you think it goes.</p>
         <p>Write down four of your own here.</p>
         <table class="grid">
@@ -635,6 +648,7 @@
 <script>
 (function() {
   var DEFS = {
+    'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.'],
     'AUTONOMOUS': ['Autonomous', 'The machine moves around on its own. No person is controlling it while it runs. You start it and step back.'],
     'SEMI-AUTONOMOUS': ['Semi-Autonomous', 'A person controls part of what the machine does. The machine does the rest by itself. The two of you share the job.'],
     'REMOTE CONTROL': ['Remote Control', 'The machine does not move on its own. A person has to control it the whole time. Let go and it stops.']

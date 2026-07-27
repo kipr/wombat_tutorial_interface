@@ -388,6 +388,18 @@
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
 </style>
 </head>
@@ -397,6 +409,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Coding</a><span class="sep">/</span><span class="here">Project 17</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -422,8 +435,8 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Learning the loop that counts, then using it to collect every bonus that just means "now do that again."</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 7 · 11 · 16 · 17 bonuses — 38 points</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Robot with arm, claw, and sensors · Wombat · charged battery · the game field · your library from Project 16</dd></div>
-        <div class="row"><dt>Before You Start</dt><dd>Project 16 — your functions should live in your library by now.</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Robot with arm, claw, and <span class="def-term" data-term="SENSOR">sensor</span>s · Wombat · charged battery · the game field · your <span class="def-term" data-term="LIBRARY">library</span> from Project 16</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 16 — your <span class="def-term" data-term="FUNCTION">function</span>s should live in your <span class="def-term" data-term="LIBRARY">library</span> by now.</dd></div>
       </dl>
     </div>
 
@@ -436,7 +449,7 @@
   <section>
     <h2 class="phase-head"><span class="pnum">Try It</span> Thirty Small Hops</h2>
 
-    <p>Back in Project 9 you moved a servo in three big jumps and were asked what it would take to move it in thirty small ones. Here is the answer you were promised.</p>
+    <p>Back in Project 9 you moved a <span class="def-term" data-term="SERVO">servo</span> in three big jumps and were asked what it would take to move it in thirty small ones. Here is the answer you were promised.</p>
 
     <pre class="code"><span class="ln">1</span>  <span class="kw">#include</span> &lt;kipr/wombat.h&gt;
 <span class="ln">2</span>
@@ -485,8 +498,8 @@
 
     <ul class="plain">
       <li>The start is on <strong>line 6</strong>, above the loop.</li>
-      <li>The stopping point is on <strong>line 9</strong>, in the condition.</li>
-      <li>The step is on <strong>line 11</strong>, buried inside the block.</li>
+      <li>The stopping point is on <strong>line 9</strong>, in the <span class="def-term" data-term="CONDITION">condition</span>.</li>
+      <li>The step is on <strong>line 11</strong>, buried inside the <span class="def-term" data-term="BLOCK">block</span>.</li>
     </ul>
 
     <p class="q">If a teammate asked you "how many times does that run?", how long would it take you to work it out?</p>
@@ -497,7 +510,7 @@
   <section>
     <h2 class="phase-head"><span class="pnum">Learn It</span> All Three on One Line</h2>
 
-    <p>A <span class="def-term" data-term="FOR LOOP">FOR LOOP</span> does exactly the same job, but it puts the start, the stop, and the step together where you can see all three at once.</p>
+    <p>A <span class="def-term" data-term="FOR LOOP">for loop</span> does exactly the same job, but it puts the start, the stop, and the step together where you can see all three at once.</p>
 
     <pre class="code"><span class="kw">for</span> (position = <span class="nu">200</span>; position &lt; <span class="nu">1800</span>; position++)
 <span class="cm">      ↑              ↑                  ↑</span>
@@ -505,11 +518,11 @@
 
     <div class="anat">
       <div class="arow"><div class="acode">position = 200</div><div class="adesc">Where the counting begins. Runs once, before anything else.</div></div>
-      <div class="arow"><div class="acode">position &lt; 1800</div><div class="adesc">Checked before every trip through the block. The moment it is false, the loop ends.</div></div>
+      <div class="arow"><div class="acode">position &lt; 1800</div><div class="adesc">Checked before every trip through the <span class="def-term" data-term="BLOCK">block</span>. The moment it is false, the loop ends.</div></div>
       <div class="arow"><div class="acode">position++</div><div class="adesc">Runs at the end of every trip. <code>++</code> means add one — the shorthand you met in Project 9.</div></div>
     </div>
 
-    <p class="muted">Two semicolons inside the parentheses, and none after the closing one. Same rule as <code>while</code> and <code>if</code> — the braces finish the statement.</p>
+    <p class="muted">Two <span class="def-term" data-term="SEMICOLON">semicolon</span>s inside the parentheses, and none after the closing one. Same rule as <code>while</code> and <code>if</code> — the braces finish the <span class="def-term" data-term="STATEMENT">statement</span>.</p>
 
     <h3 class="sub">The same loop, both ways</h3>
 
@@ -545,7 +558,7 @@
       <thead><tr><th style="width:50%">Use <code>while</code> when...</th><th>Use <code>for</code> when...</th></tr></thead>
       <tbody>
         <tr>
-          <td>You do not know how many times — it depends on a sensor.</td>
+          <td>You do not know how many times — it depends on a <span class="def-term" data-term="SENSOR">sensor</span>.</td>
           <td>You know the count before you start. Four corners. Two poms.</td>
         </tr>
         <tr>
@@ -561,7 +574,7 @@
 
     <div class="callout navy">
       <p class="ctitle">Look Back at Every Loop You Have Written</p>
-      <p>Drive until bump. Drive until 4000 ticks. Follow until you see black. <strong>Every one of them was a <code>while</code>, and every one had to be</strong> — the robot could not know in advance how many times round it would go.</p>
+      <p>Drive until bump. Drive until 4000 <span class="def-term" data-term="TICK">tick</span>s. Follow until you see black. <strong>Every one of them was a <code>while</code>, and every one had to be</strong> — the robot could not know in advance how many times round it would go.</p>
       <p>Now think about "put two poms in the basket." You know it is two. That is what <code>for</code> is for.</p>
     </div>
 
@@ -582,7 +595,7 @@
     <div class="callout warn">
       <p class="ctitle">⚠ Starting at 0 Means Stopping Before the Count</p>
       <p><code>count = 0; count &lt; 4</code> gives you 0, 1, 2, 3 — that is <strong>four</strong> trips, not three, and not five.</p>
-      <p>Counting from zero again, same as the motor ports back in Project 3. Write out the numbers if you are not sure.</p>
+      <p>Counting from zero again, same as the motor <span class="def-term" data-term="PORT">port</span>s back in Project 3. Write out the numbers if you are not sure.</p>
     </div>
   </section>
 
@@ -602,13 +615,13 @@
 
       <li>
         <span class="stitle">A square in four lines</span>
-        <p>The square, for the last time. Use a <code>for</code> loop and your library functions.</p>
+        <p>The square, for the last time. Use a <code>for</code> loop and your library <span class="def-term" data-term="FUNCTION">function</span>s.</p>
         <table class="grid">
           <thead><tr><th style="width:34%">Version</th><th style="width:32%">Lines in main</th><th>Change it to a pentagon by...</th></tr></thead>
           <tbody>
-            <tr class="trial"><td>Project 11 — ticks, written out</td><td><input type="text" data-key="p3_sq_p11" aria-label="P11 lines"></td><td><input type="text" data-key="p3_sq_p11_penta" aria-label="P11 pentagon"></td></tr>
+            <tr class="trial"><td>Project 11 — <span class="def-term" data-term="TICK">tick</span>s, written out</td><td><input type="text" data-key="p3_sq_p11" aria-label="P11 lines"></td><td><input type="text" data-key="p3_sq_p11_penta" aria-label="P11 pentagon"></td></tr>
             <tr class="trial"><td>Project 12 — functions</td><td><input type="text" data-key="p3_sq_p12" aria-label="P12 lines"></td><td><input type="text" data-key="p3_sq_p12_penta" aria-label="P12 pentagon"></td></tr>
-            <tr class="trial"><td>Now — a for loop</td><td><input type="text" data-key="p3_sq_p17" aria-label="P17 lines"></td><td><input type="text" data-key="p3_sq_p17_penta" aria-label="P17 pentagon"></td></tr>
+            <tr class="trial"><td>Now — a <span class="def-term" data-term="FOR LOOP">for loop</span></td><td><input type="text" data-key="p3_sq_p17" aria-label="P17 lines"></td><td><input type="text" data-key="p3_sq_p17_penta" aria-label="P17 pentagon"></td></tr>
           </tbody>
         </table>
         <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_square"><label for="d2">My robot drives a square from a four-iteration loop</label></li></ul>
@@ -638,7 +651,7 @@
           <p>Call your function twice, or wrap it in a two-iteration <code>for</code> loop. Try both and see which reads better to you.</p>
           <p>The loop wins the moment the number might change — and at a tournament it always might.</p>
         </div>
-        <p class="muted">The second pom is somewhere different, so your function needs an argument or a short drive between trips. Same problem you solved for Mission 15 in Project 12.</p>
+        <p class="muted">The second pom is somewhere different, so your function needs an <span class="def-term" data-term="ARGUMENT">argument</span> or a short drive between trips. Same problem you solved for Mission 15 in Project 12.</p>
         <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_m11"><label for="d3">Two orange poms are in the same basket at the end</label></li></ul>
       </li>
 
@@ -652,11 +665,11 @@
           <div class="mission-body">
             <div class="mpart">
               <span class="mlabel">Mission 16 Bonus — 11 pts<span class="jtag final">📋 Final</span></span>
-              <strong>Two or more</strong> cubes from the Spilled Cube area are ON TOP OF the Large Green Cube.
+              <strong>Two or more</strong> cubes from the Spilled Cube area are <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the Large Green Cube.
             </div>
             <div class="mpart">
               <span class="mlabel">Mission 17 Bonus — 11 pts<span class="jtag final">📋 Final</span></span>
-              <strong>Two or more</strong> cubes from the Unstraight Cube area are ON TOP OF the Large Brown Cube.
+              <strong>Two or more</strong> cubes from the Unstraight Cube area are <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the Large Brown Cube.
             </div>
           </div>
         </div>
@@ -677,7 +690,7 @@
       </li>
 
       <li>
-        <span class="stitle">Mission 7 Bonus — a second enclosure<span class="spts">9 pts</span></span>
+        <span class="stitle">Mission 7 Bonus — a second <span class="def-term" data-term="ENCLOSURE">enclosure</span><span class="spts">9 pts</span></span>
         <div class="mission">
           <div class="mission-head">
             <span class="mtitle">Mission 7 — Hazard Containment</span>
@@ -686,11 +699,11 @@
           <div class="mission-body">
             <div class="mpart later">
               <span class="mlabel">Base — 11 pts — done in Project 15</span>
-              One Blue and one Orange Pom FULLY WITHIN the same enclosure.
+              One Blue and one Orange Pom <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> the same <span class="def-term" data-term="ENCLOSURE">enclosure</span>.
             </div>
             <div class="mpart">
               <span class="mlabel">Bonus Mission — 9 pts<span class="jtag final">📋 Final</span></span>
-              A <strong>second</strong> enclosure holds at least one Blue Pom and at least one Orange Pom, each FULLY WITHIN it.
+              A <strong>second</strong> enclosure holds at least one Blue Pom and at least one Orange Pom, each <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> it.
             </div>
           </div>
         </div>
@@ -710,13 +723,13 @@
             </ul>
           </div>
         </div>
-        <p>This is the same delivery as the base, aimed somewhere else — which is exactly the case for a function with an argument called twice, or a loop over two destinations.</p>
+        <p>This is the same delivery as the base, aimed somewhere else — which is exactly the case for a function with an <span class="def-term" data-term="ARGUMENT">argument</span> called twice, or a loop over two destinations.</p>
         <ul class="check"><li><input type="checkbox" id="d6" data-key="p3_m7"><label for="d6">Two enclosures each hold a blue and an orange pom</label></li></ul>
       </li>
 
       <li>
         <span class="stitle">Put the loops in your library</span>
-        <p>Anything you wrapped in a loop that worked — <code>deliver_poms(int howMany)</code>, <code>smooth_arm(int from, int to)</code> — belongs in your library file. Add it, save, and note it in your comment block.</p>
+        <p>Anything you wrapped in a loop that worked — <code>deliver_poms(int howMany)</code>, <code>smooth_arm(int from, int to)</code> — belongs in your library file. Add it, save, and note it in your <span class="def-term" data-term="COMMENT">comment</span> block.</p>
         <ul class="check"><li><input type="checkbox" id="d7" data-key="p3_library"><label for="d7">My new loop functions are in my library and documented</label></li></ul>
       </li>
 
@@ -758,7 +771,7 @@
       <thead><tr><th style="width:56%">The robot needs to...</th><th>while or for?</th></tr></thead>
       <tbody>
         <tr><td>Drive until it touches a wall</td><td><input type="text" data-key="p4_l1" aria-label="Loop 1"></td></tr>
-        <tr><td>Put three cubes on a pallet</td><td><input type="text" data-key="p4_l2" aria-label="Loop 2"></td></tr>
+        <tr><td>Put three cubes on a <span class="def-term" data-term="PALLET">pallet</span></td><td><input type="text" data-key="p4_l2" aria-label="Loop 2"></td></tr>
         <tr><td>Follow a line until it has gone 5000 ticks</td><td><input type="text" data-key="p4_l3" aria-label="Loop 3"></td></tr>
         <tr><td>Raise the arm in small steps from 200 to 1800</td><td><input type="text" data-key="p4_l4" aria-label="Loop 4"></td></tr>
         <tr><td>Wait for someone to press a button</td><td><input type="text" data-key="p4_l5" aria-label="Loop 5"></td></tr>
@@ -779,12 +792,12 @@
     <h3 class="sub">Can you do it again?</h3>
     <ul class="check">
       <li><input type="checkbox" id="s1" data-key="p4_can_parts"><label for="s1">I can name the three parts of a <code>for</code> loop and say what each does</label></li>
-      <li><input type="checkbox" id="s2" data-key="p4_can_semis"><label for="s2">I put two semicolons inside the parentheses and none after them</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_semis"><label for="s2">I put two <span class="def-term" data-term="SEMICOLON">semicolon</span>s inside the parentheses and none after them</label></li>
       <li><input type="checkbox" id="s3" data-key="p4_can_count"><label for="s3">I can work out how many times a <code>for</code> loop will run</label></li>
       <li><input type="checkbox" id="s4" data-key="p4_can_choose"><label for="s4">I can choose between <code>while</code> and <code>for</code> and explain why</label></li>
       <li><input type="checkbox" id="s5" data-key="p4_can_convert"><label for="s5">I can rewrite a <code>while</code> loop as a <code>for</code> loop</label></li>
       <li><input type="checkbox" id="s6" data-key="p4_can_repeat_fn"><label for="s6">I can repeat a whole function call with a loop</label></li>
-      <li><input type="checkbox" id="s7" data-key="p4_can_smooth"><label for="s7">I can move a servo smoothly instead of snapping it</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_smooth"><label for="s7">I can move a <span class="def-term" data-term="SERVO">servo</span> smoothly instead of snapping it</label></li>
     </ul>
 
     <h3 class="sub">Every point on the field</h3>
@@ -816,7 +829,7 @@
 
     <h3 class="sub">Think about it</h3>
 
-    <p class="q">You have written four kinds of loop condition now — a switch, a tick count, a brightness, and a plain count. Which was hardest to get right, and why that one?</p>
+    <p class="q">You have written four kinds of loop <span class="def-term" data-term="CONDITION">condition</span> now — a switch, a tick count, a brightness, and a plain count. Which was hardest to get right, and why that one?</p>
     <textarea class="answer" data-key="p4_hardest_loop" aria-label="Hardest loop"></textarea>
 
     <p class="q">In Project 1 you ran a program somebody else wrote and did not understand a line of it. Go back and read that program now. What does it say to you?</p>
@@ -855,6 +868,22 @@
 <script>
 (function() {
   var DEFS = {
+    'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.'],
+    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
+    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'ENCLOSURE': ['Enclosure', 'A PVC frame on the game field that objects can be placed inside. Missions that ask for something to be IN an enclosure are asking you to get it past those walls.'],
+    'FULLY WITHIN': ['Fully Within', 'An object or robot is FULLY WITHIN an area when every part of the object or robot lies inside the boundary of that area — no portion may touch or cross the boundary line.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
+    'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.'],
+    'PALLET': ['Pallet', 'A flat platform on the game field that a load sits on. Several missions ask you to move a pallet and whatever is stacked on it, together.'],
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
+    'SEMICOLON': ['Semicolon', 'The punctuation mark that ends a statement in C. It does the same job as the full stop at the end of a sentence — it says this instruction is finished, move on to the next one.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'SERVO': ['Servo', 'A motor that rotates to a position you choose, rather than simply spinning. It turns about 180 degrees, divided into 2048 numbered positions, and holds whatever position you send it to.'],
+    'STATEMENT': ['Statement', 'One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.'],
+    'TICK': ['Tick', 'One small step of the motor shaft. There are about 1820 ticks in one full revolution of the shaft. Ticks count the motor turning, not the distance travelled — how far that is depends on your wheels.'],
     'FOR LOOP': ['For Loop', 'A loop that repeats a known number of times. Its three parts — where to start, when to stop, and how much to change each time — all sit together inside one set of parentheses, separated by semicolons.']
   };
 

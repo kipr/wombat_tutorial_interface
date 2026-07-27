@@ -319,6 +319,18 @@
     .print-pin { display: block !important; }
     ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
 </style>
 </head>
@@ -328,6 +340,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Discovery <span>Projects</span></div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Discovery</a><span class="sep">/</span><a href="index.html">Coding</a><span class="sep">/</span><span class="here">Project 16</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off"
@@ -351,9 +364,9 @@
   <section>
     <div class="meta">
       <dl>
-        <div class="row"><dt>What You Are Doing</dt><dd>Moving your functions out of one program and into a library file your whole team can share and carry forward.</dd></div>
+        <div class="row"><dt>What You Are Doing</dt><dd>Moving your <span class="def-term" data-term="FUNCTION">function</span>s out of one program and into a <span class="def-term" data-term="LIBRARY">library</span> file your whole team can share and carry forward.</dd></div>
         <div class="row"><dt>What You Need</dt><dd>Wombat · your computer · every project you have written since Project 12</dd></div>
-        <div class="row"><dt>Before You Start</dt><dd>Project 12 onward — you need a set of working functions worth keeping.</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 12 onward — you need a set of working <span class="def-term" data-term="FUNCTION">function</span>s worth keeping.</dd></div>
       </dl>
     </div>
 
@@ -385,7 +398,7 @@
     <p class="q">Are they identical?</p>
     <input type="text" data-key="p1_identical" aria-label="Are they identical">
 
-    <p class="q" style="margin-top:14px">Somewhere along the way you improved one of these — a better overshoot number, a cleaner stop. Which project has your <em>best</em> version, and do the others have it?</p>
+    <p class="q" style="margin-top:14px">Somewhere along the way you improved one of these — a better <span class="def-term" data-term="OVERSHOOT">overshoot</span> number, a cleaner stop. Which project has your <em>best</em> version, and do the others have it?</p>
     <textarea class="answer" data-key="p1_best_version" aria-label="Best version"></textarea>
 
     <div class="callout danger">
@@ -400,15 +413,15 @@
 
   <!-- ================= LEARN IT ================= -->
   <section>
-    <h2 class="phase-head"><span class="pnum">Learn It</span> Your Own Header File</h2>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Your Own <span class="def-term" data-term="HEADER FILE">header file</span></h2>
 
-    <p>A <span class="def-term" data-term="LIBRARY">LIBRARY</span> is a collection of functions kept in a separate file that any program can include.</p>
+    <p>A <span class="def-term" data-term="LIBRARY">library</span> is a collection of functions kept in a separate file that any program can include.</p>
 
     <p>You have been using one since Project 2. It is the very first line of every program you have ever written:</p>
 
     <pre class="code"><span class="kw">#include</span> &lt;kipr/wombat.h&gt;</pre>
 
-    <p>That is the KIPR library. You cannot change it — but you can make your own beside it.</p>
+    <p>That is the KIPR <span class="def-term" data-term="LIBRARY">library</span>. You cannot change it — but you can make your own beside it.</p>
 
     <h3 class="sub">Two kinds of include</h3>
 
@@ -423,11 +436,11 @@
       </div>
     </div>
 
-    <p class="muted">Get the brackets wrong and the compiler goes looking in the wrong place. It is a small detail that causes a confusing error.</p>
+    <p class="muted">Get the brackets wrong and the <span class="def-term" data-term="COMPILER">compiler</span> goes looking in the wrong place. It is a small detail that causes a confusing error.</p>
 
-    <h3 class="sub">What goes in your <span class="def-term" data-term="HEADER FILE">HEADER FILE</span></h3>
+    <h3 class="sub">What goes in your <span class="def-term" data-term="HEADER FILE">header file</span></h3>
 
-    <p>Everything. Your prototypes and your definitions, all in the one <code>.h</code> file.</p>
+    <p>Everything. Your <span class="def-term" data-term="PROTOTYPE">prototype</span>s and your definitions, all in the one <code>.h</code> file.</p>
 
     <div class="callout gold">
       <p class="ctitle">Include the KIPR Library Inside Your Library</p>
@@ -482,7 +495,7 @@
 
     <ul class="plain">
       <li>On the KIPR Software Suite home screen, click <strong>User Preferences</strong> and switch on the advanced interface. Without this you will not see the file options.</li>
-      <li>In the KISS IDE, select your user folder.</li>
+      <li>In the KISS <span class="def-term" data-term="IDE">IDE</span>, select your user folder.</li>
       <li>Under <strong>Include File</strong>, click <strong>+ Add File</strong>.</li>
       <li>Name it — something short and yours, like your team name.</li>
       <li>Click <strong>Create</strong>.</li>
@@ -492,11 +505,11 @@
 
     <div class="callout danger">
       <p class="ctitle">⚠ Save. Every Time.</p>
-      <p>Editing a <code>.h</code> file and forgetting to save it is the number one reason a library "does not work." Your changes are sitting in the editor and the compiler never saw them.</p>
-      <p>Save the <code>.h</code>, then compile.</p>
+      <p>Editing a <code>.h</code> file and forgetting to save it is the number one reason a library "does not work." Your changes are sitting in the editor and the <span class="def-term" data-term="COMPILER">compiler</span> never saw them.</p>
+      <p>Save the <code>.h</code>, then <span class="def-term" data-term="COMPILE">compile</span>.</p>
     </div>
 
-    <h3 class="sub">When it will not compile</h3>
+    <h3 class="sub">When it will not <span class="def-term" data-term="COMPILE">compile</span></h3>
 
     <table class="grid">
       <thead><tr><th style="width:44%">Check this</th><th>In which file</th></tr></thead>
@@ -505,7 +518,7 @@
         <tr><td>Did I include my own library, with quotation marks?</td><td><code>main.c</code></td></tr>
         <tr><td>Does the name in the include exactly match the file name?</td><td><code>main.c</code></td></tr>
         <tr><td>Did I save the <code>.h</code> file after my last edit?</td><td>My <code>.h</code></td></tr>
-        <tr><td>Is every function's prototype above its definition?</td><td>My <code>.h</code></td></tr>
+        <tr><td>Is every function's <span class="def-term" data-term="PROTOTYPE">prototype</span> above its definition?</td><td>My <code>.h</code></td></tr>
       </tbody>
     </table>
   </section>
@@ -519,7 +532,7 @@
       <li>
         <span class="stitle">Turn on the advanced interface</span>
         <p>Software Suite home screen → <strong>User Preferences</strong> → switch on the advanced interface.</p>
-        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_prefs"><label for="d1">I can see the Include File option in the KISS IDE</label></li></ul>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_prefs"><label for="d1">I can see the Include File option in the KISS <span class="def-term" data-term="IDE">IDE</span></label></li></ul>
       </li>
 
       <li>
@@ -600,7 +613,7 @@
 
       <li>
         <span class="stitle">Fix it once, watch it spread</span>
-        <p>Change something in your library — sharpen the turn, adjust the overshoot. Save. Then run <strong>two different projects</strong> that both include it.</p>
+        <p>Change something in your library — sharpen the turn, adjust the <span class="def-term" data-term="OVERSHOOT">overshoot</span>. Save. Then run <strong>two different projects</strong> that both include it.</p>
         <p class="q">What happened in the project you did not touch?</p>
         <textarea class="answer" data-key="p3_spread" aria-label="Change spread"></textarea>
         <div class="callout gold">
@@ -611,7 +624,7 @@
 
       <li>
         <span class="stitle">Write the instructions</span>
-        <p>A library nobody can use is not much good. Put a comment block at the top of your <code>.h</code> file listing what is in it.</p>
+        <p>A library nobody can use is not much good. Put a <span class="def-term" data-term="COMMENT">comment</span> <span class="def-term" data-term="BLOCK">block</span> at the top of your <code>.h</code> file listing what is in it.</p>
         <pre class="code"><span class="cm">// ============================================</span>
 <span class="cm">// Team Bulldogs robot library</span>
 <span class="cm">// Last updated: 12 March</span>
@@ -624,7 +637,7 @@
 <span class="cm">// ============================================</span></pre>
         <p>Then hand your library to another team and ask them to write a short program with it — without asking you any questions.</p>
         <ul class="check"><li><input type="checkbox" id="d5" data-key="p3_documented"><label for="d5">Another team used my library without me explaining it</label></li></ul>
-        <p class="q">What did they get stuck on? That is the thing your comments should have said.</p>
+        <p class="q">What did they get stuck on? That is the thing your <span class="def-term" data-term="COMMENT">comment</span>s should have said.</p>
         <textarea class="answer" data-key="p3_stuck_on" aria-label="What they got stuck on"></textarea>
       </li>
 
@@ -687,7 +700,7 @@
     <p class="q">Next season the game changes and the field is completely different. Which parts of your library would still be useful, and which would you throw away?</p>
     <textarea class="answer" data-key="p4_next_season" aria-label="Next season"></textarea>
 
-    <p class="q">Look at what you have built across sixteen projects. Which one thing made the biggest difference to how your code works — variables, functions, sensors, or the library?</p>
+    <p class="q">Look at what you have built across sixteen projects. Which one thing made the biggest difference to how your code works — <span class="def-term" data-term="VARIABLE">variable</span>s, functions, <span class="def-term" data-term="SENSOR">sensor</span>s, or the library?</p>
     <textarea class="answer" data-key="p4_biggest_difference" aria-label="Biggest difference"></textarea>
 
     <h3 class="sub">Next</h3>
@@ -717,6 +730,16 @@
 <script>
 (function() {
   var DEFS = {
+    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
+    'COMPILE': ['Compile', 'To translate the code you wrote into machine instructions the robot’s processor can actually carry out. If compiling fails, the program cannot run.'],
+    'COMPILER': ['Compiler', 'The program that turns the code you wrote into instructions the robot’s processor can carry out. When it finds something it cannot translate, it stops and tells you where.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'IDE': ['IDE', 'Short for Integrated Development Environment. It is the place where you write your code, check it for mistakes, and send it to the robot. Yours is called the KISS IDE.'],
+    'OVERSHOOT': ['Overshoot', 'How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot.'],
+    'PROTOTYPE': ['Prototype', 'A single line near the top of your program announcing that a function name exists, before the compiler ever reaches the code that does the work. Like listing a word in a vocabulary list before defining it.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'VARIABLE': ['Variable', 'A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it.'],
     'LIBRARY': ['Library', 'A collection of functions kept in a separate file that any program can include. The KIPR library gives you motor() and msleep(); your own library gives you the commands you invented.'],
     'HEADER FILE': ['Header File', 'A file ending in .h that holds functions you want other programs to be able to use. You bring it into a program with an #include line at the top.']
   };
