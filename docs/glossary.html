@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Glossary — Discovery Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red:#9E1B32; --navy:#1F2D5A; --gold:#C8A14B; --ink:#1c1c1e;
+    --grey:#5b6270; --line:#d8dbe2; --bg:#f0f0f0; --panel:#fff; --field:#fcfcfd;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:'Barlow',system-ui,sans-serif;font-size:18px;line-height:1.6}
+
+  .topbar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;
+          border-bottom:3px solid var(--gold)}
+  .topbar-inner{max-width:920px;margin:0 auto;padding:12px 22px;
+                display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;
+         letter-spacing:.06em;text-transform:uppercase;margin-right:auto}
+  .brand span{color:var(--gold)}
+  .topbar a{color:rgba(255,255,255,.75);text-decoration:none;font-size:15px}
+  .topbar a:hover{color:#fff}
+
+  .sheet{max-width:920px;margin:26px auto 60px;background:var(--panel);
+         padding:0 0 40px;box-shadow:0 2px 14px rgba(0,0,0,.09)}
+  .hero{background:var(--navy);color:#fff;padding:28px 40px 24px;border-bottom:5px solid var(--gold)}
+  .hero .eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;
+                 letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+  .hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:42px;
+           line-height:1.05;margin:0 0 8px}
+  .hero .sub{margin:0;color:rgba(255,255,255,.72);font-size:17px}
+
+  .controls{padding:22px 40px 0;position:sticky;top:52px;background:var(--panel);z-index:20;
+            padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .search{display:flex;gap:10px;align-items:center}
+  .search input{flex:1;padding:12px 14px;border:2px solid var(--line);border-radius:6px;
+                font-family:'Barlow',sans-serif;font-size:18px;background:var(--field)}
+  .search input:focus{outline:none;border-color:var(--gold);background:#fffdf5}
+  .search button{background:none;border:1px solid var(--line);border-radius:6px;
+                 padding:11px 14px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;
+                 font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;
+                 color:var(--navy)}
+  .search button:hover{background:#f2f4fa}
+  .search button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .counts{margin:10px 0 0;font-size:15px;color:var(--grey)}
+
+  section{padding:0 40px}
+  .term{border-bottom:1px solid var(--line);padding:18px 0}
+  .term:last-child{border-bottom:none}
+  .term h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;
+           color:var(--navy);margin:0 0 6px;letter-spacing:.01em}
+  .term .def{margin:0 0 10px;font-size:17px}
+  .term .meta{margin:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .intro{display:inline-block;text-decoration:none;font-family:'Barlow Condensed',sans-serif;
+         font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+         padding:4px 10px;border-radius:4px}
+  .intro.cod{background:#f2e3e6;color:#7d1526}
+  .intro.sys{background:#e8ecf6;color:#1F2D5A}
+  .intro:hover{filter:brightness(.95)}
+  .count{font-size:14px;color:var(--grey)}
+  .empty{padding:40px;text-align:center;color:var(--grey);font-size:17px}
+  .credit{margin:30px 40px 0;padding-top:14px;border-top:1px solid var(--line);
+          font-size:14px;color:var(--grey);text-align:center}
+  mark{background:#fff2c2;padding:0 2px;border-radius:2px}
+
+  @media (max-width:700px){
+    body{font-size:17px}
+    .sheet{margin:0}
+    .hero{padding:20px}
+    .hero h1{font-size:32px}
+    section,.controls{padding-left:20px;padding-right:20px}
+    .credit{margin-left:20px;margin-right:20px}
+    .controls{top:48px}
+  }
+  @media print{
+    .topbar,.controls{display:none}
+    body{background:#fff}
+    .sheet{box-shadow:none;margin:0;max-width:none}
+    .hero{background:#fff!important;color:#000;border-bottom:3px solid #000}
+    .hero .eyebrow,.hero .sub{color:#333}
+    .term{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <a href="index.html">Discovery</a>
+    <a href="coding/index.html">Coding</a>
+    <a href="systems/index.html">Systems</a>
+  </div>
+</div>
+
+<main class="sheet">
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Reference</p>
+    <h1>Glossary</h1>
+    <p class="sub">Curriculum vocabulary, and the project where a student meets each word first. Game terms defined in the 2026 rules are not listed here — those appear in ALL CAPS in the sheets and in the mission pages.</p>
+  </div>
+
+  <div class="controls">
+    <div class="search">
+      <input id="q" type="search" placeholder="Search a word or a definition…" autocomplete="off" aria-label="Search the glossary" />
+      <button id="sortFirst" class="on">By first use</button>
+      <button id="sortAZ">A–Z</button>
+    </div>
+    <p class="counts" id="counts"></p>
+  </div>
+
+  <section id="list">
+      <article class="term" data-term="COMPILE" data-body="To translate the code you wrote into machine instructions the robot’s processor can actually carry out. If compiling fails, the program cannot run." data-first="001">
+        <h2>Compile</h2>
+        <p class="def">To translate the code you wrote into machine instructions the robot’s processor can actually carry out. If compiling fails, the program cannot run.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-01.html">Coding 1 · Wake Up Your Wombat</a><span class="count">on 8 sheets</span></p>
+      </article>
+      <article class="term" data-term="CONTROLLER" data-body="The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors." data-first="001">
+        <h2>Controller</h2>
+        <p class="def">The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-01.html">Coding 1 · Wake Up Your Wombat</a><a class="intro sys" href="systems/project-01.html">Systems 1 · Meet Your Kit</a><span class="count">on 4 sheets</span></p>
+      </article>
+      <article class="term" data-term="IDE" data-body="Short for Integrated Development Environment. It is the place where you write your code, check it for mistakes, and send it to the robot. Yours is called the KISS IDE." data-first="001">
+        <h2>IDE</h2>
+        <p class="def">Short for Integrated Development Environment. It is the place where you write your code, check it for mistakes, and send it to the robot. Yours is called the KISS IDE.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-01.html">Coding 1 · Wake Up Your Wombat</a><span class="count">on 3 sheets</span></p>
+      </article>
+      <article class="term" data-term="IP ADDRESS" data-body="A number that identifies one machine on a network — like a building address. Your browser uses it to find your Wombat." data-first="001">
+        <h2>IP Address</h2>
+        <p class="def">A number that identifies one machine on a network — like a building address. Your browser uses it to find your Wombat.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-01.html">Coding 1 · Wake Up Your Wombat</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="PORT" data-body="A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to." data-first="001">
+        <h2>Port</h2>
+        <p class="def">A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-01.html">Coding 1 · Wake Up Your Wombat</a><a class="intro sys" href="systems/project-01.html">Systems 1 · Meet Your Kit</a><span class="count">on 11 sheets</span></p>
+      </article>
+      <article class="term" data-term="PORT NUMBER" data-body="A number that tells the browser which service to reach on that machine — like which door to knock on. The Wombat’s programming tools always use 8888." data-first="001">
+        <h2>Port Number</h2>
+        <p class="def">A number that tells the browser which service to reach on that machine — like which door to knock on. The Wombat’s programming tools always use 8888.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-01.html">Coding 1 · Wake Up Your Wombat</a><span class="count">on 2 sheets</span></p>
+      </article>
+      <article class="term" data-term="ANALOG" data-body="An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers &quot;how dark is this?&quot; with a number, so you have to decide for yourself where dark begins." data-first="002">
+        <h2>Analog</h2>
+        <p class="def">An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers &quot;how dark is this?&quot; with a number, so you have to decide for yourself where dark begins.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><a class="intro sys" href="systems/project-01.html">Systems 1 · Meet Your Kit</a><span class="count">on 4 sheets</span></p>
+      </article>
+      <article class="term" data-term="ARGUMENT" data-body="A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma." data-first="002">
+        <h2>Argument</h2>
+        <p class="def">A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><span class="count">on 6 sheets</span></p>
+      </article>
+      <article class="term" data-term="ATTRIBUTION" data-body="Naming the author of a piece of code in a comment. It says who wrote what, so anyone reading knows whose work it is and who to ask before borrowing it." data-first="002">
+        <h2>Attribution</h2>
+        <p class="def">Naming the author of a piece of code in a comment. It says who wrote what, so anyone reading knows whose work it is and who to ask before borrowing it.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><span class="count">on 3 sheets</span></p>
+      </article>
+      <article class="term" data-term="BLOCK" data-body="Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function." data-first="002">
+        <h2>Block</h2>
+        <p class="def">Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><span class="count">on 8 sheets</span></p>
+      </article>
+      <article class="term" data-term="COMMENT" data-body="A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash." data-first="002">
+        <h2>Comment</h2>
+        <p class="def">A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><span class="count">on 9 sheets</span></p>
+      </article>
+      <article class="term" data-term="COMPILER" data-body="The program that turns the code you wrote into instructions the robot’s processor can carry out. When it finds something it cannot translate, it stops and tells you where." data-first="002">
+        <h2>Compiler</h2>
+        <p class="def">The program that turns the code you wrote into instructions the robot’s processor can carry out. When it finds something it cannot translate, it stops and tells you where.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><span class="count">on 3 sheets</span></p>
+      </article>
+      <article class="term" data-term="DIGITAL" data-body="A digital sensor has only two possible readings: 0 or 1. It works like a light switch — pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off." data-first="002">
+        <h2>Digital</h2>
+        <p class="def">A digital sensor has only two possible readings: 0 or 1. It works like a light switch — pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><a class="intro sys" href="systems/project-01.html">Systems 1 · Meet Your Kit</a><span class="count">on 4 sheets</span></p>
+      </article>
+      <article class="term" data-term="FUNCTION" data-body="A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens." data-first="002">
+        <h2>Function</h2>
+        <p class="def">A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><span class="count">on 8 sheets</span></p>
+      </article>
+      <article class="term" data-term="LIBRARY" data-body="A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors." data-first="002">
+        <h2>Library</h2>
+        <p class="def">A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><span class="count">on 5 sheets</span></p>
+      </article>
+      <article class="term" data-term="PSEUDOCODE" data-body="Literally &quot;false code.&quot; Your plan written in plain language as comments, before you write any real code. It keeps you from getting lost in the middle of a program." data-first="002">
+        <h2>Pseudocode</h2>
+        <p class="def">Literally &quot;false code.&quot; Your plan written in plain language as comments, before you write any real code. It keeps you from getting lost in the middle of a program.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><span class="count">on 5 sheets</span></p>
+      </article>
+      <article class="term" data-term="SEMICOLON" data-body="The punctuation mark that ends a statement in C. It does the same job as the full stop at the end of a sentence — it says this instruction is finished, move on to the next one." data-first="002">
+        <h2>Semicolon</h2>
+        <p class="def">The punctuation mark that ends a statement in C. It does the same job as the full stop at the end of a sentence — it says this instruction is finished, move on to the next one.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><span class="count">on 6 sheets</span></p>
+      </article>
+      <article class="term" data-term="SENSOR" data-body="A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming." data-first="002">
+        <h2>Sensor</h2>
+        <p class="def">A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><a class="intro sys" href="systems/project-01.html">Systems 1 · Meet Your Kit</a><span class="count">on 10 sheets</span></p>
+      </article>
+      <article class="term" data-term="SERVO" data-body="A motor that rotates to a position you choose, rather than simply spinning. It turns about 180 degrees, divided into 2048 numbered positions, and holds whatever position you send it to." data-first="002">
+        <h2>Servo</h2>
+        <p class="def">A motor that rotates to a position you choose, rather than simply spinning. It turns about 180 degrees, divided into 2048 numbered positions, and holds whatever position you send it to.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><a class="intro sys" href="systems/project-01.html">Systems 1 · Meet Your Kit</a><span class="count">on 7 sheets</span></p>
+      </article>
+      <article class="term" data-term="STATEMENT" data-body="One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon." data-first="002">
+        <h2>Statement</h2>
+        <p class="def">One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-02.html">Coding 2 · Your First Program</a><span class="count">on 6 sheets</span></p>
+      </article>
+      <article class="term" data-term="OVERSHOOT" data-body="How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot." data-first="004">
+        <h2>Overshoot</h2>
+        <p class="def">How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-04.html">Coding 4 · Out and Back</a><span class="count">on 5 sheets</span></p>
+      </article>
+      <article class="term" data-term="ONE-WHEEL TURN" data-body="One wheel drives while the other stays stopped. The robot swings around the stopped wheel. Giving the moving wheel more power makes the swing faster, not tighter." data-first="005">
+        <h2>One-Wheel Turn</h2>
+        <p class="def">One wheel drives while the other stays stopped. The robot swings around the stopped wheel. Giving the moving wheel more power makes the swing faster, not tighter.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-05.html">Coding 5 · Learning to Turn</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="RADIUS TURN" data-body="Both wheels turn the same direction but at different speeds, so the robot sweeps a curved arc. How sharp the arc is depends on how different the two power numbers are. Also called an arc turn." data-first="005">
+        <h2>Radius Turn</h2>
+        <p class="def">Both wheels turn the same direction but at different speeds, so the robot sweeps a curved arc. How sharp the arc is depends on how different the two power numbers are. Also called an arc turn.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-05.html">Coding 5 · Learning to Turn</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="ZERO RADIUS TURN" data-body="The two wheels turn in opposite directions, so the robot spins in place without traveling forward or backward. Also called a pivot turn or spin turn. This is the turn you use when you need an exact angle." data-first="005">
+        <h2>Zero Radius Turn</h2>
+        <p class="def">The two wheels turn in opposite directions, so the robot spins in place without traveling forward or backward. Also called a pivot turn or spin turn. This is the turn you use when you need an exact angle.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-05.html">Coding 5 · Learning to Turn</a><span class="count">on 2 sheets</span></p>
+      </article>
+      <article class="term" data-term="BOUNDARY" data-body="The line that marks the edge of a zone or area. Whether an object is inside, outside, or touching the boundary is often the difference between scoring and not scoring." data-first="006">
+        <h2>Boundary</h2>
+        <p class="def">The line that marks the edge of a zone or area. Whether an object is inside, outside, or touching the boundary is often the difference between scoring and not scoring.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-06.html">Coding 6 · Bulldoze Run</a><span class="count">on 2 sheets</span></p>
+      </article>
+      <article class="term" data-term="PALLET" data-body="A flat platform on the game field that a load sits on. Several missions ask you to move a pallet and whatever is stacked on it, together." data-first="006">
+        <h2>Pallet</h2>
+        <p class="def">A flat platform on the game field that a load sits on. Several missions ask you to move a pallet and whatever is stacked on it, together.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-06.html">Coding 6 · Bulldoze Run</a><span class="count">on 5 sheets</span></p>
+      </article>
+      <article class="term" data-term="ENCLOSURE" data-body="A PVC frame on the game field that objects can be placed inside. Missions that ask for something to be IN an enclosure are asking you to get it past those walls." data-first="007">
+        <h2>Enclosure</h2>
+        <p class="def">A PVC frame on the game field that objects can be placed inside. Missions that ask for something to be IN an enclosure are asking you to get it past those walls.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-07.html">Coding 7 · Your Robot&#x27;s Arm</a><span class="count">on 4 sheets</span></p>
+      </article>
+      <article class="term" data-term="EFFECTOR" data-body="The part of a robot that does work on the world — a claw, an arm, a blade, a scoop. Its shape decides what jobs it is good at. A blade pushes well and grabs nothing; a claw grabs well and pushes badly." data-first="008">
+        <h2>Effector</h2>
+        <p class="def">The part of a robot that does work on the world — a claw, an arm, a blade, a scoop. Its shape decides what jobs it is good at. A blade pushes well and grabs nothing; a claw grabs well and pushes badly.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-08.html">Coding 8 · Arm and Claw Together</a><a class="intro sys" href="systems/project-02.html">Systems 2 · What Makes a Robot a Robot?</a><span class="count">on 2 sheets</span></p>
+      </article>
+      <article class="term" data-term="INTEGER" data-body="A whole number — no fraction, no decimal point. Servo positions, motor ports, and power levels are all integers, which is why they are declared with int." data-first="009">
+        <h2>Integer</h2>
+        <p class="def">A whole number — no fraction, no decimal point. Servo positions, motor ports, and power levels are all integers, which is why they are declared with int.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-09.html">Coding 9 · Names for Your Numbers</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="VARIABLE" data-body="A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it." data-first="009">
+        <h2>Variable</h2>
+        <p class="def">A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-09.html">Coding 9 · Names for Your Numbers</a><span class="count">on 5 sheets</span></p>
+      </article>
+      <article class="term" data-term="CONDITION" data-body="The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other." data-first="010">
+        <h2>Condition</h2>
+        <p class="def">The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-10.html">Coding 10 · Feeling for Things</a><span class="count">on 5 sheets</span></p>
+      </article>
+      <article class="term" data-term="TICK" data-body="One small step of the motor shaft. There are about 1820 ticks in one full revolution of the shaft. Ticks count the motor turning, not the distance travelled — how far that is depends on your wheels." data-first="010">
+        <h2>Tick</h2>
+        <p class="def">One small step of the motor shaft. There are about 1820 ticks in one full revolution of the shaft. Ticks count the motor turning, not the distance travelled — how far that is depends on your wheels.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-10.html">Coding 10 · Feeling for Things</a><span class="count">on 6 sheets</span></p>
+      </article>
+      <article class="term" data-term="INERTIA" data-body="A moving object keeps moving until something stops it. When your loop shuts the motors off, the robot is still rolling, so it coasts past the tick count you asked for. More speed means more coasting." data-first="011">
+        <h2>Inertia</h2>
+        <p class="def">A moving object keeps moving until something stops it. When your loop shuts the motors off, the robot is still rolling, so it coasts past the tick count you asked for. More speed means more coasting.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-11.html">Coding 11 · Counting Wheel Ticks</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="PROTOTYPE" data-body="A single line near the top of your program announcing that a function name exists, before the compiler ever reaches the code that does the work. Like listing a word in a vocabulary list before defining it." data-first="012">
+        <h2>Prototype</h2>
+        <p class="def">A single line near the top of your program announcing that a function name exists, before the compiler ever reaches the code that does the work. Like listing a word in a vocabulary list before defining it.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-12.html">Coding 12 · Teaching Your Robot New Moves</a><span class="count">on 2 sheets</span></p>
+      </article>
+      <article class="term" data-term="VOID" data-body="A function marked void does a job but hands nothing back. ao() is void — it stops the motors but gives you no answer. Functions like digital() and gmpc() are not void, because they hand you a number." data-first="012">
+        <h2>Void</h2>
+        <p class="def">A function marked void does a job but hands nothing back. ao() is void — it stops the motors but gives you no answer. Functions like digital() and gmpc() are not void, because they hand you a number.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-12.html">Coding 12 · Teaching Your Robot New Moves</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="NESTED" data-body="One structure placed inside another — an if inside an if, or an if inside a while. The inner one is only reached when the outer one lets the robot get that far." data-first="013">
+        <h2>Nested</h2>
+        <p class="def">One structure placed inside another — an if inside an if, or an if inside a while. The inner one is only reached when the outer one lets the robot get that far.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-13.html">Coding 13 · Deciding What to Do</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="REFLECTANCE" data-body="A sensor that shines a small light downward and measures how much bounces back. Light surfaces bounce back a lot and give a low reading; dark surfaces absorb the light and give a high one." data-first="014">
+        <h2>Reflectance</h2>
+        <p class="def">A sensor that shines a small light downward and measures how much bounces back. Light surfaces bounce back a lot and give a low reading; dark surfaces absorb the light and give a high one.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-14.html">Coding 14 · Seeing Light and Dark</a><span class="count">on 2 sheets</span></p>
+      </article>
+      <article class="term" data-term="THRESHOLD" data-body="The number you choose as your dividing line. Readings below it count as one thing, readings above it count as another. A common starting point is halfway between your white and black readings, then you adjust from there." data-first="014">
+        <h2>Threshold</h2>
+        <p class="def">The number you choose as your dividing line. Readings below it count as one thing, readings above it count as another. A common starting point is halfway between your white and black readings, then you adjust from there.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-14.html">Coding 14 · Seeing Light and Dark</a><span class="count">on 2 sheets</span></p>
+      </article>
+      <article class="term" data-term="HEADER FILE" data-body="A file ending in .h that holds functions you want other programs to be able to use. You bring it into a program with an #include line at the top." data-first="016">
+        <h2>Header File</h2>
+        <p class="def">A file ending in .h that holds functions you want other programs to be able to use. You bring it into a program with an #include line at the top.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-16.html">Coding 16 · Building Your Toolbox</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="FOR LOOP" data-body="A loop that repeats a known number of times. Its three parts — where to start, when to stop, and how much to change each time — all sit together inside one set of parentheses, separated by semicolons." data-first="017">
+        <h2>For Loop</h2>
+        <p class="def">A loop that repeats a known number of times. Its three parts — where to start, when to stop, and how much to change each time — all sit together inside one set of parentheses, separated by semicolons.</p>
+        <p class="meta"><a class="intro cod" href="coding/project-17.html">Coding 17 · Repeating Without Retyping</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="CHECKLIST" data-body="A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not." data-first="101">
+        <h2>Checklist</h2>
+        <p class="def">A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.</p>
+        <p class="meta"><a class="intro sys" href="systems/project-01.html">Systems 1 · Meet Your Kit</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="ACTUATOR" data-body="The part at a joint that makes it move — the robot’s equivalent of a muscle. A servo at the shoulder of an arm is an actuator." data-first="102">
+        <h2>Actuator</h2>
+        <p class="def">The part at a joint that makes it move — the robot’s equivalent of a muscle. A servo at the shoulder of an arm is an actuator.</p>
+        <p class="meta"><a class="intro sys" href="systems/project-02.html">Systems 2 · What Makes a Robot a Robot?</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="COMPUTATION" data-body="The part of a robot that works things out. It reads the sensor values, decides what they mean, and chooses which command to send to the effectors." data-first="102">
+        <h2>Computation</h2>
+        <p class="def">The part of a robot that works things out. It reads the sensor values, decides what they mean, and chooses which command to send to the effectors.</p>
+        <p class="meta"><a class="intro sys" href="systems/project-02.html">Systems 2 · What Makes a Robot a Robot?</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="PROPRIOCEPTIVE" data-body="Sensing that reports on the robot’s own state rather than the world outside it. You use proprioception constantly \u2014 it is how you know your arm is raised without looking at it." data-first="102">
+        <h2>Proprioceptive</h2>
+        <p class="def">Sensing that reports on the robot’s own state rather than the world outside it. You use proprioception constantly \u2014 it is how you know your arm is raised without looking at it.</p>
+        <p class="meta"><a class="intro sys" href="systems/project-02.html">Systems 2 · What Makes a Robot a Robot?</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="AUTONOMOUS" data-body="The machine moves around on its own. No person is controlling it while it runs. You start it and step back." data-first="103">
+        <h2>Autonomous</h2>
+        <p class="def">The machine moves around on its own. No person is controlling it while it runs. You start it and step back.</p>
+        <p class="meta"><a class="intro sys" href="systems/project-03.html">Systems 3 · Who&#x27;s Driving?</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="REMOTE CONTROL" data-body="The machine does not move on its own. A person has to control it the whole time. Let go and it stops." data-first="103">
+        <h2>Remote Control</h2>
+        <p class="def">The machine does not move on its own. A person has to control it the whole time. Let go and it stops.</p>
+        <p class="meta"><a class="intro sys" href="systems/project-03.html">Systems 3 · Who&#x27;s Driving?</a><span class="count">on 1 sheet</span></p>
+      </article>
+      <article class="term" data-term="SEMI-AUTONOMOUS" data-body="A person controls part of what the machine does. The machine does the rest by itself. The two of you share the job." data-first="103">
+        <h2>Semi-Autonomous</h2>
+        <p class="def">A person controls part of what the machine does. The machine does the rest by itself. The two of you share the job.</p>
+        <p class="meta"><a class="intro sys" href="systems/project-03.html">Systems 3 · Who&#x27;s Driving?</a><span class="count">on 1 sheet</span></p>
+      </article>
+    <p class="empty" id="empty" style="display:none">No term matches that.</p>
+  </section>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<script>
+(function(){
+  var list = document.getElementById('list');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.term'));
+  var q = document.getElementById('q');
+  var counts = document.getElementById('counts');
+  var empty = document.getElementById('empty');
+  var bFirst = document.getElementById('sortFirst');
+  var bAZ = document.getElementById('sortAZ');
+
+  cards.forEach(function(c){
+    c._term = c.getAttribute('data-term').toLowerCase();
+    c._body = c.getAttribute('data-body').toLowerCase();
+    c._first = c.getAttribute('data-first');
+    c._h2 = c.querySelector('h2');
+    c._p  = c.querySelector('.def');
+    c._h2raw = c._h2.textContent;
+    c._praw  = c._p.textContent;
+  });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  function paint(term){
+    var n = 0;
+    cards.forEach(function(c){
+      var hit = !term || c._term.indexOf(term) > -1 || c._body.indexOf(term) > -1;
+      c.style.display = hit ? '' : 'none';
+      if (hit) n++;
+      if (term && hit) {
+        var re = new RegExp('(' + esc(term) + ')','ig');
+        c._h2.innerHTML = c._h2raw.replace(re,'<mark>$1</mark>');
+        c._p.innerHTML  = c._praw.replace(re,'<mark>$1</mark>');
+      } else {
+        c._h2.textContent = c._h2raw;
+        c._p.textContent  = c._praw;
+      }
+    });
+    empty.style.display = n ? 'none' : '';
+    counts.textContent = term ? (n + ' of ' + cards.length + ' terms') : (cards.length + ' terms');
+  }
+
+  function sortBy(mode){
+    var sorted = cards.slice().sort(function(a,b){
+      if (mode === 'az') return a._h2raw.localeCompare(b._h2raw);
+      return a._first.localeCompare(b._first) || a._h2raw.localeCompare(b._h2raw);
+    });
+    sorted.forEach(function(c){ list.insertBefore(c, empty); });
+    bFirst.classList.toggle('on', mode !== 'az');
+    bAZ.classList.toggle('on', mode === 'az');
+  }
+
+  q.addEventListener('input', function(){ paint(q.value.trim().toLowerCase()); });
+  bFirst.addEventListener('click', function(){ sortBy('first'); });
+  bAZ.addEventListener('click', function(){ sortBy('az'); });
+  paint('');
+})();
+</script>
+
+</body>
+</html>

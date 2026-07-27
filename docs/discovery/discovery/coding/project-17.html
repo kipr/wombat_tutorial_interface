@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 17 — Repeating Without Retyping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #5b6270;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #6b7280;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #24200f; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d9b464; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+  .meta dd.anchor { font-weight: 600; color: var(--red); }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #fff8e6;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #fffaef; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+  .callout.danger { border-left-color: #922B21; background: #fdf0ef; }
+  .callout.danger .ctitle { color: #922B21; }
+
+  /* Mission card */
+  .mission { border: 2px solid var(--red); border-radius: 6px; overflow: hidden; margin: 18px 0; }
+  .mission-head {
+    background: var(--red); color: #fff; padding: 11px 18px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .mission-head .mtitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 20px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .mission-head .mpts {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 15px; letter-spacing: .08em; color: rgba(255,255,255,.85);
+  }
+  .mission-body { padding: 4px 18px 14px; }
+  .mpart { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .mpart:last-child { border-bottom: none; }
+  .mpart .mlabel {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--navy); display: block; margin-bottom: 3px;
+  }
+  .mpart .jtag {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 1px 7px; border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+  .jtag.live { background: #d8ecdd; color: #145a32; }
+  .jtag.final { background: #e3e7f5; color: #23336b; }
+  .mpart.later { background: #f6f7f9; margin: 0 -18px; padding-left: 18px; padding-right: 18px; color: var(--grey); }
+  .mpart.later .mlabel { color: var(--grey); }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+  ol.dosteps .spts {
+    display: inline-block; background: var(--gold); color: #24200f;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px;
+    border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+  table.grid tr.total td { background: #f2f4fa; font-weight: 700; }
+  table.grid tr.grand td { background: var(--navy); color: #fff; font-weight: 700; }
+  table.grid tr.grand td input[type="text"] { color: #fff; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+  pre.code .hi { background: rgba(200,161,75,.25); border-radius: 2px; }
+
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 230px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  .codepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .codepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+  .codepair .chead {
+    padding: 8px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--navy);
+  }
+  .codepair .col.after .chead { background: var(--red); }
+  .codepair pre.code { margin: 0; border-radius: 0; font-size: 13.5px; flex: 1; }
+  .codepair .cnote { padding: 9px 12px; font-size: 15px; background: var(--field); border-top: 1px solid var(--line); }
+
+  .scorepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .scorepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .scorepair .chead {
+    padding: 9px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #fff;
+  }
+  .scorepair .yes .chead { background: #1E8449; }
+  .scorepair .no .chead { background: #922B21; }
+  .scorepair ul { margin: 10px 0 12px; padding-left: 22px; font-size: 16px; }
+  .scorepair li { margin: 6px 0; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* closing panel */
+  .finale {
+    margin: 26px 0 0; background: var(--navy); color: #fff;
+    border-radius: 6px; padding: 24px 26px; border-left: 6px solid var(--gold);
+  }
+  .finale h3 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 24px;
+    margin: 0 0 8px; color: var(--gold); letter-spacing: .02em;
+  }
+  .finale p { color: rgba(255,255,255,.82); }
+  .finale strong { color: #fff; }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .codepair, .scorepair { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+    .finale { padding: 18px 18px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .finale { background: #f4f4f4 !important; color: #000 !important; border-left: 4px solid #333; }
+    .finale h3, .finale p, .finale strong { color: #000 !important; }
+    .mission-head, .scorepair .chead, .codepair .chead, ol.dosteps .spts, .mpart .jtag, table.grid tr.grand td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Coding · Project 17</p>
+    <h1>Repeating Without Retyping</h1>
+    <p class="sub">The last loop — and the last thirty-eight points on the field.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Learning the loop that counts, then using it to collect every bonus that just means "now do that again."</dd></div>
+        <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 7 · 11 · 16 · 17 bonuses — 38 points</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Robot with arm, claw, and <span class="def-term" data-term="SENSOR">sensor</span>s · Wombat · charged battery · the game field · your <span class="def-term" data-term="LIBRARY">library</span> from Project 16</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 16 — your <span class="def-term" data-term="FUNCTION">function</span>s should live in your <span class="def-term" data-term="LIBRARY">library</span> by now.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Thirty Small Hops</h2>
+
+    <p>Back in Project 9 you moved a <span class="def-term" data-term="SERVO">servo</span> in three big jumps and were asked what it would take to move it in thirty small ones. Here is the answer you were promised.</p>
+
+    <pre class="code"><span class="ln">1</span>  <span class="kw">#include</span> &lt;kipr/wombat.h&gt;
+<span class="ln">2</span>
+<span class="ln">3</span>  <span class="kw">int</span> main ()
+<span class="ln">4</span>  {
+<span class="ln">5</span>      <span class="kw">int</span> arm = <span class="nu">0</span>;
+<span class="ln">6</span>      <span class="kw">int</span> position = <span class="nu">200</span>;
+<span class="ln">7</span>
+<span class="ln">8</span>      enable_servos();
+<span class="ln">9</span>      <span class="kw">while</span> (position &lt; <span class="nu">1800</span>)
+<span class="ln">10</span>     {
+<span class="ln">11</span>         position = position + <span class="nu">10</span>;
+<span class="ln">12</span>         set_servo_position(arm, position);
+<span class="ln">13</span>         msleep(<span class="nu">5</span>);
+<span class="ln">14</span>     }
+<span class="ln">15</span>     disable_servos();
+<span class="ln">16</span>     <span class="kw">return</span> <span class="nu">0</span>;
+<span class="ln">17</span> }</pre>
+
+    <p>Read it with a partner before you run it, and answer these from the code alone.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:52%">Question</th><th>My answer</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>What kind of loop is this?</td><td><input type="text" data-key="p1_kind" aria-label="Kind of loop"></td></tr>
+        <tr class="trial"><td>Where does <code>position</code> start?</td><td><input type="text" data-key="p1_start" aria-label="Start"></td></tr>
+        <tr class="trial"><td>What makes it stop?</td><td><input type="text" data-key="p1_stop" aria-label="Stop"></td></tr>
+        <tr class="trial"><td>How much does it change each time round?</td><td><input type="text" data-key="p1_step" aria-label="Step"></td></tr>
+        <tr class="trial"><td>So how many times does the loop run?</td><td><input type="text" data-key="p1_times" aria-label="Times"></td></tr>
+      </tbody>
+    </table>
+
+    <p>Now run it with your own arm positions and watch.</p>
+
+    <p class="q">How is this different from <code>set_servo_position(arm, 1800);</code> on its own?</p>
+    <textarea class="answer" data-key="p1_vs_single" aria-label="Versus single move"></textarea>
+
+    <div class="callout gold">
+      <p class="ctitle">A Smooth Arm Is a Careful Arm</p>
+      <p>An arm that snaps to a position throws whatever it is holding. An arm that creeps there sets things down gently — which matters for every final-position mission you have.</p>
+    </div>
+
+    <h3 class="sub">Where the counting lives</h3>
+
+    <p>Look at that loop again. The three things that control the counting are in three different places:</p>
+
+    <ul class="plain">
+      <li>The start is on <strong>line 6</strong>, above the loop.</li>
+      <li>The stopping point is on <strong>line 9</strong>, in the <span class="def-term" data-term="CONDITION">condition</span>.</li>
+      <li>The step is on <strong>line 11</strong>, buried inside the <span class="def-term" data-term="BLOCK">block</span>.</li>
+    </ul>
+
+    <p class="q">If a teammate asked you "how many times does that run?", how long would it take you to work it out?</p>
+    <input type="text" data-key="p1_how_long" aria-label="How long to work out">
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> All Three on One Line</h2>
+
+    <p>A <span class="def-term" data-term="FOR LOOP">for loop</span> does exactly the same job, but it puts the start, the stop, and the step together where you can see all three at once.</p>
+
+    <pre class="code"><span class="kw">for</span> (position = <span class="nu">200</span>; position &lt; <span class="nu">1800</span>; position++)
+<span class="cm">      ↑              ↑                  ↑</span>
+<span class="cm">    start          stop               step</span></pre>
+
+    <div class="anat">
+      <div class="arow"><div class="acode">position = 200</div><div class="adesc">Where the counting begins. Runs once, before anything else.</div></div>
+      <div class="arow"><div class="acode">position &lt; 1800</div><div class="adesc">Checked before every trip through the <span class="def-term" data-term="BLOCK">block</span>. The moment it is false, the loop ends.</div></div>
+      <div class="arow"><div class="acode">position++</div><div class="adesc">Runs at the end of every trip. <code>++</code> means add one — the shorthand you met in Project 9.</div></div>
+    </div>
+
+    <p class="muted">Two <span class="def-term" data-term="SEMICOLON">semicolon</span>s inside the parentheses, and none after the closing one. Same rule as <code>while</code> and <code>if</code> — the braces finish the <span class="def-term" data-term="STATEMENT">statement</span>.</p>
+
+    <h3 class="sub">The same loop, both ways</h3>
+
+    <div class="codepair">
+      <div class="col">
+        <div class="chead">while</div>
+        <pre class="code"><span class="kw">int</span> position = <span class="nu">200</span>;
+
+<span class="kw">while</span> (position &lt; <span class="nu">1800</span>)
+{
+    set_servo_position(arm, position);
+    msleep(<span class="nu">5</span>);
+    position++;
+}</pre>
+        <div class="cnote">Three pieces in three places. Forget the last one and it never ends.</div>
+      </div>
+      <div class="col after">
+        <div class="chead">for</div>
+        <pre class="code"><span class="kw">int</span> position;
+
+<span class="kw">for</span> (position = <span class="nu">200</span>; position &lt; <span class="nu">1800</span>; position++)
+{
+    set_servo_position(arm, position);
+    msleep(<span class="nu">5</span>);
+}</pre>
+        <div class="cnote">All three in one place. Hard to forget the step when it is right there.</div>
+      </div>
+    </div>
+
+    <h3 class="sub">Which one, when?</h3>
+
+    <table class="grid">
+      <thead><tr><th style="width:50%">Use <code>while</code> when...</th><th>Use <code>for</code> when...</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>You do not know how many times — it depends on a <span class="def-term" data-term="SENSOR">sensor</span>.</td>
+          <td>You know the count before you start. Four corners. Two poms.</td>
+        </tr>
+        <tr>
+          <td>There is more than one way out of the loop.</td>
+          <td>You are counting up or down by a steady amount.</td>
+        </tr>
+        <tr>
+          <td>Nothing needs to change by a set step each time.</td>
+          <td>You want the whole plan readable on one line.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout navy">
+      <p class="ctitle">Look Back at Every Loop You Have Written</p>
+      <p>Drive until bump. Drive until 4000 <span class="def-term" data-term="TICK">tick</span>s. Follow until you see black. <strong>Every one of them was a <code>while</code>, and every one had to be</strong> — the robot could not know in advance how many times round it would go.</p>
+      <p>Now think about "put two poms in the basket." You know it is two. That is what <code>for</code> is for.</p>
+    </div>
+
+    <h3 class="sub">Counting repeats, not values</h3>
+
+    <p>The counter does not have to control anything. It can just count how many times you have gone round.</p>
+
+    <pre class="code"><span class="kw">int</span> count;
+
+<span class="kw">for</span> (count = <span class="nu">0</span>; count &lt; <span class="nu">4</span>; count++)
+{
+    drive_forward(<span class="nu">4000</span>);
+    turn_right();
+}</pre>
+
+    <p>That is a square. Four sides, four corners, four lines of code — and to make it a pentagon you change one number.</p>
+
+    <div class="callout warn">
+      <p class="ctitle">⚠ Starting at 0 Means Stopping Before the Count</p>
+      <p><code>count = 0; count &lt; 4</code> gives you 0, 1, 2, 3 — that is <strong>four</strong> trips, not three, and not five.</p>
+      <p>Counting from zero again, same as the motor <span class="def-term" data-term="PORT">port</span>s back in Project 3. Write out the numbers if you are not sure.</p>
+    </div>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Do It Again, Automatically</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Convert the smoother</span>
+        <p>Take the <code>while</code> version from Try It and rewrite it as a <code>for</code> loop. The arm should move identically.</p>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_converted"><label for="d1">My <code>for</code> version moves the arm exactly like the <code>while</code> version did</label></li></ul>
+        <p class="q">Change the step from <code>position++</code> to <code>position = position + 40</code>. What happened to the movement?</p>
+        <input type="text" data-key="p3_bigger_step" aria-label="Bigger step">
+      </li>
+
+      <li>
+        <span class="stitle">A square in four lines</span>
+        <p>The square, for the last time. Use a <code>for</code> loop and your library <span class="def-term" data-term="FUNCTION">function</span>s.</p>
+        <table class="grid">
+          <thead><tr><th style="width:34%">Version</th><th style="width:32%">Lines in main</th><th>Change it to a pentagon by...</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>Project 11 — <span class="def-term" data-term="TICK">tick</span>s, written out</td><td><input type="text" data-key="p3_sq_p11" aria-label="P11 lines"></td><td><input type="text" data-key="p3_sq_p11_penta" aria-label="P11 pentagon"></td></tr>
+            <tr class="trial"><td>Project 12 — functions</td><td><input type="text" data-key="p3_sq_p12" aria-label="P12 lines"></td><td><input type="text" data-key="p3_sq_p12_penta" aria-label="P12 pentagon"></td></tr>
+            <tr class="trial"><td>Now — a <span class="def-term" data-term="FOR LOOP">for loop</span></td><td><input type="text" data-key="p3_sq_p17" aria-label="P17 lines"></td><td><input type="text" data-key="p3_sq_p17_penta" aria-label="P17 pentagon"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_square"><label for="d2">My robot drives a square from a four-iteration loop</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 11 Bonus — two orange poms<span class="spts">7 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 11 — Hazard Disposal</span>
+            <span class="mpts">Bonus 7 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart later">
+              <span class="mlabel">Base — 7 pts — done in Project 8</span>
+              One Orange Pom is IN a basket.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Bonus Mission — 7 pts<span class="jtag final">📋 Final</span></span>
+              <strong>Two or more</strong> Orange Poms are IN the <strong>same</strong> basket.
+            </div>
+          </div>
+        </div>
+        <p>Start here — it is the simplest "do it twice" on the field, and you already have the function.</p>
+        <div class="callout gold">
+          <p class="ctitle">Two Ways, Both Fine</p>
+          <p>Call your function twice, or wrap it in a two-iteration <code>for</code> loop. Try both and see which reads better to you.</p>
+          <p>The loop wins the moment the number might change — and at a tournament it always might.</p>
+        </div>
+        <p class="muted">The second pom is somewhere different, so your function needs an <span class="def-term" data-term="ARGUMENT">argument</span> or a short drive between trips. Same problem you solved for Mission 15 in Project 12.</p>
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_m11"><label for="d3">Two orange poms are in the same basket at the end</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Missions 16 and 17 Bonuses — stack them higher<span class="spts">22 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Missions 16 &amp; 17 — Shelving and Racking</span>
+            <span class="mpts">Bonuses 11 pts each</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Mission 16 Bonus — 11 pts<span class="jtag final">📋 Final</span></span>
+              <strong>Two or more</strong> cubes from the Spilled Cube area are <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the Large Green Cube.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Mission 17 Bonus — 11 pts<span class="jtag final">📋 Final</span></span>
+              <strong>Two or more</strong> cubes from the Unstraight Cube area are <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the Large Brown Cube.
+            </div>
+          </div>
+        </div>
+        <div class="callout navy">
+          <p class="ctitle">A Cube On a Cube Still Counts</p>
+          <p>Read the scoring examples: <em>one cube ON TOP OF another cube that is ON TOP OF the Large Green Cube</em> scores. So the second cube can go on the pile rather than beside it — whichever your claw does more reliably.</p>
+        </div>
+        <div class="callout danger">
+          <p class="ctitle">⚠ Final Position — Both Have to Survive</p>
+          <p>Delivering the second cube is where the first one gets knocked off. Approach the same way each trip, and back straight away rather than turning while you are still close.</p>
+        </div>
+        <ul class="check">
+          <li><input type="checkbox" id="d4" data-key="p3_m16"><label for="d4">Two spilled cubes are on the Large Green Cube at the end</label></li>
+          <li><input type="checkbox" id="d5" data-key="p3_m17"><label for="d5">Two unstraight cubes are on the Large Brown Cube at the end</label></li>
+        </ul>
+        <p class="q">Did the second delivery ever knock the first one off? What fixed it?</p>
+        <textarea class="answer" data-key="p3_knocked_off" aria-label="Knocked off"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 7 Bonus — a second <span class="def-term" data-term="ENCLOSURE">enclosure</span><span class="spts">9 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 7 — Hazard Containment</span>
+            <span class="mpts">Bonus 9 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart later">
+              <span class="mlabel">Base — 11 pts — done in Project 15</span>
+              One Blue and one Orange Pom <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> the same <span class="def-term" data-term="ENCLOSURE">enclosure</span>.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Bonus Mission — 9 pts<span class="jtag final">📋 Final</span></span>
+              A <strong>second</strong> enclosure holds at least one Blue Pom and at least one Orange Pom, each <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> it.
+            </div>
+          </div>
+        </div>
+        <div class="scorepair">
+          <div class="col yes">
+            <div class="chead">✓ Scores</div>
+            <ul>
+              <li>Two different enclosures, each with at least one Blue and one Orange Pom.</li>
+            </ul>
+          </div>
+          <div class="col no">
+            <div class="chead">✗ Does Not Score</div>
+            <ul>
+              <li>A Blue Pom in one enclosure and an Orange Pom in a different one.</li>
+              <li>Only one pom colour in any enclosure.</li>
+              <li><strong>The same enclosure used for both Base and Bonus.</strong></li>
+            </ul>
+          </div>
+        </div>
+        <p>This is the same delivery as the base, aimed somewhere else — which is exactly the case for a function with an <span class="def-term" data-term="ARGUMENT">argument</span> called twice, or a loop over two destinations.</p>
+        <ul class="check"><li><input type="checkbox" id="d6" data-key="p3_m7"><label for="d6">Two enclosures each hold a blue and an orange pom</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Put the loops in your library</span>
+        <p>Anything you wrapped in a loop that worked — <code>deliver_poms(int howMany)</code>, <code>smooth_arm(int from, int to)</code> — belongs in your library file. Add it, save, and note it in your <span class="def-term" data-term="COMMENT">comment</span> block.</p>
+        <ul class="check"><li><input type="checkbox" id="d7" data-key="p3_library"><label for="d7">My new loop functions are in my library and documented</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Run it five times</span>
+        <table class="grid">
+          <thead><tr><th style="width:12%">Run</th><th style="width:18%">M11</th><th style="width:18%">M16</th><th style="width:18%">M17</th><th style="width:18%">M7</th><th>Points</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_r1_m11" aria-label="R1 M11"></td><td><input type="text" data-key="p3_r1_m16" aria-label="R1 M16"></td><td><input type="text" data-key="p3_r1_m17" aria-label="R1 M17"></td><td><input type="text" data-key="p3_r1_m7" aria-label="R1 M7"></td><td><input type="text" data-key="p3_r1_pts" aria-label="R1 points"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_r2_m11" aria-label="R2 M11"></td><td><input type="text" data-key="p3_r2_m16" aria-label="R2 M16"></td><td><input type="text" data-key="p3_r2_m17" aria-label="R2 M17"></td><td><input type="text" data-key="p3_r2_m7" aria-label="R2 M7"></td><td><input type="text" data-key="p3_r2_pts" aria-label="R2 points"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_r3_m11" aria-label="R3 M11"></td><td><input type="text" data-key="p3_r3_m16" aria-label="R3 M16"></td><td><input type="text" data-key="p3_r3_m17" aria-label="R3 M17"></td><td><input type="text" data-key="p3_r3_m7" aria-label="R3 M7"></td><td><input type="text" data-key="p3_r3_pts" aria-label="R3 points"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_r4_m11" aria-label="R4 M11"></td><td><input type="text" data-key="p3_r4_m16" aria-label="R4 M16"></td><td><input type="text" data-key="p3_r4_m17" aria-label="R4 M17"></td><td><input type="text" data-key="p3_r4_m7" aria-label="R4 M7"></td><td><input type="text" data-key="p3_r4_pts" aria-label="R4 points"></td></tr>
+            <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p3_r5_m11" aria-label="R5 M11"></td><td><input type="text" data-key="p3_r5_m16" aria-label="R5 M16"></td><td><input type="text" data-key="p3_r5_m17" aria-label="R5 M17"></td><td><input type="text" data-key="p3_r5_m7" aria-label="R5 M7"></td><td><input type="text" data-key="p3_r5_pts" aria-label="R5 points"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">My score</h3>
+    <table class="grid">
+      <thead><tr><th style="width:52%">Mission part</th><th style="width:24%">Scored?</th><th>Points</th></tr></thead>
+      <tbody>
+        <tr><td>Mission 11 — Bonus (two orange poms, same basket)</td><td><input type="text" data-key="p4_s_m11" aria-label="Score M11"></td><td class="ctr">7</td></tr>
+        <tr><td>Mission 16 — Bonus (two spilled cubes on the green)</td><td><input type="text" data-key="p4_s_m16" aria-label="Score M16"></td><td class="ctr">11</td></tr>
+        <tr><td>Mission 17 — Bonus (two unstraight cubes on the brown)</td><td><input type="text" data-key="p4_s_m17" aria-label="Score M17"></td><td class="ctr">11</td></tr>
+        <tr><td>Mission 7 — Bonus (a second enclosure)</td><td><input type="text" data-key="p4_s_m7" aria-label="Score M7"></td><td class="ctr">9</td></tr>
+        <tr class="total"><td>My total this project</td><td><input type="text" data-key="p4_total" aria-label="Total"></td><td class="ctr">38</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Which loop?</h3>
+    <table class="grid">
+      <thead><tr><th style="width:56%">The robot needs to...</th><th>while or for?</th></tr></thead>
+      <tbody>
+        <tr><td>Drive until it touches a wall</td><td><input type="text" data-key="p4_l1" aria-label="Loop 1"></td></tr>
+        <tr><td>Put three cubes on a <span class="def-term" data-term="PALLET">pallet</span></td><td><input type="text" data-key="p4_l2" aria-label="Loop 2"></td></tr>
+        <tr><td>Follow a line until it has gone 5000 ticks</td><td><input type="text" data-key="p4_l3" aria-label="Loop 3"></td></tr>
+        <tr><td>Raise the arm in small steps from 200 to 1800</td><td><input type="text" data-key="p4_l4" aria-label="Loop 4"></td></tr>
+        <tr><td>Wait for someone to press a button</td><td><input type="text" data-key="p4_l5" aria-label="Loop 5"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">How many times?</h3>
+    <table class="grid">
+      <thead><tr><th style="width:56%">The loop</th><th>Runs how many times?</th></tr></thead>
+      <tbody>
+        <tr><td><code>for (i = 0; i &lt; 5; i++)</code></td><td><input type="text" data-key="p4_c1" aria-label="Count 1"></td></tr>
+        <tr><td><code>for (i = 1; i &lt;= 5; i++)</code></td><td><input type="text" data-key="p4_c2" aria-label="Count 2"></td></tr>
+        <tr><td><code>for (i = 0; i &lt; 10; i = i + 2)</code></td><td><input type="text" data-key="p4_c3" aria-label="Count 3"></td></tr>
+        <tr><td><code>for (i = 10; i &gt; 0; i--)</code></td><td><input type="text" data-key="p4_c4" aria-label="Count 4"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_parts"><label for="s1">I can name the three parts of a <code>for</code> loop and say what each does</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_semis"><label for="s2">I put two <span class="def-term" data-term="SEMICOLON">semicolon</span>s inside the parentheses and none after them</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_count"><label for="s3">I can work out how many times a <code>for</code> loop will run</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_choose"><label for="s4">I can choose between <code>while</code> and <code>for</code> and explain why</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_convert"><label for="s5">I can rewrite a <code>while</code> loop as a <code>for</code> loop</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_repeat_fn"><label for="s6">I can repeat a whole function call with a loop</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_smooth"><label for="s7">I can move a <span class="def-term" data-term="SERVO">servo</span> smoothly instead of snapping it</label></li>
+    </ul>
+
+    <h3 class="sub">Every point on the field</h3>
+    <p class="muted">Add up what you scored across the whole strand. The right-hand column is what was available.</p>
+    <table class="grid">
+      <thead><tr><th style="width:44%">Project</th><th style="width:28%">I scored</th><th>Available</th></tr></thead>
+      <tbody>
+        <tr><td>4 — Out and Back</td><td><input type="text" data-key="p4_t04" aria-label="P4 total"></td><td class="ctr">4</td></tr>
+        <tr><td>6 — Bulldoze Run</td><td><input type="text" data-key="p4_t06" aria-label="P6 total"></td><td class="ctr">16</td></tr>
+        <tr><td>7 — Your Robot's Arm</td><td><input type="text" data-key="p4_t07" aria-label="P7 total"></td><td class="ctr">7</td></tr>
+        <tr><td>8 — Arm and Claw Together</td><td><input type="text" data-key="p4_t08" aria-label="P8 total"></td><td class="ctr">37</td></tr>
+        <tr><td>9 — Names for Your Numbers</td><td><input type="text" data-key="p4_t09" aria-label="P9 total"></td><td class="ctr">20</td></tr>
+        <tr><td>10 — Feeling for Things</td><td><input type="text" data-key="p4_t10" aria-label="P10 total"></td><td class="ctr">13</td></tr>
+        <tr><td>11 — Counting Wheel Ticks</td><td><input type="text" data-key="p4_t11" aria-label="P11 total"></td><td class="ctr">40</td></tr>
+        <tr><td>12 — Teaching Your Robot New Moves</td><td><input type="text" data-key="p4_t12" aria-label="P12 total"></td><td class="ctr">18</td></tr>
+        <tr><td>13 — Deciding What to Do</td><td><input type="text" data-key="p4_t13" aria-label="P13 total"></td><td class="ctr">22</td></tr>
+        <tr><td>14 — Seeing Light and Dark</td><td><input type="text" data-key="p4_t14" aria-label="P14 total"></td><td class="ctr">35</td></tr>
+        <tr><td>15 — Following the Line</td><td><input type="text" data-key="p4_t15" aria-label="P15 total"></td><td class="ctr">51</td></tr>
+        <tr><td>17 — Repeating Without Retyping</td><td><input type="text" data-key="p4_t17" aria-label="P17 total"></td><td class="ctr">38</td></tr>
+        <tr class="grand"><td>Total</td><td><input type="text" data-key="p4_grand" aria-label="Grand total"></td><td class="ctr">301</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold">
+      <p class="ctitle">301 Is the Whole Game</p>
+      <p>Add up every base, bonus, and advanced bonus across all eighteen Stack Attack missions and the number is 301.</p>
+      <p>There is nothing on that field you have not been taught how to reach.</p>
+    </div>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">You have written four kinds of loop <span class="def-term" data-term="CONDITION">condition</span> now — a switch, a tick count, a brightness, and a plain count. Which was hardest to get right, and why that one?</p>
+    <textarea class="answer" data-key="p4_hardest_loop" aria-label="Hardest loop"></textarea>
+
+    <p class="q">In Project 1 you ran a program somebody else wrote and did not understand a line of it. Go back and read that program now. What does it say to you?</p>
+    <textarea class="answer" data-key="p4_first_program" aria-label="First program"></textarea>
+
+    <p class="q">Your robot does exactly what it is told, every time, and has no idea what any of it means. After seventeen projects, does it seem intelligent to you? Say what makes you answer that way.</p>
+    <textarea class="answer" data-key="p4_intelligent" aria-label="Is it intelligent"></textarea>
+
+    <div class="finale">
+      <h3>That Is the Coding Strand</h3>
+      <p>Seventeen projects ago your robot could not be switched on. It now drives measured distances, turns to an angle, grabs and stacks and places, feels for walls, counts its own wheels, reads light and dark, follows a line, checks its own work, and decides what to do when something goes wrong.</p>
+      <p>All of it built from about a dozen commands and four ideas: <strong>do this, do it if, do it while, do it again.</strong></p>
+      <p>Take your library with you. Next season the field will be different and most of what is in that file will still work.</p>
+    </div>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.'],
+    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
+    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'ENCLOSURE': ['Enclosure', 'A PVC frame on the game field that objects can be placed inside. Missions that ask for something to be IN an enclosure are asking you to get it past those walls.'],
+    'FULLY WITHIN': ['Fully Within', 'An object or robot is FULLY WITHIN an area when every part of the object or robot lies inside the boundary of that area — no portion may touch or cross the boundary line.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
+    'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.'],
+    'PALLET': ['Pallet', 'A flat platform on the game field that a load sits on. Several missions ask you to move a pallet and whatever is stacked on it, together.'],
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
+    'SEMICOLON': ['Semicolon', 'The punctuation mark that ends a statement in C. It does the same job as the full stop at the end of a sentence — it says this instruction is finished, move on to the next one.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'SERVO': ['Servo', 'A motor that rotates to a position you choose, rather than simply spinning. It turns about 180 degrees, divided into 2048 numbered positions, and holds whatever position you send it to.'],
+    'STATEMENT': ['Statement', 'One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.'],
+    'TICK': ['Tick', 'One small step of the motor shaft. There are about 1820 ticks in one full revolution of the shaft. Ticks count the motor turning, not the distance travelled — how far that is depends on your wheels.'],
+    'FOR LOOP': ['For Loop', 'A loop that repeats a known number of times. Its three parts — where to start, when to stop, and how much to change each time — all sit together inside one set of parentheses, separated by semicolons.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) openDef(el.dataset.term);
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_coding_17";
+  var MISSION_TITLE = "Discovery Project 17 — Repeating Without Retyping";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>

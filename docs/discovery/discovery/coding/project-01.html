@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 1 — Wake Up Your Wombat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #5b6270;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #24200f; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d9b464; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #fff8e6;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #fffaef; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  /* Checklists */
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  /* Numbered do-steps */
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+
+  /* Inputs */
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  /* Wombat card */
+  .wcard { border: 2px solid var(--navy); border-radius: 6px; overflow: hidden; margin: 18px 0; }
+  .wcard-head {
+    background: var(--navy); color: #fff; padding: 10px 16px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 19px; letter-spacing: .1em; text-transform: uppercase;
+  }
+  .wcard-body { padding: 6px 16px 16px; }
+  .wrow { display: grid; grid-template-columns: 230px 1fr; gap: 12px; align-items: center; margin: 12px 0; }
+  .wrow .wlabel {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 17px;
+    letter-spacing: .05em; text-transform: uppercase; color: var(--navy);
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.6; margin: 14px 0;
+  }
+  pre.code .cm { color: var(--code-green); }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .wrow { grid-template-columns: 1fr; gap: 4px; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Coding · Project 1</p>
+    <h1>Wake Up Your Wombat</h1>
+    <p class="sub">Get your robot's brain powered on, connected, and running its first program.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Powering on the Wombat, connecting your computer to it, and running a program that is already written for you.</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Wombat <span class="def-term" data-term="CONTROLLER">controller</span> · battery · charger · your computer or Chromebook · this project sheet</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Nothing. This is the first project.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. Your teacher gave you this number. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Meet the Machine</h2>
+
+    <p>Before you turn anything on, look closely at your <span class="def-term" data-term="CONTROLLER">controller</span>. It is a small computer, and it is about to become the brain of your robot.</p>
+
+    <p>Find each part below. Check the box when you have found it.</p>
+
+    <ul class="check">
+      <li><input type="checkbox" id="c1" data-key="p1_find_switch"><label for="c1">The <strong>power switch</strong> — on the side, right next to the battery cable</label></li>
+      <li><input type="checkbox" id="c2" data-key="p1_find_battery"><label for="c2">The <strong>yellow battery connectors</strong> — one on the battery, one on the Wombat</label></li>
+      <li><input type="checkbox" id="c3" data-key="p1_find_screen"><label for="c3">The <strong>touchscreen</strong> — this is where the Wombat shows you things</label></li>
+      <li><input type="checkbox" id="c4" data-key="p1_find_usb"><label for="c4">The <strong>USB <span class="def-term" data-term="PORT">port</span>s</strong> — on the side</label></li>
+      <li><input type="checkbox" id="c5" data-key="p1_find_motor"><label for="c5">The <strong>motor <span class="def-term" data-term="PORT">port</span>s</strong> — you will use these later</label></li>
+      <li><input type="checkbox" id="c6" data-key="p1_find_leds"><label for="c6">The <strong>red power light</strong> and the <strong>yellow light</strong> next to it</label></li>
+    </ul>
+
+    <div class="callout warn">
+      <p class="ctitle">⚠ You Are In Charge of This Battery</p>
+      <p>The battery can be ruined permanently if it is treated badly. These rules are not suggestions.</p>
+      <ul class="plain">
+        <li>Use <strong>only</strong> the charger that came with your <span class="def-term" data-term="CONTROLLER">controller</span>.</li>
+        <li>Never leave a battery charging unattended.</li>
+        <li>Charge in a cool, open space — away from anything that can burn.</li>
+        <li>When you are finished for the day: <strong>turn the Wombat off, then unplug the battery.</strong></li>
+      </ul>
+      <p>If you leave the battery plugged in and the Wombat switched on, the battery will drain so far that it can never be charged again.</p>
+    </div>
+
+    <p class="q">Why do you think leaving the battery plugged in overnight would be worse than leaving a phone plugged in overnight?</p>
+    <textarea class="answer" data-key="p1_battery_why" aria-label="Why leaving the battery plugged in is bad"></textarea>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> How You Talk to a Robot</h2>
+
+    <p>You will not write your programs on the Wombat itself. You will write them on your own computer, in a web browser — and then send them over to the Wombat.</p>
+
+    <p>For that to work, your computer and the Wombat have to be on the same network. So the Wombat makes its own.</p>
+
+    <div class="callout navy">
+      <p class="ctitle">The Big Idea</p>
+      <p>Your Wombat creates its own small Wi-Fi network, like a tiny hotspot. Your computer joins that network. Then your browser can reach the Wombat's programming tools.</p>
+    </div>
+
+    <h3 class="sub">Two numbers you will need</h3>
+
+    <p>Every device on a network has an <span class="def-term" data-term="IP ADDRESS">IP ADDRESS</span>. Think of it as a building address — it tells your browser <em>which machine</em> to talk to.</p>
+
+    <p>But a single machine can run many different services at once. So you also need a <span class="def-term" data-term="PORT NUMBER">port number</span> — think of it as <em>which door to knock on</em>. For the Wombat's programming tools, that door is always <code>8888</code>.</p>
+
+    <p>You put them together with a colon between them, like this:</p>
+
+    <pre class="code">192.168.125.1:8888
+<span class="cm">   ↑              ↑</span>
+<span class="cm">which machine   which door</span></pre>
+
+    <p class="muted">Your numbers will be different. You will find yours in a moment and write them down.</p>
+
+    <h3 class="sub">What you will see</h3>
+
+    <p>Once you get there, you will be looking at the <span class="def-term" data-term="IDE">IDE</span> — the place where you write code, check it, and send it to the robot.</p>
+
+    <p class="q">In your own words: what is the difference between an <span class="def-term" data-term="IP ADDRESS">IP ADDRESS</span> and a <span class="def-term" data-term="PORT NUMBER">port number</span>?</p>
+    <textarea class="answer" data-key="p2_ip_vs_port" aria-label="Difference between IP address and port number"></textarea>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Get Connected</h2>
+
+    <p>Work through these in order. Check each one off as you finish it.</p>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Power on</span>
+        <p>Flip the black power switch on the side of the Wombat. Wait for the home screen to appear.</p>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_step_power"><label for="d1">Home screen is showing</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Find your network information</span>
+        <p>On the Wombat's screen, tap <strong>About</strong>. Look for the rows labeled <strong>SSID</strong>, <strong>Password</strong>, and <strong>Wi-Fi</strong>. Write them on your card below — you will need them every time.</p>
+        <div class="callout gold">
+          <p class="ctitle">If the Wi-Fi line is blank</p>
+          <p>This is a known problem on older Wombat software. The real fix is to update the Wombat (instructions are at kipr.org). The quick fix:</p>
+          <ul class="plain">
+            <li>Set <strong>Event Mode</strong> to <em>Enabled</em>.</li>
+            <li>Go back to the Home Screen. Wait at least 5 seconds. Return to <strong>About</strong>.</li>
+            <li>Set <strong>Event Mode</strong> back to <em>Disabled</em>.</li>
+            <li>Go Home again, wait 5 seconds, return to <strong>About</strong>. Numbers should now appear.</li>
+          </ul>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">Write down your Wombat's information</span>
+        <div class="wcard">
+          <div class="wcard-head">My Wombat Card</div>
+          <div class="wcard-body">
+            <div class="wrow"><span class="wlabel">Network name (SSID)</span><input type="text" data-key="p3_ssid" aria-label="Wombat SSID"></div>
+            <div class="wrow"><span class="wlabel">Password</span><input type="text" data-key="p3_password" aria-label="Wombat password"></div>
+            <div class="wrow"><span class="wlabel">Wi-Fi <span class="def-term" data-term="IP ADDRESS">IP ADDRESS</span></span><input type="text" data-key="p3_wifi_ip" aria-label="Wombat Wi-Fi IP address"></div>
+            <div class="wrow"><span class="wlabel">Full web address</span><input type="text" data-key="p3_full_url" aria-label="Full address with port" placeholder="the IP, then :8888"></div>
+            <div class="wrow"><span class="wlabel">My user folder name</span><input type="text" data-key="p3_user_folder" aria-label="User folder name"></div>
+            <div class="wrow"><span class="wlabel">My project name</span><input type="text" data-key="p3_project_name" aria-label="Project name"></div>
+          </div>
+        </div>
+        <p class="muted">Keep this card. Every project after this one starts by connecting the same way.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Join the Wombat's network</span>
+        <p>Open the Wi-Fi settings on your computer. Find the network name from your card, select it, and enter the password.</p>
+        <div class="callout">
+          <p class="ctitle">This warning is normal</p>
+          <p>You will probably see something like <em>"no internet connection"</em> or <em>"connected with limited access."</em> Nothing is wrong. The Wombat is not the internet — it is just a robot. Keep going.</p>
+        </div>
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_step_joined"><label for="d2">My computer is connected to the Wombat's network</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Open the programming tools</span>
+        <p>Open a web browser. In the address bar, type the full web address from your card — the IP address, a colon, then <code>8888</code>. Match the punctuation exactly.</p>
+        <p>You should land on the KIPR Software Suite. Click <strong>KISS <span class="def-term" data-term="IDE">IDE</span></strong>.</p>
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_step_ide"><label for="d3">I can see the KISS <span class="def-term" data-term="IDE">IDE</span></label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Make your own folder</span>
+        <p>In <strong>Project Explorer</strong>, click the <strong>+</strong> to add a user. Type your name. Click <strong>Create</strong>.</p>
+        <div class="callout warn">
+          <p class="ctitle">⚠ Naming rules — these matter</p>
+          <p>No periods. No apostrophes. No exclamation points. No emojis. No symbols of any kind. Letters, numbers, and plain spaces only.</p>
+          <p><strong>Good:</strong> <code>sarah folder</code> · <code>Botguy folder</code> · <code>First Project</code><br>
+             <strong>Bad:</strong> <code>m.j.c.</code> · <code>my amazing project!</code> · <code>Mrs Davis's project</code> · <code>:)</code></p>
+          <p>A bad name will not fail right away. It will break something later, and it will be hard to find.</p>
+        </div>
+        <p class="muted">Do not use the default user folder. Make your own.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Add a project</span>
+        <p>Go back to <strong>Project Explorer</strong> and pick your folder from the drop down. Click <strong>+ Add Project</strong>.</p>
+        <p>Name it <code>First Project</code>. Leave the language set to <strong>C</strong> and the source file name as <code>main.c</code>. Click <strong>Create</strong>.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Look around the editor</span>
+        <p>Find each button before you use it.</p>
+        <table class="grid">
+          <thead><tr><th style="width:32%">Button</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Menu</strong></td><td>Takes you back to the main menu of the Software Suite.</td></tr>
+            <tr><td><strong>Save main.c</strong></td><td>Saves your code. A successful <span class="def-term" data-term="COMPILE">compile</span> also saves it for you.</td></tr>
+            <tr><td><strong>File Menu</strong></td><td>Delete or download <code>main.c</code> to your computer. One way to back up your work.</td></tr>
+            <tr><td><strong>Project Menu</strong></td><td>Delete or download the whole project.</td></tr>
+            <tr><td><strong>Undo / Redo</strong></td><td>Undo your last keystrokes, or put them back.</td></tr>
+            <tr><td><strong>Indent</strong></td><td>Cleans up the spacing so your code is readable. Use this often.</td></tr>
+            <tr><td><strong><span class="def-term" data-term="COMPILE">Compile</span></strong></td><td>Turns your code into something the robot can actually run.</td></tr>
+            <tr><td><strong>Run</strong></td><td>Runs the program that was compiled.</td></tr>
+          </tbody>
+        </table>
+      </li>
+
+      <li>
+        <span class="stitle">Compile it</span>
+        <p>There is already code in the editor. You did not write it and you do not need to understand it yet — that is Project 2. Press <strong>Compile</strong>.</p>
+        <p><span class="def-term" data-term="COMPILE">Compile</span> translates what you see into instructions the robot's processor can follow. If it works, your code is saved automatically. If it doesn't, you get a message telling you where the problem is.</p>
+        <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_step_compiled"><label for="d4">It compiled with no errors</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Run it</span>
+        <p>Press <strong>Run</strong>. Watch the Wombat's screen.</p>
+        <p class="q">What appeared on the Wombat's screen?</p>
+        <input type="text" data-key="p3_what_appeared" aria-label="What appeared on the screen">
+        <ul class="check" style="margin-top:12px"><li><input type="checkbox" id="d5" data-key="p3_step_ran"><label for="d5">My program ran on the robot</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Shut down properly</span>
+        <p>Do not just flip the switch. Do it in this order:</p>
+        <ul class="plain">
+          <li>On the Home Screen, press <strong>Shutdown</strong>.</li>
+          <li>Press <strong>Yes</strong> to confirm.</li>
+          <li>Wait for it to finish, then flip the power switch off.</li>
+          <li>Unplug the battery — <strong>hold the yellow connectors, never the wires.</strong></li>
+        </ul>
+        <ul class="check"><li><input type="checkbox" id="d6" data-key="p3_step_shutdown"><label for="d6">Shut down in the correct order</label></li></ul>
+      </li>
+
+    </ol>
+
+    <div class="callout navy">
+      <p class="ctitle">Back Up Your Work</p>
+      <p>Code that only exists on the robot can disappear. Three ways to keep a copy:</p>
+      <ul class="plain">
+        <li>Copy the code out of the editor and paste it into a document.</li>
+        <li>Download it from the <strong>File Menu</strong> or <strong>Project Menu</strong>.</li>
+        <li>Plug a USB drive into the Wombat, then <strong>Settings → Backup → Backup</strong>.</li>
+      </ul>
+      <p class="muted" style="margin-bottom:0">To bring code back from a USB drive, use <strong>Settings → Backup → Restore</strong>.</p>
+    </div>
+
+    <div class="callout gold">
+      <p class="ctitle">Lost the Home Screen?</p>
+      <p>If the Wombat's screen ends up showing a desktop instead of the usual home screen, tap the <strong>Botguy icon</strong> in the top row to get back.</p>
+    </div>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <p>There is no field mission yet. Your score for this project is whether you can do the whole thing again without the sheet.</p>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_power"><label for="s1">I can power the Wombat on and off correctly, in the right order</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_find_ip"><label for="s2">I can find my Wombat's IP address on the About screen</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_connect"><label for="s3">I can connect my computer to the Wombat's network</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_open_ide"><label for="s4">I can reach the KISS IDE in my browser</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_project"><label for="s5">I can create a user folder and a project with a legal name</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_compile_run"><label for="s6">I can compile a program and run it on the robot</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_backup"><label for="s7">I know at least one way to back up my code</label></li>
+    </ul>
+
+    <h3 class="sub">Trouble log</h3>
+    <p class="muted">Something almost certainly went wrong. That is normal and it is worth writing down — you will hit the same thing again.</p>
+    <table class="grid">
+      <thead><tr><th style="width:50%">What went wrong</th><th>How I fixed it</th></tr></thead>
+      <tbody>
+        <tr><td><input type="text" data-key="p4_trouble_1a" aria-label="Problem 1"></td><td><input type="text" data-key="p4_trouble_1b" aria-label="Fix 1"></td></tr>
+        <tr><td><input type="text" data-key="p4_trouble_2a" aria-label="Problem 2"></td><td><input type="text" data-key="p4_trouble_2b" aria-label="Fix 2"></td></tr>
+        <tr><td><input type="text" data-key="p4_trouble_3a" aria-label="Problem 3"></td><td><input type="text" data-key="p4_trouble_3b" aria-label="Fix 3"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">You pressed Run and the robot did something. Who decided what it would do — you, or the person who wrote the code that was already there?</p>
+    <textarea class="answer" data-key="p4_who_decided" aria-label="Who decided what the robot did"></textarea>
+
+    <p class="q">Name one thing on this sheet you would tell a teammate to be careful about, and why.</p>
+    <textarea class="answer" data-key="p4_advice" aria-label="Advice for a teammate"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>In <strong>Project 2 — Your First Program</strong>, you will open that same code and find out what every line of it actually means. Then you will change it and make it yours.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
+    'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
+    'IP ADDRESS': ['IP Address', 'A number that identifies one machine on a network — like a building address. Your browser uses it to find your Wombat.'],
+    'PORT NUMBER': ['Port Number', 'A number that tells the browser which service to reach on that machine — like which door to knock on. The Wombat\u2019s programming tools always use 8888.'],
+    'IDE': ['IDE', 'Short for Integrated Development Environment. It is the place where you write your code, check it for mistakes, and send it to the robot. Yours is called the KISS IDE.'],
+    'COMPILE': ['Compile', 'To translate the code you wrote into machine instructions the robot\u2019s processor can actually carry out. If compiling fails, the program cannot run.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) openDef(el.dataset.term);
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_coding_01";
+  var MISSION_TITLE = "Discovery Project 1 — Wake Up Your Wombat";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>

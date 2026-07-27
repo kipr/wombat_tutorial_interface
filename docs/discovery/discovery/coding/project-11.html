@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 11 — Counting Wheel Ticks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #5b6270;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #6b7280;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #24200f; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d9b464; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+  .meta dd.anchor { font-weight: 600; color: var(--red); }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #fff8e6;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #fffaef; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+  .callout.danger { border-left-color: #922B21; background: #fdf0ef; }
+  .callout.danger .ctitle { color: #922B21; }
+
+  /* Mission card */
+  .mission { border: 2px solid var(--red); border-radius: 6px; overflow: hidden; margin: 18px 0; }
+  .mission-head {
+    background: var(--red); color: #fff; padding: 11px 18px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .mission-head .mtitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 20px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .mission-head .mpts {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 15px; letter-spacing: .08em; color: rgba(255,255,255,.85);
+  }
+  .mission-body { padding: 4px 18px 14px; }
+  .mpart { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .mpart:last-child { border-bottom: none; }
+  .mpart .mlabel {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--navy); display: block; margin-bottom: 3px;
+  }
+  .mpart .jtag {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 1px 7px; border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+  .jtag.live { background: #d8ecdd; color: #145a32; }
+  .jtag.final { background: #e3e7f5; color: #23336b; }
+  .mpart.later { background: #f6f7f9; margin: 0 -18px; padding-left: 18px; padding-right: 18px; color: var(--grey); }
+  .mpart.later .mlabel { color: var(--grey); }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+  ol.dosteps .spts {
+    display: inline-block; background: var(--gold); color: #24200f;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px;
+    border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+  table.grid tr.total td { background: #f2f4fa; font-weight: 700; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 230px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  /* side-by-side code compare */
+  .codepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .codepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .codepair .chead {
+    padding: 8px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--navy);
+  }
+  .codepair .col.after .chead { background: var(--red); }
+  .codepair pre.code { margin: 0; border-radius: 0; font-size: 14px; }
+
+  .scorepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .scorepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .scorepair .chead {
+    padding: 9px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #fff;
+  }
+  .scorepair .yes .chead { background: #1E8449; }
+  .scorepair .no .chead { background: #922B21; }
+  .scorepair ul { margin: 10px 0 12px; padding-left: 22px; font-size: 16px; }
+  .scorepair li { margin: 6px 0; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .codepair, .scorepair { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .mission-head, .scorepair .chead, .codepair .chead, ol.dosteps .spts, .mpart .jtag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Coding · Project 11</p>
+    <h1>Counting Wheel Ticks</h1>
+    <p class="sub">Same loop as last time — but now it watches a number instead of a switch.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Reading the counter built into every motor, driving exact distances instead of guessing with time, and delivering freight to the loading dock.</dd></div>
+        <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 9 bonus · Mission 8 · Mission 18 base — 40 points</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Robot with arm and claw · Wombat · charged battery · the game field · a ruler or tape measure · your Project 5 turn numbers</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 10 — you must be comfortable writing a <code>while</code> loop and know where <code>ao()</code> goes.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> The Counter Was Always There</h2>
+
+    <p>Back in Project 3 you dragged the slider on the Motors screen and noticed a number changing next to each <span class="def-term" data-term="PORT">port</span>. You were told to remember it. Here it is.</p>
+
+    <p>Open the <strong>Motors</strong> screen on the Wombat. Do not run anything — just turn a wheel with your hand and watch.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:56%">Question</th><th>What I saw</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>What happens to the number when I roll the wheel forward?</td><td><input type="text" data-key="p1_forward" aria-label="Rolling forward"></td></tr>
+        <tr class="trial"><td>What happens when I roll it backward?</td><td><input type="text" data-key="p1_backward" aria-label="Rolling backward"></td></tr>
+        <tr class="trial"><td>What happens if I roll it backward past where I started?</td><td><input type="text" data-key="p1_past_zero" aria-label="Past zero"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold">
+      <p class="ctitle">Every Motor Has Been Counting This Whole Time</p>
+      <p>Since Project 3, your motors have been keeping track of exactly how far they turned. You just had no way to ask them.</p>
+    </div>
+
+    <h3 class="sub">Find your <span class="def-term" data-term="TICK">tick</span>s per inch</h3>
+
+    <p><span class="def-term" data-term="TICK">tick</span>s are the motor's own unit. To use them you need to know how many make an inch on <em>your</em> robot.</p>
+
+    <ul class="plain">
+      <li>Put the robot on the floor and mark where the front edge sits.</li>
+      <li>Clear the counter on the Motors screen.</li>
+      <li>Push the robot straight forward exactly <strong>24 inches</strong>. Slowly, and in a straight line.</li>
+      <li>Read the counter.</li>
+    </ul>
+
+    <table class="grid">
+      <thead><tr><th style="width:24%">Try</th><th style="width:38%">Ticks for 24 inches</th><th>Ticks per inch (divide by 24)</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p1_tpi_t1" aria-label="Ticks try 1"></td><td><input type="text" data-key="p1_tpi_c1" aria-label="TPI 1"></td></tr>
+        <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p1_tpi_t2" aria-label="Ticks try 2"></td><td><input type="text" data-key="p1_tpi_c2" aria-label="TPI 2"></td></tr>
+        <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p1_tpi_t3" aria-label="Ticks try 3"></td><td><input type="text" data-key="p1_tpi_c3" aria-label="TPI 3"></td></tr>
+        <tr class="trial"><td class="ctr">Average</td><td>—</td><td><input type="text" data-key="p1_tpi_avg" aria-label="Average TPI"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">
+      <p class="ctitle">⚠ Measure Long, Not Short</p>
+      <p>Use 24 inches, not 3. A small error in a short push turns into a big error per inch. Anything under about a foot is not worth measuring.</p>
+    </div>
+
+    <p class="q">Your three numbers are not identical. Why not — and which one should you use?</p>
+    <textarea class="answer" data-key="p1_why_differ" aria-label="Why measurements differ"></textarea>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> A Number Instead of a Switch</h2>
+
+    <p>A <span class="def-term" data-term="TICK">tick</span> is one small step of the motor shaft. There are about <strong>1820 ticks in one full revolution</strong> of the shaft.</p>
+
+    <div class="callout navy">
+      <p class="ctitle">Wheel Size Does Not Change the Ticks</p>
+      <p>1820 ticks is one turn of the <em>motor shaft</em>, no matter what wheel you bolt to it. But a bigger wheel travels further in that one turn — which is exactly why your ticks-per-inch is yours and not somebody else's.</p>
+    </div>
+
+    <h3 class="sub">Two commands</h3>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="acode">clear_motor_position_counter(0);</div>
+        <div class="adesc">Sets the counter for <span class="def-term" data-term="PORT">port</span> 0 back to zero. Short name: <code>cmpc(0)</code>.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">get_motor_position_counter(0);</div>
+        <div class="adesc">Gives you the number of ticks that motor has turned. Short name: <code>gmpc(0)</code>.</div>
+      </div>
+    </div>
+
+    <p class="muted">Both names do the same thing. The short ones are quicker to type and you will see both in other people's code.</p>
+
+    <h3 class="sub">The same loop you already know</h3>
+
+    <p>Look at these two side by side. Only the <span class="def-term" data-term="CONDITION">condition</span> changed.</p>
+
+    <div class="codepair">
+      <div class="col">
+        <div class="chead">Project 10 — a switch</div>
+        <pre class="code"><span class="kw">while</span> (digital(bump) == <span class="nu">0</span>)
+{
+    motor(left, <span class="nu">50</span>);
+    motor(right, <span class="nu">50</span>);
+}
+ao();</pre>
+      </div>
+      <div class="col after">
+        <div class="chead">Project 11 — a number</div>
+        <pre class="code"><span class="kw">while</span> (gmpc(left) &lt; <span class="nu">4000</span>)
+{
+    motor(left, <span class="nu">50</span>);
+    motor(right, <span class="nu">50</span>);
+}
+ao();</pre>
+      </div>
+    </div>
+
+    <p>Read the new one out loud: <em>"While the left motor has turned fewer than 4000 ticks, keep driving. The moment it reaches 4000, stop."</em></p>
+
+    <div class="callout gold">
+      <p class="ctitle">Why This Is Better Than a Wall</p>
+      <p>A touch <span class="def-term" data-term="SENSOR">sensor</span> only helps where there is something to touch. A tick counter works <strong>anywhere on the field</strong> — open floor, mid-turn, anywhere. Your robot finally has a way to know how far it has gone without hitting something.</p>
+    </div>
+
+    <p>Always clear before you count:</p>
+
+    <pre class="code">cmpc(left);                      <span class="cm">// start counting from zero</span>
+
+<span class="kw">while</span> (gmpc(left) &lt; <span class="nu">4000</span>)
+{
+    motor(left, <span class="nu">50</span>);
+    motor(right, <span class="nu">50</span>);
+}
+
+ao();
+msleep(<span class="nu">500</span>);                    <span class="cm">// let it settle</span></pre>
+
+    <h3 class="sub">It will go too far. Every time.</h3>
+
+    <p>Run that program with a target of 4000 and then check the Motors screen. You will not see 4000. You will see something like <strong>4310</strong>.</p>
+
+    <p>Nothing is broken. Your robot has <span class="def-term" data-term="INERTIA">inertia</span> — it is moving, and when the loop shuts the motors off it keeps coasting.</p>
+
+    <div class="callout navy">
+      <p class="ctitle">The Fix Is Subtraction</p>
+      <p>Ask for 4000. Get 4310. The <span class="def-term" data-term="OVERSHOOT">overshoot</span> is <strong>4310 − 4000 = 310</strong>.</p>
+      <p>So ask for <strong>4000 − 310 = 3690</strong> instead, and you will land on 4000.</p>
+      <p>Every robot has its own <span class="def-term" data-term="OVERSHOOT">overshoot</span>. Faster power means more of it.</p>
+    </div>
+
+    <h3 class="sub">Going backward makes the number go down</h3>
+
+    <p>Driving in reverse decreases the counter, and it will go negative. That gives you two ways to come home.</p>
+
+    <div class="codepair">
+      <div class="col">
+        <div class="chead">Do not clear — count back to 0</div>
+        <pre class="code">cmpc(left);
+<span class="kw">while</span> (gmpc(left) &lt; <span class="nu">4000</span>) { <span class="cm">/* out */</span> }
+ao(); msleep(<span class="nu">500</span>);
+
+<span class="kw">while</span> (gmpc(left) &gt; <span class="nu">0</span>)   { <span class="cm">/* home */</span> }
+ao();</pre>
+      </div>
+      <div class="col after">
+        <div class="chead">Clear again — count to −4000</div>
+        <pre class="code">cmpc(left);
+<span class="kw">while</span> (gmpc(left) &lt; <span class="nu">4000</span>) { <span class="cm">/* out */</span> }
+ao(); msleep(<span class="nu">500</span>);
+
+cmpc(left);
+<span class="kw">while</span> (gmpc(left) &gt; <span class="nu">-4000</span>) { <span class="cm">/* home */</span> }
+ao();</pre>
+      </div>
+    </div>
+
+    <p class="muted">Both work. The first one always returns to where it started, no matter how far out it went. The second one always travels the same distance back. Those are not the same thing, and one day the difference will matter.</p>
+
+    <div class="callout danger">
+      <p class="ctitle">⚠ Get the Direction Right or the Loop Never Ends</p>
+      <p>Driving backward with <code>while (gmpc(left) &lt; 4000)</code> is a loop that can never finish — the number is going down, away from 4000, forever.</p>
+      <p>Going forward, count <strong>up</strong> with <code>&lt;</code>. Going backward, count <strong>down</strong> with <code>&gt;</code>. Check this before every run.</p>
+    </div>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Drive by the Numbers</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Measure your overshoot</span>
+        <p>New project called <code>Ticks</code>. Clear, drive to 4000 ticks, stop. Then check the Motors screen for what you actually got.</p>
+        <table class="grid">
+          <thead><tr><th style="width:20%">Power</th><th style="width:26%">Asked for</th><th style="width:26%">Actually got</th><th>Overshoot</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">30</td><td class="ctr">4000</td><td><input type="text" data-key="p3_over30_got" aria-label="Got at 30"></td><td><input type="text" data-key="p3_over30" aria-label="Overshoot at 30"></td></tr>
+            <tr class="trial"><td class="ctr">50</td><td class="ctr">4000</td><td><input type="text" data-key="p3_over50_got" aria-label="Got at 50"></td><td><input type="text" data-key="p3_over50" aria-label="Overshoot at 50"></td></tr>
+            <tr class="trial"><td class="ctr">100</td><td class="ctr">4000</td><td><input type="text" data-key="p3_over100_got" aria-label="Got at 100"></td><td><input type="text" data-key="p3_over100" aria-label="Overshoot at 100"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">What is the relationship between power and overshoot?</p>
+        <textarea class="answer" data-key="p3_power_overshoot" aria-label="Power and overshoot"></textarea>
+        <p class="q">Which power will you use for the rest of this project, and why?</p>
+        <input type="text" data-key="p3_chosen_power" aria-label="Chosen power">
+      </li>
+
+      <li>
+        <span class="stitle">Correct for it</span>
+        <p>Subtract your overshoot from your target and run again. Keep adjusting until the robot lands on 4000.</p>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Try</th><th style="width:30%">Target in my code</th><th>Where it actually stopped</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_c1_target" aria-label="Correction target 1"></td><td><input type="text" data-key="p3_c1_actual" aria-label="Correction actual 1"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_c2_target" aria-label="Correction target 2"></td><td><input type="text" data-key="p3_c2_actual" aria-label="Correction actual 2"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_c3_target" aria-label="Correction target 3"></td><td><input type="text" data-key="p3_c3_actual" aria-label="Correction actual 3"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_corrected"><label for="d1">My robot lands within about 50 ticks of where I asked</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Drive a real distance</span>
+        <p>Use your ticks-per-inch from Try It. Work out the ticks for each distance, then test it with a ruler.</p>
+        <table class="grid">
+          <thead><tr><th style="width:22%">I want</th><th style="width:30%">Ticks (inches × TPI)</th><th>How far it really went</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">6 inches</td><td><input type="text" data-key="p3_d6_ticks" aria-label="6 inch ticks"></td><td><input type="text" data-key="p3_d6_actual" aria-label="6 inch actual"></td></tr>
+            <tr class="trial"><td class="ctr">12 inches</td><td><input type="text" data-key="p3_d12_ticks" aria-label="12 inch ticks"></td><td><input type="text" data-key="p3_d12_actual" aria-label="12 inch actual"></td></tr>
+            <tr class="trial"><td class="ctr">24 inches</td><td><input type="text" data-key="p3_d24_ticks" aria-label="24 inch ticks"></td><td><input type="text" data-key="p3_d24_actual" aria-label="24 inch actual"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Which distance was least accurate? Why do you think that is?</p>
+        <textarea class="answer" data-key="p3_least_accurate" aria-label="Least accurate distance"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Out and back</span>
+        <p>Drive out 4000 ticks, stop and settle, then return to exactly where you started. Use whichever of the two methods from Learn It you prefer.</p>
+        <p class="q">Which method did you use, and why that one?</p>
+        <input type="text" data-key="p3_which_method" aria-label="Which return method">
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_out_back"><label for="d2">My robot returns to its starting mark</label></li></ul>
+        <p class="muted">Compare this to Project 4, where you did the same thing with a stopwatch. Notice how much less tuning it took.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Turn by ticks</span>
+        <p>New project called <code>Right Turn</code>. <span class="def-term" data-term="ZERO RADIUS TURN">Zero radius turn</span> — one wheel forward, one back, same speed — but this time stop it by counting ticks instead of by time.</p>
+        <pre class="code">cmpc(left);
+
+<span class="kw">while</span> (gmpc(left) &lt; turnTicks)
+{
+    motor(left, <span class="nu">50</span>);
+    motor(right, <span class="nu">-50</span>);
+}
+ao();</pre>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Try</th><th style="width:30%">Ticks</th><th>Too far, not far enough, or right?</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_t1_ticks" aria-label="Turn try 1"></td><td><input type="text" data-key="p3_t1_res" aria-label="Turn result 1"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_t2_ticks" aria-label="Turn try 2"></td><td><input type="text" data-key="p3_t2_res" aria-label="Turn result 2"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_t3_ticks" aria-label="Turn try 3"></td><td><input type="text" data-key="p3_t3_res" aria-label="Turn result 3"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_t4_ticks" aria-label="Turn try 4"></td><td><input type="text" data-key="p3_t4_res" aria-label="Turn result 4"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+      <li>
+        <span class="stitle">The square, again</span>
+        <p>In Project 5 you drove a square with four timed turns and it did not close. Do it again — same square, but every distance and every turn counted in ticks.</p>
+        <table class="grid">
+          <thead><tr><th style="width:40%">Question</th><th style="width:30%">Project 5 (time)</th><th>Now (ticks)</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>How close to the starting spot?</td><td><input type="text" data-key="p3_sq_old_pos" aria-label="Old square position"></td><td><input type="text" data-key="p3_sq_new_pos" aria-label="New square position"></td></tr>
+            <tr class="trial"><td>Facing the same way?</td><td><input type="text" data-key="p3_sq_old_face" aria-label="Old square facing"></td><td><input type="text" data-key="p3_sq_new_face" aria-label="New square facing"></td></tr>
+          </tbody>
+        </table>
+        <div class="callout gold">
+          <p class="ctitle">This Is the Whole Point of the Project</p>
+          <p>Same robot. Same square. The only thing that changed is <em>what the robot was measuring</em> — and suddenly it can come back to where it started.</p>
+        </div>
+        <p class="q">Your timed square drifted a little more with every corner. Why does a tick-counted square not do that?</p>
+        <textarea class="answer" data-key="p3_no_drift" aria-label="Why no drift"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 9 Bonus — get Botguy out<span class="spts">9 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 9 — Recover Botguy</span>
+            <span class="mpts">Bonus 9 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Bonus Mission — 9 pts<span class="jtag live">⚡ Live</span></span>
+              Botguy is <strong>completely outside</strong> the <span class="def-term" data-term="ENCLOSURE">enclosure</span> <strong>and</strong> <span class="def-term" data-term="TOUCHING">TOUCHING</span> the warehouse floor — both true at the same moment.
+            </div>
+            <div class="mpart later">
+              <span class="mlabel">Already done</span>
+              You touched Botguy for the 7-point Base in Project 7.
+            </div>
+          </div>
+        </div>
+        <div class="scorepair">
+          <div class="col yes">
+            <div class="chead">✓ Scores</div>
+            <ul>
+              <li>Botguy is completely outside the <span class="def-term" data-term="ENCLOSURE">enclosure</span> and <span class="def-term" data-term="TOUCHING">TOUCHING</span> the warehouse floor.</li>
+              <li>Botguy is touching the floor <strong>while being held by a robot</strong>.</li>
+            </ul>
+          </div>
+          <div class="col no">
+            <div class="chead">✗ Does Not Score</div>
+            <ul>
+              <li>Botguy touches the floor but is still touching the enclosure.</li>
+              <li>Botguy is out of the enclosure but not touching the floor.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted">Your claw can still be holding him. He just has to be clear of the enclosure and down on the floor at the same instant.</p>
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_m9_bonus"><label for="d3">Botguy is out of the enclosure and touching the floor</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 18 Base — take him to the loading zone<span class="spts">11 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 18 — Safety First, All Hands on Deck</span>
+            <span class="mpts">Base 11 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Base Mission — 11 pts<span class="jtag final">📋 Final</span></span>
+              Botguy is <span class="def-term" data-term="IN">IN</span> the Loading Zone.
+            </div>
+            <div class="mpart later">
+              <span class="mlabel">Not yet</span>
+              The 13-point Bonus adds one traffic cone, and the 15-point Advanced Bonus adds both. Those come back in Project 14.
+            </div>
+          </div>
+        </div>
+        <div class="callout gold">
+          <p class="ctitle">One Trip, Two Missions, Twenty Points</p>
+          <p>You just lifted Botguy out of the enclosure for Mission 9. Do not put him down — <strong>carry him to the Loading Zone</strong> and Mission 18's base scores too.</p>
+          <p>This is exactly the kind of thing to look for when you plan a full match: one action, more than one mission.</p>
+        </div>
+        <p class="muted">Mission 18 is final position, so Botguy has to still be <span class="def-term" data-term="IN THE ZONE">IN THE ZONE</span> when the match ends. Set him down properly and back straight away.</p>
+        <p class="q">Roughly how many ticks is it from the enclosure to the loading zone?</p>
+        <input type="text" data-key="p3_ticks_to_zone" aria-label="Ticks to loading zone">
+        <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_m18_base"><label for="d4">Botguy is IN the Loading Zone and stays there</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 8 — deliver the red cube<span class="spts">20 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 8 — Deliver the Red Cube</span>
+            <span class="mpts">20 points possible</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Base Mission — 11 pts<span class="jtag final">📋 Final</span></span>
+              The <span class="def-term" data-term="PALLET">pallet</span> <strong>with the Large Red Cube</strong> is <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the Loading Dock.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Bonus Mission — 9 pts<span class="jtag final">📋 Final</span></span>
+              One or more Small Red Cubes are <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the Large Red Cube while the <span class="def-term" data-term="PALLET">pallet</span> is on the Loading Dock.
+            </div>
+          </div>
+        </div>
+        <div class="callout danger">
+          <p class="ctitle">⚠ The Pallet and the Cube Travel Together</p>
+          <p>Read the failures carefully. <strong>The Large Red Cube on the Loading Dock without the pallet does not score.</strong> Neither does a pallet on the dock with the cube fallen off.</p>
+          <p>They both have to end up there, cube on pallet, pallet on dock.</p>
+        </div>
+        <div class="callout navy">
+          <p class="ctitle">Look at What You Already Did to These Cubes</p>
+          <p>In Project 6 you shoved the Large Red Cube and its pallet off the black tape. In Project 9 you stacked Small Red Cubes on top of it for Mission 5.</p>
+          <p>Mission 8's bonus asks for a Small Red Cube on the Large Red Cube <em>again</em> — this time with the pallet on the dock. Plan Missions 2, 5, and 8 as one sequence rather than three separate problems, and check with your judges how the scoring overlaps.</p>
+        </div>
+        <ul class="check">
+          <li><input type="checkbox" id="d5" data-key="p3_m8_base"><label for="d5">Pallet and Large Red Cube are both on the Loading Dock</label></li>
+          <li><input type="checkbox" id="d6" data-key="p3_m8_bonus"><label for="d6">A Small Red Cube is on top of the Large Red Cube up there</label></li>
+        </ul>
+        <p class="q">Which was harder — driving to the dock, or getting the pallet onto it?</p>
+        <input type="text" data-key="p3_m8_harder" aria-label="M8 harder part">
+      </li>
+
+      <li>
+        <span class="stitle">Run it five times</span>
+        <table class="grid">
+          <thead><tr><th style="width:12%">Run</th><th style="width:18%">M9 bonus</th><th style="width:18%">M18 base</th><th style="width:18%">M8 base</th><th style="width:18%">M8 bonus</th><th>Points</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_r1_m9" aria-label="R1 M9"></td><td><input type="text" data-key="p3_r1_m18" aria-label="R1 M18"></td><td><input type="text" data-key="p3_r1_m8b" aria-label="R1 M8 base"></td><td><input type="text" data-key="p3_r1_m8bo" aria-label="R1 M8 bonus"></td><td><input type="text" data-key="p3_r1_pts" aria-label="R1 points"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_r2_m9" aria-label="R2 M9"></td><td><input type="text" data-key="p3_r2_m18" aria-label="R2 M18"></td><td><input type="text" data-key="p3_r2_m8b" aria-label="R2 M8 base"></td><td><input type="text" data-key="p3_r2_m8bo" aria-label="R2 M8 bonus"></td><td><input type="text" data-key="p3_r2_pts" aria-label="R2 points"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_r3_m9" aria-label="R3 M9"></td><td><input type="text" data-key="p3_r3_m18" aria-label="R3 M18"></td><td><input type="text" data-key="p3_r3_m8b" aria-label="R3 M8 base"></td><td><input type="text" data-key="p3_r3_m8bo" aria-label="R3 M8 bonus"></td><td><input type="text" data-key="p3_r3_pts" aria-label="R3 points"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_r4_m9" aria-label="R4 M9"></td><td><input type="text" data-key="p3_r4_m18" aria-label="R4 M18"></td><td><input type="text" data-key="p3_r4_m8b" aria-label="R4 M8 base"></td><td><input type="text" data-key="p3_r4_m8bo" aria-label="R4 M8 bonus"></td><td><input type="text" data-key="p3_r4_pts" aria-label="R4 points"></td></tr>
+            <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p3_r5_m9" aria-label="R5 M9"></td><td><input type="text" data-key="p3_r5_m18" aria-label="R5 M18"></td><td><input type="text" data-key="p3_r5_m8b" aria-label="R5 M8 base"></td><td><input type="text" data-key="p3_r5_m8bo" aria-label="R5 M8 bonus"></td><td><input type="text" data-key="p3_r5_pts" aria-label="R5 points"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">My score</h3>
+    <table class="grid">
+      <thead><tr><th style="width:52%">Mission part</th><th style="width:24%">Scored?</th><th>Points</th></tr></thead>
+      <tbody>
+        <tr><td>Mission 9 — Bonus (Botguy out and on the floor)</td><td><input type="text" data-key="p4_s_m9" aria-label="Score M9"></td><td class="ctr">9</td></tr>
+        <tr><td>Mission 18 — Base (Botguy in the Loading Zone)</td><td><input type="text" data-key="p4_s_m18" aria-label="Score M18"></td><td class="ctr">11</td></tr>
+        <tr><td>Mission 8 — Base (pallet + cube on the dock)</td><td><input type="text" data-key="p4_s_m8b" aria-label="Score M8 base"></td><td class="ctr">11</td></tr>
+        <tr><td>Mission 8 — Bonus (small red cube on top up there)</td><td><input type="text" data-key="p4_s_m8bo" aria-label="Score M8 bonus"></td><td class="ctr">9</td></tr>
+        <tr class="total"><td>My total</td><td><input type="text" data-key="p4_total" aria-label="Total"></td><td class="ctr">40</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">My tick card</h3>
+    <p class="muted">These replace every timing number you have been carrying since Project 4.</p>
+    <table class="grid">
+      <thead><tr><th style="width:56%">Measurement</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Ticks per inch</td><td><input type="text" data-key="p4_tpi" aria-label="TPI"></td></tr>
+        <tr><td>Driving power I use</td><td><input type="text" data-key="p4_power" aria-label="Power"></td></tr>
+        <tr><td>My overshoot at that power</td><td><input type="text" data-key="p4_overshoot" aria-label="Overshoot"></td></tr>
+        <tr><td>Ticks for a 90° turn</td><td><input type="text" data-key="p4_ticks90" aria-label="Ticks 90"></td></tr>
+        <tr><td>Ticks for a 180° turn</td><td><input type="text" data-key="p4_ticks180" aria-label="Ticks 180"></td></tr>
+        <tr><td>Ticks from my starting box to the loading dock</td><td><input type="text" data-key="p4_ticks_dock" aria-label="Ticks to dock"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Write the <span class="def-term" data-term="CONDITION">condition</span></h3>
+    <table class="grid">
+      <thead><tr><th style="width:52%">I want the robot to...</th><th>The condition is</th></tr></thead>
+      <tbody>
+        <tr><td>Drive forward until it has turned 2500 ticks</td><td><code>while (</code><input type="text" data-key="p4_cond_fwd" aria-label="Condition forward"><code>)</code></td></tr>
+        <tr><td>Drive backward until it is back at zero</td><td><code>while (</code><input type="text" data-key="p4_cond_back" aria-label="Condition back"><code>)</code></td></tr>
+        <tr><td>Drive forward 8 inches, using my ticks per inch</td><td><code>while (</code><input type="text" data-key="p4_cond_inches" aria-label="Condition inches"><code>)</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_read"><label for="s1">I can read a motor's position counter on the Wombat screen</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_tpi"><label for="s2">I can work out my robot's ticks per inch and convert a distance into ticks</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_clear"><label for="s3">I always clear the counter before I start counting</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_overshoot"><label for="s4">I measure my overshoot and subtract it from my target</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_direction"><label for="s5">I use <code>&lt;</code> going forward and <code>&gt;</code> going backward, and I check it before running</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_turn"><label for="s6">I can make a repeatable 90° turn using ticks instead of time</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_close"><label for="s7">My square closes</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">Your battery is half flat, so the robot drives slower. What happens to a run built on <code>msleep()</code>? What happens to a run built on ticks?</p>
+    <textarea class="answer" data-key="p4_low_battery" aria-label="Low battery"></textarea>
+
+    <p class="q">Ticks tell you how far the <em>wheels turned</em> — not how far the robot moved. Name a situation where those two are different.</p>
+    <textarea class="answer" data-key="p4_wheels_vs_robot" aria-label="Wheels vs robot"></textarea>
+
+    <p class="q">You have now written the drive-a-set-distance code and the turn-90° code several times each, in several projects. What would you rather do than keep retyping them?</p>
+    <textarea class="answer" data-key="p4_rather_do" aria-label="Rather do"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>You have a robot that can measure. You also have a program that says the same twenty lines over and over.</p>
+    <p>In <strong>Project 12 — Teaching Your Robot New Moves</strong>, you give those twenty lines a name — and then you just say the name.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'ENCLOSURE': ['Enclosure', 'A PVC frame on the game field that objects can be placed inside. Missions that ask for something to be IN an enclosure are asking you to get it past those walls.'],
+    'IN THE ZONE': ['In The Zone', 'A robot is IN THE ZONE when the robot is touching the interior of the specified zone and no part of the robot is touching the zone’s boundary line.'],
+    'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.'],
+    'OVERSHOOT': ['Overshoot', 'How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot.'],
+    'PALLET': ['Pallet', 'A flat platform on the game field that a load sits on. Several missions ask you to move a pallet and whatever is stacked on it, together.'],
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'TOUCHING': ['Touching', 'Two objects are TOUCHING when they are in direct physical contact with one another. Contact through a third object (robot, field element, or game piece) does not count as TOUCHING.'],
+    'ZERO RADIUS TURN': ['Zero Radius Turn', 'The two wheels turn in opposite directions, so the robot spins in place without traveling forward or backward. Also called a pivot turn or spin turn. This is the turn you use when you need an exact angle.'],
+    'TICK': ['Tick', 'One small step of the motor shaft. There are about 1820 ticks in one full revolution of the shaft. Ticks count the motor turning, not the distance travelled — how far that is depends on your wheels.'],
+    'INERTIA': ['Inertia', 'A moving object keeps moving until something stops it. When your loop shuts the motors off, the robot is still rolling, so it coasts past the tick count you asked for. More speed means more coasting.'],
+    'IN': ['In', 'An object is IN a container, enclosure, basket, or zone when any portion of the object extends into the interior space of that container, enclosure, basket, or zone — unless otherwise specified by a mission.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) openDef(el.dataset.term);
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_coding_11";
+  var MISSION_TITLE = "Discovery Project 11 — Counting Wheel Ticks";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>

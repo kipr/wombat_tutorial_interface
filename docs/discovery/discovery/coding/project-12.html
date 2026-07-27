@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 12 — Teaching Your Robot New Moves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #5b6270;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #6b7280;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #24200f; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d9b464; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+  .meta dd.anchor { font-weight: 600; color: var(--red); }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #fff8e6;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #fffaef; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+  .callout.danger { border-left-color: #922B21; background: #fdf0ef; }
+  .callout.danger .ctitle { color: #922B21; }
+
+  /* Mission card */
+  .mission { border: 2px solid var(--red); border-radius: 6px; overflow: hidden; margin: 18px 0; }
+  .mission-head {
+    background: var(--red); color: #fff; padding: 11px 18px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .mission-head .mtitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 20px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .mission-head .mpts {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 15px; letter-spacing: .08em; color: rgba(255,255,255,.85);
+  }
+  .mission-body { padding: 4px 18px 14px; }
+  .mpart { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .mpart:last-child { border-bottom: none; }
+  .mpart .mlabel {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--navy); display: block; margin-bottom: 3px;
+  }
+  .mpart .jtag {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 1px 7px; border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+  .jtag.live { background: #d8ecdd; color: #145a32; }
+  .jtag.final { background: #e3e7f5; color: #23336b; }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+  ol.dosteps .spts {
+    display: inline-block; background: var(--gold); color: #24200f;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px;
+    border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+  table.grid tr.total td { background: #f2f4fa; font-weight: 700; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+  pre.code .hi { background: rgba(200,161,75,.22); border-radius: 2px; }
+
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 230px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  .codepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .codepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .codepair .chead {
+    padding: 8px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--navy);
+  }
+  .codepair .col.after .chead { background: var(--red); }
+  .codepair pre.code { margin: 0; border-radius: 0; font-size: 14px; }
+
+  .scorepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .scorepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .scorepair .chead {
+    padding: 9px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #fff;
+  }
+  .scorepair .yes .chead { background: #1E8449; }
+  .scorepair .no .chead { background: #922B21; }
+  .scorepair ul { margin: 10px 0 12px; padding-left: 22px; font-size: 16px; }
+  .scorepair li { margin: 6px 0; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .codepair, .scorepair { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .mission-head, .scorepair .chead, .codepair .chead, ol.dosteps .spts, .mpart .jtag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Coding · Project 12</p>
+    <h1>Teaching Your Robot New Moves</h1>
+    <p class="sub">Give twenty lines a name. Then just say the name.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Writing your own commands — drive, turn, grab — and calling them instead of retyping them. Then using one of them twice to double a score.</dd></div>
+        <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 15 — Hazard Disposal #2 (base + bonus) — 18 points</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Robot with arm and claw · Wombat · charged battery · the game field · your <span class="def-term" data-term="TICK">tick</span> card from Project 11</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 11 — your drive and turn code must already work in <span class="def-term" data-term="TICK">tick</span>s.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Brain Dump</h2>
+
+    <p>Without looking anything up, write down every command you know. Fill as many boxes as you can.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:33%">Command</th><th style="width:33%">Command</th><th>Command</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td><input type="text" data-key="p1_bd1" aria-label="Command 1"></td><td><input type="text" data-key="p1_bd2" aria-label="Command 2"></td><td><input type="text" data-key="p1_bd3" aria-label="Command 3"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p1_bd4" aria-label="Command 4"></td><td><input type="text" data-key="p1_bd5" aria-label="Command 5"></td><td><input type="text" data-key="p1_bd6" aria-label="Command 6"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p1_bd7" aria-label="Command 7"></td><td><input type="text" data-key="p1_bd8" aria-label="Command 8"></td><td><input type="text" data-key="p1_bd9" aria-label="Command 9"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p1_bd10" aria-label="Command 10"></td><td><input type="text" data-key="p1_bd11" aria-label="Command 11"></td><td><input type="text" data-key="p1_bd12" aria-label="Command 12"></td></tr>
+      </tbody>
+    </table>
+
+    <p>Now compare with a partner, then look at your whole list at once.</p>
+
+    <p class="q">What do all of them have in common? Find at least two things.</p>
+    <textarea class="answer" data-key="p1_commonalities" aria-label="Commonalities"></textarea>
+
+    <div class="callout gold">
+      <p class="ctitle">You Should Have Found These</p>
+      <ul class="plain">
+        <li>Every one of them has a <strong>name</strong>.</li>
+        <li>Every one of them has a pair of <strong>parentheses</strong> after the name.</li>
+        <li>Some need information inside the parentheses — <code>motor(0, 100)</code>, <code>msleep(3000)</code>.</li>
+        <li>Some need nothing at all — <code>ao()</code>, <code>enable_servos()</code>.</li>
+      </ul>
+      <p><strong>Every command you have ever typed is a <span class="def-term" data-term="FUNCTION">function</span>.</strong> Somebody wrote them, put them in the KIPR <span class="def-term" data-term="LIBRARY">library</span>, and gave you the names. Today you join them.</p>
+    </div>
+
+    <h3 class="sub">Count your own repetition</h3>
+
+    <p>Open your Project 11 program. Go through it and count.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:52%">How many times did you type...</th><th style="width:24%">Times</th><th>Lines each</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>The clear-then-loop <span class="def-term" data-term="BLOCK">block</span> for driving forward</td><td><input type="text" data-key="p1_cnt_drive" aria-label="Drive count"></td><td><input type="text" data-key="p1_len_drive" aria-label="Drive lines"></td></tr>
+        <tr class="trial"><td>The <span class="def-term" data-term="BLOCK">block</span> for a 90° turn</td><td><input type="text" data-key="p1_cnt_turn" aria-label="Turn count"></td><td><input type="text" data-key="p1_len_turn" aria-label="Turn lines"></td></tr>
+        <tr class="trial"><td>The six-step grab sequence</td><td><input type="text" data-key="p1_cnt_grab" aria-label="Grab count"></td><td><input type="text" data-key="p1_len_grab" aria-label="Grab lines"></td></tr>
+      </tbody>
+    </table>
+
+    <p class="q">Multiply those out. Roughly how many lines of your program are copies of something you already wrote?</p>
+    <input type="text" data-key="p1_repeated_lines" aria-label="Repeated lines">
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Three Parts, In This Order</h2>
+
+    <p>Writing your own <span class="def-term" data-term="FUNCTION">function</span> is like adding a word to a dictionary. You need the word listed, you need its meaning written down, and then you can use it in a sentence.</p>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="acode">1 — <span class="def-term" data-term="PROTOTYPE">prototype</span></div>
+        <div class="adesc">The <span class="def-term" data-term="PROTOTYPE">prototype</span> goes on the line after <code>#include</code>, before <code>int main()</code>. It is the <strong>word in the vocabulary list</strong> — it tells the <span class="def-term" data-term="COMPILER">compiler</span> this name exists.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">2 — Definition</div>
+        <div class="adesc">Goes <strong>after the last closing brace</strong> of your program. This is the <strong>definition of the word</strong> — what the robot actually does.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">3 — Call</div>
+        <div class="adesc">Inside <code>main</code>, where you would have typed all those lines. This is <strong>using the word in a sentence</strong>.</div>
+      </div>
+    </div>
+
+    <h3 class="sub">What <span class="def-term" data-term="VOID">void</span> means</h3>
+
+    <p><span class="def-term" data-term="VOID">void</span> means the function <em>does a job but hands nothing back</em>. <code>ao()</code> is like that — it stops the motors, it does not give you an answer.</p>
+
+    <p class="muted">You have seen the other kind too. <code>digital(0)</code> and <code>gmpc(0)</code> hand you a number. Yours will not, so yours say <code>void</code>.</p>
+
+    <h3 class="sub">Naming rules</h3>
+
+    <ul class="plain">
+      <li>Make it <strong>obvious</strong>. <code>drive_forward</code>, not <code>thing2</code>.</li>
+      <li>No spaces — use an underscore: <code>drive_forward</code>.</li>
+      <li>It cannot start with a number.</li>
+      <li>It cannot have the same name as a command that already exists. You cannot call yours <code>motor</code>.</li>
+    </ul>
+
+    <h3 class="sub">The whole thing, side by side</h3>
+
+    <div class="codepair">
+      <div class="col">
+        <div class="chead">Before — twice</div>
+        <pre class="code"><span class="kw">int</span> main()
+{
+    cmpc(left);
+    <span class="kw">while</span> (gmpc(left) &lt; <span class="nu">4000</span>)
+    {
+        motor(left, <span class="nu">50</span>);
+        motor(right, <span class="nu">50</span>);
+    }
+    ao();
+    msleep(<span class="nu">500</span>);
+
+    cmpc(left);
+    <span class="kw">while</span> (gmpc(left) &lt; <span class="nu">4000</span>)
+    {
+        motor(left, <span class="nu">50</span>);
+        motor(right, <span class="nu">50</span>);
+    }
+    ao();
+    msleep(<span class="nu">500</span>);
+
+    <span class="kw">return</span> <span class="nu">0</span>;
+}</pre>
+      </div>
+      <div class="col after">
+        <div class="chead">After — a function</div>
+        <pre class="code"><span class="kw">#include</span> &lt;kipr/wombat.h&gt;
+
+<span class="kw">void</span> drive_forward();      <span class="cm">// 1 prototype</span>
+
+<span class="kw">int</span> main()
+{
+    drive_forward();       <span class="cm">// 3 call</span>
+    drive_forward();
+
+    <span class="kw">return</span> <span class="nu">0</span>;
+}
+
+<span class="kw">void</span> drive_forward()       <span class="cm">// 2 definition</span>
+{
+    cmpc(left);
+    <span class="kw">while</span> (gmpc(left) &lt; <span class="nu">4000</span>)
+    {
+        motor(left, <span class="nu">50</span>);
+        motor(right, <span class="nu">50</span>);
+    }
+    ao();
+    msleep(<span class="nu">500</span>);
+}</pre>
+      </div>
+    </div>
+
+    <div class="callout danger">
+      <p class="ctitle">⚠ The <span class="def-term" data-term="PROTOTYPE">Prototype</span> Gets a <span class="def-term" data-term="SEMICOLON">semicolon</span>. The Definition Does Not.</p>
+      <p><code>void drive_forward();</code> — <span class="def-term" data-term="SEMICOLON">semicolon</span>. It is a <span class="def-term" data-term="STATEMENT">statement</span> announcing the name.</p>
+      <p><code>void drive_forward()</code> followed by <code>{</code> — no semicolon. The braces do that job, exactly like <code>int main()</code>.</p>
+      <p>Putting a semicolon on the definition is the most common mistake in this project.</p>
+    </div>
+
+    <h3 class="sub"><span class="def-term" data-term="ARGUMENT">Argument</span>s — one function, many distances</h3>
+
+    <p><code>drive_forward()</code> always drives 4000 ticks. That is fine until you need 2000.</p>
+
+    <p>Put a <span class="def-term" data-term="VARIABLE">variable</span> in the parentheses and you can decide the number every time you call it. That <span class="def-term" data-term="VARIABLE">variable</span> is an <strong><span class="def-term" data-term="ARGUMENT">argument</span></strong> — the same word you met back in Project 3.</p>
+
+    <pre class="code"><span class="kw">void</span> drive_forward(<span class="kw">int</span> ticks);        <span class="cm">// prototype says what it needs</span>
+
+...
+
+drive_forward(<span class="nu">4000</span>);                  <span class="cm">// call — go 4000</span>
+drive_forward(<span class="nu">1200</span>);                  <span class="cm">// call — go 1200</span>
+
+...
+
+<span class="kw">void</span> drive_forward(<span class="kw">int</span> ticks)         <span class="cm">// definition uses the name</span>
+{
+    cmpc(left);
+    <span class="kw">while</span> (gmpc(left) &lt; ticks)
+    {
+        motor(left, <span class="nu">50</span>);
+        motor(right, <span class="nu">50</span>);
+    }
+    ao();
+    msleep(<span class="nu">500</span>);
+}</pre>
+
+    <p class="muted">Two arguments? Separate them with a comma — exactly like <code>motor(port, power)</code> does.</p>
+
+    <h3 class="sub">A function can call another function</h3>
+
+    <p>Once <code>drive_forward()</code> and <code>turn_right()</code> exist, a bigger function can just use them.</p>
+
+    <pre class="code"><span class="kw">void</span> drive_square()
+{
+    drive_forward(<span class="nu">4000</span>);
+    turn_right();
+    drive_forward(<span class="nu">4000</span>);
+    turn_right();
+    drive_forward(<span class="nu">4000</span>);
+    turn_right();
+    drive_forward(<span class="nu">4000</span>);
+    turn_right();
+}</pre>
+
+    <p>Now <code>drive_square();</code> is one line. This is how a whole match run eventually becomes a short, readable list of things your robot does.</p>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Build Your Own Commands</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">My first function</span>
+        <p>New project called <code>Functions</code>. Take your working drive-forward code from Project 11 and turn it into a function with all three parts.</p>
+        <p>Call it twice in <code>main</code>. The robot should drive the distance, then drive it again.</p>
+        <ul class="check">
+          <li><input type="checkbox" id="d1" data-key="p3_first_fn"><label for="d1">My function <span class="def-term" data-term="COMPILE">compile</span>s and the robot drives twice</label></li>
+          <li><input type="checkbox" id="d2" data-key="p3_no_semi"><label for="d2">Prototype has a semicolon, definition does not</label></li>
+        </ul>
+        <p class="q">What did you name it, and why that name?</p>
+        <input type="text" data-key="p3_fn_name" aria-label="Function name">
+      </li>
+
+      <li>
+        <span class="stitle">Break the prototype on purpose</span>
+        <p>Delete the prototype line. <span class="def-term" data-term="COMPILE">Compile</span>.</p>
+        <p class="q">What did the error say?</p>
+        <input type="text" data-key="p3_no_prototype_err" aria-label="No prototype error">
+        <p style="margin-top:14px">Put it back. Now add a semicolon to the end of the <em>definition</em> line and compile again.</p>
+        <p class="q">What happened this time?</p>
+        <input type="text" data-key="p3_semi_err" aria-label="Semicolon error">
+        <p style="margin-top:12px">Fix it. You have now seen both of the mistakes everyone makes here.</p>
+      </li>
+
+      <li>
+        <span class="stitle">A turn function</span>
+        <p>Same three parts, using your 90° turn from Project 11.</p>
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_turn_fn"><label for="d3">My turn function works</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">The square — one more time</span>
+        <p>You have now driven this square three times. Do it once more, using only function calls.</p>
+        <table class="grid">
+          <thead><tr><th style="width:34%">Version</th><th style="width:30%">Roughly how many lines?</th><th>Did it close?</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>Project 5 — timed</td><td><input type="text" data-key="p3_sq_p5_lines" aria-label="P5 lines"></td><td><input type="text" data-key="p3_sq_p5_close" aria-label="P5 closed"></td></tr>
+            <tr class="trial"><td>Project 11 — ticks</td><td><input type="text" data-key="p3_sq_p11_lines" aria-label="P11 lines"></td><td><input type="text" data-key="p3_sq_p11_close" aria-label="P11 closed"></td></tr>
+            <tr class="trial"><td>Now — functions</td><td><input type="text" data-key="p3_sq_p12_lines" aria-label="P12 lines"></td><td><input type="text" data-key="p3_sq_p12_close" aria-label="P12 closed"></td></tr>
+          </tbody>
+        </table>
+        <div class="callout gold">
+          <p class="ctitle">Two Different Kinds of Better</p>
+          <p>Project 11 made the square <strong>work</strong>. This project makes it <strong>readable</strong>. Those are separate problems, and you have now solved both.</p>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">Add an argument</span>
+        <p>Change your drive function so the distance comes from an argument. Then drive a <strong>rectangle</strong> — two long sides, two short ones — with the same function called four times.</p>
+        <pre class="code">drive_forward(<span class="nu">4000</span>);
+turn_right();
+drive_forward(<span class="nu">2000</span>);
+turn_right();
+drive_forward(<span class="nu">4000</span>);
+turn_right();
+drive_forward(<span class="nu">2000</span>);
+turn_right();</pre>
+        <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_rectangle"><label for="d4">My robot drives a rectangle using one drive function</label></li></ul>
+        <p class="q">Without the argument, how many separate functions would a rectangle have needed?</p>
+        <input type="text" data-key="p3_without_arg" aria-label="Without argument">
+      </li>
+
+      <li>
+        <span class="stitle">Wrap the grab</span>
+        <p>The six-step grab sequence from Project 8 is your best candidate. Turn it into <code>grab()</code> and <code>release()</code>.</p>
+        <pre class="code"><span class="kw">void</span> grab()
+{
+    set_servo_position(arm, down);
+    msleep(<span class="nu">700</span>);
+    set_servo_position(claw, closed);
+    msleep(<span class="nu">700</span>);
+    set_servo_position(arm, up);
+    msleep(<span class="nu">700</span>);
+}</pre>
+        <p>Now write a bigger function that uses them:</p>
+        <pre class="code"><span class="kw">void</span> fetch_pom()
+{
+    drive_forward(<span class="nu">2000</span>);
+    grab();
+    turn_right();
+    drive_forward(<span class="nu">1500</span>);
+    release();
+}</pre>
+        <ul class="check"><li><input type="checkbox" id="d5" data-key="p3_grab_fn"><label for="d5">I have a function that calls my other functions</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 15 — one blue pom<span class="spts">9 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 15 — Hazard Disposal #2</span>
+            <span class="mpts">18 points possible</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Base Mission — 9 pts<span class="jtag final">📋 Final</span></span>
+              One Blue Pom is <span class="def-term" data-term="IN">IN</span> a basket.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Bonus Mission — 9 pts<span class="jtag final">📋 Final</span></span>
+              <strong>Two or more</strong> Blue Poms are IN the <strong>same</strong> basket.
+            </div>
+          </div>
+        </div>
+        <div class="callout danger">
+          <p class="ctitle">⚠ Not the Basket You Used in Project 8</p>
+          <p>Mission 11 (orange poms) and Mission 15 (blue poms) <strong>must use different baskets.</strong> In Project 8 you wrote down which basket you were saving for this. Use that one.</p>
+        </div>
+        <p>Build the run out of the functions you just wrote. Your whole <code>main</code> should read like a list of instructions, not a wall of code.</p>
+        <ul class="check"><li><input type="checkbox" id="d6" data-key="p3_m15_base"><label for="d6">One blue pom is IN a basket and stays there</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 15 Bonus — do it again<span class="spts">9 pts</span></span>
+        <p>Here is the payoff for the whole project. To score the bonus you need a second blue pom in the <strong>same</strong> basket.</p>
+        <p>You do not write any new code. <strong>You call your function a second time.</strong></p>
+        <pre class="code">fetch_blue_pom();
+fetch_blue_pom();</pre>
+        <div class="callout gold">
+          <p class="ctitle">Nine Points for One Line</p>
+          <p>If your function had been twenty lines of copied code, doubling this mission would have meant twenty more lines to write, test, and keep in step. Instead it is one line.</p>
+          <p>That is the entire argument for functions, and you just got paid for it.</p>
+        </div>
+        <p class="muted">The second pom is somewhere different from the first, so your function will need a way to handle that — an argument, or a small drive between the two calls.</p>
+        <p class="q">How did you get the second call to reach a different pom?</p>
+        <textarea class="answer" data-key="p3_second_pom" aria-label="Second pom approach"></textarea>
+        <ul class="check"><li><input type="checkbox" id="d7" data-key="p3_m15_bonus"><label for="d7">Two blue poms are in the same basket at the end</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Run it five times</span>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Run</th><th style="width:30%">One pom in?</th><th style="width:30%">Two in the same basket?</th><th>Points</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_r1_base" aria-label="R1 base"></td><td><input type="text" data-key="p3_r1_bonus" aria-label="R1 bonus"></td><td><input type="text" data-key="p3_r1_pts" aria-label="R1 points"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_r2_base" aria-label="R2 base"></td><td><input type="text" data-key="p3_r2_bonus" aria-label="R2 bonus"></td><td><input type="text" data-key="p3_r2_pts" aria-label="R2 points"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_r3_base" aria-label="R3 base"></td><td><input type="text" data-key="p3_r3_bonus" aria-label="R3 bonus"></td><td><input type="text" data-key="p3_r3_pts" aria-label="R3 points"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_r4_base" aria-label="R4 base"></td><td><input type="text" data-key="p3_r4_bonus" aria-label="R4 bonus"></td><td><input type="text" data-key="p3_r4_pts" aria-label="R4 points"></td></tr>
+            <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p3_r5_base" aria-label="R5 base"></td><td><input type="text" data-key="p3_r5_bonus" aria-label="R5 bonus"></td><td><input type="text" data-key="p3_r5_pts" aria-label="R5 points"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">My score</h3>
+    <table class="grid">
+      <thead><tr><th style="width:52%">Mission part</th><th style="width:24%">Scored?</th><th>Points</th></tr></thead>
+      <tbody>
+        <tr><td>Mission 15 — Base (one blue pom in a basket)</td><td><input type="text" data-key="p4_s_m15b" aria-label="Score M15 base"></td><td class="ctr">9</td></tr>
+        <tr><td>Mission 15 — Bonus (two in the same basket)</td><td><input type="text" data-key="p4_s_m15bo" aria-label="Score M15 bonus"></td><td class="ctr">9</td></tr>
+        <tr class="total"><td>My total</td><td><input type="text" data-key="p4_total" aria-label="Total"></td><td class="ctr">18</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">My function list</h3>
+    <p class="muted">Write down every function you built. This list is the start of something you will finish in Project 16.</p>
+    <table class="grid">
+      <thead><tr><th style="width:34%">Function name</th><th style="width:22%">Arguments</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td><input type="text" data-key="p4_fn1_name" aria-label="Function 1 name"></td><td><input type="text" data-key="p4_fn1_args" aria-label="Function 1 args"></td><td><input type="text" data-key="p4_fn1_does" aria-label="Function 1 does"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p4_fn2_name" aria-label="Function 2 name"></td><td><input type="text" data-key="p4_fn2_args" aria-label="Function 2 args"></td><td><input type="text" data-key="p4_fn2_does" aria-label="Function 2 does"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p4_fn3_name" aria-label="Function 3 name"></td><td><input type="text" data-key="p4_fn3_args" aria-label="Function 3 args"></td><td><input type="text" data-key="p4_fn3_does" aria-label="Function 3 does"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p4_fn4_name" aria-label="Function 4 name"></td><td><input type="text" data-key="p4_fn4_args" aria-label="Function 4 args"></td><td><input type="text" data-key="p4_fn4_does" aria-label="Function 4 does"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p4_fn5_name" aria-label="Function 5 name"></td><td><input type="text" data-key="p4_fn5_args" aria-label="Function 5 args"></td><td><input type="text" data-key="p4_fn5_does" aria-label="Function 5 does"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Where does each part go?</h3>
+    <table class="grid">
+      <thead><tr><th style="width:44%">Part</th><th>Where in the program</th></tr></thead>
+      <tbody>
+        <tr><td>Prototype</td><td><input type="text" data-key="p4_where_proto" aria-label="Where prototype"></td></tr>
+        <tr><td>Definition</td><td><input type="text" data-key="p4_where_def" aria-label="Where definition"></td></tr>
+        <tr><td>Call</td><td><input type="text" data-key="p4_where_call" aria-label="Where call"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_three"><label for="s1">I can name the three parts of a function and say where each one goes</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_semi"><label for="s2">I know which one gets a semicolon and which one does not</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_void"><label for="s3">I can explain what <code>void</code> means</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_name"><label for="s4">I can name a function so a teammate knows what it does without reading it</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_args"><label for="s5">I can write a function that takes an argument and use it with different values</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_nested"><label for="s6">I can write a function that calls my other functions</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_read_main"><label for="s7">My <code>main</code> reads like a list of what the robot does</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">Your robot's turn is 15 ticks off. With functions, how many places do you edit? Without them, how many?</p>
+    <textarea class="answer" data-key="p4_fix_one_place" aria-label="Fix in one place"></textarea>
+
+    <p class="q">In Project 9 you gave names to numbers. Here you gave names to actions. What is the same about those two ideas?</p>
+    <textarea class="answer" data-key="p4_naming_pattern" aria-label="Naming pattern"></textarea>
+
+    <p class="q">A new teammate joins and opens your program. They see <code>fetch_pom();</code> and have no idea how it works. Is that a problem?</p>
+    <textarea class="answer" data-key="p4_dont_need_to_know" aria-label="Do they need to know"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>Your robot follows the same plan every time, no matter what it finds. If a cube is not where you expected, it grabs at nothing and carries on regardless.</p>
+    <p>In <strong>Project 13 — Deciding What to Do</strong>, it stops following orders blindly and starts choosing.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.'],
+    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'COMPILE': ['Compile', 'To translate the code you wrote into machine instructions the robot’s processor can actually carry out. If compiling fails, the program cannot run.'],
+    'COMPILER': ['Compiler', 'The program that turns the code you wrote into instructions the robot’s processor can carry out. When it finds something it cannot translate, it stops and tells you where.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
+    'SEMICOLON': ['Semicolon', 'The punctuation mark that ends a statement in C. It does the same job as the full stop at the end of a sentence — it says this instruction is finished, move on to the next one.'],
+    'STATEMENT': ['Statement', 'One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.'],
+    'TICK': ['Tick', 'One small step of the motor shaft. There are about 1820 ticks in one full revolution of the shaft. Ticks count the motor turning, not the distance travelled — how far that is depends on your wheels.'],
+    'VARIABLE': ['Variable', 'A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it.'],
+    'PROTOTYPE': ['Prototype', 'A single line near the top of your program announcing that a function name exists, before the compiler ever reaches the code that does the work. Like listing a word in a vocabulary list before defining it.'],
+    'VOID': ['Void', 'A function marked void does a job but hands nothing back. ao() is void — it stops the motors but gives you no answer. Functions like digital() and gmpc() are not void, because they hand you a number.'],
+    'IN': ['In', 'An object is IN a container, enclosure, basket, or zone when any portion of the object extends into the interior space of that container, enclosure, basket, or zone — unless otherwise specified by a mission.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) openDef(el.dataset.term);
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_coding_12";
+  var MISSION_TITLE = "Discovery Project 12 — Teaching Your Robot New Moves";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>

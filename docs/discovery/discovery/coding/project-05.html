@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 5 — Learning to Turn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #5b6270;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #6b7280;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #24200f; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d9b464; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+  .meta dd.anchor { font-weight: 600; color: var(--red); }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #fff8e6;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #fffaef; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+
+  /* Mission card */
+  .mission { border: 2px solid var(--red); border-radius: 6px; overflow: hidden; margin: 20px 0; }
+  .mission-head {
+    background: var(--red); color: #fff; padding: 12px 18px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .mission-head .mtitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 21px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .mission-head .mpts {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 15px; letter-spacing: .08em; color: rgba(255,255,255,.85);
+  }
+  .mission-body { padding: 4px 18px 16px; }
+  .mpart { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .mpart:last-child { border-bottom: none; }
+  .mpart .mlabel {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--navy); display: block; margin-bottom: 3px;
+  }
+  .mpart.partial { background: #fffaef; margin: 0 -18px; padding-left: 18px; padding-right: 18px; }
+  .mpart.partial .mlabel { color: #8a6d1f; }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 190px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 15px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  /* Turn-type cards */
+  .turns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0; }
+  .turn {
+    border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--field);
+    display: flex; flex-direction: column;
+  }
+  .turn .thead {
+    background: var(--navy); color: #fff; padding: 10px 12px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px;
+    letter-spacing: .06em; text-transform: uppercase; text-align: center;
+  }
+  .turn .tbody { padding: 12px; font-size: 16px; flex: 1; }
+  .turn .tcode {
+    background: #2b3040; color: var(--code-ink); padding: 10px 12px;
+    font-family: 'Courier New', monospace; font-size: 13.5px; line-height: 1.5;
+  }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .turns { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code, .turn .tcode { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .mission-head, .turn .thead { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Coding · Project 5</p>
+    <h1>Learning to Turn</h1>
+    <p class="sub">Two knobs, three shapes — and your first drive to somewhere that isn't straight ahead.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Finding out how a robot turns, learning the three shapes a turn can have, and driving from your starting box to the spilled cubes.</dd></div>
+        <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 12 — Restack the Freight (approach only — you will finish it in Project 8)</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Built robot · Wombat · charged battery · the game field · open floor space · a chair · a small box · your Project 4 numbers</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 4 — you need your straight-driving power values and your starting position method.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Break the Straight Line</h2>
+
+    <p>In Project 4 you worked hard to make your robot drive straight. Now you are going to ruin it on purpose — and pay close attention while you do.</p>
+
+    <p>Start a new project called <code>Turns</code>. Put in your straight-driving program from Project 4, but keep <code>msleep(3000)</code> the same for every single run.</p>
+
+    <p>Then change <strong>one wheel only</strong>. Leave the left wheel at your usual power. Change the right wheel to each value below, run it, and describe the path the robot took.</p>
+
+    <div class="callout warn">
+      <p class="ctitle">⚠ Floor, Not Table</p>
+      <p>These runs go in circles and curves. Do this on an open floor with nothing in the way — not on a table, not on the field.</p>
+    </div>
+
+    <table class="grid">
+      <thead><tr><th style="width:26%">Right wheel power</th><th>What path did the robot take?</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td class="ctr">same as left</td><td><input type="text" data-key="p1_path_same" aria-label="Path at same power"></td></tr>
+        <tr class="trial"><td class="ctr">70</td><td><input type="text" data-key="p1_path_70" aria-label="Path at 70"></td></tr>
+        <tr class="trial"><td class="ctr">55</td><td><input type="text" data-key="p1_path_55" aria-label="Path at 55"></td></tr>
+        <tr class="trial"><td class="ctr">20</td><td><input type="text" data-key="p1_path_20" aria-label="Path at 20"></td></tr>
+        <tr class="trial"><td class="ctr">10</td><td><input type="text" data-key="p1_path_10" aria-label="Path at 10"></td></tr>
+        <tr class="trial"><td class="ctr">0</td><td><input type="text" data-key="p1_path_0" aria-label="Path at 0"></td></tr>
+        <tr class="trial"><td class="ctr">−50</td><td><input type="text" data-key="p1_path_neg50" aria-label="Path at negative 50"></td></tr>
+        <tr class="trial"><td class="ctr">−100</td><td><input type="text" data-key="p1_path_neg100" aria-label="Path at negative 100"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">What did your data tell you?</h3>
+
+    <p class="q">Fill in the blanks from your own runs:</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:56%">When the two power numbers are...</th><th>The robot...</th></tr></thead>
+      <tbody>
+        <tr><td>close together</td><td><input type="text" data-key="p1_rule_close" aria-label="Rule for close numbers"></td></tr>
+        <tr><td>far apart</td><td><input type="text" data-key="p1_rule_far" aria-label="Rule for far apart numbers"></td></tr>
+        <tr><td>one is zero</td><td><input type="text" data-key="p1_rule_zero" aria-label="Rule when one is zero"></td></tr>
+        <tr><td>opposite signs</td><td><input type="text" data-key="p1_rule_opposite" aria-label="Rule for opposite signs"></td></tr>
+      </tbody>
+    </table>
+
+    <p class="q">At the end of Project 3 you predicted what a robot would do with one wheel forward and one wheel backward. Were you right?</p>
+    <textarea class="answer" data-key="p1_p3_prediction" aria-label="Project 3 prediction check"></textarea>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Two Knobs, Three Shapes</h2>
+
+    <p>You only have two things to adjust, and they do completely different jobs.</p>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="acode">motor power</div>
+        <div class="adesc"><strong>Sets the shape of the path.</strong> The difference between the two numbers decides whether the robot goes straight, curves gently, curves hard, or spins on the spot.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">msleep() time</div>
+        <div class="adesc"><strong>Sets how far along that path the robot travels.</strong> It does not change the shape at all — only how much of it you get.</div>
+      </div>
+    </div>
+
+    <div class="callout gold">
+      <p class="ctitle">The Two Rules You Just Discovered</p>
+      <p><strong>The closer the two power numbers are, the straighter the robot goes.</strong></p>
+      <p><strong>The further apart they are, the sharper the curve.</strong></p>
+      <p>Everything else in this project is those two sentences applied on purpose.</p>
+    </div>
+
+    <h3 class="sub">The three shapes</h3>
+
+    <div class="turns">
+      <div class="turn">
+        <div class="thead"><span class="def-term" data-term="RADIUS TURN">radius turn</span></div>
+        <div class="tbody">
+          <p style="margin-top:0"><span class="def-term" data-term="RADIUS TURN">radius turn</span></p>
+          <p>Both wheels go the same direction at different speeds. The robot sweeps a wide arc, like a car going around a bend.</p>
+          <p class="muted" style="font-size:15px">Sharpness comes from how different the two numbers are.</p>
+        </div>
+        <div class="tcode">motor(0, 50);<br>motor(3, 25);</div>
+      </div>
+
+      <div class="turn">
+        <div class="thead"><span class="def-term" data-term="ONE-WHEEL TURN">one-wheel turn</span></div>
+        <div class="tbody">
+          <p style="margin-top:0"><span class="def-term" data-term="ONE-WHEEL TURN">one-wheel turn</span></p>
+          <p>One wheel drives, the other sits still. The robot swings around the stopped wheel — like ring around the rosie.</p>
+          <p class="muted" style="font-size:15px">More power on the moving wheel means a faster swing, not a tighter one.</p>
+        </div>
+        <div class="tcode">motor(0, 50);<br>motor(3, 0);</div>
+      </div>
+
+      <div class="turn">
+        <div class="thead"><span class="def-term" data-term="ZERO RADIUS TURN">zero radius turn</span></div>
+        <div class="tbody">
+          <p style="margin-top:0"><span class="def-term" data-term="ZERO RADIUS TURN">zero radius turn</span></p>
+          <p>The wheels go opposite directions. The robot spins in place without moving forward or backward at all.</p>
+          <p class="muted" style="font-size:15px">Also called a pivot or spin turn. This is what you use for precise angles.</p>
+        </div>
+        <div class="tcode">motor(0, 50);<br>motor(3, -50);</div>
+      </div>
+    </div>
+
+    <div class="callout navy">
+      <p class="ctitle">Which One Should You Use?</p>
+      <p><strong>Zero radius</strong> when you need to point a different direction without giving up your position — the usual choice on a crowded field.</p>
+      <p><strong>Radius</strong> when you want to travel <em>and</em> turn at the same time, like driving around an obstacle.</p>
+      <p><strong>One-wheel</strong> when you want to swing around something you are already next to.</p>
+    </div>
+
+    <div class="callout">
+      <p class="ctitle">Friction Matters More Than You Think</p>
+      <p>Two moving wheels fight friction better than one moving wheel does. A <span class="def-term" data-term="ONE-WHEEL TURN">one-wheel turn</span> asks a stopped wheel to skid sideways, so it is the least repeatable of the three. If a turn will not come out the same twice, try the same turn as zero radius instead.</p>
+    </div>
+
+    <h3 class="sub">Where you are headed</h3>
+
+    <div class="mission">
+      <div class="mission-head">
+        <span class="mtitle">Mission 12 — Restack the Freight</span>
+        <span class="mpts">16 points possible</span>
+      </div>
+      <div class="mission-body">
+        <div class="mpart">
+          <span class="mlabel">Base Mission — 11 pts</span>
+          Two spilled cubes form a scoring stack — one spilled cube is <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> another spilled cube. Both cubes must come from the spilled cube area.
+        </div>
+        <div class="mpart">
+          <span class="mlabel">Bonus Mission — 5 pts</span>
+          The stack is still standing at the end, and the lower cube is <span class="def-term" data-term="TOUCHING">TOUCHING</span> the black line.
+        </div>
+        <div class="mpart partial">
+          <span class="mlabel">⟶ Your job in this project</span>
+          Get there. Drive from your starting box to the spilled cube area and stop in a good position to pick a cube up. You cannot stack anything yet — you have no claw. That comes in Project 8.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Learn to Aim</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Drive a big circle</span>
+        <p>New project called <code>Circles</code>. Put a chair in the middle of an open floor.</p>
+        <p>Write a program that drives your robot in one big circle all the way around the chair, without <span class="def-term" data-term="TOUCHING">TOUCHING</span> it. Use <strong>only one set</strong> of <code>motor()</code>, <code>msleep()</code>, and <code>ao()</code> — no stopping and restarting.</p>
+        <table class="grid">
+          <thead><tr><th style="width:24%">Left power</th><th style="width:24%">Right power</th><th>msleep</th></tr></thead>
+          <tbody><tr><td><input type="text" data-key="p3_big_l" aria-label="Big circle left"></td><td><input type="text" data-key="p3_big_r" aria-label="Big circle right"></td><td><input type="text" data-key="p3_big_ms" aria-label="Big circle msleep"></td></tr></tbody>
+        </table>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_step_big_circle"><label for="d1">One full circle around the chair, no contact</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Drive a tight circle</span>
+        <p>Swap the chair for something small — a tissue box works. Circle that instead, same rule: one set of commands.</p>
+        <table class="grid">
+          <thead><tr><th style="width:24%">Left power</th><th style="width:24%">Right power</th><th>msleep</th></tr></thead>
+          <tbody><tr><td><input type="text" data-key="p3_tight_l" aria-label="Tight circle left"></td><td><input type="text" data-key="p3_tight_r" aria-label="Tight circle right"></td><td><input type="text" data-key="p3_tight_ms" aria-label="Tight circle msleep"></td></tr></tbody>
+        </table>
+        <p class="q">Compare your two sets of numbers. What did you change to make the circle smaller?</p>
+        <textarea class="answer" data-key="p3_circle_compare" aria-label="Comparing circle numbers"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Try all three shapes</span>
+        <p>Run each one and record what the robot actually does.</p>
+        <table class="grid">
+          <thead><tr><th style="width:30%">Turn type</th><th style="width:26%">My powers</th><th>What it did</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">Radius</td><td><input type="text" data-key="p3_shape_radius_pw" aria-label="Radius powers"></td><td><input type="text" data-key="p3_shape_radius_obs" aria-label="Radius observation"></td></tr>
+            <tr class="trial"><td class="ctr">One-wheel</td><td><input type="text" data-key="p3_shape_onewheel_pw" aria-label="One-wheel powers"></td><td><input type="text" data-key="p3_shape_onewheel_obs" aria-label="One-wheel observation"></td></tr>
+            <tr class="trial"><td class="ctr">Zero radius</td><td><input type="text" data-key="p3_shape_zero_pw" aria-label="Zero radius powers"></td><td><input type="text" data-key="p3_shape_zero_obs" aria-label="Zero radius observation"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Which of the three moved the robot the least distance across the floor? Why does that matter on a crowded field?</p>
+        <textarea class="answer" data-key="p3_least_distance" aria-label="Which moved least"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Build a 90° turn</span>
+        <p>New project called <code>Right Angle</code>. Use a <strong>zero radius</strong> turn and find the <code>msleep()</code> that gives you a quarter turn.</p>
+        <p>Keep both powers the same the whole time. Change only the time.</p>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Try</th><th style="width:26%">msleep</th><th>Too far, not far enough, or right?</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_a1_ms" aria-label="Angle try 1"></td><td><input type="text" data-key="p3_a1_res" aria-label="Angle result 1"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_a2_ms" aria-label="Angle try 2"></td><td><input type="text" data-key="p3_a2_res" aria-label="Angle result 2"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_a3_ms" aria-label="Angle try 3"></td><td><input type="text" data-key="p3_a3_res" aria-label="Angle result 3"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_a4_ms" aria-label="Angle try 4"></td><td><input type="text" data-key="p3_a4_res" aria-label="Angle result 4"></td></tr>
+            <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p3_a5_ms" aria-label="Angle try 5"></td><td><input type="text" data-key="p3_a5_res" aria-label="Angle result 5"></td></tr>
+          </tbody>
+        </table>
+        <div class="callout gold">
+          <p class="ctitle">Test One Step at a Time</p>
+          <p>Get the turn right on its own before you attach it to anything else. Debugging one command is easy. Debugging a whole run to find out which command was wrong is not.</p>
+        </div>
+      </li>
+
+      <li>
+        <span class="stitle">Prove it with a square</span>
+        <p>Here is the honest test of a 90° turn: <strong>do it four times and see if you end up where you started, facing the way you started.</strong></p>
+        <p>Drive forward, turn 90°. Repeat four times total.</p>
+        <ul class="check">
+          <li><input type="checkbox" id="d2" data-key="p3_step_square"><label for="d2">My robot came back close to its starting spot</label></li>
+          <li><input type="checkbox" id="d3" data-key="p3_step_facing"><label for="d3">It ended up facing the same direction it started</label></li>
+        </ul>
+        <p class="q">If your robot did not close the square, was each turn too much or too little? How could you tell?</p>
+        <textarea class="answer" data-key="p3_square_error" aria-label="Square error analysis"></textarea>
+        <p class="muted">A small error in one turn becomes a big error after four. This is why turning by time is hard — and why Project 11 replaces it with counting.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Drive to the spilled cubes</span>
+        <p>Onto the field. New project called <code>Approach 12</code>.</p>
+        <p>Start in your starting box, exactly the way you decided in Project 4. Drive out, turn, and stop next to the spilled cube area — close enough and square enough that a claw could pick a cube up.</p>
+        <p>Write your plan as <span class="def-term" data-term="PSEUDOCODE">pseudocode</span> first:</p>
+        <pre class="code"><span class="cm">// 1. Drive forward out of the starting box</span>
+<span class="cm">// 2. Turn toward the spilled cubes</span>
+<span class="cm">// 3. Drive up to them</span>
+<span class="cm">// 4. Stop</span></pre>
+        <table class="grid">
+          <thead><tr><th style="width:20%">Move</th><th style="width:20%">Left power</th><th style="width:20%">Right power</th><th>msleep</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">Forward</td><td><input type="text" data-key="p3_ap_fwd_l" aria-label="Approach forward left"></td><td><input type="text" data-key="p3_ap_fwd_r" aria-label="Approach forward right"></td><td><input type="text" data-key="p3_ap_fwd_ms" aria-label="Approach forward msleep"></td></tr>
+            <tr class="trial"><td class="ctr">Turn</td><td><input type="text" data-key="p3_ap_turn_l" aria-label="Approach turn left"></td><td><input type="text" data-key="p3_ap_turn_r" aria-label="Approach turn right"></td><td><input type="text" data-key="p3_ap_turn_ms" aria-label="Approach turn msleep"></td></tr>
+            <tr class="trial"><td class="ctr">Approach</td><td><input type="text" data-key="p3_ap_app_l" aria-label="Approach final left"></td><td><input type="text" data-key="p3_ap_app_r" aria-label="Approach final right"></td><td><input type="text" data-key="p3_ap_app_ms" aria-label="Approach final msleep"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check">
+          <li><input type="checkbox" id="d4" data-key="p3_step_arrived"><label for="d4">My robot stops at the spilled cubes</label></li>
+          <li><input type="checkbox" id="d5" data-key="p3_step_square_on"><label for="d5">It is square to the cubes, not at an angle</label></li>
+          <li><input type="checkbox" id="d6" data-key="p3_step_no_knock"><label for="d6">It did not knock any cubes out of the area on the way in</label></li>
+        </ul>
+      </li>
+
+      <li>
+        <span class="stitle">Run it five times</span>
+        <p>Same rule as Project 4. One good approach is luck.</p>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Run</th><th>Did it arrive in a position a claw could work from?</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_run1" aria-label="Approach run 1"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_run2" aria-label="Approach run 2"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_run3" aria-label="Approach run 3"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_run4" aria-label="Approach run 4"></td></tr>
+            <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p3_run5" aria-label="Approach run 5"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Which part of the run was least reliable — the drive out, the turn, or the final approach?</p>
+        <input type="text" data-key="p3_weakest_part" aria-label="Least reliable part">
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <p>No points yet — Mission 12 does not score until something gets stacked. What you have built is the half of the mission that has to work before the other half matters.</p>
+
+    <h3 class="sub">My turning numbers</h3>
+    <p class="muted">Every project from here uses these. Write them down properly.</p>
+    <table class="grid">
+      <thead><tr><th style="width:56%">Setting</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td><span class="def-term" data-term="ZERO RADIUS TURN">zero radius turn</span> — left power</td><td><input type="text" data-key="p4_spin_l" aria-label="Spin left power"></td></tr>
+        <tr><td>Zero <span class="def-term" data-term="RADIUS TURN">radius turn</span> — right power</td><td><input type="text" data-key="p4_spin_r" aria-label="Spin right power"></td></tr>
+        <tr><td>msleep for a 90° turn</td><td><input type="text" data-key="p4_ms_90" aria-label="90 degree msleep"></td></tr>
+        <tr><td>msleep for a 180° turn</td><td><input type="text" data-key="p4_ms_180" aria-label="180 degree msleep"></td></tr>
+        <tr><td>msleep for a 45° turn</td><td><input type="text" data-key="p4_ms_45" aria-label="45 degree msleep"></td></tr>
+      </tbody>
+    </table>
+    <p class="q">You worked out 90° by testing. Did doubling it give you a good 180°? Did halving it give you a good 45°?</p>
+    <textarea class="answer" data-key="p4_scaling" aria-label="Does turn time scale"></textarea>
+
+    <h3 class="sub">Match the turn to the job</h3>
+    <table class="grid">
+      <thead><tr><th style="width:56%">The robot needs to...</th><th>Which turn type?</th></tr></thead>
+      <tbody>
+        <tr><td>Face the other way without leaving its spot</td><td><input type="text" data-key="p4_match_reverse" aria-label="Match face other way"></td></tr>
+        <tr><td>Curve around a cone while still moving down the field</td><td><input type="text" data-key="p4_match_curve" aria-label="Match curve around"></td></tr>
+        <tr><td>Swing its front end around a cube it is already beside</td><td><input type="text" data-key="p4_match_swing" aria-label="Match swing around"></td></tr>
+        <tr><td>Make a small heading correction while driving straight</td><td><input type="text" data-key="p4_match_correct" aria-label="Match small correction"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_two_rules"><label for="s1">I can explain what happens when the two power numbers get closer together or further apart</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_name_three"><label for="s2">I can name all three turn types and write the code for each</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_knobs"><label for="s3">I know which knob changes the shape of the path and which changes how far along it I go</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_90"><label for="s4">I can make a repeatable 90° turn</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_combine"><label for="s5">I can chain drive, turn, and drive into one run</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_approach"><label for="s6">My robot reaches the spilled cubes in a workable position five times running</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">Your square test almost certainly did not close perfectly. Where did the error come from — was the robot doing the wrong thing, or was your program asking for something it cannot deliver?</p>
+    <textarea class="answer" data-key="p4_error_source" aria-label="Where the error came from"></textarea>
+
+    <p class="q">A teammate's robot turns 90° perfectly on the carpet but <span class="def-term" data-term="OVERSHOOT">overshoot</span>s on the field mat. Nothing in the program changed. What happened?</p>
+    <textarea class="answer" data-key="p4_surface_change" aria-label="Surface change question"></textarea>
+
+    <p class="q">You now have a robot that gets to the right place and points the right way. What is the next thing it needs before Mission 12 can actually score?</p>
+    <textarea class="answer" data-key="p4_whats_next" aria-label="What is needed next"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>In <strong>Project 6 — Bulldoze Run</strong>, you put driving and turning together to score four missions at once — and you do it all without a claw, by pushing.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.'],
+    'OVERSHOOT': ['Overshoot', 'How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot.'],
+    'PSEUDOCODE': ['Pseudocode', 'Literally "false code." Your plan written in plain language as comments, before you write any real code. It keeps you from getting lost in the middle of a program.'],
+    'TOUCHING': ['Touching', 'Two objects are TOUCHING when they are in direct physical contact with one another. Contact through a third object (robot, field element, or game piece) does not count as TOUCHING.'],
+    'RADIUS TURN': ['Radius Turn', 'Both wheels turn the same direction but at different speeds, so the robot sweeps a curved arc. How sharp the arc is depends on how different the two power numbers are. Also called an arc turn.'],
+    'ONE-WHEEL TURN': ['One-Wheel Turn', 'One wheel drives while the other stays stopped. The robot swings around the stopped wheel. Giving the moving wheel more power makes the swing faster, not tighter.'],
+    'ZERO RADIUS TURN': ['Zero Radius Turn', 'The two wheels turn in opposite directions, so the robot spins in place without traveling forward or backward. Also called a pivot turn or spin turn. This is the turn you use when you need an exact angle.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) openDef(el.dataset.term);
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_coding_05";
+  var MISSION_TITLE = "Discovery Project 5 — Learning to Turn";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>

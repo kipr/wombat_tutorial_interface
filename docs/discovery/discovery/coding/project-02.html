@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 2 — Your First Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E1B32;
+    --red-dark: #7d1526;
+    --navy: #1F2D5A;
+    --gold: #C8A14B;
+    --ink: #1c1c1e;
+    --grey: #5b6270;
+    --line: #d8dbe2;
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --field: #fcfcfd;
+    --field-focus: #fffdf5;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #6b7280;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #24200f; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d9b464; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #fff8e6;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #fffaef; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+  pre.code .hi { background: rgba(200,161,75,.22); border-radius: 2px; }
+
+  /* Anatomy list */
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 190px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 15px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>Projects</span></div>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · Coding · Project 2</p>
+    <h1>Your First Program</h1>
+    <p class="sub">Find out what every line of that code actually means — then change it and make it yours.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Reading the C template line by line, writing your own text to the screen, controlling timing, and learning to read error messages.</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>Wombat <span class="def-term" data-term="CONTROLLER">controller</span> · battery · your computer or Chromebook · this project sheet</dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 1 — you must be able to connect, create a project, <span class="def-term" data-term="COMPILE">compile</span>, and run.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Guess Before You Know</h2>
+
+    <p>In Project 1 you compiled and ran code that somebody else wrote. Here it is again.</p>
+
+    <pre class="code"><span class="ln">1</span>  <span class="kw">#include</span> &lt;kipr/wombat.h&gt;
+<span class="ln">2</span>
+<span class="ln">3</span>  <span class="kw">int</span> main ()
+<span class="ln">4</span>  {
+<span class="ln">5</span>      printf(<span class="st">"Hello World!\n"</span>);
+<span class="ln">6</span>      <span class="kw">return</span> <span class="nu">0</span>;
+<span class="ln">7</span>  }</pre>
+
+    <p>Do not look anything up. Do not ask anyone. Just guess — you will find out in a few minutes whether you were right.</p>
+
+    <p class="q">Line 5 is the only line that made something happen on the screen. What do you think the other lines are for?</p>
+    <textarea class="answer" data-key="p1_guess_other_lines" aria-label="Guess what the other lines do"></textarea>
+
+    <p class="q">Line 1 has a <code>#</code> and no <span class="def-term" data-term="SEMICOLON">semicolon</span> at the end. Every other line looks different from it. Why might that be?</p>
+    <textarea class="answer" data-key="p1_guess_line1" aria-label="Guess about line 1"></textarea>
+
+    <p class="q">There are exactly two curly braces, <code>{</code> and <code>}</code>. What do you think they are doing?</p>
+    <textarea class="answer" data-key="p1_guess_braces" aria-label="Guess about curly braces"></textarea>
+
+    <div class="callout gold">
+      <p class="ctitle">Keep Your Guesses</p>
+      <p>Do not erase them, even if they turn out to be wrong. Being wrong and then finding out why is how this works.</p>
+    </div>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> The Template, Line by Line</h2>
+
+    <p>Every C program you write on the Wombat starts from this same shape. It is called the <strong>template</strong>.</p>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="acode">#include &lt;kipr/wombat.h&gt;</div>
+        <div class="adesc">Brings in the KIPR <span class="def-term" data-term="LIBRARY">library</span> — a big collection of ready-made commands for driving motors, moving <span class="def-term" data-term="SERVO">servo</span>s, and reading <span class="def-term" data-term="SENSOR">sensor</span>s. Every program needs this line. Without it, the robot does not know what <code>printf</code> or <code>motor</code> mean.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">int main ()</div>
+        <div class="adesc">Defines the <code>main</code> <span class="def-term" data-term="FUNCTION">function</span>. When you press Run, the robot always starts here. Every program has exactly one <code>main</code>.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">{</div>
+        <div class="adesc">Opens a <span class="def-term" data-term="BLOCK">block</span>. Everything between this brace and its partner belongs to <code>main</code>.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">printf("Hello World!\n");</div>
+        <div class="adesc">A programming <span class="def-term" data-term="STATEMENT">statement</span> — one action for the robot to carry out. This one prints text to the Wombat's screen.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">return 0;</div>
+        <div class="adesc">Reports back to the <span class="def-term" data-term="CONTROLLER">controller</span> that the program finished. <code>0</code> means "no problems." This is always the last <span class="def-term" data-term="STATEMENT">statement</span> before the closing brace.</div>
+      </div>
+      <div class="arow">
+        <div class="acode">}</div>
+        <div class="adesc">Closes the <span class="def-term" data-term="BLOCK">block</span>. The program stops here.</div>
+      </div>
+    </div>
+
+    <h3 class="sub"><span class="def-term" data-term="SEMICOLON">Semicolon</span>s end <span class="def-term" data-term="STATEMENT">statement</span>s</h3>
+
+    <p>Look at lines 5 and 6. Both end with a semicolon.</p>
+
+    <p>A semicolon does the same job as the period at the end of an English sentence: it says <em>this thought is finished, move on.</em> Leave one out and the <span class="def-term" data-term="COMPILER">compiler</span> runs two statements together, the way a sentence without a period becomes a run-on.</p>
+
+    <p class="muted">Lines that open a new <span class="def-term" data-term="BLOCK">block</span> — like <code>int main ()</code> — do <strong>not</strong> get a semicolon. The brace does that job instead.</p>
+
+    <h3 class="sub">Order matters, and speed is not the point</h3>
+
+    <p>The controller reads your program like you read a book: top line first, then down, one line at a time.</p>
+
+    <p>It is fast. The Wombat's processor runs at 800 MHz, so it moves from one line to the next far quicker than you can blink. That becomes a problem the moment you want the robot to <em>hold</em> a wheel on, or leave a message on screen long enough to read. You will fix that with <code>msleep()</code> in a minute.</p>
+
+    <h3 class="sub">Colors are a hint</h3>
+
+    <p>The KISS <span class="def-term" data-term="IDE">IDE</span> colors your code as you type. That coloring is a free error check — if something is the wrong color, you have made a mistake before you even <span class="def-term" data-term="COMPILE">compile</span>.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:32%">Color</th><th>What it is</th></tr></thead>
+      <tbody>
+        <tr><td>Green</td><td><span class="def-term" data-term="COMMENT">comment</span>s — the computer ignores these</td></tr>
+        <tr><td>Bold blue</td><td>Keywords, like <code>int</code> and <code>return</code></td></tr>
+        <tr><td>Red</td><td>Text strings — anything inside quotation marks</td></tr>
+        <tr><td>Aqua</td><td>Numbers</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold">
+      <p class="ctitle">A Quick Trick</p>
+      <p>If you open a quotation mark and forget to close it, everything after it turns red. Spotting that color spreading down the page is faster than reading an error message.</p>
+    </div>
+
+    <h3 class="sub"><span class="def-term" data-term="COMMENT">Comment</span>s</h3>
+
+    <p>A <span class="def-term" data-term="COMMENT">comment</span> starts with two slashes. The computer ignores everything after them on that line — comments are for people, not machines.</p>
+
+    <pre class="code"><span class="ln">1</span>  <span class="kw">#include</span> &lt;kipr/wombat.h&gt;
+<span class="ln">2</span>
+<span class="ln">3</span>  <span class="kw">int</span> main ()
+<span class="ln">4</span>  {
+<span class="ln">5</span>      <span class="cm">// You can put a comment on its own line...</span>
+<span class="ln">6</span>      printf(<span class="st">"Hello World!\n"</span>);  <span class="cm">// ...or at the end of a line</span>
+<span class="ln">7</span>      <span class="kw">return</span> <span class="nu">0</span>;
+<span class="ln">8</span>  }</pre>
+
+    <p>Comments have three jobs, and you will use all three:</p>
+
+    <ul class="plain">
+      <li><strong>Explain</strong> what a line does, so you still understand it next week.</li>
+      <li><strong>Plan</strong> — writing your steps as comments first is called <span class="def-term" data-term="PSEUDOCODE">pseudocode</span>.</li>
+      <li><strong>Give credit</strong> — if you borrow code, you say so in a comment.</li>
+    </ul>
+
+    <h3 class="sub">Commands you already have</h3>
+
+    <p class="muted">These come with the KIPR <span class="def-term" data-term="LIBRARY">library</span>. You do not have to write them. You will meet most of these in later projects — this list is here so you know they exist.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:44%">Command</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><code>printf("text\n");</code></td><td>Prints text to the Wombat's screen</td></tr>
+        <tr><td><code>msleep(milliseconds);</code></td><td>Pauses the program for that many milliseconds</td></tr>
+        <tr><td><code>motor(port, power);</code></td><td>Runs the motor in that <span class="def-term" data-term="PORT">port</span> at that power level</td></tr>
+        <tr><td><code>ao();</code></td><td>"All off" — stops every motor at once</td></tr>
+        <tr><td><code>enable_servos();</code></td><td>Turns the <span class="def-term" data-term="SERVO">servo</span> <span class="def-term" data-term="PORT">port</span>s on</td></tr>
+        <tr><td><code>set_servo_position(port, position);</code></td><td>Moves the servo in that port to a position</td></tr>
+        <tr><td><code>disable_servos();</code></td><td>Turns the servo ports off</td></tr>
+        <tr><td><code>digital(port);</code></td><td>Reads a <span class="def-term" data-term="DIGITAL">digital</span> <span class="def-term" data-term="SENSOR">sensor</span></td></tr>
+        <tr><td><code>analog(port);</code></td><td>Reads an <span class="def-term" data-term="ANALOG">analog</span> sensor</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Back to your guesses</h3>
+    <p class="q">Look at what you wrote in Try It. Which guess were you closest on, and which one were you furthest off?</p>
+    <textarea class="answer" data-key="p2_guess_review" aria-label="Reviewing your guesses"></textarea>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Make It Yours</h2>
+
+    <p>Connect to your Wombat the same way you did in Project 1. Open your <code>First Project</code>.</p>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Add a comment and prove it does nothing</span>
+        <p>Click at the end of the <code>printf</code> line and type:</p>
+        <pre class="code">printf(<span class="st">"Hello World!\n"</span>);  <span class="cm">// Prints "Hello World!" to the screen</span></pre>
+        <p>Compile. Then run it on the Wombat: from the Home Screen tap <strong>Programs</strong>, pick your program, press <strong>Run</strong>.</p>
+        <p class="q">Did your comment appear on the Wombat's screen?</p>
+        <input type="text" data-key="p3_comment_appeared" aria-label="Did the comment appear">
+        <p class="q" style="margin-top:14px">Why not?</p>
+        <textarea class="answer" data-key="p3_comment_why" aria-label="Why the comment did not appear"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Sign your work</span>
+        <p>Add three comment lines at the very top, above the <code>#include</code>:</p>
+        <pre class="code"><span class="cm">// Author: your name here</span>
+<span class="cm">// Program purpose: prints text to the screen</span>
+<span class="cm">// Created: today's date</span></pre>
+        <p>This is called <span class="def-term" data-term="ATTRIBUTION">attribution</span>. From now on, every program you write gets these three lines.</p>
+        <div class="callout navy">
+          <p class="ctitle">Borrowing Code</p>
+          <p>If you use part of a teammate's code, you say so in a comment — where it came from, and where the borrowed part ends. That holds even when you change their idea a little to fit your robot.</p>
+        </div>
+        <p class="q">Where else in school are you expected to give credit for someone else's work?</p>
+        <textarea class="answer" data-key="p3_attribution_where" aria-label="Where else attribution matters"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Start a new project and say hello yourself</span>
+        <p>Go to <strong>Project Explorer</strong>, pick your folder, click <strong>+ Add Project</strong>, and name it <code>Printf Statements</code>.</p>
+        <p>Write a program that prints <code>Hello World!</code> and then prints your own name on the next line.</p>
+        <p>Plan it as <span class="def-term" data-term="PSEUDOCODE">pseudocode</span> first:</p>
+        <pre class="code"><span class="cm">// 1. Display "Hello World!" on the screen</span>
+<span class="cm">// 2. Display my name on the screen</span></pre>
+        <div class="callout gold">
+          <p class="ctitle">What does <code>\n</code> do?</p>
+          <p>It is like pressing Enter at the end of the line. Leave it out and your next <code>printf</code> starts on the same line, jammed against the last one.</p>
+        </div>
+        <p>Compile until you see <strong>Compilation Succeeded</strong>, then run it.</p>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_step_printf"><label for="d1">Both lines showed up on the Wombat's screen</label></li></ul>
+        <p class="q">The two lines appeared at what looked like the same instant. Why?</p>
+        <textarea class="answer" data-key="p3_same_instant" aria-label="Why both lines appeared at once"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Slow it down</span>
+        <p><code>msleep()</code> pauses the program. The number inside is milliseconds — thousandths of a second.</p>
+        <pre class="code">msleep(<span class="nu">1000</span>);   <span class="cm">// pause for 1 second</span></pre>
+        <p>Fill this in before you write any code:</p>
+        <table class="grid">
+          <thead><tr><th style="width:50%">You want to wait...</th><th>Write</th></tr></thead>
+          <tbody>
+            <tr><td>2 seconds</td><td><input type="text" data-key="p3_ms_2sec" aria-label="Milliseconds for 2 seconds"></td></tr>
+            <tr><td>3 seconds</td><td><input type="text" data-key="p3_ms_3sec" aria-label="Milliseconds for 3 seconds"></td></tr>
+            <tr><td>4 seconds</td><td><input type="text" data-key="p3_ms_4sec" aria-label="Milliseconds for 4 seconds"></td></tr>
+            <tr><td>Half a second</td><td><input type="text" data-key="p3_ms_half" aria-label="Milliseconds for half a second"></td></tr>
+          </tbody>
+        </table>
+        <p>Now put a two-second pause between your two <code>printf</code> lines. Compile and run.</p>
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_step_msleep"><label for="d2">My name appeared two seconds after Hello World</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Turn your <span class="def-term" data-term="PSEUDOCODE">pseudocode</span> into real comments</span>
+        <p>Good programmers leave the plan in the finished program. Add a comment to the end of each line describing what it does, so your program reads like this:</p>
+        <pre class="code"><span class="ln">1</span>  <span class="kw">#include</span> &lt;kipr/wombat.h&gt;
+<span class="ln">2</span>
+<span class="ln">3</span>  <span class="kw">int</span> main ()
+<span class="ln">4</span>  {
+<span class="ln">5</span>      printf(<span class="st">"Hello World!\n"</span>);   <span class="cm">// Print "Hello World"</span>
+<span class="ln">6</span>      msleep(<span class="nu">2000</span>);              <span class="cm">// Pause for 2 seconds</span>
+<span class="ln">7</span>      printf(<span class="st">"Hello Sam!\n"</span>);     <span class="cm">// Print my name</span>
+<span class="ln">8</span>      <span class="kw">return</span> <span class="nu">0</span>;
+<span class="ln">9</span>  }</pre>
+      </li>
+
+      <li>
+        <span class="stitle">Break it on purpose</span>
+        <p>Now the important part. You are going to make five mistakes deliberately, one at a time, so that when you make them by accident you already know what they look like.</p>
+        <p><strong>For each one:</strong> break it → compile → write down what the error said → fix it → compile again.</p>
+
+        <div class="callout warn">
+          <p class="ctitle">⚠ How to Read an Error Message</p>
+          <ul class="plain">
+            <li><strong>Fix the top error first.</strong> One mistake often produces a pile of errors. Fixing the first may clear all of them.</li>
+            <li><strong>The line number is a hint, not an answer.</strong> If it says line 6, the real mistake is often on line 5 — or earlier, if there are blank lines.</li>
+            <li><strong>Ignore the second number.</strong> <code>5:28</code> means line 5, column 28. You cannot see columns. Ignore the 28.</li>
+            <li><strong>Change one thing, then recompile.</strong> Do not fix four things at once.</li>
+          </ul>
+        </div>
+
+        <table class="grid">
+          <thead><tr><th style="width:34%">Break this</th><th>What the error message said</th></tr></thead>
+          <tbody>
+            <tr><td>Delete a semicolon</td><td><input type="text" data-key="p3_err_semicolon" aria-label="Missing semicolon error"></td></tr>
+            <tr><td>Misspell <code>msleep</code> as <code>mlseep</code></td><td><input type="text" data-key="p3_err_misspell" aria-label="Misspelled function error"></td></tr>
+            <tr><td>Write <code>msleep(2,000);</code></td><td><input type="text" data-key="p3_err_comma" aria-label="Comma in argument error"></td></tr>
+            <tr><td>Delete the closing <code>}</code></td><td><input type="text" data-key="p3_err_brace" aria-label="Missing brace error"></td></tr>
+            <tr><td>Change <code>return 0;</code> to <code>return O;</code></td><td><input type="text" data-key="p3_err_oh_zero" aria-label="Letter O instead of zero error"></td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout">
+          <p class="ctitle">Two Messages Worth Recognizing</p>
+          <p><strong>"implicit declaration of <span class="def-term" data-term="FUNCTION">function</span>"</strong> almost always means you spelled a command wrong.</p>
+          <p><strong>"too many <span class="def-term" data-term="ARGUMENT">argument</span>s to <span class="def-term" data-term="FUNCTION">function</span>"</strong> means you gave a command more information than it wanted. <code>msleep</code> takes one number. Writing <code>2,000</code> looks like two things to the <span class="def-term" data-term="COMPILER">compiler</span>: <code>2</code> and <code>000</code>. Never put commas in numbers in code.</p>
+        </div>
+
+        <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_step_all_fixed"><label for="d4">All five bugs broken, read, and fixed — program compiles cleanly</label></li></ul>
+      </li>
+
+    </ol>
+
+    <p class="q">Which of the five bugs would have been hardest to find if you had made it by accident? Why that one?</p>
+    <textarea class="answer" data-key="p3_hardest_bug" aria-label="Hardest bug to find"></textarea>
+
+    <p class="q">Professional programmers spend most of their working time debugging. Does that surprise you? What does it tell you about what a bug actually means?</p>
+    <textarea class="answer" data-key="p3_debugging_reflection" aria-label="Reflection on debugging"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>You can now make the robot say things and wait. In <strong>Project 3 — Motors and Ports</strong>, it stops talking and starts moving.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'ANALOG': ['Analog', 'An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers "how dark is this?" with a number, so you have to decide for yourself where dark begins.'],
+    'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.'],
+    'COMPILE': ['Compile', 'To translate the code you wrote into machine instructions the robot’s processor can actually carry out. If compiling fails, the program cannot run.'],
+    'COMPILER': ['Compiler', 'The program that turns the code you wrote into instructions the robot’s processor can carry out. When it finds something it cannot translate, it stops and tells you where.'],
+    'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
+    'DIGITAL': ['Digital', 'A digital sensor has only two possible readings: 0 or 1. It works like a light switch — pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off.'],
+    'IDE': ['IDE', 'Short for Integrated Development Environment. It is the place where you write your code, check it for mistakes, and send it to the robot. Yours is called the KISS IDE.'],
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
+    'SEMICOLON': ['Semicolon', 'The punctuation mark that ends a statement in C. It does the same job as the full stop at the end of a sentence — it says this instruction is finished, move on to the next one.'],
+    'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
+    'SERVO': ['Servo', 'A motor that rotates to a position you choose, rather than simply spinning. It turns about 180 degrees, divided into 2048 numbered positions, and holds whatever position you send it to.'],
+    'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
+    'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
+    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'STATEMENT': ['Statement', 'One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.'],
+    'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
+    'PSEUDOCODE': ['Pseudocode', 'Literally "false code." Your plan written in plain language as comments, before you write any real code. It keeps you from getting lost in the middle of a program.'],
+    'ATTRIBUTION': ['Attribution', 'Naming the author of a piece of code in a comment. It says who wrote what, so anyone reading knows whose work it is and who to ask before borrowing it.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) openDef(el.dataset.term);
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_coding_02";
+  var MISSION_TITLE = "Discovery Project 2 — Your First Program";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>
