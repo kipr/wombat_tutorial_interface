@@ -356,6 +356,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -390,7 +399,16 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Driving out of the starting box, stopping clearly <span class="def-term" data-term="IN THE ZONE">IN THE ZONE</span>, and driving back in — then making it work the same way every time.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 1 — Waypoint Alpha · Mission 10 — Waypoint Bravo (base + bonus)</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Built robot · Wombat · charged battery · the game field · a tape measure · this project sheet</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod041" data-key="need_1"><label for="ndcod041">Built robot</label></li>
+          <li><input type="checkbox" id="ndcod042" data-key="need_2"><label for="ndcod042">Wombat</label></li>
+          <li><input type="checkbox" id="ndcod043" data-key="need_3"><label for="ndcod043">Charged battery</label></li>
+          <li><input type="checkbox" id="ndcod044" data-key="need_4"><label for="ndcod044">The game field</label></li>
+          <li><input type="checkbox" id="ndcod045" data-key="need_5"><label for="ndcod045">A tape measure</label></li>
+          <li><input type="checkbox" id="ndcod046" data-key="need_6"><label for="ndcod046">This project sheet</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Project 3 — motors plugged in, both LEDs green, and you can write a working <code>motor()</code> program.</dd></div>
       </dl>
     </div>
@@ -760,7 +778,7 @@ ao();                <span class="cm">// Stop in the box</span></pre>
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();

@@ -389,6 +389,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -423,7 +432,15 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Steering from a <span class="def-term" data-term="SENSOR">sensor</span> reading instead of driving blind, then using the lines to reach four of the hardest scoring targets on the field.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 6 · Mission 7 base · Mission 16 base · Mission 17 base — 51 points</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Robot with arm, claw, and <span class="def-term" data-term="REFLECTANCE">reflectance</span> <span class="def-term" data-term="SENSOR">sensor</span> · Wombat · charged battery · the game field · your sensor card from Project 14</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod151" data-key="need_1"><label for="ndcod151">Robot with arm, claw, and <span class="def-term" data-term="REFLECTANCE">reflectance</span> <span class="def-term" data-term="SENSOR">sensor</span></label></li>
+          <li><input type="checkbox" id="ndcod152" data-key="need_2"><label for="ndcod152">Wombat</label></li>
+          <li><input type="checkbox" id="ndcod153" data-key="need_3"><label for="ndcod153">Charged battery</label></li>
+          <li><input type="checkbox" id="ndcod154" data-key="need_4"><label for="ndcod154">The game field</label></li>
+          <li><input type="checkbox" id="ndcod155" data-key="need_5"><label for="ndcod155">Your sensor card from Project 14</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Project 14 — you need a working <span class="def-term" data-term="THRESHOLD">threshold</span> and a robot that can find a line.</dd></div>
       </dl>
     </div>
@@ -857,7 +874,7 @@ ao();</pre>
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();

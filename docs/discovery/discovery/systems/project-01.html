@@ -344,6 +344,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -378,7 +387,14 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Taking inventory of the kit, learning what every part is for, and setting up a way to keep track of it all year.</dd></div>
         <div class="row"><dt>Strand Link</dt><dd class="link">Suggested before Coding Project 1 — you will need to find the <span class="def-term" data-term="CONTROLLER">controller</span> and the charger.</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Your robot kit, unopened if possible · a table you can spread out on · a notebook · this project sheet</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndsys011" data-key="need_1"><label for="ndsys011">Your robot kit, unopened if possible</label></li>
+          <li><input type="checkbox" id="ndsys012" data-key="need_2"><label for="ndsys012">A table you can spread out on</label></li>
+          <li><input type="checkbox" id="ndsys013" data-key="need_3"><label for="ndsys013">A notebook</label></li>
+          <li><input type="checkbox" id="ndsys014" data-key="need_4"><label for="ndsys014">This project sheet</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Nothing. This is the first project in the Systems strand.</dd></div>
       </dl>
     </div>
@@ -716,7 +732,7 @@
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();

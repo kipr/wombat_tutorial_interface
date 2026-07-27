@@ -371,6 +371,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -405,7 +414,15 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Adding a claw to your arm, learning to grab, carry, and release — then stacking cubes and dropping poms into baskets.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 12 complete · Mission 3 base · Mission 11 base · Mission 13 bonus — 37 points</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Robot with arm and claw (two <span class="def-term" data-term="SERVO">servo</span>s) · Wombat · charged battery · the game field · your Project 5 and 7 numbers</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod081" data-key="need_1"><label for="ndcod081">Robot with arm and claw (two <span class="def-term" data-term="SERVO">servo</span>s)</label></li>
+          <li><input type="checkbox" id="ndcod082" data-key="need_2"><label for="ndcod082">Wombat</label></li>
+          <li><input type="checkbox" id="ndcod083" data-key="need_3"><label for="ndcod083">Charged battery</label></li>
+          <li><input type="checkbox" id="ndcod084" data-key="need_4"><label for="ndcod084">The game field</label></li>
+          <li><input type="checkbox" id="ndcod085" data-key="need_5"><label for="ndcod085">Your Project 5 and 7 numbers</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Project 7 — and your claw must be built. That build lives in the Systems strand.</dd></div>
       </dl>
     </div>
@@ -887,7 +904,7 @@ msleep(<span class="nu">1000</span>);</pre>
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();

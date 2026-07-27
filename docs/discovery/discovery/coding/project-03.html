@@ -346,6 +346,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -379,7 +388,16 @@
     <div class="meta">
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Plugging in motors, checking their direction, and writing your first program that makes something turn.</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Built robot · 2 motors · Wombat · battery · a block or thick book to raise the wheels · your computer</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod031" data-key="need_1"><label for="ndcod031">Built robot</label></li>
+          <li><input type="checkbox" id="ndcod032" data-key="need_2"><label for="ndcod032">2 motors</label></li>
+          <li><input type="checkbox" id="ndcod033" data-key="need_3"><label for="ndcod033">Wombat</label></li>
+          <li><input type="checkbox" id="ndcod034" data-key="need_4"><label for="ndcod034">Battery</label></li>
+          <li><input type="checkbox" id="ndcod035" data-key="need_5"><label for="ndcod035">A block or thick book to raise the wheels</label></li>
+          <li><input type="checkbox" id="ndcod036" data-key="need_6"><label for="ndcod036">Your computer</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Projects 1 and 2 — you must be able to connect, write, <span class="def-term" data-term="COMPILE">compile</span>, and run a program.</dd></div>
       </dl>
     </div>
@@ -766,7 +784,7 @@ motor(<span class="nu">3</span>, <span class="nu">-50</span>);</pre>
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();

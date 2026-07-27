@@ -401,6 +401,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -435,7 +444,15 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Learning the loop that counts, then using it to collect every bonus that just means "now do that again."</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 7 · 11 · 16 · 17 bonuses — 38 points</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Robot with arm, claw, and <span class="def-term" data-term="SENSOR">sensor</span>s · Wombat · charged battery · the game field · your <span class="def-term" data-term="LIBRARY">library</span> from Project 16</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod171" data-key="need_1"><label for="ndcod171">Robot with arm, claw, and <span class="def-term" data-term="SENSOR">sensor</span>s</label></li>
+          <li><input type="checkbox" id="ndcod172" data-key="need_2"><label for="ndcod172">Wombat</label></li>
+          <li><input type="checkbox" id="ndcod173" data-key="need_3"><label for="ndcod173">Charged battery</label></li>
+          <li><input type="checkbox" id="ndcod174" data-key="need_4"><label for="ndcod174">The game field</label></li>
+          <li><input type="checkbox" id="ndcod175" data-key="need_5"><label for="ndcod175">Your <span class="def-term" data-term="LIBRARY">library</span> from Project 16</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Project 16 — your <span class="def-term" data-term="FUNCTION">function</span>s should live in your <span class="def-term" data-term="LIBRARY">library</span> by now.</dd></div>
       </dl>
     </div>
@@ -907,7 +924,7 @@
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();

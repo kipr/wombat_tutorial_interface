@@ -382,6 +382,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -416,7 +425,16 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Wiring up a <span class="def-term" data-term="SERVO">servo</span>, finding its safe positions, and using an arm to reach into the <span class="def-term" data-term="ENCLOSURE">enclosure</span> and touch Botguy.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 9 — Recover Botguy (base)</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Built robot with one <span class="def-term" data-term="SERVO">servo</span> and a servo horn · Wombat · charged battery · the game field · a small screwdriver · your Project 4 and 5 numbers</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod071" data-key="need_1"><label for="ndcod071">Built robot with one <span class="def-term" data-term="SERVO">servo</span> and a servo horn</label></li>
+          <li><input type="checkbox" id="ndcod072" data-key="need_2"><label for="ndcod072">Wombat</label></li>
+          <li><input type="checkbox" id="ndcod073" data-key="need_3"><label for="ndcod073">Charged battery</label></li>
+          <li><input type="checkbox" id="ndcod074" data-key="need_4"><label for="ndcod074">The game field</label></li>
+          <li><input type="checkbox" id="ndcod075" data-key="need_5"><label for="ndcod075">A small screwdriver</label></li>
+          <li><input type="checkbox" id="ndcod076" data-key="need_6"><label for="ndcod076">Your Project 4 and 5 numbers</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Project 6 — and your arm must be built. The build lives in the Systems strand.</dd></div>
       </dl>
     </div>
@@ -842,7 +860,7 @@ enable_servos();</pre>
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();

@@ -365,6 +365,15 @@
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs{display:none} }
   .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
 </style>
 </head>
 <body>
@@ -399,7 +408,16 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Putting driving and turning together to clear objects off the black line, one mission at a time, then chaining them into a single run.</dd></div>
         <div class="row"><dt>Mission Anchor</dt><dd class="anchor">Mission 2 · Mission 4 · Mission 13 base · Mission 14 base</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>Built robot · Wombat · charged battery · the game field with all elements set · a stopwatch · your Project 4 and 5 numbers</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod061" data-key="need_1"><label for="ndcod061">Built robot</label></li>
+          <li><input type="checkbox" id="ndcod062" data-key="need_2"><label for="ndcod062">Wombat</label></li>
+          <li><input type="checkbox" id="ndcod063" data-key="need_3"><label for="ndcod063">Charged battery</label></li>
+          <li><input type="checkbox" id="ndcod064" data-key="need_4"><label for="ndcod064">The game field with all elements set</label></li>
+          <li><input type="checkbox" id="ndcod065" data-key="need_5"><label for="ndcod065">A stopwatch</label></li>
+          <li><input type="checkbox" id="ndcod066" data-key="need_6"><label for="ndcod066">Your Project 4 and 5 numbers</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Projects 4 and 5 — you need straight driving, a repeatable 90° turn, and a consistent starting position.</dd></div>
       </dl>
     </div>
@@ -810,7 +828,7 @@
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
   document.addEventListener('click', function(e) {
     var el = e.target.closest('.def-term');
-    if (el) openDef(el.dataset.term);
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
   });
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.def-term')) e.preventDefault();

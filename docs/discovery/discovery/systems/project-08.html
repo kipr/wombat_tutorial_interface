@@ -139,7 +139,15 @@
     .print-pin{display:block!important}
     ol.dosteps>li::before{background:#333!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
     .role .rhead,.chain svg{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  }
+  }  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+
   .print-pin{display:none;margin:14px 40px 0;font-size:16px}
 </style>
 </head>
@@ -173,7 +181,15 @@
       <dl>
         <div class="row"><dt>What You Are Doing</dt><dd>Being the <span class="def-term" data-term="HARDWARE">hardware</span> and the <span class="def-term" data-term="SOFTWARE">software</span> in turn, adding a translator between them, then drawing the whole system your robot actually is.</dd></div>
         <div class="row"><dt>Strand Link</dt><dd class="link">Do this before Coding Project 10</dd></div>
-        <div class="row"><dt>What You Need</dt><dd>A clear space to walk in · an object to pick up · paper and a pencil · a folder or box · two or three people</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndsys081" data-key="need_1"><label for="ndsys081">A clear space to walk in</label></li>
+          <li><input type="checkbox" id="ndsys082" data-key="need_2"><label for="ndsys082">An object to pick up</label></li>
+          <li><input type="checkbox" id="ndsys083" data-key="need_3"><label for="ndsys083">Paper and a pencil</label></li>
+          <li><input type="checkbox" id="ndsys084" data-key="need_4"><label for="ndsys084">A folder or box</label></li>
+          <li><input type="checkbox" id="ndsys085" data-key="need_5"><label for="ndsys085">Two or three people</label></li>
+        </ul>
+      </dd></div>
         <div class="row"><dt>Before You Start</dt><dd>Systems Project 2. You should know the six parts of a robot.</dd></div>
       </dl>
     </div>
@@ -486,7 +502,7 @@
   document.getElementById('defClose').addEventListener('click', closeDef);
   document.getElementById('defOverlay').addEventListener('click', function(e){ if(e.target===this) closeDef(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDef(); });
-  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el) openDef(el.dataset.term); });
+  document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el){ e.preventDefault(); openDef(el.dataset.term); } });
   document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
 })();
 </script>
