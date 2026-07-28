@@ -191,6 +191,25 @@
   }
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs,.def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
+  .fig{margin:16px 0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+  .fig img{display:block;width:100%;height:auto;cursor:zoom-in;background:#fff}
+  .fig figcaption{padding:9px 13px;font-size:15px;color:var(--grey);background:var(--field);
+                  border-top:1px solid var(--line)}
+  .figrow{display:grid;gap:14px;margin:16px 0}
+  .figrow.two{grid-template-columns:1fr 1fr}
+  .figrow.three{grid-template-columns:repeat(3,1fr)}
+  .figrow .fig{margin:0}
+  @media (max-width:700px){ .figrow.two,.figrow.three{grid-template-columns:1fr} }
+  .zoom{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9998;
+        align-items:center;justify-content:center;padding:12px;cursor:zoom-out}
+  .zoom.open{display:flex}
+  .zoom img{max-width:100%;max-height:92vh;border-radius:4px}
+  .zoom .zclose{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.15);color:#fff;
+                border:none;width:42px;height:42px;border-radius:6px;font-size:1.4rem;cursor:pointer}
+  .zoom .zcap{position:absolute;bottom:14px;left:0;right:0;text-align:center;
+              color:rgba(255,255,255,.75);font-size:15px}
+  @media print{ .zoom{display:none!important} .fig img{max-height:7cm;width:auto;margin:0 auto} }
+
 
 </style>
 </head>
@@ -261,6 +280,7 @@
   <!-- ===== Phase 1: Concept ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 1</span> — Concept: How a Servo Works</h2>
+        <div class="figrow two"><figure class="fig"><img src="../img/servo/range-of-motion.jpg" alt="A servo’s travel is a protractor — 180° as positions 0 to 2047." loading="lazy"><figcaption>A servo’s travel is a protractor — 180° as positions 0 to 2047.</figcaption></figure><figure class="fig"><img src="../img/servo/servo-functions.jpg" alt="What has to be in place before a servo will move." loading="lazy"><figcaption>What has to be in place before a servo will move.</figcaption></figure></div>
     <div class="concept">
       <div class="chead">A servo goes to a position, like a protractor</div>
       <div class="cbody">
@@ -287,6 +307,7 @@ set_servo_position(0, 1024);  <span class="c">// send it to position 1024 (the c
   <!-- ===== Phase 2: SAFETY + Calibrate the arm ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 2</span> — Find the Arm's Safe Range</h2>
+        <div class="figrow two"><figure class="fig"><img src="../img/servo/servo-ports.jpg" alt="The servo ports." loading="lazy"><figcaption>The servo ports.</figcaption></figure><figure class="fig"><img src="../img/servo/plugging-in.jpg" alt="Check the wire colours before you push a plug in." loading="lazy"><figcaption>Check the wire colours before you push a plug in.</figcaption></figure><figure class="fig"><img src="../img/servo/plugged-port-0.jpg" alt="A servo in port 0." loading="lazy"><figcaption>A servo in port 0.</figcaption></figure><figure class="fig"><img src="../img/servo/centering-horn.jpg" alt="Centre the horn before you trust any position number." loading="lazy"><figcaption>Centre the horn before you trust any position number.</figcaption></figure></div>
     <div class="safety no-print">
       <p class="ctitle">⚠ This step protects your servo — do it carefully</p>
       <p>A servo can only turn so far before it hits a hard mechanical stop. If you command it <em>past</em> that stop, the motor keeps straining against the wall and can <strong>burn out</strong>. You must find the highest and lowest positions your arm can reach <em>without</em> forcing it, and never command outside them.</p>
@@ -388,6 +409,7 @@ int main() {
   <!-- ===== Phase 5: Measure ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 5</span> — Measure the Motion</h2>
+        <div class="figrow two"><figure class="fig"><img src="../img/servo/widget.jpg" alt="The servo page on the Wombat." loading="lazy"><figcaption>The servo page on the Wombat.</figcaption></figure><figure class="fig"><img src="../img/servo/widget-testing.jpg" alt="Drag the slider to find a position before you code it." loading="lazy"><figcaption>Drag the slider to find a position before you code it.</figcaption></figure></div>
     <p>Servo positions are numbers, so you can measure your robot's reach the same way you measured driving distance. Use your values to answer these.</p>
     <table class="grid">
       <thead><tr><th style="width:60%">Measurement</th><th>Value</th></tr></thead>
@@ -623,6 +645,32 @@ int main() {
   document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
 })();
 </script>
+
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Enlarged picture">
+  <button class="zclose" id="zclose" aria-label="Close picture">&#10005;</button>
+  <img id="zimg" src="" alt="">
+  <p class="zcap" id="zcap"></p>
+</div>
+<script>
+(function(){
+  var z=document.getElementById('zoom'), zi=document.getElementById('zimg'), zc=document.getElementById('zcap');
+  function open(img){
+    zi.src=img.src; zi.alt=img.alt||'';
+    zc.textContent=(img.closest('figure')&&img.closest('figure').querySelector('figcaption'))
+      ? img.closest('figure').querySelector('figcaption').textContent : '';
+    z.classList.add('open'); document.body.style.overflow='hidden';
+  }
+  function close(){ z.classList.remove('open'); zi.src=''; document.body.style.overflow=''; }
+  document.addEventListener('click', function(e){
+    var img=e.target.closest('.fig img');
+    if(img){ open(img); return; }
+    if(e.target.closest('#zoom')) close();
+  });
+  document.getElementById('zclose').addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
+
 
 </body>
 </html>

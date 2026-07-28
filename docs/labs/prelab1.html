@@ -603,6 +603,25 @@
   @media print{ .pl-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}
                 ul.tick input[type="checkbox"]{-webkit-appearance:none;appearance:none;border:1px solid #666;
                 border-radius:2px;width:14px;height:14px} }
+  .fig{margin:16px 0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+  .fig img{display:block;width:100%;height:auto;cursor:zoom-in;background:#fff}
+  .fig figcaption{padding:9px 13px;font-size:15px;color:var(--grey);background:var(--field);
+                  border-top:1px solid var(--line)}
+  .figrow{display:grid;gap:14px;margin:16px 0}
+  .figrow.two{grid-template-columns:1fr 1fr}
+  .figrow.three{grid-template-columns:repeat(3,1fr)}
+  .figrow .fig{margin:0}
+  @media (max-width:700px){ .figrow.two,.figrow.three{grid-template-columns:1fr} }
+  .zoom{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9998;
+        align-items:center;justify-content:center;padding:12px;cursor:zoom-out}
+  .zoom.open{display:flex}
+  .zoom img{max-width:100%;max-height:92vh;border-radius:4px}
+  .zoom .zclose{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.15);color:#fff;
+                border:none;width:42px;height:42px;border-radius:6px;font-size:1.4rem;cursor:pointer}
+  .zoom .zcap{position:absolute;bottom:14px;left:0;right:0;text-align:center;
+              color:rgba(255,255,255,.75);font-size:15px}
+  @media print{ .zoom{display:none!important} .fig img{max-height:7cm;width:auto;margin:0 auto} }
+
 </style>
 </head>
 <body>
@@ -648,6 +667,7 @@
   <div class="pl-sec">
     <div class="pl-head"><span class="pl-n">Part 1</span><span class="pl-t">Power up and connect</span></div>
     <div class="pl-body">
+        <div class="figrow two"><figure class="fig"><img src="../img/ide/wombat-screen-event-a.jpg" alt="The Wombat's home screen." loading="lazy"><figcaption>The Wombat's home screen.</figcaption></figure><figure class="fig"><img src="../img/ide/wombat-screen-lan.jpg" alt="The status line tells you it is connected." loading="lazy"><figcaption>The status line tells you it is connected.</figcaption></figure><figure class="fig"><img src="../img/ide/software-suite.jpg" alt="The KIPR Software Suite — click KISS IDE." loading="lazy"><figcaption>The KIPR Software Suite — click KISS IDE.</figcaption></figure><figure class="fig"><img src="../img/ide/new-folder-a.jpg" alt="Project Explorer — add a user folder." loading="lazy"><figcaption>Project Explorer — add a user folder.</figcaption></figure></div>
       <ul class="tick">
         <li><input type="checkbox" data-key="c_batt" id="c1"><label for="c1">Battery charged and connected; the Wombat boots to its home screen.</label></li>
         <li><input type="checkbox" data-key="c_wifi" id="c2"><label for="c2">I found the Wombat&rsquo;s network name and joined it from my computer.</label></li>
@@ -677,6 +697,7 @@
   <div class="pl-sec">
     <div class="pl-head"><span class="pl-n">Part 3</span><span class="pl-t">Write, compile, run</span></div>
     <div class="pl-body">
+        <div class="figrow two"><figure class="fig"><img src="../img/ide/code-template.jpg" alt="Every new project starts like this." loading="lazy"><figcaption>Every new project starts like this.</figcaption></figure><figure class="fig"><img src="../img/ide/compile-succeeded.jpg" alt=""Compilation succeeded" — it is on the robot." loading="lazy"><figcaption>"Compilation succeeded" — it is on the robot.</figcaption></figure></div>
       <p>Make a new project called <strong>hello.c</strong> and type this in. Do not paste it &mdash; type it.</p>
       <div class="code">#include &lt;kipr/wombat.h&gt;
 
@@ -697,6 +718,7 @@ int main()
   <div class="pl-sec">
     <div class="pl-head"><span class="pl-n">Part 4</span><span class="pl-t">Know where your work lives</span></div>
     <div class="pl-body">
+        <figure class="fig"><img src="../img/ide/shutdown-a.jpg" alt="Shut down from the menu — never straight off the switch." loading="lazy"><figcaption>Shut down from the menu — never straight off the switch.</figcaption></figure>
       <ul class="tick">
         <li><input type="checkbox" data-key="w_find" id="w1"><label for="w1">I can find my saved projects again after the Wombat is switched off and back on.</label></li>
         <li><input type="checkbox" data-key="w_name" id="w2"><label for="w2">Our team has agreed how projects are named, so we can find each other&rsquo;s work.</label></li>
@@ -812,6 +834,32 @@ int main()
   $("#submitTop").addEventListener("click",submit);
   $("#submitBottom").addEventListener("click",submit);
 </script>
+
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Enlarged picture">
+  <button class="zclose" id="zclose" aria-label="Close picture">&#10005;</button>
+  <img id="zimg" src="" alt="">
+  <p class="zcap" id="zcap"></p>
+</div>
+<script>
+(function(){
+  var z=document.getElementById('zoom'), zi=document.getElementById('zimg'), zc=document.getElementById('zcap');
+  function open(img){
+    zi.src=img.src; zi.alt=img.alt||'';
+    zc.textContent=(img.closest('figure')&&img.closest('figure').querySelector('figcaption'))
+      ? img.closest('figure').querySelector('figcaption').textContent : '';
+    z.classList.add('open'); document.body.style.overflow='hidden';
+  }
+  function close(){ z.classList.remove('open'); zi.src=''; document.body.style.overflow=''; }
+  document.addEventListener('click', function(e){
+    var img=e.target.closest('.fig img');
+    if(img){ open(img); return; }
+    if(e.target.closest('#zoom')) close();
+  });
+  document.getElementById('zclose').addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
+
 
 </body>
 </html>

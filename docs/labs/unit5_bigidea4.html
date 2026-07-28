@@ -182,6 +182,32 @@
   }
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs,.def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
+  /* --- field diagram trigger + viewer --- */
+  .fieldref{cursor:pointer;border-bottom:2px dotted #C0392B;font-weight:700;color:inherit;white-space:nowrap}
+  .fieldref:hover{color:#C0392B}
+  .fieldref::after{content:"\00a0\25A6";font-size:.82em;opacity:.65}
+  .fld-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:10000;
+               padding:14px;align-items:center;justify-content:center}
+  .fld-overlay.open{display:flex}
+  .fld-box{background:#fff;border-radius:7px;width:100%;max-width:820px;overflow:hidden;
+           box-shadow:0 16px 60px rgba(0,0,0,.5);display:flex;flex-direction:column;max-height:94vh}
+  .fld-head{background:#1F2D5A;color:#fff;padding:.8rem 1rem;display:flex;align-items:center;
+            justify-content:space-between;gap:.6rem;flex-shrink:0}
+  .fld-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.02rem;
+             letter-spacing:.05em;text-transform:uppercase;line-height:1.2}
+  .fld-x{background:none;border:none;color:rgba(255,255,255,.75);font-size:1.35rem;cursor:pointer;
+         min-width:38px;min-height:38px;border-radius:4px;flex-shrink:0}
+  .fld-x:hover{background:rgba(255,255,255,.15);color:#fff}
+  .fld-tabs{display:flex;gap:6px;padding:9px 12px;background:#f6f7f9;border-bottom:1px solid #d8dbe2;flex-shrink:0}
+  .fld-tabs button{border:1px solid #d8dbe2;background:#fff;border-radius:4px;padding:6px 13px;cursor:pointer;
+                   font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;
+                   letter-spacing:.07em;text-transform:uppercase;color:#1F2D5A}
+  .fld-tabs button.on{background:#1F2D5A;color:#fff;border-color:#1F2D5A}
+  .fld-pic{overflow:auto;background:#eef0f4}
+  .fld-pic img{display:block;width:100%;height:auto}
+  .fld-cap{padding:10px 14px;font-size:.9rem;color:#5b6270;background:#fff;border-top:1px solid #d8dbe2;flex-shrink:0}
+  @media print{ .fieldref::after{content:""} .fld-overlay{display:none!important} }
+
 
 </style>
 </head>
@@ -216,7 +242,7 @@
       <div class="row"><dt>Big Idea</dt><dd>Performance Can Be Measured</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>A system that never measures its own performance can't tell whether a change actually helped.</dd></div>
       <div class="row"><dt>CS1 Concepts</dt><dd>systime() &amp; Elapsed Time · <span class="def-term" data-term="MODULO">Modulo</span> · <span class="def-term" data-term="ARRAY">Array</span>s for Metrics · <span class="def-term" data-term="BOOLEAN">Boolean</span> Flags · Linear Search · Sorting · <span class="def-term" data-term="ALGORITHM">Algorithm</span> Efficiency</dd></div>
-      <div class="row"><dt>Game Context</dt><dd>Mission 12 + Mission 16 — recover 2 spilled cubes, stack them on the Large Green Cube</dd></div>
+      <div class="row"><dt>Game Context</dt><dd><span class="fieldref" data-m="12" data-tier="base">Mission 12</span> + <span class="fieldref" data-m="16" data-tier="base">Mission 16</span> — recover 2 spilled cubes, stack them on the Large Green Cube</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Explorer robot · full <span class="def-term" data-term="LIBRARY">library</span> · 2 spilled cubes · Large Green Cube · the game field · this lab sheet</dd></div>
     </dl>
   </div>
@@ -671,6 +697,59 @@ printf("Sorted: %.2f, %.2f, %.2f, %.2f\n", times[0], times[1], times[2], times[3
   document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
 })();
 </script>
+
+<div class="fld-overlay" id="fldOverlay" role="dialog" aria-modal="true" aria-labelledby="fldTitle">
+  <div class="fld-box">
+    <div class="fld-head">
+      <span class="fld-title" id="fldTitle"></span>
+      <button class="fld-x" id="fldX" aria-label="Close field diagram">&#10005;</button>
+    </div>
+    <div class="fld-tabs" id="fldTabs"></div>
+    <div class="fld-pic"><img id="fldImg" src="" alt=""></div>
+    <p class="fld-cap" id="fldCap"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var UP = '../';
+  var M = {
+    12: {"title": "Mission 12 \u2014 Restack the Freight", "tiers": ["base", "bonus"]},
+    16: {"title": "Mission 16 \u2014 Freight Shelving", "tiers": ["base", "bonus"]}
+  };
+  var ov=document.getElementById('fldOverlay'), im=document.getElementById('fldImg'),
+      tt=document.getElementById('fldTitle'), tb=document.getElementById('fldTabs'),
+      cp=document.getElementById('fldCap');
+  function show(n, tier){
+    var m=M[n]; if(!m) return;
+    im.src = UP + 'img/missions/mission-' + (n<10?'0':'') + n + '-' + tier + '.jpg';
+    im.alt = m.title + ' \u2014 ' + tier + ' scoring, shown on the field';
+    tt.textContent = m.title;
+    cp.textContent = tier.charAt(0).toUpperCase() + tier.slice(1) + ' scoring \u2014 arrows show where each piece has to end up.';
+    tb.innerHTML='';
+    if (m.tiers.length > 1) {
+      m.tiers.forEach(function(t){
+        var b=document.createElement('button');
+        b.textContent=t; b.className = (t===tier?'on':'');
+        b.addEventListener('click', function(){ show(n, t); });
+        tb.appendChild(b);
+      });
+      tb.style.display='flex';
+    } else { tb.style.display='none'; }
+    ov.classList.add('open'); document.body.style.overflow='hidden';
+    document.getElementById('fldX').focus();
+  }
+  function hide(){ ov.classList.remove('open'); im.src=''; document.body.style.overflow=''; }
+  document.getElementById('fldX').addEventListener('click', hide);
+  ov.addEventListener('click', function(e){ if(e.target===this) hide(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') hide(); });
+  document.addEventListener('click', function(e){
+    var el=e.target.closest('.fieldref');
+    if(el){ e.preventDefault(); show(parseInt(el.dataset.m,10), el.dataset.tier||'base'); }
+  });
+})();
+</script>
+
 
 </body>
 </html>
