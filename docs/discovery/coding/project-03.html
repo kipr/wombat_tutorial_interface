@@ -372,6 +372,25 @@
   @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
   @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
                 border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+  .fig{margin:16px 0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+  .fig img{display:block;width:100%;height:auto;cursor:zoom-in;background:#fff}
+  .fig figcaption{padding:9px 13px;font-size:15px;color:var(--grey);background:var(--field);
+                  border-top:1px solid var(--line)}
+  .figrow{display:grid;gap:14px;margin:16px 0}
+  .figrow.two{grid-template-columns:1fr 1fr}
+  .figrow.three{grid-template-columns:repeat(3,1fr)}
+  .figrow .fig{margin:0}
+  @media (max-width:700px){ .figrow.two,.figrow.three{grid-template-columns:1fr} }
+  .zoom{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9998;
+        align-items:center;justify-content:center;padding:12px;cursor:zoom-out}
+  .zoom.open{display:flex}
+  .zoom img{max-width:100%;max-height:92vh;border-radius:4px}
+  .zoom .zclose{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.15);color:#fff;
+                border:none;width:42px;height:42px;border-radius:6px;font-size:1.4rem;cursor:pointer}
+  .zoom .zcap{position:absolute;bottom:14px;left:0;right:0;text-align:center;
+              color:rgba(255,255,255,.75);font-size:15px}
+  @media print{ .zoom{display:none!important} .fig img{max-height:7cm;width:auto;margin:0 auto} }
+
 
 </style>
 </head>
@@ -539,7 +558,8 @@
 
     <p class="muted">A minus sign in front of the power number reverses that motor. This is how you back up, and later, how you turn.</p>
 
-    <h3 class="sub">Which end is the front?</h3>
+    
+        <div class="figrow two"><figure class="fig"><img src="../../img/drive/motor-ports.jpg" alt="The motor ports. Everybody on a team should use the same two." loading="lazy"><figcaption>The motor ports. Everybody on a team should use the same two.</figcaption></figure><figure class="fig"><img src="../../img/drive/motor-plugged-in.jpg" alt="A motor plugged in — ports 0 and 3." loading="lazy"><figcaption>A motor plugged in — ports 0 and 3.</figcaption></figure></div><h3 class="sub">Which end is the front?</h3>
 
     <p>Your robot has two driven wheels and one small free-rolling wheel called a <span class="def-term" data-term="CASTER">caster</span>.
     Before you send it anywhere, decide which end is the front &mdash; because that decides what
@@ -635,6 +655,7 @@ msleep(30);</pre>
 
       <li>
         <span class="stitle">Drive the motors by hand first</span>
+        <figure class="fig"><img src="../../img/kit/wombat-and-motors-a.jpg" alt="The Wombat controller with its two drive motors." loading="lazy"><figcaption>The Wombat controller with its two drive motors.</figcaption></figure>
         <p>Before writing any code, use the Wombat's own screen. From the Home Screen, tap <strong>Motors</strong>.</p>
         <p>Find the red line for a port and drag it left and right with your finger.</p>
         <p class="q">What do the wheels do as you drag?</p>
@@ -969,6 +990,32 @@ motor(<span class="nu">3</span>, <span class="nu">-50</span>);</pre>
   $("#submitTop").addEventListener("click", submit);
   $("#submitBottom").addEventListener("click", submit);
 </script>
+
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Enlarged picture">
+  <button class="zclose" id="zclose" aria-label="Close picture">&#10005;</button>
+  <img id="zimg" src="" alt="">
+  <p class="zcap" id="zcap"></p>
+</div>
+<script>
+(function(){
+  var z=document.getElementById('zoom'), zi=document.getElementById('zimg'), zc=document.getElementById('zcap');
+  function open(img){
+    zi.src=img.src; zi.alt=img.alt||'';
+    zc.textContent=(img.closest('figure')&&img.closest('figure').querySelector('figcaption'))
+      ? img.closest('figure').querySelector('figcaption').textContent : '';
+    z.classList.add('open'); document.body.style.overflow='hidden';
+  }
+  function close(){ z.classList.remove('open'); zi.src=''; document.body.style.overflow=''; }
+  document.addEventListener('click', function(e){
+    var img=e.target.closest('.fig img');
+    if(img){ open(img); return; }
+    if(e.target.closest('#zoom')) close();
+  });
+  document.getElementById('zclose').addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
+
 
 </body>
 </html>

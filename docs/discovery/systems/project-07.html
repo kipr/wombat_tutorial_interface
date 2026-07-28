@@ -198,6 +198,25 @@
                 border:1px solid #666;border-radius:2px;width:14px;height:14px} }
 
   .print-pin{display:none;margin:14px 40px 0;font-size:16px}
+  .fig{margin:16px 0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+  .fig img{display:block;width:100%;height:auto;cursor:zoom-in;background:#fff}
+  .fig figcaption{padding:9px 13px;font-size:15px;color:var(--grey);background:var(--field);
+                  border-top:1px solid var(--line)}
+  .figrow{display:grid;gap:14px;margin:16px 0}
+  .figrow.two{grid-template-columns:1fr 1fr}
+  .figrow.three{grid-template-columns:repeat(3,1fr)}
+  .figrow .fig{margin:0}
+  @media (max-width:700px){ .figrow.two,.figrow.three{grid-template-columns:1fr} }
+  .zoom{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9998;
+        align-items:center;justify-content:center;padding:12px;cursor:zoom-out}
+  .zoom.open{display:flex}
+  .zoom img{max-width:100%;max-height:92vh;border-radius:4px}
+  .zoom .zclose{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.15);color:#fff;
+                border:none;width:42px;height:42px;border-radius:6px;font-size:1.4rem;cursor:pointer}
+  .zoom .zcap{position:absolute;bottom:14px;left:0;right:0;text-align:center;
+              color:rgba(255,255,255,.75);font-size:15px}
+  @media print{ .zoom{display:none!important} .fig img{max-height:7cm;width:auto;margin:0 auto} }
+
 </style>
 </head>
 <body>
@@ -299,12 +318,14 @@
     <p>Most of this build is bolting things together. Three details are not obvious, and all three assemble perfectly and then fail later.</p>
 
     <h3 class="sub">1. Which way round the servo goes</h3>
+        <figure class="fig"><img src="../../img/servo/plugging-in.jpg" alt="Servo wires — check the colours before you push the plug in." loading="lazy"><figcaption>Servo wires — check the colours before you push the plug in.</figcaption></figure>
 
     <p>A servo has a wire coming out of one end and a <span class="def-term" data-term="SPLINE">spline</span> — the toothed shaft that actually turns — on the top.</p>
 
     <p>The build tells you <strong>wire end first</strong> and <strong><span class="def-term" data-term="SPLINE">spline</span> towards the front</strong>. Fit it backwards and it bolts up fine, but your arm will swing the wrong way and the wire will be trapped where you cannot reach it.</p>
 
     <h3 class="sub">2. Where the horn starts</h3>
+        <figure class="fig"><img src="../../img/servo/centering-horn.jpg" alt="Finding the middle of a servo’s travel before the horn goes on." loading="lazy"><figcaption>Finding the middle of a servo’s travel before the horn goes on.</figcaption></figure>
 
     <p>The <span class="def-term" data-term="SERVO HORN">servo horn</span> is the arm that clips onto the spline. Here is the part people skip.</p>
 
@@ -317,6 +338,7 @@
     </div>
 
     <h3 class="sub">3. The washer goes underneath</h3>
+        <figure class="fig"><img src="../../img/servo/attach-horn.jpg" alt="Washer on the spline first, then the horn." loading="lazy"><figcaption>Washer on the spline first, then the horn.</figcaption></figure>
 
     <p>Twice in this build a claw part mounts onto a servo with a washer <em>beneath</em> it, held by the small silver bolt that came with the horn.</p>
 
@@ -670,7 +692,7 @@
   }
   function close(){ z.classList.remove('open'); zi.src=''; document.body.style.overflow=''; }
   document.addEventListener('click', function(e){
-    var img=e.target.closest('.shot img, .finished img');
+    var img=e.target.closest('.shot img, .finished img, .fig img');
     if(img){ open(img); return; }
     if(e.target.closest('#zoom')) close();
   });
