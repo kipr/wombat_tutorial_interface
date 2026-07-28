@@ -126,6 +126,24 @@
     .grid th, .concept .chead { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .answer, .steps input, .grid input, .namebar input, .pin-field input { border: none !important; border-bottom: 1px solid #999 !important; border-radius: 0 !important; background: #fff !important; box-shadow: none !important; color: #000 !important; }
     .answer { min-height: auto; }
+  .botnav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+          margin:34px 40px 0;padding:14px 0 0;border-top:1px solid var(--line)}
+  .botnav a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+            font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+            letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
+            border:1px solid var(--line);border-radius:5px;padding:9px 14px;background:#fff}
+  .botnav a:hover{border-color:var(--gold);background:#fffaef;color:var(--red)}
+  .botnav a.next{margin-left:auto}
+  .botnav a.gloss{color:#8a6d2f;border-color:rgba(200,161,75,.55);background:#fffaef}
+  .botnav a.gloss:hover{background:rgba(200,161,75,.16)}
+  .botnav .spacer{flex:1}
+  @media (max-width:700px){
+    .botnav{margin-left:20px;margin-right:20px;gap:8px}
+    .botnav a{font-size:13.5px;padding:8px 11px;flex:1 1 auto;justify-content:center}
+    .botnav a.next{margin-left:0}
+  }
+  @media print{ .botnav{display:none} }
+
     .print-pin { display: block !important; }
   }
   .print-pin { display: none; }
@@ -170,6 +188,25 @@
   }
   @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
   @media print{ .crumbs,.def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
+  .fig{margin:16px 0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+  .fig img{display:block;width:100%;height:auto;cursor:zoom-in;background:#fff}
+  .fig figcaption{padding:9px 13px;font-size:15px;color:var(--grey);background:var(--field);
+                  border-top:1px solid var(--line)}
+  .figrow{display:grid;gap:14px;margin:16px 0}
+  .figrow.two{grid-template-columns:1fr 1fr}
+  .figrow.three{grid-template-columns:repeat(3,1fr)}
+  .figrow .fig{margin:0}
+  @media (max-width:700px){ .figrow.two,.figrow.three{grid-template-columns:1fr} }
+  .zoom{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9998;
+        align-items:center;justify-content:center;padding:12px;cursor:zoom-out}
+  .zoom.open{display:flex}
+  .zoom img{max-width:100%;max-height:92vh;border-radius:4px}
+  .zoom .zclose{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.15);color:#fff;
+                border:none;width:42px;height:42px;border-radius:6px;font-size:1.4rem;cursor:pointer}
+  .zoom .zcap{position:absolute;bottom:14px;left:0;right:0;text-align:center;
+              color:rgba(255,255,255,.75);font-size:15px}
+  @media print{ .zoom{display:none!important} .fig img{max-height:7cm;width:auto;margin:0 auto} }
+
 
 </style>
 </head>
@@ -259,6 +296,7 @@ msleep(50);    <span class="c">// give the motors a moment to settle and lock</s
   <!-- ===== Phase 1 ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 1</span> — Activate: Two Ways to Stop a Bike</h2>
+        <figure class="fig"><img src="../img/drive/motor-plugged-in.jpg" alt="Motors in ports 0 and 3 — the pair every experiment here assumes." loading="lazy"><figcaption>Motors in ports 0 and 3 — the pair every experiment here assumes.</figcaption></figure>
     <p>Picture riding a bike to a line on the ground. You could <strong>squeeze the brakes</strong> and stop right on it — or you could just <strong>stop pedaling</strong> and coast, hoping you roll to a stop at the right spot. One is controlled. The other depends on your speed, the ground, and luck.</p>
     <div class="callout navy">
       <p class="ctitle">Think it through</p>
@@ -492,6 +530,13 @@ void back_until_pressed() {
     <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
     <div class="status" id="statusBottom" role="status" aria-live="polite" style="color:var(--grey);margin-top:10px"></div>
   </div>
+  <nav class="botnav no-print" aria-label="Page navigation">
+    <a href="index.html">&larr; All Labs</a>
+    <a href="unit2_bigidea1.html">&larr; Lab 2.1</a>
+    <a class="gloss" href="../glossary.html">Glossary</a>
+    <a class="next" href="unit2_bigidea3.html">Lab 2.3 &rarr;</a>
+  </nav>
+
 
   <p class="credit">KIPR · Botball Explorer · Unit 2 Big Idea 2 — Student Lab</p>
 </main>
@@ -610,6 +655,32 @@ void back_until_pressed() {
   document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
 })();
 </script>
+
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Enlarged picture">
+  <button class="zclose" id="zclose" aria-label="Close picture">&#10005;</button>
+  <img id="zimg" src="" alt="">
+  <p class="zcap" id="zcap"></p>
+</div>
+<script>
+(function(){
+  var z=document.getElementById('zoom'), zi=document.getElementById('zimg'), zc=document.getElementById('zcap');
+  function open(img){
+    zi.src=img.src; zi.alt=img.alt||'';
+    zc.textContent=(img.closest('figure')&&img.closest('figure').querySelector('figcaption'))
+      ? img.closest('figure').querySelector('figcaption').textContent : '';
+    z.classList.add('open'); document.body.style.overflow='hidden';
+  }
+  function close(){ z.classList.remove('open'); zi.src=''; document.body.style.overflow=''; }
+  document.addEventListener('click', function(e){
+    var img=e.target.closest('.fig img');
+    if(img){ open(img); return; }
+    if(e.target.closest('#zoom')) close();
+  });
+  document.getElementById('zclose').addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
+
 
 </body>
 </html>
