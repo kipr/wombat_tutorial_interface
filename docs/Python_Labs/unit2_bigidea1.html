@@ -9,9 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --red: #9E1B32; --red-dark: #7d1526; --navy: #1F2D5A; --gold: #C8A14B;
-    --ink: #1c1c1e; --grey: #6b7280; --line: #d8dbe2; --bg: #f0f0f0;
-    --panel: #ffffff; --field: #fcfcfd; --field-focus: #fffdf5;
+    --red: #C0392B; --red-dark: #922B21; --navy: #1C1C1C; --gold: #C0392B;
+    --ink: #1C1C1C; --grey: #666666; --line: #CCCCCC; --bg: #F2F2F2;
+    --panel: #ffffff; --field: #F8F8F8; --field-focus: #FDF2F2;
     --code-bg: #1f2330; --code-ink: #e7e3d8; --code-green: #8fbf7f;
   }
   * { box-sizing: border-box; }
@@ -73,7 +73,7 @@
   .code code { color: inherit; font-weight: inherit; font-size: inherit; }
 
   .answer { width: 100%; font-family: 'Barlow', sans-serif; font-size: 16px; line-height: 1.5; color: var(--ink); background: var(--field); border: 1.5px solid var(--line); border-radius: 9px; padding: 10px 12px; resize: vertical; min-height: 76px; }
-  .answer:focus { outline: none; border-color: var(--gold); background: var(--field-focus); box-shadow: 0 0 0 3px rgba(200,161,75,.18); }
+  .answer:focus { outline: none; border-color: var(--gold); background: var(--field-focus); box-shadow: 0 0 0 3px rgba(192,57,43,.18); }
   .answer.tall { min-height: 110px; }
   .q { font-weight: 600; margin: 16px 0 6px; } .q .n { color: var(--red); }
 
@@ -81,7 +81,7 @@
   .steps li { display: flex; align-items: center; gap: 10px; margin: 7px 0; }
   .steps li::before { counter-increment: s; content: counter(s) "."; font-weight: 700; color: var(--navy); min-width: 22px; font-size: 16px; }
   .steps input { flex: 1; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 8px 11px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--field); }
-  .steps input:focus { outline: none; border-color: var(--gold); background: var(--field-focus); box-shadow: 0 0 0 3px rgba(200,161,75,.18); }
+  .steps input:focus { outline: none; border-color: var(--gold); background: var(--field-focus); box-shadow: 0 0 0 3px rgba(192,57,43,.18); }
   .group-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; color: var(--navy); font-size: 17px; margin: 14px 0 2px; }
 
   .grid { width: 100%; border-collapse: collapse; margin: 12px 0; border: 1px solid var(--line); }
@@ -97,7 +97,7 @@
   .namebar .nb { display: flex; align-items: center; gap: 8px; flex: 1 1 220px; }
   .namebar label { font-weight: 600; color: var(--navy); white-space: nowrap; }
   .namebar input { flex: 1; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 8px 11px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--field); }
-  .namebar input:focus { outline: none; border-color: var(--gold); background: var(--field-focus); box-shadow: 0 0 0 3px rgba(200,161,75,.18); }
+  .namebar input:focus { outline: none; border-color: var(--gold); background: var(--field-focus); box-shadow: 0 0 0 3px rgba(192,57,43,.18); }
 
   .pin-reminder { background: #fff6e0; border: 1px solid var(--gold); border-radius: 10px; padding: 12px 16px; margin: 0 0 6px; font-size: 15.5px; }
   .pin-reminder strong { color: var(--navy); }
@@ -124,20 +124,19 @@
     .grid th, .concept .chead { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .answer, .steps input, .grid input, .namebar input, .pin-field input { border: none !important; border-bottom: 1px solid #999 !important; border-radius: 0 !important; background: #fff !important; box-shadow: none !important; color: #000 !important; }
     .answer { min-height: auto; }
-  .botnav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-          margin:34px 40px 0;padding:14px 0 0;border-top:1px solid var(--line)}
-  .botnav a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+  .botnav{display:flex;align-items:center;justify-content:flex-start;gap:20px 24px;flex-wrap:wrap;margin:46px 40px 0;padding:26px 0 8px;border-top:1px solid var(--line)}
+  .botnav a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
             font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
             letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
-            border:1px solid var(--line);border-radius:5px;padding:9px 14px;background:#fff}
-  .botnav a:hover{border-color:var(--gold);background:#fffaef;color:var(--red)}
+            border:1px solid var(--line);border-radius:5px;padding:12px 20px;background:#fff}
+  .botnav a:hover{border-color:var(--gold);background:#FDF2F2;color:var(--red)}
   .botnav a.next{margin-left:auto}
-  .botnav a.gloss{color:#8a6d2f;border-color:rgba(200,161,75,.55);background:#fffaef}
-  .botnav a.gloss:hover{background:rgba(200,161,75,.16)}
+  .botnav a.gloss{color:#8a6d2f;border-color:rgba(192,57,43,.55);background:#FDF2F2}
+  .botnav a.gloss:hover{background:rgba(192,57,43,.16)}
   .botnav .spacer{flex:1}
   @media (max-width:700px){
-    .botnav{margin-left:20px;margin-right:20px;gap:8px}
-    .botnav a{font-size:13.5px;padding:8px 11px;flex:1 1 auto;justify-content:center}
+    .botnav{margin-left:20px;margin-right:20px;gap:10px;padding-top:18px}
+    .botnav a{font-size:13.5px;padding:11px 14px;flex:1 1 46%;justify-content:center}
     .botnav a.next{margin-left:0}
   }
   @media print{ .botnav{display:none} }
@@ -176,9 +175,9 @@
   .crumbs a:hover{color:#fff;text-decoration:underline}
   .crumbs .sep{color:rgba(255,255,255,.35)}
   .crumbs .here{color:var(--gold);font-weight:700}
-  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(200,161,75,.5);
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(192,57,43,.5);
                  padding:4px 9px;border-radius:4px;font-weight:700}
-  .crumbs .gloss:hover{background:rgba(200,161,75,.16);color:var(--gold);text-decoration:none}
+  .crumbs .gloss:hover{background:rgba(192,57,43,.16);color:var(--gold);text-decoration:none}
   @media (max-width:600px){
     .def-overlay{align-items:flex-end;padding:0}
     .def-box{border-radius:12px 12px 0 0;max-width:100%}
@@ -204,6 +203,14 @@
   .zoom .zcap{position:absolute;bottom:14px;left:0;right:0;text-align:center;
               color:rgba(255,255,255,.75);font-size:15px}
   @media print{ .zoom{display:none!important} .fig img{max-height:7cm;width:auto;margin:0 auto} }
+  .mainnav{display:flex;align-items:center;gap:4px 18px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+           font-size:14px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;line-height:1}
+  .mainnav a{color:rgba(255,255,255,.66);text-decoration:none;padding:5px 2px;border-bottom:2px solid transparent}
+  .mainnav a:hover{color:#fff}
+  .mainnav a.here{color:var(--gold);border-bottom-color:var(--gold)}
+  @media (max-width:820px){ .mainnav{font-size:12.5px;gap:3px 13px} }
+  @media print{ .mainnav{display:none} }
+
 
 
 </style>
@@ -213,7 +220,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <div class="brand">KIPR · Botball <span>Explorer</span></div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="index.html">Python Labs</a><span class="sep">/</span><span class="here">Unit 2 · Big Idea 1</span><a class="gloss" href="../glossary.html">Glossary</a></nav>
+      <nav class="mainnav" aria-label="Main"><a href="../index.html">Home</a><a href="../2026-missions.html">2026 Missions</a><a href="../discovery/index.html">Discovery</a><a href="../labs/index.html">C Labs</a><a href="../Python_Labs/index.html" class="here">Python Labs</a><a href="../glossary.html">Glossary</a></nav>
     <div class="pin-field">
       <label for="pin">Your PIN</label>
       <input id="pin" type="text" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" aria-label="Your student PIN" />
