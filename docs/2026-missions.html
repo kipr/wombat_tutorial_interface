@@ -112,6 +112,49 @@
       display: flex; align-items: center; gap: 0.75rem;
     }
     .section-label::after { content: ''; flex: 1; height: 1px; background: var(--gray-300); }
+    /* ---- sticky mission search (desktop only) ---- */
+    .nav-search {
+      display: flex; align-items: center; gap: 0.5rem;
+      flex: 0 1 380px; margin: 0 1.5rem;
+      background: rgba(255,255,255,0.11);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 5px; padding: 0 0.6rem; height: 34px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .nav-search:focus-within {
+      background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.55);
+    }
+    .nav-search .ns-icon { width: 16px; height: 16px; color: rgba(255,255,255,0.6); flex-shrink: 0; }
+    .nav-search input {
+      flex: 1; min-width: 0; background: none; border: none; outline: none;
+      color: var(--white); font-family: var(--font-body); font-size: 0.92rem;
+    }
+    .nav-search input::placeholder { color: rgba(255,255,255,0.5); }
+    .nav-search input::-webkit-search-cancel-button { display: none; }
+    .nav-search .ns-clear {
+      background: none; border: none; color: rgba(255,255,255,0.55); cursor: pointer;
+      font-size: 0.85rem; line-height: 1; padding: 4px; flex-shrink: 0;
+    }
+    .nav-search .ns-clear:hover { color: var(--white); }
+    .nav-search .ns-count {
+      font-family: var(--font-display); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); white-space: nowrap; flex-shrink: 0;
+    }
+    .no-hits {
+      background: var(--pale-red); border: 1px solid var(--light-red);
+      border-radius: 6px; padding: 1.1rem 1.3rem; margin: 0 0 1.5rem;
+      color: var(--gray-700); font-size: 1rem;
+    }
+    .no-hits button {
+      background: none; border: none; color: var(--red); cursor: pointer;
+      font-weight: 600; font-size: 1rem; text-decoration: underline; padding: 0;
+    }
+    .mission-card.dim { display: none; }
+    /* the reviewer asked for desktop only */
+    @media (max-width: 900px) { .nav-search { display: none; } }
+    @media print { .nav-search, .no-hits { display: none; } }
+
   </style>
 </head>
 <body>
@@ -120,6 +163,18 @@
       <img src="kipr-logo.png" alt="KIPR">
       <span>Botball 2026</span>
     </a>
+
+    <div class="nav-search">
+      <svg class="ns-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <input id="missionSearch" type="search" autocomplete="off" spellcheck="false"
+             placeholder="Search missions&hellip;" aria-label="Search missions">
+      <button class="ns-clear" id="nsClear" type="button" aria-label="Clear search" hidden>&#10005;</button>
+      <span class="ns-count" id="nsCount" aria-live="polite"></span>
+    </div>
+
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="2026-missions.html" class="active">2026 Missions</a>
@@ -156,10 +211,11 @@
       <span style="font-family:var(--font-display); font-size:0.8rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.9); white-space:nowrap;">Read Rules →</span>
     </a>
     <div class="section-label">All Missions</div>
+    <p class="no-hits" id="noHits" hidden>No mission matches that. <button type="button" id="nsReset">Show all 18</button></p>
     <div class="missions-grid">
 
       <!-- Mission 1 -->
-      <a class="mission-card" href="missions/mission-01.html">
+      <a class="mission-card" data-kw="enters zone adjacent left starting box comes clear complete stop while completed base subsequently returns fully within skill basic autonomous navigation stopping specified location" href="missions/mission-01.html">
         <div class="mc-top">
           <div class="mc-num">01</div>
           <div class="mc-title-block">
@@ -176,7 +232,7 @@
       </a>
 
       <!-- Mission 2 -->
-      <a class="mission-card" href="missions/mission-02.html">
+      <a class="mission-card" data-kw="large red cube pallet off black line small cubes required remain stacked skill object displacement bulldozing" href="missions/mission-02.html">
         <div class="mc-top">
           <div class="mc-num">02</div>
           <div class="mc-title-block">
@@ -193,7 +249,7 @@
       </a>
 
       <!-- Mission 3 -->
-      <a class="mission-card" href="missions/mission-03.html">
+      <a class="mission-card" data-kw="create one stack consisting green cube top yellow second skill object manipulation placement accuracy stacking" href="missions/mission-03.html">
         <div class="mc-top">
           <div class="mc-num">03</div>
           <div class="mc-title-block">
@@ -211,7 +267,7 @@
       </a>
 
       <!-- Mission 4 -->
-      <a class="mission-card" href="missions/mission-04.html">
+      <a class="mission-card" data-kw="orange pom satisfies off definition blue simultaneously satisfy skill object displacement manipulation simultaneous task completion" href="missions/mission-04.html">
         <div class="mc-top">
           <div class="mc-num">04</div>
           <div class="mc-title-block">
@@ -228,7 +284,7 @@
       </a>
 
       <!-- Mission 5 -->
-      <a class="mission-card" href="missions/mission-05.html">
+      <a class="mission-card" data-kw="small red cube top large cubes skill object manipulation vertical placement end-effector design" href="missions/mission-05.html">
         <div class="mc-top">
           <div class="mc-num">05</div>
           <div class="mc-title-block">
@@ -245,7 +301,7 @@
       </a>
 
       <!-- Mission 6 -->
-      <a class="mission-card" href="missions/mission-06.html">
+      <a class="mission-card" data-kw="four green yellow cubes pallet cube top fully within starting box black line skill multi-object manipulation spatial reasoning cargo management palletized transport" href="missions/mission-06.html">
         <div class="mc-top">
           <div class="mc-num">06</div>
           <div class="mc-title-block">
@@ -263,7 +319,7 @@
       </a>
 
       <!-- Mission 7 -->
-      <a class="mission-card" href="missions/mission-07.html">
+      <a class="mission-card" data-kw="one blue pom orange fully within pvc enclosure second contains least base bonus use enclosures skill lifting poms moving them" href="missions/mission-07.html">
         <div class="mc-top">
           <div class="mc-num">07</div>
           <div class="mc-title-block">
@@ -280,7 +336,7 @@
       </a>
 
       <!-- Mission 8 -->
-      <a class="mission-card" href="missions/mission-08.html">
+      <a class="mission-card" data-kw="pallet large red cube top loading dock one small cubes while skill lifting palletized platform" href="missions/mission-08.html">
         <div class="mc-top">
           <div class="mc-num">08</div>
           <div class="mc-title-block">
@@ -297,7 +353,7 @@
       </a>
 
       <!-- Mission 9 -->
-      <a class="mission-card" href="missions/mission-09.html">
+      <a class="mission-card" data-kw="botguy completely outside enclosure warehouse floor skill navigating known coordinate extracting high-mass object" href="missions/mission-09.html">
         <div class="mc-top">
           <div class="mc-num">09</div>
           <div class="mc-title-block">
@@ -314,7 +370,7 @@
       </a>
 
       <!-- Mission 10 -->
-      <a class="mission-card" href="missions/mission-10.html">
+      <a class="mission-card" data-kw="enters zone adjacent right starting box bravo comes clear complete stop while completed base subsequently returns fully within skill basic autonomous navigation stopping specified location" href="missions/mission-10.html">
         <div class="mc-top">
           <div class="mc-num">10</div>
           <div class="mc-title-block">
@@ -331,7 +387,7 @@
       </a>
 
       <!-- Mission 11 -->
-      <a class="mission-card" href="missions/mission-11.html">
+      <a class="mission-card" data-kw="one orange pom basket two poms skill precise driving servo movement object delivery" href="missions/mission-11.html">
         <div class="mc-top">
           <div class="mc-num">11</div>
           <div class="mc-title-block">
@@ -348,7 +404,7 @@
       </a>
 
       <!-- Mission 12 -->
-      <a class="mission-card" href="missions/mission-12.html">
+      <a class="mission-card" data-kw="two spilled cubes form scoring stack one cube top originate area remains intact lower black line skill precise driving articulating" href="missions/mission-12.html">
         <div class="mc-top">
           <div class="mc-num">12</div>
           <div class="mc-title-block">
@@ -366,7 +422,7 @@
       </a>
 
       <!-- Mission 13 -->
-      <a class="mission-card" href="missions/mission-13.html">
+      <a class="mission-card" data-kw="three unstraight cubes satisfy off definition black line two form scoring stack one cube top skill bulldozing multi-object stacking" href="missions/mission-13.html">
         <div class="mc-top">
           <div class="mc-num">13</div>
           <div class="mc-title-block">
@@ -384,7 +440,7 @@
       </a>
 
       <!-- Mission 14 -->
-      <a class="mission-card" href="missions/mission-14.html">
+      <a class="mission-card" data-kw="traffic cones satisfy off definition cone loading zone base satisfied score bonus skill precision bulldozing object delivery" href="missions/mission-14.html">
         <div class="mc-top">
           <div class="mc-num">14</div>
           <div class="mc-title-block">
@@ -402,7 +458,7 @@
       </a>
 
       <!-- Mission 15 -->
-      <a class="mission-card" href="missions/mission-15.html">
+      <a class="mission-card" data-kw="one blue pom basket two poms skill precise driving servo movement object delivery" href="missions/mission-15.html">
         <div class="mc-top">
           <div class="mc-num">15</div>
           <div class="mc-title-block">
@@ -419,7 +475,7 @@
       </a>
 
       <!-- Mission 16 -->
-      <a class="mission-card" href="missions/mission-16.html">
+      <a class="mission-card" data-kw="least one cube originating spilled area top large green two cubes skill articulating small tall platform" href="missions/mission-16.html">
         <div class="mc-top">
           <div class="mc-num">16</div>
           <div class="mc-title-block">
@@ -436,7 +492,7 @@
       </a>
 
       <!-- Mission 17 -->
-      <a class="mission-card" href="missions/mission-17.html">
+      <a class="mission-card" data-kw="least one cube originating unstraight area top large brown two cubes skill articulating small tall platform" href="missions/mission-17.html">
         <div class="mc-top">
           <div class="mc-num">17</div>
           <div class="mc-title-block">
@@ -453,7 +509,7 @@
       </a>
 
       <!-- Mission 18 -->
-      <a class="mission-card" href="missions/mission-18.html">
+      <a class="mission-card" data-kw="botguy loading zone least one traffic cone fully within skill precise driving servo use multi-object delivery" href="missions/mission-18.html">
         <div class="mc-top">
           <div class="mc-num">18</div>
           <div class="mc-title-block">
@@ -477,5 +533,65 @@
       &nbsp; 1→1 pt &nbsp;·&nbsp; 2→3 pts &nbsp;·&nbsp; 3→5 pts &nbsp;·&nbsp; 4→7 pts &nbsp;·&nbsp; 5→9 pts &nbsp;·&nbsp; 6→11 pts &nbsp;·&nbsp; 7→13 pts &nbsp;·&nbsp; 8→15 pts
     </div>
   </div>
+
+<script>
+(function(){
+  var box   = document.getElementById('missionSearch');
+  var clear = document.getElementById('nsClear');
+  var count = document.getElementById('nsCount');
+  var none  = document.getElementById('noHits');
+  var reset = document.getElementById('nsReset');
+  if (!box) return;
+
+  var cards = [].slice.call(document.querySelectorAll('.mission-card')).map(function(c){
+    var num   = (c.querySelector('.mc-num')   || {}).textContent || '';
+    var title = (c.querySelector('.mc-title') || {}).textContent || '';
+    var skill = (c.querySelector('.mc-skill') || {}).textContent || '';
+    return { el: c, n: parseInt(num,10),
+             hay: (num + ' ' + title + ' ' + skill + ' ' + (c.dataset.kw||'')).toLowerCase() };
+  });
+  var TOTAL = cards.length;
+
+  function run(){
+    var q = box.value.trim().toLowerCase();
+    clear.hidden = !q;
+    if (!q) {
+      cards.forEach(function(c){ c.el.classList.remove('dim'); });
+      count.textContent = '';
+      none.hidden = true;
+      return;
+    }
+    var words = q.split(/\s+/);
+    var hits = 0;
+    cards.forEach(function(c){
+      var ok = words.every(function(w){
+        if (/^\d+$/.test(w)) return c.n === parseInt(w,10);
+        if (w === 'mission') return true;
+        return c.hay.indexOf(w) !== -1;
+      });
+      c.el.classList.toggle('dim', !ok);
+      if (ok) hits++;
+    });
+    count.textContent = hits + ' of ' + TOTAL;
+    none.hidden = hits > 0;
+  }
+
+  function wipe(){ box.value=''; run(); box.focus(); }
+
+  box.addEventListener('input', run);
+  clear.addEventListener('click', wipe);
+  if (reset) reset.addEventListener('click', wipe);
+  box.addEventListener('keydown', function(e){ if (e.key === 'Escape') wipe(); });
+
+  // "/" jumps to the search box, the way most doc sites behave
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== box &&
+        !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) {
+      e.preventDefault(); box.focus();
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
