@@ -122,7 +122,10 @@
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="2026-missions.html" class="active">2026 Missions</a>
-      <a href="telemetry.html">Telemetry</a>
+      <a href="discovery/index.html">Discovery</a>
+      <a href="labs/index.html">C Labs</a>
+      <a href="Python_Labs/index.html">Python Labs</a>
+      <a href="glossary.html">Glossary</a>
     </div>
   </nav>
 
@@ -194,7 +197,7 @@
           <div class="r-sec-eyebrow"><span class="r-sec-no">02</span> Section 2</div>
           <h2 class="r-sec-title">Game Format &amp; Match Structure</h2>
           <div class="r-callout"><strong>Match duration</strong> Each match lasts <strong>150 seconds</strong>. Expedition Division Timeout periods do not count toward this duration.</div><div class="section-head">Official Playing Area</div><ul class="r-list"><li>Interior dimensions: 93 in × 45 in.</li><li>Official grid spacing: 2 in × 2 in.</li><li>Origin (0,0) at the lower-left corner; X-axis along the long side (0–93), Y-axis along the short side (0–45).</li></ul><div class="section-head">Mission Types</div><p>Every mission component is one of two types:</p>
-   <div class="r-callout"><strong>Live Judged —</strong> the judge must observe the action occur (e.g. touching Botguy, stacking cubes, moving cones off tape).</div>
+   <div class="r-callout"><strong>Live Judged —</strong> the judge must observe the action occur (e.g. touching Botguy, stacking cubes, moving cones off the line).</div>
    <div class="r-callout"><strong>Final Position Judged —</strong> the judge determines success from the final board state after time expires (e.g. poms in baskets, objects on platforms or in loading zones).</div><div class="section-head">Progressive Mission Logic</div><p>Missions may contain a Base, a Bonus, and an Advanced Bonus task. Completing one stage unlocks eligibility for the next.</p><div class="section-head">Match Flow</div><p><strong>Pre-match —</strong> teams declare intended missions. <strong>Live match —</strong> only active live-scoring items are displayed; when a live mission is completed the judge checks it, it leaves the active list, and associated bonuses become available. <strong>Final scoring —</strong> the judge evaluates all final-position missions. <strong>Review —</strong> before submission the judge may modify items and correct mistakes.</p><div class="section-head">Match End</div><p>At 150 seconds the match immediately ends. No additional robot movement, settling time, or task completion is permitted afterward. Scoring is based on the condition of the field at the moment the match ends.</p>
         </section>
         <section class="r-section" id="robots">
@@ -251,16 +254,16 @@
     <div class="def-bar"><span class="def-n">#4</span><span class="def-t">Off</span></div>
     <div class="def-body"><p>An object is OFF a line, tape, boundary, or zone edge when no portion is touching it.</p>
     <div class="examples-grid">
-      <div class="ex-col"><div class="ex-head scores">✓ Scores</div><ul><li>A cube, pom, or cone completely clear of black tape.</li><li>A robot completely clear of a boundary tape.</li></ul></div>
-      <div class="ex-col"><div class="ex-head no-scores">✗ Does Not Score</div><ul><li>Any portion touching, resting on, or leaning onto black tape.</li></ul></div>
+      <div class="ex-col"><div class="ex-head scores">✓ Scores</div><ul><li>A cube, pom, or cone completely clear of black line.</li><li>A robot completely clear of a boundary line.</li></ul></div>
+      <div class="ex-col"><div class="ex-head no-scores">✗ Does Not Score</div><ul><li>Any portion touching, resting on, or leaning onto black line.</li></ul></div>
     </div>
     
     </div></div><div class="def-block">
     <div class="def-bar"><span class="def-n">#5</span><span class="def-t">In a Zone</span></div>
-    <div class="def-body"><p>A robot is IN A ZONE when touching the specified zone and not touching any black tape boundary or adjacent zone.</p>
+    <div class="def-body"><p>A robot is IN A ZONE when touching the specified zone and not touching any black line boundary or adjacent zone.</p>
     <div class="examples-grid">
-      <div class="ex-col"><div class="ex-head scores">✓ Scores</div><ul><li>A robot touching only the intended zone.</li><li>A robot extending over a tape boundary or adjacent zone without touching it.</li></ul></div>
-      <div class="ex-col"><div class="ex-head no-scores">✗ Does Not Score</div><ul><li>A robot touching a black tape boundary or an adjacent zone.</li><li>A robot resting on any boundary tape.</li></ul></div>
+      <div class="ex-col"><div class="ex-head scores">✓ Scores</div><ul><li>A robot touching only the intended zone.</li><li>A robot extending over a line boundary or adjacent zone without touching it.</li></ul></div>
+      <div class="ex-col"><div class="ex-head no-scores">✗ Does Not Score</div><ul><li>A robot touching a black line boundary or an adjacent zone.</li><li>A robot resting on any boundary line.</li></ul></div>
     </div>
     
     </div></div><div class="def-block">
@@ -289,12 +292,12 @@
     <div class="def-body"><p>A robot is in a LEGAL STARTING POSITION when fully within the vertical projection of any starting box and otherwise compliant with all starting requirements.</p>
     
     
-    </div></div><div class="r-callout"><strong>Stack interpretation</strong> “Stack” is used for readability only. Scoring is determined solely by the ON TOP OF and TOUCHING definitions — traditional, pyramid, or mixed arrangements all score as long as the required relationships exist. Side-by-side, touching-only, or separated arrangements do not.</div><div class="r-callout r-warn"><strong>Mission-specific exceptions</strong> <strong>Warehouse Zone Pom —</strong> a pom is not IN the Warehouse Zone if any portion touches a black tape boundary. <strong>Traffic Cone OFF-Tape —</strong> a cone is not OFF the tape if any portion touches the tape.</div>
+    </div></div><div class="r-callout"><strong>Stack interpretation</strong> “Stack” is used for readability only. Scoring is determined solely by the ON TOP OF and TOUCHING definitions — traditional, pyramid, or mixed arrangements all score as long as the required relationships exist. Side-by-side, touching-only, or separated arrangements do not.</div><div class="r-callout r-warn"><strong>Mission-specific exceptions</strong> <strong>Warehouse Zone Pom —</strong> a pom is not IN the Warehouse Zone if any portion touches a black line boundary. <strong>Traffic Cone OFF-Line —</strong> a cone is not OFF the line if any portion touches the line.</div>
         </section>
         <section class="r-section" id="field">
           <div class="r-sec-eyebrow"><span class="r-sec-no">07</span> Section 7</div>
           <h2 class="r-sec-title">Field Elements &amp; Setup</h2>
-          <div class="section-head">Fixed Field Elements</div><p>Not intended to move during a match: PVC enclosures, the loading dock, field walls, starting-box walls, field tape, and any permanently attached structure. Teams may not intentionally reposition fixed elements for advantage.</p><div class="section-head">Movable Objects</div><p>Intended to move during a match: baskets, pallets, cubes, poms, traffic cones, Botguy, and any mission-specific object. These may be pushed, pulled, carried, lifted, transported, stacked, or relocated unless a mission prohibits it. Baskets may be freely moved anywhere on the field.</p><div class="section-head">Field Setup &amp; Reset</div><p>Before each match the field is reset per the official setup guide; the Head Judge verifies readiness. Pallet orientation and basket placement may be chosen by teams provided each stays within its designated location. Once a match begins, the setup is official.</p>
+          <div class="section-head">Fixed Field Elements</div><p>Not intended to move during a match: PVC enclosures, the loading dock, field walls, starting-box walls, field lines, and any permanently attached structure. Teams may not intentionally reposition fixed elements for advantage.</p><div class="section-head">Movable Objects</div><p>Intended to move during a match: baskets, pallets, cubes, poms, traffic cones, Botguy, and any mission-specific object. These may be pushed, pulled, carried, lifted, transported, stacked, or relocated unless a mission prohibits it. Baskets may be freely moved anywhere on the field.</p><div class="section-head">Field Setup &amp; Reset</div><p>Before each match the field is reset per the official setup guide; the Head Judge verifies readiness. Pallet orientation and basket placement may be chosen by teams provided each stays within its designated location. Once a match begins, the setup is official.</p>
    <div class="r-callout"><strong>After match start</strong> Minor setup variations are not grounds for replay or adjustment. The only exception is a setup error that directly causes a team to receive points that would not otherwise be earned — in which case the Head Judge may make scoring adjustments. The Head Judge's decision is final.</div><div class="section-head">Displaced or Damaged Elements</div><p>If a fixed element is accidentally displaced, judges may restore it when doing so gives no advantage or disadvantage. If a robot intentionally repositions a fixed element, judges may restore it, disallow resulting score, require corrective action, or apply penalties. If an element becomes damaged, the Head Judge decides whether to continue, restore, or replay.</p>
         </section>
         <section class="r-section" id="inspection">

@@ -8,20 +8,20 @@
   @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Bitter:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap');
 
   :root{
-    --navy:      #17233F;
-    --navy-2:    #223258;
-    --red:       #8C1F2B;
-    --red-2:     #6E1520;
-    --gold:      #C9A227;
-    --rust:      #B85C1E;
-    --cream:     #F6F1E4;
-    --cream-2:   #EDE4CC;
-    --ink:       #221B14;
-    --ink-soft:  #55503F;
-    --line:      #D8CDA9;
-    --green:     #3F7A4E;
-    --green-soft:#E4EFDF;
-    --shadow:    0 2px 0 rgba(34,27,20,0.08);
+    --navy:      #1C1C1C;
+    --navy-2:    #333333;
+    --red:       #C0392B;
+    --red-2:     #922B21;
+    --gold:      #C0392B;
+    --rust:      #922B21;
+    --cream:     #F8F8F8;
+    --cream-2:   #F2F2F2;
+    --ink:       #1C1C1C;
+    --ink-soft:  #444444;
+    --line:      #CCCCCC;
+    --green:     #1E8449;
+    --green-soft:#EAF5EE;
+    --shadow:    0 2px 0 rgba(28,28,28,0.08);
     --radius:    10px;
   }
 
@@ -382,15 +382,15 @@
       bonus:{desc:"Same robot returns fully within a starting box and stops.", pts:1},
       note:"Independent of Mission 10 — one starting-box return can't score both Waypoint bonuses." },
     { id:2,  title:"Relocate the Red Cube",
-      base:{desc:"Large Red Cube and its pallet are both off the black tape.", pts:1},
-      bonus:{desc:"Both Small Red Cubes are off the black tape.", pts:2} },
+      base:{desc:"Large Red Cube and its pallet are both off the black line.", pts:1},
+      bonus:{desc:"Both Small Red Cubes are off the black line.", pts:2} },
     { id:3,  title:"Mixed Freight",
       base:{desc:"Stack a green or yellow cube on a cube of the opposite color.", pts:4},
       bonus:{desc:"Do it a second time.", pts:5},
       advanced:{desc:"Both stacks are opposite-color stacks.", pts:7} },
     { id:4,  title:"Pom Off the Line",
-      base:{desc:"Move an orange pom off the black tape.", pts:2},
-      bonus:{desc:"A blue pom is off the tape at the same time.", pts:3} },
+      base:{desc:"Move an orange pom off the black line.", pts:2},
+      bonus:{desc:"A blue pom is off the line at the same time.", pts:3} },
     { id:5,  title:"Stack the Small Reds",
       base:{desc:"Place a Small Red Cube on top of the Large Red Cube.", pts:5},
       bonus:{desc:"Both Small Red Cubes are on top of the Large Red Cube.", pts:6} },
@@ -417,7 +417,7 @@
       note:"The basket scored here must be different from the one used for Mission 15." },
     { id:12, title:"Restack the Freight",
       base:{desc:"Stack two Spilled Cubes.", pts:6},
-      bonus:{desc:"The stack is touching black tape.", pts:3},
+      bonus:{desc:"The stack is touching black line.", pts:3},
       note:"A stack placed on the Large Green Cube can also score Mission 16." },
     { id:13, title:"Rebuild the Shipment",
       base:{desc:"All three Unstraight Cubes are off the black line.", pts:1},
@@ -425,7 +425,7 @@
       advanced:{desc:"All three Unstraight Cubes form one stack.", pts:7},
       note:"A stack placed on the Large Brown Cube can also score Mission 17." },
     { id:14, title:"Traffic Control",
-      base:{desc:"Both Traffic Cones are off the black tape.", pts:2},
+      base:{desc:"Both Traffic Cones are off the black line.", pts:2},
       bonus:{desc:"A Traffic Cone is in the Loading Zone.", pts:4},
       note:"Traffic Cones may also contribute to Mission 18." },
     { id:15, title:"Hazard Disposal #2",
