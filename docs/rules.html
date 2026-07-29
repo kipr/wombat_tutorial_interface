@@ -111,6 +111,48 @@
     .r-foot { background: var(--deep-red); color: rgba(255,255,255,0.6); text-align: center; padding: 1rem; font-size: 0.75rem; letter-spacing: 0.04em; }
     .r-foot a { color: rgba(255,255,255,0.85); text-decoration: none; }
     .r-foot a:hover { color: var(--white); }
+    /* ---- sticky rule search (desktop only) ---- */
+    .nav-search {
+      display: flex; align-items: center; gap: 0.5rem;
+      flex: 0 1 380px; margin: 0 1.5rem;
+      background: rgba(255,255,255,0.11);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 5px; padding: 0 0.6rem; height: 34px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .nav-search:focus-within { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.55); }
+    .nav-search .ns-icon { width: 16px; height: 16px; color: rgba(255,255,255,0.6); flex-shrink: 0; }
+    .nav-search input {
+      flex: 1; min-width: 0; background: none; border: none; outline: none;
+      color: var(--white); font-family: var(--font-body); font-size: 0.92rem;
+    }
+    .nav-search input::placeholder { color: rgba(255,255,255,0.5); }
+    .nav-search input::-webkit-search-cancel-button { display: none; }
+    .nav-search .ns-clear {
+      background: none; border: none; color: rgba(255,255,255,0.55); cursor: pointer;
+      font-size: 0.85rem; line-height: 1; padding: 4px; flex-shrink: 0;
+    }
+    .nav-search .ns-clear:hover { color: var(--white); }
+    .nav-search .ns-count {
+      font-family: var(--font-display); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); white-space: nowrap; flex-shrink: 0;
+    }
+    /* search results */
+    .r-section.dim, .def-block.dim, .r-list li.dim, .r-callout.dim { display: none; }
+    .rn-desktop li.dim { display: none; }
+    .r-hit { background: #FFF3C4; border-radius: 2px; box-shadow: 0 0 0 2px #FFF3C4; }
+    .no-hits {
+      background: var(--pale-red); border: 1px solid var(--light-red); border-radius: 6px;
+      padding: 1.1rem 1.3rem; margin: 0 0 1.5rem; color: var(--gray-700); font-size: 1rem;
+    }
+    .no-hits button {
+      background: none; border: none; color: var(--red); cursor: pointer;
+      font-weight: 600; font-size: 1rem; text-decoration: underline; padding: 0;
+    }
+    @media (max-width: 900px) { .nav-search { display: none; } }
+    @media print { .nav-search, .no-hits { display: none; } .r-section.dim { display: block; } }
+
   </style>
 </head>
 <body>
@@ -119,6 +161,18 @@
       <img src="kipr-logo.png" alt="KIPR">
       <span>Botball 2026</span>
     </a>
+
+    <div class="nav-search">
+      <svg class="ns-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <input id="ruleSearch" type="search" autocomplete="off" spellcheck="false"
+             placeholder="Search the rules&hellip;" aria-label="Search the rules">
+      <button class="ns-clear" id="nsClear" type="button" aria-label="Clear search" hidden>&#10005;</button>
+      <span class="ns-count" id="nsCount" aria-live="polite"></span>
+    </div>
+
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="2026-missions.html" class="active">2026 Missions</a>
@@ -133,14 +187,13 @@
     <div class="ph-inner">
       <img src="botguy.png" alt="Botguy" class="ph-botguy">
       <div>
-        <p class="ph-eyebrow">KIPR Botball — 2026 Missions · Stack Attack</p>
+        <p class="ph-eyebrow">KIPR Botball Explorer — 2026 Missions · Stack Attack</p>
         <h1 class="ph-title">Competition Rules</h1>
-        <p class="ph-sub">The complete rulebook for the 2026 season — divisions, match structure, robot requirements, scoring framework, and judging definitions.</p>
+        <p class="ph-sub">The complete rulebook for the 2026-2027 Botball Explorer season — divisions, match structure, robot requirements, scoring framework, and judging definitions.</p>
         <div class="ph-stats">
           <div class="ph-stat"><div class="v">150s</div><div class="l">Match Length</div></div>
           <div class="ph-stat"><div class="v">9</div><div class="l">Rule Sections</div></div>
           <div class="ph-stat"><div class="v">9</div><div class="l">Definitions</div></div>
-          <div class="ph-stat"><div class="v">5 → 4</div><div class="l">Matches Counted</div></div>
         </div>
       </div>
     </div>
@@ -183,7 +236,8 @@
     </aside>
 
     <main class="r-content">
-        <section class="r-section" id="overview">
+        <p class="no-hits" id="noHits" hidden>Nothing in the rules matches that. <button type="button" id="nsReset">Show all sections</button></p>
+      <section class="r-section" id="overview">
           <div class="r-sec-eyebrow"><span class="r-sec-no">01</span> Section 1</div>
           <h2 class="r-sec-title">Competition Overview</h2>
           <div class="section-head">Competition Divisions</div><p><strong>Discovery.</strong> Students in Grade 6 and below are eligible for Discovery competition. Eligible students may compete in either Discovery or Expedition.</p>
@@ -342,5 +396,65 @@
     top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
   })();
   </script>
+
+<script>
+(function(){
+  var box   = document.getElementById('ruleSearch');
+  var clear = document.getElementById('nsClear');
+  var count = document.getElementById('nsCount');
+  var none  = document.getElementById('noHits');
+  var reset = document.getElementById('nsReset');
+  if (!box) return;
+
+  var sections = [].slice.call(document.querySelectorAll('.r-section')).map(function(s){
+    var t = (s.querySelector('.r-sec-title') || {}).textContent || '';
+    return { el: s, id: s.id, title: t, hay: (t + ' ' + s.textContent).toLowerCase() };
+  });
+  var sideLinks = [].slice.call(document.querySelectorAll('.rn-desktop li'));
+  var TOTAL = sections.length;
+
+  function sideFor(id){
+    return sideLinks.filter(function(li){
+      var a = li.querySelector('a[data-target]');
+      return a && a.dataset.target === id;
+    });
+  }
+
+  function run(){
+    var q = box.value.trim().toLowerCase();
+    clear.hidden = !q;
+    if (!q) {
+      sections.forEach(function(s){ s.el.classList.remove('dim'); });
+      sideLinks.forEach(function(li){ li.classList.remove('dim'); });
+      count.textContent = ''; none.hidden = true;
+      return;
+    }
+    var words = q.split(/\s+/);
+    var hits = 0;
+    sections.forEach(function(s){
+      var ok = words.every(function(w){ return s.hay.indexOf(w) !== -1; });
+      s.el.classList.toggle('dim', !ok);
+      sideFor(s.id).forEach(function(li){ li.classList.toggle('dim', !ok); });
+      if (ok) hits++;
+    });
+    count.textContent = hits + ' of ' + TOTAL;
+    none.hidden = hits > 0;
+  }
+
+  function wipe(){ box.value=''; run(); box.focus(); }
+
+  box.addEventListener('input', run);
+  clear.addEventListener('click', wipe);
+  if (reset) reset.addEventListener('click', wipe);
+  box.addEventListener('keydown', function(e){ if (e.key === 'Escape') wipe(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== box &&
+        !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) {
+      e.preventDefault(); box.focus();
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
