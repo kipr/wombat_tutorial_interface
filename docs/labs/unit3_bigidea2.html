@@ -288,6 +288,7 @@
         <p>Right now, you have to remember not to type a dangerous servo number. That's risky — one typo could burn out a servo. A better idea: build a function that <strong>fixes</strong> any out-of-range value before it ever reaches the servo. This is called <em>clamping</em>.</p>
         <div class="code small">if (position &gt; ARM_MAX) position = ARM_MAX;   <span class="c">// too high? pull it back to the max</span>
 if (position &lt; ARM_MIN) position = ARM_MIN;   <span class="c">// too low? pull it up to the min</span></div>
+        <p><strong>Note:</strong> The single line if statement is a shorthand way to write an if statement; that's why you don't see any curly brackets after "if". This <em>only</em> works when the instructions inside the curly brackets is a single line, not multiple.</p>
         <p>After these two lines, <code>position</code> is <em>guaranteed</em> to be inside your safe range — no matter what number came in. Even if someone asks for 3000, the servo only ever sees <code>ARM_MAX</code>.</p>
       </div>
     </div>
