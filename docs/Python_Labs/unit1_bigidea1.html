@@ -826,9 +826,9 @@
     <h2 class="phase-head"><span class="pnum">Phase 4</span> — Build &amp; Run</h2>
         <div class="figrow two"><figure class="fig"><img src="../img/ide/code-template.jpg" alt="The template you start from." loading="lazy"><figcaption>The template you start from.</figcaption></figure><figure class="fig"><img src="../img/ide/compile-succeeded.jpg" alt="What success looks like." loading="lazy"><figcaption>What success looks like.</figcaption></figure></div>
     <h3 class="sub">Starting Code Template</h3>
-    <p>Type this program into your robot controller exactly as shown. Each line has a <span class="def-term" data-term="COMMENT">comment</span> (after the <code>//</code>) that explains what it does. The comments are notes for you — the robot ignores them.</p>
+    <p>Type this program into your robot controller exactly as shown. Each line has a <span class="def-term" data-term="COMMENT">comment</span> (after the <code>#</code>) that explains what it does. The comments are notes for you — the robot ignores them.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 1 · Big Idea 1 — Waypoint Navigator</span>
+<span class="c"># Unit 1, Big Idea 1: Waypoint Navigator</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -925,7 +925,7 @@ main()</div>
 
     <h3 class="sub">Extension A — Precision Tuning</h3>
     <ul>
-      <li>Add a third variable called SPEED to your program and connect it to your motor calls.</li>
+      <li>Add a variable called SPEED to your program and connect it to your motor calls.</li>
       <li>Run 5 trials at SPEED = 30, then 5 at SPEED = 70.</li>
       <li>Record how speed affects your travel time. What relationship do you notice?</li>
     </ul>
@@ -949,7 +949,7 @@ main()</div>
     <h3 class="sub">Extension D — Inputs as Numbers</h3>
     <ul>
       <li>Change the two motor power numbers and the msleep number, and predict what each change will do before you run it.</li>
-      <li>What advantage does changing a number at the top give you over changing it in many places?</li>
+      <li>What advantage would changing a number in one place give you over changing it in many places?</li>
     </ul>
     <textarea class="answer" data-key="ext_d" aria-label="Extension D"></textarea>
 
@@ -1118,9 +1118,9 @@ main()</div>
     'DEBUGGING': ['Debugging', 'Finding out why a program does not do what you meant, and fixing it. The skill is not writing perfect code; it is narrowing down where the trouble actually is.'],
     'ALGORITHM': ['Algorithm', 'A list of steps that solves a problem. A recipe is an algorithm. So is the set of instructions you write for a robot.'],
     'AUTONOMOUS': ['Autonomous', 'The machine moves around on its own. No person is controlling it while it runs. You start it and step back.'],
-    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'BLOCK': ['Block', 'Everything at a given level of indentation. A block groups statements together so the controller knows which ones belong to which function.'],
     'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],
-    'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
+    'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. A single-line comment start with a "#". Block comments start and end with three quotation marks.'],
     'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
     'FULLY WITHIN': ['Fully Within', 'An object or robot is FULLY WITHIN an area when every part of the object or robot lies inside the boundary of that area — no portion may touch or cross the boundary line.'],
     'IN THE ZONE': ['In The Zone', 'A robot is IN THE ZONE when the robot is touching the interior of the specified zone and no part of the robot is touching the zone’s boundary line.'],

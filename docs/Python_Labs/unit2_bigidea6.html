@@ -361,7 +361,7 @@
     </div>
     <div class="callout gold">
       <p class="ctitle">Why outside the blind spot</p>
-      <p>If you set your stop value too high (too close), the robot would have to drive into the blind spot to reach it — where the reading misbehaves and the robot might never see the right number. Stopping around 4 inches keeps you on the part of the curve you can trust.</p>
+      <p>If you set your stop value too high (too close), the robot would have to drive into the blind spot to reach it — where the reading misbehaves and the robot might never see the right number. Stopping around 4 inches keeps you in the range you can trust.</p>
     </div>
     <p class="q">Why did you pick a stop value from around 4 inches instead of 1 or 2 inches, even though closer would "reach" the object more?</p>
     <textarea class="answer" data-key="p3_why_4in" aria-label="Why 4 inches"></textarea>
@@ -407,7 +407,7 @@
 
     <p>Start from your tuned line-follow. Add an ET check to the loop condition and your stop value at the top. Use <strong>your own</strong> <code>MIDPOINT</code>, <code>STOP_VALUE</code>, and the <code>mav</code> speeds you found best. Define <code>line_follow_until_object</code> above <code>main()</code>, as always.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 2 · Big Idea 6 — Two Sensors, One Decision</span>
+<span class="c"># Unit 2, Big Idea 6: Two Sensors, One Decision</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -432,7 +432,7 @@ def line_follow_until_object():
             k.mav(1, FAST)
         k.msleep(10)                   <span class="c"># tiny pause so we don't overwork the controller</span>
 
-    k.motor(0, 0)                      <span class="c"># object is close — brake</span>
+    k.motor(0, 0)                      <span class="c"># The object is close, so brake.</span>
     k.motor(1, 0)
     k.msleep(50)                       <span class="c"># let the brake settle</span>
 
@@ -507,7 +507,7 @@ main()</div>
 
     <h3 class="sub">Extension B — Report the Distance</h3>
     <ul>
-      <li>Use your Phase 2 table to turn the stopping ET value back into an approximate distance, and <code>printf</code> it. Roughly how far away did the robot actually stop?</li>
+      <li>Use your Phase 2 table to turn the stopping ET value back into an approximate distance, and <code>print</code> it. Roughly how far away did the robot actually stop?</li>
     </ul>
     <textarea class="answer" data-key="ext_b" aria-label="Extension B"></textarea>
 
@@ -658,9 +658,9 @@ main()</div>
     'ENCODER': ['Encoder', 'The counter built into a motor that reports how far its shaft has turned. It is what makes ticks possible, and it is how a robot measures its own movement instead of guessing.'],
     'SENSOR FUSION': ['Sensor Fusion', 'Combining readings from more than one sensor to work out something neither could tell you alone. Two sensors disagreeing is itself information.'],
     'ANALOG': ['Analog', 'An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers "how dark is this?" with a number, so you have to decide for yourself where dark begins.'],
-    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'BLOCK': ['Block', 'Everything at a given level of indentation. A block groups statements together so the controller knows which ones belong to which function.'],
     'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],
-    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'CONDITION': ['Condition', 'An expression that Python checks to decide whether an if block runs or a while loop repeats. Python treats the expression as true or false; it does not need parentheses and does not have to compare two values.'],
     'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
     'DECISION': ['Decision', 'A point where a plan splits two ways depending on the answer to a question. On a flowchart it is drawn as a diamond, with one arrow in and two labelled arrows out.'],
     'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],

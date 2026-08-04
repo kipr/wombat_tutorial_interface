@@ -325,7 +325,7 @@
     <h2 class="phase-head"><span class="pnum">Phase 5</span> — Build: The Run in main()</h2>
     <p>Write your run in <code>main()</code>, translating your plan into library calls. Start with the backward touch, then follow your path — and put a <code>square_up()</code> at each reset checkpoint you planned. Scoring is optional here; you can <code>print()</code> milestones if you like, but the real goal is a <strong>reliable, accurate run</strong>.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 4 · Big Idea 5 — The Long Run</span>
+<span class="c"># Unit 4, Big Idea 5: The Long Run</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -339,11 +339,11 @@ def main():
 
     <span class="c"># ===== VERIFY START =====</span>
     back_until_pressed()       <span class="c"># backward touch: confirm we're in the box, reset origin</span>
-    square_up()                <span class="c"># RESET #1 — known heading before we move</span>
+    square_up()                <span class="c"># RESET #1 establishes a known heading before we move.</span>
 
     <span class="c"># ===== LEG 1: to Botguy (avoid the large cube!) =====</span>
     <span class="hl"># Drive(...) / Turn(...) around the large cube to Botguy</span>
-    square_up()                <span class="c"># RESET #2 — square up before the precise touch</span>
+    square_up()                <span class="c"># RESET #2 squares up before the precise touch.</span>
     <span class="hl"># ...touch Botguy...</span>
 
     <span class="c"># ===== LEG 2: to the first cone =====</span>
@@ -360,7 +360,7 @@ def main():
     <span class="hl"># Drive(...) / Turn(...) toward the box</span>
     square_up()                <span class="c"># RESET #5</span>
     <span class="hl"># ...bring the cones into the box...</span>
-    square_up()                <span class="c"># RESET #6 — final alignment in the box</span>
+    square_up()                <span class="c"># RESET #6 provides the final alignment in the box.</span>
 
 main()</div>
     <div class="callout gold">
@@ -444,31 +444,6 @@ main()</div>
       <li>What collaborative tool (a shared doc, GitHub, a group chat) would help you combine your work without overwriting each other's changes?</li>
     </ul>
     <textarea class="answer" data-key="ext_e" aria-label="Extension E"></textarea>
-
-    <h3 class="sub">Extension F — Build a Status Screen</h3>
-    <ul>
-      <li>The graphics library lets you open a real drawing window and put shapes and text on it. Try building a simple run-status screen:
-        <div class="code small">k.graphics_open(320, 240)
-k.graphics_clear()
-
-<span class="c"># progress bar frame + filled portion (vector graphics: rectangles)</span>
-k.graphics_rectangle(10, 10, 210, 30, 255, 255, 255)
-k.graphics_rectangle_fill(10, 10, 110, 30, 0, 200, 0)  <span class="c"># ~50% filled</span>
-
-<span class="c"># pass/fail indicator (vector graphics: circle)</span>
-k.graphics_circle_fill(260, 20, 12, 0, 200, 0)
-
-<span class="c"># a label (text)</span>
-k.graphics_print_string("RUN STATUS", 10, 50, 255, 255, 255, 1.0)
-
-k.graphics_update()   <span class="c"># nothing appears on screen until you call this</span></div>
-      </li>
-      <li>Use <code>k.graphics_line()</code> to plot 2-3 points of a <span class="def-term" data-term="SENSOR">sensor</span> reading over time as connected line segments — a simple live trend graph.</li>
-      <li>Update your progress bar's filled width as your mission runs (recall <code>k.graphics_rectangle_fill</code> from above), instead of drawing it once at a fixed size. What would you need to know to calculate how "full" the bar should be at any moment?</li>
-      <li><code>k.graphics_blit_enc()</code> can display a real bitmap image — a small <span class="def-term" data-term="ARRAY">array</span> of pixel color values — instead of shapes. What's the difference between drawing a rectangle with <code>k.graphics_rectangle_fill</code> (a formula the computer calculates) and displaying a bitmap with <code>k.graphics_blit_enc</code> (stored pixel-by-pixel data)?</li>
-      <li><code>k.get_key_state()</code> and <code>k.get_mouse_position()</code> read live keyboard/mouse input from the same graphics window. Add a check so your status screen only advances to the next step when a specific key is pressed — a simple interactive interface, not just a fixed display.</li>
-    </ul>
-    <textarea class="answer" data-key="ext_f" aria-label="Extension F"></textarea>
   </section>
 
   <div class="bottom-submit no-print">

@@ -300,9 +300,9 @@
     <div class="concept">
       <div class="chead">A name points at something — it doesn't hold it</div>
       <div class="cbody">
-        <p>It's tempting to picture a <span class="def-term" data-term="VARIABLE">variable</span> as a labeled box that a value sits inside. Python doesn't work that way. A name is more like a <strong>sticky note pointing at</strong> something that lives somewhere else. You can prove it with <code>id()</code>, which returns the number of wherever that "somewhere else" is, in the Python you're using on the Wombat:</p>
+        <p>Until now, we've been referring to <span class="def-term" data-term="VARIABLE">variable</span>s as a labeled box with a value inside. Python doesn't work that way. A name is more like a <strong>sticky note pointing at</strong> something that lives somewhere else. You can prove it with <code>id()</code>, which returns the number of wherever that "somewhere else" is, in the Python you're using on the Wombat:</p>
         <div class="code small">x = 5
-print(id(x))       <span class="c"># a number — where the value 5 actually lives</span>
+print(id(x))       <span class="c"># This number identifies where the value 5 lives.</span>
 
 y = x               <span class="c"># y is a SECOND sticky note, pointing at the SAME place</span>
 print(id(y))        <span class="c"># the exact same number as id(x)</span></div>
@@ -317,11 +317,11 @@ print(id(y))        <span class="c"># the exact same number as id(x)</span></div
     drive_forward()
     drive_forward()
 
-print(id(push_off_line))    <span class="c"># a number — where THIS function lives</span>
+print(id(push_off_line))    <span class="c"># This number identifies where THIS function lives.</span>
 
 do_it = push_off_line       <span class="c"># a SECOND name, pointing at the SAME function</span>
 do_it()                      <span class="c"># calling do_it() runs push_off_line's code</span></div>
-        <p>That's why Python doesn't need a <span class="def-term" data-term="PROTOTYPE">prototype</span> declared above <code>main()</code> the way some other languages do: the name-to-function connection is made once, right where you write <code>def</code>, and every later use of that name just follows the same pointer.</p>
+        <p>That's why Python doesn't need a <span class="def-term" data-term="PROTOTYPE">prototype</span> declared above <code>main()</code> the way some other languages (like C) do: the name-to-function connection is made once, right where you write <code>def</code>, and every later use of that name just follows the same pointer.</p>
       </div>
     </div>
     <p class="q">In your own words: what does <code>id()</code> show you about a name? Why is "a name points at something" a more accurate picture than "a name is a box holding something"?</p>
@@ -352,7 +352,7 @@ do_it()                      <span class="c"># calling do_it() runs push_off_lin
     <p>When you build a bigger behavior out of smaller ones, that's <em>composition</em>. A function like <code>push_off_line()</code> doesn't contain new motor commands — it's <em>composed</em> of calls to building blocks you already trust. You stack the simple to make the complex.</p>
     <div class="callout gold">
       <p class="ctitle">Example</p>
-      <p>A music app's "play" button is composed of smaller behaviors: find the file, decode it, send sound to the speaker, update the screen. Nobody rewrites "send sound to the speaker" for every song — it's a reusable block, called whenever it's needed.</p>
+      <p>A music app's "play" button is composed of smaller behaviors: find the file, read it, send sound to the speaker, update the screen. Nobody rewrites "send sound to the speaker" for every song — it's a reusable block, called whenever it's needed.</p>
     </div>
     <p class="q">In your own words: what is the difference between writing one giant function that does everything, and building the same behavior out of small reusable pieces?</p>
     <textarea class="answer" data-key="p2_giant_vs_modular" aria-label="Giant versus modular"></textarea>
@@ -371,11 +371,11 @@ do_it()                      <span class="c"># calling do_it() runs push_off_lin
 
     <h3 class="sub">Step 1 — Map the Field</h3>
     <p>Before any code, sketch what you see. Mark the right starting box (drawn for you), the poms (use a circle for each), and any obstacles (use an X). This map is what your plan is built on.</p>
+    <p class="sketch-note no-print">Draw on a printed copy, or describe the layout in the box below.</p>
     <div class="sketch" aria-label="Field mapping sketch area">
       <span class="tag" style="left:10px; top:8px;">Sketch your field here — poms = ◯, obstacles = ✕</span>
       <div class="startbox">RIGHT<br>START BOX</div>
     </div>
-    <p class="sketch-note no-print">Draw on the printed copy, or describe the layout in the box below.</p>
     <textarea class="answer" data-key="p3_layout_description" aria-label="Field layout description" placeholder="Describe where the poms and obstacles are relative to the right starting box..."></textarea>
 
     <h3 class="sub">Step 2 — Plan Your Reuse</h3>
@@ -410,7 +410,7 @@ do_it()                      <span class="c"># calling do_it() runs push_off_lin
       <p>The program below shows the <em>pattern</em>: a readable <code>main()</code> at the top calling functions that are defined below it, with building blocks reused in different combinations. Your poms are in different places than this example, so <strong>your</strong> <code>main()</code> will have a different order of moves. Use this to learn the shape — then write your own from your Phase 3 plan.</p>
     </div>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 1 · Big Idea 5 — Pom Pusher  (EXAMPLE — yours will differ)</span>
+<span class="c"># Unit 1, Big Idea 5: Pom Pusher (EXAMPLE; yours will differ)</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -419,21 +419,21 @@ import _kipr as k
 
 DRIVE_SPEED = 50
 
-<span class="c"># ── MAIN — your plan. The poms are NOT in a line, so the path</span>
+<span class="c"># MAIN: This is your plan. The poms are NOT in a line, so the path</span>
 <span class="c">#    between them is different every time. You decide how to reuse</span>
-<span class="c">#    your building blocks to get from one pom to the next. ──</span>
+<span class="c">#    your building blocks to get from one pom to the next.</span>
 def main():
 
     push_off_line()    <span class="c"># first pom</span>
 
-    turn_right()       <span class="c"># next pom is not straight ahead —</span>
+    turn_right()       <span class="c"># The next pom is not straight ahead.</span>
     drive_forward()    <span class="c"># reuse the building blocks to reach it</span>
     push_off_line()    <span class="c"># second pom</span>
 
     drive_forward()    <span class="c"># a different path again to the third</span>
     push_off_line()    <span class="c"># third pom</span>
 
-<span class="c"># ── DEFINITIONS — each name below points at the recipe it runs ──</span>
+<span class="c"># DEFINITIONS: Each name below points at the recipe it runs.</span>
 def drive_forward():
     k.motor(0, DRIVE_SPEED)
     k.motor(1, DRIVE_SPEED)
@@ -446,7 +446,7 @@ def turn_right():
     k.msleep(600)
     k.ao()
 
-<span class="c"># push_off_line is a BIGGER behavior built from a SMALLER one:</span>
+<span class="c"># push_off_line is a BIGGER behavior built from SMALLER ones:</span>
 def push_off_line():
     drive_forward()    <span class="c"># drive into the pom, pushing it off the line</span>
     drive_forward()    <span class="c"># keep going to clear it fully</span>
@@ -685,7 +685,7 @@ main()</div>
     'DEBUGGING': ['Debugging', 'Finding out why a program does not do what you meant, and fixing it. The skill is not writing perfect code; it is narrowing down where the trouble actually is.'],
     'MODULARITY': ['Modularity', 'Building a program out of separate pieces that each do one job. Modular code is easier to test, easier to fix, and easier to reuse somewhere else.'],
     'MODULE': ['Module', 'A separate Python file holding functions you want to use elsewhere. You bring it into a program with an import line, the same way C brings in a header file.'],
-    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'BLOCK': ['Block', 'Everything at a given level of indentation. A block groups statements together so the controller knows which ones belong to which function.'],
     'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
     'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],

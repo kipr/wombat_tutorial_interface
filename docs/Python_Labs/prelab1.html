@@ -692,7 +692,7 @@
   <div class="pl-sec">
     <div class="pl-head"><span class="pl-n">Part 2</span><span class="pl-t">Hardware, software, and what sits between</span></div>
     <div class="pl-body">
-      <p>Python is read line by line rather than compiled ahead of time, but the same rule holds — the machine cannot guess what you meant. Indentation is part of the instruction.</p>
+      <p>Python is read line by line rather than compiled ahead of time, but the same rules from C still hold — the machine cannot guess what you meant. Unlike C, indentation is part of the instruction, so incorrect indentation will cause an error.</p>
       <ul class="tick">
         <li><input type="checkbox" data-key="t_hw" id="t1"><label for="t1">I can say what <span class="def-term" data-term="HARDWARE">hardware</span> is on my robot and point at three pieces.</label></li>
         <li><input type="checkbox" data-key="t_sw" id="t2"><label for="t2">I can say what <span class="def-term" data-term="SOFTWARE">software</span> is and where mine is stored.</label></li>
@@ -705,21 +705,21 @@
     <div class="pl-head"><span class="pl-n">Part 3</span><span class="pl-t">Write, run, run</span></div>
     <div class="pl-body">
         <div class="figrow two"><figure class="fig"><img src="../img/ide/code-template.jpg" alt="Every new project starts like this." loading="lazy"><figcaption>Every new project starts like this.</figcaption></figure><figure class="fig"><img src="../img/ide/compile-succeeded.jpg" alt=""Compilation succeeded" — it is on the robot." loading="lazy"><figcaption>"Compilation succeeded" — it is on the robot.</figcaption></figure></div>
-      <p>Make a new project called <strong>hello.py</strong> and type this in. Do not paste it &mdash; type it.</p>
+      <p>Make a new project called <strong>hello</strong> and type this in. Do not paste it &mdash; type it.</p>
       <div class="code">#!/usr/bin/python3
 import os, sys
 sys.path.append("/usr/lib")
 import _kipr as k
 
 def main():
-    print("ready")
+    print("Ready?")
+    print("Go!")
 
 main()</div>
       <ul class="tick">
         <li><input type="checkbox" data-key="t_typed" id="t4"><label for="t4">I typed it myself and it rund with no errors.</label></li>
-        <li><input type="checkbox" data-key="t_ran" id="t5"><label for="t5">I ran it on the robot and saw <code>ready</code> appear.</label></li>
-        <li><input type="checkbox" data-key="t_indent" id="t9"><label for="t9">I have seen what wrong indentation looks like as an error, on purpose.</label></li>
-        <li><input type="checkbox" data-key="t_fixed" id="t6"><label for="t6">I made that error on purpose, read the message, and fixed it.</label></li>
+        <li><input type="checkbox" data-key="t_ran" id="t5"><label for="t5">I ran it on the robot and saw <code>Ready?</code> appear on one line, then <code>Go!</code> on the next.</label></li>
+        <li><input type="checkbox" data-key="t_fixed" id="t6"><label for="t6">I made an indentation error on purpose, read the message, and fixed it.</label></li>
       </ul>
     </div>
   </div>

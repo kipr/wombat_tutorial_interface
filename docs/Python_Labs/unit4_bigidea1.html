@@ -265,18 +265,18 @@
       <div class="chead">Dividing with / always keeps the decimal part</div>
       <div class="cbody">
         <p>The relationship between ticks and inches won't be a whole number — it might be <strong>41.7</strong> ticks per inch. When you divide two numbers with <code>/</code>, Python keeps the full decimal result automatically. You don't have to ask for it or set anything up — it just happens:</p>
-        <div class="code small">print(250 / 6)    <span class="c"># 41.666666666666664 — the decimal is kept</span></div>
+        <div class="code small">print(250 / 6)    <span class="c"># The decimal is kept: 41.666666666666664.</span></div>
         <p>Whole numbers (like <code>250</code> and <code>6</code>) are called <strong>ints</strong>. A number with a decimal point (like <code>41.7</code>) is called a <strong>float</strong>. You can check which one you have with <code>type()</code>:</p>
         <div class="code small">print(type(250))          <span class="c"># &lt;class 'int'&gt;</span>
-print(type(250 / 6))      <span class="c"># &lt;class 'float'&gt; — dividing produced a float</span></div>
+print(type(250 / 6))      <span class="c"># Division produced a float: &lt;class 'float'&gt;.</span></div>
       </div>
     </div>
     <div class="concept">
       <div class="chead">Going the other way takes a deliberate choice</div>
       <div class="cbody">
         <p>Division keeps the decimal for free. Going <em>back</em> to a whole number does not happen automatically — you have to choose how. Python gives you two honest tools for it, and they don't agree:</p>
-        <div class="code small">print(int(41.7))     <span class="c"># 41  — chops off everything after the decimal point</span>
-print(round(41.7))   <span class="c"># 42  — rounds to the NEAREST whole number</span></div>
+        <div class="code small">print(int(41.7))     <span class="c"># This prints 41 by removing everything after the decimal point.</span>
+print(round(41.7))   <span class="c"># This prints 42 by rounding to the NEAREST whole number.</span></div>
         <p><code>int()</code> always rounds <em>down</em> toward zero, no matter how close the decimal is to the next whole number — even <code>int(41.99)</code> is still <code>41</code>. <code>round()</code> looks at the decimal and picks whichever whole number is actually closer. For something like a predicted tick count, that difference is a real, measurable amount of driving distance — so which one you pick actually matters.</p>
       </div>
     </div>
@@ -323,7 +323,7 @@ print(round(41.7))   <span class="c"># 42  — rounds to the NEAREST whole numbe
     </div>
 
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 4 · Big Idea 1 — The Model</span>
+<span class="c"># Unit 4, Big Idea 1: The Model</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -331,7 +331,7 @@ sys.path.append("/usr/lib")
 import _kipr as k
 
 MIDPOINT = <span class="hl">____</span>       <span class="c"># your Tophat threshold from before</span>
-ticks_per_inch = 0    <span class="c"># the MODEL — calibration will set this</span>
+ticks_per_inch = 0    <span class="c"># Calibration will set this model value.</span>
 
 def main():
     global ticks_per_inch
@@ -413,7 +413,8 @@ main()</div>
         <li><strong>Grease and wear in the motors</strong> — a freshly greased or broken-in motor behaves differently than a dry or stiff one.</li>
         <li><strong>Motor aging</strong> — over weeks and months, motors simply change.</li>
       </ul>
-      <p>So if your driving starts going long or short for no obvious reason, <strong>recalibrate</strong>. Running your calibration function again rebuilds the model for your robot's <span class="def-term" data-term="CONDITION">condition</span> <em>today</em>.</p>
+      <p>So if your driving starts going long or short for no obvious reason, <strong>recalibrate</strong>. Running your calibration function again rebuilds the model for your robot's condition <em>today</em>.</p>
+      <p>To keep track, add a comment to your <code>ticks_per_inch</code> variable with the last date you calibrated it.</p>
     </div>
     <p class="q">Your robot was driving perfectly last week, but today it always stops a little short. Nothing in your code changed. What probably happened, and what should you do?</p>
     <textarea class="answer" data-key="p5_stale_model" aria-label="Stale model"></textarea>
@@ -498,7 +499,7 @@ main()</div>
 
     <h3 class="sub">Extension G — Type In a Test Value</h3>
     <ul>
-      <li>While testing (not during a competition run), use <code>input()</code> to read a number typed by a teammate instead of hard-coding it. <code>input()</code> always gives you back text, even if someone types a number — wrap it in <code>float()</code> to turn that text into an actual decimal number you can do math with:
+      <li>This extension requires running the program manually via SSH or the terminal. While testing (not during a competition run), use <code>input()</code> to read a number typed by a teammate instead of hard-coding it. <code>input()</code> always gives you back text, even if someone types a number — wrap it in <code>float()</code> to turn that text into an actual decimal number you can do math with.
         <div class="code small">distance = float(input("Enter a distance to drive (inches): "))
 Drive(distance)</div>
       </li>
@@ -615,7 +616,7 @@ Drive(distance)</div>
     'CALIBRATION': ['Calibration', 'Measuring your own robot to find the numbers that describe it — ticks per inch, a light threshold, a turn count. Calibration is why one team’s numbers do not work on another team’s robot.'],
     'ENCODER': ['Encoder', 'The counter built into a motor that reports how far its shaft has turned. It is what makes ticks possible, and it is how a robot measures its own movement instead of guessing.'],
     'ANALOG': ['Analog', 'An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers "how dark is this?" with a number, so you have to decide for yourself where dark begins.'],
-    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'CONDITION': ['Condition', 'An expression that Python checks to decide whether an if block runs or a while loop repeats. Python treats the expression as true or false; it does not need parentheses and does not have to compare two values.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
     'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
     'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],

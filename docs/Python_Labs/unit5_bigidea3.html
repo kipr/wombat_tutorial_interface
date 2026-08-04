@@ -245,7 +245,7 @@
     <p>Right now, your library — every <span class="def-term" data-term="FUNCTION">function</span> you've written across every lab — lives in exactly one place: the IDE. If that IDE account is lost, if a Chromebook gets wiped, if you simply want to work on your code somewhere else, your work is gone unless you've backed it up. Today you're going to give your library a permanent, recoverable home using <strong>GitHub</strong>, the tool almost every professional software team on Earth uses to store and share code.</p>
     <div class="callout red">
       <p class="ctitle">The Big Idea of This Unit</p>
-      <p>A reliable system doesn't depend on one fragile copy of anything. It keeps a history it can recover from — the same reason your pose <span class="def-term" data-term="ARRAY">array</span> kept a record of belief in Big Idea 1, GitHub keeps a record of every version of your code.</p>
+      <p>A reliable system doesn't depend on one fragile copy of anything. It keeps a history it can recover from — the same reason your pose <span class="def-term" data-term="LIST">list</span> kept a record of belief in Big Idea 1, GitHub keeps a record of every version of your code.</p>
     </div>
     <h3 class="sub">By the end of this activity you will be able to:</h3>
     <ul class="obj">
@@ -307,7 +307,7 @@
     <div class="concept">
       <div class="chead">What is the MIT License actually saying?</div>
       <div class="cbody">
-        <p>A license is a set of rules for what other people are legally allowed to do with your code — you ran into this idea in Unit 3's "Whose Code Is It?" extension. The <strong>MIT License</strong> is one of the most permissive licenses that exists: anyone can use your code, modify it, or even sell something built on it — the one <span class="def-term" data-term="CONDITION">condition</span> is they have to keep your name credited somewhere. It's a popular choice for student and open-source projects because it puts almost no restrictions on how your work gets used.</p>
+        <p>A license is a set of rules for what other people are legally allowed to do with your code — you ran into this idea in Unit 3's "Whose Code Is It?" extension. The <strong>MIT License</strong> is one of the most permissive licenses that exists: anyone can use your code, modify it, or even sell something built on it — the one condition is they have to keep your name credited somewhere. It's a popular choice for student and open-source projects because it puts almost no restrictions on how your work gets used.</p>
       </div>
     </div>
     <p class="q">Why might a license matter for a file you're about to make public on the internet? What could go wrong if you skipped adding one entirely?</p>
@@ -366,16 +366,16 @@ cd your-repo
 
 <span class="c"># ...edit yourname.h in a text editor...</span>
 
-<span class="c"># stage the change — tell git which files you want to include</span>
+<span class="c"># Stage the change to tell git which files to include.</span>
 git add yourname.h
 
-<span class="c"># commit — save a labeled snapshot of that change, locally</span>
-git commit -m "Added the pose array functions"
+<span class="c"># Commit to save a labeled snapshot of that change locally.</span>
+git commit -m "Added the pose list functions"
 
-<span class="c"># push — send that commit up to GitHub</span>
+<span class="c"># Push to send that commit to GitHub.</span>
 git push
 
-<span class="c"># pull — bring down anyone else's commits before you start editing again</span>
+<span class="c"># Pull anyone else's commits before you start editing again.</span>
 git pull</div>
     <p>Notice this is the exact same push/pull idea from Phase 5 — just as explicit typed commands instead of browser buttons. <code>git add</code> and <code>git commit</code> happen entirely on your computer; nothing reaches GitHub until <code>git push</code> actually runs.</p>
     <p class="q">Walk through what each of the five commands above does, in order, in your own words.</p>
@@ -437,7 +437,7 @@ git pull</div>
 
     <h3 class="sub">Extension E — Ethical Use and the Rules</h3>
     <ul>
-      <li>If you found someone else's code on GitHub with no license at all, would it be ethical to copy it into your own project without asking? What does your school's Acceptable Use Policy say about copying <span class="def-term" data-term="DIGITAL">digital</span> work?</li>
+      <li>If you found someone else's code on GitHub with no license at all, would it be ethical to copy it into your own project without asking? What does your school's Acceptable Use Policy say about copying digital work?</li>
       <li>Should there be a law requiring all public code to have a license, or should it be left up to each programmer? Give your position and one reason.</li>
       <li>GitHub connects programmers across the entire world, not just your classroom. How might a tool like this change who you could realistically collaborate with on a project, compared to before it existed?</li>
     </ul>
@@ -570,11 +570,11 @@ git pull</div>
 <script>
 (function(){
   var DEFS = {
-    'ARRAY': ['Array', 'A single name that holds a whole row of values instead of just one. You reach each value by its position number, so one name and a number can stand in for a dozen separate variables.'],
+    'LIST': ['List', 'Python’s way of holding a row of values under one name. You reach each value by its index, so one name and a number can stand in for many separate variables.'],
     'COMMIT': ['Commit', 'A saved snapshot of your work in version control, with a note saying what you changed. A good commit message tells a future reader why, not just what.'],
     'REPOSITORY': ['Repository', 'The stored home of a project under version control — all its files plus the full history of every change ever made to them.'],
     'VERSION CONTROL': ['Version Control', 'A system that keeps every version of your files as you change them, so you can see what changed, go back to an older version, and work alongside other people without overwriting them.'],
-    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'CONDITION': ['Condition', 'An expression that Python checks to decide whether an if block runs or a while loop repeats. Python treats the expression as true or false; it does not need parentheses and does not have to compare two values.'],
     'DIGITAL': ['Digital', 'A digital sensor has only two possible readings: 0 or 1. It works like a light switch — pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
     'IDE': ['IDE', 'Short for Integrated Development Environment. It is the place where you write your code, check it for mistakes, and send it to the robot. Yours is called the KISS IDE.'],

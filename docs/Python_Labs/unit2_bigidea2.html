@@ -279,10 +279,10 @@
       <div class="chead">Two different ways to "stop"</div>
       <div class="cbody">
         <p>There are two ways to end a motor's motion, and they behave very differently:</p>
-        <div class="code small">k.motor(0, 0)   <span class="c"># BRAKE — actively holds the motor at zero, resisting motion</span>
+        <div class="code small">k.motor(0, 0)   <span class="c"># BRAKE actively holds the motor at zero and resists motion.</span>
 k.motor(1, 0)
 
-k.ao()          <span class="c"># "all off" — cuts power; motors go NEUTRAL and COAST</span></div>
+k.ao()          <span class="c"># "All off" cuts power, so the motors go NEUTRAL and COAST.</span></div>
         <p><strong><code>k.motor(0,0)</code> brakes.</strong> It actively holds the wheel at zero and resists it turning — like pressing the brake pedal. The robot stops where it is and holds the line.</p>
         <p><strong><code>k.ao()</code> goes neutral.</strong> It shuts the power off and lets the motors spin freely — like shifting a car into neutral and coasting. The robot drifts to a stop on its own momentum.</p>
       </div>
@@ -368,7 +368,7 @@ k.msleep(50)    <span class="c"># give the motors a moment to settle and lock</s
     <h3 class="sub">The Two Versions</h3>
     <p>Both versions are identical except for how they stop. Build Version A first, run your five trials, then change only the stop to make Version B and run five more. Define both helper functions above <code>main()</code>, as always.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 2 · Big Idea 2 — Brake vs. Coast</span>
+<span class="c"># Unit 2, Big Idea 2: Brake vs. Coast</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -383,7 +383,7 @@ def main():
     drive_forward()         <span class="c"># move forward about 6 inches</span>
 
     <span class="c"># ---- VERSION A: COAST (neutral) ----</span>
-    k.ao()                    <span class="c"># cut power — motors coast to a stop</span>
+    k.ao()                    <span class="c"># Cut power so the motors coast to a stop.</span>
 
     <span class="c"># ---- VERSION B: BRAKE (active hold) ----</span>
     <span class="c"># Comment out the k.ao() above and use these three lines instead:</span>
@@ -403,7 +403,7 @@ def back_until_pressed():
         k.motor(1, -50)
         k.msleep(10)
     k.ao()
-    y_position = 0            <span class="c"># home — reset origin</span>
+    y_position = 0            <span class="c"># We are home, so reset the origin.</span>
 
 main()</div>
 

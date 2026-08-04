@@ -433,7 +433,7 @@ times[i + 1] = temp;           <span class="c">// 3. copy the saved-aside value 
     <div class="concept">
       <div class="chead">Sorting: the simple version</div>
       <div class="cbody">
-        <p>Picture 4 people standing in a line, out of height order. Walk down the line one time: compare each pair of neighbors, and swap them if the left person is taller than the right person. After one full walk, the tallest person has "bubbled" all the way to the end. Do that same walk a few more times, and eventually everyone's in order — that's the whole idea behind this sort.</p>
+        <p>Picture 4 people standing in a line, out of height order. Walk down the line one time: compare each pair of neighbors, and swap them if the left person is taller than the right person. After one full walk, the tallest person has "bubbled" to the top like bubbles rising through water. Do that same walk a few more times, and eventually everyone's in order. That "bubbling" to the top gives this <span class="def-term" data-term="ALGORITHM">algorithm</span> its name: bubble sort.</p>
         <div class="code small">for (int pass = 0; pass &lt; 3; pass++) {          <span class="c">// walk down the line a few times</span>
     for (int i = 0; i &lt; 3; i++) {                <span class="c">// one full walk, comparing neighbors</span>
         if (times[i] &gt; times[i + 1]) {           <span class="c">// out of order?</span>
@@ -444,6 +444,7 @@ times[i + 1] = temp;           <span class="c">// 3. copy the saved-aside value 
     }
 }</div>
         <p>Walk through it by hand with 4 index cards showing your own 4 times, out of order. Do the swaps yourself, pass by pass, until they're sorted. For only 4 values, 3 passes is always enough to guarantee a full sort — that's why the outer loop stops at <code>pass &lt; 3</code>.</p>
+        <img src="../bubble_sort.svg"/>
       </div>
     </div>
     <div class="concept">

@@ -263,7 +263,7 @@
       <div class="row"><dt>Unit Guiding Question</dt><dd>How can a machine operate reliably in an imperfect world?</dd></div>
       <div class="row"><dt>Big Idea</dt><dd>Systems Must Handle Failure</dd></div>
       <div class="row"><dt>AI Literacy Thread</dt><dd>A system can't catch its own failures unless it keeps track of what it believes about itself.</dd></div>
-      <div class="row"><dt>CS1 Concepts</dt><dd><span class="def-term" data-term="ARRAY">Array</span>s · Indexed State · Helper <span class="def-term" data-term="FUNCTION">Function</span>s · Conditional State Updates</dd></div>
+      <div class="row"><dt>CS1 Concepts</dt><dd><span class="def-term" data-term="LIST">List</span>s · Indexed State · Helper <span class="def-term" data-term="FUNCTION">Function</span>s · Conditional State Updates</dd></div>
       <div class="row"><dt>Game Context</dt><dd><span class="fieldref" data-m="7" data-tier="base">Mission 7</span> — deliver 2 orange + 2 blue poms to two different PVC <span class="def-term" data-term="ENCLOSURE">enclosure</span>s</dd></div>
       <div class="row"><dt>What You Need</dt><dd>Explorer robot · full <span class="def-term" data-term="LIBRARY">library</span> · 4 poms (2 orange, 2 blue) · two PVC enclosures · the game field · this lab sheet</dd></div>
     </dl>
@@ -307,25 +307,25 @@
     <textarea class="answer" data-key="p1_restate" aria-label="Restate mission"></textarea>
   </section>
 
-  <!-- ===== Phase 2: concept — arrays ===== -->
+  <!-- ===== Phase 2: concept — lists ===== -->
   <section>
-    <h2 class="phase-head"><span class="pnum">Phase 2</span> — Concept: Arrays</h2>
+    <h2 class="phase-head"><span class="pnum">Phase 2</span> — Concept: Lists</h2>
     <div class="concept">
       <div class="chead">What is a list?</div>
       <div class="cbody">
         <p>So far, every value you've stored has had its own <span class="def-term" data-term="VARIABLE">variable</span> name — <code>score</code>, <code>ticks_per_inch</code>, <code>pin</code>. A <strong>list</strong> is what you use when you have several <em>related</em> values and giving each one a separate name would hide the fact that they belong together.</p>
-        <div class="code small"><span class="c"># three separate variables — works, but they're not obviously connected</span>
+        <div class="code small"><span class="c"># Three separate variables work, but they are not obviously connected.</span>
 x = 0.0
 y = 0.0
 heading = 0.0
 
-<span class="c"># one list — three related values, one structure</span>
+<span class="c"># One list stores three related values in one structure.</span>
 pose = [0.0, 0.0, 0.0]</div>
         <p>Think of <code>pose</code> as one locker-bank holding 3 numbered lockers. Locker <code>pose[0]</code>, locker <code>pose[1]</code>, locker <code>pose[2]</code> — counting starts at <strong>0</strong>, so a 3-locker list's lockers are numbered 0 through 2, never 1 through 3. <code>pose[0] = 14.5</code> puts a value in locker 0, the exact same way you'd assign any variable. <code>pose[0]</code> on its own reads back whatever's currently in that locker.</p>
       </div>
     </div>
     <p class="q">In your own words, what is a list? Why does grouping x, y, and heading into one <code>pose</code> list make more sense here than three separate variables?</p>
-    <textarea class="answer" data-key="p2_array" aria-label="List concept"></textarea>
+    <textarea class="answer" data-key="p2_list" aria-label="List concept"></textarea>
 
     <div class="concept" style="margin-top:18px;">
       <div class="chead">Naming an <span class="def-term" data-term="INDEX">index</span>: ALL_CAPS is a promise, not a rule</div>
@@ -393,7 +393,7 @@ POSE_R = 2   <span class="c"># R = heading, in degrees</span>
         return True
     else:
         print(f"Invalid direction: {direction}")
-        return False                <span class="c"># no movement happened — don't touch pose</span></div>
+        return False                <span class="c"># No movement happened, so do not change the pose.</span></div>
     <p class="q">Why should a <em>failed</em> <code>Turn()</code> call leave <code>pose[POSE_R]</code> unchanged? What would happen to your believed heading if it updated R even on failure?</p>
     <textarea class="answer" data-key="p4_turn" aria-label="Turn and pose"></textarea>
   </section>
@@ -420,7 +420,7 @@ POSE_R = 2   <span class="c"># R = heading, in degrees</span>
 POSE_Y = 1
 POSE_R = 2
 
-pose = [0.0, 0.0, 0.0]   <span class="c"># pose[POSE_X], pose[POSE_Y], pose[POSE_R] — believed x, y, heading</span>
+pose = [0.0, 0.0, 0.0]   <span class="c"># These values represent the believed x, y, and heading.</span>
 
 def initPose(startX, startY, startR):
     pose[POSE_X] = startX
@@ -437,7 +437,7 @@ def printPose():
     print(f"Pose: x={pose[POSE_X]:.2f} y={pose[POSE_Y]:.2f} R={pose[POSE_R]:.2f}")</div>
     <div class="filetab">main.py</div>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 5 · Big Idea 1 — The Second Attempt</span>
+<span class="c"># Unit 5, Big Idea 1: The Second Attempt</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -451,35 +451,35 @@ def main():
 
     <span class="c"># ===== INITIALIZE BELIEF =====</span>
     initPose(<span class="hl">START_X</span>, <span class="hl">START_Y</span>, 0.0)   <span class="c"># measured wheel-centerpoint, facing out</span>
-    printPose()                             <span class="c"># PRINT 1 — starting belief</span>
+    printPose()                             <span class="c"># PRINT 1 reports the starting belief.</span>
 
     <span class="c"># ===== VERIFY START =====</span>
     back_until_pressed()       <span class="c"># backward touch against the wall</span>
-    setY(<span class="hl">0.0</span>)                  <span class="c"># RESET #1 — known truth: y = 0 at this wall</span>
+    setY(<span class="hl">0.0</span>)                  <span class="c"># RESET #1 records the known truth that y = 0 at this wall.</span>
 
     <span class="c"># ===== LEG 1: pom 1 (orange) to Enclosure A =====</span>
     <span class="hl"># Drive(...) / Turn(...) to pom 1, pick it up</span>
     <span class="hl"># Drive(...) / Turn(...) to Enclosure A, drop it</span>
-    printPose()                 <span class="c"># PRINT 2 — after drop-off 1</span>
+    printPose()                 <span class="c"># PRINT 2 reports the pose after drop-off 1.</span>
 
-    <span class="c"># ===== LEG 2: pom 2 (blue) to Enclosure A — Base Mission complete =====</span>
+    <span class="c"># ===== LEG 2: Move pom 2 (blue) to Enclosure A. The Base Mission is complete. =====</span>
     <span class="hl"># Drive(...) / Turn(...) to pom 2, pick it up</span>
     <span class="hl"># Drive(...) / Turn(...) to Enclosure A, drop it</span>
-    printPose()                 <span class="c"># PRINT 3 — after drop-off 2</span>
+    printPose()                 <span class="c"># PRINT 3 reports the pose after drop-off 2.</span>
 
     <span class="c"># ===== RESET before crossing to the second enclosure =====</span>
     square_up()                 <span class="c"># known heading/position against a line</span>
-    setX(<span class="hl">KNOWN_X</span>)              <span class="c"># RESET #2 — known truth from this square-up</span>
+    setX(<span class="hl">KNOWN_X</span>)              <span class="c"># RESET #2 records the known truth from this square-up.</span>
 
     <span class="c"># ===== LEG 3: pom 3 (orange) to Enclosure B =====</span>
     <span class="hl"># Drive(...) / Turn(...) to pom 3, pick it up</span>
     <span class="hl"># Drive(...) / Turn(...) to Enclosure B, drop it</span>
-    printPose()                 <span class="c"># PRINT 4 — after drop-off 3</span>
+    printPose()                 <span class="c"># PRINT 4 reports the pose after drop-off 3.</span>
 
-    <span class="c"># ===== LEG 4: pom 4 (blue) to Enclosure B — Bonus Mission complete =====</span>
+    <span class="c"># ===== LEG 4: Move pom 4 (blue) to Enclosure B. The Bonus Mission is complete. =====</span>
     <span class="hl"># Drive(...) / Turn(...) to pom 4, pick it up</span>
     <span class="hl"># Drive(...) / Turn(...) to Enclosure B, drop it</span>
-    printPose()                 <span class="c"># PRINT 5 — final belief</span>
+    printPose()                 <span class="c"># PRINT 5 reports the final belief.</span>
 
 main()</div>
     <div class="callout gold">
@@ -515,7 +515,7 @@ main()</div>
       <div class="nb"><label for="r_date">Date</label><input id="r_date" type="text" data-key="reflect_date" autocomplete="off" /></div>
     </div>
     <p class="q"><span class="n">1.</span> What is a list, and why did grouping x, y, and R into <code>pose</code> make more sense than three separate variables?</p>
-    <textarea class="answer" data-key="p8_q1_array" aria-label="Reflection 1"></textarea>
+    <textarea class="answer" data-key="p8_q1_list" aria-label="Reflection 1"></textarea>
     <p class="q"><span class="n">2.</span> Why should <code>setX</code>/<code>setY</code> only ever be called right after a real reset (a square-up or backward touch), never as a guess?</p>
     <textarea class="answer" data-key="p8_q2_setters" aria-label="Reflection 2"></textarea>
     <p class="q"><span class="n">3.</span> How did making <code>Turn()</code>'s return value actually matter (updating R only on success) connect back to what you learned about return values in Unit 4?</p>
@@ -704,10 +704,9 @@ main()</div>
 <script>
 (function(){
   var DEFS = {
-    'LIST': ['List', 'Python’s way of holding a row of values under one name, reached by index. It does the job that an array does in C.'],
-    'ARRAY': ['Array', 'A single name that holds a whole row of values instead of just one. You reach each value by its position number, so one name and a number can stand in for a dozen separate variables.'],
+    'LIST': ['List', 'Python’s way of holding a row of values under one name. You reach each value by its index, so one name and a number can stand in for many separate variables.'],
     'DEBUGGING': ['Debugging', 'Finding out why a program does not do what you meant, and fixing it. The skill is not writing perfect code; it is narrowing down where the trouble actually is.'],
-    'INDEX': ['Index', 'The position number that picks one item out of an array or list. Indexes usually start at 0, so the first item is index 0, not index 1.'],
+    'INDEX': ['Index', 'The position number that picks one item out of a list. Indexes usually start at 0, so the first item is index 0, not index 1.'],
     'PARAMETER': ['Parameter', 'A named slot in a function that receives a value when the function is called. The parameter is the slot; the argument is the value that gets put into it.'],
     'RETURN VALUE': ['Return Value', 'The answer a function hands back to whatever called it. A function that returns a value can be used inside a calculation; a void function cannot.'],
     'ENCLOSURE': ['Enclosure', 'A PVC frame on the game field that objects can be placed inside. Missions that ask for something to be IN an enclosure are asking you to get it past those walls.'],

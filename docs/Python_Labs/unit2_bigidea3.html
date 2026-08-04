@@ -327,8 +327,8 @@
       <div class="chead">gmpc and cmpc — reading and resetting the wheel counter</div>
       <div class="cbody">
         <p>Each motor counts how far it has turned, in <em>ticks</em>. Two commands let you use that counter:</p>
-        <div class="code small">k.cmpc(0)    <span class="c"># CLEAR — reset port 0's counter back to 0</span>
-k.gmpc(0)    <span class="c"># GET — read how many ticks port 0 has turned</span></div>
+        <div class="code small">k.cmpc(0)    <span class="c"># CLEAR resets port 0's counter to 0.</span>
+k.gmpc(0)    <span class="c"># GET reads how many ticks port 0 has turned.</span></div>
         <p>The pattern is: clear the counter to zero, start driving, and keep checking the counter until it reaches the distance you want.</p>
         <div class="code small">k.cmpc(0)                    <span class="c"># start counting from 0</span>
 while k.gmpc(0) &lt; 2000:      <span class="c"># while we haven't gone 2000 ticks yet...</span>
@@ -348,11 +348,11 @@ while k.gmpc(0) &lt; 2000:      <span class="c"># while we haven't gone 2000 tic
       <div class="chead">A function that takes an argument</div>
       <div class="cbody">
         <p>So far your functions ran the same way every time. An <strong>argument</strong> lets you hand a function a number, so it can do its job <em>differently</em> depending on what you pass in.</p>
-        <div class="code small">def Tick_Drive(<span class="hl">ticks</span>):   <span class="c"># ticks is the argument — a number you pass in</span>
+        <div class="code small">def Tick_Drive(<span class="hl">ticks</span>):   <span class="c"># The ticks argument is a number you pass in.</span>
     ...
 
 Tick_Drive(<span class="hl">2000</span>)   <span class="c"># drive 2000 ticks</span>
-Tick_Drive(<span class="hl">1000</span>)   <span class="c"># SAME function — but only 1000 ticks this time</span></div>
+Tick_Drive(<span class="hl">1000</span>)   <span class="c"># Call the SAME function with only 1000 ticks this time.</span></div>
         <p>Inside the function, <code>ticks</code> stands for whatever number you passed. One function, any distance — no copying and pasting.</p>
       </div>
     </div>
@@ -429,7 +429,7 @@ Tick_Drive(<span class="hl">1000</span>)   <span class="c"># SAME function — b
     <h3 class="sub">Starting Code Template</h3>
     <p>Type this program. Notice <code>Tick_Drive</code> now takes an argument — <code>ticks</code> — so you can call it with any distance. Define it above <code>main()</code>, as always.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 2 · Big Idea 3 — Drive by the Numbers</span>
+<span class="c"># Unit 2, Big Idea 3: Drive by the Numbers</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -437,10 +437,10 @@ sys.path.append("/usr/lib")
 import _kipr as k
 
 def main():
-    Tick_Drive(<span class="hl">2000</span>)   <span class="c"># CALL — drive this many ticks toward Botguy</span>
+    Tick_Drive(<span class="hl">2000</span>)   <span class="c"># Call this to drive this many ticks toward Botguy.</span>
                        <span class="c"># (use YOUR target number from Phase 3)</span>
 
-def Tick_Drive(<span class="hl">ticks</span>):     <span class="c"># DEFINITION — 'ticks' is whatever you passed in</span>
+def Tick_Drive(<span class="hl">ticks</span>):     <span class="c"># The 'ticks' parameter receives the value you passed in.</span>
     k.cmpc(0)                     <span class="c"># clear port 0's counter to 0</span>
 
     while k.gmpc(0) &lt; <span class="hl">ticks</span>:   <span class="c"># while we haven't reached the target...</span>
@@ -681,7 +681,7 @@ main()</div>
     'ENCODER': ['Encoder', 'The counter built into a motor that reports how far its shaft has turned. It is what makes ticks possible, and it is how a robot measures its own movement instead of guessing.'],
     'ARGUMENT': ['Argument', 'A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma.'],
     'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],
-    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'CONDITION': ['Condition', 'An expression that Python checks to decide whether an if block runs or a while loop repeats. Python treats the expression as true or false; it does not need parentheses and does not have to compare two values.'],
     'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
     'ENCLOSURE': ['Enclosure', 'A PVC frame on the game field that objects can be placed inside. Missions that ask for something to be IN an enclosure are asking you to get it past those walls.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],

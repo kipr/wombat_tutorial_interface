@@ -406,6 +406,7 @@ void Drive(double inches) {
         <li><strong>Motor aging</strong> — over weeks and months, motors simply change.</li>
       </ul>
       <p>So if your driving starts going long or short for no obvious reason, <strong>recalibrate</strong>. Running your calibration function again rebuilds the model for your robot's <span class="def-term" data-term="CONDITION">condition</span> <em>today</em>.</p>
+      <p>To keep track, add a comment to your <code>ticks_per_inch</code> variable with the last date you calibrated it.</p>
     </div>
     <p class="q">Your robot was driving perfectly last week, but today it always stops a little short. Nothing in your code changed. What probably happened, and what should you do?</p>
     <textarea class="answer" data-key="p5_stale_model" aria-label="Stale model"></textarea>
@@ -490,7 +491,7 @@ void Drive(double inches) {
 
     <h3 class="sub">Extension G — Type In a Test Value</h3>
     <ul>
-      <li>While testing (not during a competition run), use <code>scanf</code> to read a number typed by a teammate instead of hard-coding it — the same way <code>printf</code> already sends output to the console, <code>scanf</code> reads input from it:
+      <li>This extension requires running the program manually via SSH or the terminal. While testing (not during a competition run), use <code>scanf</code> to read a number typed by a teammate instead of hard-coding it — the same way <code>printf</code> already sends output to the console, <code>scanf</code> reads input from it.
         <div class="code small">double distance;
 printf("Enter a distance to drive (inches): ");
 scanf("%lf", &amp;distance);

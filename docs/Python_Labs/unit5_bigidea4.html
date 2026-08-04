@@ -343,7 +343,7 @@ print(f"Elapsed: {minutes}:{seconds:02d}")</div>
     <p>Wrap your Restack &amp; Shelve routine in the timing pattern from Phase 2, using your own library calls.</p>
     <div class="filetab">main.py</div>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 5 · Big Idea 4 — Restack &amp; Shelve, Timed</span>
+<span class="c"># Unit 5, Big Idea 4: Restack &amp; Shelve, Timed</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -383,7 +383,7 @@ main()</div>
     </table>
   </section>
 
-  <!-- ===== Phase 5: concept — arrays, search, sort, efficiency ===== -->
+  <!-- ===== Phase 5: concept — lists, search, sort, efficiency ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 5</span> — Concept: Studying Your Own Data</h2>
     <div class="concept">
@@ -427,7 +427,7 @@ times[i + 1] = temp       <span class="c"># 3. copy the saved-aside value into t
     <div class="concept">
       <div class="chead">Sorting: the simple version</div>
       <div class="cbody">
-        <p>Picture 4 people standing in a line, out of height order. Walk down the line one time: compare each pair of neighbors, and swap them if the left person is taller than the right person. After one full walk, the tallest person has "bubbled" all the way to the end. Do that same walk a few more times, and eventually everyone's in order — that's the whole idea behind this sort.</p>
+        <p>Picture 4 people standing in a line, out of height order. Walk down the line one time: compare each pair of neighbors, and swap them if the left person is taller than the right person. After one full walk, the tallest person has "bubbled" to the top like bubbles rising through water. Do that same walk a few more times, and eventually everyone's in order. That "bubbling" to the top gives this <span class="def-term" data-term="ALGORITHM">algorithm</span> its name: bubble sort.</p>
         <div class="code small">for pass_num in range(3):              <span class="c"># walk down the line a few times</span>
     for i in range(3):                  <span class="c"># one full walk, comparing neighbors</span>
         if times[i] &gt; times[i + 1]:     <span class="c"># out of order?</span>
@@ -435,6 +435,7 @@ times[i + 1] = temp       <span class="c"># 3. copy the saved-aside value into t
             times[i] = times[i + 1]
             times[i + 1] = temp</div>
         <p>Walk through it by hand with 4 index cards showing your own 4 times, out of order. Do the swaps yourself, pass by pass, until they're sorted. For only 4 values, 3 passes is always enough to guarantee a full sort — that's why the outer loop stops at <code>range(3)</code>.</p>
+        <img src="../bubble_sort.svg"/>
       </div>
     </div>
     <div class="concept">
@@ -663,12 +664,12 @@ print(f"Sorted: {times[0]:.2f}, {times[1]:.2f}, {times[2]:.2f}, {times[3]:.2f}")
 <script>
 (function(){
   var DEFS = {
-    'LIST': ['List', 'Python’s way of holding a row of values under one name, reached by index. It does the job that an array does in C.'],
+    'LIST': ['List', 'Python’s way of holding a row of values under one name, reached by index.'],
     'BOOLEAN': ['Boolean', 'A value that can only be true or false — nothing in between. Every condition you write comes out as a boolean, which is how the robot decides which way to go.'],
-    'INDEX': ['Index', 'The position number that picks one item out of an array or list. Indexes usually start at 0, so the first item is index 0, not index 1.'],
+    'INDEX': ['Index', 'The position number that picks one item out of a list. Indexes usually start at 0, so the first item is index 0, not index 1.'],
     'MODULO': ['Modulo', 'The remainder left over after dividing. 7 modulo 3 is 1, because 3 goes into 7 twice with 1 left. It is how a program makes something repeat in a cycle.'],
     'ALGORITHM': ['Algorithm', 'A list of steps that solves a problem. A recipe is an algorithm. So is the set of instructions you write for a robot.'],
-    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'CONDITION': ['Condition', 'An expression that Python checks to decide whether an if block runs or a while loop repeats. Python treats the expression as true or false; it does not need parentheses and does not have to compare two values.'],
     'FOR LOOP': ['For Loop', 'A loop that repeats a known number of times. Its three parts — where to start, when to stop, and how much to change each time — all sit together inside one set of parentheses, separated by semicolons.'],
     'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
     'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.'],

@@ -243,7 +243,7 @@
     <h2 class="phase-head">Overview</h2>
     <p>A robot that drives "mostly straight" slowly turns crooked — and a crooked robot misses everything it's aiming for. Today you'll fix that with a <strong>square-up</strong>: using <em>two</em> front sensors, the robot lines itself up perfectly straight against a line, fixing its own heading. This is your setup move for the spilled-cubes mission — squaring up in the right starting box so you can bulldoze straight and true.</p>
     <div class="callout gold">
-      <p class="ctitle">Honest heads-up: this is a first cut</p>
+      <p class="ctitle">Heads-up: this is a first draft</p>
       <p>There are <strong>a lot</strong> of ways to square up, and many are smoother and smarter than this one. We're starting with the simplest version that works, so you can see the idea clearly. Once you understand it, you'll have plenty of ideas to make it better — and that's the point.</p>
     </div>
     <h3 class="sub">By the end of this activity you will be able to:</h3>
@@ -337,7 +337,7 @@ TOPHAT_RIGHT = 1    <span class="c"># front-right tophat sensor on analog port 1
     <h2 class="phase-head"><span class="pnum">Phase 4</span> — Build: The square_up <span class="def-term" data-term="FUNCTION">Function</span></h2>
     <p>Put it together. The loop runs until both sensors are on black. Inside, each wheel has its <strong>own</strong> <code>if</code> <span class="def-term" data-term="STATEMENT">statement</span>, checking its own sensor and either driving or freezing. Use a slow speed so it has time to react.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 4 · Big Idea 2 — Squaring Up</span>
+<span class="c"># Unit 4, Big Idea 2: Squaring Up</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -366,7 +366,7 @@ def square_up():
 
         k.msleep(10)   <span class="c"># small pause so we don't overwork the controller</span>
 
-    k.motor(0, 0); k.motor(1, 0)   <span class="c"># both on black — full stop, squared up</span>
+    k.motor(0, 0); k.motor(1, 0)   <span class="c"># Both sensors are on black, so stop fully while squared up.</span>
 
 main()</div>
     <div class="safety no-print">
@@ -587,13 +587,13 @@ main()</div>
 (function(){
   var DEFS = {
     'BOOLEAN': ['Boolean', 'A value that can only be true or false — nothing in between. Every condition you write comes out as a boolean, which is how the robot decides which way to go.'],
-    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
-    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'BLOCK': ['Block', 'Everything at a given level of indentation. A block groups statements together so the controller knows which ones belong to which function.'],
+    'CONDITION': ['Condition', 'An expression that Python checks to decide whether an if block runs or a while loop repeats. Python treats the expression as true or false; it does not need parentheses and does not have to compare two values.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
     'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
     'OVERSHOOT': ['Overshoot', 'How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot.'],
     'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
-    'STATEMENT': ['Statement', 'One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.'],
+    'STATEMENT': ['Statement', 'A complete instruction that Python can execute. Simple statements are usually written one per line, while statements such as if and loops introduce an indented block of code.'],
     'VARIABLE': ['Variable', 'A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it.']
   };
   function openDef(t){

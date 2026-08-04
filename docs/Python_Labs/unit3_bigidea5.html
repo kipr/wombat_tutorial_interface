@@ -344,8 +344,8 @@
       <div class="cbody">
         <p>When the robot drives <em>forward</em>, the encoder counts <strong>up</strong>: 0, 1, 2, 3... So <code>Tick_Drive</code> waits with <code>while (gmpc(0) &lt; ticks)</code> — keep going until the count climbs to the target.</p>
         <p>When the robot drives <em>backward</em>, the wheel turns the other way, so the encoder counts <strong>down</strong> into negatives:</p>
-        <div class="code small">forward:    0  →  1  →  2  →  3  ... up to +1000
-backward:   0  → -1  → -2  → -3  ... down to -1000</div>
+        <div class="code small">forward:    0  ->  1  ->  2  ->  3  ... up to +1000
+backward:   0  -> -1  -> -2  -> -3  ... down to -1000</div>
         <p>So to back up the same distance as <code>Tick_Drive(1000)</code>, you wait until the count reaches <strong>−1000</strong>. The question is how to write that comparison.</p>
       </div>
     </div>
@@ -423,7 +423,7 @@ turn_left()       <span class="c"># turn back to face the cubes</span></div>
     <h2 class="phase-head"><span class="pnum">Phase 6</span> — Build: The Whole Mission in main()</h2>
     <p>Now write it for real. Here is the <strong>frame</strong> — nothing more. Include your library, enable your <span class="def-term" data-term="SERVO">servo</span>s, and you'll fill each section with the calls <strong>from your own planning tables</strong> in Phases 4 and 5. There are no answers to copy here on purpose: the sequence lives in your plan, and only you have it.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 3 · Big Idea 5 — The Double Stack</span>
+<span class="c"># Unit 3, Big Idea 5: The Double Stack</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys

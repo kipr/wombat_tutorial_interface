@@ -367,14 +367,14 @@ k.set_servo_position(0, 1024)  <span class="c"># send it to position 1024 (the c
 
     <p>Type your four safe values at the top, then build the grab sequence: open the claw, lower the arm, close on the cube, and lift. Each move gets a pause so the servo has time to arrive.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 3 · Big Idea 1 — Meet the Servos</span>
+<span class="c"># Unit 3, Big Idea 1: Meet the Servos</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
 sys.path.append("/usr/lib")
 import _kipr as k
 
-<span class="c"># YOUR safe values from the widget — never command past these,</span>
+<span class="c"># Use YOUR safe values from the widget. Never command past these values,</span>
 <span class="c"># or you can BURN OUT the servo by forcing it into a hard stop.</span>
 ARM_MIN   = <span class="hl">____</span>   <span class="c"># lowest safe arm position (down)</span>
 ARM_MAX   = <span class="hl">____</span>   <span class="c"># highest safe arm position (up)</span>

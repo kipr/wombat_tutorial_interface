@@ -403,9 +403,9 @@
       <div class="chead">A threshold turns a number into a decision</div>
       <div class="cbody">
         <p>A <strong>threshold</strong> is a cutoff. Once you have your midpoint, every reading becomes a yes-or-no again:</p>
-        <div class="code small">if k.analog(0) &gt; MIDPOINT:    <span class="c"># reading is HIGH — that's BLACK</span>
+        <div class="code small">if k.analog(0) &gt; MIDPOINT:    <span class="c"># A HIGH reading indicates BLACK.</span>
     <span class="c"># ...we're on the line</span>
-else:                          <span class="c"># reading is LOW — that's WHITE</span>
+else:                          <span class="c"># A LOW reading indicates WHITE.</span>
     <span class="c"># ...we're on the floor</span></div>
         <p>This is the same <code>if/else</code> you learned in Unit 1 — but now the <span class="def-term" data-term="CONDITION">condition</span> reads a <strong>live sensor</strong>, not a number you typed. The robot is interpreting the real world.</p>
       </div>
@@ -434,7 +434,7 @@ else:                          <span class="c"># reading is LOW — that's WHITE
 
     <p>You'll reuse the <span class="def-term" data-term="ENCODER">encoder</span> skeleton from <code>Tick_Drive</code> — clear the counter, loop to a <span class="def-term" data-term="TICK">tick</span> target, brake at the end — but inside the loop you'll put the <code>if/else</code> that steers. Type your own <code>MIDPOINT</code> from Phase 3 at the top. Define <code>line_follow</code> above <code>main()</code>, as always.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 2 · Big Idea 4 — Reading the Line</span>
+<span class="c"># Unit 2, Big Idea 4: Reading the Line</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -456,6 +456,7 @@ def line_follow(ticks):
         else:                       <span class="c"># LOW reading = on WHITE = steer left</span>
             k.motor(0, 20)          <span class="c"># left motor slower</span>
             k.motor(1, 50)          <span class="c"># right motor faster</span>
+        msleep(10);                 <span class="c"># Small pause to avoid overloading computer</span>
 
     k.motor(0, 0)                   <span class="c"># brake (from Big Idea 2)</span>
     k.motor(1, 0)
@@ -670,9 +671,9 @@ main()</div>
     'CALIBRATION': ['Calibration', 'Measuring your own robot to find the numbers that describe it — ticks per inch, a light threshold, a turn count. Calibration is why one team’s numbers do not work on another team’s robot.'],
     'ENCODER': ['Encoder', 'The counter built into a motor that reports how far its shaft has turned. It is what makes ticks possible, and it is how a robot measures its own movement instead of guessing.'],
     'ANALOG': ['Analog', 'An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers "how dark is this?" with a number, so you have to decide for yourself where dark begins.'],
-    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'BLOCK': ['Block', 'Everything at a given level of indentation. A block groups statements together so the controller knows which ones belong to which function.'],
     'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],
-    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'CONDITION': ['Condition', 'An expression that Python checks to decide whether an if block runs or a while loop repeats. Python treats the expression as true or false; it does not need parentheses and does not have to compare two values.'],
     'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
     'DECISION': ['Decision', 'A point where a plan splits two ways depending on the answer to a question. On a flowchart it is drawn as a diamond, with one arrow in and two labelled arrows out.'],
     'DIGITAL': ['Digital', 'A digital sensor has only two possible readings: 0 or 1. It works like a light switch — pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off.'],
