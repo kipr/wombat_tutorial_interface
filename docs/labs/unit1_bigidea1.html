@@ -824,7 +824,10 @@
   <!-- ===== Phase 4 ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 4</span> — Build &amp; Run</h2>
-        <div class="figrow two"><figure class="fig"><img src="../img/ide/code-template.jpg" alt="The template you start from." loading="lazy"><figcaption>The template you start from.</figcaption></figure><figure class="fig"><img src="../img/ide/compile-succeeded.jpg" alt="What success looks like." loading="lazy"><figcaption>What success looks like.</figcaption></figure></div>
+        <div class="figrow two">
+          <figure class="fig"><img src="../img/ide/software-template.png" alt="The template you start from." loading="lazy"><figcaption>The template you start from.</figcaption></figure>
+          <figure class="fig"><img src="../img/ide/compile-succeeded.png" alt="What success looks like." loading="lazy"><figcaption>What success looks like.</figcaption></figure>
+        </div>
     <h3 class="sub">Starting Code Template</h3>
     <p>Type this program into your robot controller exactly as shown. Each line has a <span class="def-term" data-term="COMMENT">comment</span> (after the <code>//</code>) that explains what it does. The comments are notes for you — the robot ignores them.</p>
     <div class="code">// Unit 1 · Big Idea 1 — Waypoint Navigator
@@ -887,7 +890,7 @@ int main() {
       <p class="ctitle">Big Idea 1 — AI Literacy Thread</p>
       <p>Intelligent systems require instructions before they can act.</p>
     </div>
-    <p>Your robot did not decide to navigate to Waypoint Alpha. It followed the instructions you wrote. Every intelligent system — from a robot to a recommendation engine to a self-driving car — begins with someone writing instructions that tell the system what to do and how to do it. The quality of the system depends directly on the quality of those instructions.</p>
+    <p>Your robot did not decide to navigate to Waypoint Alpha. It followed the instructions you wrote. Every intelligent system — from a robot to a <span class="def-term" data-term="RECOMMENDATION_ENGINE">recommendation engine</span> to a self-driving car — begins with someone writing instructions that tell the system what to do and how to do it. The quality of the system depends directly on the quality of those instructions.</p>
     <p class="muted">Read each scenario below. Think it through, then write a short answer.</p>
     <p class="q">A navigation app tells you to turn right — into a wall. Who wrote the instructions that caused this? What probably went wrong?</p>
     <textarea class="answer" data-key="p6_navapp" aria-label="Navigation app scenario"></textarea>
@@ -1119,6 +1122,7 @@ int main() {
     'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],
     'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
     'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
+    'RECOMMENDATION_ENGINE': ['Recommendation Engine', 'A computer program that takes information about you and uses it to suggest things you might like. The suggestions are only as good as the instructions the engine was given.'],
     'FULLY WITHIN': ['Fully Within', 'An object or robot is FULLY WITHIN an area when every part of the object or robot lies inside the boundary of that area — no portion may touch or cross the boundary line.'],
     'IN THE ZONE': ['In The Zone', 'A robot is IN THE ZONE when the robot is touching the interior of the specified zone and no part of the robot is touching the zone’s boundary line.'],
     'INTEGER': ['Integer', 'A whole number — no fraction, no decimal point. Servo positions, motor ports, and power levels are all integers, which is why they are declared with int.'],
