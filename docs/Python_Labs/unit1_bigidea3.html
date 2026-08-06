@@ -244,7 +244,7 @@
     </div>
     <h3 class="sub">By the end of this activity you will be able to:</h3>
     <ul class="obj">
-      <li>Explain what a <em><span class="def-term" data-term="CONDITION">Condition</span></em> is and how an <code>if</code> <span class="def-term" data-term="STATEMENT">statement</span> uses one to make a decision.</li>
+      <li>Explain what a <em><span class="def-term" data-term="CONDITION">Condition</span></em> is and how an <code>if</code> statement uses one to make a decision.</li>
       <li>Use <code>if</code> / <code>else</code> to make a robot take different actions for different values.</li>
       <li>Predict what a program will do by reading its rule before you run it.</li>
       <li>Connect rule-based decisions to how intelligent systems classify and respond to the world.</li>
@@ -361,7 +361,7 @@ if freight_type == 1:  <span class="c"># TWO equals  ==  ASKS "is it equal to 1?
     <h3 class="sub">Starting Code Template</h3>
     <p>Type this program into your robot <span class="def-term" data-term="CONTROLLER">controller</span>. The rule lives inside <code>main()</code>. Change <code>freight_type</code> at the top to test both paths. Fill in the actions to match your Phase 3 plan.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 1 · Big Idea 3 — Freight Sorter</span>
+<span class="c"># Unit 1, Big Idea 3: Freight Sorter</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -407,7 +407,7 @@ main()</div>
     <h3 class="sub"><span class="def-term" data-term="CHECKLIST">Checklist</span></h3>
     <ul>
       <li>You used <code>==</code> (two equals) inside the <code>if</code>, not a single <code>=</code></li>
-      <li>Every <code>{</code> has a matching <code>}</code></li>
+      <li>Every <span class="def-term" data-term="BLOCK">BLOCK</span> is indented to the same level</li>
       <li>You tested BOTH values, not just one</li>
       <li>The robot did something different for each value</li>
     </ul>
@@ -419,9 +419,8 @@ main()</div>
     <p>Decisions create a brand-new kind of bug: the robot does the <em>wrong</em> action, even though it runs without an error. That means the rule ran fine — but it was the wrong rule, or the value was not what you thought.</p>
     <div class="callout gold">
       <p class="ctitle">The most common decision bugs</p>
-      <p><strong>Single = instead of ==:</strong> writing <code>if (freight_type = 1)</code> sets the value instead of asking the question. Always use <code>==</code> in a rule.</p>
-      <p><strong>Wrong value:</strong> the robot turned when you expected straight? Check what <code>freight_type</code> is actually set to at the top.</p>
-      <p><strong>Mismatched braces:</strong> a missing <code>}</code> makes the program refuse to build. Count them.</p>
+      <p><strong>Wrong value:</strong> If the robot turned when you expected straight, check what <code>freight_type</code> is actually set to at the top.</p>
+      <p><strong>Incorrect indentation:</strong> Any line that is not indented correctly will cause an error.</p>
     </div>
     <h3 class="sub"><span class="def-term" data-term="DEBUGGING">Debugging</span> Log</h3>
     <table class="grid">
@@ -502,7 +501,7 @@ main()</div>
 
     <h3 class="sub">Extension E — Random Freight</h3>
     <ul>
-      <li>Real freight wouldn't always be the same type every run. Add <code>import random</code> at the top of your program, then use <code>random.randint(1, 10)</code> to generate a random <code>freight_type</code> each time your program runs.</li>
+      <li>Real freight wouldn't always be the same type every run. Add <code>import random</code> to the line after <code>import _kipr as k</code>, then use <code>random.randint(1, 10)</code> to generate a random <code>freight_type</code> each time your program runs.</li>
       <li>Run it several times. Does your sorting rule still make the correct choice across many random values?</li>
     </ul>
     <textarea class="answer" data-key="ext_e" aria-label="Extension E"></textarea>
@@ -631,13 +630,13 @@ main()</div>
   var DEFS = {
     'BOOLEAN': ['Boolean', 'A value that can only be true or false — nothing in between. Every condition you write comes out as a boolean, which is how the robot decides which way to go.'],
     'DEBUGGING': ['Debugging', 'Finding out why a program does not do what you meant, and fixing it. The skill is not writing perfect code; it is narrowing down where the trouble actually is.'],
-    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'BLOCK': ['Block', 'Everything at a given level of indentation. A block groups statements together so the controller knows which ones belong to which function.'],
     'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],
-    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'CONDITION': ['Condition', 'An expression that Python checks to decide whether an if block runs or a while loop repeats. Python treats the expression as true or false; it does not need parentheses and does not have to compare two values.'],
     'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
     'DECISION': ['Decision', 'A point where a plan splits two ways depending on the answer to a question. On a flowchart it is drawn as a diamond, with one arrow in and two labelled arrows out.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
-    'STATEMENT': ['Statement', 'One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.'],
+    'STATEMENT': ['Statement', 'A complete instruction that Python can execute. Simple statements are usually written one per line, while statements such as if and loops introduce an indented block of code.'],
     'VARIABLE': ['Variable', 'A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it.']
   };
   function openDef(t){

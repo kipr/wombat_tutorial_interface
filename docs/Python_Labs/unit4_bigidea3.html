@@ -270,7 +270,7 @@
         <p><code>len()</code> returns the number of characters in a string. Use it to <em>confirm</em> you actually got a single letter before you trust it:</p>
         <div class="code small">print(len('R'))        <span class="c"># 1</span>
 print(len('Right'))    <span class="c"># 5</span>
-print(len('R') == 1)   <span class="c"># True — this really is a single letter</span></div>
+print(len('R') == 1)   <span class="c"># True confirms that this is a single letter.</span></div>
         <p>And remember: <code>'R'</code> and <code>'r'</code> are still <em>different</em> strings to the computer — capitalization matters.</p>
       </div>
     </div>
@@ -317,10 +317,10 @@ print(len('R') == 1)   <span class="c"># True — this really is a single letter
       <div class="cbody">
         <p>This example pivots in chunks using a <code>for</code> loop. Notice it uses <strong><code>mav</code></strong>, not <code>motor</code> — <span class="def-term" data-term="VELOCITY">velocity</span> control is smoother for turning. Use a <strong>slow</strong> speed so the robot doesn't <span class="def-term" data-term="OVERSHOOT">overshoot</span> from its own momentum.</p>
         <div class="code small">k.cmpc(0)                         <span class="c"># clear the counter once, before the spin</span>
-for i in range(4):                <span class="c"># four chunks = one full 360° spin</span>
+for i in range(4):                <span class="c"># Four chunks make one full 360-degree spin.</span>
     target = (i + 1) * CHUNK_TICKS   <span class="c"># how far we should be after this chunk</span>
     while k.gmpc(0) &lt; target:
-        k.mav(0, 300)              <span class="c"># SLOW velocity — left wheel forward</span>
+        k.mav(0, 300)              <span class="c"># Use a SLOW velocity while the left wheel moves forward.</span>
         k.mav(1, -300)             <span class="c"># right wheel backward (pivot right)</span>
 k.motor(0,0); k.motor(1,0); k.msleep(50)   <span class="c"># brake-settle</span>
 print(f"total ticks = {k.gmpc(0)}")</div>
@@ -377,7 +377,7 @@ Turn('L', 45.0)    <span class="c"># turn left 45 degrees</span></div>
     </div>
 
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 4 · Big Idea 3 — The Turn Model</span>
+<span class="c"># Unit 4, Big Idea 3: The Turn Model</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -389,7 +389,7 @@ ticks_per_degree = <span class="hl">____</span>   <span class="c"># YOUR best va
 
 def main():
     Turn('R', 90.0)      <span class="c"># right 90</span>
-    Turn('l', 45.0)      <span class="c"># left 45 — lowercase works too!</span>
+    Turn('l', 45.0)      <span class="c"># Turn left 45 degrees. Lowercase works too!</span>
 
 def Turn(direction, angle):
     if len(direction) != 1:                          <span class="c"># defensive: must be a single letter</span>
@@ -408,7 +408,7 @@ def Turn(direction, angle):
         while k.gmpc(1) &lt; ticks:
             k.mav(0, -300)
             k.mav(1, 300)
-    else:                                          <span class="c"># not R/r or L/l — bad input!</span>
+    else:                                          <span class="c"># Any value other than R/r or L/l is invalid input.</span>
         print("Invalid direction! Use 'R' or 'L'.")
         return False                                <span class="c"># report FAILURE and stop here</span>
 

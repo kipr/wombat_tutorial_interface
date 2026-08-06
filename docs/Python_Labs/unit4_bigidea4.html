@@ -265,8 +265,8 @@
       <div class="cbody">
         <p>You've used variables to store fixed values. Now you'll use one that <strong>changes over time</strong> — a score that starts at zero and grows. The key line takes the score's current value, adds points, and stores the result back:</p>
         <div class="code small">score = 0        <span class="c"># start with no points</span>
-score = score + 9    <span class="c"># add 9 — score is now 9</span>
-score = score + 11   <span class="c"># add 11 — score is now 20</span></div>
+score = score + 9    <span class="c"># Add 9. The score is now 9.</span>
+score = score + 11   <span class="c"># Add 11. The score is now 20.</span></div>
         <p>Read <code>score = score + 9</code> as "make score equal to <em>whatever it is now</em>, plus 9." The variable <em>remembers</em> its total between steps. This is called <strong>state</strong> — information the program carries as it runs.</p>
       </div>
     </div>
@@ -330,7 +330,7 @@ score = score + 11   <span class="c"># add 11 — score is now 20</span></div>
     <h2 class="phase-head"><span class="pnum">Phase 5</span> — Build: The Scored Run</h2>
     <p>Now write it. Start <code>score</code> at 0. Follow the <strong>do → score → report</strong> rhythm: run the maneuver with your library functions, add the points, then <code>print</code> the report. The skeleton below shows the structure and the scoring/reporting lines — <strong>you fill in the driving, turning, and stacking</strong> from your Phase 4 plan.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 4 · Big Idea 4 — Keeping Score</span>
+<span class="c"># Unit 4, Big Idea 4: Keeping Score</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys

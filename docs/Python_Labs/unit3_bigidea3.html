@@ -87,9 +87,10 @@
   .steps input:focus { outline: none; border-color: var(--gold); background: var(--field-focus); box-shadow: 0 0 0 3px rgba(192,57,43,.18); }
   .group-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; color: var(--navy); font-size: 17px; margin: 14px 0 2px; }
 
-  .checklist { list-style: none; padding: 0; margin: 10px 0; }
-  .checklist li { display: flex; align-items: flex-start; gap: 10px; margin: 8px 0; padding: 9px 12px; background: #eef0f5; border-radius: 8px; }
-  .checklist li::before { content: "\2610"; color: var(--navy); font-size: 19px; line-height: 1; }
+  .checklist { list-style: none; margin: 10px 0 4px; padding: 0; }
+  .checklist li { display: flex; align-items: flex-start; gap: 11px; padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px; margin-bottom: 7px; background: var(--field); }
+  .checklist input[type="checkbox"] { flex-shrink: 0; width: 23px; height: 23px; margin-top: 1px; accent-color: var(--red); cursor: pointer; }
+  .checklist label { cursor: pointer; font-size: 1.02rem; line-height: 1.45; }
 
   .grid { width: 100%; border-collapse: collapse; margin: 12px 0; border: 1px solid var(--line); }
   .grid th { background: var(--navy); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .02em; padding: 8px 8px; text-align: left; vertical-align: bottom; }
@@ -129,6 +130,7 @@
     .grid th, .concept .chead { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .answer, .steps input, .grid input, .namebar input, .pin-field input { border: none !important; border-bottom: 1px solid #999 !important; border-radius: 0 !important; background: #fff !important; box-shadow: none !important; color: #000 !important; }
     .answer { min-height: auto; }
+    .checklist input[type="checkbox"] { -webkit-appearance: none; appearance: none; border: 1px solid #666; border-radius: 2px; width: 14px; height: 14px; }
   .botnav{display:flex;align-items:center;justify-content:flex-start;gap:20px 24px;flex-wrap:wrap;margin:46px 40px 0;padding:26px 0 8px;border-top:1px solid var(--line)}
   .botnav a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
             font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
@@ -282,7 +284,8 @@
   <!-- ===== Phase 2: Create the library file ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 2</span> — Create Your Library File</h2>
-    <p>In the file area on the right, create a new <strong>Python file</strong>. Name it after yourself, using your <strong>first name</strong> followed by <code>.py</code> — for example, <code>maria.py</code> or <code>devon.py</code>. This is <em>your</em> library.</p>
+    <p>First, make sure your user is set to the <strong>advanced mode</strong> so that you can create new files. From the IDE homescreen, click on <em>User Preferences</em>, select your user from the menu at the top, then set the interface mode to <em>Advanced</em>.</p>
+    <p>Then, go to the project you created and in the file area on the right, create a new <strong>Python file</strong>. Name it after yourself, using your <strong>first name</strong> and the file extension <code>.py</code> — for example, <code>maria.py</code> or <code>devon.py</code>. This is <em>your</em> library.</p>
     <div class="callout navy">
       <p class="ctitle">Watch out for name collisions</p>
       <p>A few names are already taken — by Python itself. If your first name happens to match a built-in module like <code>math</code>, <code>random</code>, <code>os</code>, or <code>time</code>, naming your library that exact word will break your <em>own</em> import, because Python will find its own module first. If that's you, add your last initial (<code>math_r.py</code>) or use your last name instead.</p>
@@ -305,9 +308,8 @@
     <p>Now fill your library with every reusable function you've built. Organize it in two clear sections, in this order: <strong><span class="def-term" data-term="VARIABLE">variable</span>s at the top</strong>, then <strong>function definitions</strong>. This is the same structure you've used all along — now it lives in your library. Python doesn't use separate <span class="def-term" data-term="PROTOTYPE">prototype</span>s like you may have used before; a function just needs to be defined above the point where it's called.</p>
 
     <span class="filetab">yourname.py</span>
-    <div class="code">#!/usr/bin/python3
-<span class="c"># ============================================================</span>
-<span class="c">#  yourname.py  —  My Botball function library</span>
+    <div class="code"><span class="c"># ============================================================</span>
+<span class="c"># yourname.py: My Botball function library</span>
 <span class="c">#  Every reusable tool I've built, in one place.</span>
 <span class="c"># ============================================================</span>
 
@@ -328,30 +330,49 @@ SLOW = <span class="hl">____</span>
 
 <span class="c"># ---- FUNCTION DEFINITIONS (the recipes) ----</span>
 
+<span class="c"># Servo movement notes:</span>
+<span class="c">#   - A one-tick command does not actually move the servo, so step by two.</span>
+<span class="c">#   - Repeated get_servo_position calls can overload the controller. Store</span>
+<span class="c">#     each reading in current_position and refresh it once per loop.</span>
+
 <span class="c"># move_arm: Smoothly moves the arm servo (port 0) to a position.</span>
 <span class="c">#   - Clamps the value into the safe range so the servo can't be</span>
 <span class="c">#     forced past a hard stop and burned out.</span>
-<span class="c">#   - Steps one position at a time for smooth motion.</span>
+<span class="c">#   - Steps two ticks at a time for smooth motion.</span>
 <span class="c">#   Pass in the arm position you want (e.g. ARM_MAX to raise).</span>
-def move_arm(position):
-    if position &gt; ARM_MAX: position = ARM_MAX
-    if position &lt; ARM_MIN: position = ARM_MIN
-    while k.get_servo_position(0) != position:
-        if k.get_servo_position(0) &lt; position: k.set_servo_position(0, k.get_servo_position(0) + 1)
-        else:                                   k.set_servo_position(0, k.get_servo_position(0) - 1)
+def move_arm(target_position):
+    if target_position &gt; ARM_MAX: target_position = ARM_MAX
+    if target_position &lt; ARM_MIN: target_position = ARM_MIN
+    current_position = k.get_servo_position(0)
+    while current_position != target_position:
+        <span class="c"># A 2-tick step could skip a target that is only 1 tick away.</span>
+        if abs(current_position - target_position) == 1:
+            k.set_servo_position(0, target_position)
+        elif current_position &lt; target_position:
+            k.set_servo_position(0, current_position + 2)
+        else:
+            k.set_servo_position(0, current_position - 2)
         k.msleep(1)
+        current_position = k.get_servo_position(0)
 
 <span class="c"># move_claw: Smoothly moves the claw servo (port 1) to a position.</span>
 <span class="c">#   Works just like move_arm, but for the claw. Clamps between</span>
 <span class="c">#   CLAW_SHUT and CLAW_OPEN so the claw never strains.</span>
 <span class="c">#   Pass in CLAW_OPEN to open, CLAW_SHUT to close on a cube.</span>
-def move_claw(position):
-    if position &gt; CLAW_OPEN: position = CLAW_OPEN
-    if position &lt; CLAW_SHUT: position = CLAW_SHUT
-    while k.get_servo_position(1) != position:
-        if k.get_servo_position(1) &lt; position: k.set_servo_position(1, k.get_servo_position(1) + 1)
-        else:                                   k.set_servo_position(1, k.get_servo_position(1) - 1)
+def move_claw(target_position):
+    if target_position &lt; CLAW_OPEN: target_position = CLAW_OPEN
+    if target_position &gt; CLAW_SHUT: target_position = CLAW_SHUT
+    current_position = k.get_servo_position(1)
+    while current_position != target_position:
+        <span class="c"># A 2-tick step could skip a target that is only 1 tick away.</span>
+        if abs(current_position - target_position) == 1:
+            k.set_servo_position(1, target_position)
+        elif current_position &lt; target_position:
+            k.set_servo_position(1, current_position + 2)
+        else:
+            k.set_servo_position(1, current_position - 2)
         k.msleep(1)
+        current_position = k.get_servo_position(1)
 
 <span class="c"># back_until_pressed: Drives the robot straight backward until the</span>
 <span class="c">#   touch sensor on k.digital(0) is pressed against a wall, then stops.</span>
@@ -380,8 +401,10 @@ def Tick_Drive(ticks):
 def line_follow(ticks):
     k.cmpc(0)
     while k.gmpc(0) &lt; ticks:
-        if k.analog(0) &gt; MIDPOINT: k.mav(0, FAST); k.mav(1, SLOW)
-        else:                      k.mav(0, SLOW); k.mav(1, FAST)
+        if k.analog(0) &gt; MIDPOINT:
+            k.mav(0, FAST); k.mav(1, SLOW)
+        else:
+            k.mav(0, SLOW); k.mav(1, FAST)
     k.motor(0, 0); k.motor(1, 0); k.msleep(50)</div>
 
     <div class="callout navy">
@@ -402,7 +425,7 @@ def line_follow(ticks):
 import os, sys
 sys.path.append("/usr/lib")
 import _kipr as k   <span class="c"># KIPR's library</span>
-from <span class="hl">yourname</span> import *   <span class="c"># YOUR library — all your tools, in one line</span>
+from <span class="hl">yourname</span> import *   <span class="c"># Import YOUR library to get all your tools in one line.</span>
 
 def main():
     k.enable_servo(0)
@@ -423,11 +446,11 @@ main()</div>
     <h3 class="sub">Test Each Function</h3>
     <p>Run your program and check off each function as you confirm it works from the library.</p>
     <ul class="checklist">
-      <li><code>Tick_Drive()</code> drove the measured distance</li>
-      <li><code>back_until_pressed()</code> backed into the wall and stopped</li>
-      <li><code>line_follow()</code> followed the line</li>
-      <li><code>move_arm()</code> moved the arm smoothly and safely</li>
-      <li><code>move_claw()</code> opened and closed the claw</li>
+      <li><input type="checkbox" data-key="p5_test_tick_drive" id="p5-test-tick-drive"><label for="p5-test-tick-drive"><code>Tick_Drive()</code> drove the measured distance</label></li>
+      <li><input type="checkbox" data-key="p5_test_back_until_pressed" id="p5-test-back-until-pressed"><label for="p5-test-back-until-pressed"><code>back_until_pressed()</code> backed into the wall and stopped</label></li>
+      <li><input type="checkbox" data-key="p5_test_line_follow" id="p5-test-line-follow"><label for="p5-test-line-follow"><code>line_follow()</code> followed the line</label></li>
+      <li><input type="checkbox" data-key="p5_test_move_arm" id="p5-test-move-arm"><label for="p5-test-move-arm"><code>move_arm()</code> moved the arm smoothly and safely</label></li>
+      <li><input type="checkbox" data-key="p5_test_move_claw" id="p5-test-move-claw"><label for="p5-test-move-claw"><code>move_claw()</code> opened and closed the claw</label></li>
     </ul>
     <p class="q">Did every function work when called from your library? If one didn't, what was the problem and how did you fix it?</p>
     <textarea class="answer" data-key="p5_all_worked" aria-label="All worked"></textarea>
@@ -537,7 +560,9 @@ main()</div>
   const SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
   function collectAnswers() {
     const answers = {};
-    document.querySelectorAll("[data-key]").forEach((el) => { answers[el.getAttribute("data-key")] = el.value; });
+    document.querySelectorAll("[data-key]").forEach((el) => {
+      answers[el.getAttribute("data-key")] = el.type === "checkbox" ? (el.checked ? "yes" : "") : el.value;
+    });
     return answers;
   }
   function restoreDraft() {
@@ -549,7 +574,10 @@ main()</div>
     if (data.answers) {
       document.querySelectorAll("[data-key]").forEach((el) => {
         const k = el.getAttribute("data-key");
-        if (k in data.answers) el.value = data.answers[k];
+        if (k in data.answers) {
+          if (el.type === "checkbox") el.checked = data.answers[k] === "yes";
+          else el.value = data.answers[k];
+        }
       });
     }
   }
@@ -558,6 +586,7 @@ main()</div>
   }
   restoreDraft();
   document.addEventListener("input", function (e) { if (e.target.matches("[data-key], #pin")) saveDraft(); });
+  document.addEventListener("change", function (e) { if (e.target.matches("[data-key]")) saveDraft(); });
 
   function setStatus(msg, kind) {
     statusEl.textContent = msg;
@@ -616,7 +645,7 @@ main()</div>
 (function(){
   var DEFS = {
     'MODULE': ['Module', 'A separate Python file holding functions you want to use elsewhere. You bring it into a program with an import line, the same way C brings in a header file.'],
-    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'BLOCK': ['Block', 'Everything at a given level of indentation. A block groups statements together so the controller knows which ones belong to which function.'],
     'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
     'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],

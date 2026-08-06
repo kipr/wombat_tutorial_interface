@@ -269,7 +269,7 @@
     <ul class="obj">
       <li>Write a function that <em><span class="def-term" data-term="CLAMP">clamp</span>s</em> a value so it can never exceed the safe range.</li>
       <li>Read a servo's current position with <code>get_servo_position</code>.</li>
-      <li>Move a servo smoothly by stepping one position at a time in a loop.</li>
+      <li>Move a servo smoothly by stepping two ticks at a time in a loop, with a one-tick final move when needed.</li>
       <li>Experiment with timing to control how fast or smooth the motion is.</li>
     </ul>
     <div class="callout navy">
@@ -300,7 +300,7 @@ if position &lt; ARM_MIN: position = ARM_MIN   <span class="c"># too low? pull i
     <h2 class="phase-head"><span class="pnum">Phase 2</span> — Build: move_arm and move_claw (Clamped)</h2>
     <p>Build both functions with clamping. They take the position you <em>want</em>, fix it if it's unsafe, then move. Define them above <code>main()</code> — your usual structure.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 3 · Big Idea 2 — Smooth Operator</span>
+<span class="c"># Unit 3, Big Idea 2: Smooth Operator</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -316,7 +316,7 @@ def main():
     k.enable_servo(0)            <span class="c"># arm</span>
     k.enable_servo(1)            <span class="c"># claw</span>
 
-    move_arm(ARM_MAX)          <span class="c"># safe — moves to the top</span>
+    move_arm(ARM_MAX)          <span class="c"># This safely moves the arm to the top.</span>
     move_arm(3000)             <span class="c"># UNSAFE number, but the clamp saves us:</span>
                                <span class="c"># the arm only goes to ARM_MAX, not 3000</span>
 
@@ -326,13 +326,13 @@ def move_arm(position):
     k.set_servo_position(0, position)             <span class="c"># now it's guaranteed safe</span>
 
 def move_claw(position):
-    <span class="c"># the claw's safe ends are CLAW_OPEN and CLAW_SHUT — clamp between them</span>
-    if position &gt; CLAW_OPEN: position = CLAW_OPEN
-    if position &lt; CLAW_SHUT: position = CLAW_SHUT
+    <span class="c"># The claw's safe endpoints are CLAW_OPEN and CLAW_SHUT. Clamp between them.</span>
+    if position &lt; CLAW_OPEN: position = CLAW_OPEN
+    if position &gt; CLAW_SHUT: position = CLAW_SHUT
     k.set_servo_position(1, position)
 
 main()</div>
-    <p class="muted">Note: this assumes <code>CLAW_OPEN</code> is the larger number and <code>CLAW_SHUT</code> the smaller. If yours are the other way around, swap them in the two <code>if</code> lines so the bigger value is the high clamp.</p>
+    <p class="muted">Note: this assumes <code>CLAW_OPEN</code> is the smaller number and <code>CLAW_SHUT</code> the larger. If yours are the other way around, swap them in the two <code>if</code> lines so the bigger value is the high clamp.</p>
     <p class="q">Test it: call <code>move_arm</code> with a number way above <code>ARM_MAX</code>. What does the arm actually do? Why didn't it strain?</p>
     <textarea class="answer" data-key="p2_clamp_test" aria-label="Clamp test result"></textarea>
   </section>
@@ -340,20 +340,28 @@ main()</div>
   <!-- ===== Phase 3: Concept smooth ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 3</span> — Concept: Smooth, One Step at a Time</h2>
-    <p>Right now <code>set_servo_position</code> sends the servo to the target as fast as it can — a sudden jerk. That jerk can knock over a cube you're trying to stack. To move <strong>smoothly</strong>, you creep there one position at a time, with a tiny pause between steps.</p>
+    <p>Right now <code>set_servo_position</code> sends the servo to the target as fast as it can — a sudden jerk. That jerk can knock over a cube you're trying to stack. To move <strong>smoothly</strong>, you creep there two ticks at a time, with a tiny pause between steps.</p>
+    <div class="callout navy">
+      <p class="ctitle">Why two ticks — and why store the reading?</p>
+      <p>A one-tick command is too small to make the servo actually move, so these functions normally step by two ticks. Each call to <code>get_servo_position</code> asks the controller for another reading; calling it several times during every loop can overload the controller. Store the reading in <code>current_position</code>, reuse that variable for the comparisons and next command, then refresh it once at the end of the loop.</p>
+    </div>
     <div class="concept">
       <div class="chead">Read where you are, step toward where you want to be</div>
       <div class="cbody">
         <p>A new command lets you read the servo's current spot:</p>
         <div class="code small">k.get_servo_position(0)   <span class="c"># returns the servo's current position on port 0</span></div>
-        <p>With that, a loop can walk the servo to its target one step at a time — moving <strong>+1</strong> if it's below the target, <strong>−1</strong> if it's above:</p>
-        <div class="code small">while k.get_servo_position(0) != position:   <span class="c"># until we arrive...</span>
-    if k.get_servo_position(0) &lt; position:
-        k.set_servo_position(0, k.get_servo_position(0) + 1)   <span class="c"># step up</span>
+        <p>With that, a loop can walk the servo to its target one step at a time — usually moving <strong>+2</strong> if it's below the target or <strong>−2</strong> if it's above. When the target is only one tick away, it moves that final tick directly so it cannot skip over the target:</p>
+        <div class="code small">current_position = k.get_servo_position(0)
+while current_position != target_position:   <span class="c"># until we arrive...</span>
+    if abs(current_position - target_position) == 1:
+        k.set_servo_position(0, target_position)   <span class="c"># move the final tick</span>
+    elif current_position &lt; target_position:
+        k.set_servo_position(0, current_position + 2)   <span class="c"># step up</span>
     else:
-        k.set_servo_position(0, k.get_servo_position(0) - 1)   <span class="c"># step down</span>
-    k.msleep(1)   <span class="c"># tiny pause — this is what makes it smooth</span></div>
-        <p>Because the loop <em>reads</em> the current position each time, it figures out which way to go on its own. You never tell it where it started — only where to end.</p>
+        k.set_servo_position(0, current_position - 2)   <span class="c"># step down</span>
+    k.msleep(1)   <span class="c"># This tiny pause makes the motion smooth.</span>
+    current_position = k.get_servo_position(0)</div>
+        <p>Because the loop updates <code>current_position</code> after each step, it figures out which way to go on its own. You never tell it where it started — only where to end.</p>
       </div>
     </div>
     <p class="q">The loop decides to step up or down by reading <code>get_servo_position</code>. Why does this mean you don't need to tell the function the servo's starting position?</p>
@@ -370,27 +378,37 @@ main()</div>
     </div>
 
     <p>Rewrite both functions to clamp, then step smoothly to the target. Start with <code>k.msleep(1)</code> in the loop.</p>
-    <div class="code">def move_arm(position):
-    if position &gt; ARM_MAX: position = ARM_MAX   <span class="c"># clamp first</span>
-    if position &lt; ARM_MIN: position = ARM_MIN
+    <div class="code">def move_arm(target_position):
+    if target_position &gt; ARM_MAX: target_position = ARM_MAX   <span class="c"># clamp first</span>
+    if target_position &lt; ARM_MIN: target_position = ARM_MIN
 
-    while k.get_servo_position(0) != position:   <span class="c"># step until we arrive</span>
-        if k.get_servo_position(0) &lt; position:
-            k.set_servo_position(0, k.get_servo_position(0) + 1)
+    current_position = k.get_servo_position(0)   <span class="c"># read once to avoid overloading the controller</span>
+    while current_position != target_position:   <span class="c"># step until we arrive</span>
+        <span class="c"># A 2-tick step could skip a target that is only 1 tick away.</span>
+        if abs(current_position - target_position) == 1:
+            k.set_servo_position(0, target_position)
+        elif current_position &lt; target_position:
+            k.set_servo_position(0, current_position + 2)
         else:
-            k.set_servo_position(0, k.get_servo_position(0) - 1)
+            k.set_servo_position(0, current_position - 2)
         k.msleep(<span class="hl">1</span>)   <span class="c"># 1 ms per step = smooth motion</span>
+        current_position = k.get_servo_position(0)
 
-def move_claw(position):
-    if position &gt; CLAW_OPEN: position = CLAW_OPEN   <span class="c"># clamp first</span>
-    if position &lt; CLAW_SHUT: position = CLAW_SHUT
+def move_claw(target_position):
+    if target_position &lt; CLAW_OPEN: target_position = CLAW_OPEN   <span class="c"># clamp first</span>
+    if target_position &gt; CLAW_SHUT: target_position = CLAW_SHUT
 
-    while k.get_servo_position(1) != position:   <span class="c"># step until we arrive</span>
-        if k.get_servo_position(1) &lt; position:
-            k.set_servo_position(1, k.get_servo_position(1) + 1)
+    current_position = k.get_servo_position(1)   <span class="c"># read once to avoid overloading the controller</span>
+    while current_position != target_position:   <span class="c"># step until we arrive</span>
+        <span class="c"># A 2-tick step could skip a target that is only 1 tick away.</span>
+        if abs(current_position - target_position) == 1:
+            k.set_servo_position(1, target_position)
+        elif current_position &lt; target_position:
+            k.set_servo_position(1, current_position + 2)
         else:
-            k.set_servo_position(1, k.get_servo_position(1) - 1)
-        k.msleep(<span class="hl">1</span>)</div>
+            k.set_servo_position(1, current_position - 2)
+        k.msleep(<span class="hl">1</span>)
+        current_position = k.get_servo_position(1)</div>
     <p class="q">Run it and watch the arm. How is the motion different from last lab's instant <code>set_servo_position</code>? Describe what you see.</p>
     <textarea class="answer" data-key="p4_smooth_observe" aria-label="Smooth observation"></textarea>
   </section>
@@ -469,7 +487,7 @@ def move_claw(position):
 
     <h3 class="sub">Extension A — Step by More Than One</h3>
     <ul>
-      <li>Change the step from <code>+ 1</code> to <code>+ 2</code> (and <code>- 2</code>). What happens to speed and smoothness? Why might a bigger step undo the smoothness you gained?</li>
+      <li>Change the step from <code>+ 2</code> to <code>+ 4</code> (and <code>- 4</code>). How would you adjust the near-target check so the loop cannot skip over its target? What happens to speed and smoothness?</li>
     </ul>
     <textarea class="answer" data-key="ext_a" aria-label="Extension A"></textarea>
 

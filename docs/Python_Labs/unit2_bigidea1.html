@@ -308,7 +308,7 @@
         <div class="code small">while k.digital(0) == 0:
     k.motor(0, -50)   <span class="c"># drive backward</span>
     k.motor(1, -50)
-    k.msleep(10)      <span class="c"># tiny pause — just 10 ms</span></div>
+    k.msleep(10)      <span class="c"># Pause briefly for just 10 ms.</span></div>
         <p>That <code>k.msleep(10)</code> is <strong>not</strong> how long you drive. The loop checks the button hundreds of times a second. Without a small pause, it would check <em>as fast as the computer possibly can</em> — and that <strong>bogs down the <span class="def-term" data-term="CONTROLLER">controller</span></strong> for no benefit. A 10 ms pause slows the checking to a sensible rate so the computer isn't overwhelmed, while still feeling instant to us.</p>
         <p class="muted">Notice how small this is compared to before: <code>k.msleep(1000)</code> used to mean "drive for a whole second." Here <code>k.msleep(10)</code> just means "wait a blink before checking the button again." Same command, completely different job.</p>
       </div>
@@ -385,7 +385,7 @@
     <h3 class="sub">Starting Code Template</h3>
     <p>Type this program. The position <span class="def-term" data-term="VARIABLE">variable</span>s are back from before — you'll reset <code>y_position</code> to zero the moment the robot reaches the wall.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 2 · Big Idea 1 — The Touch Sensor</span>
+<span class="c"># Unit 2, Big Idea 1: The Touch Sensor</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
@@ -406,8 +406,8 @@ def main():
         k.motor(1, -50)
         k.msleep(10)             <span class="c"># tiny pause so we don't overwork the computer</span>
 
-    k.ao()              <span class="c"># button was pressed — stop the motors</span>
-    y_position = 0       <span class="c"># we're home against the wall — reset our origin</span>
+    k.ao()              <span class="c"># The button was pressed, so stop the motors.</span>
+    y_position = 0       <span class="c"># We are home against the wall, so reset our origin.</span>
 
 main()</div>
     <p class="muted">Looking ahead: next lab, you'll move the two <code>k.motor()</code> lines to just <em>above</em> the loop, so the loop body is only the <code>msleep</code>. The motors will already be running, and the loop will just wait and watch the sensor.</p>
@@ -435,7 +435,7 @@ main()</div>
   <!-- ===== Phase 5 ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 5</span> — Make It a Reusable Behavior</h2>
-    <p>Once your program works, wrap the whole back-until-pressed behavior into a <span class="def-term" data-term="FUNCTION">function</span> so you can reuse it. In Python you don't write a separate <span class="def-term" data-term="PROTOTYPE">prototype</span> — you just <strong>define</strong> the function above <code>main()</code>, then call it inside <code>main()</code>.</p>
+    <p>Once your program works, wrap the whole back-until-pressed behavior into a <span class="def-term" data-term="FUNCTION">function</span> so you can reuse it. Remember, in Python you don't write a separate <span class="def-term" data-term="PROTOTYPE">prototype</span> — you just <strong>define</strong> the function above <code>main()</code>, then call it inside <code>main()</code>.</p>
     <div class="code">#!/usr/bin/python3
 import os, sys
 sys.path.append("/usr/lib")
@@ -444,17 +444,17 @@ import _kipr as k
 x_position = 0
 y_position = 0
 
-def back_until_pressed():   <span class="c"># DEFINITION — written above main()</span>
+def back_until_pressed():   <span class="c"># This definition is written above main().</span>
     global x_position, y_position
     while k.digital(0) == 0: <span class="c"># while the button is NOT pressed...</span>
         k.motor(0, -50)
         k.motor(1, -50)
         k.msleep(10)
     k.ao()              <span class="c"># stop</span>
-    y_position = 0      <span class="c"># home — reset origin</span>
+    y_position = 0      <span class="c"># We are home, so reset the origin.</span>
 
 def main():
-    back_until_pressed()    <span class="c"># CALL — drive home using the sensor, then reset zero</span>
+    back_until_pressed()    <span class="c"># Call this to drive home using the sensor and then reset zero.</span>
 
 main()</div>
     <p class="q">Now that <code>main()</code> just says <code>back_until_pressed()</code>, what does it read like? Why is wrapping the loop in a named function helpful for the rest of the game?</p>
@@ -663,16 +663,16 @@ main()</div>
     'BOOLEAN': ['Boolean', 'A value that can only be true or false — nothing in between. Every condition you write comes out as a boolean, which is how the robot decides which way to go.'],
     'DEBUGGING': ['Debugging', 'Finding out why a program does not do what you meant, and fixing it. The skill is not writing perfect code; it is narrowing down where the trouble actually is.'],
     'ANALOG': ['Analog', 'An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers "how dark is this?" with a number, so you have to decide for yourself where dark begins.'],
-    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'BLOCK': ['Block', 'Everything at a given level of indentation. A block groups statements together so the controller knows which ones belong to which function.'],
     'CHECKLIST': ['Checklist', 'A written list of everything that should be present or done, used to check the real thing against it. Engineers, pilots, and surgeons all use them, because remembering is unreliable and reading a list is not.'],
-    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'CONDITION': ['Condition', 'An expression that Python checks to decide whether an if block runs or a while loop repeats. Python treats the expression as true or false; it does not need parentheses and does not have to compare two values.'],
     'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
     'DIGITAL': ['Digital', 'A digital sensor has only two possible readings: 0 or 1. It works like a light switch — pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
-    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Motor ports are numbered 0, 1, 2, and 3. The number in your code tells the controller which socket to send power to.'],
+    'PORT': ['Port', 'A socket on the Wombat where you plug something in. Digital sensor ports are 0-9. The number in your code tells the controller which socket to read.'],
     'PROTOTYPE': ['Prototype', 'A single line near the top of your program announcing that a function name exists, before the compiler ever reaches the code that does the work. Like listing a word in a vocabulary list before defining it.'],
     'SENSOR': ['Sensor', 'A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors are how a robot gathers information about the world instead of just assuming.'],
-    'STATEMENT': ['Statement', 'One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.'],
+    'STATEMENT': ['Statement', 'A complete instruction that Python can execute. Simple statements are usually written one per line, while statements such as if and loops introduce an indented block of code.'],
     'VARIABLE': ['Variable', 'A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it.']
   };
   function openDef(t){

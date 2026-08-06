@@ -365,7 +365,10 @@ else:
     <p>Replace your single fixed-speed loop with the three-zone <code>if</code> / <code>elif</code> / <code>else</code> chain. This checks the zone <strong>every trip through the loop</strong>, so speed updates continuously as ticks change.</p>
     <div class="filetab"><span class="hl">yourname.py</span></div>
     <div class="code">def Drive(inches):
-    desired_ticks = inches * ticks_per_inch
+    <span class="c"># Remember that if ticks_per_inch is a float,</span>
+    <span class="c">we need to round it to the whole number nearest tick</span>
+    <span class="c">so that our deceleration equation produces a whole number.</span>
+    desired_ticks = round(inches * ticks_per_inch)
     k.cmpc(0)
     current_ticks = k.gmpc(0)
 
@@ -373,13 +376,13 @@ else:
         current_ticks = k.gmpc(0)
 
         if current_ticks &lt; 50:
-            <span class="c"># ACCELERATION ZONE — ramp speed UP from a slow start</span>
+            <span class="c"># ACCELERATION ZONE: Ramp the speed UP from a slow start.</span>
             motor_speed = current_ticks * <span class="hl">12</span> + <span class="hl">150</span>
         elif (desired_ticks - current_ticks) &lt; 500:
-            <span class="c"># DECELERATION ZONE — ramp speed DOWN as ticks remaining shrinks</span>
-            motor_speed = (desired_ticks - current_ticks) * <span class="hl">2</span> + <span class="hl">150</span>
+            <span class="c"># DECELERATION ZONE: Ramp the speed DOWN as the remaining ticks decrease.</span>
+            motor_speed = round(desired_ticks - current_ticks) * <span class="hl">2</span> + <span class="hl">150</span>
         else:
-            <span class="c"># CRUISE ZONE — full speed, neither ramp applies</span>
+            <span class="c"># CRUISE ZONE: Use full speed because neither ramp applies.</span>
             motor_speed = <span class="hl">750</span>
 
         k.mav(0, motor_speed)
@@ -468,7 +471,7 @@ else:
 
     <h3 class="sub">Extension C — Name the Cruise Zone</h3>
     <ul>
-      <li>Rewrite the plain <code>else</code> as an explicit <code>elif</code> that checks both bounds of the cruise zone directly. Why was the plain <code>else</code> sufficient here — what did it save you from writing?</li>
+      <li>Rewrite the plain <code>else</code> as an explicit <code>elif</code> that checks both bounds of the cruise zone directly. Was <code>elif</code> necessary? What did plain <code>else</code> save you from writing?</li>
     </ul>
     <textarea class="answer" data-key="ext_c" aria-label="Extension C"></textarea>
 
@@ -479,9 +482,8 @@ else:
     </ul>
     <textarea class="answer" data-key="ext_d" aria-label="Extension D"></textarea>
 
-    <h3 class="sub">Extension E — Round and Check</h3>
+    <h3 class="sub">Extension E — Absolute Value and Check</h3>
     <ul>
-      <li>Wrap your <code>motor_speed</code> calculation with <code>round()</code> so it's always a whole number (motors don't understand fractional ticks/sec anyway). Python's built-in <code>round()</code> works without any extra import.</li>
       <li>Use <code>abs()</code> on the difference between your tuned decel speed at 500 ticks remaining and your cruise speed — how close did your tuning actually get them?</li>
     </ul>
     <textarea class="answer" data-key="ext_e" aria-label="Extension E"></textarea>
@@ -604,13 +606,13 @@ else:
 <script>
 (function(){
   var DEFS = {
-    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
-    'CONDITION': ['Condition', 'The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other.'],
+    'BLOCK': ['Block', 'Everything at a given level of indentation. A block groups statements together so the controller knows which ones belong to which function.'],
+    'CONDITION': ['Condition', 'An expression that Python checks to decide whether an if block runs or a while loop repeats. Python treats the expression as true or false; it does not need parentheses and does not have to compare two values.'],
     'DECISION': ['Decision', 'A point where a plan splits two ways depending on the answer to a question. On a flowchart it is drawn as a diamond, with one arrow in and two labelled arrows out.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],
     'LIBRARY': ['Library', 'A collection of ready-made commands that someone else already wrote and tested. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors.'],
     'OVERSHOOT': ['Overshoot', 'How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot.'],
-    'STATEMENT': ['Statement', 'One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon.'],
+    'STATEMENT': ['Statement', 'A complete instruction that Python can execute. Simple statements are usually written one per line, while statements such as if and loops introduce an indented block of code.'],
     'TICK': ['Tick', 'One small step of the motor shaft. There are about 1820 ticks in one full revolution of the shaft. Ticks count the motor turning, not the distance travelled — how far that is depends on your wheels.']
   };
   function openDef(t){

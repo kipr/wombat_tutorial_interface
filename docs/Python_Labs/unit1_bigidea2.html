@@ -529,22 +529,30 @@ k.motor(1, DRIVE_SPEED)  <span class="c"># same as writing k.motor(1, 50)</span>
     <h3 class="sub">Code Scaffold</h3>
     <div class="callout gold">
       <p class="ctitle">Where do functions go?</p>
-      <p>A function has to be defined <em>before</em> the code that uses it. Since <code>main()</code> is what runs your program, your functions live <strong>above</strong> <code>main()</code>. The computer reads top to bottom, so it needs to know what <code>drive_forward()</code> means before it reaches the line that calls it.</p>
+      <p>A function has to be defined <em>before</em> the code that uses it. Since <code>main()</code> is what runs your program, your functions live <strong>above the place</strong> <code>main()</code> <strong>is called</strong>. The computer reads top to bottom, so it needs to know what <code>drive_forward()</code> means before it reaches the line that calls it.</p>
     </div>
     <p>Your program structure should look like this. Notice the movement commands are now <strong>functions you name</strong>, and each uses the named speed variables set at the top. Fill in each function body from your Phase 3 decomposition. Only add a function call in <code>main()</code> once that function is tested and working.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 1 · Big Idea 2 — Red Cube Breakdown</span>
+<span class="c"># Unit 1, Big Idea 2: Red Cube Breakdown</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
 sys.path.append("/usr/lib")
 import _kipr as k
 
-<span class="c"># ── Named values — change these as you test ──</span>
+<span class="c"># Named values to change as you test</span>
 DRIVE_SPEED = 50
 TURN_SPEED  = 40
 
-<span class="c"># ── Movement commands you can reuse (no parameters yet) ──</span>
+<span class="c"># Main is defined here, and it can use functions written anywhere in this file.</span>
+def main():
+    <span class="c"># Integration: only add each call only after that function works:</span>
+    <span class="c"># your_first_function()</span>
+    <span class="c"># your_second_function()</span>
+    <span class="c"># your_third_function()</span>
+    pass
+
+<span class="c"># Movement commands you can reuse (no parameters yet)</span>
 def drive_forward():
     k.motor(0, DRIVE_SPEED)
     k.motor(1, DRIVE_SPEED)
@@ -557,21 +565,13 @@ def turn_right():
     k.msleep(600)
     k.ao()
 
-<span class="c"># ── Your sub-task functions — write ONE, test it, then write the next ──</span>
-<span class="c"># Build each one out of drive_forward() and turn_right().</span>
-<span class="c"># Name them using your Phase 3 list — for example, a function that</span>
-<span class="c"># drives the robot to the cube, one that pushes it off the line,</span>
-<span class="c"># or one that returns to the starting box.</span>
+<span class="c"># Write and test ONE sub-task function before moving to the next.</span>
+<span class="c"># Build each function using drive_forward() and turn_right().</span>
+<span class="c"># Use the names from your Phase 3 list. For example, write a function that</span>
+<span class="c"># drives the robot to the cube, pushes it off the line,</span>
+<span class="c"># or returns the robot to the starting box.</span>
 
-
-<span class="c"># ── Integration — only add a call here after that function passes 3 runs ──</span>
-def main():
-    <span class="c"># Add each call only after that function works:</span>
-    <span class="c"># your_first_function()</span>
-    <span class="c"># your_second_function()</span>
-    <span class="c"># your_third_function()</span>
-    pass
-
+<span class="c"># Main is called here, so all functions it uses must be defined above it.</span>
 main()</div>
 
     <h3 class="sub">Build Log — Track Each Function</h3>
@@ -597,7 +597,7 @@ main()</div>
     <div class="callout gold">
       <p class="ctitle">What to watch for during integration</p>
       <p>Functions that worked alone sometimes fail when combined. Why? Because the robot's position at the end of one function is the starting position for the next.</p>
-      <p>If function B fails after function A, the problem is usually function A — it left the robot in the wrong position. Fix function A before <span class="def-term" data-term="TOUCHING">TOUCHING</span> function B.</p>
+      <p>If function B fails after function A, the problem is usually function A — it left the robot in the wrong position. Fix function A before modifying function B.</p>
     </div>
     <h3 class="sub">Integration Trial Log</h3>
     <table class="grid">

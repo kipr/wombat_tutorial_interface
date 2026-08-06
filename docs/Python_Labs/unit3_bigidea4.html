@@ -289,15 +289,15 @@ while k.gmpc(0) &lt; TURN_TICKS:     <span class="c"># pivot until we've turned 
     <h2 class="phase-head"><span class="pnum">Phase 2</span> — Build &amp; Tune the Right Turn</h2>
     <p>Build <code>turn_right</code> with a tick value you'll tune. Start with a guess, run it, measure the actual angle with a protractor, and adjust <code>RIGHT_TICKS</code> until it's a true 90°.</p>
     <div class="code">#!/usr/bin/python3
-<span class="c"># Unit 3 · Big Idea 4 — Perfect Turns</span>
+<span class="c"># Unit 3, Big Idea 4: Perfect Turns</span>
 <span class="c"># Name: _______________________   Date: ___________</span>
 
 import os, sys
 sys.path.append("/usr/lib")
 import _kipr as k
 
-RIGHT_TICKS = <span class="hl">____</span>   <span class="c"># ticks for a 90° RIGHT pivot — you'll tune this</span>
-LEFT_TICKS  = <span class="hl">____</span>   <span class="c"># ticks for a 90° LEFT pivot (Phase 3)</span>
+RIGHT_TICKS = <span class="hl">____</span>   <span class="c"># Tune this tick count for a 90-degree RIGHT pivot.</span>
+LEFT_TICKS  = <span class="hl">____</span>   <span class="c"># Set the tick count for a 90-degree LEFT pivot in Phase 3.</span>
 
 def main():
     turn_right()    <span class="c"># test one right turn, then measure the angle</span>
@@ -362,7 +362,7 @@ main()</div>
       <div class="chead">A loop that repeats the turn 8 times</div>
       <div class="cbody">
         <div class="code small">i = 0
-while i &lt; 8:              <span class="c"># repeat the turn 8 times = 720°</span>
+while i &lt; 8:              <span class="c"># Repeat the turn 8 times for a total of 720 degrees.</span>
     turn_right()
     k.msleep(300)         <span class="c"># brief pause so you can watch each step</span>
     i = i + 1</div>
@@ -394,18 +394,18 @@ while i &lt; 8:              <span class="c"># repeat the turn 8 times = 720°</
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 5</span> — Add Your Turns to the <span class="def-term" data-term="LIBRARY">Library</span></h2>
     <p>Your tuned turns are tools you'll use in every mission — so they belong in your library. Add <code>turn_left</code> and <code>turn_right</code> (and your <code>LEFT_TICKS</code>/<code>RIGHT_TICKS</code> values) to your library file from Big Idea 3, fully commented.</p>
-    <div class="code"><span class="c"># turn_right: Pivots the robot 90° to the right in place.</span>
+    <div class="code"><span class="c"># turn_right: Pivots the robot 90 degrees to the right in place.</span>
 <span class="c">#   Watches the left wheel's encoder (gmpc 0). Tuned with</span>
-<span class="c">#   RIGHT_TICKS for a true 90°. Takes no input.</span>
+<span class="c">#   RIGHT_TICKS for a true 90-degree turn. Takes no input.</span>
 def turn_right():
     k.cmpc(0)
     while k.gmpc(0) &lt; RIGHT_TICKS:
         k.motor(0, 50); k.motor(1, -50)
     k.motor(0, 0); k.motor(1, 0); k.msleep(50)
 
-<span class="c"># turn_left: Pivots the robot 90° to the left in place.</span>
+<span class="c"># turn_left: Pivots the robot 90 degrees to the left in place.</span>
 <span class="c">#   Watches the right wheel's encoder (gmpc 1). Tuned with</span>
-<span class="c">#   LEFT_TICKS for a true 90°. Takes no input.</span>
+<span class="c">#   LEFT_TICKS for a true 90-degree turn. Takes no input.</span>
 def turn_left():
     k.cmpc(1)
     while k.gmpc(1) &lt; LEFT_TICKS:
