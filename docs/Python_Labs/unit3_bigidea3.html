@@ -7,198 +7,198 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../lab-sheet.css" />
 <style>
-  :root {
-    --red: #C0392B; --red-dark: #922B21; --navy: #1C1C1C; --gold: #C0392B;
-    --ink: #1C1C1C; --grey: #666666; --line: #CCCCCC; --bg: #F2F2F2;
-    --panel: #ffffff; --field: #F8F8F8; --field-focus: #FDF2F2;
-    --code-bg: #1f2330; --code-ink: #e7e3d8; --code-green: #8fbf7f;
+  .hero {
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 26px 30px;
+    border-bottom: 5px solid var(--gold);
   }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Barlow', system-ui, sans-serif; font-size: 17px; line-height: 1.5; }
 
-  .topbar { position: sticky; top: 0; z-index: 50; background: var(--navy); color: #fff; border-bottom: 3px solid var(--gold); }
-  .topbar-inner { max-width: 920px; margin: 0 auto; padding: 10px 22px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .topbar .brand { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: .04em; text-transform: uppercase; margin-right: auto; color: #fff; }
-  .topbar .brand span { color: var(--gold); }
-  .pin-field { display: flex; align-items: center; gap: 9px; }
-  .pin-field label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: .05em; text-transform: uppercase; color: #d7dcea; }
-  .pin-field input { width: 120px; font-size: 18px; font-weight: 600; letter-spacing: .14em; text-align: center; padding: 8px 10px; border-radius: 8px; border: 2px solid transparent; background: #fff; color: var(--navy); font-family: 'Barlow', sans-serif; }
-  .pin-field input:focus { outline: none; border-color: var(--gold); }
-  .submit-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: .05em; text-transform: uppercase; color: #fff; background: var(--red); border: none; border-radius: 8px; padding: 10px 20px; cursor: pointer; transition: background .15s ease, transform .05s ease; }
-  .submit-btn:hover { background: var(--red-dark); }
-  .submit-btn:active { transform: translateY(1px); }
-  .status { width: 100%; font-family: 'Barlow', sans-serif; font-size: 14.5px; padding: 2px 2px 0; min-height: 0; color: #d7dcea; }
-  .status.ok { color: #b9e6b0; } .status.warn { color: #ffd9a0; } .status.err { color: #ffb3b3; }
+  .hero .sub {
+    font-size: 18px;
+    font-style: italic;
+    color: #ffe9e9;
+    margin: 0;
+  }
 
-  .sheet { max-width: 920px; margin: 22px auto 80px; padding: 0 22px; }
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    color: var(--navy);
+    letter-spacing: .01em;
+    padding-bottom: 6px;
+    border-bottom: 2.5px solid var(--red);
+    margin: 0 0 4px;
+  }
 
-  .hero { background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%); color: #fff; border-radius: 14px; padding: 26px 30px; border-bottom: 5px solid var(--gold); }
-  .hero .eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: 15px; color: #f4d9a0; margin: 0 0 4px; }
-  .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.04; margin: 0 0 6px; letter-spacing: .01em; }
-  .hero .sub { font-size: 18px; font-style: italic; color: #ffe9e9; margin: 0; }
+  .callout {
+    border: 1px solid var(--line);
+    border-left: 6px solid var(--red);
+    background: #fbeef0;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
 
-  .meta { margin-top: 18px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
-  .meta dl { margin: 0; }
-  .meta .row { display: grid; grid-template-columns: 215px 1fr; }
-  .meta .row:nth-child(odd) { background: #eef0f5; }
-  .meta dt { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; font-size: 15px; color: var(--navy); padding: 9px 16px; }
-  .meta dd { margin: 0; padding: 9px 16px; font-size: 16px; border-left: 1px solid var(--line); }
-
-  section { margin-top: 30px; }
-  .phase-head { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 25px; color: var(--navy); letter-spacing: .01em; padding-bottom: 6px; border-bottom: 2.5px solid var(--red); margin: 0 0 4px; }
-  .phase-head .pnum { color: var(--red); font-weight: 700; }
-  h3.sub { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 20px; color: var(--navy); margin: 18px 0 6px; }
-  p { margin: 8px 0; }
-  .muted { color: var(--grey); font-style: italic; font-size: 15.5px; }
-  ul, ol { margin: 8px 0; padding-left: 24px; } li { margin: 4px 0; } .obj li { margin: 5px 0; }
-  code { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; color: var(--red); font-weight: 600; font-size: .92em; }
-
-  .callout { border: 1px solid var(--line); border-left: 6px solid var(--red); background: #fbeef0; border-radius: 10px; padding: 14px 18px; margin: 14px 0; }
-  .callout.navy { border-left-color: var(--navy); background: #eef1f7; }
-  .callout.gold { border-left-color: var(--gold); background: #fff6e0; }
-  .callout .ctitle { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: .02em; color: var(--red); margin: 0 0 4px; }
-  .callout.navy .ctitle { color: var(--navy); } .callout.gold .ctitle { color: #8a6d22; }
-  .callout p { margin: 4px 0; }
-  .callout code { color: inherit; }
-
-  .concept { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin: 14px 0; }
-  .concept .chead { background: var(--navy); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: .03em; padding: 10px 18px; }
-  .concept .cbody { padding: 14px 18px; background: var(--panel); }
-
-  .code { background: var(--code-bg); color: var(--code-ink); border-radius: 10px; padding: 16px 18px; margin: 12px 0; font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; font-size: 14px; line-height: 1.65; overflow-x: auto; white-space: pre; -webkit-overflow-scrolling: touch; }
-  .code.small { font-size: 13.5px; }
-  .code .c { color: var(--code-green); }
-  .code .hl { color: #f4c95d; }
-  .code code { color: inherit; font-weight: inherit; font-size: inherit; }
-
-  .filetab { display: inline-block; background: #2b3040; color: #f4c95d; font-family: ui-monospace, Consolas, monospace; font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 8px 8px 0 0; margin-bottom: -10px; margin-left: 4px; border: 1px solid #3a4055; }
-
-  .answer { width: 100%; font-family: 'Barlow', sans-serif; font-size: 16px; line-height: 1.5; color: var(--ink); background: var(--field); border: 1.5px solid var(--line); border-radius: 9px; padding: 10px 12px; resize: vertical; min-height: 76px; }
-  .answer:focus { outline: none; border-color: var(--gold); background: var(--field-focus); box-shadow: 0 0 0 3px rgba(192,57,43,.18); }
-  .answer.tall { min-height: 110px; }
-  .q { font-weight: 600; margin: 16px 0 6px; } .q .n { color: var(--red); }
-
-  .steps { list-style: none; padding: 0; margin: 8px 0; counter-reset: s; }
-  .steps li { display: flex; align-items: center; gap: 10px; margin: 7px 0; }
-  .steps li::before { counter-increment: s; content: counter(s) "."; font-weight: 700; color: var(--navy); min-width: 22px; font-size: 16px; }
-  .steps input { flex: 1; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 8px 11px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--field); }
-  .steps input:focus { outline: none; border-color: var(--gold); background: var(--field-focus); box-shadow: 0 0 0 3px rgba(192,57,43,.18); }
-  .group-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; color: var(--navy); font-size: 17px; margin: 14px 0 2px; }
-
-  .checklist { list-style: none; padding: 0; margin: 10px 0; }
-  .checklist li { display: flex; align-items: flex-start; gap: 10px; margin: 8px 0; padding: 9px 12px; background: #eef0f5; border-radius: 8px; }
-  .checklist li::before { content: "\2610"; color: var(--navy); font-size: 19px; line-height: 1; }
-
-  .grid { width: 100%; border-collapse: collapse; margin: 12px 0; border: 1px solid var(--line); }
-  .grid th { background: var(--navy); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .02em; padding: 8px 8px; text-align: left; vertical-align: bottom; }
-  .grid td { border: 1px solid var(--line); padding: 0; }
-  .grid td .label { padding: 8px 10px; font-size: 15px; background: #eef0f5; font-weight: 500; }
-  .grid input { width: 100%; border: none; background: transparent; font-family: 'Barlow', sans-serif; font-size: 15.5px; padding: 9px 10px; }
-  .grid input:focus { outline: none; background: var(--field-focus); box-shadow: inset 0 0 0 2px var(--gold); }
-  .grid .seed { padding: 9px 10px; font-size: 15px; color: var(--grey); }
-  .grid code { font-size: 14px; }
-
-  .namebar { display: flex; gap: 18px; flex-wrap: wrap; margin: 8px 0 4px; }
-  .namebar .nb { display: flex; align-items: center; gap: 8px; flex: 1 1 220px; }
-  .namebar label { font-weight: 600; color: var(--navy); white-space: nowrap; }
-  .namebar input { flex: 1; font-family: 'Barlow', sans-serif; font-size: 16px; padding: 8px 11px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--field); }
-  .namebar input:focus { outline: none; border-color: var(--gold); background: var(--field-focus); box-shadow: 0 0 0 3px rgba(192,57,43,.18); }
-
-  .pin-reminder { background: #fff6e0; border: 1px solid var(--gold); border-radius: 10px; padding: 12px 16px; margin: 0 0 6px; font-size: 15.5px; }
-  .pin-reminder strong { color: var(--navy); }
-
-  .bottom-submit { margin-top: 36px; text-align: center; padding: 24px; background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--gold); border-radius: 12px; }
-  .bottom-submit p { margin: 0 0 14px; color: var(--grey); font-size: 15.5px; }
-  .bottom-submit .submit-btn { font-size: 19px; padding: 13px 30px; }
-  .credit { text-align: center; color: var(--grey); font-size: 13.5px; margin: 26px 0 0; letter-spacing: .02em; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: .02em;
+    color: var(--red);
+    margin: 0 0 4px;
+  }
 
   @media print {
-    @page { margin: 14mm; }
-    body { background: #fff; font-size: 12px; }
-    .topbar { position: static; border: none; }
-    .no-print { display: none !important; }
-    .sheet { margin: 0; max-width: none; padding: 0; }
-    .hero { background: var(--red) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; border-radius: 0; }
-    .meta, .callout, .concept, .grid, .bottom-submit, .checklist li { break-inside: avoid; }
-    section { break-inside: avoid-page; }
-    .code { background: #f2f2f2 !important; color: #1a1a1a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; border: 1px solid #ccc; }
-    .code .c { color: #3c7a3c !important; } .code .hl { color: #8a6d22 !important; }
-    .filetab { background: #ddd !important; color: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .grid th, .concept .chead { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .answer, .steps input, .grid input, .namebar input, .pin-field input { border: none !important; border-bottom: 1px solid #999 !important; border-radius: 0 !important; background: #fff !important; box-shadow: none !important; color: #000 !important; }
-    .answer { min-height: auto; }
-  .botnav{display:flex;align-items:center;justify-content:flex-start;gap:20px 24px;flex-wrap:wrap;margin:46px 40px 0;padding:26px 0 8px;border-top:1px solid var(--line)}
-  .botnav a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
-            font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
-            letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
-            border:1px solid var(--line);border-radius:5px;padding:12px 20px;background:#fff}
-  .botnav a:hover{border-color:var(--gold);background:#FDF2F2;color:var(--red)}
-  .botnav a.next{margin-left:auto}
-  .botnav a.gloss{color:#8a6d2f;border-color:rgba(192,57,43,.55);background:#FDF2F2}
-  .botnav a.gloss:hover{background:rgba(192,57,43,.16)}
-  .botnav .spacer{flex:1}
-  @media (max-width:700px){
-    .botnav{margin-left:20px;margin-right:20px;gap:10px;padding-top:18px}
-    .botnav a{font-size:13.5px;padding:11px 14px;flex:1 1 46%;justify-content:center}
-    .botnav a.next{margin-left:0}
+    @page {
+      margin: 14mm;
+    }
+    body {
+      background: #fff;
+      font-size: 12px;
+    }
+    .topbar {
+      position: static;
+      border: none;
+    }
+    .no-print {
+      display: none !important;
+    }
+    .sheet {
+      margin: 0;
+      max-width: none;
+      padding: 0;
+    }
+    .hero {
+      background: var(--red) !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      border-radius: 0;
+    }
+    .meta, .callout, .concept, .grid, .bottom-submit, .checklist li {
+      break-inside: avoid;
+    }
+    section {
+      break-inside: avoid-page;
+    }
+    .code {
+      background: #f2f2f2 !important;
+      color: #1a1a1a !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      border: 1px solid #ccc;
+    }
+    .code .c {
+      color: #3c7a3c !important;
+    }
+    .code .hl {
+      color: #8a6d22 !important;
+    }
+    .filetab {
+      background: #ddd !important;
+      color: #333 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .grid th, .concept .chead {
+      background: var(--navy) !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .answer, .steps input, .grid input, .namebar input, .pin-field input {
+      border: none !important;
+      border-bottom: 1px solid #999 !important;
+      border-radius: 0 !important;
+      background: #fff !important;
+      box-shadow: none !important;
+      color: #000 !important;
+    }
+    .answer {
+      min-height: auto;
+    }
+    .checklist input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      border: 1px solid #666;
+      border-radius: 2px;
+      width: 14px;
+      height: 14px;
+    }
+    .botnav{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:20px 24px;
+      flex-wrap:wrap;
+      margin:46px 40px 0;
+      padding:26px 0 8px;
+      border-top:1px solid var(--line)
+    }
+    .botnav a{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+      font-family:'Barlow Condensed',sans-serif;
+      font-weight:700;
+      font-size:15px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:var(--navy);
+      border:1px solid var(--line);
+      border-radius:5px;
+      padding:12px 20px;
+      background:#fff
+    }
+    .botnav a:hover{
+      border-color:var(--gold);
+      background:#FDF2F2;
+      color:var(--red)
+    }
+    .botnav a.next{
+      margin-left:auto
+    }
+    .botnav a.gloss{
+      color:#8a6d2f;
+      border-color:rgba(192,57,43,.55);
+      background:#FDF2F2
+    }
+    .botnav a.gloss:hover{
+      background:rgba(192,57,43,.16)
+    }
+    .botnav .spacer{
+      flex:1
+    }
+    @media (max-width:700px){
+      .botnav{
+        margin-left:20px;
+        margin-right:20px;
+        gap:10px;
+        padding-top:18px
+      }
+      .botnav a{
+        font-size:13.5px;
+        padding:11px 14px;
+        flex:1 1 46%;
+        justify-content:center
+      }
+      .botnav a.next{
+        margin-left:0
+      }
+    }
+    @media print{
+      .botnav{
+        display:none
+      }
+    }
+    .print-pin {
+      display: block !important;
+    }
   }
-  @media print{ .botnav{display:none} }
-
-    .print-pin { display: block !important; }
-  }
-  .print-pin { display: none; }
-
-  @media (max-width: 600px) {
-    .meta .row { grid-template-columns: 1fr; }
-    .meta dd { border-left: none; border-top: 1px solid var(--line); }
-    .hero h1 { font-size: 30px; }
-    .topbar .brand { width: 100%; margin-bottom: 4px; }
-  }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-  .def-term{cursor:pointer;border-bottom:2px dotted var(--red);font-weight:700;color:inherit}
-  .def-term:hover{color:var(--red)}
-  .def-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;padding:1rem;
-               align-items:center;justify-content:center}
-  .def-overlay.open{display:flex}
-  .def-box{background:#fff;border-radius:6px;width:100%;max-width:480px;
-           box-shadow:0 12px 48px rgba(0,0,0,.4);overflow:hidden;animation:def-pop .16s ease}
-  @keyframes def-pop{from{opacity:0;transform:scale(.93) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
-  .def-head{background:var(--red);color:#fff;display:flex;align-items:center;
-            justify-content:space-between;padding:.85rem 1rem;gap:.5rem}
-  .def-head-term{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;
-                 letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
-  .def-close{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;
-             line-height:1;cursor:pointer;padding:0 .2rem;min-width:36px;min-height:36px;
-             display:flex;align-items:center;justify-content:center;border-radius:4px}
-  .def-close:hover{background:rgba(255,255,255,.15);color:#fff}
-  .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:#444;line-height:1.65}
-  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
-          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
-  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
-  .crumbs a:hover{color:#fff;text-decoration:underline}
-  .crumbs .sep{color:rgba(255,255,255,.35)}
-  .crumbs .here{color:var(--gold);font-weight:700}
-  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(192,57,43,.5);
-                 padding:4px 9px;border-radius:4px;font-weight:700}
-  .crumbs .gloss:hover{background:rgba(192,57,43,.16);color:var(--gold);text-decoration:none}
-  @media (max-width:600px){
-    .def-overlay{align-items:flex-end;padding:0}
-    .def-box{border-radius:12px 12px 0 0;max-width:100%}
-    .def-body{padding:1rem 1.1rem 2rem}
-  }
-  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
-  @media print{ .crumbs,.def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
-  .mainnav{display:flex;align-items:center;gap:4px 18px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
-           font-size:14px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;line-height:1}
-  .mainnav a{color:rgba(255,255,255,.66);text-decoration:none;padding:5px 2px;border-bottom:2px solid transparent}
-  .mainnav a:hover{color:#fff}
-  .mainnav a.here{color:var(--gold);border-bottom-color:var(--gold)}
-  @media (max-width:820px){ .mainnav{font-size:12.5px;gap:3px 13px} }
-  @media print{ .mainnav{display:none} }
-
-
 </style>
 </head>
 <body>
@@ -282,7 +282,8 @@
   <!-- ===== Phase 2: Create the library file ===== -->
   <section>
     <h2 class="phase-head"><span class="pnum">Phase 2</span> — Create Your Library File</h2>
-    <p>In the file area on the right, create a new <strong>Python file</strong>. Name it after yourself, using your <strong>first name</strong> followed by <code>.py</code> — for example, <code>maria.py</code> or <code>devon.py</code>. This is <em>your</em> library.</p>
+    <p>First, make sure your user is set to the <strong>advanced mode</strong> so that you can create new files. From the IDE homescreen, click on <em>User Preferences</em>, select your user from the menu at the top, then set the interface mode to <em>Advanced</em>.</p>
+    <p>Then, go to the project you created and in the file area on the right, create a new <strong>Python file</strong>. Name it after yourself, using your <strong>first name</strong> and the file extension <code>.py</code> — for example, <code>maria.py</code> or <code>devon.py</code>. This is <em>your</em> library.</p>
     <div class="callout navy">
       <p class="ctitle">Watch out for name collisions</p>
       <p>A few names are already taken — by Python itself. If your first name happens to match a built-in module like <code>math</code>, <code>random</code>, <code>os</code>, or <code>time</code>, naming your library that exact word will break your <em>own</em> import, because Python will find its own module first. If that's you, add your last initial (<code>math_r.py</code>) or use your last name instead.</p>
@@ -305,9 +306,8 @@
     <p>Now fill your library with every reusable function you've built. Organize it in two clear sections, in this order: <strong><span class="def-term" data-term="VARIABLE">variable</span>s at the top</strong>, then <strong>function definitions</strong>. This is the same structure you've used all along — now it lives in your library. Python doesn't use separate <span class="def-term" data-term="PROTOTYPE">prototype</span>s like you may have used before; a function just needs to be defined above the point where it's called.</p>
 
     <span class="filetab">yourname.py</span>
-    <div class="code">#!/usr/bin/python3
-<span class="c"># ============================================================</span>
-<span class="c">#  yourname.py  —  My Botball function library</span>
+    <div class="code"><span class="c"># ============================================================</span>
+<span class="c"># yourname.py: My Botball function library</span>
 <span class="c">#  Every reusable tool I've built, in one place.</span>
 <span class="c"># ============================================================</span>
 
@@ -328,30 +328,49 @@ SLOW = <span class="hl">____</span>
 
 <span class="c"># ---- FUNCTION DEFINITIONS (the recipes) ----</span>
 
+<span class="c"># Servo movement notes:</span>
+<span class="c">#   - A one-tick command does not actually move the servo, so step by two.</span>
+<span class="c">#   - Repeated get_servo_position calls can overload the controller. Store</span>
+<span class="c">#     each reading in current_position and refresh it once per loop.</span>
+
 <span class="c"># move_arm: Smoothly moves the arm servo (port 0) to a position.</span>
 <span class="c">#   - Clamps the value into the safe range so the servo can't be</span>
 <span class="c">#     forced past a hard stop and burned out.</span>
-<span class="c">#   - Steps one position at a time for smooth motion.</span>
+<span class="c">#   - Steps two ticks at a time for smooth motion.</span>
 <span class="c">#   Pass in the arm position you want (e.g. ARM_MAX to raise).</span>
-def move_arm(position):
-    if position &gt; ARM_MAX: position = ARM_MAX
-    if position &lt; ARM_MIN: position = ARM_MIN
-    while k.get_servo_position(0) != position:
-        if k.get_servo_position(0) &lt; position: k.set_servo_position(0, k.get_servo_position(0) + 1)
-        else:                                   k.set_servo_position(0, k.get_servo_position(0) - 1)
+def move_arm(target_position):
+    if target_position &gt; ARM_MAX: target_position = ARM_MAX
+    if target_position &lt; ARM_MIN: target_position = ARM_MIN
+    current_position = k.get_servo_position(0)
+    while current_position != target_position:
+        <span class="c"># A 2-tick step could skip a target that is only 1 tick away.</span>
+        if abs(current_position - target_position) == 1:
+            k.set_servo_position(0, target_position)
+        elif current_position &lt; target_position:
+            k.set_servo_position(0, current_position + 2)
+        else:
+            k.set_servo_position(0, current_position - 2)
         k.msleep(1)
+        current_position = k.get_servo_position(0)
 
 <span class="c"># move_claw: Smoothly moves the claw servo (port 1) to a position.</span>
 <span class="c">#   Works just like move_arm, but for the claw. Clamps between</span>
 <span class="c">#   CLAW_SHUT and CLAW_OPEN so the claw never strains.</span>
 <span class="c">#   Pass in CLAW_OPEN to open, CLAW_SHUT to close on a cube.</span>
-def move_claw(position):
-    if position &gt; CLAW_OPEN: position = CLAW_OPEN
-    if position &lt; CLAW_SHUT: position = CLAW_SHUT
-    while k.get_servo_position(1) != position:
-        if k.get_servo_position(1) &lt; position: k.set_servo_position(1, k.get_servo_position(1) + 1)
-        else:                                   k.set_servo_position(1, k.get_servo_position(1) - 1)
+def move_claw(target_position):
+    if target_position &lt; CLAW_OPEN: target_position = CLAW_OPEN
+    if target_position &gt; CLAW_SHUT: target_position = CLAW_SHUT
+    current_position = k.get_servo_position(1)
+    while current_position != target_position:
+        <span class="c"># A 2-tick step could skip a target that is only 1 tick away.</span>
+        if abs(current_position - target_position) == 1:
+            k.set_servo_position(1, target_position)
+        elif current_position &lt; target_position:
+            k.set_servo_position(1, current_position + 2)
+        else:
+            k.set_servo_position(1, current_position - 2)
         k.msleep(1)
+        current_position = k.get_servo_position(1)
 
 <span class="c"># back_until_pressed: Drives the robot straight backward until the</span>
 <span class="c">#   touch sensor on k.digital(0) is pressed against a wall, then stops.</span>
@@ -380,8 +399,10 @@ def Tick_Drive(ticks):
 def line_follow(ticks):
     k.cmpc(0)
     while k.gmpc(0) &lt; ticks:
-        if k.analog(0) &gt; MIDPOINT: k.mav(0, FAST); k.mav(1, SLOW)
-        else:                      k.mav(0, SLOW); k.mav(1, FAST)
+        if k.analog(0) &gt; MIDPOINT:
+            k.mav(0, FAST); k.mav(1, SLOW)
+        else:
+            k.mav(0, SLOW); k.mav(1, FAST)
     k.motor(0, 0); k.motor(1, 0); k.msleep(50)</div>
 
     <div class="callout navy">
@@ -402,7 +423,7 @@ def line_follow(ticks):
 import os, sys
 sys.path.append("/usr/lib")
 import _kipr as k   <span class="c"># KIPR's library</span>
-from <span class="hl">yourname</span> import *   <span class="c"># YOUR library — all your tools, in one line</span>
+from <span class="hl">yourname</span> import *   <span class="c"># Import YOUR library to get all your tools in one line.</span>
 
 def main():
     k.enable_servo(0)
@@ -423,11 +444,11 @@ main()</div>
     <h3 class="sub">Test Each Function</h3>
     <p>Run your program and check off each function as you confirm it works from the library.</p>
     <ul class="checklist">
-      <li><code>Tick_Drive()</code> drove the measured distance</li>
-      <li><code>back_until_pressed()</code> backed into the wall and stopped</li>
-      <li><code>line_follow()</code> followed the line</li>
-      <li><code>move_arm()</code> moved the arm smoothly and safely</li>
-      <li><code>move_claw()</code> opened and closed the claw</li>
+      <li><input type="checkbox" data-key="p5_test_tick_drive" id="p5-test-tick-drive"><label for="p5-test-tick-drive"><code>Tick_Drive()</code> drove the measured distance</label></li>
+      <li><input type="checkbox" data-key="p5_test_back_until_pressed" id="p5-test-back-until-pressed"><label for="p5-test-back-until-pressed"><code>back_until_pressed()</code> backed into the wall and stopped</label></li>
+      <li><input type="checkbox" data-key="p5_test_line_follow" id="p5-test-line-follow"><label for="p5-test-line-follow"><code>line_follow()</code> followed the line</label></li>
+      <li><input type="checkbox" data-key="p5_test_move_arm" id="p5-test-move-arm"><label for="p5-test-move-arm"><code>move_arm()</code> moved the arm smoothly and safely</label></li>
+      <li><input type="checkbox" data-key="p5_test_move_claw" id="p5-test-move-claw"><label for="p5-test-move-claw"><code>move_claw()</code> opened and closed the claw</label></li>
     </ul>
     <p class="q">Did every function work when called from your library? If one didn't, what was the problem and how did you fix it?</p>
     <textarea class="answer" data-key="p5_all_worked" aria-label="All worked"></textarea>
@@ -537,7 +558,9 @@ main()</div>
   const SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
   function collectAnswers() {
     const answers = {};
-    document.querySelectorAll("[data-key]").forEach((el) => { answers[el.getAttribute("data-key")] = el.value; });
+    document.querySelectorAll("[data-key]").forEach((el) => {
+      answers[el.getAttribute("data-key")] = el.type === "checkbox" ? (el.checked ? "yes" : "") : el.value;
+    });
     return answers;
   }
   function restoreDraft() {
@@ -549,7 +572,10 @@ main()</div>
     if (data.answers) {
       document.querySelectorAll("[data-key]").forEach((el) => {
         const k = el.getAttribute("data-key");
-        if (k in data.answers) el.value = data.answers[k];
+        if (k in data.answers) {
+          if (el.type === "checkbox") el.checked = data.answers[k] === "yes";
+          else el.value = data.answers[k];
+        }
       });
     }
   }
@@ -558,6 +584,7 @@ main()</div>
   }
   restoreDraft();
   document.addEventListener("input", function (e) { if (e.target.matches("[data-key], #pin")) saveDraft(); });
+  document.addEventListener("change", function (e) { if (e.target.matches("[data-key]")) saveDraft(); });
 
   function setStatus(msg, kind) {
     statusEl.textContent = msg;
@@ -616,7 +643,7 @@ main()</div>
 (function(){
   var DEFS = {
     'MODULE': ['Module', 'A separate Python file holding functions you want to use elsewhere. You bring it into a program with an import line, the same way C brings in a header file.'],
-    'BLOCK': ['Block', 'Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function.'],
+    'BLOCK': ['Block', 'Everything at a given level of indentation. A block groups statements together so the controller knows which ones belong to which function.'],
     'COMMENT': ['Comment', 'A note for humans that the computer ignores completely. Single-line comments start with two slashes. Block comments start with slash-star and end with star-slash.'],
     'CONTROLLER': ['Controller', 'The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors.'],
     'FUNCTION': ['Function', 'A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens.'],

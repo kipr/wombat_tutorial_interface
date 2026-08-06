@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="430" viewBox="0 0 560 430" role="img" aria-labelledby="title desc">
+<title id="title">Four-item bubble sort</title>
+<desc id="desc">Four differently sized circles are sorted from smallest to largest over three passes.</desc>
+<defs>
+<marker id="swap-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+<path d="M0 0L7 3.5L0 7Z" fill="#e11d48"/>
+</marker>
+<style>
+.label { font: 600 14px system-ui, sans-serif; fill: #334155; }
+.pass { font: 600 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #334155; }
+.note { font: 12px system-ui, sans-serif; fill: #64748b; }
+.value { font: 700 13px system-ui, sans-serif; fill: #fff; text-anchor: middle; dominant-baseline: middle; }
+.swap { fill: none; stroke: #e11d48; stroke-width: 2; stroke-dasharray: 4 3; marker-end: url(#swap-arrow); }
+</style>
+</defs>
+<rect width="560" height="430" rx="16" fill="#f8fafc"/>
+<text x="280" y="28" text-anchor="middle" class="label" font-size="18">Bubble sort: smallest → largest</text>
+<text x="14" y="82" class="pass">pass_num = 0</text> <g transform="translate(165 77)"> <circle cx="0" cy="0" r="28" fill="#7c3aed"/> <text x="0" y="0" class="value">4</text> <circle cx="90" cy="0" r="16" fill="#0ea5e9"/> <text x="90" y="0" class="value">2</text> <circle cx="180" cy="0" r="23" fill="#f59e0b"/> <text x="180" y="0" class="value">3</text> <circle cx="270" cy="0" r="10" fill="#10b981"/> <text x="270" y="0" class="value">1</text> <path d="M-28 36 Q45 66 106 36" class="swap"/> <path d="M74 36 Q135 66 203 36" class="swap"/> <path d="M157 36 Q225 66 280 36" class="swap"/> </g> <text x="535" y="82" class="note" text-anchor="end">swap 4→</text>
+<text x="14" y="187" class="pass">pass_num = 1</text> <g transform="translate(165 182)"> <circle cx="0" cy="0" r="16" fill="#0ea5e9"/> <text x="0" y="0" class="value">2</text> <circle cx="90" cy="0" r="23" fill="#f59e0b"/> <text x="90" y="0" class="value">3</text> <circle cx="180" cy="0" r="10" fill="#10b981"/> <text x="180" y="0" class="value">1</text> <circle cx="270" cy="0" r="28" fill="#7c3aed"/> <text x="270" y="0" class="value">4</text> <path d="M67 36 Q135 66 190 36" class="swap"/> </g> <text x="535" y="187" class="note" text-anchor="end">4 fixed</text>
+<text x="14" y="292" class="pass">pass_num = 2</text> <g transform="translate(165 287)"> <circle cx="0" cy="0" r="16" fill="#0ea5e9"/> <text x="0" y="0" class="value">2</text> <circle cx="90" cy="0" r="10" fill="#10b981"/> <text x="90" y="0" class="value">1</text> <circle cx="180" cy="0" r="23" fill="#f59e0b"/> <text x="180" y="0" class="value">3</text> <circle cx="270" cy="0" r="28" fill="#7c3aed"/> <text x="270" y="0" class="value">4</text> <path d="M-16 36 Q45 66 100 36" class="swap"/> </g> <text x="535" y="292" class="note" text-anchor="end">3, 4 fixed</text>
+<text x="14" y="397" class="pass">pass_num = 3</text> <g transform="translate(165 392)"> <circle cx="0" cy="0" r="10" fill="#10b981"/> <text x="0" y="0" class="value">1</text> <circle cx="90" cy="0" r="16" fill="#0ea5e9"/> <text x="90" y="0" class="value">2</text> <circle cx="180" cy="0" r="23" fill="#f59e0b"/> <text x="180" y="0" class="value">3</text> <circle cx="270" cy="0" r="28" fill="#7c3aed"/> <text x="270" y="0" class="value">4</text> </g> </svg>
