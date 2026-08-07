@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KIPR Botball 2026</title>
-  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="lab-sheet.css">
   <style>
     body { background: var(--dark); min-height: 100vh; display: flex; flex-direction: column; }
 
@@ -13,7 +13,7 @@
     .brand-full { display: inline; }
 
     /* Hero */
-    .hero {
+    .home-hero {
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -27,7 +27,7 @@
       position: relative;
       overflow: hidden;
     }
-    .hero::before {
+    .home-hero::before {
       content: '';
       position: absolute;
       inset: 0;
@@ -46,9 +46,9 @@
         rgba(255,255,255,0.025) 40px
       );
     }
-    .hero-inner { position: relative; z-index: 1; max-width: 700px; }
-    .hero-text { position: relative; }
-    .hero-eyebrow {
+    .home-hero-inner { position: relative; z-index: 1; max-width: 700px; }
+    .home-hero-text { position: relative; }
+    .home-hero-eyebrow {
       font-family: var(--font-display);
       font-size: 0.85rem;
       font-weight: 600;
@@ -57,8 +57,8 @@
       color: var(--red);
       margin-bottom: 1.25rem;
     }
-    .hero-logo { height: 56px; margin-bottom: 2rem; filter: brightness(0) invert(1); }
-    .hero h1 {
+    .home-hero-logo { height: 56px; margin-bottom: 2rem; filter: brightness(0) invert(1); }
+    .home-hero h1 {
       font-family: var(--font-display);
       font-weight: 800;
       font-size: clamp(3rem, 8vw, 5.5rem);
@@ -67,15 +67,15 @@
       letter-spacing: -0.01em;
       margin-bottom: 0.5rem;
     }
-    .hero h1 span { color: var(--red); }
-    .hero-sub {
+    .home-hero h1 span { color: var(--red); }
+    .home-hero-sub {
       font-size: 1.05rem;
       color: rgba(255,255,255,0.55);
       margin: 1.5rem 0 3rem;
       font-weight: 400;
       max-width: 480px;
     }
-    .hero-botguy {
+    .home-hero-botguy {
       position: absolute;
       right: -8%;
       top: 50%;
@@ -86,7 +86,7 @@
       pointer-events: none;
     }
     @media (max-width: 640px) {
-      .hero-botguy { display: none; }
+      .home-hero-botguy { display: none; }
     }
 
     /* Card grid */
@@ -213,13 +213,13 @@
       .brand-full { display: none; }
       .brand-short { display: inline; }
       /* Hero: flow from the top instead of vertical-centering */
-      .hero {
+      .home-hero {
         justify-content: flex-start;
         padding: 1.75rem 1.25rem 2.5rem;
       }
-      .hero-logo { height: 44px; margin-bottom: 1.25rem; }
-      .hero h1 { font-size: clamp(2.25rem, 11vw, 3rem); }
-      .hero-sub { margin: 1rem 0 2rem; font-size: 1rem; }
+      .home-hero-logo { height: 44px; margin-bottom: 1.25rem; }
+      .home-hero h1 { font-size: clamp(2.25rem, 11vw, 3rem); }
+      .home-hero-sub { margin: 1rem 0 2rem; font-size: 1rem; }
 
       /* Cards: one per row, full width, with breathing room */
       .card-grid {
@@ -230,7 +230,7 @@
     }
   </style>
 </head>
-<body>
+<body class="hub">
   <nav class="nav">
     <a class="nav-brand" href="index.html">
       <img src="kipr-logo.png" alt="KIPR">
@@ -252,14 +252,14 @@
     <span class="cheat-icon">⚡</span>
   </a>
 
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-text">
-        <img src="botguy.png" alt="" class="hero-botguy">
-        <p class="hero-eyebrow">KIPR — Kiss Institute for Practical Robotics</p>
-        <img src="kipr-logo.png" alt="KIPR Logo" class="hero-logo">
+  <section class="home-hero">
+    <div class="home-hero-inner">
+      <div class="home-hero-text">
+        <img src="botguy.png" alt="" class="home-hero-botguy">
+        <p class="home-hero-eyebrow">KIPR — Kiss Institute for Practical Robotics</p>
+        <img src="kipr-logo.png" alt="KIPR Logo" class="home-hero-logo">
         <h1>Botball Explorer <span>2026</span></h1>
-        <p class="hero-sub">Official competition resources, mission guides, and scoring references for the 2026 season.</p>
+        <p class="home-hero-sub">Official competition resources, mission guides, and scoring references for the 2026 season.</p>
       </div>
       <div class="card-grid">
         <a class="doc-card" href="2026-missions.html">

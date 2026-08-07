@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>scoring.html — Botball Explorer: Stack Attack</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Bitter:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+  /* fonts via lab-sheet.css */
 
   :root{
     --navy:      #1C1C1C;
@@ -14,7 +14,7 @@
     --red-2:     #922B21;
     --gold:      #C0392B;
     --rust:      #922B21;
-    --cream:     #F8F8F8;
+    --cream:     #F8F8F8; /* = --off-white */
     --cream-2:   #F2F2F2;
     --ink:       #1C1C1C;
     --ink-soft:  #444444;
@@ -31,7 +31,7 @@
     background:
       linear-gradient(180deg, var(--cream) 0%, var(--cream) 100%);
     color:var(--ink);
-    font-family:'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-body), system-ui, sans-serif;
     min-height:100vh;
     padding-bottom:64px;
   }
@@ -43,7 +43,7 @@
     opacity:0.85;
   }
 
-  h1,h2,h3{ font-family:'Bitter', Georgia, serif; margin:0; }
+  h1,h2,h3{ font-family: var(--font-display), sans-serif; margin:0; }
   .eyebrow{
     font-family:'Barlow Condensed', sans-serif;
     letter-spacing:0.14em;
@@ -55,7 +55,7 @@
   }
 
   /* ============ TOP BAR ============ */
-  header.topbar{
+  header.score-topbar{
     background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
     color:#fff;
     padding:14px 18px 16px;
@@ -83,7 +83,7 @@
     font-size:12px; color:var(--cream-2); opacity:0.8;
   }
   .scorepod .value{
-    font-family:'Bitter', serif; font-weight:800; font-size:38px; color:var(--gold);
+    font-family: var(--font-display), sans-serif; font-weight:800; font-size:38px; color:var(--gold);
     line-height:1;
     min-width:2ch; text-align:right;
   }
@@ -96,7 +96,7 @@
     padding:8px 12px;
   }
   .timerpod .clock{
-    font-family:'Bitter', serif; font-weight:700; font-size:26px;
+    font-family: var(--font-display), sans-serif; font-weight:700; font-size:26px;
     min-width:3.4ch; text-align:center;
     color:#fff;
   }
@@ -170,7 +170,7 @@
     flex:none;
     width:34px; height:34px; border-radius:8px;
     background:var(--navy); color:#fff;
-    font-family:'Bitter', serif; font-weight:700; font-size:15px;
+    font-family: var(--font-display), sans-serif; font-weight:700; font-size:15px;
     display:flex; align-items:center; justify-content:center;
   }
   .pick-card.checked .num-badge{ background:var(--red); }
@@ -212,13 +212,13 @@
   }
   .start-bar-inner span{ color:var(--cream-2); font-size:14px; }
   .primary-btn{
-    font-family:'Barlow Condensed', sans-serif;
+    font-family: var(--font-display), sans-serif;
     text-transform:uppercase; letter-spacing:0.06em; font-weight:700; font-size:16px;
-    background:var(--gold); color:var(--ink); border:none; border-radius:9px;
+    background:var(--red); color:#fff; border:none; border-radius:9px;
     padding:12px 22px; cursor:pointer;
     transition:transform .1s ease, background .12s ease;
   }
-  .primary-btn:hover{ background:#DDB438; }
+  .primary-btn:hover{ background: var(--red-dark); color: #fff; }
   .primary-btn:active{ transform:translateY(1px); }
   .primary-btn:disabled{ background:#8a8467; color:#dcd7c4; cursor:not-allowed; }
 
@@ -307,7 +307,7 @@
 </head>
 <body>
 
-<header class="topbar">
+<header class="score-topbar">
   <div class="topbar-inner">
     <div class="brandblock">
       <span class="eyebrow">KIPR &middot; Botball Explorer</span>
