@@ -1,0 +1,16 @@
+{
+  "build": { "dockerfile": "../Dockerfile" },
+  "forwardPorts": [1313],
+  "features": {
+      "ghcr.io/cirolosapio/devcontainers-features/alpine-gpg:0": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["davidanson.vscode-markdownlint"]
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.config/codex,target=/var/hugo/.codex,type=bind,consistency=cached"
+  ]
+}
+
