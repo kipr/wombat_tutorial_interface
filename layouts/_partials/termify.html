@@ -1,16 +1,20 @@
 {{- /*
   Resolves inline references in rendered page content.
 
-    [[ENCODER]]                 glossary popup, label taken from the glossary
+    [[ENCODER]]                 glossary popup; link text is the token as typed
     [[ENCODER|encoders]]        glossary popup with custom link text
+    [[PROTOTYPE:design|prototype]]
+                                glossary popup for a named sense of a term
+                                (see `senses:` under the entry in glossary.yaml)
     [[@4|Mission 4]]            field diagram, base tier
     [[@4:bonus|Mission 4]]      field diagram, a specific scoring tier
 
-  An unknown term or mission number stops the build instead of silently
+  An unknown term, sense, or mission number stops the build instead of silently
   shipping a popup that does nothing when a student clicks it.
 
   Records what the page actually used in .Store so the page only ships the
-  definitions it needs.
+  definitions it needs. Sense uses are stored as "TERM:sense" so two senses of
+  the same word can coexist on one page.
 
   Called with: (dict "page" . "content" .Content) — returns the rewritten HTML.
 */ -}}
@@ -45,19 +49,29 @@
     {{- $usedMissions = $usedMissions | append $number -}}
 
   {{- else -}}
-    {{- $entry := index hugo.Data.glossary $key -}}
+    {{- $parts := split $key ":" -}}
+    {{- $base := index $parts 0 -}}
+    {{- $sense := cond (gt (len $parts) 1) (index $parts 1) "" -}}
+    {{- $entry := index hugo.Data.glossary $base -}}
 
     {{- if not $entry -}}
       {{- errorf "%s: [[%s]] is not a term in data/glossary.yaml" $page.File.Path $key -}}
+    {{- else if gt (len $parts) 2 -}}
+      {{- errorf "%s: [[%s]] has too many ':' segments; use TERM or TERM:sense" $page.File.Path $key -}}
+    {{- else if and (ne $sense "") (not (isset $entry "senses")) -}}
+      {{- errorf "%s: [[%s]] asks for sense %q but %s has no senses in data/glossary.yaml" $page.File.Path $key $sense $base -}}
+    {{- else if and (ne $sense "") (not (isset $entry.senses $sense)) -}}
+      {{- errorf "%s: [[%s]] asks for sense %q, which is not defined under %s.senses" $page.File.Path $key $sense $base -}}
     {{- end -}}
 
-    {{- /* Bare [[TERM]] shows the token exactly as typed, so the sentence reads
-           the way the author wrote it. The glossary's own title is only used as
-           the popup heading. */ -}}
-    {{- $text := cond (ne $label "") $label $key -}}
-    {{- $html := printf `<span class="def-term" data-term="%s">%s</span>` $key $text -}}
+    {{- /* Lookup key matches data-term so lab.js needs no special case.
+           Bare [[TERM]] / [[TERM:sense]] show the base token, not the sense
+           suffix — authors almost always pass an explicit |label anyway. */ -}}
+    {{- $lookup := cond (ne $sense "") (printf "%s:%s" $base $sense) $base -}}
+    {{- $text := cond (ne $label "") $label $base -}}
+    {{- $html := printf `<span class="def-term" data-term="%s">%s</span>` $lookup $text -}}
     {{- $content = replace $content $token $html -}}
-    {{- $usedTerms = $usedTerms | append $key -}}
+    {{- $usedTerms = $usedTerms | append $lookup -}}
   {{- end -}}
 {{- end -}}
 

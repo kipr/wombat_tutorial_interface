@@ -2,9 +2,13 @@
   Ships only the definitions and mission entries this page references, pulled
   from data/glossary.yaml and data/missions.yaml at build time.
 
-  A page with `lang: python` in its front matter gets the Python wording of any
+  A page with `track: python` in its front matter gets the Python wording of any
   term that has one, so the C and Python tracks can disagree on purpose without
   either copy drifting.
+
+  Sense keys look like "PROTOTYPE:design". The default body (and its python
+  variant) is used when no sense is named; a sense's own title/body replace
+  both when one is.
 */ -}}
 {{- $terms := .Store.Get "usedTerms" -}}
 {{- $missions := .Store.Get "usedMissions" -}}
@@ -15,9 +19,21 @@
 {{- if $terms }}
 {{- $out := dict }}
 {{- range $terms }}
-  {{- $entry := index hugo.Data.glossary . }}
-  {{- $body := cond (and (eq $lang "python") (isset $entry "python")) (index $entry "python") $entry.body }}
-  {{- $out = merge $out (dict . (dict "title" $entry.title "body" $body)) }}
+  {{- $parts := split . ":" -}}
+  {{- $base := index $parts 0 -}}
+  {{- $sense := cond (gt (len $parts) 1) (index $parts 1) "" -}}
+  {{- $entry := index hugo.Data.glossary $base -}}
+  {{- $title := $entry.title -}}
+  {{- $body := cond (and (eq $lang "python") (isset $entry "python")) (index $entry "python") $entry.body -}}
+  {{- if ne $sense "" -}}
+    {{- $alt := index $entry.senses $sense -}}
+    {{- $title = $alt.title | default $title -}}
+    {{- $body = $alt.body -}}
+    {{- if and (eq $lang "python") (isset $alt "python") -}}
+      {{- $body = index $alt "python" -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $out = merge $out (dict . (dict "title" $title "body" $body)) -}}
 {{- end }}
 window.KIPR_GLOSSARY = {{ $out | jsonify (dict "indent" "  ") | safeJS }};
 {{- end }}

@@ -1,9 +1,3 @@
-# Terms that are defined more than one way across the site.
-# The wording in glossary.yaml is whichever appears on the most pages;
-# everything below was displaced and needs a human decision.
-
-"PROTOTYPE":
-  - body: "A first version built to be tested rather than kept. It is supposed to reveal problems, so a prototype that fails has done its job."
-    pages:
-      - "discovery/systems/project-05.html"
-      - "discovery/systems/project-07.html"
+# Terms that are defined more than one way across the site and still need a
+# human decision. Homonyms that intentionally keep both meanings live under
+# `senses:` on the entry in glossary.yaml instead (see PROTOTYPE).
