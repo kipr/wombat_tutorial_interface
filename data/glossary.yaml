@@ -266,6 +266,9 @@
 "RADIUS TURN":
   title: "Radius Turn"
   body: "Both wheels turn the same direction but at different speeds, so the robot sweeps a curved arc. How sharp the arc is depends on how different the two power numbers are. Also called an arc turn."
+"RECOMMENDATION_ENGINE":
+  title: "Recommendation Engine"
+  body: "A computer program that takes information about you and uses it to suggest things you might like. The suggestions are only as good as the instructions the engine was given."
 "REFLECTANCE":
   title: "Reflectance"
   body: "A sensor that shines a small light downward and measures how much bounces back. Light surfaces bounce back a lot and give a low reading; dark surfaces absorb the light and give a high one."

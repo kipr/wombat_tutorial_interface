@@ -155,9 +155,9 @@ Write your plan as a numbered list. Do not write code yet. Be specific enough th
 ## Phase 4 — Build &amp; Run
 
 {{< figrow >}}
-- src: ide/code-template.jpg
+- src: ide/code-template.png
   alt: The template you start from.
-- src: ide/compile-succeeded.jpg
+- src: ide/compile-succeeded.png
   alt: What success looks like.
 {{< /figrow >}}
 
@@ -228,7 +228,7 @@ Complete one row for every run. Never skip a row — even failed runs contain in
 Intelligent systems require instructions before they can act.
 {{% /callout %}}
 
-Your robot did not decide to navigate to Waypoint Alpha. It followed the instructions you wrote. Every intelligent system — from a robot to a recommendation engine to a self-driving car — begins with someone writing instructions that tell the system what to do and how to do it. The quality of the system depends directly on the quality of those instructions.
+Your robot did not decide to navigate to Waypoint Alpha. It followed the instructions you wrote. Every intelligent system — from a robot to a [[RECOMMENDATION_ENGINE|recommendation engine]] to a self-driving car — begins with someone writing instructions that tell the system what to do and how to do it. The quality of the system depends directly on the quality of those instructions.
 
 Read each scenario below. Think it through, then write a short answer.
 {.muted}

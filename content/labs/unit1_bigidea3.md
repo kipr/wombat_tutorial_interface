@@ -366,7 +366,7 @@ Finished early? Try one or more of these.
 
 ### Extension E — Random Freight
 
-- Real freight wouldn't always be the same type every run. Use `rand() % 10` to generate a random `freight_type` each time your program runs (you'll need `#include <stdlib.h>` and a call to `srand()` once at the top of `main()`).
+- Real freight wouldn't always be the same type every run. Use `rand() % 10` to generate a random `freight_type` each time your program runs (you'll need `#include <stdlib.h>`, `#include <time.h>` and a call to `srand(time(NULL))` once at the top of `main()`).
 - Run it several times. Does your sorting rule still make the correct choice across many random values?
 
 {{< answer key="ext_e" label="Extension E" >}}
