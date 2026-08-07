@@ -768,6 +768,31 @@ li { margin: 4px 0; }
 
 .fieldref.btn::after{content:"\25A6";font-size:.95em;opacity:.9;margin-left:1px}
 
+/* ---------- Mission component blocks ---------- */
+.components-grid { display: flex; flex-direction: column; gap: 0; margin-bottom: 2rem; }
+.comp-row { display: grid; grid-template-columns: 200px 1fr; gap: 0; }
+.score-card {
+  padding: 1rem; display: flex; flex-direction: column; gap: 0.3rem;
+  justify-content: center;
+}
+.comp-base { background: var(--dark-red); }
+.comp-bonus { background: var(--red); }
+.comp-advanced { background: #7B241C; }
+.sc-label { font-family: var(--font-display); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+.sc-points { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--white); line-height: 1; }
+.sc-meta { font-size: 0.75rem; color: rgba(255,255,255,0.65); }
+.comp-desc {
+  background: var(--white); padding: 1rem 1.25rem;
+  border-left: 3px solid var(--light-red);
+  display: flex; align-items: center;
+}
+.comp-row:nth-child(odd) .comp-desc { border-left-color: var(--dark-red); }
+.comp-desc p { font-size: 0.925rem; color: var(--gray-700); line-height: 1.55; }
+
+@media (max-width: 600px) {
+  .comp-row { grid-template-columns: 160px 1fr; }
+}
+
 .fld-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:10000;
                padding:14px;align-items:center;justify-content:center}
 
