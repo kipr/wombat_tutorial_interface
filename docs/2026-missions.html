@@ -115,11 +115,12 @@
     .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
     /* ---- sticky mission search (desktop only) ---- */
     .nav-search {
-      display: flex; align-items: center; gap: 0.5rem;
-      flex: 0 1 380px; margin: 0 1.5rem;
+      display: flex; align-items: center; gap: 0.4rem;
+      flex: 1 1 220px; min-width: 120px; max-width: 380px;
+      margin: 0 0.75rem;
       background: rgba(255,255,255,0.11);
       border: 1px solid rgba(255,255,255,0.22);
-      border-radius: 5px; padding: 0 0.6rem; height: 34px;
+      border-radius: 5px; padding: 0 0.55rem; height: 34px;
       transition: background 0.15s, border-color 0.15s;
     }
     .nav-search:focus-within {
@@ -142,6 +143,8 @@
       letter-spacing: 0.08em; text-transform: uppercase;
       color: rgba(255,255,255,0.55); white-space: nowrap; flex-shrink: 0;
     }
+    /* Keep links on one row while search is present — search shrinks first */
+    .nav-links { flex-wrap: nowrap; flex-shrink: 0; }
     .no-hits {
       background: var(--pale-red); border: 1px solid var(--light-red);
       border-radius: 6px; padding: 1.1rem 1.3rem; margin: 0 0 1.5rem;
@@ -152,8 +155,16 @@
       font-weight: 600; font-size: 1rem; text-decoration: underline; padding: 0;
     }
     .mission-card.dim { display: none; }
-    /* the reviewer asked for desktop only */
-    @media (max-width: 900px) { .nav-search { display: none; } }
+    /* Hide search before links are allowed to wrap */
+    @media (max-width: 960px) {
+      .nav-search { display: none; }
+      .nav-links {
+        flex-wrap: wrap;
+        flex-shrink: 1;
+        min-width: 0;
+        max-width: 100%;
+      }
+    }
     @media print { .nav-search, .no-hits { display: none; } }
 
   </style>
