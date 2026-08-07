@@ -186,6 +186,36 @@
       display: block !important;
     }
   }
+  .image-wrapper {
+  position: relative;
+}
+
+.image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.image-checkbox {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.image-checkbox input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -386,102 +416,107 @@
   const parts = [
     {
       id: "wombat-controller",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "The KIPR Wombat controller."
+      src: "../img/kit/wambatfaceon.jpg",
+      description: "2 × KIPR Wombat controllers."
     },
     {
       id: "battery",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "A battery."
+      src: "../img/kit/battery.jpg",
+      description: "2 × batteries."
     },
     {
       id: "battery-charger",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "A battery charger."
+      src: "../img/kit/batterycharger.jpg",
+      description: "2 × chargers."
     },
     {
       id: "ET-sensor",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "2 x ET sensors."
+      src: "../img/kit/2ETsensor.jpg",
+      description: "2 × ET sensors."
     },
     {
       id: "light-sensor",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "2 x light sensors."
+      src: "../img/kit/2lightsensors.jpg",
+      description: "2 × light sensors."
     },
     {
       id: "small-tophat-sensor",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "2 x small tophat sensors."
+      src: "../img/kit/2smalltophat.jpg",
+      description: "2 × small tophat sensors."
+    },
+    {
+      id: "large-tophat-sensor",
+      src: "../img/kit/2largetophat.jpg",
+      description: "2 × large tophat sensors."
     },
     {
       id: "lever-sensor",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "2 x lever sensors."
+      src: "../img/kit/leversensors.jpg",
+      description: "2 × lever sensors."
     },
     {
       id: "large-touch-sensor",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "2 x large touch sensors."
+      src: "../img/kit/largetouchsensors.png",
+      description: "2 × large touch sensors."
     },
     {
       id: "screw-bag",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "A bag of screws."
+      src: "../img/kit/bagofscrews.jpg",
+      description: "2 × sets of screws (shown above is ×1 set)"
     },
     {
       id: "motors",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "4 x motors."
+      src: "../img/kit/4motors.jpg",
+      description: "4 × motors."
     },
     {
       id: "servo",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "4 x servos."
+      src: "../img/kit/4servos.jpg",
+      description: "4 × servos."
     },
     {
       id: "caster",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "A caster."
+      src: "../img/kit/caster.jpg",
+      description: "2 × casters."
     },
     {
       id: "wheels",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "4 x wheels."
+      src: "../img/kit/4wheels.jpg",
+      description: "4 × wheels."
     },
     {
       id: "metal-strap",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "2 x (1x10) metal straps."
+      src: "../img/kit/2(1x10)metalstraps.jpg",
+      description: "2 × (1×10) metal straps."
     },
     {
       id: "angle-bracket",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "2 x angle brackets."
+      src: "../img/kit/2anglebrackets.jpg",
+      description: "2 × angle brackets."
     },
     {
       id: "chassis",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "A chassis."
+      src: "../img/kit/chassis.jpg",
+      description: "2 × chassis."
     },
     {
       id: "servo-bracket",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "4 x servo brackets."
+      src: "../img/kit/4servobrackets.jpg",
+      description: "4 × servo brackets."
     },
     {
       id: "screwdriver",
-      src: "../img/kit/graphic_coming_soon.png",
+      src: "../img/kit/screwdriver.jpg",
       description: "A screwdriver."
     },
     {
       id: "metal-servo-horns",
-      src: "../img/kit/graphic_coming_soon.png",
-      description: "4 x metal servo horns, screws, and washers."
+      src: "../img/kit/4metalservohorns.png",
+      description: "4 × metal servo horns, screws, and washers."
     },
     {
       id: "lego-pieces",
-      src: "../img/kit/graphic_coming_soon.png",
+      src: "../img/kit/4 bag lego pieces.jpg",
       description: "A collection of LEGO pieces."
     },
     
