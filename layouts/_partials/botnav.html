@@ -1,0 +1,21 @@
+{{- /*
+  Previous / next links derived from the section's page order rather than
+  hand-written on each sheet, so inserting or reordering a lab cannot leave a
+  dangling link behind.
+*/ -}}
+{{- $prefix := partial "urlprefix.html" . -}}
+{{- $siblings := .CurrentSection.RegularPages.ByWeight -}}
+{{- $index := -1 -}}
+{{- range $i, $p := $siblings }}{{ if eq $p.File.Path $.File.Path }}{{ $index = $i }}{{ end }}{{ end }}
+{{- $prev := cond (gt $index 0) (index $siblings (sub $index 1)) false -}}
+{{- $next := cond (and (ge $index 0) (lt $index (sub (len $siblings) 1))) (index $siblings (add $index 1)) false -}}
+  <nav class="botnav no-print" aria-label="Page navigation">
+    <a href="{{ $prefix }}{{ partial "rootpath.html" .CurrentSection }}">&larr; {{ .CurrentSection.Params.index_label | default "Back" }}</a>
+{{- with $prev }}
+    <a href="{{ $prefix }}{{ partial "rootpath.html" . }}">&larr; {{ .Params.short_title | default .Title }}</a>
+{{- end }}
+    <a class="gloss" href="{{ $prefix }}glossary.html">Glossary</a>
+{{- with $next }}
+    <a class="next" href="{{ $prefix }}{{ partial "rootpath.html" . }}">{{ .Params.short_title | default .Title }} &rarr;</a>
+{{- end }}
+  </nav>

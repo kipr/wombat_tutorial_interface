@@ -1,0 +1,7 @@
+{{- /* {{% callout title="Core Insight" %}} ... {{% /callout %}}   variant: navy */ -}}
+<div class="callout{{ with .Get "variant" }} {{ . }}{{ end }}">
+{{- with .Get "title" }}
+<p class="ctitle">{{ . }}</p>
+{{- end }}
+{{ .Inner }}
+</div>

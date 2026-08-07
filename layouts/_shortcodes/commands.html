@@ -1,0 +1,17 @@
+{{- /*
+  Reference table of built-in commands. Inner content is YAML:
+
+    {{< commands >}}
+    - cmd: motor(port, power)
+      desc: Turns the motor on the given [[PORT|port]] …
+    {{< /commands >}}
+*/ -}}
+{{- $rows := .Inner | transform.Unmarshal -}}
+<table class="cmd-table">
+<thead><tr><th style="width:34%">{{ .Get "heading" | default "Command" }}</th><th>What it does</th></tr></thead>
+<tbody>
+{{- range $rows }}
+<tr><td><code>{{ .cmd }}</code></td><td>{{ .desc | safeHTML }}</td></tr>
+{{- end }}
+</tbody>
+</table>

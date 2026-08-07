@@ -1,0 +1,20 @@
+# The main navigation, defined once instead of once per page.
+# `id` is matched against a page's `nav` front matter to set the "here" class.
+- id: home
+  name: Home
+  url: index.html
+- id: missions
+  name: 2026 Missions
+  url: 2026-missions.html
+- id: discovery
+  name: Discovery
+  url: discovery/index.html
+- id: labs
+  name: C Labs
+  url: labs/index.html
+- id: python
+  name: Python Labs
+  url: Python_Labs/index.html
+- id: glossary
+  name: Glossary
+  url: glossary.html

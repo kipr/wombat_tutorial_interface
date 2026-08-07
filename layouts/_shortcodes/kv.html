@@ -1,0 +1,7 @@
+{{- /* A small label / value reference grid, no inputs. Inner content is YAML. */ -}}
+{{- $rows := .Inner | transform.Unmarshal -}}
+<table class="grid">
+{{- range $rows }}
+<tr><td class="has-label"><div class="label">{{ .label }}</div></td><td style="padding:9px 10px">{{ .value | safeHTML }}</td></tr>
+{{- end }}
+</table>

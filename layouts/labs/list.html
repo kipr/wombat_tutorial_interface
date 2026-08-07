@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{- $prefix := partial "urlprefix.html" . -}}
+<main class="sheet">
+  <div class="hero">
+    <p class="eyebrow">KIPR · Botball Explorer</p>
+    <h1>{{ .Title }}</h1>
+  </div>
+  <ul>
+  {{- range .RegularPages.ByWeight }}
+    <li><a href="{{ $prefix }}{{ partial "rootpath.html" . }}">{{ .Params.short_title | default .Title }} — {{ .Title }}</a></li>
+  {{- end }}
+  </ul>
+</main>
+{{ end }}

@@ -1,0 +1,33 @@
+{{- /*
+  A boxed explanation of one new idea, alternating prose and code.
+
+    {{< concept "An int — a named number" >}}
+    - text: |
+        `int` stands for *Integer* — a whole number.
+    - code: |
+        int DRIVE_SPEED = 50;   // name a number
+    - text: |
+        Change it once and every use updates.
+    {{< /concept >}}
+
+  Inner content is YAML rather than free markdown because a raw code listing
+  nested inside a markdown-rendered shortcode gets re-read as markdown, and its
+  blank lines split it into paragraphs. Declaring the parts keeps the listing
+  intact while still letting the prose be markdown.
+*/ -}}
+{{- $title := .Get 0 | default (.Get "title") -}}
+{{- if not $title }}{{ errorf "%s: concept needs a title" .Position }}{{ end -}}
+{{- $parts := .Inner | transform.Unmarshal -}}
+<div class="concept">
+<div class="chead">{{ $title }}</div>
+<div class="cbody">
+{{- range $parts }}
+{{- with .text }}
+{{ $.Page.RenderString (dict "display" "block") . }}
+{{- end }}
+{{- with .code }}
+{{ partial "codeblock.html" (dict "code" . "size" "small") | safeHTML }}
+{{- end }}
+{{- end }}
+</div>
+</div>

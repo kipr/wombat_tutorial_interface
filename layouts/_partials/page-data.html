@@ -1,0 +1,32 @@
+{{- /*
+  Ships only the definitions and mission entries this page references, pulled
+  from data/glossary.yaml and data/missions.yaml at build time.
+
+  A page with `lang: python` in its front matter gets the Python wording of any
+  term that has one, so the C and Python tracks can disagree on purpose without
+  either copy drifting.
+*/ -}}
+{{- $terms := .Store.Get "usedTerms" -}}
+{{- $missions := .Store.Get "usedMissions" -}}
+{{- $lang := .Params.track | default "c" -}}
+
+{{- if or $terms $missions }}
+<script>
+{{- if $terms }}
+{{- $out := dict }}
+{{- range $terms }}
+  {{- $entry := index hugo.Data.glossary . }}
+  {{- $body := cond (and (eq $lang "python") (isset $entry "python")) (index $entry "python") $entry.body }}
+  {{- $out = merge $out (dict . (dict "title" $entry.title "body" $body)) }}
+{{- end }}
+window.KIPR_GLOSSARY = {{ $out | jsonify (dict "indent" "  ") | safeJS }};
+{{- end }}
+{{- if $missions }}
+{{- $out := dict }}
+{{- range $missions }}
+  {{- $out = merge $out (dict . (index hugo.Data.missions .)) }}
+{{- end }}
+window.KIPR_MISSIONS = {{ $out | jsonify (dict "indent" "  ") | safeJS }};
+{{- end }}
+</script>
+{{- end }}

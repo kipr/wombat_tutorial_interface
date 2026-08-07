@@ -1,0 +1,287 @@
+/* Shared behaviour for every worksheet page.
+ *
+ * Replaces the four inline <script> blocks that were previously pasted into
+ * each sheet. Everything is delegated from document, so this file never needs
+ * to know which widgets a given page happens to contain.
+ *
+ * Page-specific values come from data attributes on <body>:
+ *   data-mission-id     key used for the autosave slot and the download name
+ *   data-mission-title  human title recorded inside the submission payload
+ */
+(function () {
+  "use strict";
+
+  var body = document.body;
+  var MISSION_ID = body.getAttribute("data-mission-id");
+  var MISSION_TITLE = body.getAttribute("data-mission-title") || document.title;
+
+  /* ---------------------------------------------------------------- submit */
+
+  (function submitFlow() {
+    var pinInput = document.getElementById("pin");
+    if (!pinInput || !MISSION_ID) return;
+
+    var statusEl = document.getElementById("status");
+    var statusBottom = document.getElementById("statusBottom");
+    var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+    var submitting = false;
+
+    function collectAnswers() {
+      var answers = {};
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        answers[el.getAttribute("data-key")] = el.value;
+      });
+      return answers;
+    }
+
+    function restoreDraft() {
+      var raw;
+      try {
+        raw = window.localStorage.getItem(SAVE_KEY);
+      } catch (e) {
+        return;
+      }
+      if (!raw) return;
+      var data;
+      try {
+        data = JSON.parse(raw);
+      } catch (e) {
+        return;
+      }
+      if (data.pin) pinInput.value = data.pin;
+      if (!data.answers) return;
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) el.value = data.answers[k];
+      });
+    }
+
+    function saveDraft() {
+      try {
+        window.localStorage.setItem(
+          SAVE_KEY,
+          JSON.stringify({ pin: pinInput.value.trim(), answers: collectAnswers() })
+        );
+      } catch (e) {
+        /* storage full or blocked — ignore */
+      }
+    }
+
+    function setStatus(msg, kind) {
+      if (statusEl) {
+        statusEl.textContent = msg;
+        statusEl.className = "status" + (kind ? " " + kind : "");
+      }
+      if (statusBottom) statusBottom.textContent = msg;
+    }
+
+    function downloadJSON(payload) {
+      var blob = new Blob([JSON.stringify(payload, null, 2)], {
+        type: "application/json"
+      });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () {
+        URL.revokeObjectURL(url);
+      }, 1000);
+    }
+
+    function handleSubmit() {
+      if (submitting) return;
+      var pin = pinInput.value.trim();
+      if (!pin) {
+        setStatus("Enter your PIN at the top before you submit.", "warn");
+        pinInput.focus();
+        return;
+      }
+      submitting = true;
+      setStatus("Turning in your work…");
+
+      downloadJSON({
+        mission: MISSION_ID,
+        missionTitle: MISSION_TITLE,
+        pin: pin,
+        submittedAt: new Date().toISOString(),
+        answers: collectAnswers()
+      });
+
+      var echo = document.getElementById("pinEcho");
+      if (echo) echo.textContent = pin;
+      setStatus(
+        "Saved your results file to Downloads. Opening the print dialog so you can save your PDF…",
+        "ok"
+      );
+
+      setTimeout(function () {
+        window.print();
+        submitting = false;
+      }, 600);
+    }
+
+    restoreDraft();
+    document.addEventListener("input", function (e) {
+      if (e.target.matches("[data-key], #pin")) saveDraft();
+    });
+    ["submitTop", "submitBottom"].forEach(function (id) {
+      var btn = document.getElementById(id);
+      if (btn) btn.addEventListener("click", handleSubmit);
+    });
+  })();
+
+  /* ------------------------------------------------- glossary definitions */
+
+  (function definitions() {
+    var overlay = document.getElementById("defOverlay");
+    if (!overlay) return;
+
+    var termEl = document.getElementById("defTerm");
+    var bodyEl = document.getElementById("defBody");
+    var defs = window.KIPR_GLOSSARY || {};
+
+    function open(key) {
+      var entry = defs[key];
+      if (!entry) return;
+      termEl.textContent = entry.title;
+      bodyEl.textContent = entry.body;
+      overlay.classList.add("open");
+      document.getElementById("defClose").focus();
+      document.body.style.overflow = "hidden";
+    }
+
+    function close() {
+      overlay.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("defClose").addEventListener("click", close);
+    overlay.addEventListener("click", function (e) {
+      if (e.target === this) close();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") close();
+    });
+    document.addEventListener("click", function (e) {
+      var el = e.target.closest(".def-term");
+      if (el) open(el.dataset.term);
+    });
+    document.addEventListener(
+      "touchend",
+      function (e) {
+        if (e.target.closest(".def-term")) e.preventDefault();
+      },
+      { passive: false }
+    );
+  })();
+
+  /* ----------------------------------------------------- field diagrams */
+
+  (function fieldDiagrams() {
+    var overlay = document.getElementById("fldOverlay");
+    if (!overlay) return;
+
+    var img = document.getElementById("fldImg");
+    var title = document.getElementById("fldTitle");
+    var tabs = document.getElementById("fldTabs");
+    var caption = document.getElementById("fldCap");
+    var missions = window.KIPR_MISSIONS || {};
+    var base = body.getAttribute("data-img-base") || "";
+
+    function show(number, tier) {
+      var mission = missions[number];
+      if (!mission) return;
+
+      var padded = (number < 10 ? "0" : "") + number;
+      img.src = base + "missions/mission-" + padded + "-" + tier + ".jpg";
+      img.alt = mission.title + " — " + tier + " scoring, shown on the field";
+      title.textContent = mission.title;
+      caption.textContent =
+        tier.charAt(0).toUpperCase() +
+        tier.slice(1) +
+        " scoring — arrows show where each piece has to end up.";
+
+      tabs.innerHTML = "";
+      if (mission.tiers.length > 1) {
+        mission.tiers.forEach(function (t) {
+          var b = document.createElement("button");
+          b.textContent = t;
+          b.className = t === tier ? "on" : "";
+          b.addEventListener("click", function () {
+            show(number, t);
+          });
+          tabs.appendChild(b);
+        });
+        tabs.style.display = "flex";
+      } else {
+        tabs.style.display = "none";
+      }
+
+      overlay.classList.add("open");
+      document.body.style.overflow = "hidden";
+      document.getElementById("fldX").focus();
+    }
+
+    function hide() {
+      overlay.classList.remove("open");
+      img.src = "";
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("fldX").addEventListener("click", hide);
+    overlay.addEventListener("click", function (e) {
+      if (e.target === this) hide();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") hide();
+    });
+    document.addEventListener("click", function (e) {
+      var el = e.target.closest(".fieldref");
+      if (!el) return;
+      e.preventDefault();
+      show(parseInt(el.dataset.m, 10), el.dataset.tier || "base");
+    });
+  })();
+
+  /* ---------------------------------------------------------- image zoom */
+
+  (function imageZoom() {
+    var zoom = document.getElementById("zoom");
+    if (!zoom) return;
+
+    var img = document.getElementById("zimg");
+    var caption = document.getElementById("zcap");
+
+    function open(source) {
+      img.src = source.src;
+      img.alt = source.alt || "";
+      var figure = source.closest("figure");
+      var figcaption = figure && figure.querySelector("figcaption");
+      caption.textContent = figcaption ? figcaption.textContent : "";
+      zoom.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function close() {
+      zoom.classList.remove("open");
+      img.src = "";
+      document.body.style.overflow = "";
+    }
+
+    document.addEventListener("click", function (e) {
+      var target = e.target.closest(".fig img");
+      if (target) {
+        open(target);
+        return;
+      }
+      if (e.target.closest("#zoom")) close();
+    });
+    document.getElementById("zclose").addEventListener("click", close);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") close();
+    });
+  })();
+})();

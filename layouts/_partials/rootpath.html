@@ -1,0 +1,8 @@
+{{- /*
+  A page's path relative to the site root, with no leading slash, e.g.
+  "labs/unit1_bigidea1.html". Combine with urlprefix.html to link between pages
+  without baking in where the site is mounted.
+*/ -}}
+{{- $base := (urls.Parse site.BaseURL).Path -}}
+{{- $path := strings.TrimPrefix $base .RelPermalink -}}
+{{- return strings.TrimPrefix "/" $path -}}

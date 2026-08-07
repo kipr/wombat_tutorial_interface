@@ -1,0 +1,18 @@
+{{- $prefix := partial "urlprefix.html" . -}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{- partial "head.html" . }}
+</head>
+<body{{ with .Params.mission_id }} data-mission-id="{{ . }}"{{ end }} data-mission-title="{{ .Params.mission_title | default .Title }}" data-img-base="{{ $prefix }}img/">
+
+{{ partial "topbar.html" . }}
+
+{{ block "main" . }}{{ end }}
+
+{{ partial "overlays.html" . }}
+{{ partial "page-data.html" . }}
+<script src="{{ $prefix }}js/lab.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+{{- /*
+  Resolves inline references in rendered page content.
+
+    [[ENCODER]]                 glossary popup, label taken from the glossary
+    [[ENCODER|encoders]]        glossary popup with custom link text
+    [[@4|Mission 4]]            field diagram, base tier
+    [[@4:bonus|Mission 4]]      field diagram, a specific scoring tier
+
+  An unknown term or mission number stops the build instead of silently
+  shipping a popup that does nothing when a student clicks it.
+
+  Records what the page actually used in .Store so the page only ships the
+  definitions it needs.
+
+  Called with: (dict "page" . "content" .Content) — returns the rewritten HTML.
+*/ -}}
+
+{{- $page := .page -}}
+{{- $content := .content -}}
+{{- /* Seed from what earlier calls recorded — front matter and body are
+       termified separately, and both contribute to what the page ships. */ -}}
+{{- $usedTerms := $page.Store.Get "usedTerms" | default slice -}}
+{{- $usedMissions := $page.Store.Get "usedMissions" | default slice -}}
+
+{{- range $match := findRESubmatch `\[\[([^\]|]+?)(?:\|([^\]]*?))?\]\]` $content -}}
+  {{- $token := index $match 0 -}}
+  {{- $key := index $match 1 -}}
+  {{- $label := index $match 2 -}}
+
+  {{- if hasPrefix $key "@" -}}
+    {{- $parts := split (strings.TrimPrefix "@" $key) ":" -}}
+    {{- $number := index $parts 0 -}}
+    {{- $tier := cond (gt (len $parts) 1) (index $parts 1) "base" -}}
+    {{- $mission := index hugo.Data.missions $number -}}
+
+    {{- if not $mission -}}
+      {{- errorf "%s: [[%s]] refers to mission %q, which is not in data/missions.yaml" $page.File.Path $key $number -}}
+    {{- else if not (in $mission.tiers $tier) -}}
+      {{- errorf "%s: [[%s]] asks for tier %q but mission %s only has %v" $page.File.Path $key $tier $number $mission.tiers -}}
+    {{- end -}}
+
+    {{- $text := cond (ne $label "") $label $mission.title -}}
+    {{- $html := printf `<span class="fieldref" data-m="%s" data-tier="%s">%s</span>` $number $tier $text -}}
+    {{- $content = replace $content $token $html -}}
+    {{- $usedMissions = $usedMissions | append $number -}}
+
+  {{- else -}}
+    {{- $entry := index hugo.Data.glossary $key -}}
+
+    {{- if not $entry -}}
+      {{- errorf "%s: [[%s]] is not a term in data/glossary.yaml" $page.File.Path $key -}}
+    {{- end -}}
+
+    {{- /* Bare [[TERM]] shows the token exactly as typed, so the sentence reads
+           the way the author wrote it. The glossary's own title is only used as
+           the popup heading. */ -}}
+    {{- $text := cond (ne $label "") $label $key -}}
+    {{- $html := printf `<span class="def-term" data-term="%s">%s</span>` $key $text -}}
+    {{- $content = replace $content $token $html -}}
+    {{- $usedTerms = $usedTerms | append $key -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $page.Store.Set "usedTerms" (uniq $usedTerms) -}}
+{{- $page.Store.Set "usedMissions" (uniq $usedMissions) -}}
+{{- return $content -}}

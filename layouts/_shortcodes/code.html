@@ -1,0 +1,10 @@
+{{- /*
+  A code listing. Comments are picked out automatically.
+
+    {{< code >}} … {{< /code >}}
+    {{< code size="small" comment="#" >}} … {{< /code >}}
+*/ -}}
+{{- partial "codeblock.html" (dict
+      "code" .Inner
+      "marker" (.Get "comment")
+      "size" (.Get "size")) | safeHTML -}}

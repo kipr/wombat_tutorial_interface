@@ -13,7 +13,7 @@ def main() -> None:
     parser.add_argument("--port", type=int, default=8765)
     args = parser.parse_args()
 
-    site_directory = Path(__file__).resolve().parent / "docs"
+    site_directory = Path(__file__).resolve().parent / "public"
     handler = partial(SimpleHTTPRequestHandler, directory=site_directory)
     server = ThreadingHTTPServer((args.host, args.port), handler)
 

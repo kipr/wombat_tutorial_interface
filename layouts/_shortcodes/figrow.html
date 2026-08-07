@@ -1,0 +1,20 @@
+{{- /*
+  A row of captioned, click-to-zoom figures. Inner content is YAML:
+
+    {{< figrow >}}
+    - src: ide/code-template.jpg
+      alt: The template you start from.
+    {{< /figrow >}}
+
+  `caption` defaults to `alt`. Paths are resolved against the shared img root.
+*/ -}}
+{{- $figures := .Inner | transform.Unmarshal -}}
+{{- $prefix := partial "urlprefix.html" .Page -}}
+{{- .Page.Store.Set "usedFigures" true -}}
+{{- $width := cond (eq (len $figures) 2) " two" (cond (eq (len $figures) 3) " three" "") -}}
+<div class="figrow{{ $width }}">
+{{- range $figures }}
+{{- $caption := .caption | default .alt }}
+<figure class="fig"><img src="{{ $prefix }}img/{{ .src }}" alt="{{ .alt }}" loading="lazy"><figcaption>{{ $caption }}</figcaption></figure>
+{{- end }}
+</div>

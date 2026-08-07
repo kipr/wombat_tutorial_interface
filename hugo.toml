@@ -1,3 +1,47 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://rclement-afk.github.io/Wombat-Tutorial-Interface/'
 locale = 'en-us'
-title = 'My New Hugo Project'
+title = 'KIPR · Botball Explorer'
+
+# The existing site is a flat tree of .html files. Keeping ugly URLs means every
+# bookmark, printed handout, and cross-link keeps working after the migration.
+uglyURLs = true
+
+disableKinds = ['taxonomy', 'term', 'rss', 'sitemap']
+
+[markup.goldmark.renderer]
+  # Worksheets interleave prose with hand-written markup, so raw HTML has to
+  # pass through rather than being escaped.
+  unsafe = true
+
+[markup.goldmark.extensions.typographer]
+  # Source text already contains the correct curly quotes, dashes and ellipses.
+  # Leave them exactly as written.
+  disable = true
+
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
+
+[markup.goldmark.parser.attribute]
+  # Lets a paragraph or list carry a class, e.g. a trailing {.muted} line,
+  # without dropping into raw HTML.
+  block = true
+
+# Images still live beside the current site while the migration is in progress.
+[[module.mounts]]
+  source = 'content'
+  target = 'content'
+[[module.mounts]]
+  source = 'static'
+  target = 'static'
+[[module.mounts]]
+  source = 'assets'
+  target = 'assets'
+[[module.mounts]]
+  source = 'layouts'
+  target = 'layouts'
+[[module.mounts]]
+  source = 'data'
+  target = 'data'
+[[module.mounts]]
+  source = 'docs/img'
+  target = 'static/img'

@@ -1,0 +1,15 @@
+{{- /*
+  The "../" prefix needed to climb from this page back to the site root.
+
+  The hand-written site links everything relatively, which is why it works
+  unchanged from a local preview server, a file:// path, a project page under
+  /Wombat-Tutorial-Interface/, and a custom domain. Absolute paths would tie
+  the output to one mount point, so we reproduce the relative style instead.
+
+  Called with the page. Returns "" at the root, "../" one level down, and so on.
+*/ -}}
+{{- $base := (urls.Parse site.BaseURL).Path -}}
+{{- $path := strings.TrimPrefix $base .RelPermalink -}}
+{{- $path = strings.TrimPrefix "/" $path -}}
+{{- $depth := len (findRE `/` $path) -}}
+{{- return strings.Repeat $depth "../" -}}

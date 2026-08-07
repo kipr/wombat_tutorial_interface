@@ -1,0 +1,62 @@
+{{- /*
+  A repeating table of answer boxes: trial logs, build logs, planning grids.
+  Rows are emitted at build time rather than injected by script, so the table
+  prints correctly and works without JavaScript.
+
+    {{< gridtable count=6 prefix="trial" label="Trial" numbered=true >}}
+    - head: What you changed
+      key: changed
+      width: 16%
+    - head: What you observed
+      key: observed
+    {{< /gridtable >}}
+
+  data-key values follow the existing <prefix><n>_<key> convention.
+
+  Parameters
+    count       number of answer rows
+    prefix      data-key prefix
+    label       aria-label prefix; omit for tables that carry no aria labels
+    numbered    prepend a row-number column
+    number_head heading for that column (default "Trial")
+
+  Per-column keys
+    head, key, width
+    example     value for an extra, fully worked example row above the answers
+    seed        value shown in place of an input in the first answer row
+*/ -}}
+{{- $count := int (partial "require.html" (dict "sc" . "name" "count")) -}}
+{{- $prefix := partial "require.html" (dict "sc" . "name" "prefix") -}}
+{{- $label := .Get "label" -}}
+{{- $numbered := eq (printf "%v" (.Get "numbered")) "true" -}}
+{{- $columns := .Inner | transform.Unmarshal -}}
+{{- $hasExample := false -}}
+{{- range $columns }}{{ if .example }}{{ $hasExample = true }}{{ end }}{{ end -}}
+<table class="grid">
+<thead>
+<tr>
+{{- if $numbered }}
+<th style="width:7%">{{ .Get "number_head" | default "Trial" }}</th>
+{{- end }}
+{{- range $columns }}
+<th{{ with .width }} style="width:{{ . }}"{{ end }}>{{ .head }}</th>
+{{- end }}
+</tr>
+</thead>
+<tbody>
+{{- if $hasExample }}
+<tr>{{ if $numbered }}<td></td>{{ end }}{{ range $columns }}<td><div class="seed">{{ .example }}</div></td>{{ end }}</tr>
+{{- end }}
+{{- range $n := seq 1 $count }}
+<tr>{{ if $numbered }}<td style="text-align:center;font-weight:600">{{ $n }}</td>{{ end }}
+{{- range $col := $columns -}}
+{{- if and (eq $n 1) $col.seed -}}
+<td><div class="seed">{{ $col.seed }}</div></td>
+{{- else -}}
+<td><input type="text" data-key="{{ $prefix }}{{ $n }}_{{ $col.key }}"{{ if $label }} aria-label="{{ $label }} {{ $n }} {{ $col.key }}"{{ end }}></td>
+{{- end -}}
+{{- end -}}
+</tr>
+{{- end }}
+</tbody>
+</table>

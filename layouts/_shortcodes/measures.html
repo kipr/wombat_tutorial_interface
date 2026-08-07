@@ -1,0 +1,19 @@
+{{- /*
+  A labelled measurement table where each row has a value box and a unit box.
+  The unit field's data-key is always the value key with _unit appended.
+*/ -}}
+{{- $rows := .Inner | transform.Unmarshal -}}
+<table class="grid">
+<thead>
+<tr><th style="width:58%">{{ .Get "heading" | default "Measurement" }}</th><th style="width:27%">{{ .Get "value_heading" | default "Your Estimate" }}</th><th style="width:15%">Unit</th></tr>
+</thead>
+<tbody>
+{{- range $rows }}
+<tr>
+<td class="has-label"><div class="label">{{ .label }}</div></td>
+<td><input type="text" data-key="{{ .key }}" aria-label="{{ .aria }}" /></td>
+<td><input type="text" data-key="{{ .key }}_unit" aria-label="Unit"{{ with .unit }} value="{{ . }}"{{ end }} /></td>
+</tr>
+{{- end }}
+</tbody>
+</table>

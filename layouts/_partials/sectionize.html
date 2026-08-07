@@ -1,0 +1,19 @@
+{{- /*
+  Wraps each phase of a worksheet in its own <section>, splitting at the phase
+  headings. Keeping this out of the markdown means the author writes plain `##`
+  headings and never has to open and close a wrapper by hand — and, more
+  practically, it keeps widget shortcodes at the top level of the document
+  where Hugo protects their raw HTML from being re-read as markdown.
+*/ -}}
+{{- $marker := `<h2 class="phase-head"` -}}
+{{- $out := "" -}}
+{{- range $i, $chunk := split . $marker -}}
+  {{- if eq $i 0 -}}
+    {{- with strings.TrimSpace $chunk -}}
+      {{- $out = printf "%s\n%s" $out . -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $out = printf "%s\n<section>\n%s%s\n</section>" $out $marker (strings.TrimSpace $chunk) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

@@ -1,0 +1,13 @@
+{{- /*
+  Fetches a required shortcode parameter, failing the build with the exact file
+  and line when it is missing.
+
+  Called with: (dict "sc" . "name" "key")
+*/ -}}
+{{- $sc := .sc -}}
+{{- $name := .name -}}
+{{- $value := $sc.Get $name -}}
+{{- if or (not $value) (eq (printf "%v" $value) "") -}}
+  {{- errorf "%s: shortcode %q needs a %q parameter" $sc.Position $sc.Name $name -}}
+{{- end -}}
+{{- return $value -}}

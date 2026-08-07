@@ -1,0 +1,15 @@
+{{- /*
+  A page-relative URL to a file under assets/, publishing it as a side effect.
+
+  Asking the resource for its RelPermalink is what tells Hugo to emit the file
+  at all; hand-writing the path produces a link that resolves to nothing. The
+  result is then rewritten relative to the current page so the site keeps
+  working wherever it is mounted.
+
+  Called with: (dict "page" . "path" "css/print.css")
+*/ -}}
+{{- $res := resources.Get .path -}}
+{{- if not $res }}{{ errorf "assets/%s does not exist" .path }}{{ end -}}
+{{- $base := (urls.Parse site.BaseURL).Path -}}
+{{- $fromRoot := strings.TrimPrefix "/" (strings.TrimPrefix $base $res.RelPermalink) -}}
+{{- return printf "%s%s" (partial "urlprefix.html" .page) $fromRoot -}}

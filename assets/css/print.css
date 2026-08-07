@@ -1,0 +1,84 @@
+/* Print rules for worksheet pages.
+ *
+ * Previously an inline <style> block pasted into every sheet. That copy also
+ * carried a duplicate set of .botnav rules nested inside @media print, which
+ * meant they only ever applied on paper — where .botnav is hidden anyway.
+ * worksheet.css already styles .botnav for screen, so they are dropped here.
+ */
+
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  body {
+    background: #fff;
+    font-size: 12px;
+  }
+
+  .topbar {
+    position: static;
+    border: none;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .sheet {
+    margin: 0;
+    max-width: none;
+    padding: 0;
+  }
+
+  .hero {
+    background: var(--red) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    border-radius: 0;
+  }
+
+  .meta, .callout, .cmd-table, .grid, .bottom-submit {
+    break-inside: avoid;
+  }
+
+  section {
+    break-inside: avoid-page;
+  }
+
+  .code {
+    background: #f2f2f2 !important;
+    color: #1a1a1a !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    border: 1px solid #ccc;
+  }
+
+  .code .c {
+    color: #3c7a3c !important;
+  }
+
+  .cmd-table th, .grid th {
+    background: var(--navy) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* show typed values cleanly in print */
+  .answer, .steps input, .grid input, .namebar input, .pin-field input {
+    border: none !important;
+    border-bottom: 1px solid #999 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    color: #000 !important;
+  }
+
+  .answer {
+    min-height: auto;
+  }
+
+  .print-pin {
+    display: block !important;
+  }
+}
