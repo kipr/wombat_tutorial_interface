@@ -186,6 +186,36 @@
       display: block !important;
     }
   }
+  .image-wrapper {
+  position: relative;
+}
+
+.image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.image-checkbox {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.image-checkbox input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -231,24 +261,17 @@
   <div class="pl-sec">
     <div class="pl-head"><span class="pl-n">Part 1</span><span class="pl-t">Check the kit against the list</span></div>
     <div class="pl-body">
-        <div class="figrow two"><figure class="fig"><img src="../img/kit/controller-guide.jpg" alt="The KIPR Wombat controller." loading="lazy"><figcaption>The KIPR Wombat controller.</figcaption></figure><figure class="fig"><img src="../img/kit/wombat-and-motors-a.jpg" alt="Controller with its two drive motors." loading="lazy"><figcaption>Controller with its two drive motors.</figcaption></figure><figure class="fig"><img src="../img/kit/sensors-a.jpg" alt="Digital sensors — lever and touch." loading="lazy"><figcaption>Digital sensors — lever and touch.</figcaption></figure><figure class="fig"><img src="../img/kit/sensors-b.jpg" alt="Analog sensors — reflectance, light, ET rangefinder." loading="lazy"><figcaption>Analog sensors — reflectance, light, ET rangefinder.</figcaption></figure></div>
-      <p>Lay everything out. Anything missing is far cheaper to find now than in the middle of Unit 3.</p>
-      <ul class="tick">
-        <li><input type="checkbox" data-key="k_controller" id="k1"><label for="k1">KIPR Wombat <span class="def-term" data-term="CONTROLLER">controller</span>, charger, and battery</label></li>
-        <li><input type="checkbox" data-key="k_chassis" id="k2"><label for="k2">Chassis, wheels, and two drive motors</label></li>
-        <li><input type="checkbox" data-key="k_servos" id="k3"><label for="k3">Two <span class="def-term" data-term="SERVO">servo</span>s, two servo brackets, two 1&#215;5 servo horns</label></li>
-        <li><input type="checkbox" data-key="k_sensors" id="k4"><label for="k4">Touch sensors, Tophat reflectance sensors, ET distance sensor</label></li>
-        <li><input type="checkbox" data-key="k_lego" id="k5"><label for="k5">LEGO liftarms, pins, and axles</label></li>
-        <li><input type="checkbox" data-key="k_fixings" id="k6"><label for="k6">Bolts, nuts, and washers in their sizes</label></li>
-        <li><input type="checkbox" data-key="k_missing" id="k7"><label for="k7">I have reported anything missing to my teacher</label></li>
-      </ul>
+        <p>Lay everything out. Anything missing is far cheaper to find now than in the middle of Unit 3.</p>
+        <p>Check each item off the list below. If anything is missing, report it to your teacher.</p>
+
+        <div class="figrow two" id="parts-list"></div>
+
     </div>
   </div>
 
   <div class="pl-sec">
     <div class="pl-head"><span class="pl-n">Part 2</span><span class="pl-t">Find each subsystem on your own robot</span></div>
     <div class="pl-body">
-        <div class="figrow two"><figure class="fig"><img src="../img/kit/hardware-chassis.jpg" alt="The metal chassis — the frame everything bolts to." loading="lazy"><figcaption>The metal chassis — the frame everything bolts to.</figcaption></figure><figure class="fig"><img src="../img/kit/hardware-angle-bracket.jpg" alt="An angle bracket." loading="lazy"><figcaption>An angle bracket.</figcaption></figure><figure class="fig"><img src="../img/kit/hardware-straps.jpg" alt="Straps, washers and bolts." loading="lazy"><figcaption>Straps, washers and bolts.</figcaption></figure><figure class="fig"><img src="../img/kit/hardware-strap-long.jpg" alt="A long metal strap." loading="lazy"><figcaption>A long metal strap.</figcaption></figure></div>
       <p>Every robot is built from the same six kinds of part. Point at each one on your actual robot before you tick it.</p>
       <ul class="tick">
         <li><input type="checkbox" data-key="s_sensor" id="s1"><label for="s1"><strong><span class="def-term" data-term="SENSOR">Sensor</span>s</strong> &mdash; how it takes information in. I can point at two.</label></li>
@@ -275,7 +298,7 @@
   <div class="pl-sec">
     <div class="pl-head"><span class="pl-n">Part 4</span><span class="pl-t">Safety and looking after the kit</span></div>
     <div class="pl-body">
-        <figure class="fig"><img src="../img/ide/battery-charging.jpg" alt="Charge with the supply that came with the controller — nothing else." loading="lazy"><figcaption>Charge with the supply that came with the controller — nothing else.</figcaption></figure>
+        
       <ul class="tick">
         <li><input type="checkbox" data-key="sf_hands" id="f1"><label for="f1">Hands clear of wheels, gears, and the claw whenever power is on.</label></li>
         <li><input type="checkbox" data-key="sf_stop" id="f2"><label for="f2">I know how to stop a running program immediately.</label></li>
@@ -340,7 +363,7 @@
     'EFFECTOR': ['Effector', 'The part that acts on the world rather than just moving the robot — a claw, a blade, a buzzer, a light.'],
     'PROPRIOCEPTIVE': ['Proprioceptive', 'Sensing your own body rather than the world outside it. Motor encoders are proprioceptive — they tell the robot how far its own wheels have turned.'],
     'ENCODER': ['Encoder', 'The counter built into a motor that reports how far its shaft has turned. It is how a robot measures its own movement instead of guessing.'],
-    'AUTONOMOUS': ['Autonomous', 'Acting on its own, with no one controlling it. Once a Botball match starts, nobody may touch the robot — everything it does comes from the program.'],
+    'AUTONOMOUS': ['Autonomous', 'The machine moves around on its own. No person is controlling it while it runs. You start it and step back.'],
     'REMOTE CONTROL': ['Remote Control', 'A person drives every movement in real time. The machine makes no decisions of its own.'],
     'SEMI-AUTONOMOUS': ['Semi-Autonomous', 'A mix — the machine handles some things itself while a person directs the rest.']
   };
@@ -362,6 +385,155 @@
   document.addEventListener('click', function(e){ var el=e.target.closest('.def-term'); if(el){ e.preventDefault(); openDef(el.dataset.term); } });
   document.addEventListener('touchend', function(e){ if(e.target.closest('.def-term')) e.preventDefault(); }, {passive:false});
 })();
+</script>
+
+<script>
+  function createChecklistFigure(src, description, id) {
+    return `
+      <figure class="fig checklist-item">
+        <div class="image-wrapper">
+          <img
+            src="${src}"
+            alt="${description}"
+            loading="lazy"
+          >
+
+          <label class="image-checkbox" for="${id}">
+            <input
+              type="checkbox"
+              id="${id}"
+              data-key="part_${id}"
+            >
+            <span>Have it</span>
+          </label>
+        </div>
+
+        <figcaption>${description}</figcaption>
+      </figure>
+    `;
+  }
+
+  const parts = [
+    {
+      id: "wombat-controller",
+      src: "../img/kit/wambatfaceon.jpg",
+      description: "2 × KIPR Wombat controllers."
+    },
+    {
+      id: "battery",
+      src: "../img/kit/battery.jpg",
+      description: "2 × batteries."
+    },
+    {
+      id: "battery-charger",
+      src: "../img/kit/batterycharger.jpg",
+      description: "2 × chargers."
+    },
+    {
+      id: "ET-sensor",
+      src: "../img/kit/2ETsensor.jpg",
+      description: "2 × ET sensors."
+    },
+    {
+      id: "light-sensor",
+      src: "../img/kit/2lightsensors.jpg",
+      description: "2 × light sensors."
+    },
+    {
+      id: "small-tophat-sensor",
+      src: "../img/kit/2smalltophat.jpg",
+      description: "2 × small tophat sensors."
+    },
+    {
+      id: "large-tophat-sensor",
+      src: "../img/kit/2largetophat.jpg",
+      description: "2 × large tophat sensors."
+    },
+    {
+      id: "lever-sensor",
+      src: "../img/kit/leversensors.jpg",
+      description: "2 × lever sensors."
+    },
+    {
+      id: "large-touch-sensor",
+      src: "../img/kit/largetouchsensors.png",
+      description: "2 × large touch sensors."
+    },
+    {
+      id: "screw-bag",
+      src: "../img/kit/bagofscrews.jpg",
+      description: "2 × sets of screws (shown above is ×1 set)"
+    },
+    {
+      id: "motors",
+      src: "../img/kit/4motors.jpg",
+      description: "4 × motors."
+    },
+    {
+      id: "servo",
+      src: "../img/kit/4servos.jpg",
+      description: "4 × servos."
+    },
+    {
+      id: "caster",
+      src: "../img/kit/caster.jpg",
+      description: "2 × casters."
+    },
+    {
+      id: "wheels",
+      src: "../img/kit/4wheels.jpg",
+      description: "4 × wheels."
+    },
+    {
+      id: "metal-strap",
+      src: "../img/kit/2(1x10)metalstraps.jpg",
+      description: "2 × (1×10) metal straps."
+    },
+    {
+      id: "angle-bracket",
+      src: "../img/kit/2anglebrackets.jpg",
+      description: "2 × angle brackets."
+    },
+    {
+      id: "chassis",
+      src: "../img/kit/chassis.jpg",
+      description: "2 × chassis."
+    },
+    {
+      id: "servo-bracket",
+      src: "../img/kit/4servobrackets.jpg",
+      description: "4 × servo brackets."
+    },
+    {
+      id: "screwdriver",
+      src: "../img/kit/screwdriver.jpg",
+      description: "A screwdriver."
+    },
+    {
+      id: "metal-servo-horns",
+      src: "../img/kit/4metalservohorns.png",
+      description: "4 × metal servo horns, screws, and washers."
+    },
+    {
+      id: "lego-pieces",
+      src: "../img/kit/4 bag lego pieces.jpg",
+      description: "A collection of LEGO pieces."
+    },
+    
+
+  ];
+
+  const partsList = document.getElementById("parts-list");
+
+  partsList.innerHTML = parts
+    .map(part =>
+      createChecklistFigure(
+        part.src,
+        part.description,
+        part.id
+      )
+    )
+    .join("");
 </script>
 
 <script>
