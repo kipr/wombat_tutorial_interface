@@ -1,0 +1,28 @@
+{{- /*
+  A printable field-sketch area with a marked start box.
+
+    {{< sketch aria="Field mapping sketch area" startbox="right"
+               tag="Sketch your field here — poms = ◯, obstacles = ✕"
+               note="Draw on the printed copy, or describe the layout in the box below." >}}
+
+  Parameters
+    aria       aria-label on the sketch div (required)
+    tag        instruction text shown in the corner (required)
+    note       italic note under the sketch; omit to skip
+    startbox   "left" or "right" (required)
+    label      start-box text; defaults to RIGHT/START BOX or START/BOX
+*/ -}}
+{{- $aria := partial "require.html" (dict "sc" . "name" "aria") -}}
+{{- $tag := partial "require.html" (dict "sc" . "name" "tag") -}}
+{{- $side := partial "require.html" (dict "sc" . "name" "startbox") -}}
+{{- if and (ne $side "left") (ne $side "right") -}}
+  {{- errorf `%s: sketch startbox must be "left" or "right", got %q` .Position $side -}}
+{{- end -}}
+{{- $label := .Get "label" | default (cond (eq $side "right") "RIGHT<br>START BOX" "START<br>BOX") -}}
+<div class="sketch" aria-label="{{ $aria }}">
+<span class="tag">{{ $tag }}</span>
+<div class="startbox {{ $side }}">{{ $label | safeHTML }}</div>
+</div>
+{{- with .Get "note" }}
+<p class="sketch-note no-print">{{ . }}</p>
+{{- end -}}

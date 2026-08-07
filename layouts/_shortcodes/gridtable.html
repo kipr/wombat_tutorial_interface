@@ -3,6 +3,8 @@
   Rows are emitted at build time rather than injected by script, so the table
   prints correctly and works without JavaScript.
 
+  Count/prefix mode — identical columns, generated keys:
+
     {{< gridtable count=6 prefix="trial" label="Trial" numbered=true >}}
     - head: What you changed
       key: changed
@@ -11,35 +13,60 @@
       key: observed
     {{< /gridtable >}}
 
-  data-key values follow the existing <prefix><n>_<key> convention.
+  Rows mode — per-row seeds and custom data-keys (omit count):
 
-  Parameters
-    count       number of answer rows
-    prefix      data-key prefix
-    label       aria-label prefix; omit for tables that carry no aria labels
-    numbered    prepend a row-number column
-    number_head heading for that column (default "Trial")
+    {{< gridtable >}}
+    columns:
+      - head: Person
+        width: 20%
+      - head: Ticket says
+        width: 40%
+      - head: Left or Right?
+    rows:
+      - - seed: "1"
+        - seed: VIP
+        - key: p1_person1
+          aria: Person 1 direction
+    {{< /gridtable >}}
 
-  Per-column keys
+  data-key values in count mode follow <prefix><n>_<key>.
+
+  Parameters (count mode)
+    count         number of answer rows
+    prefix        data-key prefix
+    label         aria-label prefix; omit for tables that carry no aria labels
+    numbered      prepend a row-number column
+    number_head   heading for that column (default "Trial")
+    number_width  width style for that column (default 7%)
+
+  Per-column keys (count mode)
     head, key, width
     example     value for an extra, fully worked example row above the answers
     seed        value shown in place of an input in the first answer row
+    aria        override the aria-label suffix (default is the key); full label
+                is still "<label> <n> <aria>"
+
+  Rows mode YAML
+    columns[].head / width
+    rows[][]    each cell is either {seed: text} or {key, aria?}
 */ -}}
+{{- $data := .Inner | transform.Unmarshal -}}
+{{- if .Get "count" -}}
 {{- $count := int (partial "require.html" (dict "sc" . "name" "count")) -}}
 {{- $prefix := partial "require.html" (dict "sc" . "name" "prefix") -}}
 {{- $label := .Get "label" -}}
 {{- $numbered := eq (printf "%v" (.Get "numbered")) "true" -}}
-{{- $columns := .Inner | transform.Unmarshal -}}
+{{- $columns := $data -}}
 {{- $hasExample := false -}}
 {{- range $columns }}{{ if .example }}{{ $hasExample = true }}{{ end }}{{ end -}}
 <table class="grid">
 <thead>
 <tr>
 {{- if $numbered }}
-<th style="width:7%">{{ .Get "number_head" | default "Trial" }}</th>
+<th style="width:{{ .Get "number_width" | default "7%" }}">{{ .Get "number_head" | default "Trial" }}</th>
 {{- end }}
 {{- range $columns }}
-<th{{ with .width }} style="width:{{ . }}"{{ end }}>{{ .head }}</th>
+<th{{ with .width }} style="width:{{ . }}"{{ end }}>{{ .head | $.Page.RenderString }}</th>
 {{- end }}
 </tr>
 </thead>
@@ -53,10 +80,38 @@
 {{- if and (eq $n 1) $col.seed -}}
 <td><div class="seed">{{ $col.seed }}</div></td>
 {{- else -}}
-<td><input type="text" data-key="{{ $prefix }}{{ $n }}_{{ $col.key }}"{{ if $label }} aria-label="{{ $label }} {{ $n }} {{ $col.key }}"{{ end }}></td>
+<td><input type="text" data-key="{{ $prefix }}{{ $n }}_{{ $col.key }}"{{ if $label }} aria-label="{{ $label }} {{ $n }} {{ $col.aria | default $col.key }}"{{ end }}></td>
 {{- end -}}
 {{- end -}}
 </tr>
 {{- end }}
 </tbody>
 </table>
+{{- else -}}
+{{- $columns := index $data "columns" -}}
+{{- $rows := index $data "rows" -}}
+{{- if not $columns }}{{ errorf `%s: gridtable rows mode needs a "columns" list` .Position }}{{ end -}}
+{{- if not $rows }}{{ errorf `%s: gridtable rows mode needs a "rows" list` .Position }}{{ end -}}
+<table class="grid">
+<thead>
+<tr>
+{{- range $columns }}
+<th{{ with .width }} style="width:{{ . }}"{{ end }}>{{ .head | $.Page.RenderString }}</th>
+{{- end }}
+</tr>
+</thead>
+<tbody>
+{{- range $rows }}
+<tr>
+{{- range . -}}
+{{- if isset . "seed" -}}
+<td><div class="seed">{{ index . "seed" }}</div></td>
+{{- else -}}
+<td><input type="text" data-key="{{ index . "key" }}"{{ with index . "aria" }} aria-label="{{ . }}"{{ end }}></td>
+{{- end -}}
+{{- end -}}
+</tr>
+{{- end }}
+</tbody>
+</table>
+{{- end -}}

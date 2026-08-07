@@ -335,6 +335,20 @@ title. This matters because the original pages write terms like `ON TOP OF` in
 caps mid-sentence; using the glossary title would render "On Top Of" and change
 the copy. Supply an explicit label whenever you want different casing.
 
+The label must cover the **whole word as it appears in the sentence**, even when
+that form differs from the glossary stem (plural, possessive, conjugated, and
+so on). Leaving a suffix outside the brackets makes only part of the word a
+definition link.
+
+```markdown
+✗  no missing [[SEMICOLON|semicolon]]s
+✓  no missing [[SEMICOLON|semicolons]]
+```
+
+The token stays `SEMICOLON`; only the display label changes. The same rule is
+why `[[ENCODER|encoders]]` wraps the full plural rather than writing
+`[[ENCODER|encoder]]s`.
+
 ### Senses (homonyms)
 
 Some words mean genuinely different things in different parts of the site.
@@ -751,6 +765,11 @@ is the intended behaviour, and section 10 explains how to verify it properly.
 - **`../labs/index.html` instead of `index.html`.** Generated links are always
   written from the site root, so a same-directory link gets a `../section/`
   prefix. It resolves to the same file.
+- **Whole-word glossary labels.** Many originals leave a plural (or other)
+  suffix outside the span — `<span …>semicolon</span>s`. Migrated pages wrap
+  the full surface form (`[[SEMICOLON|semicolons]]`). `compare_render.py`
+  section 1 will show a few text-token diffs for those; sections 2–4 (keys,
+  `data-term` sets, definition payloads) stay identical and are what matter.
 
 ---
 

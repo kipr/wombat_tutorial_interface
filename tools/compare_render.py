@@ -106,8 +106,9 @@ def render_token(token) -> str:
     return f"<{name}{rendered}>"
 
 
-def inject_trial_rows(markup: str) -> str:
-    """Reproduce the rows the original page's buildTrials() adds on load."""
+def inject_js_rows(markup: str) -> str:
+    """Reproduce the rows original pages add with buildTrials()/buildRows()."""
+    # unit1_bigidea1 — trial log
     columns = ["changed", "reached", "stopped", "returned", "observed"]
     rows = []
     for n in range(1, 7):
@@ -119,10 +120,37 @@ def inject_trial_rows(markup: str) -> str:
         rows.append(
             f'<tr><td style="text-align:center;font-weight:600">{n}</td>{cells}</tr>'
         )
-    return markup.replace(
+    markup = markup.replace(
         '<tbody id="trialBody"><!-- rows injected --></tbody>',
-        "<tbody id=\"trialBody\">" + "".join(rows) + "</tbody>",
+        '<tbody id="trialBody">' + "".join(rows) + "</tbody>",
     )
+    # debug log — column keys/aria vary by page; parse them from buildRows()
+    stub = '<tbody id="debugBody"><!-- rows injected --></tbody>'
+    if stub not in markup:
+        return markup
+    block = re.search(
+        r'getElementById\("debugBody"\)(.*?)\}\)\(\);', markup, re.S
+    )
+    cols = re.findall(
+        r"data-key=\"debug'\s*\+\s*i\s*\+\s*'_(\w+)\"\s*"
+        r"aria-label=\"Debug '\s*\+\s*i\s*\+\s*' ([^\"]+)\"",
+        block.group(1) if block else "",
+    )
+    if not cols:
+        cols = [("wrong", "wrong"), ("why", "why"), ("fix", "fix")]
+    count_m = re.search(r"i <= (\d+)", block.group(1) if block else "")
+    count = int(count_m.group(1)) if count_m else 4
+    rows = []
+    for n in range(1, count + 1):
+        cells = "".join(
+            f'<td><input type="text" data-key="debug{n}_{key}" '
+            f'aria-label="Debug {n} {aria}"></td>'
+            for key, aria in cols
+        )
+        rows.append(
+            f'<tr><td style="text-align:center;font-weight:600">{n}</td>{cells}</tr>'
+        )
+    return markup.replace(stub, '<tbody id="debugBody">' + "".join(rows) + "</tbody>")
 
 
 def strip_scripts(markup: str) -> str:
@@ -213,7 +241,7 @@ def main() -> int:
 
     original = pathlib.Path(args.original).read_text()
     generated = pathlib.Path(args.generated).read_text()
-    original_live = inject_trial_rows(original)
+    original_live = inject_js_rows(original)
 
     old = Tokenizer(args.page_url)
     old.feed(original_live)

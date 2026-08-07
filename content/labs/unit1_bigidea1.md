@@ -17,7 +17,7 @@ meta:
   - term: "AI Literacy Thread"
     definition: "Intelligent systems require instructions before they can act."
   - term: "CS1 Concepts"
-    definition: "[[ALGORITHM|Algorithm]]s · Sequencing · Precision · [[DEBUGGING|Debugging]] · Inputs &amp; Outputs"
+    definition: "[[ALGORITHM|Algorithms]] · Sequencing · Precision · [[DEBUGGING|Debugging]] · Inputs &amp; Outputs"
   - term: "Game Context"
     definition: "[[@1|Mission 1]] — Waypoint Alpha"
   - term: "What You Need"
@@ -183,7 +183,7 @@ int main() {
 
 ### Before You Press Run — [[CHECKLIST|Checklist]]
 
-- Your program is typed in exactly as shown, with no missing [[SEMICOLON|semicolon]]s
+- Your program is typed in exactly as shown, with no missing [[SEMICOLON|semicolons]]
 - Robot is fully inside the starting box
 - You know exactly what “success” looks like before the run starts
 - You are watching to see whether the robot reaches the zone and stops

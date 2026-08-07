@@ -42,7 +42,7 @@ It solves many small problems in sequence — and the intelligence lies in knowi
 - Connect the structure of your program to how large intelligent systems are architected.
 {.obj}
 
-### New This Time: [[VARIABLE|Variable]]s and Functions
+### New This Time: [[VARIABLE|Variables]] and Functions
 
 Two new tools you'll use today. You already know `motor()`, `msleep()`, and `ao()` — these let you organize them.
 {.muted}
@@ -139,7 +139,7 @@ Your robot will use only the driving and turning commands you already have. It d
 {{% /callout %}}
 
 {{% callout title="Looking ahead — Mission 8" variant="gold" %}}
-Later in the game, Mission 8 — Deliver the Red Cube asks the robot to lift that same palletized cube up onto the Loading Dock. That takes an arm, which means [[SERVO|servo]]s — a tool you haven't met yet. We'll worry about that lifting motion in a later lesson. For now, notice that the very first part of Mission 8 is the same as Mission 2: drive to the cube. The work you do today is a piece you'll reuse.
+Later in the game, Mission 8 — Deliver the Red Cube asks the robot to lift that same palletized cube up onto the Loading Dock. That takes an arm, which means [[SERVO|servos]] — a tool you haven't met yet. We'll worry about that lifting motion in a later lesson. For now, notice that the very first part of Mission 8 is the same as Mission 2: drive to the cube. The work you do today is a piece you'll reuse.
 {{% /callout %}}
 
 ### Step 1 — Identify the Sub-Problems
