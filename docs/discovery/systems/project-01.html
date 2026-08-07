@@ -131,8 +131,7 @@
   <!-- ================= LEARN IT ================= -->
   <section>
     <h2 class="phase-head"><span class="pnum">Learn It</span> Why Engineers Count Things</h2>
-        <div class="figrow two"><figure class="fig"><img src="../../img/kit/hardware-chassis.jpg" alt="The KIPR metal chassis." loading="lazy"><figcaption>The KIPR metal chassis.</figcaption></figure><figure class="fig"><img src="../../img/kit/hardware-angle-bracket.jpg" alt="An angle bracket." loading="lazy"><figcaption>An angle bracket.</figcaption></figure><figure class="fig"><img src="../../img/kit/hardware-straps.jpg" alt="Metal straps, washers and bolts." loading="lazy"><figcaption>Metal straps, washers and bolts.</figcaption></figure><figure class="fig"><img src="../../img/kit/controller-guide.jpg" alt="The controller, front on." loading="lazy"><figcaption>The controller, front on.</figcaption></figure></div>
-
+  
     <p>A <span class="def-term" data-term="CHECKLIST">checklist</span> looks like the most boring tool in engineering. It is also one of the most useful.</p>
 
     <div class="callout navy">
@@ -180,33 +179,21 @@
 
         <div class="inv">
           <div class="inv-group">General Parts</div>
-          <ul class="inv-list">
+          <!-- <ul class="inv-list">
             <li><input type="checkbox" id="g1" data-key="p3_g_wombat"><span class="qty">×1</span><label for="g1">KIPR Wombat Controller</label></li>
             <li><input type="checkbox" id="g2" data-key="p3_g_charger"><span class="qty">×1</span><label for="g2">KIPR Wombat Charger</label></li>
             <li><input type="checkbox" id="g3" data-key="p3_g_screwdriver"><span class="qty">×1</span><label for="g3">Botball Screwdriver</label></li>
             <li><input type="checkbox" id="g4" data-key="p3_g_lego"><span class="qty">×2</span><label for="g4">LEGO Bags</label></li>
             <li><input type="checkbox" id="g5" data-key="p3_g_motors"><span class="qty">×2</span><label for="g5">Motors — SG-5010</label></li>
             <li><input type="checkbox" id="g6" data-key="p3_g_screws"><span class="qty">×1</span><label for="g6">Bag of Screws &amp; Stand-offs</label></li>
-          </ul>
-
+          </ul> -->
+          <div class="figrow two" id="generalPartsList"></div>
           <div class="inv-group">KIPR Metal Parts</div>
-          <ul class="inv-list">
-            <li><input type="checkbox" id="m1" data-key="p3_m_caster"><span class="qty">×1</span><label for="m1">Metal Ball Caster</label></li>
-            <li><input type="checkbox" id="m2" data-key="p3_m_brackets"><span class="qty">×2</span><label for="m2">Motor Brackets</label></li>
-            <li><input type="checkbox" id="m3" data-key="p3_m_chassis"><span class="qty">×1</span><label for="m3">Chassis</label></li>
-            <li><input type="checkbox" id="m4" data-key="p3_m_angle"><span class="qty">×1</span><label for="m4">Angle Bracket</label></li>
-            <li><input type="checkbox" id="m5" data-key="p3_m_horns"><span class="qty">×2</span><label for="m5">Long Servo Horns</label></li>
-          </ul>
+          <div class="figrow two" id="metalPartsList"></div>
 
           <div class="inv-group">Sensors</div>
-          <ul class="inv-list">
-            <li><input type="checkbox" id="s1" data-key="p3_s_light"><span class="qty">×1</span><label for="s1">Light Sensor</label></li>
-            <li><input type="checkbox" id="s2" data-key="p3_s_smalltouch"><span class="qty">×1</span><label for="s2">Small Touch Sensor</label></li>
-            <li><input type="checkbox" id="s3" data-key="p3_s_largetouch"><span class="qty">×1</span><label for="s3">Large Touch Sensor</label></li>
-            <li><input type="checkbox" id="s4" data-key="p3_s_lever"><span class="qty">×1</span><label for="s4">Long Lever Sensor</label></li>
-            <li><input type="checkbox" id="s5" data-key="p3_s_et"><span class="qty">×1</span><label for="s5">ET Rangefinder</label></li>
-            <li><input type="checkbox" id="s6" data-key="p3_s_ir"><span  class="qty">×2</span><label for="s6">Small Tophat Sensors</label></li>
-          </ul>
+           <div class="figrow two" id="sensorPartsList"></div>
+
         </div>
 
         <p class="q">Is anything missing or damaged? Write it down and tell your teacher today.</p>
@@ -301,7 +288,7 @@
         </table>
         <div class="callout danger">
           <p class="ctitle">⚠ The Charger Is the One to Watch</p>
-          <p>You have exactly one charger, and without it the whole kit is a box of parts by the end of the week. Decide right now where it lives, and put it back there every single time.</p>
+          <p>You have two chargers, and without them the whole kit is a box of parts by the end of the week. Decide right now where they live, and put them back there every single time.</p>
         </div>
       </li>
 
@@ -428,7 +415,107 @@
   }, { passive: false });
 })();
 </script>
+<script>
+  function createChecklistFigure(src, description, id) {
+    return `
+      <figure class="fig checklist-item">
+        <div class="image-wrapper">
+          <img
+            src="${src}"
+            alt="${description}"
+            loading="lazy"
+          >
 
+          <label class="image-checkbox" for="${id}">
+            <input
+              type="checkbox"
+              id="${id}"
+              data-key="part_${id}"
+            >
+            <span>Have it</span>
+          </label>
+        </div>
+
+        <figcaption>${description}</figcaption>
+      </figure>
+    `;
+  }
+
+  const generalParts = [
+    { src: "../../img/kit/wambatfaceon.jpg", description: "×2 KIPR Wombat Controller", id: "g_wombat" },
+    { src: "../../img/kit/batterycharger.jpg", description: "×2 KIPR Wombat Charger", id: "g_charger" },
+    { src: "../../img/kit/battery.jpg", description: "×2 KIPR Wombat Battery", id: "g_battery" },
+    { src: "../../img/kit/screwdriver.jpg", description: "×1 Botball Screwdriver", id: "g_screwdriver" },
+    { src: "../../img/kit/big bag lego.jpg", description: "×2 LEGO Bags", id: "g_lego" },
+    { src: "../../img/kit/small bag lego.jpg", description: "×2 LEGO Claw Bags", id: "g_lego_claw" },
+    { src: "../../img/kit/4motors.jpg", description: "×4 Motors", id: "g_motors" },
+    { src: "../../img/kit/4servos.jpg", description: "×4 Servos", id: "g_servos" },
+    { src: "../../img/kit/4wheels.jpg", description: "×4 Wheels", id: "g_wheels" }
+    
+  ];
+
+  const metalParts = [
+    { src: "../../img/kit/bagofscrews.jpg", description: "×2 Bag of Screws & Stand-offs", id: "g_screws" },
+    { src: "../../img/kit/caster.jpg", description: "×2 Metal Ball Caster", id: "m_caster" },
+    { src: "../../img/kit/2anglebrackets.jpg", description: "×2 Angle Brackets", id: "m_angle_brackets" },
+    { src: "../../img/kit/4servobrackets.jpg", description: "×4 Servo Brackets", id: "m_servo_brackets" },
+    { src: "../../img/kit/2(1x10)metalstraps.jpg", description: "×2 Metal Straps (1x10)", id: "m_metal_straps" },
+    { src: "../../img/kit/chassis.jpg", description: "×2 Chassis", id: "m_chassis" },
+    { src: "../../img/kit/4metalservohorns.png", description: "×4 Metal Servo Horns", id: "m_servo_horns" }
+  ];
+
+  const sensors = [
+    { src: "../../img/kit/2lightsensors.jpg", description: "×2 Light Sensors", id: "s_light" },
+    { src: "../../img/kit/2ETsensor.jpg", description: "×2 ET Rangefinders", id: "s_et" },
+    { src: "../../img/kit/2smalltophat.jpg", description: "×2 Small Tophat Sensors", id: "s_smalltouch" },
+    { src: "../../img/kit/2largetophat.jpg", description: "×2 Large Tophat Sensors", id: "s_largetouch" },
+    { src: "../../img/kit/leversensors.jpg", description: "×2 Lever Sensors", id: "s_lever" },
+    { src: "../../img/kit/largetouchsensors.png", description: "×2 Large Touch Sensors", id: "s_largetouch" },
+  ];
+
+
+  const generalPartsList = document.getElementById("generalPartsList");
+  const metalPartsList = document.getElementById("metalPartsList");
+  const sensorPartsList = document.getElementById("sensorPartsList");
+
+  generalPartsList.innerHTML = generalParts
+    .map(part =>
+      createChecklistFigure(
+        part.src,
+        part.description,
+        part.id
+      )
+    )
+    .join("");
+
+  generalPartsList.innerHTML = generalParts
+  .map(part =>
+    createChecklistFigure(
+      part.src,
+      part.description,
+      part.id
+    )
+  )
+  .join("");
+  metalPartsList.innerHTML = metalParts
+  .map(part =>
+    createChecklistFigure(
+      part.src,
+      part.description,
+      part.id
+    )
+  )
+  .join("");
+  sensorPartsList.innerHTML = sensors
+  .map(part =>
+    createChecklistFigure(
+      part.src,
+      part.description,
+      part.id
+    )
+  )
+  .join("");
+</script>
 <script>
   var MISSION_ID = "discovery_systems_01";
   var MISSION_TITLE = "Systems Project 1 — Meet Your Kit";

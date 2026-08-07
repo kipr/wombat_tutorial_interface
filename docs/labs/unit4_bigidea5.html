@@ -423,7 +423,9 @@ int main() {
     <h3 class="sub">Extension F — Build a Status Screen</h3>
     <ul>
       <li>The graphics library lets you open a real drawing window and put shapes and text on it. Try building a simple run-status screen:
-        <div class="code small">graphics_open(320, 240);
+        <div class="code small">
+msleep(1000);
+graphics_open(320, 240);
 graphics_clear();
 
 <span class="c">// progress bar frame + filled portion (vector graphics: rectangles)</span>
@@ -436,7 +438,10 @@ graphics_circle_fill(260, 20, 12, 0, 200, 0);
 <span class="c">// a label (text)</span>
 graphics_print_string("RUN STATUS", 10, 50, 255, 255, 255, 1.0);
 
-graphics_update();   <span class="c">// nothing appears on screen until you call this</span></div>
+graphics_update();   <span class="c">// nothing appears on screen until you call this</span>
+msleep(5000);
+</div>
+
       </li>
       <li>Use <code>graphics_line()</code> to plot 2-3 points of a <span class="def-term" data-term="SENSOR">sensor</span> reading over time as connected line segments — a simple live trend graph.</li>
       <li>Update your progress bar's filled width as your mission runs (recall <code>graphics_rectangle_fill</code> from above), instead of drawing it once at a fixed size. What would you need to know to calculate how "full" the bar should be at any moment?</li>

@@ -456,7 +456,7 @@ int main() {
 
     <h3 class="sub">Extension E — Random Freight</h3>
     <ul>
-      <li>Real freight wouldn't always be the same type every run. Use <code>rand() % 10</code> to generate a random <code>freight_type</code> each time your program runs (you'll need <code>#include &lt;stdlib.h&gt;</code> and a call to <code>srand()</code> once at the top of <code>main()</code>).</li>
+      <li>Real freight wouldn't always be the same type every run. Use <code>rand() % 10</code> to generate a random <code>freight_type</code> each time your program runs (you'll need <code>#include &lt;stdlib.h&gt;</code>, <code>#include &lt;time.h&gt;</code> and a call to <code>srand(time(NULL))</code> once at the top of <code>main()</code>).</li>
       <li>Run it several times. Does your sorting rule still make the correct choice across many random values?</li>
     </ul>
     <textarea class="answer" data-key="ext_e" aria-label="Extension E"></textarea>
