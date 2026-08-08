@@ -1,0 +1,25 @@
+{{- /*
+  A three-zone accel / cruise / decel bar (Unit 5 Big Idea 2).
+
+    {{< zonebar >}}
+    - class: accel
+      lines: ["Accelerate", "first 50 ticks"]
+    - class: cruise
+      lines: ["Cruise", "full speed"]
+    - class: decel
+      lines: ["Decelerate", "final 500 ticks"]
+    {{< /zonebar >}}
+
+  Each item needs class (accel | cruise | decel) and lines (joined with <br>).
+*/ -}}
+{{- $zones := .Inner | transform.Unmarshal -}}
+{{- if not $zones }}{{ errorf "%s: zonebar needs a YAML list of zones" .Position }}{{ end -}}
+<div class="zonebar">
+{{- range $zones }}
+{{- $class := index . "class" | default "" -}}
+{{- $lines := index . "lines" -}}
+{{- if not $class }}{{ errorf `%s: zonebar zone needs a "class"` $.Position }}{{ end -}}
+{{- if not $lines }}{{ errorf `%s: zonebar zone needs a "lines" list` $.Position }}{{ end -}}
+<div class="{{ $class }}">{{- range $i, $line := $lines -}}{{- if $i }}<br>{{ end }}{{ $line }}{{- end -}}</div>
+{{- end }}
+</div>

@@ -108,22 +108,44 @@ def render_token(token) -> str:
 
 def inject_js_rows(markup: str) -> str:
     """Reproduce the rows original pages add with buildTrials()/buildRows()."""
-    # unit1_bigidea1 — trial log
-    columns = ["changed", "reached", "stopped", "returned", "observed"]
-    rows = []
-    for n in range(1, 7):
-        cells = "".join(
-            f'<td><input type="text" data-key="trial{n}_{c}" '
-            f'aria-label="Trial {n} {c}"></td>'
-            for c in columns
+    # trial log — column keys/aria/count vary by page; parse from buildRows()
+    trial_stub = '<tbody id="trialBody"><!-- rows injected --></tbody>'
+    if trial_stub in markup:
+        block = re.search(
+            r'getElementById\("trialBody"\)(.*?)\}\)\(\);', markup, re.S
         )
-        rows.append(
-            f'<tr><td style="text-align:center;font-weight:600">{n}</td>{cells}</tr>'
+        body = block.group(1) if block else ""
+        cols = re.findall(
+            r"data-key=\"trial'\s*\+\s*i\s*\+\s*'_(\w+)\"\s*"
+            r"aria-label=\"Trial '\s*\+\s*i\s*\+\s*' ([^\"]+)\"",
+            body,
         )
-    markup = markup.replace(
-        '<tbody id="trialBody"><!-- rows injected --></tbody>',
-        '<tbody id="trialBody">' + "".join(rows) + "</tbody>",
-    )
+        if not cols:
+            cols = [
+                ("changed", "changed"),
+                ("reached", "reached"),
+                ("stopped", "stopped"),
+                ("returned", "returned"),
+                ("observed", "observed"),
+            ]
+        count_m = re.search(r"i <= (\d+)", body)
+        count = int(count_m.group(1)) if count_m else 6
+        num_cell = (
+            '<td class="num">'
+            if 'class="num"' in body
+            else '<td style="text-align:center;font-weight:600">'
+        )
+        rows = []
+        for n in range(1, count + 1):
+            cells = "".join(
+                f'<td><input type="text" data-key="trial{n}_{key}" '
+                f'aria-label="Trial {n} {aria}"></td>'
+                for key, aria in cols
+            )
+            rows.append(f"<tr>{num_cell}{n}</td>{cells}</tr>")
+        markup = markup.replace(
+            trial_stub, '<tbody id="trialBody">' + "".join(rows) + "</tbody>"
+        )
     # debug log — column keys/aria vary by page; parse them from buildRows()
     stub = '<tbody id="debugBody"><!-- rows injected --></tbody>'
     if stub not in markup:

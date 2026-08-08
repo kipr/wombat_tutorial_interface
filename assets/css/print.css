@@ -40,7 +40,7 @@
 
   .meta, .callout, .concept, .cmd-table, .grid, .bottom-submit,
   .safety, .widget-step, .calc-box, .calc, .warn, .reset-box, .console,
-  .truth, .checklist li {
+  .truth, .checklist li, .zonebar {
     break-inside: avoid;
   }
 
@@ -108,6 +108,11 @@
 
   .truth th {
     background: var(--navy) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .zonebar div {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }

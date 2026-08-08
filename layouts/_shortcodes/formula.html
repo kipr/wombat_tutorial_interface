@@ -1,0 +1,13 @@
+{{- /*
+  A bare centered formula line (.formula), distinct from the blue calc box.
+
+    {{< formula >}}
+    motor_speed = (ticks_remaining) × m + b
+    {{< /formula >}}
+
+  When the formula sits inside a concept box, use a formula: part in the
+  concept YAML instead of nesting this shortcode.
+*/ -}}
+{{- $text := trim .Inner " \n\r\t" -}}
+{{- if not $text }}{{ errorf "%s: formula needs inner text" .Position }}{{ end -}}
+<div class="formula">{{ $text }}</div>

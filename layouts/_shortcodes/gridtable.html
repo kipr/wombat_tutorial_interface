@@ -70,6 +70,8 @@
     rows[]        cell list, or {class, cells:[…]}
     rows[][]      each cell is {seed}, {seedmono}, {seedc}, {label}, {num},
                   or {key, aria?, placeholder?, align?}
+    When every columns[].head is empty, thead is omitted and widths are
+    applied via <colgroup> (caption + label/input tables with no headers).
 */ -}}
 {{- $data := .Inner | transform.Unmarshal -}}
 {{- $caption := .Get "caption" -}}
@@ -124,10 +126,19 @@
 {{- $rows := index $data "rows" -}}
 {{- if not $columns }}{{ errorf `%s: gridtable rows mode needs a "columns" list` .Position }}{{ end -}}
 {{- if not $rows }}{{ errorf `%s: gridtable rows mode needs a "rows" list` .Position }}{{ end -}}
+{{- $showHead := false -}}
+{{- range $columns }}{{ with .head }}{{ if ne (printf "%v" .) "" }}{{ $showHead = true }}{{ end }}{{ end }}{{ end -}}
 <table class="{{ $gridClass }}">
 {{- with $caption }}
 <caption{{ with $captionClass }} class="{{ . }}"{{ end }}>{{ . | $.Page.RenderString }}</caption>
 {{- end }}
+{{- if not $showHead }}
+<colgroup>
+{{- range $columns }}
+<col{{ with .width }} style="width:{{ . }}"{{ end }}>
+{{- end }}
+</colgroup>
+{{- else }}
 <thead>
 <tr>
 {{- range $columns }}
@@ -135,6 +146,7 @@
 {{- end }}
 </tr>
 </thead>
+{{- end }}
 <tbody>
 {{- range $rows }}
 {{- $rowClass := "" -}}

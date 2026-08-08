@@ -261,6 +261,10 @@ shortcode. The mapping is:
 | `<div class="namebar">` | `{{< namebar >}}` |
 | `<div class="filetab">` | `{{< filetab >}}` |
 | `<ul class="checklist">` | `{{< checklist >}}` |
+| `<div class="zonebar">` | `{{< zonebar >}}` |
+| `<div class="formula">` | `{{< formula >}}` or a `formula:` part inside `concept` |
+| `<img src="../bubble_sort.svg">` inside a concept | `image:` part inside `concept` |
+| `<ol class="steps">` (instructional prose, no inputs) | markdown ordered list + `{.steps}` — not the `steps` shortcode |
 
 Preserve `data-key` values and `aria-label` text **exactly**. Those keys are the
 submission payload; changing one silently orphans student work saved under the
@@ -566,11 +570,12 @@ them; retain them only when the surrounding lesson refers to line numbers.
 {{< /concept >}}
 ```
 
-The inner content is YAML, a list of `text:` and `code:` parts in display order.
-This is deliberate: a raw code listing nested inside a markdown-rendered
-container gets split at its blank lines. Declaring the parts keeps the listing
-intact while the prose stays markdown. A `code:` part uses the page's `track`
-language and supports the same `@@…@@` emphasis markers as the `code` shortcode.
+The inner content is YAML, a list of `text:`, `code:`, `truth:`, `formula:`,
+and `image:` parts in display order. This is deliberate: a raw code listing
+nested inside a markdown-rendered container gets split at its blank lines.
+Declaring the parts keeps the listing intact while the prose stays markdown.
+A `code:` part uses the page's `track` language and supports the same `@@…@@`
+emphasis markers as the `code` shortcode.
 
 ### `commands` — reference table of built-in commands
 
@@ -767,6 +772,62 @@ rows:
 
 When the table sits inside a concept box (Unit 4 Big Idea 2), use a `truth:`
 part in the concept YAML instead of nesting the shortcode.
+
+A bare `.formula` line or site-root image may also appear inside a concept
+(Unit 5). Use YAML parts rather than nesting shortcodes:
+
+```markdown
+{{< concept "Speed as a line: y = mx + b" >}}
+- text: |
+    In the deceleration zone, speed depends on ticks **left** to travel:
+- formula: "motor_speed = (ticks_remaining) × m + b"
+- text: |
+    A starting point to test:
+- formula: "motor_speed = (desired_ticks - current_ticks) × 2 + 150"
+{{< /concept >}}
+
+{{< concept "Sorting: the simple version" >}}
+- text: |
+    Walk through the swaps by hand…
+- image:
+    src: bubble_sort.svg
+    alt: Four-item bubble sort
+{{< /concept >}}
+```
+
+`image.src` is resolved from the site root via `urlprefix` (so
+`bubble_sort.svg` becomes `../bubble_sort.svg` on a labs page). Do not put
+these images under `img/` unless the original did.
+
+### `formula` — a bare centered formula line
+
+Distinct from `calc` (blue titled box). Unit 5 uses this for `y = mx + b`
+lines inside or beside a concept.
+
+```markdown
+{{< formula >}}
+motor_speed = (ticks_remaining) × m + b
+{{< /formula >}}
+```
+
+When the formula sits inside a concept box, prefer a `formula:` part in the
+concept YAML (see above) instead of nesting this shortcode.
+
+### `zonebar` — accel / cruise / decel strip
+
+```markdown
+{{< zonebar >}}
+- class: accel
+  lines: ["Accelerate", "first 50 ticks"]
+- class: cruise
+  lines: ["Cruise", "full speed"]
+- class: decel
+  lines: ["Decelerate", "final 500 ticks"]
+{{< /zonebar >}}
+```
+
+`class` must be `accel`, `cruise`, or `decel` (stylesheet flex widths). `lines`
+are joined with `<br>` to match the originals.
 
 ### `console` — a dark terminal sample
 
@@ -1357,10 +1418,13 @@ Migrated so far:
 - A draft-only C/Python syntax-highlighting fixture
 - Shared Unit 4 furniture: `calc`, `truth`, `console`, `warn`, `resetbox`,
   plus `gridtable` `seedc` / `tight` / `number_cell` support
+- Shared Unit 5 furniture: `zonebar`, `formula`, concept `formula:` / `image:`
+  parts, and `static/bubble_sort.svg`
 
 Still to do:
 
 - 5 remaining C labs: `prelab0` and Unit 5 Big Ideas 1–4
+  (Unit 5 shared prep is done; migrate the four content pages next)
 - 28 Python labs under `docs/Python_Labs/` — these need `track: python`, which
   selects the `python:` wording of any term that has one and makes Python the
   default Chroma lexer; follow the code conversion checklist in section 9.11

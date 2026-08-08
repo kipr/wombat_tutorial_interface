@@ -19,6 +19,16 @@
           - cells: ["yes", "yes", "true"]
             class: yes
 
+  A bare .formula line (Unit 5 accel/decel math):
+
+    - formula: "motor_speed = (ticks_remaining) × m + b"
+
+  An inline image from the site root (Unit 5 bubble-sort diagram):
+
+    - image:
+        src: bubble_sort.svg
+        alt: Four-item bubble sort
+
   Inner content is YAML rather than free markdown because a raw code listing
   nested inside a markdown-rendered shortcode gets re-read as markdown, and its
   blank lines split it into paragraphs. Declaring the parts keeps the listing
@@ -27,6 +37,7 @@
 {{- $title := .Get 0 | default (.Get "title") -}}
 {{- if not $title }}{{ errorf "%s: concept needs a title" .Position }}{{ end -}}
 {{- $parts := .Inner | transform.Unmarshal -}}
+{{- $prefix := partial "urlprefix.html" .Page -}}
 <div class="concept">
 <div class="chead">{{ $title }}</div>
 <div class="cbody">
@@ -44,6 +55,15 @@
 {{- end }}
 {{- with .truth }}
 {{ partial "truthtable.html" . }}
+{{- end }}
+{{- with .formula }}
+<div class="formula">{{ . }}</div>
+{{- end }}
+{{- with .image }}
+{{- $src := index . "src" | default "" -}}
+{{- $alt := index . "alt" | default "" -}}
+{{- if not $src }}{{ errorf `%s: concept image part needs "src"` $.Position }}{{ end -}}
+<img src="{{ $prefix }}{{ $src }}"{{ with $alt }} alt="{{ . }}"{{ end }}>
 {{- end }}
 {{- end }}
 </div>
