@@ -1,0 +1,80 @@
+{{ define "main" }}
+{{- $prefix := partial "urlprefix.html" . -}}
+{{- $terms := slice -}}
+{{- range $key, $entry := hugo.Data.glossary -}}
+  {{- if ne ($entry.source | default "") "rules" -}}
+    {{- $terms = $terms | append (dict "key" $key "title" $entry.title "entry" $entry) -}}
+  {{- end -}}
+{{- end -}}
+{{- $usage := newScratch -}}
+{{- range site.RegularPages -}}
+  {{- $pageMeta := partial "glossary-page-meta.html" . -}}
+  {{- range $term, $_ := partial "glossary-page-terms.html" . -}}
+    {{- $usage.Add $term (slice $pageMeta) -}}
+  {{- end -}}
+{{- end -}}
+<main class="sheet">
+  <div class="hero">
+    <p class="eyebrow">{{ .Params.eyebrow }}</p>
+    <h1>{{ .Params.heading }}</h1>
+    <p class="sub">{{ .Params.subheading }}</p>
+  </div>
+
+  <div class="glossary-controls no-print">
+    <label class="glossary-search" for="glossaryQuery">
+      <span class="visually-hidden">Search the glossary</span>
+      <input id="glossaryQuery" type="search"
+             placeholder="Search a word or a definition…"
+             autocomplete="off" />
+    </label>
+    <p class="glossary-count" id="glossaryCount" aria-live="polite">{{ len $terms }} terms</p>
+  </div>
+
+  <section id="glossaryList" aria-label="Glossary terms">
+  {{- range sort $terms "title" }}
+    {{- $entry := .entry -}}
+    {{- $uses := $usage.Get .key | default (slice) -}}
+    <article class="glossary-term" data-term="{{ .key }}">
+      <h2 data-search-highlight>{{ $entry.title }}</h2>
+      <div class="glossary-definitions">
+        <p class="glossary-definition" data-search-highlight>{{ $entry.body }}</p>
+      {{- with $entry.python }}
+        <div class="glossary-variant">
+          <p class="glossary-variant-label">Python</p>
+          <p class="glossary-definition" data-search-highlight>{{ . }}</p>
+        </div>
+      {{- end }}
+      {{- range $senseKey, $sense := $entry.senses }}
+        <div class="glossary-variant">
+          <p class="glossary-variant-label">{{ humanize $senseKey }}</p>
+          <p class="glossary-definition" data-search-highlight>{{ $sense.body }}</p>
+        </div>
+        {{- with $sense.python }}
+        <div class="glossary-variant">
+          <p class="glossary-variant-label">{{ humanize $senseKey }} · Python</p>
+          <p class="glossary-definition" data-search-highlight>{{ . }}</p>
+        </div>
+        {{- end }}
+      {{- end }}
+      </div>
+      <div class="glossary-usage">
+      {{- if $uses }}
+        <p class="glossary-use-links">
+        {{- range sort $uses "sort" }}
+          <a class="glossary-use {{ .class }}" href="{{ $prefix }}{{ partial "rootpath.html" .page }}" title="{{ .page.Title }}">{{ .label }}</a>
+        {{- end }}
+          <span class="glossary-use-count">on {{ len $uses }} {{ cond (eq (len $uses) 1) "sheet" "sheets" }}</span>
+        </p>
+      {{- else }}
+        <p class="glossary-unused">No current lessons use this term.</p>
+      {{- end }}
+      </div>
+    </article>
+  {{- end }}
+    <p class="glossary-empty" id="glossaryEmpty" hidden>No term matches that.</p>
+  </section>
+
+  <p class="credit">{{ .Params.credit }}</p>
+</main>
+<script src="{{ $prefix }}js/glossary.js" defer></script>
+{{ end }}

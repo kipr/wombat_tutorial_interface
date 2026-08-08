@@ -1,0 +1,24 @@
+{{- /*
+  Returns a set (dict of term key -> true) of glossary terms referenced by a
+  published content page. RawContent covers the Markdown body; Params covers
+  references in front matter such as the lab meta table.
+
+  Display labels and named senses collapse to their base glossary key, while
+  mission references are ignored:
+    [[ENCODER|encoders]]       -> ENCODER
+    [[PROTOTYPE:design]]       -> PROTOTYPE
+    [[@2|Mission 2]]           -> ignored
+*/ -}}
+{{- $source := printf "%s\n%s" .RawContent (.Params | jsonify) -}}
+{{- $terms := dict -}}
+{{- range findRE `\[\[[^][]+\]\]` $source -}}
+  {{- $reference := . | strings.TrimPrefix "[[" | strings.TrimSuffix "]]" -}}
+  {{- $target := index (split $reference "|") 0 | strings.TrimSpace -}}
+  {{- if and $target (not (hasPrefix $target "@")) -}}
+    {{- $key := index (split $target ":") 0 | strings.TrimSpace -}}
+    {{- if $key -}}
+      {{- $terms = merge $terms (dict $key true) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $terms -}}

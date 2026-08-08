@@ -939,6 +939,12 @@ The single source of truth for every definition popup.
 Keys are the uppercase token used in `[[…]]`. `title` is the popup heading;
 `body` is the popup text.
 
+The generated `glossary.html` also builds its usage links at Hugo build time.
+It scans every published content page's Markdown and front matter, counts each
+term at most once per page, and uses `short_title` (falling back to `title`) for
+the link label. Usage does not belong in this YAML file and never needs to be
+maintained by hand.
+
 ### `data/missions.yaml`
 
 ```yaml
@@ -1420,6 +1426,8 @@ Migrated so far:
   plus `gridtable` `seedc` / `tight` / `number_cell` support
 - Shared Unit 5 furniture: `zonebar`, `formula`, concept `formula:` / `image:`
   parts, and `static/bubble_sort.svg`
+- The root `glossary.html`, generated directly from `data/glossary.yaml`, with
+  search and separate entries for language variants and alternate senses
 
 Still to do:
 
@@ -1434,10 +1442,8 @@ Still to do:
   text diagrams, and pseudocode; follow the per-block language rules in sections
   7 and 9.11 instead of assuming every `.code` element is C. Use `track: c` when
   C is the page default and `lang="text"` for diagrams or pseudocode
-- The five root pages: `index.html`, `glossary.html`, `2026-missions.html`, and
-  the `discovery/` and `Python_Labs/` landing pages. `glossary.html` should be
-  generated from `data/glossary.yaml` rather than converted by hand, and should
-  render alternate senses as separate entries under one heading.
+- The four remaining root and landing pages: `index.html`,
+  `2026-missions.html`, and the `discovery/` and `Python_Labs/` landing pages
 
 When `docs/` is finally empty:
 

@@ -1,0 +1,28 @@
+{{- /* Presentation metadata for a page linked from the generated glossary. */ -}}
+{{- $path := lower .File.Path -}}
+{{- $nav := .Params.nav | default "" -}}
+{{- $track := .Params.track | default "" -}}
+{{- $class := "other" -}}
+{{- $rank := 5 -}}
+
+{{- if hasPrefix $path "discovery/coding/" -}}
+  {{- $class = "cod" -}}
+  {{- $rank = 1 -}}
+{{- else if hasPrefix $path "discovery/systems/" -}}
+  {{- $class = "sys" -}}
+  {{- $rank = 2 -}}
+{{- else if or (eq $nav "python") (eq $track "python") (hasPrefix $path "python_labs/") -}}
+  {{- $class = "py" -}}
+  {{- $rank = 4 -}}
+{{- else if or (eq $nav "labs") (hasPrefix $path "labs/") -}}
+  {{- $class = "lab" -}}
+  {{- $rank = 3 -}}
+{{- end -}}
+
+{{- $label := .Params.short_title | default .Title -}}
+{{- return (dict
+  "class" $class
+  "label" $label
+  "page" .
+  "sort" (printf "%d-%09d-%s" $rank .Weight (lower $label))
+) -}}
