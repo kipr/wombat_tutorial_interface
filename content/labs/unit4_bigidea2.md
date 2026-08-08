@@ -1,6 +1,8 @@
 ---
 title: "Unit 4 · Big Idea 2 — Squaring Up"
 short_title: "Lab 4.2"
+hub_unit: 4
+description: "Two tophat sensors and boolean && — each wheel watches its own sensor to straighten the robot against a line."
 weight: 200
 nav: labs
 track: c

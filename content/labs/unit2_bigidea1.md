@@ -1,6 +1,8 @@
 ---
 title: "Unit 2 · Big Idea 1 — The Touch Sensor"
 short_title: "Lab 2.1"
+hub_unit: 2
+description: "Sensors and while loops — drive backward until a touch sensor feels the wall, then reset the origin."
 weight: 80
 nav: labs
 track: c

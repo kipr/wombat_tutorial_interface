@@ -327,6 +327,8 @@ Run the checks in section 10. Do not delete the original until they pass.
 ---
 title: "Unit 1 · Big Idea 2 — The Red Cube Breakdown"   # <title> and fallback heading
 short_title: "Lab 1.2"          # prev/next link text and index listing
+hub_unit: 1                      # card group on the section hub
+description: "Decomposition and functions — break a mission into small behaviors and build them one at a time."
 weight: 40                      # ordering within the section; drives prev/next
 nav: labs                       # which data/nav.yaml entry gets class="here"
 track: c                        # c | python — glossary wording + default code lexer
@@ -352,6 +354,11 @@ Notes:
   disappear together.
 - `weight` is what `botnav.html` uses to compute previous/next. Leave gaps
   (10, 20, 30…) so a lab can be inserted without renumbering.
+- `hub_unit` selects the card group on a hub-style section index, while
+  `description` supplies the card copy. Keep the description short enough to
+  scan in the card grid. The card title and Big Idea label are derived from
+  `title` and `eyebrow`; use `hub_title` or `hub_label` only when a page needs
+  an explicit override (for example, a PreLab placeholder).
 - Every page containing a `code` shortcode or `concept` listing must set `track`
   to its default supported language. A Discovery coding page whose real code is
   primarily C should use `track: c` and override diagrams with `lang="text"`.
@@ -364,15 +371,31 @@ Notes:
   position. If a page supplies a custom list, it must include `syntax` after
   `worksheet` and before `print`, or Chroma tokens will have no project theme.
 
-Section index pages (`content/labs/_index.md`) take a much smaller set:
+Hub-style section index pages (`content/labs/_index.md`) define their display
+copy and ordered card groups in front matter:
 
 ```yaml
 ---
-title: "C Labs"
+title: "Student Labs · C Edition — KIPR Botball 2026"
 index_label: "All C Labs"   # text of the "← back" link in botnav
 nav: labs
+hub: true
+styles: ["site-base", "hub"]
+eyebrow: "Botball Explorer · CS1 + AI Literacy · C Edition"
+heading: "Student Labs"
+edition: "C"
+subheading: "Interactive lab sheets you fill in on screen…"
+units:
+  - number: 0
+    label: "Start Here · Before Unit 1"
+  - number: 1
+    label: "Unit 1 · Understanding Instructions"
 ---
 ```
+
+Only groups containing a published page are rendered. This lets an index track
+an incremental migration without publishing a card whose target does not yet
+exist.
 
 ---
 

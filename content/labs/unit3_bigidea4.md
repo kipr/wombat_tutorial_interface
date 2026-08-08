@@ -1,6 +1,8 @@
 ---
 title: "Unit 3 · Big Idea 4 — Perfect Turns"
 short_title: "Lab 3.4"
+hub_unit: 3
+description: "Tick-based 90° turns — tune left and right pivots by trial-and-error, then expose hidden drift with an 8-turn test."
 weight: 170
 nav: labs
 track: c

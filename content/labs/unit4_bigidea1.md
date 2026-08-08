@@ -1,6 +1,8 @@
 ---
 title: "Unit 4 · Big Idea 1 — The Model"
 short_title: "Lab 4.1"
+hub_unit: 4
+description: "Prediction and the double type — build a ticks_per_inch model and a Drive function that commands distance in inches."
 weight: 190
 nav: labs
 track: c

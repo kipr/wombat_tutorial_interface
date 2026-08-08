@@ -1,6 +1,8 @@
 ---
 title: "Unit 1 · Big Idea 4 — The Position Keeper"
 short_title: "Lab 1.4"
+hub_unit: 1
+description: "Variables and state — store and update the robot's position from a zero origin, then test it."
 weight: 60
 nav: labs
 track: c

@@ -1,6 +1,8 @@
 ---
 title: "Unit 3 · Big Idea 1 — Meet the Servos"
 short_title: "Lab 3.1"
+hub_unit: 3
+description: "Servo basics and safe ranges — calibrate an arm and claw, find their limits, and try a first cube pick-up."
 weight: 140
 nav: labs
 track: c

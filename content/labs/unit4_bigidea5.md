@@ -1,6 +1,8 @@
 ---
 title: "Unit 4 · Big Idea 5 — The Long Run"
 short_title: "Lab 4.5"
+hub_unit: 4
+description: "A long Botguy-and-cones run that stays accurate by resetting accumulated error with 6+ square-up checkpoints."
 weight: 230
 nav: labs
 track: c

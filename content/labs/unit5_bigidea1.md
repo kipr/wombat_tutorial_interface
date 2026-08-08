@@ -1,6 +1,8 @@
 ---
 title: "Unit 5 · Big Idea 1 — The Second Attempt"
 short_title: "Lab 5.1"
+hub_unit: 5
+description: "Arrays and indexed state — track a believed pose (x, y, heading) and update it only at real reset checkpoints."
 weight: 240
 nav: labs
 track: c

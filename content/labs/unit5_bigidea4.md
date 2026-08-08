@@ -1,6 +1,8 @@
 ---
 title: "Unit 5 · Big Idea 4 — Every Second Counts"
 short_title: "Lab 5.4"
+hub_unit: 5
+description: "systime() and modulo, arrays of results, a boolean-flagged sort, and a linear search — measuring performance instead of guessing at it."
 weight: 270
 nav: labs
 track: c

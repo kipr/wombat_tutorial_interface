@@ -1,14 +1,31 @@
 {{ define "main" }}
 {{- $prefix := partial "urlprefix.html" . -}}
-<main class="sheet">
-  <div class="hero">
-    <p class="eyebrow">KIPR · Botball Explorer</p>
-    <h1>{{ .Title }}</h1>
-  </div>
-  <ul>
-  {{- range .RegularPages.ByWeight }}
-    <li><a href="{{ $prefix }}{{ partial "rootpath.html" . }}">{{ .Params.short_title | default .Title }} — {{ .Title }}</a></li>
+<main class="wrap">
+  <p class="page-eyebrow">{{ .Params.eyebrow }}</p>
+  <h1 class="page-title">{{ .Params.heading }} <span>· {{ .Params.edition }}</span></h1>
+  <p class="page-sub">{{ .Params.subheading }}</p>
+  <p class="toggle-line">Prefer Python? <a href="{{ $prefix }}Python_Labs/index.html">View the Python labs →</a></p>
+
+{{- $pages := .RegularPages.ByWeight }}
+{{- range $unit := .Params.units }}
+  {{- $unitPages := where $pages ".Params.hub_unit" $unit.number }}
+  {{- with $unitPages }}
+  <section class="hub-unit">
+    <h2 class="unit-label">{{ $unit.label }}</h2>
+    <div class="card-grid">
+    {{- range . }}
+      {{- $cardTitle := .Params.hub_title | default (replaceRE `^.* — ` "" .Title) }}
+      {{- $cardLabel := .Params.hub_label | default (.Params.eyebrow | default .Params.short_title | replaceRE `^Unit [0-9]+ · ` "") }}
+      <a class="lab-card" href="{{ $prefix }}{{ partial "rootpath.html" . }}">
+        <span class="lab-num">{{ $cardLabel }}</span>
+        <span class="lab-title">{{ $cardTitle }}</span>
+        <span class="lab-desc">{{ .Description }}</span>
+        <span class="lab-arrow">{{ if eq $unit.number 0 }}Open PreLab{{ else }}Open Lab{{ end }} →</span>
+      </a>
+    {{- end }}
+    </div>
+  </section>
   {{- end }}
-  </ul>
+  {{- end }}
 </main>
 {{ end }}

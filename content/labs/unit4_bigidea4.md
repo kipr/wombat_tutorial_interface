@@ -1,6 +1,8 @@
 ---
 title: "Unit 4 · Big Idea 4 — Keeping Score"
 short_title: "Lab 4.4"
+hub_unit: 4
+description: "Accumulating state and printf logging — a full red-cube run that stacks, docks, and tracks its own points."
 weight: 220
 nav: labs
 track: c

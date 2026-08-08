@@ -1,6 +1,8 @@
 ---
 title: "Unit 2 · Big Idea 4 — Reading the Line"
 short_title: "Lab 2.4"
+hub_unit: 2
+description: "Analog sensors and thresholds — calibrate a Tophat, find the midpoint, and steer along a line with if/else."
 weight: 110
 nav: labs
 track: c

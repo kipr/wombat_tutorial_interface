@@ -1,6 +1,8 @@
 ---
 title: "Unit 2 · Big Idea 5 — Tuning the Follow"
 short_title: "Lab 2.5"
+hub_unit: 2
+description: "The mav command and speed ratios — run an organized experiment to tune your line-follow to its best."
 weight: 120
 nav: labs
 track: c

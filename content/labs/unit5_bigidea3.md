@@ -1,6 +1,8 @@
 ---
 title: "Unit 5 · Big Idea 3 — Backing Up Your Work"
 short_title: "Lab 5.3"
+hub_unit: 5
+description: "Version control from scratch — create a GitHub account, a licensed repository, and understand push/pull, browser-first and from the command line."
 weight: 260
 nav: labs
 track: c

@@ -1,6 +1,8 @@
 ---
 title: "Unit 4 · Big Idea 3 — The Turn Model"
 short_title: "Lab 4.3"
+hub_unit: 4
+description: "char, for loops, and return values — build one Turn(direction, angle) function from a ticks_per_degree model."
 weight: 210
 nav: labs
 track: c

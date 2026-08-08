@@ -1,6 +1,8 @@
 ---
 title: "Unit 2 · Big Idea 6 — Two Sensors, One Decision"
 short_title: "Lab 2.6"
+hub_unit: 2
+description: "Sensor fusion — combine the Tophat and an ET distance sensor so the robot follows the line and stops at an object."
 weight: 130
 nav: labs
 track: c

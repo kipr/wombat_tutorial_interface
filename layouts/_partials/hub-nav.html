@@ -1,0 +1,12 @@
+{{- $prefix := partial "urlprefix.html" . -}}
+<nav class="nav" aria-label="Main">
+  <a class="nav-brand" href="{{ $prefix }}index.html">
+    <img src="{{ $prefix }}kipr-logo.png" alt="KIPR" />
+    <span>Botball 2026</span>
+  </a>
+  <div class="nav-links">
+  {{- range hugo.Data.nav }}
+    <a href="{{ $prefix }}{{ .url }}"{{ if eq .id $.Params.nav }} class="active" aria-current="page"{{ end }}>{{ .name }}</a>
+  {{- end }}
+  </div>
+</nav>

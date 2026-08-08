@@ -1,6 +1,8 @@
 ---
 title: "Unit 2 · Big Idea 2 — Brake vs. Coast"
 short_title: "Lab 2.2"
+hub_unit: 2
+description: "Motor braking vs. neutral — run a 5-trial experiment and let the data show which stop is more consistent."
 weight: 90
 nav: labs
 track: c

@@ -1,6 +1,8 @@
 ---
 title: "Unit 3 · Big Idea 3 — Build Your Library"
 short_title: "Lab 3.3"
+hub_unit: 3
+description: "Libraries and #include — switch to Advanced mode and gather all your functions into one reusable header file."
 weight: 160
 nav: labs
 track: c

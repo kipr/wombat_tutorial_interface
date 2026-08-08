@@ -1,6 +1,8 @@
 ---
 title: "Unit 2 · Big Idea 3 — Drive by the Numbers"
 short_title: "Lab 2.3"
+hub_unit: 2
+description: "Encoders and arguments — use gmpc/cmpc and a function that takes a distance to drive out and touch Botguy."
 weight: 100
 nav: labs
 track: c

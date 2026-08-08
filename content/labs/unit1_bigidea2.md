@@ -1,6 +1,8 @@
 ---
 title: "Unit 1 · Big Idea 2 — The Red Cube Breakdown"
 short_title: "Lab 1.2"
+hub_unit: 1
+description: "Decomposition and functions — break a mission into small behaviors and build them one at a time."
 weight: 40
 nav: labs
 track: c

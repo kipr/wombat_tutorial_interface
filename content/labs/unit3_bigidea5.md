@@ -1,6 +1,8 @@
 ---
 title: "Unit 3 · Big Idea 5 — The Double Stack"
 short_title: "Lab 3.5"
+hub_unit: 3
+description: "Mission 3 — plan and compose your whole library into a full mission that stacks two cubes and repositions between them."
 weight: 180
 nav: labs
 track: c

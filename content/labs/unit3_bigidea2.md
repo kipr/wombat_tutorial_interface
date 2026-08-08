@@ -1,6 +1,8 @@
 ---
 title: "Unit 3 · Big Idea 2 — Smooth Operator"
 short_title: "Lab 3.2"
+hub_unit: 3
+description: "Clamping and step loops — build move_arm and move_claw that stay safe and move smoothly to stack a cube."
 weight: 150
 nav: labs
 track: c

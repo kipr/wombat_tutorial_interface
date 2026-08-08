@@ -55,3 +55,6 @@ disableKinds = ['taxonomy', 'term', 'rss', 'sitemap']
 [[module.mounts]]
   source = 'docs/img'
   target = 'static/img'
+[[module.mounts]]
+  source = 'docs/kipr-logo.png'
+  target = 'static/kipr-logo.png'

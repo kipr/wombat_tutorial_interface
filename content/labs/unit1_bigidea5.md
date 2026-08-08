@@ -1,6 +1,8 @@
 ---
 title: "Unit 1 · Big Idea 5 — The Pom Pusher"
 short_title: "Lab 1.5"
+hub_unit: 1
+description: "Modularity and reuse — build behaviors from prototypes and reuse them across a scattered field."
 weight: 70
 nav: labs
 track: c

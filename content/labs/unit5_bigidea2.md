@@ -1,6 +1,8 @@
 ---
 title: "Unit 5 · Big Idea 2 — Ease On, Ease Off"
 short_title: "Lab 5.2"
+hub_unit: 5
+description: "else if chains and linear speed ramps — rebuild Drive() to accelerate, cruise, and decelerate instead of one fixed speed."
 weight: 250
 nav: labs
 track: c

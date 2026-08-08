@@ -1,6 +1,8 @@
 ---
 title: "Unit 1 · Big Idea 3 — The Freight Sorter"
 short_title: "Lab 1.3"
+hub_unit: 1
+description: "Decisions with if/else — make the robot choose an action based on a rule you write."
 weight: 50
 nav: labs
 track: c

@@ -1,6 +1,8 @@
 ---
 title: "Unit 1 · Big Idea 1 — The Waypoint Navigator"
 short_title: "Lab 1.1"
+hub_unit: 1
+description: "Algorithms and sequencing — write, run, and debug a program that drives to a target and stops."
 weight: 30
 nav: labs
 track: c
