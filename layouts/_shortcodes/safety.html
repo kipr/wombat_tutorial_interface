@@ -1,0 +1,17 @@
+{{- /*
+  A red safety / warning callout. Same furniture as a callout, different class.
+
+    {{% safety title="⚠ Test in your hands FIRST" %}}
+    Hold the robot up off the ground and run the program once…
+    {{% /safety %}}
+
+  Add class="no-print" with noprint=true when the warning is screen-only
+  (hands-first checks). Blind-spot style warnings that must appear on paper
+  omit it.
+*/ -}}
+<div class="safety{{ if eq (printf "%v" (.Get "noprint")) "true" }} no-print{{ end }}">
+{{- with .Get "title" }}
+<p class="ctitle">{{ . }}</p>
+{{- end }}
+{{ .Inner }}
+</div>

@@ -1,0 +1,57 @@
+{{- /*
+  A green calculation box with a monospace answer line of mixed text and inputs.
+
+    {{< calcbox title="Midpoint = ( black + white ) ÷ 2" >}}
+    - text: "("
+    - input:
+        key: calc_black
+        aria: black value
+        placeholder: black
+    - text: "+"
+    - input:
+        key: calc_white
+        aria: white value
+        placeholder: white
+    - text: ") ÷ 2 ="
+    - input:
+        key: calc_midpoint
+        aria: midpoint
+        placeholder: midpoint
+    {{< /calcbox >}}
+
+  Optional leading prose (rendered as markdown) before the calc-line:
+
+    {{< calcbox title="My stop value" >}}
+    - prose: |
+        From your Phase 2 table, copy the ET value you measured at about 4 inches.
+    - text: "ET value at ~4 in ="
+    - input:
+        key: stop_value
+        aria: stop value
+        placeholder: stop_value
+    {{< /calcbox >}}
+
+  Always screen-only (no-print). Optional input_width (e.g. "90px") overrides
+  the stylesheet default on every input in this box.
+*/ -}}
+{{- $title := partial "require.html" (dict "sc" . "name" "title") -}}
+{{- $parts := .Inner | transform.Unmarshal -}}
+{{- $width := .Get "input_width" -}}
+<div class="calc-box no-print">
+<p class="ctitle">{{ $title }}</p>
+{{- range $parts }}
+{{- with .prose }}
+{{ $.Page.RenderString (dict "display" "block") . }}
+{{- end }}
+{{- end }}
+<div class="calc-line">
+{{- range $parts }}
+{{- with .text }}
+{{ . }}
+{{- end }}
+{{- with .input }}
+<input type="text" data-key="{{ .key }}"{{ with .aria }} aria-label="{{ . }}"{{ end }}{{ with .placeholder }} placeholder="{{ . }}"{{ end }}{{ with $width }} style="width:{{ . }}"{{ end }} />
+{{- end }}
+{{- end }}
+</div>
+</div>

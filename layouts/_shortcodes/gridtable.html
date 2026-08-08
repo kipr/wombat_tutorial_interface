@@ -15,7 +15,7 @@
 
   Rows mode — per-row seeds and custom data-keys (omit count):
 
-    {{< gridtable >}}
+    {{< gridtable caption="Version A · Coast" caption_class="a" >}}
     columns:
       - head: Person
         width: 20%
@@ -27,9 +27,24 @@
         - seed: VIP
         - key: p1_person1
           aria: Person 1 direction
+      - - seedmono: "750 / 300"
+        - key: s1_t1_rating
+      - - label: Shortest distance
+        - key: an_a_min
+      - class: blind
+        cells:
+          - label: "2 in (blind spot)"
+          - key: et_2in
     {{< /gridtable >}}
 
+  Cell kinds in rows mode: seed, seedmono, label, or key(+aria).
+  A row may be a bare cell list, or {class, cells:[…]} for a row class.
+
   data-key values in count mode follow <prefix><n>_<key>.
+
+  Parameters (both modes)
+    caption         optional <caption> text
+    caption_class   optional class on the caption (e.g. "a" / "b")
 
   Parameters (count mode)
     count         number of answer rows
@@ -48,9 +63,14 @@
 
   Rows mode YAML
     columns[].head / width
-    rows[][]    each cell is either {seed: text} or {key, aria?}
+    rows[]        cell list, or {class, cells:[…]}
+    rows[][]      each cell is {seed}, {seedmono}, {label}, or {key, aria?}
 */ -}}
 {{- $data := .Inner | transform.Unmarshal -}}
+{{- $caption := .Get "caption" -}}
+{{- $captionClass := .Get "caption_class" -}}
+{{- if and (not $caption) (reflect.IsMap $data) }}{{ $caption = index $data "caption" }}{{ end -}}
+{{- if and (not $captionClass) (reflect.IsMap $data) }}{{ $captionClass = index $data "caption_class" }}{{ end -}}
 {{- if .Get "count" -}}
 {{- $count := int (partial "require.html" (dict "sc" . "name" "count")) -}}
 {{- $prefix := partial "require.html" (dict "sc" . "name" "prefix") -}}
@@ -60,6 +80,9 @@
 {{- $hasExample := false -}}
 {{- range $columns }}{{ if .example }}{{ $hasExample = true }}{{ end }}{{ end -}}
 <table class="grid">
+{{- with $caption }}
+<caption{{ with $captionClass }} class="{{ . }}"{{ end }}>{{ . | $.Page.RenderString }}</caption>
+{{- end }}
 <thead>
 <tr>
 {{- if $numbered }}
@@ -93,6 +116,9 @@
 {{- if not $columns }}{{ errorf `%s: gridtable rows mode needs a "columns" list` .Position }}{{ end -}}
 {{- if not $rows }}{{ errorf `%s: gridtable rows mode needs a "rows" list` .Position }}{{ end -}}
 <table class="grid">
+{{- with $caption }}
+<caption{{ with $captionClass }} class="{{ . }}"{{ end }}>{{ . | $.Page.RenderString }}</caption>
+{{- end }}
 <thead>
 <tr>
 {{- range $columns }}
@@ -102,10 +128,21 @@
 </thead>
 <tbody>
 {{- range $rows }}
-<tr>
-{{- range . -}}
+{{- $rowClass := "" -}}
+{{- $cells := . -}}
+{{- if reflect.IsMap . -}}
+{{- $rowClass = index . "class" | default "" -}}
+{{- $cells = index . "cells" -}}
+{{- if not $cells }}{{ errorf `%s: gridtable row map needs a "cells" list` $.Position }}{{ end -}}
+{{- end -}}
+<tr{{ with $rowClass }} class="{{ . }}"{{ end }}>
+{{- range $cells -}}
 {{- if isset . "seed" -}}
 <td><div class="seed">{{ index . "seed" }}</div></td>
+{{- else if isset . "seedmono" -}}
+<td><div class="seedmono">{{ index . "seedmono" }}</div></td>
+{{- else if isset . "label" -}}
+<td><div class="label">{{ index . "label" }}</div></td>
 {{- else -}}
 <td><input type="text" data-key="{{ index . "key" }}"{{ with index . "aria" }} aria-label="{{ . }}"{{ end }}></td>
 {{- end -}}

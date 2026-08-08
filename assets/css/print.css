@@ -38,7 +38,8 @@
     border-radius: 0;
   }
 
-  .meta, .callout, .cmd-table, .grid, .bottom-submit {
+  .meta, .callout, .concept, .cmd-table, .grid, .bottom-submit,
+  .safety, .widget-step, .calc-box {
     break-inside: avoid;
   }
 
@@ -58,14 +59,24 @@
     color: #3c7a3c !important;
   }
 
-  .cmd-table th, .grid th {
+  .code .hl {
+    color: #8a6d22 !important;
+  }
+
+  .cmd-table th, .grid th, .concept .chead {
     background: var(--navy) !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
+  .grid tr.blind td, .grid tr.blind td .label {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
   /* show typed values cleanly in print */
-  .answer, .steps input, .grid input, .namebar input, .pin-field input {
+  .answer, .steps input, .grid input, .namebar input, .pin-field input,
+  .calc-line input {
     border: none !important;
     border-bottom: 1px solid #999 !important;
     border-radius: 0 !important;

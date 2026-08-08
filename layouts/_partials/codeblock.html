@@ -2,6 +2,9 @@
   Renders a source listing: escape it, then pick out the comments so authors
   write plain code and never hand-wrap a <span class="c">.
 
+  Highlight a token with @…@ — @750@ becomes <span class="hl">750</span>.
+  Use these for the gold emphasis the original pages marked by hand.
+
   Called with: (dict "code" "…" "marker" "//" "size" "small")
 */ -}}
 {{- $marker := .marker | default "//" -}}
@@ -9,5 +12,6 @@
 {{- $escaped := .code | strings.TrimSpace | htmlEscape -}}
 {{- $pattern := printf `(?m)(%s.*)$` (strings.TrimSpace $marker) -}}
 {{- $coloured := replaceRE $pattern `<span class="c">$1</span>` $escaped -}}
+{{- $coloured = replaceRE `@([^@]+)@` `<span class="hl">$1</span>` $coloured -}}
 {{- $class := cond (ne $size "") (printf "code %s" $size) "code" -}}
 {{- return printf `<div class="%s">%s</div>` $class $coloured -}}

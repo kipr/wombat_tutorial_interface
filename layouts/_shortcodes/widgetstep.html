@@ -1,0 +1,14 @@
+{{- /*
+  A navy instructional box for controller / widget walkthroughs. Always
+  screen-only (class="no-print") — students can't do the widget on paper.
+
+    {{% widgetstep title="Watch the raw values" %}}
+    On the Wombat, open the **Motors and Sensors** widget…
+    {{% /widgetstep %}}
+*/ -}}
+<div class="widget-step no-print">
+{{- with .Get "title" }}
+<p class="ctitle">{{ . }}</p>
+{{- end }}
+{{ .Inner }}
+</div>

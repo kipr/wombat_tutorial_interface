@@ -1,8 +1,11 @@
 {{- /*
   A code listing. Comments are picked out automatically.
+  Wrap a token in @…@ to emit <span class="hl">…</span> (gold emphasis).
 
     {{< code >}} … {{< /code >}}
     {{< code size="small" comment="#" >}} … {{< /code >}}
+
+    mav(0, @750@);   // @750@ becomes the highlighted token
 */ -}}
 {{- partial "codeblock.html" (dict
       "code" .Inner
