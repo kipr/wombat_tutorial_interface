@@ -227,6 +227,7 @@ shortcode. The mapping is:
 | Original HTML | Becomes |
 |---|---|
 | `<section><h2 class="phase-head">…` | `## Phase 1 — …` (sections are automatic) |
+| `<h2 class="phase-head"><span class="pnum">PreLab N</span> …` | `## PreLab N — …` (badge without an em dash after it) |
 | `<h3 class="sub">` | `### …` |
 | `<p class="muted">` | paragraph followed by `{.muted}` |
 | `<ul class="obj">` | list followed by `{.obj}` |
@@ -258,9 +259,15 @@ shortcode. The mapping is:
 | `<p class="q">` + `<textarea>` | `{{< ask >}}` |
 | bare `<textarea class="answer">` | `{{< answer >}}` |
 | `<div class="figrow">` | `{{< figrow >}}` |
+| `<div class="figrow">` with JS kit checkboxes | `{{< figrow >}}` with per-figure `check_id` |
 | `<div class="namebar">` | `{{< namebar >}}` |
 | `<div class="filetab">` | `{{< filetab >}}` |
 | `<ul class="checklist">` | `{{< checklist >}}` |
+| `<ul class="tick">` | `{{< checklist variant="tick" >}}` |
+| `<div class="pl-sec">` … | `{{< plsec n="Part N" title="…" >}}` … `{{< endplsec >}}` |
+| `<div class="rec">` | `{{< rec >}}` |
+| `<div class="signoff">` | `{{< signoff >}}` |
+| `<div class="gate">` | `{{% gate title="…" %}}` |
 | `<div class="zonebar">` | `{{< zonebar >}}` |
 | `<div class="formula">` | `{{< formula >}}` or a `formula:` part inside `concept` |
 | `<img src="../bubble_sort.svg">` inside a concept | `image:` part inside `concept` |
@@ -722,6 +729,93 @@ Column class follows the figure count: 2 → `two`, 3 → `three`, 4 or more →
 `two` (a 2×N grid, matching originals that mark four figures as
 `figrow two`). Override with `cols="two"` or `cols="three"` when needed.
 
+PreLab kit inventories (originally built by inline `createChecklistFigure` JS)
+add an overlay checkbox with `check_id`. The `data-key` is always
+`part_<check_id>`:
+
+```markdown
+{{< figrow cols="two" >}}
+- src: kit/wambatfaceon.jpg
+  alt: "2 × KIPR Wombat controllers."
+  check_id: wombat-controller
+{{< /figrow >}}
+```
+
+### `checklist` — checkbox items with `data-key`s
+
+```markdown
+{{< checklist >}}
+- key: p5_test_tick_drive
+  label: "`Tick_Drive()` drove the measured distance"
+{{< /checklist >}}
+```
+
+PreLab pages use `ul.tick` instead of `ul.checklist`. Pass `variant="tick"`.
+A highlighted sign-off row uses `highlight: true` (emits `li.key`):
+
+```markdown
+{{< checklist variant="tick" >}}
+- key: s_sensor
+  id: s1
+  label: "**[[SENSOR|Sensors]]** — how it takes information in. I can point at two."
+{{< /checklist >}}
+```
+
+### `plsec` / `endplsec` — a PreLab part box
+
+Open/close pair so nested widgets stay at document top level (see §9.2):
+
+```markdown
+{{< plsec n="Part 1" title="Check the kit against the list" >}}
+
+Lay everything out…
+
+{{< checklist variant="tick" >}}
+- key: s_sensor
+  id: s1
+  label: "…"
+{{< /checklist >}}
+
+{{< endplsec >}}
+```
+
+### `rec` — PreLab recording fields
+
+```markdown
+{{< rec >}}
+- id: r_ip
+  key: rec_ip
+  label: Our Wombat's IP address
+  placeholder: "e.g. 192.168.x.x"
+{{< /rec >}}
+```
+
+### `signoff` — PreLab sign-off block
+
+```markdown
+{{< signoff >}}
+check:
+  key: done_all
+  id: z1
+  label: "Every box above is ticked honestly, and my teacher has seen my robot."
+fields:
+  - id: r_team
+    key: rec_team
+    label: Team name or number
+  - id: r_date
+    key: rec_date
+    label: Date completed
+{{< /signoff >}}
+```
+
+### `gate` — PreLab next / ready box
+
+```markdown
+{{% gate title="Next" %}}
+**PreLab 1 — The Toolchain.** You cannot start Lab 1.1 until…
+{{% /gate %}}
+```
+
 ### `namebar` — name and date fields
 
 ```markdown
@@ -925,20 +1019,6 @@ yourname.h
 {{< /filetab >}}
 {{< code >}}…{{< /code >}}
 ```
-
-### `checklist` — checkbox items with `data-key`s
-
-```markdown
-{{< checklist >}}
-- key: p5_test_tick_drive
-  label: "`Tick_Drive()` drove the measured distance"
-- key: p5_test_move_arm
-  label: "`move_arm()` moved the arm smoothly and safely"
-{{< /checklist >}}
-```
-
-`id` defaults to the key with underscores turned into hyphens. Labels are
-inline markdown.
 
 ---
 
@@ -1442,20 +1522,23 @@ Do not turn it off.
 
 Migrated so far:
 
-- C labs from `unit1_bigidea1` through `unit4_bigidea5`
-- `prelab1` and the C lab section index
+- C labs from `unit1_bigidea1` through `unit5_bigidea4`
+- The C lab section index (hub)
 - A draft-only C/Python syntax-highlighting fixture
 - Shared Unit 4 furniture: `calc`, `truth`, `console`, `warn`, `resetbox`,
   plus `gridtable` `seedc` / `tight` / `number_cell` support
 - Shared Unit 5 furniture: `zonebar`, `formula`, concept `formula:` / `image:`
   parts, and `static/bubble_sort.svg`
+- Shared PreLab furniture: `plsec` / `endplsec`, `rec`, `signoff`, `gate`,
+  `checklist variant="tick"`, `figrow` `check_id` overlays, PreLab heading
+  badges, and kit-checkbox CSS
 - The root `glossary.html`, generated directly from `data/glossary.yaml`, with
   search and separate entries for language variants and alternate senses
 
 Still to do:
 
-- 5 remaining C labs: `prelab0` and Unit 5 Big Ideas 1–4
-  (Unit 5 shared prep is done; migrate the four content pages next)
+- C PreLabs: `prelab0` and `prelab1` (replace the `prelab1.md` hub placeholder)
+  — shared prep above is done; migrate the two content pages next
 - 28 Python labs under `docs/Python_Labs/` — these need `track: python`, which
   selects the `python:` wording of any term that has one and makes Python the
   default Chroma lexer; follow the code conversion checklist in section 9.11

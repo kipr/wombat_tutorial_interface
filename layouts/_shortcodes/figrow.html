@@ -6,6 +6,15 @@
       alt: The template you start from.
     {{< /figrow >}}
 
+  PreLab kit inventories add an overlay checkbox with check_id. The submission
+  key is always part_<check_id>, matching the original JS-built rows:
+
+    {{< figrow cols="two" >}}
+    - src: kit/wambatfaceon.jpg
+      alt: "2 × KIPR Wombat controllers."
+      check_id: wombat-controller
+    {{< /figrow >}}
+
   `caption` defaults to `alt`. Paths are resolved against the shared img root.
 
   Column class is chosen from the figure count (2 → two, 3 → three,
@@ -27,7 +36,12 @@
 {{- with $cols }}{{ $width = printf " %s" . }}{{ end -}}
 <div class="figrow{{ $width }}">
 {{- range $figures }}
-{{- $caption := .caption | default .alt }}
+{{- $caption := .caption | default .alt -}}
+{{- $checkID := index . "check_id" -}}
+{{- if $checkID -}}
+<figure class="fig checklist-item"><div class="image-wrapper"><img src="{{ $prefix }}img/{{ .src }}" alt="{{ .alt }}" loading="lazy"><label class="image-checkbox" for="{{ $checkID }}"><input type="checkbox" id="{{ $checkID }}" data-key="part_{{ $checkID }}"><span>Have it</span></label></div><figcaption>{{ $caption }}</figcaption></figure>
+{{- else -}}
 <figure class="fig"><img src="{{ $prefix }}img/{{ .src }}" alt="{{ .alt }}" loading="lazy"><figcaption>{{ $caption }}</figcaption></figure>
+{{- end -}}
 {{- end }}
 </div>

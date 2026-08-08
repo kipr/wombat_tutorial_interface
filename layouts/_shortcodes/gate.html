@@ -1,0 +1,12 @@
+{{- /*
+  A PreLab "next / you are ready" gate box. Inner content is markdown.
+
+    {{% gate title="Next" %}}
+    **PreLab 1 — The Toolchain.** You cannot start Lab 1.1 until…
+    {{% /gate %}}
+*/ -}}
+{{- $title := partial "require.html" (dict "sc" . "name" "title") -}}
+<div class="gate">
+<p class="gt">{{ $title }}</p>
+{{ .Inner }}
+</div>

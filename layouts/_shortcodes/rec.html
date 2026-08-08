@@ -1,0 +1,29 @@
+{{- /*
+  A PreLab recording grid (.rec) — labelled text inputs for values students
+  must keep (IP address, team name, date, etc.).
+
+    {{< rec >}}
+    - id: r_ip
+      key: rec_ip
+      label: Our Wombat's IP address
+      placeholder: "e.g. 192.168.x.x"
+    - id: r_name
+      key: rec_name
+      label: Our Wombat's name or number
+    {{< /rec >}}
+
+  Required per field: id, key, label. Optional: placeholder.
+*/ -}}
+{{- $fields := .Inner | transform.Unmarshal -}}
+{{- if not $fields }}{{ errorf `%s: rec needs a YAML list of fields` .Position }}{{ end -}}
+<div class="rec">
+{{- range $fields }}
+{{- $id := index . "id" -}}
+{{- $key := index . "key" -}}
+{{- $label := index . "label" -}}
+{{- if not $id }}{{ errorf `%s: rec field needs an "id"` $.Position }}{{ end -}}
+{{- if not $key }}{{ errorf `%s: rec field %q needs a "key"` $.Position $id }}{{ end -}}
+{{- if not $label }}{{ errorf `%s: rec field %q needs a "label"` $.Position $id }}{{ end -}}
+<label for="{{ $id }}">{{ $label }}</label><input type="text" id="{{ $id }}" data-key="{{ $key }}"{{ with index . "placeholder" }} placeholder="{{ . }}"{{ end }}>
+{{- end }}
+</div>
