@@ -1,0 +1,6 @@
+{{- $key := index .field "key" -}}
+{{- $label := index .field "label" -}}
+{{- if not $key }}{{ errorf "%s: text input needs a key" .position }}{{ end -}}
+{{- if not $label }}{{ errorf "%s: text input %q needs a label" .position $key }}{{ end -}}
+{{- $id := replace $key "_" "-" -}}
+<label for="{{ $id }}">{{ $label }}</label><input type="text" id="{{ $id }}" data-key="{{ $key }}"{{ with index .field "placeholder" }} placeholder="{{ . }}"{{ end }}{{ with index .field "value" }} value="{{ . }}"{{ end }}{{ if .autocompleteOff }} autocomplete="off"{{ end }}>

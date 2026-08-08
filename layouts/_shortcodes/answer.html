@@ -1,4 +1,4 @@
 {{- /* A standalone answer box, for prompts written as ordinary prose or a list. */ -}}
 {{- $key := partial "require.html" (dict "sc" . "name" "key") -}}
 {{- $label := partial "require.html" (dict "sc" . "name" "label") -}}
-<textarea class="answer{{ with .Get "size" }} {{ . }}{{ end }}" data-key="{{ $key }}" aria-label="{{ $label }}"{{ with .Get "placeholder" }} placeholder="{{ . }}"{{ end }}{{ with .Get "style" }} style="{{ . | safeCSS }}"{{ end }}></textarea>
+{{- partial "textarea.html" (dict "key" $key "label" $label "placeholder" (.Get "placeholder")) -}}

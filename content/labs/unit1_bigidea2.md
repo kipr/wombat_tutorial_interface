@@ -154,7 +154,7 @@ Before writing any code, decompose Mission 2 into its smallest independent piece
 
 For each sub-task, note what must happen first, and whether you could test it on its own. The first row is filled in as an example.
 
-{{< gridtable count=5 prefix="p3_dep" >}}
+{{< repeattable count=5 prefix="p3_dep" >}}
 - head: Sub-Task
   key: task
   width: 36%
@@ -167,13 +167,13 @@ For each sub-task, note what must happen first, and whether you could test it on
   key: testalone
   width: 24%
   example: "Yes"
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 ### Step 3 — Name Your Functions
 
 Each sub-task should become its own function. Name them here before you write any code. Good function names describe exactly what the function does. The first row is an example.
 
-{{< gridtable count=5 prefix="p3_fn" >}}
+{{< repeattable count=5 prefix="p3_fn" >}}
 - head: Function Name
   key: name
   width: 30%
@@ -186,7 +186,7 @@ Each sub-task should become its own function. Name them here before you write an
   key: effect
   width: 24%
   example: Robot at the cube
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p3_uncertain_fn" label="Most uncertain function" >}}Look at your function list. Which function are you most uncertain about? What specifically makes it hard?{{< /ask >}}
 
@@ -252,7 +252,7 @@ int main() {
 
 Complete one row when you finish building and testing each function. Do not move to the next function until the current one passes 3 runs in a row.
 
-{{< gridtable count=6 prefix="build" label="Build" >}}
+{{< repeattable count=6 prefix="build" >}}
 - head: Function Name
   key: name
   width: 26%
@@ -268,7 +268,7 @@ Complete one row when you finish building and testing each function. Do not move
   width: 24%
 - head: How you fixed it
   key: fix
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 ## Phase 5 — Integrate
 
@@ -282,7 +282,10 @@ If function B fails after function A, the problem is usually function A — it l
 
 ### Integration Trial Log
 
-{{< gridtable count=4 prefix="integ" label="Integration" numbered=true number_head="Trial" >}}
+{{< repeattable count=4 prefix="integ" >}}
+- kind: number
+  head: "Trial"
+  width: "7%"
 - head: Last function reached
   key: reached
   width: 24%
@@ -294,9 +297,9 @@ If function B fails after function A, the problem is usually function A — it l
   width: 22%
 - head: Fix applied
   key: fix
-{{< /gridtable >}}
+{{< /repeattable >}}
 
-{{< ask key="p5_integration_fail" label="Integration failure description" size="tall" >}}Did any function that passed alone fail during integration? Describe exactly what happened and why.{{< /ask >}}
+{{< ask key="p5_integration_fail" label="Integration failure description" >}}Did any function that passed alone fail during integration? Describe exactly what happened and why.{{< /ask >}}
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
@@ -309,7 +312,7 @@ A self-driving car doesn't "drive." It runs hundreds of sub-systems at once: one
 Read each scenario. Think it through, then write your answer.
 {.muted}
 
-{{< ask key="p6_search_decomp" label="Search engine decomposition" size="tall" >}}A search engine returns results in under a second for any query ever typed. Decompose this: what are at least four distinct sub-problems the system must solve to do this?{{< /ask >}}
+{{< ask key="p6_search_decomp" label="Search engine decomposition" >}}A search engine returns results in under a second for any query ever typed. Decompose this: what are at least four distinct sub-problems the system must solve to do this?{{< /ask >}}
 
 {{< ask key="p6_abstraction" label="Abstraction question" >}}Each sub-task function you wrote is an abstraction — once it works, you call it by name without thinking about the `drive_forward()` and `turn_right()` steps inside it. Pick one of your functions: what details does it hide from the rest of your program? Why does hiding those details make your code better?{{< /ask >}}
 

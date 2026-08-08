@@ -38,9 +38,8 @@
     border-radius: 0;
   }
 
-  .meta, .callout, .concept, .cmd-table, .grid, .bottom-submit,
-  .safety, .widget-step, .calc-box, .calc, .warn, .reset-box, .console,
-  .truth, .checklist li, .zonebar {
+  .meta, .panel, .concept, .sheet table:not([class]), .grid, .bottom-submit,
+  .calc, .console, .truth, ul.tick li, .zonebar {
     break-inside: avoid;
   }
 
@@ -63,29 +62,49 @@
     print-color-adjust: exact;
   }
 
-  .checklist input[type="checkbox"] {
+  ul.tick li {
+    position: relative;
+  }
+
+  ul.tick input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
     border: 1px solid #666;
     border-radius: 2px;
+    box-sizing: border-box;
     width: 14px;
     height: 14px;
+    margin: 1px 0 0;
   }
 
-  .cmd-table th, .grid th, .concept .chead {
+  /* Draw the checked state as text so it survives print engines that suppress
+     native checkbox furniture or background graphics. */
+  ul.tick input[type="checkbox"]:checked + label::before {
+    content: "✓";
+    position: absolute;
+    top: 10px;
+    left: 11px;
+    width: 14px;
+    height: 14px;
+    color: #000;
+    font: 700 13px/14px sans-serif;
+    text-align: center;
+  }
+
+  .sheet table:not([class]) th, .grid th, .concept .chead {
     background: var(--navy) !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  .grid tr.blind td, .grid tr.blind td .label {
+  .grid tr.blind td, .grid tr.blind td.static-cell {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
   /* show typed values cleanly in print */
   .answer, .steps input, .grid input, .namebar input, .pin-field input,
-  .calc-line input, .calc .eq input {
+  .calc .equation input {
     border: none !important;
     border-bottom: 1px solid #999 !important;
     border-radius: 0 !important;
@@ -100,10 +119,6 @@
     border: 1px solid #ccc;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
-  }
-
-  .console .pl {
-    color: #333 !important;
   }
 
   .truth th {

@@ -142,17 +142,17 @@ columns:
     width: 50%
   - head: Obstacle to avoid?
 rows:
-  - - seed: 1 (orange)
+  - - text: 1 (orange)
     - key: p3_pom1_blocks
       aria: Pom 1 blocks
     - key: p3_pom1_obstacle
       aria: Pom 1 obstacle
-  - - seed: "2"
+  - - text: "2"
     - key: p3_pom2_blocks
       aria: Pom 2 blocks
     - key: p3_pom2_obstacle
       aria: Pom 2 obstacle
-  - - seed: "3"
+  - - text: "3"
     - key: p3_pom3_blocks
       aria: Pom 3 blocks
     - key: p3_pom3_obstacle
@@ -171,9 +171,9 @@ columns:
     width: 42%
   - head: Built from?
 rows:
-  - - seed: drive_forward()
-    - seed: Drive straight for a set time, then stop
-    - seed: motor, msleep, ao
+  - - text: drive_forward()
+    - text: Drive straight for a set time, then stop
+    - text: motor, msleep, ao
   - - key: p3_fn2_name
     - key: p3_fn2_does
     - key: p3_fn2_from
@@ -254,12 +254,12 @@ columns:
     width: 30%
   - head: Times called inside other functions
 rows:
-  - - seed: drive_forward()
+  - - text: drive_forward()
     - key: p4_df_main
       aria: drive_forward in main
     - key: p4_df_inside
       aria: drive_forward inside
-  - - seed: turn_right()
+  - - text: turn_right()
     - key: p4_tr_main
       aria: turn_right in main
     - key: p4_tr_inside
@@ -294,7 +294,10 @@ When you reuse one building block everywhere, a single weak block causes failure
 
 ### [[DEBUGGING|Debugging]] Log
 
-{{< gridtable count=4 prefix="debug" label="Debug" numbered=true number_head="Try" number_width="8%" >}}
+{{< repeattable count=4 prefix="debug" >}}
+- kind: number
+  head: "Try"
+  width: "8%"
 - head: What went wrong
   key: wrong
   width: 32%
@@ -304,7 +307,7 @@ When you reuse one building block everywhere, a single weak block causes failure
   aria: block or order
 - head: How you fixed it
   key: fix
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p5_one_fix_many" label="One fix, many places" >}}Did fixing one building block fix problems in more than one place? Describe what happened.{{< /ask >}}
 
@@ -319,7 +322,7 @@ Your pom-pushing run looked complex, but it was built from two or three simple b
 Read each scenario. Think it through, then write your answer.
 {.muted}
 
-{{< ask key="p6_decompose_complex" label="Decompose a complex task" size="tall" >}}Name a complex task a robot or app does, and break it into at least three smaller behaviors it is probably built from.{{< /ask >}}
+{{< ask key="p6_decompose_complex" label="Decompose a complex task" >}}Name a complex task a robot or app does, and break it into at least three smaller behaviors it is probably built from.{{< /ask >}}
 
 {{< ask key="p6_why_reliable" label="Why reuse is reliable" >}}You reused one building block many times. Why does building from small, tested parts make a big system more reliable than writing it all as one piece?{{< /ask >}}
 

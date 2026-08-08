@@ -6,9 +6,4 @@
     On the Wombat, open the **Motors and Sensors** widget…
     {{% /widgetstep %}}
 */ -}}
-<div class="widget-step no-print">
-{{- with .Get "title" }}
-<p class="ctitle">{{ . }}</p>
-{{- end }}
-{{ .Inner }}
-</div>
+{{- partial "panel.html" (dict "title" (.Get "title") "variant" "navy" "noprint" true "content" .Inner) -}}

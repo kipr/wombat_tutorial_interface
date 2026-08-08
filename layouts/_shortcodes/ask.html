@@ -5,9 +5,9 @@
 
     {{< ask key="p3_predict" label="Prediction" >}}What do you predict…{{< /ask >}}
     {{< ask key="p7_q1" n=1 label="Reflection 1" >}}What is an algorithm?{{< /ask >}}
-    {{< ask key="p5_fail" label="Integration failure" size="tall" >}}What happened?{{< /ask >}}
+    {{< ask key="p5_fail" label="Integration failure" >}}What happened?{{< /ask >}}
 */ -}}
 {{- $key := partial "require.html" (dict "sc" . "name" "key") -}}
 {{- $label := partial "require.html" (dict "sc" . "name" "label") -}}
 <p class="q">{{ with .Get "n" }}<span class="n">{{ . }}.</span> {{ end }}{{ .Page.RenderString .Inner }}</p>
-<textarea class="answer{{ with .Get "size" }} {{ . }}{{ end }}" data-key="{{ $key }}" aria-label="{{ $label }}"{{ with .Get "style" }} style="{{ . | safeCSS }}"{{ end }}></textarea>
+{{- partial "textarea.html" (dict "key" $key "label" $label) -}}

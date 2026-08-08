@@ -1,0 +1,2 @@
+{{- $active := eq .item.id .source.Params.nav -}}
+<a href="{{ partial "relative-url.html" (dict "source" .source "path" .item.url) }}"{{ if $active }} class="{{ .activeClass }}" aria-current="page"{{ end }}>{{ .item.name }}</a>

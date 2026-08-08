@@ -54,7 +54,7 @@ Mount one tophat sensor at the front-left, one at the front-right. Plug them in 
 You'll add these names to your [[LIBRARY|library]] as [[VARIABLE|variables]], so your code reads `analog(TOPHAT_LEFT)` instead of a bare number — much easier to understand.
 {{% /callout %}}
 
-{{< code size="small" >}}
+{{< code >}}
 // add these to your library, with your other variables
 int TOPHAT_LEFT  = 0;    // front-left tophat sensor on analog port 0
 int TOPHAT_RIGHT = 1;    // front-right tophat sensor on analog port 1
@@ -190,13 +190,16 @@ See how clean this reads? Three lines, three clear actions — because `square_u
 
 ### Run Log
 
-{{< gridtable count=4 prefix="run" label="Run" numbered=true number_head="Try" number_width="8%" >}}
+{{< repeattable count=4 prefix="run" >}}
+- kind: number
+  head: "Try"
+  width: "8%"
 - head: What happened (squared line 1? cleared the line? squared line 2?)
   key: what
   width: 46%
 - head: What you changed
   key: changed
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p5_skip" label="Skip distance" >}}Did your `Drive(3.0)` clear the first line cleanly? If the second square-up started while a sensor was still on the first line, what would go wrong — and how would you fix the skip distance?{{< /ask >}}
 

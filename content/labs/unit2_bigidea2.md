@@ -134,7 +134,7 @@ columns:
     width: 60%
   - head: msleep time to try (ms)
 rows:
-  - - seed: Drive forward ~6 inches
+  - - text: Drive forward ~6 inches
     - key: p3_forward_ms
       aria: Forward time
 {{< /gridtable >}}
@@ -198,7 +198,7 @@ void back_until_pressed() {
 
 Run five trials. After each, measure the distance the robot traveled forward, and note whether it stayed straight or drifted (and which way).
 
-{{< gridtable caption="Version A · Coast" caption_class="a" >}}
+{{< gridtable caption="Version A · Coast" >}}
 columns:
   - head: Trial
     width: 14%
@@ -206,19 +206,19 @@ columns:
     width: 43%
   - head: Straight, or drifted? (which way?)
 rows:
-  - - seed: "1"
+  - - text: "1"
     - key: a_t1_dist
     - key: a_t1_drift
-  - - seed: "2"
+  - - text: "2"
     - key: a_t2_dist
     - key: a_t2_drift
-  - - seed: "3"
+  - - text: "3"
     - key: a_t3_dist
     - key: a_t3_drift
-  - - seed: "4"
+  - - text: "4"
     - key: a_t4_dist
     - key: a_t4_drift
-  - - seed: "5"
+  - - text: "5"
     - key: a_t5_dist
     - key: a_t5_drift
 {{< /gridtable >}}
@@ -227,7 +227,7 @@ rows:
 
 Change only the stop. Run five more trials and record the same way.
 
-{{< gridtable caption="Version B · Brake" caption_class="b" >}}
+{{< gridtable caption="Version B · Brake" >}}
 columns:
   - head: Trial
     width: 14%
@@ -235,19 +235,19 @@ columns:
     width: 43%
   - head: Straight, or drifted? (which way?)
 rows:
-  - - seed: "1"
+  - - text: "1"
     - key: b_t1_dist
     - key: b_t1_drift
-  - - seed: "2"
+  - - text: "2"
     - key: b_t2_dist
     - key: b_t2_drift
-  - - seed: "3"
+  - - text: "3"
     - key: b_t3_dist
     - key: b_t3_drift
-  - - seed: "4"
+  - - text: "4"
     - key: b_t4_dist
     - key: b_t4_drift
-  - - seed: "5"
+  - - text: "5"
     - key: b_t5_dist
     - key: b_t5_drift
 {{< /gridtable >}}
@@ -264,16 +264,16 @@ columns:
     width: 30%
   - head: Version B (Brake)
 rows:
-  - - label: Shortest distance
+  - - text: Shortest distance
     - key: an_a_min
     - key: an_b_min
-  - - label: Longest distance
+  - - text: Longest distance
     - key: an_a_max
     - key: an_b_max
-  - - label: Spread (longest − shortest)
+  - - text: Spread (longest − shortest)
     - key: an_a_spread
     - key: an_b_spread
-  - - label: How many trials drifted?
+  - - text: How many trials drifted?
     - key: an_a_drifts
     - key: an_b_drifts
 {{< /gridtable >}}

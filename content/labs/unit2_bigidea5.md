@@ -120,28 +120,28 @@ columns:
     width: 28%
   - head: Jitter? notes
 rows:
-  - - seed: "1"
-    - seedmono: "750 / 300"
+  - - text: "1"
+    - text: "750 / 300"
     - key: s1_t1_rating
     - key: s1_t1_notes
-  - - seed: "2"
-    - seedmono: "900 / 450"
+  - - text: "2"
+    - text: "900 / 450"
     - key: s1_t2_rating
     - key: s1_t2_notes
-  - - seed: "3"
-    - seedmono: "1050 / 600"
+  - - text: "3"
+    - text: "1050 / 600"
     - key: s1_t3_rating
     - key: s1_t3_notes
-  - - seed: "4"
-    - seedmono: "1200 / 750"
+  - - text: "4"
+    - text: "1200 / 750"
     - key: s1_t4_rating
     - key: s1_t4_notes
-  - - seed: "5"
-    - seedmono: "1350 / 900"
+  - - text: "5"
+    - text: "1350 / 900"
     - key: s1_t5_rating
     - key: s1_t5_notes
-  - - seed: "6"
-    - seedmono: "1500 / 1050"
+  - - text: "6"
+    - text: "1500 / 1050"
     - key: s1_t6_rating
     - key: s1_t6_notes
 {{< /gridtable >}}
@@ -162,28 +162,28 @@ columns:
     width: 28%
   - head: Jitter? notes
 rows:
-  - - seed: "1"
-    - seedmono: "750 / 150"
+  - - text: "1"
+    - text: "750 / 150"
     - key: s2_t1_rating
     - key: s2_t1_notes
-  - - seed: "2"
-    - seedmono: "900 / 300"
+  - - text: "2"
+    - text: "900 / 300"
     - key: s2_t2_rating
     - key: s2_t2_notes
-  - - seed: "3"
-    - seedmono: "1050 / 450"
+  - - text: "3"
+    - text: "1050 / 450"
     - key: s2_t3_rating
     - key: s2_t3_notes
-  - - seed: "4"
-    - seedmono: "1200 / 600"
+  - - text: "4"
+    - text: "1200 / 600"
     - key: s2_t4_rating
     - key: s2_t4_notes
-  - - seed: "5"
-    - seedmono: "1350 / 750"
+  - - text: "5"
+    - text: "1350 / 750"
     - key: s2_t5_rating
     - key: s2_t5_notes
-  - - seed: "6"
-    - seedmono: "1500 / 900"
+  - - text: "6"
+    - text: "1500 / 900"
     - key: s2_t6_rating
     - key: s2_t6_notes
 {{< /gridtable >}}
@@ -194,15 +194,18 @@ rows:
 
 Now you're the engineer. Using what your two series showed, pick your own fast and slow `mav` values and try to get the smoothest, most reliable follow you can. Test, adjust, test again. Your goal: the best line-follow on your robot.
 
-{{< gridtable count=5 prefix="tune" label="Tune" numbered=true number_head="Try" number_width="10%" >}}
+{{< repeattable count=5 prefix="tune" >}}
+- kind: number
+  head: "Try"
+  width: "10%"
 - head: Your fast / slow (mav)
   key: speeds
   width: 30%
 - head: How well did it follow?
   key: result
-{{< /gridtable >}}
+{{< /repeattable >}}
 
-{{< ask key="p5_best_setting" label="Best setting" size="tall" >}}What was your best fast/slow setting, and why do you think it worked best on your robot?{{< /ask >}}
+{{< ask key="p5_best_setting" label="Best setting" >}}What was your best fast/slow setting, and why do you think it worked best on your robot?{{< /ask >}}
 
 {{< ask key="p5_why_different" label="Why different robots differ" >}}Your best numbers are probably different from a neighbor's. Why might the same settings work differently on two robots?{{< /ask >}}
 

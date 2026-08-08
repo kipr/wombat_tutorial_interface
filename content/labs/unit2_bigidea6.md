@@ -82,19 +82,19 @@ columns:
     width: 40%
   - head: Notes
 rows:
-  - - seedmono: "12 in"
+  - - text: "12 in"
     - key: et_12in
     - key: et_12in_note
-  - - seedmono: "10 in"
+  - - text: "10 in"
     - key: et_10in
     - key: et_10in_note
-  - - seedmono: "8 in"
+  - - text: "8 in"
     - key: et_8in
     - key: et_8in_note
-  - - seedmono: "6 in"
+  - - text: "6 in"
     - key: et_6in
     - key: et_6in_note
-  - - seedmono: "4 in"
+  - - text: "4 in"
     - key: et_4in
     - key: et_4in_note
 {{< /gridtable >}}
@@ -115,17 +115,17 @@ columns:
     width: 40%
   - head: Acting normal?
 rows:
-  - - seedmono: "3 in"
+  - - text: "3 in"
     - key: et_3in
     - key: et_3in_ok
   - class: blind
     cells:
-      - label: "2 in (blind spot)"
+      - text: "2 in (blind spot)"
       - key: et_2in
       - key: et_2in_ok
   - class: blind
     cells:
-      - label: "1 in (blind spot)"
+      - text: "1 in (blind spot)"
       - key: et_1in
       - key: et_1in_ok
 {{< /gridtable >}}
@@ -136,15 +136,16 @@ rows:
 
 You want the robot to stop with the object close — but **before** it enters the untrustworthy blind spot. A safe target is around **4 inches**: close enough to count as "reached the object," but safely outside the bad zone under 3 inches.
 
-{{< calcbox title="My stop value" >}}
+{{< calc title="My stop value" noprint=true >}}
 - prose: |
     From your Phase 2 table, copy the ET value you measured at about 4 inches. That's the value your loop will watch for.
-- text: "ET value at ~4 in ="
-- input:
-    key: stop_value
-    aria: stop value
-    placeholder: stop_value
-{{< /calcbox >}}
+- equation:
+  - text: "ET value at ~4 in ="
+  - input:
+      key: stop_value
+      aria: stop value
+      placeholder: stop_value
+{{< /calc >}}
 
 {{% callout title="Why outside the blind spot" variant="gold" %}}
 If you set your stop value too high (too close), the robot would have to drive into the blind spot to reach it — where the reading misbehaves and the robot might never see the right number. Stopping around 4 inches keeps you on the part of the curve you can trust.
@@ -231,13 +232,16 @@ If the steering goes the wrong way, flip the two `mav` [[BLOCK|blocks]] (from Bi
 
 ### Test Log
 
-{{< gridtable count=4 prefix="test" label="Test" numbered=true number_head="Try" number_width="8%" >}}
+{{< repeattable count=4 prefix="test" >}}
+- kind: number
+  head: "Try"
+  width: "8%"
 - head: What you changed
   key: changed
   width: 30%
 - head: Did it follow the line AND stop at the object?
   key: result
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 ### [[CHECKLIST|Checklist]]
 

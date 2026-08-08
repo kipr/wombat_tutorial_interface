@@ -1,179 +1,47 @@
-{{- /*
-  A repeating table of answer boxes: trial logs, build logs, planning grids.
-  Rows are emitted at build time rather than injected by script, so the table
-  prints correctly and works without JavaScript.
-
-  Count/prefix mode — identical columns, generated keys:
-
-    {{< gridtable count=6 prefix="trial" label="Trial" numbered=true >}}
-    - head: What you changed
-      key: changed
-      width: 16%
-    - head: What you observed
-      key: observed
-    {{< /gridtable >}}
-
-  Rows mode — per-row seeds and custom data-keys (omit count):
-
-    {{< gridtable caption="Version A · Coast" caption_class="a" >}}
-    columns:
-      - head: Person
-        width: 20%
-      - head: Ticket says
-        width: 40%
-      - head: Left or Right?
-    rows:
-      - - seed: "1"
-        - seed: VIP
-        - key: p1_person1
-          aria: Person 1 direction
-      - - seedmono: "750 / 300"
-        - key: s1_t1_rating
-      - - label: Shortest distance
-        - key: an_a_min
-      - class: blind
-        cells:
-          - label: "2 in (blind spot)"
-          - key: et_2in
-    {{< /gridtable >}}
-
-  Cell kinds in rows mode: seed, seedmono, seedc, label, num, or
-  key(+aria, +placeholder, +align).
-  A row may be a bare cell list, or {class, cells:[…]} for a row class.
-
-  data-key values in count mode follow <prefix><n>_<key>.
-
-  Parameters (both modes)
-    caption         optional <caption> text
-    caption_class   optional class on the caption (e.g. "a" / "b")
-    tight           true → class="grid tight" (compact seed/seedc padding)
-
-  Parameters (count mode)
-    count         number of answer rows
-    prefix        data-key prefix
-    label         aria-label prefix; omit for tables that carry no aria labels
-    numbered      prepend a row-number column
-    number_head   heading for that column (default "Trial")
-    number_width  width style for that column (default 7%)
-    number_cell   "num" → <td class="num">; omit for centered bold inline style
-
-  Per-column keys (count mode)
-    head, key, width
-    example     value for an extra, fully worked example row above the answers
-    seed        value shown in place of an input in the first answer row
-    aria        override the aria-label suffix (default is the key); full label
-                is still "<label> <n> <aria>"
-    align       optional text-align on the input (e.g. "center")
-
-  Rows mode YAML
-    columns[].head / width
-    rows[]        cell list, or {class, cells:[…]}
-    rows[][]      each cell is {seed}, {seedmono}, {seedc}, {label}, {num},
-                  or {key, aria?, placeholder?, align?}
-    When every columns[].head is empty, thead is omitted and widths are
-    applied via <colgroup> (caption + label/input tables with no headers).
-*/ -}}
+{{- /* Explicit rows and columns. Static cells use text; input cells use key. */ -}}
 {{- $data := .Inner | transform.Unmarshal -}}
-{{- $caption := .Get "caption" -}}
-{{- $captionClass := .Get "caption_class" -}}
-{{- $tight := eq (printf "%v" (.Get "tight")) "true" -}}
-{{- if and (not $caption) (reflect.IsMap $data) }}{{ $caption = index $data "caption" }}{{ end -}}
-{{- if and (not $captionClass) (reflect.IsMap $data) }}{{ $captionClass = index $data "caption_class" }}{{ end -}}
-{{- if and (not $tight) (reflect.IsMap $data) }}{{ $tight = eq (printf "%v" (index $data "tight")) "true" }}{{ end -}}
-{{- $gridClass := cond $tight "grid tight" "grid" -}}
-{{- if .Get "count" -}}
-{{- $count := int (partial "require.html" (dict "sc" . "name" "count")) -}}
-{{- $prefix := partial "require.html" (dict "sc" . "name" "prefix") -}}
-{{- $label := .Get "label" -}}
-{{- $numbered := eq (printf "%v" (.Get "numbered")) "true" -}}
-{{- $numberCell := .Get "number_cell" | default "" -}}
-{{- $columns := $data -}}
-{{- $hasExample := false -}}
-{{- range $columns }}{{ if .example }}{{ $hasExample = true }}{{ end }}{{ end -}}
-<table class="{{ $gridClass }}">
-{{- with $caption }}
-<caption{{ with $captionClass }} class="{{ . }}"{{ end }}>{{ . | $.Page.RenderString }}</caption>
-{{- end }}
-<thead>
-<tr>
-{{- if $numbered }}
-<th style="width:{{ .Get "number_width" | default "7%" }}">{{ .Get "number_head" | default "Trial" }}</th>
-{{- end }}
-{{- range $columns }}
-<th{{ with .width }} style="width:{{ . }}"{{ end }}>{{ .head | $.Page.RenderString }}</th>
-{{- end }}
-</tr>
-</thead>
-<tbody>
-{{- if $hasExample }}
-<tr>{{ if $numbered }}<td></td>{{ end }}{{ range $columns }}<td><div class="seed">{{ .example }}</div></td>{{ end }}</tr>
-{{- end }}
-{{- range $n := seq 1 $count }}
-<tr>{{ if $numbered }}{{ if eq $numberCell "num" }}<td class="num">{{ $n }}</td>{{ else }}<td style="text-align:center;font-weight:600">{{ $n }}</td>{{ end }}{{ end }}
-{{- range $col := $columns -}}
-{{- if and (eq $n 1) $col.seed -}}
-<td><div class="seed">{{ $col.seed }}</div></td>
-{{- else -}}
-<td><input type="text" data-key="{{ $prefix }}{{ $n }}_{{ $col.key }}"{{ if $label }} aria-label="{{ $label }} {{ $n }} {{ $col.aria | default $col.key }}"{{ end }}{{ with $col.align }} style="text-align:{{ . }}"{{ end }}></td>
-{{- end -}}
-{{- end -}}
-</tr>
-{{- end }}
-</tbody>
-</table>
-{{- else -}}
 {{- $columns := index $data "columns" -}}
 {{- $rows := index $data "rows" -}}
-{{- if not $columns }}{{ errorf `%s: gridtable rows mode needs a "columns" list` .Position }}{{ end -}}
-{{- if not $rows }}{{ errorf `%s: gridtable rows mode needs a "rows" list` .Position }}{{ end -}}
+{{- if not $columns }}{{ errorf `%s: gridtable needs a "columns" list` .Position }}{{ end -}}
+{{- if not $rows }}{{ errorf `%s: gridtable needs a "rows" list` .Position }}{{ end -}}
 {{- $showHead := false -}}
-{{- range $columns }}{{ with .head }}{{ if ne (printf "%v" .) "" }}{{ $showHead = true }}{{ end }}{{ end }}{{ end -}}
-<table class="{{ $gridClass }}">
-{{- with $caption }}
-<caption{{ with $captionClass }} class="{{ . }}"{{ end }}>{{ . | $.Page.RenderString }}</caption>
+{{- range $columns }}{{ if ne (printf "%v" (.head | default "")) "" }}{{ $showHead = true }}{{ end }}{{ end -}}
+<table class="grid">
+{{- with .Get "caption" }}
+<caption>{{ . | $.Page.RenderString }}</caption>
 {{- end }}
-{{- if not $showHead }}
-<colgroup>
+{{- if $showHead }}
+<thead><tr>
 {{- range $columns }}
-<col{{ with .width }} style="width:{{ . }}"{{ end }}>
+<th{{ with .width }} style="width:{{ . }}"{{ end }}>{{ if eq (printf "%v" .head) "#" }}#{{ else }}{{ .head | $.Page.RenderString }}{{ end }}</th>
 {{- end }}
-</colgroup>
+</tr></thead>
 {{- else }}
-<thead>
-<tr>
-{{- range $columns }}
-<th{{ with .width }} style="width:{{ . }}"{{ end }}>{{ .head | $.Page.RenderString }}</th>
-{{- end }}
-</tr>
-</thead>
+<colgroup>
+{{- range $columns }}<col{{ with .width }} style="width:{{ . }}"{{ end }}>{{ end }}
+</colgroup>
 {{- end }}
 <tbody>
 {{- range $rows }}
-{{- $rowClass := "" -}}
-{{- $cells := . -}}
-{{- if reflect.IsMap . -}}
-{{- $rowClass = index . "class" | default "" -}}
-{{- $cells = index . "cells" -}}
-{{- if not $cells }}{{ errorf `%s: gridtable row map needs a "cells" list` $.Position }}{{ end -}}
-{{- end -}}
+  {{- $rowClass := "" -}}
+  {{- $cells := . -}}
+  {{- if reflect.IsMap . -}}
+    {{- $rowClass = index . "class" | default "" -}}
+    {{- $cells = index . "cells" -}}
+    {{- if not $cells }}{{ errorf `%s: gridtable row map needs a "cells" list` $.Position }}{{ end -}}
+  {{- end -}}
+  {{- $rowLabel := "" -}}
+  {{- range $cells }}
+    {{- if and (eq $rowLabel "") (isset . "text") }}{{ $rowLabel = printf "%v" (index . "text") }}{{ end -}}
+  {{- end -}}
 <tr{{ with $rowClass }} class="{{ . }}"{{ end }}>
-{{- range $cells -}}
-{{- if isset . "seed" -}}
-<td><div class="seed">{{ index . "seed" }}</div></td>
-{{- else if isset . "seedmono" -}}
-<td><div class="seedmono">{{ index . "seedmono" }}</div></td>
-{{- else if isset . "seedc" -}}
-<td><div class="seedc">{{ index . "seedc" }}</div></td>
-{{- else if isset . "label" -}}
-<td><div class="label">{{ index . "label" }}</div></td>
-{{- else if isset . "num" -}}
-<td class="num">{{ index . "num" }}</td>
-{{- else -}}
-<td><input type="text" data-key="{{ index . "key" }}"{{ with index . "aria" }} aria-label="{{ . }}"{{ end }}{{ with index . "placeholder" }} placeholder="{{ . }}"{{ end }}{{ with index . "align" }} style="text-align:{{ . }}"{{ end }}></td>
-{{- end -}}
-{{- end -}}
+{{- range $index, $cell := $cells }}
+  {{- $column := cond (lt $index (len $columns)) (index $columns $index) dict -}}
+  {{- partial "table-cell.html" (dict
+    "cell" $cell "column" $column "rowLabel" $rowLabel
+    "page" $.Page "position" $.Position) -}}
+{{- end }}
 </tr>
 {{- end }}
 </tbody>
 </table>
-{{- end -}}

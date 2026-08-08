@@ -92,15 +92,15 @@ columns:
     width: 45%
   - head: Total turn
 rows:
-  - - num: A
-    - seedmono: "for (i=0; i<4; i++) → 90° each"
-    - seed: "4 × 90° = 360°"
-  - - num: B
-    - seedmono: "for (i=0; i<8; i++) → 45° each"
-    - seed: "8 × 45° = 360°"
-  - - num: C
-    - seedmono: "for (i=0; i<2; i++) → 180° each"
-    - seed: "2 × 180° = 360°"
+  - - text: A
+    - text: "for (i=0; i<4; i++) → 90° each"
+    - text: "4 × 90° = 360°"
+  - - text: B
+    - text: "for (i=0; i<8; i++) → 45° each"
+    - text: "8 × 45° = 360°"
+  - - text: C
+    - text: "for (i=0; i<2; i++) → 180° each"
+    - text: "2 × 180° = 360°"
 {{< /gridtable >}}
 
 {{< concept "A test spin built with a for loop (uses mav)" >}}
@@ -131,13 +131,13 @@ columns:
     width: 33%
   - head: "ticks ÷ 360 = ticks_per_degree"
 rows:
-  - - seed: "A — four 90° turns"
+  - - text: "A — four 90° turns"
     - key: cal_a_ticks
     - key: cal_a_tpd
-  - - seed: "B — eight 45° turns"
+  - - text: "B — eight 45° turns"
     - key: cal_b_ticks
     - key: cal_b_tpd
-  - - seed: "C — two 180° turns"
+  - - text: "C — two 180° turns"
     - key: cal_c_ticks
     - key: cal_c_tpd
 {{< /gridtable >}}
@@ -232,16 +232,16 @@ columns:
     width: 34%
   - head: Actual angle turned (degrees)
 rows:
-  - - num: "1"
-    - seed: "Turn('R', 90.0)"
+  - - text: "1"
+    - text: "Turn('R', 90.0)"
     - key: ang_t1
-  - - num: "2"
-    - seed: "Turn('L', 45.0)"
+  - - text: "2"
+    - text: "Turn('L', 45.0)"
     - key: ang_t2
-  - - num: "3"
+  - - text: "3"
     - key: ang_t3_call
     - key: ang_t3_act
-  - - num: "4"
+  - - text: "4"
     - key: ang_t4_call
     - key: ang_t4_act
 {{< /gridtable >}}

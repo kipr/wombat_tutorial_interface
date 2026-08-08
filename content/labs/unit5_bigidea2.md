@@ -30,7 +30,7 @@ meta:
 
 Every `Drive()` you've written so far does the same thing the whole way: full speed, then slam to a stop the instant the [[TICK|tick]] count is reached. That works, but think about how a car actually drives — it eases onto the gas, cruises, then eases onto the brake well before the stop sign. It never slams from 60 to 0 in one instant. Today you rebuild `Drive()` to do the same thing: ease on for the first few ticks, cruise in the middle, and ease off for the last several hundred ticks before the target — using a new tool, the **else if chain**, to decide which of those three zones the robot is in right now.
 
-{{% callout title="The Big Idea of This Unit" variant="red" %}}
+{{% callout title="The Big Idea of This Unit" %}}
 A robust system doesn't treat "far from the goal" and "about to arrive" the same way. It measures how close it is and adjusts its behavior smoothly — proportional response instead of all-or-nothing.
 {{% /callout %}}
 
@@ -83,13 +83,6 @@ Here's why this mission is a perfect fit for today: Botguy isn't fixed to the fl
 A car doesn't drive at one constant speed and then slam the brakes. It **eases onto the gas** leaving a stop sign, **cruises** once it's up to speed, and **eases onto the brake** well before the next stop. Your `Drive()` is going to do the same thing, split into three zones based on tick position:
 
 {{< zonebar >}}
-- class: accel
-  lines: ["Accelerate", "first 50 ticks"]
-- class: cruise
-  lines: ["Cruise", "full speed"]
-- class: decel
-  lines: ["Decelerate", "final 500 ticks"]
-{{< /zonebar >}}
 
 Exactly one of these zones applies at any instant while the robot is driving — which makes this a textbook `if` / `else if` / `else` chain.
 
@@ -110,10 +103,7 @@ Exactly one of these zones applies at any instant while the robot is driving —
 
 Replace your single fixed-speed loop with the three-zone `if` / `else if` / `else` chain. This checks the zone **every trip through the loop**, so speed updates continuously as ticks change.
 
-{{< filetab >}}
-yourname.h
-{{< /filetab >}}
-{{< code >}}
+{{< code filename="yourname.h" >}}
 void Drive(double inches) {
     int desired_ticks = inches * ticks_per_inch;
     int current_ticks;
@@ -164,24 +154,24 @@ columns:
     width: 16%
   - head: Why you changed it
 rows:
-  - - label: Accel slope (m)
-    - seed: "12"
+  - - text: Accel slope (m)
+    - text: "12"
     - key: p5_accel_m
     - key: p5_accel_m_why
-  - - label: Accel base (b)
-    - seed: "150"
+  - - text: Accel base (b)
+    - text: "150"
     - key: p5_accel_b
     - key: p5_accel_b_why
-  - - label: Decel slope (m)
-    - seed: "2"
+  - - text: Decel slope (m)
+    - text: "2"
     - key: p5_decel_m
     - key: p5_decel_m_why
-  - - label: Decel base (b)
-    - seed: "150"
+  - - text: Decel base (b)
+    - text: "150"
     - key: p5_decel_b
     - key: p5_decel_b_why
-  - - label: Cruise speed
-    - seed: "750"
+  - - text: Cruise speed
+    - text: "750"
     - key: p5_cruise
     - key: p5_cruise_why
 {{< /gridtable >}}
@@ -192,7 +182,10 @@ rows:
 
 Using your tuned `Drive()`, drive to Botguy and move him into the loading zone. Run it several times.
 
-{{< gridtable count=4 prefix="run" label="Run" numbered=true number_head="Run" number_width="10%" caption="Run it 4+ times — how consistent is the final position?" >}}
+{{< repeattable count=4 prefix="run" caption="Run it 4+ times — how consistent is the final position?" >}}
+- kind: number
+  head: "Run"
+  width: "10%"
 - head: Botguy fully in the loading zone?
   key: botguy
   width: 35%
@@ -200,13 +193,13 @@ Using your tuned `Drive()`, drive to Botguy and move him into the loading zone. 
 - head: Did the stop feel smooth, or still abrupt?
   key: smooth
   aria: smoothness
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p6_consistency" label="Mission consistency" >}}Compare this to a flat-speed `Drive()` from Unit 4. Was Botguy's final position more consistent with easing on/off? Why would a reliability engineer care about that consistency more than raw speed?{{< /ask >}}
 
 ## Phase 7 — Connect &amp; Reflect
 
-{{% callout title="AI Literacy Thread" variant="red" %}}
+{{% callout title="AI Literacy Thread" %}}
 Reliable systems respond proportionally to how close they are to a goal, instead of acting the same way right up until they suddenly stop.
 {{% /callout %}}
 

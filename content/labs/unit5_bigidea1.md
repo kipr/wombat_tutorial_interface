@@ -30,7 +30,7 @@ meta:
 
 The Long Run taught you that error piles up over a mission, and that square-ups and backward touches reset it back to zero. But here's a question those labs never asked: **how would the robot know it had drifted, if nobody ever wrote the number down?** A reset only helps if something is keeping track of what the robot currently believes about its own position. Today you build that something: a small array that holds your robot's **believed pose** — its x, y, and heading — and you update it honestly every time you get a real chance to check it against the truth.
 
-{{% callout title="The Big Idea of This Unit" variant="red" %}}
+{{% callout title="The Big Idea of This Unit" %}}
 A system can't recognize failure it isn't tracking. Before a robot can debug itself, recover from a bad turn, or know its plan has gone wrong, it needs some internal record of where it thinks it is — a record it can compare against reality.
 {{% /callout %}}
 
@@ -115,14 +115,14 @@ columns:
     width: 34%
   - head: Your value
 rows:
-  - - label: Distance from your reference wall to the wheel centerpoint (x, inches)
+  - - text: Distance from your reference wall to the wheel centerpoint (x, inches)
     - key: p3_startx
       aria: Start x
-  - - label: Distance from your reference wall to the wheel centerpoint (y, inches)
+  - - text: Distance from your reference wall to the wheel centerpoint (y, inches)
     - key: p3_starty
       aria: Start y
-  - - label: Starting heading, facing straight out of the box
-    - seed: "0.0° (by convention)"
+  - - text: Starting heading, facing straight out of the box
+    - text: "0.0° (by convention)"
 {{< /gridtable >}}
 
 {{< ask key="p3_initpose" label="initPose reasoning" >}}Why does it matter that `initPose` runs only *once*, before the robot ever moves — what would go wrong if you called it again in the middle of the run?{{< /ask >}}
@@ -138,10 +138,7 @@ rows:
 Turning **left** increases heading (`pose[POSE_R] += degrees`); turning **right** decreases it (`pose[POSE_R] -= degrees`). Heading 0° faces straight out of the starting box. Stay consistent with this the whole run.
 {{% /resetbox %}}
 
-{{< filetab >}}
-yourname.h
-{{< /filetab >}}
-{{< code >}}
+{{< code filename="yourname.h" >}}
 int Turn(char dir, double degrees) {
     if (dir == 'L' || dir == 'l') {
         @@// ...existing tick-turn logic for a left turn...@@
@@ -164,9 +161,10 @@ int Turn(char dir, double degrees) {
 
 Walk your path from the starting box to both enclosures. Mark every leg, whether a real reset (`back_until_pressed` or `square_up`) happens there, and whether you print the pose. You need **at least 2 resets** tied to a `setX`/`setY` call, and **5 total prints**: one right after `initPose`, then one after each of your 4 pom drop-offs.
 
-{{< gridtable count=8 prefix="plan" label="Plan" numbered=true
-              number_head="#" number_width="8%" number_cell="num"
-              caption="Plan each leg of the run" >}}
+{{< repeattable count=8 prefix="plan" caption="Plan each leg of the run" >}}
+- kind: number
+  head: "#"
+  width: "8%"
 - head: Leg (what the robot does)
   key: leg
   width: 40%
@@ -180,7 +178,7 @@ Walk your path from the starting box to both enclosures. Mark every leg, whether
 - head: Print pose?
   key: print
   align: center
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p5_resets" label="Reset placement" >}}Where did you place your 2 resets, and what known value did you set `x` or `y` to at each one? How did you know that value was actually true (not a guess)?{{< /ask >}}
 
@@ -188,10 +186,7 @@ Walk your path from the starting box to both enclosures. Mark every leg, whether
 
 First add the pose array, the [[INDEX|index]] names, and the helper functions to your library. Then write the run in `main()`, following your Phase 5 plan.
 
-{{< filetab >}}
-yourname.h
-{{< /filetab >}}
-{{< code >}}
+{{< code filename="yourname.h" >}}
 const int POSE_X = 0;
 const int POSE_Y = 1;
 const int POSE_R = 2;
@@ -217,10 +212,7 @@ void printPose() {
 }
 {{< /code >}}
 
-{{< filetab >}}
-main.c
-{{< /filetab >}}
-{{< code >}}
+{{< code filename="main.c" >}}
 // Unit 5, Big Idea 1: The Second Attempt
 // Name: _______________________   Date: ___________
 
@@ -275,9 +267,10 @@ int main() {
 
 Run the mission. Each time it prints a pose, pause and physically measure where the robot actually is. Compare the printed number to your measurement — that gap is your robot's **drift**, and it's the first real evidence you've collected about where your model breaks down.
 
-{{< gridtable count=5 prefix="drift" label="Drift" numbered=true
-              number_head="Print #" number_width="14%"
-              caption="Compare believed pose to measured pose, at each print" >}}
+{{< repeattable count=5 prefix="drift" caption="Compare believed pose to measured pose, at each print" >}}
+- kind: number
+  head: "Print #"
+  width: "14%"
 - head: Printed pose (x, y, R)
   key: printed
   width: 28%
@@ -286,13 +279,13 @@ Run the mission. Each time it prints a pose, pause and physically measure where 
   width: 28%
 - head: Gap / likely cause
   key: cause
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p7_drift" label="Drift analysis" >}}Where was the gap biggest? Was it right after a reset, or right before the next one? What does that tell you about where error was actually coming from — a bad turn, a drive distance being off, or something else?{{< /ask >}}
 
 ## Phase 8 — Connect &amp; Reflect
 
-{{% callout title="AI Literacy Thread" variant="red" %}}
+{{% callout title="AI Literacy Thread" %}}
 A system can't catch its own failures unless it keeps track of what it believes about itself.
 {{% /callout %}}
 

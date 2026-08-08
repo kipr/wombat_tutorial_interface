@@ -1,10 +1,9 @@
 {{ define "main" }}
-{{- $prefix := partial "urlprefix.html" . -}}
 <main class="wrap">
   <p class="page-eyebrow">{{ .Params.eyebrow }}</p>
   <h1 class="page-title">{{ .Params.heading }} <span>· {{ .Params.edition }}</span></h1>
   <p class="page-sub">{{ .Params.subheading }}</p>
-  <p class="toggle-line">Prefer Python? <a href="{{ $prefix }}Python_Labs/index.html">View the Python labs →</a></p>
+  <p class="toggle-line">Prefer Python? <a href="{{ partial "relative-url.html" (dict "source" . "path" "Python_Labs/index.html") }}">View the Python labs →</a></p>
 
 {{- $pages := .RegularPages.ByWeight }}
 {{- range $unit := .Params.units }}
@@ -16,7 +15,7 @@
     {{- range . }}
       {{- $cardTitle := .Params.hub_title | default (replaceRE `^.* — ` "" .Title) }}
       {{- $cardLabel := .Params.hub_label | default (.Params.eyebrow | default .Params.short_title | replaceRE `^Unit [0-9]+ · ` "") }}
-      <a class="lab-card" href="{{ $prefix }}{{ partial "rootpath.html" . }}">
+      <a class="lab-card" href="{{ partial "relative-url.html" (dict "source" $ "target" .) }}">
         <span class="lab-num">{{ $cardLabel }}</span>
         <span class="lab-title">{{ $cardTitle }}</span>
         <span class="lab-desc">{{ .Description }}</span>

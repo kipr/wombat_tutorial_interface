@@ -122,28 +122,28 @@ columns:
     width: 50%
   - head: Library call
 rows:
-  - - num: "1"
-    - seed: Arm up, claw open (get ready)
+  - - text: "1"
+    - text: Arm up, claw open (get ready)
     - key: s1_1_call
-  - - num: "2"
+  - - text: "2"
     - key: s1_2_eng
     - key: s1_2_call
-  - - num: "3"
+  - - text: "3"
     - key: s1_3_eng
     - key: s1_3_call
-  - - num: "4"
+  - - text: "4"
     - key: s1_4_eng
     - key: s1_4_call
-  - - num: "5"
+  - - text: "5"
     - key: s1_5_eng
     - key: s1_5_call
-  - - num: "6"
+  - - text: "6"
     - key: s1_6_eng
     - key: s1_6_call
-  - - num: "7"
+  - - text: "7"
     - key: s1_7_eng
     - key: s1_7_call
-  - - num: "8"
+  - - text: "8"
     - key: s1_8_eng
     - key: s1_8_call
 {{< /gridtable >}}
@@ -206,7 +206,10 @@ Run the mission. It almost certainly won't be perfect the first time — that's 
 Don't try to fix the whole run at once. [[COMMENT|Comment]] out everything after stack 1 and get that perfect. Then add the reposition. Then stack 2. A mission is easiest to fix one piece at a time.
 {{% /callout %}}
 
-{{< gridtable count=5 prefix="debug" label="Debug" numbered=true number_head="Try" number_width="8%" >}}
+{{< repeattable count=5 prefix="debug" >}}
+- kind: number
+  head: "Try"
+  width: "8%"
 - head: Which part failed?
   key: part
   width: 28%
@@ -215,7 +218,7 @@ Don't try to fix the whole run at once. [[COMMENT|Comment]] out everything after
   width: 34%
 - head: What you changed
   key: change
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 ### Mission [[CHECKLIST|Checklist]]
 
@@ -225,11 +228,11 @@ columns:
     width: 70%
   - head: Done? (✓)
 rows:
-  - - seed: "Stack 1: cube placed on opposite-color cube"
+  - - text: "Stack 1: cube placed on opposite-color cube"
     - key: check_stack1
-  - - seed: "Reposition: robot lined up with second pair"
+  - - text: "Reposition: robot lined up with second pair"
     - key: check_reposition
-  - - seed: "Stack 2: second cube placed on opposite-color cube"
+  - - text: "Stack 2: second cube placed on opposite-color cube"
     - key: check_stack2
 {{< /gridtable >}}
 

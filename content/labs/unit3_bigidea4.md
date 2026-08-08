@@ -107,16 +107,16 @@ columns:
     width: 30%
   - head: Actual angle turned (degrees)
 rows:
-  - - seed: "1"
+  - - text: "1"
     - key: r_t1_ticks
     - key: r_t1_angle
-  - - seed: "2"
+  - - text: "2"
     - key: r_t2_ticks
     - key: r_t2_angle
-  - - seed: "3"
+  - - text: "3"
     - key: r_t3_ticks
     - key: r_t3_angle
-  - - seed: "4"
+  - - text: "4"
     - key: r_t4_ticks
     - key: r_t4_angle
 {{< /gridtable >}}
@@ -152,16 +152,16 @@ columns:
     width: 30%
   - head: Actual angle turned (degrees)
 rows:
-  - - seed: "1"
+  - - text: "1"
     - key: l_t1_ticks
     - key: l_t1_angle
-  - - seed: "2"
+  - - text: "2"
     - key: l_t2_ticks
     - key: l_t2_angle
-  - - seed: "3"
+  - - text: "3"
     - key: l_t3_ticks
     - key: l_t3_angle
-  - - seed: "4"
+  - - text: "4"
     - key: l_t4_ticks
     - key: l_t4_angle
 {{< /gridtable >}}
@@ -192,10 +192,10 @@ columns:
     width: 50%
   - head: Your estimate
 rows:
-  - - seed: Landed OVER or UNDER a full return?
+  - - text: Landed OVER or UNDER a full return?
     - key: p4_over_under
       aria: Over or under
-  - - seed: About how many degrees off? (your best guess)
+  - - text: About how many degrees off? (your best guess)
     - key: p4_degrees_off
       aria: Degrees off
 {{< /gridtable >}}
@@ -206,13 +206,16 @@ If the robot turned too far (over), your tick value is a little too big — lowe
 
 ### Correction Log
 
-{{< gridtable count=4 prefix="drift" label="Drift" numbered=true number_head="Round" number_width="12%" >}}
+{{< repeattable count=4 prefix="drift" >}}
+- kind: number
+  head: "Round"
+  width: "12%"
 - head: Tick value used
   key: ticks
   width: 30%
 - head: Where it landed after 8 turns
   key: landed
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p4_drift_finding" label="Drift finding" >}}After adjusting, did the eight-turn test land closer to the start? Explain how the 8× test made a tiny per-turn error easy to see and fix.{{< /ask >}}
 

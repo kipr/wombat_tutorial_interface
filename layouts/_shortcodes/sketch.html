@@ -10,7 +10,6 @@
     tag        instruction text shown in the corner (required)
     note       italic note under the sketch; omit to skip
     startbox   "left" or "right" (required)
-    label      start-box text; defaults to RIGHT/START BOX or START/BOX
 */ -}}
 {{- $aria := partial "require.html" (dict "sc" . "name" "aria") -}}
 {{- $tag := partial "require.html" (dict "sc" . "name" "tag") -}}
@@ -18,7 +17,7 @@
 {{- if and (ne $side "left") (ne $side "right") -}}
   {{- errorf `%s: sketch startbox must be "left" or "right", got %q` .Position $side -}}
 {{- end -}}
-{{- $label := .Get "label" | default (cond (eq $side "right") "RIGHT<br>START BOX" "START<br>BOX") -}}
+{{- $label := cond (eq $side "right") "RIGHT<br>START BOX" "START<br>BOX" -}}
 <div class="sketch" aria-label="{{ $aria }}">
 <span class="tag">{{ $tag }}</span>
 <div class="startbox {{ $side }}">{{ $label | safeHTML }}</div>

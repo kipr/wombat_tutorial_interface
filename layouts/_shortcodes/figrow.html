@@ -9,39 +9,32 @@
   PreLab kit inventories add an overlay checkbox with check_id. The submission
   key is always part_<check_id>, matching the original JS-built rows:
 
-    {{< figrow cols="two" >}}
+    {{< figrow >}}
     - src: kit/wambatfaceon.jpg
       alt: "2 × KIPR Wombat controllers."
       check_id: wombat-controller
     {{< /figrow >}}
 
-  `caption` defaults to `alt`. Paths are resolved against the shared img root.
-
-  Column class is chosen from the figure count (2 → two, 3 → three,
-  4+ → two for a 2×N grid), matching the hand-authored pages. Override with
-  cols="two" or cols="three" when the count alone is wrong.
+  `alt` is also the visible caption. Paths use the shared img root. Column
+  layout is inferred from the figure count.
 */ -}}
 {{- $figures := .Inner | transform.Unmarshal -}}
-{{- $prefix := partial "urlprefix.html" .Page -}}
 {{- .Page.Store.Set "usedFigures" true -}}
 {{- $n := len $figures -}}
-{{- $cols := .Get "cols" -}}
-{{- if not $cols -}}
-  {{- if eq $n 2 }}{{ $cols = "two" }}
-  {{- else if eq $n 3 }}{{ $cols = "three" }}
-  {{- else if ge $n 4 }}{{ $cols = "two" }}
-  {{- end -}}
+{{- $cols := "" -}}
+{{- if eq $n 2 }}{{ $cols = "two" }}
+{{- else if eq $n 3 }}{{ $cols = "three" }}
+{{- else if ge $n 4 }}{{ $cols = "two" }}
 {{- end -}}
 {{- $width := "" -}}
 {{- with $cols }}{{ $width = printf " %s" . }}{{ end -}}
 <div class="figrow{{ $width }}">
 {{- range $figures }}
-{{- $caption := .caption | default .alt -}}
 {{- $checkID := index . "check_id" -}}
 {{- if $checkID -}}
-<figure class="fig checklist-item"><div class="image-wrapper"><img src="{{ $prefix }}img/{{ .src }}" alt="{{ .alt }}" loading="lazy"><label class="image-checkbox" for="{{ $checkID }}"><input type="checkbox" id="{{ $checkID }}" data-key="part_{{ $checkID }}"><span>Have it</span></label></div><figcaption>{{ $caption }}</figcaption></figure>
+<figure class="fig checklist-item"><div class="image-wrapper"><img src="{{ partial "relative-url.html" (dict "source" $.Page "path" (printf "img/%s" .src)) }}" alt="{{ .alt }}" loading="lazy"><label class="image-checkbox" for="{{ $checkID }}"><input type="checkbox" id="{{ $checkID }}" data-key="part_{{ $checkID }}"><span>Have it</span></label></div><figcaption>{{ .alt }}</figcaption></figure>
 {{- else -}}
-<figure class="fig"><img src="{{ $prefix }}img/{{ .src }}" alt="{{ .alt }}" loading="lazy"><figcaption>{{ $caption }}</figcaption></figure>
+<figure class="fig"><img src="{{ partial "relative-url.html" (dict "source" $.Page "path" (printf "img/%s" .src)) }}" alt="{{ .alt }}" loading="lazy"><figcaption>{{ .alt }}</figcaption></figure>
 {{- end -}}
 {{- end }}
 </div>

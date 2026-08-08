@@ -5,42 +5,23 @@
     - key: p5_test_tick_drive
       label: "`Tick_Drive()` drove the measured distance"
     - key: p5_test_move_arm
-      id: p5-test-move-arm
       label: "`move_arm()` moved the arm smoothly and safely"
     {{< /checklist >}}
 
-  PreLab pages use the tick variant (ul.tick) and optional highlight:
+  All checklists use the shared tick styling:
 
-    {{< checklist variant="tick" >}}
+    {{< checklist >}}
     - key: s_sensor
-      id: s1
       label: "**[[SENSOR|Sensors]]** — how it takes information in."
-    - key: done_all
-      id: z1
-      highlight: true
-      label: "Every box above is ticked honestly…"
     {{< /checklist >}}
 
   Required per item: key, label.
-  Optional per item: id (defaults to key with underscores turned into hyphens),
-  highlight (true → li.key, the gold sign-off emphasis).
-  Optional shortcode param: variant="checklist" (default) or "tick".
   Labels are rendered as inline markdown so backticks, emphasis, and [[terms]] work.
 */ -}}
-{{- $variant := .Get "variant" | default "checklist" -}}
-{{- if and (ne $variant "checklist") (ne $variant "tick") -}}
-  {{- errorf `%s: checklist variant must be "checklist" or "tick", got %q` .Position $variant -}}
-{{- end -}}
 {{- $items := .Inner | transform.Unmarshal -}}
 {{- if not $items }}{{ errorf `%s: checklist needs a YAML list of items` .Position }}{{ end -}}
-<ul class="{{ $variant }}">
+<ul class="tick">
 {{- range $items }}
-{{- $key := index . "key" -}}
-{{- if not $key }}{{ errorf `%s: checklist item needs a "key"` $.Position }}{{ end -}}
-{{- $id := index . "id" | default (replace $key "_" "-") -}}
-{{- $label := index . "label" -}}
-{{- if not $label }}{{ errorf `%s: checklist item %q needs a "label"` $.Position $key }}{{ end -}}
-{{- $highlight := index . "highlight" -}}
-<li{{ if $highlight }} class="key"{{ end }}><input type="checkbox" data-key="{{ $key }}" id="{{ $id }}"><label for="{{ $id }}">{{ $.Page.RenderString $label }}</label></li>
+<li>{{ partial "checkbox.html" (dict "field" . "page" $.Page "position" $.Position) }}</li>
 {{- end }}
 </ul>

@@ -1,0 +1,19 @@
+{{- /* One cell renderer for gridtable and repeattable. */ -}}
+{{- $cell := .cell -}}
+{{- $column := .column | default dict -}}
+{{- if eq (index $cell "kind" | default "") "number" -}}
+<td class="number-cell">{{ index $cell "text" }}</td>
+{{- else if isset $cell "text" -}}
+<td class="static-cell">{{ .page.RenderString (printf "%v" (index $cell "text")) }}</td>
+{{- else -}}
+  {{- $sourceKey := index $cell "key" | default (index $column "key") -}}
+  {{- if not $sourceKey }}{{ errorf "%s: table input cell needs a key" .position }}{{ end -}}
+  {{- $key := $sourceKey -}}
+  {{- if .repeat }}{{ $key = printf "%s%d_%s" .prefix .rowNumber $sourceKey }}{{ end -}}
+  {{- $aria := index $cell "aria" | default (index $column "aria") -}}
+  {{- if not $aria }}{{ $aria = index $column "head" }}{{ end -}}
+  {{- if not $aria }}{{ $aria = .rowLabel }}{{ end -}}
+  {{- if not $aria }}{{ $aria = humanize $sourceKey }}{{ end -}}
+  {{- if .repeat }}{{ $aria = printf "%s %d" $aria .rowNumber }}{{ end -}}
+<td><input type="text" data-key="{{ $key }}" aria-label="{{ $aria }}"{{ with index $cell "placeholder" }} placeholder="{{ . }}"{{ end }}{{ if isset $cell "value" }} value="{{ index $cell "value" }}"{{ end }}{{ with index $cell "align" | default (index $column "align") }} style="text-align:{{ . }}"{{ end }}></td>
+{{- end -}}

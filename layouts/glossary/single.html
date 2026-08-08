@@ -1,5 +1,4 @@
 {{ define "main" }}
-{{- $prefix := partial "urlprefix.html" . -}}
 {{- $terms := slice -}}
 {{- range $key, $entry := hugo.Data.glossary -}}
   {{- if ne ($entry.source | default "") "rules" -}}
@@ -61,7 +60,7 @@
       {{- if $uses }}
         <p class="glossary-use-links">
         {{- range sort $uses "sort" }}
-          <a class="glossary-use {{ .class }}" href="{{ $prefix }}{{ partial "rootpath.html" .page }}" title="{{ .page.Title }}">{{ .label }}</a>
+          <a class="glossary-use {{ .class }}" href="{{ partial "relative-url.html" (dict "source" $ "target" .page) }}" title="{{ .page.Title }}">{{ .label }}</a>
         {{- end }}
           <span class="glossary-use-count">on {{ len $uses }} {{ cond (eq (len $uses) 1) "sheet" "sheets" }}</span>
         </p>
@@ -76,5 +75,5 @@
 
   <p class="credit">{{ .Params.credit }}</p>
 </main>
-<script src="{{ $prefix }}js/glossary.js" defer></script>
+<script src="{{ partial "relative-url.html" (dict "source" . "path" "js/glossary.js") }}" defer></script>
 {{ end }}

@@ -30,7 +30,7 @@ meta:
 
 Right now, your library — every [[FUNCTION|function]] you've written across every lab — lives in exactly one place: the IDE. If that IDE account is lost, if a Chromebook gets wiped, if you simply want to work on your code somewhere else, your work is gone unless you've backed it up. Today you're going to give your library a permanent, recoverable home using **GitHub**, the tool almost every professional software team on Earth uses to store and share code.
 
-{{% callout title="The Big Idea of This Unit" variant="red" %}}
+{{% callout title="The Big Idea of This Unit" %}}
 A reliable system doesn't depend on one fragile copy of anything. It keeps a history it can recover from — the same reason your pose [[ARRAY|array]] kept a record of belief in Big Idea 1, GitHub keeps a record of every version of your code.
 {{% /callout %}}
 
@@ -73,7 +73,7 @@ columns:
     width: 35%
   - head: ""
 rows:
-  - - label: GitHub username
+  - - text: GitHub username
     - key: p2_username
 {{< /gridtable >}}
 
@@ -102,9 +102,9 @@ columns:
     width: 35%
   - head: ""
 rows:
-  - - label: Repository name
+  - - text: Repository name
     - key: p3_reponame
-  - - label: Repository URL
+  - - text: Repository URL
     - key: p3_repourl
       placeholder: "https://github.com/yourusername/your-repo"
 {{< /gridtable >}}
@@ -143,11 +143,7 @@ Most school Chromebooks don't give you a terminal or let you install `git`. That
 
 Here's the sequence a developer runs from a terminal to get a local change onto GitHub:
 
-{{< filetab >}}
-terminal
-{{< /filetab >}}
-
-{{< code lang="bash" >}}
+{{< code filename="terminal" lang="bash" >}}
 # one-time setup: copy the remote repo down to your computer
 git clone https://github.com/yourusername/your-repo.git
 cd your-repo
@@ -173,7 +169,7 @@ Notice this is the exact same push/pull idea from Phase 5 — just as explicit t
 
 ## Phase 7 — Connect & Reflect
 
-{{% callout title="AI Literacy Thread" variant="red" %}}
+{{% callout title="AI Literacy Thread" %}}
 A robust workflow doesn't trust one file on one computer — it keeps a recoverable history of every change, and lets others build on it safely.
 {{% /callout %}}
 

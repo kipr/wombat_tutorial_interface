@@ -1,0 +1,11 @@
+{{- /* Relative URL from a source page to a page or site-relative path. */ -}}
+{{- $source := .source -}}
+{{- if not $source }}{{ errorf "relative-url needs a source page" }}{{ end -}}
+{{- $base := (urls.Parse site.BaseURL).Path -}}
+{{- $sourcePath := strings.TrimPrefix "/" (strings.TrimPrefix $base $source.RelPermalink) -}}
+{{- $targetPath := .path | default "" -}}
+{{- with .target }}{{ $targetPath = .RelPermalink }}{{ end -}}
+{{- if eq $targetPath "" }}{{ errorf "relative-url needs a target page or path" }}{{ end -}}
+{{- $targetPath = strings.TrimPrefix "/" (strings.TrimPrefix $base $targetPath) -}}
+{{- $depth := len (findRE `/` $sourcePath) -}}
+{{- return printf "%s%s" (strings.Repeat $depth "../") $targetPath -}}

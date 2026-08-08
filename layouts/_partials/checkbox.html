@@ -1,0 +1,6 @@
+{{- $key := index .field "key" -}}
+{{- $label := index .field "label" -}}
+{{- if not $key }}{{ errorf "%s: checkbox needs a key" .position }}{{ end -}}
+{{- if not $label }}{{ errorf "%s: checkbox %q needs a label" .position $key }}{{ end -}}
+{{- $id := replace $key "_" "-" -}}
+<input type="checkbox" data-key="{{ $key }}" id="{{ $id }}"><label for="{{ $id }}">{{ .page.RenderString $label }}</label>

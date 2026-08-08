@@ -1,5 +1,5 @@
 {{- /* Name and date fields for a section a student completes individually. */ -}}
 <div class="namebar">
-<div class="nb"><label for="r_name">Name</label><input id="r_name" type="text" data-key="{{ .Get "name_key" | default "reflect_name" }}" autocomplete="off" /></div>
-<div class="nb"><label for="r_date">Date</label><input id="r_date" type="text" data-key="{{ .Get "date_key" | default "reflect_date" }}" autocomplete="off" /></div>
+<div class="nb">{{ partial "text-input.html" (dict "field" (dict "key" "reflect_name" "label" "Name") "position" .Position "autocompleteOff" true) }}</div>
+<div class="nb">{{ partial "text-input.html" (dict "field" (dict "key" "reflect_date" "label" "Date") "position" .Position "autocompleteOff" true) }}</div>
 </div>

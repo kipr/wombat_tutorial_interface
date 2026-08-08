@@ -1,0 +1,11 @@
+{{- /* Shared furniture for semantic panel shortcodes. */ -}}
+{{- $variant := .variant | default "red" -}}
+{{- if not (in (slice "red" "navy" "gold") $variant) -}}
+  {{- errorf "panel variant must be red, navy, or gold; got %q" $variant -}}
+{{- end -}}
+<div class="panel {{ $variant }}{{ if .noprint }} no-print{{ end }}">
+{{- with .title }}
+<p class="panel-title">{{ . }}</p>
+{{- end }}
+{{ .content | safeHTML }}
+</div>

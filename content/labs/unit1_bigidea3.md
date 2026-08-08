@@ -96,24 +96,24 @@ columns:
     width: 40%
   - head: Left or Right?
 rows:
-  - - seed: "1"
-    - seed: VIP
+  - - text: "1"
+    - text: VIP
     - key: p1_person1
       aria: Person 1 direction
-  - - seed: "2"
-    - seed: General
+  - - text: "2"
+    - text: General
     - key: p1_person2
       aria: Person 2 direction
-  - - seed: "3"
-    - seed: VIP
+  - - text: "3"
+    - text: VIP
     - key: p1_person3
       aria: Person 3 direction
-  - - seed: "4"
-    - seed: General
+  - - text: "4"
+    - text: General
     - key: p1_person4
       aria: Person 4 direction
-  - - seed: "5"
-    - seed: General
+  - - text: "5"
+    - text: General
     - key: p1_person5
       aria: Person 5 direction
 {{< /gridtable >}}
@@ -166,10 +166,10 @@ columns:
     width: 34%
   - head: "...the robot should"
 rows:
-  - - seed: "1"
+  - - text: "1"
     - key: p3_outcome_type1
       aria: Outcome for type 1
-  - - seed: "anything else (2, 3, ...)"
+  - - text: "anything else (2, 3, ...)"
     - key: p3_outcome_else
       aria: Outcome for else
 {{< /gridtable >}}
@@ -186,17 +186,17 @@ columns:
     width: 30%
   - head: What the robot does
 rows:
-  - - seed: "1"
+  - - text: "1"
     - key: p3_trace1_tf
       aria: Trace 1 true/false
     - key: p3_trace1_action
       aria: Trace 1 action
-  - - seed: "2"
+  - - text: "2"
     - key: p3_trace2_tf
       aria: Trace 2 true/false
     - key: p3_trace2_action
       aria: Trace 2 action
-  - - seed: "5"
+  - - text: "5"
     - key: p3_trace3_tf
       aria: Trace 3 true/false
     - key: p3_trace3_action
@@ -259,10 +259,10 @@ columns:
     width: 35%
   - head: What actually happened
 rows:
-  - - seed: "1"
+  - - text: "1"
     - key: p4_run1_predict
     - key: p4_run1_actual
-  - - seed: "2"
+  - - text: "2"
     - key: p4_run2_predict
     - key: p4_run2_actual
 {{< /gridtable >}}
@@ -288,7 +288,10 @@ Decisions create a brand-new kind of bug: the robot does the *wrong* action, eve
 
 ### [[DEBUGGING|Debugging]] Log
 
-{{< gridtable count=4 prefix="debug" label="Debug" numbered=true number_head="Try" number_width="8%" >}}
+{{< repeattable count=4 prefix="debug" >}}
+- kind: number
+  head: "Try"
+  width: "8%"
 - head: What went wrong
   key: wrong
   width: 30%
@@ -297,7 +300,7 @@ Decisions create a brand-new kind of bug: the robot does the *wrong* action, eve
   width: 30%
 - head: How you fixed it
   key: fix
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p5_bug" label="Bug description" >}}Describe one decision bug you hit. Did the robot do the wrong thing, or refuse to run? How did you find the cause?{{< /ask >}}
 

@@ -1,0 +1,5 @@
+{{- $key := .key -}}
+{{- $label := .label -}}
+{{- if not $key }}{{ errorf "textarea needs a key" }}{{ end -}}
+{{- if not $label }}{{ errorf "textarea %q needs a label" $key }}{{ end -}}
+<textarea class="answer" data-key="{{ $key }}" aria-label="{{ $label }}"{{ with .placeholder }} placeholder="{{ . }}"{{ end }}></textarea>

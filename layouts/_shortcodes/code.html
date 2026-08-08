@@ -3,16 +3,14 @@
   page's `track` front matter. Wrap a token in @@…@@ for gold emphasis.
 
     {{< code >}} … {{< /code >}}
-    {{< code lang="python" size="small" >}} … {{< /code >}}
+    {{< code lang="python" filename="main.py" >}} … {{< /code >}}
 
     mav(0, @@750@@);   // @@750@@ becomes the highlighted token
 */ -}}
-{{- with .Get "comment" -}}
-  {{- errorf "%s: the code shortcode no longer accepts comment=%q; set lang instead" $.Position . -}}
-{{- end -}}
 {{- partial "codeblock.html" (dict
       "code" .Inner
       "lang" ((.Get "lang") | default .Page.Params.track)
       "page" .Page
       "position" .Position
-      "size" (.Get "size")) | safeHTML -}}
+      "filename" (.Get "filename")
+      "emphasis" true) | safeHTML -}}

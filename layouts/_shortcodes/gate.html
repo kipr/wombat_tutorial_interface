@@ -6,7 +6,4 @@
     {{% /gate %}}
 */ -}}
 {{- $title := partial "require.html" (dict "sc" . "name" "title") -}}
-<div class="gate">
-<p class="gt">{{ $title }}</p>
-{{ .Inner }}
-</div>
+{{- partial "panel.html" (dict "title" $title "variant" "red" "content" .Inner) -}}

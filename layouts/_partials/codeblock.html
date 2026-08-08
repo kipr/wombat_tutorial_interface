@@ -1,49 +1,35 @@
-{{- /*
-  Renders a source listing with Hugo's Chroma highlighter. Language-aware
-  lexing replaces the old comment-only regular expression.
-
-  Highlight a token with @@…@@. The marked text is swapped for a lexer-safe
-  placeholder, highlighted, then restored as escaped HTML. This keeps Python's
-  single-@ decorator syntax intact and keeps authoring markers out of copied
-  code. The restored class is deliberately not `.hl`, which Chroma reserves
-  for whole-line highlighting.
-
-  Called with: (dict "code" "…" "lang" "python" "size" "small"
-                     "page" .Page "position" .Position)
-*/ -}}
+{{- /* Shared validated Chroma renderer for shortcodes, concepts, and fences. */ -}}
 {{- $code := .code | strings.TrimSpace -}}
 {{- $lang := .lang | default "" | strings.TrimSpace | strings.ToLower -}}
-{{- $size := .size | default "" -}}
 {{- $position := .position | default (.page.Path | default "unknown page") -}}
+{{- if eq $lang "" }}{{ errorf "%s: code block has no language" $position }}{{ end -}}
+{{- if not (transform.CanHighlight $lang) }}{{ errorf "%s: Chroma does not support code language %q" $position $lang }}{{ end -}}
 
-{{- if eq $lang "" -}}
-  {{- errorf "%s: code block has no language; set page track or shortcode lang" $position -}}
+{{- $class := "code" -}}
+{{- with .classes }}{{ $class = printf "%s %s" $class . }}{{ end -}}
+{{- $highlighted := "" -}}
+{{- if .context -}}
+  {{- $options := merge (dict "noClasses" false "wrapperClass" $class) (.options | default dict) -}}
+  {{- $result := transform.HighlightCodeBlock .context $options -}}
+  {{- $highlighted = $result.Wrapped -}}
+{{- else -}}
+  {{- if strings.Contains $code "WOMBATCODEHIGHLIGHT" }}{{ errorf "%s: code block contains the renderer's reserved placeholder prefix" $position }}{{ end -}}
+  {{- $restores := slice -}}
+  {{- if .emphasis -}}
+    {{- range $index, $match := findRESubmatch `@@([^\n]+?)@@` $code -}}
+      {{- $placeholder := printf "WOMBATCODEHIGHLIGHT%04dTOKEN" $index -}}
+      {{- $code = replace $code (index $match 0) $placeholder 1 -}}
+      {{- $restores = $restores | append (dict "placeholder" $placeholder "text" (index $match 1)) -}}
+    {{- end -}}
+    {{- if strings.Contains $code "@@" }}{{ errorf "%s: code block contains an unmatched @@ emphasis marker" $position }}{{ end -}}
+  {{- end -}}
+  {{- $highlighted = transform.Highlight $code $lang (dict "noClasses" false "wrapperClass" $class) -}}
+  {{- range $restores -}}
+    {{- $replacement := printf `<span class="code-emphasis">%s</span>` (.text | htmlEscape) -}}
+    {{- $highlighted = replace $highlighted .placeholder $replacement -}}
+  {{- end -}}
 {{- end -}}
-{{- if not (transform.CanHighlight $lang) -}}
-  {{- errorf "%s: Chroma does not support code language %q" $position $lang -}}
-{{- end -}}
-{{- if and (ne $size "") (ne $size "small") -}}
-  {{- errorf "%s: code shortcode size must be %q, got %q" $position "small" $size -}}
-{{- end -}}
-{{- if strings.Contains $code "WOMBATCODEHIGHLIGHT" -}}
-  {{- errorf "%s: code block contains the renderer's reserved placeholder prefix" $position -}}
-{{- end -}}
-
-{{- $markers := findRESubmatch `@@([^\n]+?)@@` $code -}}
-{{- $restores := slice -}}
-{{- range $index, $match := $markers -}}
-  {{- $placeholder := printf "WOMBATCODEHIGHLIGHT%04dTOKEN" $index -}}
-  {{- $code = replace $code (index $match 0) $placeholder 1 -}}
-  {{- $restores = $restores | append (dict "placeholder" $placeholder "text" (index $match 1)) -}}
-{{- end -}}
-{{- if strings.Contains $code "@@" -}}
-  {{- errorf "%s: code block contains an unmatched @@ emphasis marker" $position -}}
-{{- end -}}
-
-{{- $class := cond (ne $size "") (printf "code %s" $size) "code" -}}
-{{- $highlighted := transform.Highlight $code $lang (dict "noClasses" false "wrapperClass" $class) -}}
-{{- range $restores -}}
-  {{- $replacement := printf `<span class="code-emphasis">%s</span>` (.text | htmlEscape) -}}
-  {{- $highlighted = replace $highlighted .placeholder $replacement -}}
+{{- with .filename -}}
+  {{- $highlighted = printf `<div class="filetab">%s</div>%s` (. | htmlEscape) $highlighted -}}
 {{- end -}}
 {{- return (safeHTML $highlighted) -}}

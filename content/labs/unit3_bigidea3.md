@@ -87,7 +87,7 @@ columns:
     width: 55%
   - head: Write it here
 rows:
-  - - seed: your first name + .h
+  - - text: your first name + .h
     - key: p3_filename
       aria: Library filename
       placeholder: e.g. maria.h
@@ -101,11 +101,7 @@ Once your library exists, you can take it anywhere. Select it and use the **File
 
 Now fill your header with every reusable function you've built. Organize it in three clear sections, in this order: **[[VARIABLE|variables]] at the top**, then **function [[PROTOTYPE|prototypes]]**, then **function definitions**. This is the same structure you've used all along — now it lives in your library.
 
-{{< filetab >}}
-yourname.h
-{{< /filetab >}}
-
-{{< code >}}
+{{< code filename="yourname.h" >}}
 // ============================================================
 // yourname.h: My Botball function library
 // Every reusable tool I've built, in one place.
@@ -225,17 +221,13 @@ void line_follow(int ticks) {
 Notice every function has a comment explaining what it does, written for someone who has *never seen it before*. That's your job here: above each function, write a clear note saying what it does, what you pass in, and what happens. One day that "someone" will be you, six months from now — and you'll be glad you wrote it.
 {{% /callout %}}
 
-{{< ask key="p4_your_comment" label="Your function comment" size="tall" >}}Pick one of your functions. Write the comment you'd put above it to explain it to a brand-new user who has never seen your code.{{< /ask >}}
+{{< ask key="p4_your_comment" label="Your function comment" >}}Pick one of your functions. Write the comment you'd put above it to explain it to a brand-new user who has never seen your code.{{< /ask >}}
 
 ## Phase 5 — Include It and Call Every Function
 
 Now the payoff. In your main program, add your library with an `#include` line at the top — right under the KIPR one. Then your `main` can call any function in your library. Test **every** function once to prove the library works.
 
-{{< filetab >}}
-main.c
-{{< /filetab >}}
-
-{{< code >}}
+{{< code filename="main.c" >}}
 #include <kipr/wombat.h>   // KIPR's library
 #include <@@yourname@@.h>     // YOUR library: all your tools, in one line
 

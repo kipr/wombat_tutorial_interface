@@ -34,10 +34,9 @@
   blank lines split it into paragraphs. Declaring the parts keeps the listing
   intact while still letting the prose be markdown.
 */ -}}
-{{- $title := .Get 0 | default (.Get "title") -}}
+{{- $title := .Get 0 -}}
 {{- if not $title }}{{ errorf "%s: concept needs a title" .Position }}{{ end -}}
 {{- $parts := .Inner | transform.Unmarshal -}}
-{{- $prefix := partial "urlprefix.html" .Page -}}
 <div class="concept">
 <div class="chead">{{ $title }}</div>
 <div class="cbody">
@@ -51,7 +50,7 @@
     "lang" ($.Page.Params.track | default "")
     "page" $.Page
     "position" $.Position
-    "size" "small") | safeHTML }}
+    "emphasis" true) | safeHTML }}
 {{- end }}
 {{- with .truth }}
 {{ partial "truthtable.html" . }}
@@ -63,7 +62,7 @@
 {{- $src := index . "src" | default "" -}}
 {{- $alt := index . "alt" | default "" -}}
 {{- if not $src }}{{ errorf `%s: concept image part needs "src"` $.Position }}{{ end -}}
-<img src="{{ $prefix }}{{ $src }}"{{ with $alt }} alt="{{ . }}"{{ end }}>
+<img src="{{ partial "relative-url.html" (dict "source" $.Page "path" $src) }}"{{ with $alt }} alt="{{ . }}"{{ end }}>
 {{- end }}
 {{- end }}
 </div>

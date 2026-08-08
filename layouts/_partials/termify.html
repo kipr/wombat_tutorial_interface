@@ -1,80 +1,25 @@
-{{- /*
-  Resolves inline references in rendered page content.
-
-    [[ENCODER]]                 glossary popup; link text is the token as typed
-    [[ENCODER|encoders]]        glossary popup with custom link text
-    [[PROTOTYPE:design|prototype]]
-                                glossary popup for a named sense of a term
-                                (see `senses:` under the entry in glossary.yaml)
-    [[@4|Mission 4]]            field diagram, base tier
-    [[@4:bonus|Mission 4]]      field diagram, a specific scoring tier
-
-  An unknown term, sense, or mission number stops the build instead of silently
-  shipping a popup that does nothing when a student clicks it.
-
-  Records what the page actually used in .Store so the page only ships the
-  definitions it needs. Sense uses are stored as "TERM:sense" so two senses of
-  the same word can coexist on one page.
-
-  Called with: (dict "page" . "content" .Content) — returns the rewritten HTML.
-*/ -}}
-
+{{- /* Rewrite validated glossary and mission references and record page usage. */ -}}
 {{- $page := .page -}}
 {{- $content := .content -}}
-{{- /* Seed from what earlier calls recorded — front matter and body are
-       termified separately, and both contribute to what the page ships. */ -}}
 {{- $usedTerms := $page.Store.Get "usedTerms" | default slice -}}
 {{- $usedMissions := $page.Store.Get "usedMissions" | default slice -}}
-
-{{- range $match := findRESubmatch `\[\[([^\]|]+?)(?:\|([^\]]*?))?\]\]` $content -}}
-  {{- $token := index $match 0 -}}
-  {{- $key := index $match 1 -}}
-  {{- $label := index $match 2 -}}
-
-  {{- if hasPrefix $key "@" -}}
-    {{- $parts := split (strings.TrimPrefix "@" $key) ":" -}}
-    {{- $number := index $parts 0 -}}
-    {{- $tier := cond (gt (len $parts) 1) (index $parts 1) "base" -}}
-    {{- $mission := index hugo.Data.missions $number -}}
-
-    {{- if not $mission -}}
-      {{- errorf "%s: [[%s]] refers to mission %q, which is not in data/missions.yaml" $page.File.Path $key $number -}}
-    {{- else if not (in $mission.tiers $tier) -}}
-      {{- errorf "%s: [[%s]] asks for tier %q but mission %s only has %v" $page.File.Path $key $tier $number $mission.tiers -}}
-    {{- end -}}
-
-    {{- $text := cond (ne $label "") $label $mission.title -}}
-    {{- $html := printf `<span class="fieldref" data-m="%s" data-tier="%s">%s</span>` $number $tier $text -}}
+{{- range findRE `\[\[[^][]+\]\]` $content -}}
+  {{- $token := . -}}
+  {{- $reference := partial "parse-reference.html" (dict "raw" $token "position" $page.File.Path) -}}
+  {{- $resolved := partial "resolve-reference.html" (dict
+    "reference" $reference "track" ($page.Params.track | default "c") "position" $page.File.Path) -}}
+  {{- if eq $reference.kind "mission" -}}
+    {{- $text := $reference.label | default $resolved.title -}}
+    {{- $html := printf `<span class="fieldref" data-m="%s" data-tier="%s">%s</span>` $resolved.number $resolved.tier $text -}}
     {{- $content = replace $content $token $html -}}
-    {{- $usedMissions = $usedMissions | append $number -}}
-
+    {{- $usedMissions = $usedMissions | append $resolved.number -}}
   {{- else -}}
-    {{- $parts := split $key ":" -}}
-    {{- $base := index $parts 0 -}}
-    {{- $sense := cond (gt (len $parts) 1) (index $parts 1) "" -}}
-    {{- $entry := index hugo.Data.glossary $base -}}
-
-    {{- if not $entry -}}
-      {{- errorf "%s: [[%s]] is not a term in data/glossary.yaml" $page.File.Path $key -}}
-    {{- else if gt (len $parts) 2 -}}
-      {{- errorf "%s: [[%s]] has too many ':' segments; use TERM or TERM:sense" $page.File.Path $key -}}
-    {{- else if and (ne $sense "") (not (isset $entry "senses")) -}}
-      {{- errorf "%s: [[%s]] asks for sense %q but %s has no senses in data/glossary.yaml" $page.File.Path $key $sense $base -}}
-    {{- else if and (ne $sense "") (not (isset $entry.senses $sense)) -}}
-      {{- errorf "%s: [[%s]] asks for sense %q, which is not defined under %s.senses" $page.File.Path $key $sense $base -}}
-    {{- end -}}
-
-    {{- /* Lookup key matches data-term so lab.js needs no special case.
-           Bare [[TERM]] / [[TERM:sense]] show the base token, not the sense
-           suffix — authors almost always pass an explicit |label anyway. */ -}}
-    {{- $lookup := cond (ne $sense "") (printf "%s:%s" $base $sense) $base -}}
-    {{- $text := cond (ne $label "") $label $base -}}
-    {{- $html := printf `<span class="def-term" data-term="%s">%s</span>` $lookup $text -}}
+    {{- $text := $reference.label | default $resolved.base -}}
+    {{- $html := printf `<span class="def-term" data-term="%s">%s</span>` $resolved.lookup $text -}}
     {{- $content = replace $content $token $html -}}
-    {{- $usedTerms = $usedTerms | append $lookup -}}
+    {{- $usedTerms = $usedTerms | append $resolved.lookup -}}
   {{- end -}}
 {{- end -}}
-
 {{- $page.Store.Set "usedTerms" (uniq $usedTerms) -}}
 {{- $page.Store.Set "usedMissions" (uniq $usedMissions) -}}
 {{- return $content -}}

@@ -30,7 +30,7 @@ meta:
 
 Every lab so far taught you that the real world is imperfect — motors [[OVERSHOOT|overshoot]], turns drift, batteries fade, models are never exact. A short move can hide those errors. But a **long run** with many steps? The tiny errors pile up until the robot is completely lost. Today's capstone is the reliability answer: a long, multi-part mission where the robot **constantly re-checks reality and wipes out its accumulated error** along the way. You'll touch Botguy and return both cones to the starting box — and stay accurate the whole time by squaring up again and again.
 
-{{% callout title="The Big Idea of This Unit" variant="red" %}}
+{{% callout title="The Big Idea of This Unit" %}}
 You cannot stop errors from happening. But you *can* keep resetting them. A reliable robot doesn't trust its own dead reckoning across a long run — it keeps re-referencing known features (walls, lines) to zero out drift before it grows dangerous.
 {{% /callout %}}
 
@@ -86,9 +86,10 @@ Draw your whole run. Mark the right starting box (drawn for you), Botguy, both c
 
 Now walk your path and decide *where* each square-up goes. Good reset points are right before something precise ([[TOUCHING]] Botguy, grabbing a cone, entering the box) — so you're accurate exactly when it matters. List each leg of the run and mark where you reset.
 
-{{< gridtable count=8 prefix="plan" label="Plan" numbered=true
-              number_head="#" number_width="8%" number_cell="num"
-              caption="Plan each leg — mark your resets (need at least 6)" >}}
+{{< repeattable count=8 prefix="plan" caption="Plan each leg — mark your resets (need at least 6)" >}}
+- kind: number
+  head: "#"
+  width: "8%"
 - head: Leg of the run (what the robot does)
   key: leg
   width: 52%
@@ -98,7 +99,7 @@ Now walk your path and decide *where* each square-up goes. Good reset points are
 - head: Reset here?
   key: reset
   align: center
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p4_reset_placement" label="Reset placement" >}}How many square-ups did you plan, and where did you put them? Why did you choose those spots instead of others?{{< /ask >}}
 
@@ -158,9 +159,10 @@ Get it working one leg at a time. Then do the real reliability test: run the *wh
 A run that works once might be luck. A run that works 4 times out of 4 is *reliable*. Your square-up resets are what turn a lucky run into a repeatable one.
 {{% /callout %}}
 
-{{< gridtable count=4 prefix="run" label="Run" numbered=true
-              number_head="Run" number_width="10%"
-              caption="Run it 4+ times — how consistent is it?" >}}
+{{< repeattable count=4 prefix="run" caption="Run it 4+ times — how consistent is it?" >}}
+- kind: number
+  head: "Run"
+  width: "10%"
 - head: Touched Botguy?
   key: botguy
   width: 30%
@@ -169,13 +171,13 @@ A run that works once might be luck. A run that works 4 times out of 4 is *relia
   width: 30%
 - head: Where it drifted / what you fixed
   key: drift
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p6_reliability" label="Reliability finding" >}}How many of your runs fully succeeded? If a run failed, was it because a square-up was missing where you needed one? Where would adding a reset help?{{< /ask >}}
 
 ## Phase 7 — Connect &amp; Reflect
 
-{{% callout title="AI Literacy Thread" variant="red" %}}
+{{% callout title="AI Literacy Thread" %}}
 Reliable systems constantly re-check reality and reset their accumulated error.
 {{% /callout %}}
 
@@ -234,7 +236,7 @@ Finished early? Try one or more of these.
 
 - The graphics library lets you open a real drawing window and put shapes and text on it. Try building a simple run-status screen:
 
-{{< code size="small" >}}
+{{< code >}}
 msleep(1000);
 graphics_open(320, 240);
 graphics_clear();

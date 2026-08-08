@@ -87,13 +87,13 @@ columns:
     width: 40%
   - head: Sensor value (analog 0)
 rows:
-  - - seed: 1/8 inch
+  - - text: 1/8 inch
     - key: white_h1
-  - - seed: 1/4 inch
+  - - text: 1/4 inch
     - key: white_h2
-  - - seed: 1/2 inch
+  - - text: 1/2 inch
     - key: white_h3
-  - - seed: 3/4 inch
+  - - text: 3/4 inch
     - key: white_h4
 {{< /gridtable >}}
 
@@ -107,13 +107,13 @@ columns:
     width: 40%
   - head: Sensor value (analog 0)
 rows:
-  - - seed: 1/8 inch
+  - - text: 1/8 inch
     - key: black_h1
-  - - seed: 1/4 inch
+  - - text: 1/4 inch
     - key: black_h2
-  - - seed: 1/2 inch
+  - - text: 1/2 inch
     - key: black_h3
-  - - seed: 3/4 inch
+  - - text: 3/4 inch
     - key: black_h4
 {{< /gridtable >}}
 
@@ -129,16 +129,16 @@ columns:
     width: 33%
   - head: Biggest gap? (✓)
 rows:
-  - - seed: 1/8 inch
+  - - text: 1/8 inch
     - key: diff_h1
     - key: best_h1
-  - - seed: 1/4 inch
+  - - text: 1/4 inch
     - key: diff_h2
     - key: best_h2
-  - - seed: 1/2 inch
+  - - text: 1/2 inch
     - key: diff_h3
     - key: best_h3
-  - - seed: 3/4 inch
+  - - text: 3/4 inch
     - key: diff_h4
     - key: best_h4
 {{< /gridtable >}}
@@ -157,10 +157,10 @@ columns:
     width: 50%
   - head: Mounted value (analog 0)
 rows:
-  - - seed: WHITE floor
+  - - text: WHITE floor
     - key: mounted_white
       aria: Mounted white
-  - - seed: Black line
+  - - text: Black line
     - key: mounted_black
       aria: Mounted black
 {{< /gridtable >}}
@@ -169,23 +169,24 @@ rows:
 
 The **midpoint** is the value exactly halfway between black and white. It's your *threshold*: above it means black, below it means white. Add your two readings and divide by 2.
 
-{{< calcbox title="Midpoint = ( black + white ) ÷ 2" input_width="90px" >}}
-- text: "("
-- input:
-    key: calc_black
-    aria: black value
-    placeholder: black
-- text: "+"
-- input:
-    key: calc_white
-    aria: white value
-    placeholder: white
-- text: ") ÷ 2 ="
-- input:
-    key: calc_midpoint
-    aria: midpoint
-    placeholder: midpoint
-{{< /calcbox >}}
+{{< calc title="Midpoint = ( black + white ) ÷ 2" noprint=true >}}
+- equation:
+  - text: "("
+  - input:
+      key: calc_black
+      aria: black value
+      placeholder: black
+  - text: "+"
+  - input:
+      key: calc_white
+      aria: white value
+      placeholder: white
+  - text: ") ÷ 2 ="
+  - input:
+      key: calc_midpoint
+      aria: midpoint
+      placeholder: midpoint
+{{< /calc >}}
 
 {{% callout title="This number is the heart of the lab" variant="gold" %}}
 Your midpoint is the line between "I see black" and "I see white." Write it down — you'll type it into your code as `MIDPOINT`. Every robot's number is a little different, because every sensor is a little different.
@@ -273,13 +274,16 @@ Every robot is wired a little differently. If your robot veers off the line inst
 
 Run it on the line. Adjust your speeds (the 50 and 20) and re-test. Record what you tried.
 
-{{< gridtable count=5 prefix="tune" label="Tune" numbered=true number_head="Try" number_width="8%" >}}
+{{< repeattable count=5 prefix="tune" >}}
+- kind: number
+  head: "Try"
+  width: "8%"
 - head: Speeds you used (fast / slow)
   key: speeds
   width: 30%
 - head: How well did it follow the line?
   key: result
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 ### [[CHECKLIST|Checklist]]
 

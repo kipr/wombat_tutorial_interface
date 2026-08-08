@@ -147,12 +147,12 @@ columns:
     width: 27%
   - head: Loop keeps going?
 rows:
-  - - seed: Driving back, not at wall yet
+  - - text: Driving back, not at wall yet
     - key: p3_reading_open
       aria: Reading when open
     - key: p3_loop_open
       aria: Loop when open
-  - - seed: Button hits the wall
+  - - text: Button hits the wall
     - key: p3_reading_pressed
       aria: Reading when pressed
     - key: p3_loop_pressed
@@ -217,10 +217,10 @@ columns:
     width: 35%
   - head: What actually happened
 rows:
-  - - seed: In hand, press by finger
+  - - text: In hand, press by finger
     - key: p4_hand_expect
     - key: p4_hand_actual
-  - - seed: On board, back into wall
+  - - text: On board, back into wall
     - key: p4_board_expect
     - key: p4_board_actual
 {{< /gridtable >}}
@@ -265,7 +265,10 @@ void back_until_pressed() {  // DEFINITION: the recipe, below main()
 
 ### [[DEBUGGING|Debugging]] Log
 
-{{< gridtable count=4 prefix=debug label="Debug" numbered=true number_head="Try" number_width="8%" >}}
+{{< repeattable count=4 prefix="debug" >}}
+- kind: number
+  head: "Try"
+  width: "8%"
 - head: What went wrong
   key: wrong
   width: 36%
@@ -274,7 +277,7 @@ void back_until_pressed() {  // DEFINITION: the recipe, below main()
   width: 26%
 - head: How you fixed it
   key: fix
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 

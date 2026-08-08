@@ -30,7 +30,7 @@ meta:
 
 Every lab so far has asked "did it work?" Today's question is different: "did it get *better*?" You can't answer that without a number. Today you'll time a real mission run, store repeated timing results the same way you stored pose data in Big Idea 1, and then write code that actually studies that stored data — finding the best and worst runs, and putting them in order.
 
-{{% callout title="The Big Idea of This Unit" variant="red" %}}
+{{% callout title="The Big Idea of This Unit" %}}
 A system that never measures its own performance can't tell whether a change actually helped. Feeling faster isn't the same as being faster — you need a number, and you need to keep it.
 {{% /callout %}}
 
@@ -105,11 +105,7 @@ This single stacking action scores three things at once: Mission 12's Base Missi
 
 Wrap your Restack & Shelve routine in the timing pattern from Phase 2, using your own library calls.
 
-{{< filetab >}}
-main.c
-{{< /filetab >}}
-
-{{< code >}}
+{{< code filename="main.c" >}}
 int main() {
     enable_servo(0);
     enable_servo(1);
@@ -136,9 +132,10 @@ int main() {
 
 Reset the 2 spilled cubes to their starting positions between attempts, and run the full mission 4 separate times. Record each printed elapsed time (in seconds — convert from the MM:SS your program prints).
 
-{{< gridtable count=4 prefix="trial" label="Trial" numbered=true
-              number_cell="num" number_width="16%"
-              caption="Record your 4 trial times" >}}
+{{< repeattable count=4 prefix="trial" caption="Record your 4 trial times" >}}
+- kind: number
+  head: "Trial"
+  width: "16%"
 - head: Printed MM:SS
   key: mmss
   aria: MMSS
@@ -146,7 +143,7 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
 - head: Elapsed in seconds
   key: sec
   aria: seconds
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 ## Phase 5 — Concept: Studying Your Own Data
 
@@ -248,11 +245,7 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
 
 Using your 4 recorded values from Phase 4, write the full analysis: hardcode the array, search for fastest/slowest, sort it, and report all of it.
 
-{{< filetab >}}
-main.c
-{{< /filetab >}}
-
-{{< code >}}
+{{< code filename="main.c" >}}
 double times[4] = { @@/* your 4 recorded seconds */@@ };
 
 // ===== SEARCH =====
@@ -288,7 +281,7 @@ printf("Sorted: %.2f, %.2f, %.2f, %.2f\n", times[0], times[1], times[2], times[3
 
 ## Phase 7 — Connect & Reflect
 
-{{% callout title="AI Literacy Thread" variant="red" %}}
+{{% callout title="AI Literacy Thread" %}}
 A system that never measures its own performance can't tell whether a change actually helped.
 {{% /callout %}}
 

@@ -213,13 +213,13 @@ columns:
     width: 38%
   - head: How smooth / steady? (cube safe?)
 rows:
-  - - seed: 1 ms
+  - - text: 1 ms
     - key: t1_speed
     - key: t1_smooth
-  - - seed: 2 ms
+  - - text: 2 ms
     - key: t2_speed
     - key: t2_smooth
-  - - seed: 3 ms
+  - - text: 3 ms
     - key: t3_speed
     - key: t3_smooth
 {{< /gridtable >}}
@@ -242,23 +242,26 @@ columns:
     width: 50%
   - head: Cube height off the table (inches)
 rows:
-  - - seed: Cube on the table (start)
+  - - text: Cube on the table (start)
     - key: h_start
-  - - seed: Cube lifted (arm raised)
+  - - text: Cube lifted (arm raised)
     - key: h_lifted
-  - - seed: Cube placed on the pallet
+  - - text: Cube placed on the pallet
     - key: h_pallet
 {{< /gridtable >}}
 
 ### Stacking Log
 
-{{< gridtable count=4 prefix="stack" label="Stack" numbered=true number_head="Try" number_width="8%" >}}
+{{< repeattable count=4 prefix="stack" >}}
+- kind: number
+  head: "Try"
+  width: "8%"
 - head: What happened (did the cube stay on the pallet?)
   key: what
   width: 46%
 - head: What you adjusted
   key: adjust
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p6_smooth_helped" label="Smooth helped" >}}Did smooth motion help the cube stay on the pallet compared to a sudden move? Why would a jerky arm knock it off?{{< /ask >}}
 

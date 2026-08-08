@@ -1,47 +1,24 @@
-{{- /*
-  Ships only the definitions and mission entries this page references, pulled
-  from data/glossary.yaml and data/missions.yaml at build time.
-
-  A page with `track: python` in its front matter gets the Python wording of any
-  term that has one, so the C and Python tracks can disagree on purpose without
-  either copy drifting.
-
-  Sense keys look like "PROTOTYPE:design". The default body (and its python
-  variant) is used when no sense is named; a sense's own title/body replace
-  both when one is.
-*/ -}}
+{{- /* Ship only the resolved glossary and mission entries referenced here. */ -}}
 {{- $terms := .Store.Get "usedTerms" -}}
 {{- $missions := .Store.Get "usedMissions" -}}
-{{- $lang := .Params.track | default "c" -}}
-
 {{- if or $terms $missions }}
 <script>
 {{- if $terms }}
-{{- $out := dict }}
-{{- range $terms }}
-  {{- $parts := split . ":" -}}
-  {{- $base := index $parts 0 -}}
-  {{- $sense := cond (gt (len $parts) 1) (index $parts 1) "" -}}
-  {{- $entry := index hugo.Data.glossary $base -}}
-  {{- $title := $entry.title -}}
-  {{- $body := cond (and (eq $lang "python") (isset $entry "python")) (index $entry "python") $entry.body -}}
-  {{- if ne $sense "" -}}
-    {{- $alt := index $entry.senses $sense -}}
-    {{- $title = $alt.title | default $title -}}
-    {{- $body = $alt.body -}}
-    {{- if and (eq $lang "python") (isset $alt "python") -}}
-      {{- $body = index $alt "python" -}}
-    {{- end -}}
-  {{- end -}}
-  {{- $out = merge $out (dict . (dict "title" $title "body" $body)) -}}
-{{- end }}
+  {{- $out := dict -}}
+  {{- range $terms }}
+    {{- $reference := partial "parse-reference.html" (dict "raw" . "position" $.File.Path) -}}
+    {{- $resolved := partial "glossary-entry.html" (dict "reference" $reference "track" ($.Params.track | default "c") "position" $.File.Path) -}}
+    {{- $out = merge $out (dict $resolved.lookup (dict "title" $resolved.title "body" $resolved.body)) -}}
+  {{- end }}
 window.KIPR_GLOSSARY = {{ $out | jsonify (dict "indent" "  ") | safeJS }};
 {{- end }}
 {{- if $missions }}
-{{- $out := dict }}
-{{- range $missions }}
-  {{- $out = merge $out (dict . (index hugo.Data.missions .)) }}
-{{- end }}
+  {{- $out := dict -}}
+  {{- range $missions }}
+    {{- $reference := partial "parse-reference.html" (dict "raw" (printf "@%s" .) "position" $.File.Path) -}}
+    {{- $resolved := partial "resolve-reference.html" (dict "reference" $reference "position" $.File.Path) -}}
+    {{- $out = merge $out (dict $resolved.number $resolved.entry) -}}
+  {{- end }}
 window.KIPR_MISSIONS = {{ $out | jsonify (dict "indent" "  ") | safeJS }};
 {{- end }}
 </script>

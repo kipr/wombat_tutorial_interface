@@ -49,16 +49,12 @@ If the robot does the wrong thing, the instructions are wrong. Your job is to fi
 These are built-in commands the robot already understands. You will use them inside your program. You don't have to write them — they come with the [[CONTROLLER|controller]].
 {.muted}
 
-{{< commands >}}
-- cmd: "motor(port, power)"
-  desc: "Turns the motor on the given [[PORT|port]] at a power level from −100 to 100. Example: <code>motor(0, 100)</code> runs motor 0 forward at full power."
-- cmd: "msleep(ms)"
-  desc: "Pauses the program for the given number of milliseconds (1000 ms = 1 second). The robot keeps doing whatever it was last told to do during the pause."
-- cmd: "ao()"
-  desc: "“All off.” Turns every motor port off at once. Use it to make the robot stop."
-- cmd: "alloff()"
-  desc: "Turns all motors off — the same idea as <code>ao()</code>. Either one brings the robot to a complete stop."
-{{< /commands >}}
+| Command | What it does |
+| --- | --- |
+| `motor(port, power)` | Turns the motor on the given [[PORT\|port]] at a power level from −100 to 100. Example: `motor(0, 100)` runs motor 0 forward at full power. |
+| `msleep(ms)` | Pauses the program for the given number of milliseconds (1000 ms = 1 second). The robot keeps doing whatever it was last told to do during the pause. |
+| `ao()` | “All off.” Turns every motor port off at once. Use it to make the robot stop. |
+| `alloff()` | Turns all motors off — the same idea as `ao()`. Either one brings the robot to a complete stop. |
 
 ## Phase 1 — Activate: The Literal Robot
 
@@ -96,12 +92,10 @@ An algorithm is a precise, ordered sequence of instructions that tells a system 
 
 Every algorithm takes *inputs* (information it needs) and produces *outputs* (the result). For a robot navigation program:
 
-{{< kv >}}
-- label: Inputs
-  value: "Motor speed · time to run · starting position of the robot"
-- label: Outputs
-  value: "Robot position on the field · whether the mission scored"
-{{< /kv >}}
+| | |
+| --- | --- |
+| Inputs | Motor speed · time to run · starting position of the robot |
+| Outputs | Robot position on the field · whether the mission scored |
 
 {{< ask key="p2_algorithm_vs_ideas" label="Algorithm versus a list of ideas" >}}In your own words: what is the difference between an algorithm and just a list of ideas?{{< /ask >}}
 
@@ -121,21 +115,29 @@ Every algorithm takes *inputs* (information it needs) and produces *outputs* (th
 
 Before writing code, you need to know where things are. Measure or estimate these values on the real field and record them here.
 
-{{< measures >}}
-- label: Distance from starting box edge to Waypoint Alpha zone
-  key: p3_dist_to_zone
-  aria: Distance to zone
-- label: Width of the Waypoint Alpha zone (front to back)
-  key: p3_zone_width
-  aria: Zone width
-- label: Distance from Waypoint Alpha zone back to starting box
-  key: p3_dist_back
-  aria: Distance back
-- label: Motor speed we plan to use
-  key: p3_motor_speed
-  aria: Motor speed
-  unit: "% power"
-{{< /measures >}}
+{{< gridtable >}}
+columns:
+  - head: Measurement
+    width: 58%
+  - head: Your Estimate
+    width: 27%
+  - head: Unit
+    width: 15%
+rows:
+  - - text: Distance from starting box edge to Waypoint Alpha zone
+    - key: p3_dist_to_zone
+    - key: p3_dist_to_zone_unit
+  - - text: Width of the Waypoint Alpha zone (front to back)
+    - key: p3_zone_width
+    - key: p3_zone_width_unit
+  - - text: Distance from Waypoint Alpha zone back to starting box
+    - key: p3_dist_back
+    - key: p3_dist_back_unit
+  - - text: Motor speed we plan to use
+    - key: p3_motor_speed
+    - key: p3_motor_speed_unit
+      value: "% power"
+{{< /gridtable >}}
 
 ### Step 2 — Write Your Algorithm in Plain English
 
@@ -205,7 +207,10 @@ Debugging is not guessing. It is a structured process of observation, hypothesis
 
 Complete one row for every run. Never skip a row — even failed runs contain information.
 
-{{< gridtable count=6 prefix="trial" label="Trial" numbered=true >}}
+{{< repeattable count=6 prefix="trial" >}}
+- kind: number
+  head: "Trial"
+  width: "7%"
 - head: What you changed
   key: changed
   width: 16%
@@ -220,9 +225,9 @@ Complete one row for every run. Never skip a row — even failed runs contain in
   width: 14%
 - head: What you observed
   key: observed
-{{< /gridtable >}}
+{{< /repeattable >}}
 
-{{< ask key="p5_bug" label="Bug description" style="min-height:100px" >}}Describe one specific bug you found. What was the symptom? What was the cause? How did you fix it?{{< /ask >}}
+{{< ask key="p5_bug" label="Bug description" >}}Describe one specific bug you found. What was the symptom? What was the cause? How did you fix it?{{< /ask >}}
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 

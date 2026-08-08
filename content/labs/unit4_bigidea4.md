@@ -82,7 +82,7 @@ Every scoring maneuver follows the same three-step rhythm: **do** the maneuver (
 
 These are the actual Botball points for the maneuvers in your run. Each maneuver's difficulty maps to a score — harder tasks are worth more.
 
-{{< gridtable caption="Your run's scoring maneuvers" tight=true >}}
+{{< gridtable caption="Your run's scoring maneuvers" >}}
 columns:
   - head: Maneuver
     width: 54%
@@ -90,21 +90,21 @@ columns:
     width: 20%
   - head: Points
 rows:
-  - - seed: "Place 1st small red cube on the large red cube"
-    - seed: "5"
-    - seedc: "9"
-  - - seed: "Place 2nd small red cube on the large red cube"
-    - seed: "6"
-    - seedc: "11"
-  - - seed: "Place the pallet (with large red cube) on the dock"
-    - seed: "6"
-    - seedc: "11"
-  - - seed: "Small red cube still on top when docked"
-    - seed: "5"
-    - seedc: "9"
+  - - text: "Place 1st small red cube on the large red cube"
+    - text: "5"
+    - text: "9"
+  - - text: "Place 2nd small red cube on the large red cube"
+    - text: "6"
+    - text: "11"
+  - - text: "Place the pallet (with large red cube) on the dock"
+    - text: "6"
+    - text: "11"
+  - - text: "Small red cube still on top when docked"
+    - text: "5"
+    - text: "9"
 {{< /gridtable >}}
 
-{{< calc title="Perfect run total: 9 + 11 + 11 + 9 = 40 points" variant="gold" >}}
+{{< calc title="Perfect run total: 9 + 11 + 11 + 9 = 40 points" >}}
 {{< /calc >}}
 
 {{< ask key="p3_partial_score" label="Partial score" >}}If your robot completed only the first two stacks but failed to dock, what would the score be? Show your addition.{{< /ask >}}
@@ -113,7 +113,10 @@ rows:
 
 Before coding, map your run as a list of actions and the points each scores. Think through the whole path: find the wall to reset, square up, drive and turn to the cubes, stack them, then move the pallet to the dock. Mark which library [[FUNCTION|function]] does each step.
 
-{{< gridtable count=8 prefix="plan" label="Plan" numbered=true number_cell="num" number_head="#" number_width="8%" >}}
+{{< repeattable count=8 prefix="plan" >}}
+- kind: number
+  head: "#"
+  width: "8%"
 - head: What the robot does
   key: what
   width: 48%
@@ -123,7 +126,7 @@ Before coding, map your run as a list of actions and the points each scores. Thi
 - head: Points (if any)
   key: pts
   aria: points
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 You don't need to score on every line — driving and turning set up the scoring maneuvers. Mark points only on the lines that actually score.
 {.muted}
@@ -184,23 +187,26 @@ Your finished run must use all six: `back_until_pressed`, `square_up`, `Drive`, 
 
 Run your program and watch the console. A perfect run prints a growing score, ending at 40. Here's what a clean run looks like:
 
-{{< console >}}
-- "Run started. Score: 0"
-- "Stacked first red cube. Score: 9"
-- "Stacked second red cube. Score: 20"
-- "Pallet on the dock. Score: 31"
-- "Cube held on top. Final score: 40"
-{{< /console >}}
+```text {.console}
+> Run started. Score: 0
+> Stacked first red cube. Score: 9
+> Stacked second red cube. Score: 20
+> Pallet on the dock. Score: 31
+> Cube held on top. Final score: 40
+```
 
 ### Your Run Log
 
-{{< gridtable count=4 prefix="run" label="Run" numbered=true number_head="Try" number_width="8%" >}}
+{{< repeattable count=4 prefix="run" >}}
+- kind: number
+  head: "Try"
+  width: "8%"
 - head: What the console printed (final score)
   key: printed
   width: 40%
 - head: What worked / what you fixed
   key: fixed
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p6_final_score" label="Final score" >}}What final score did your run reach? If it was below 40, which maneuver fell short, and how did the printed report help you find it?{{< /ask >}}
 

@@ -35,7 +35,7 @@ Lay everything out. Anything missing is far cheaper to find now than in the midd
 
 Check each item off the list below. If anything is missing, report it to your teacher.
 
-{{< figrow cols="two" >}}
+{{< figrow >}}
 - src: kit/wambatfaceon.jpg
   alt: "2 × KIPR Wombat controllers."
   check_id: wombat-controller
@@ -107,24 +107,18 @@ Check each item off the list below. If anything is missing, report it to your te
 
 Every robot is built from the same six kinds of part. Point at each one on your actual robot before you tick it.
 
-{{< checklist variant="tick" >}}
+{{< checklist >}}
 - key: s_sensor
-  id: s1
   label: "**[[SENSOR|Sensors]]** — how it takes information in. I can point at two."
 - key: s_comp
-  id: s2
   label: "**[[COMPUTATION|Computation]]** — where the decisions happen. I can point at it."
 - key: s_act
-  id: s3
   label: "**[[ACTUATOR|Actuators]]** — what makes movement. I can point at three."
 - key: s_eff
-  id: s4
   label: "**[[EFFECTOR|Effectors]]** — what acts on the world. I can name what mine will be."
 - key: s_power
-  id: s5
   label: "**Power** — where the energy comes from and how it is charged."
 - key: s_prop
-  id: s6
   label: "**[[PROPRIOCEPTIVE|Proprioceptive]] sense** — how it senses *itself*. Mine is the motor [[ENCODER|encoders]]."
 {{< /checklist >}}
 
@@ -132,15 +126,12 @@ Every robot is built from the same six kinds of part. Point at each one on your 
 
 {{< plsec n="Part 3" title="Know which kind of robot you are building" >}}
 
-{{< checklist variant="tick" >}}
+{{< checklist >}}
 - key: a_auto
-  id: a1
   label: "I can explain what [[AUTONOMOUS|autonomous]] means, and I know that once a match starts nobody may touch the robot."
 - key: a_rc
-  id: a2
   label: "I can say how that differs from [[REMOTE CONTROL|remote control]] and [[SEMI-AUTONOMOUS|semi‑autonomous]]."
 - key: a_why
-  id: a3
   label: "I understand why that makes testing matter more than it would otherwise."
 {{< /checklist >}}
 
@@ -148,24 +139,18 @@ Every robot is built from the same six kinds of part. Point at each one on your 
 
 {{< plsec n="Part 4" title="Safety and looking after the kit" >}}
 
-{{< checklist variant="tick" >}}
+{{< checklist >}}
 - key: sf_hands
-  id: f1
   label: "Hands clear of wheels, gears, and the claw whenever power is on."
 - key: sf_stop
-  id: f2
   label: "I know how to stop a running program immediately."
 - key: sf_servo
-  id: f3
   label: "I will not force a servo by hand — it strips the gears."
 - key: sf_batt
-  id: f4
   label: "I know how the battery is charged and that it is never left on the floor."
 - key: sf_wires
-  id: f5
   label: "Wires are routed so nothing is trapped or pulled when the robot moves."
 - key: sf_pack
-  id: f6
   label: "Everything goes back in the kit at the end of every session."
 {{< /checklist >}}
 
@@ -174,14 +159,11 @@ Every robot is built from the same six kinds of part. Point at each one on your 
 {{< signoff >}}
 check:
   key: done_all
-  id: z1
   label: "Every box above is ticked honestly, and my teacher has seen my robot."
 fields:
-  - id: r_team
-    key: rec_team
+  - key: rec_team
     label: Team name or number
-  - id: r_date
-    key: rec_date
+  - key: rec_date
     label: Date completed
 {{< /signoff >}}
 

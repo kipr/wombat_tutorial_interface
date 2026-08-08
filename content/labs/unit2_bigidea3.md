@@ -149,7 +149,7 @@ columns:
     width: 60%
   - head: Your value (ticks)
 rows:
-  - - seed: 'Ticks from start box to [[TOUCHING]] Botguy'
+  - - text: 'Ticks from start box to [[TOUCHING]] Botguy'
     - key: p3_target_ticks
       aria: Target ticks
 {{< /gridtable >}}
@@ -210,16 +210,16 @@ columns:
     width: 30%
   - head: Where the robot stopped (short / on Botguy / too far)
 rows:
-  - - seed: "1"
+  - - text: "1"
     - key: p4_try1_ticks
     - key: p4_try1_result
-  - - seed: "2"
+  - - text: "2"
     - key: p4_try2_ticks
     - key: p4_try2_result
-  - - seed: "3"
+  - - text: "3"
     - key: p4_try3_ticks
     - key: p4_try3_result
-  - - seed: "4"
+  - - text: "4"
     - key: p4_try4_ticks
     - key: p4_try4_result
 {{< /gridtable >}}
@@ -244,7 +244,10 @@ rows:
 
 ### [[DEBUGGING|Debugging]] Log
 
-{{< gridtable count=4 prefix="debug" label="Debug" numbered=true number_head="Try" number_width="8%" >}}
+{{< repeattable count=4 prefix="debug" >}}
+- kind: number
+  head: "Try"
+  width: "8%"
 - head: What went wrong
   key: wrong
   width: 36%
@@ -253,7 +256,7 @@ rows:
   width: 26%
 - head: How you fixed it
   key: fix
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p5_two_calls" label="Two calls reflection" >}}Once Botguy works, try calling `Tick_Drive()` twice with different numbers in a row. What happened? Why is one flexible function better than writing a separate function for each distance?{{< /ask >}}
 

@@ -133,20 +133,20 @@ columns:
     width: 60%
   - head: Value
 rows:
-  - - seed: Inches you measured (sensor start → black line)
+  - - text: Inches you measured (sensor start → black line)
     - key: cal_inches
-  - - seed: Ticks the robot counted (gmpc 0)
+  - - text: Ticks the robot counted (gmpc 0)
     - key: cal_ticks
-  - - seed: ticks_per_inch the program printed
+  - - text: ticks_per_inch the program printed
     - key: cal_tpi
 {{< /gridtable >}}
 
 {{< calc title="Check the math yourself" >}}
-- eq:
+- equation:
   - input: { key: cal_check_ticks, placeholder: ticks, aria: ticks }
-  - op: "÷"
+  - text: "÷"
   - input: { key: cal_check_inches, placeholder: inches, aria: inches }
-  - op: "="
+  - text: "="
   - input: { key: cal_check_result, placeholder: ticks_per_inch, aria: result }
 - note: "Does your hand calculation match what the program printed? It should."
 {{< /calc >}}
@@ -179,16 +179,16 @@ columns:
     width: 30%
   - head: Actual distance traveled (inches)
 rows:
-  - - num: "1"
-    - seed: "12.0"
+  - - text: "1"
+    - text: "12.0"
     - key: d_t1
-  - - num: "2"
+  - - text: "2"
     - key: d_t2_ask
     - key: d_t2_act
-  - - num: "3"
+  - - text: "3"
     - key: d_t3_ask
     - key: d_t3_act
-  - - num: "4"
+  - - text: "4"
     - key: d_t4_ask
     - key: d_t4_act
 {{< /gridtable >}}
@@ -290,7 +290,7 @@ Finished early? Try one or more of these.
 
 - This extension requires running the program manually via SSH or the terminal. While testing (not during a competition run), use `scanf` to read a number typed by a teammate instead of hard-coding it — the same way `printf` already sends output to the console, `scanf` reads input from it.
 
-{{< code size="small" >}}
+{{< code >}}
 double distance;
 printf("Enter a distance to drive (inches): ");
 scanf("%lf", &distance);

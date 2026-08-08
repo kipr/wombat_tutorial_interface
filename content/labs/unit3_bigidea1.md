@@ -108,13 +108,13 @@ columns:
     width: 55%
   - head: Value (0–2047)
 rows:
-  - - seed: Lowest safe position (arm down) — your ARM_MIN
+  - - text: Lowest safe position (arm down) — your ARM_MIN
     - key: arm_min
       aria: Arm min
-  - - seed: Highest safe position (arm up) — your ARM_MAX
+  - - text: Highest safe position (arm up) — your ARM_MAX
     - key: arm_max
       aria: Arm max
-  - - seed: Resting / centered position
+  - - text: Resting / centered position
     - key: arm_rest
       aria: Arm rest
 {{< /gridtable >}}
@@ -133,10 +133,10 @@ columns:
     width: 55%
   - head: Value (0–2047)
 rows:
-  - - seed: Open wide (fits around cube) — your CLAW_OPEN
+  - - text: Open wide (fits around cube) — your CLAW_OPEN
     - key: claw_open
       aria: Claw open
-  - - seed: Closed on the cube — your CLAW_SHUT
+  - - text: Closed on the cube — your CLAW_SHUT
     - key: claw_shut
       aria: Claw shut
 {{< /gridtable >}}
@@ -194,13 +194,16 @@ Run this with the robot held still on a table, cube in reach. Watch each move ha
 
 ### Pick-Up Log
 
-{{< gridtable count=4 prefix="try" label="Try" numbered=true number_head="Try" number_width="8%" >}}
+{{< repeattable count=4 prefix="try" >}}
+- kind: number
+  head: "Try"
+  width: "8%"
 - head: What happened at each step (open / lower / close / lift)
   key: what
   width: 46%
 - head: What you adjusted
   key: adjust
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p4_pickup_result" label="Pick-up result" >}}Did your robot pick up the cube? If a step didn't work (claw missed, arm too low/high), which safe value did you adjust, and why?{{< /ask >}}
 
@@ -221,10 +224,10 @@ columns:
     width: 60%
   - head: Value
 rows:
-  - - seed: Arm travel = ARM_MAX − ARM_MIN (how far the arm swings)
+  - - text: Arm travel = ARM_MAX − ARM_MIN (how far the arm swings)
     - key: p5_arm_travel
       aria: Arm travel
-  - - seed: Claw travel = CLAW_OPEN − CLAW_SHUT (how far the claw moves)
+  - - text: Claw travel = CLAW_OPEN − CLAW_SHUT (how far the claw moves)
     - key: p5_claw_travel
       aria: Claw travel
 {{< /gridtable >}}

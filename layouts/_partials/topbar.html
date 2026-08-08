@@ -1,9 +1,8 @@
-{{- $prefix := partial "urlprefix.html" . -}}
 <!-- ===== Sticky top bar + PIN / submit row ===== -->
 <div class="topbar no-print">
   <div class="topbar-inner">
-    <a class="brand" href="{{ $prefix }}index.html">KIPR · Botball <span>Explorer</span></a>
-      <nav class="mainnav" aria-label="Main">{{ range hugo.Data.nav }}<a href="{{ $prefix }}{{ .url }}"{{ if eq .id $.Params.nav }} class="here"{{ end }}>{{ .name }}</a>{{ end }}</nav>
+    <a class="brand" href="{{ partial "relative-url.html" (dict "source" . "path" "index.html") }}">KIPR · Botball <span>Explorer</span></a>
+      <nav class="mainnav" aria-label="Main">{{ range hugo.Data.nav }}{{ partial "navigation-link.html" (dict "source" $ "item" . "activeClass" "here") }}{{ end }}</nav>
   </div>
 {{- if .Params.mission_id }}
   <div class="pinbar">

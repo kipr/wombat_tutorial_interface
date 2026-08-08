@@ -9,9 +9,8 @@
   (hands-first checks). Blind-spot style warnings that must appear on paper
   omit it.
 */ -}}
-<div class="safety{{ if eq (printf "%v" (.Get "noprint")) "true" }} no-print{{ end }}">
-{{- with .Get "title" }}
-<p class="ctitle">{{ . }}</p>
-{{- end }}
-{{ .Inner }}
-</div>
+{{- partial "panel.html" (dict
+  "title" (.Get "title")
+  "variant" "red"
+  "noprint" (eq (printf "%v" (.Get "noprint")) "true")
+  "content" .Inner) -}}

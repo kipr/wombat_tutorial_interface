@@ -88,12 +88,12 @@ columns:
     width: 50%
   - head: Total steps from the door (your stored position)
 rows:
-  - - seed: Start at the doorway
-    - seed: "0"
-  - - seed: Take 3 steps forward
+  - - text: Start at the doorway
+    - text: "0"
+  - - text: Take 3 steps forward
     - key: p1_after_3
       aria: Position after 3 steps
-  - - seed: Take 2 more steps forward
+  - - text: Take 2 more steps forward
     - key: p1_after_2_more
       aria: Position after 2 more steps
 {{< /gridtable >}}
@@ -140,10 +140,10 @@ columns:
     width: 50%
   - head: Starting value (the origin)
 rows:
-  - - seed: x_position
+  - - text: x_position
     - key: p3_x_zero
       aria: x starting value
-  - - seed: y_position
+  - - text: y_position
     - key: p3_y_zero
       aria: y starting value
 {{< /gridtable >}}
@@ -161,13 +161,13 @@ columns:
   - head: y_position
     width: 27%
 rows:
-  - - seed: Start (origin)
-    - seed: "0"
-    - seed: "0"
-  - - seed: drive_forward() once
+  - - text: Start (origin)
+    - text: "0"
+    - text: "0"
+  - - text: drive_forward() once
     - key: p3_trace1_x
     - key: p3_trace1_y
-  - - seed: drive_forward() again
+  - - text: drive_forward() again
     - key: p3_trace2_x
     - key: p3_trace2_y
 {{< /gridtable >}}
@@ -231,26 +231,26 @@ columns:
     width: 43%
   - head: Difference from Trial 1 (inches)
 rows:
-  - - seed: 1 (expected)
+  - - text: 1 (expected)
     - key: p4_trial1_dist
       aria: Trial 1 distance
-    - seed: 0 (this is the baseline)
-  - - seed: "2"
+    - text: 0 (this is the baseline)
+  - - text: "2"
     - key: p4_trial2_dist
       aria: Trial 2 distance
     - key: p4_trial2_diff
       aria: Trial 2 difference
-  - - seed: "3"
+  - - text: "3"
     - key: p4_trial3_dist
       aria: Trial 3 distance
     - key: p4_trial3_diff
       aria: Trial 3 difference
-  - - seed: "4"
+  - - text: "4"
     - key: p4_trial4_dist
       aria: Trial 4 distance
     - key: p4_trial4_diff
       aria: Trial 4 difference
-  - - seed: "5"
+  - - text: "5"
     - key: p4_trial5_dist
       aria: Trial 5 distance
     - key: p4_trial5_diff
@@ -285,7 +285,10 @@ Memory bugs are sneaky: the robot moves perfectly, but its stored position is wr
 
 ### [[DEBUGGING|Debugging]] Log
 
-{{< gridtable count=4 prefix="debug" label="Debug" numbered=true number_head="Try" number_width="8%" >}}
+{{< repeattable count=4 prefix="debug" >}}
+- kind: number
+  head: "Try"
+  width: "8%"
 - head: Stored number that was wrong
   key: wrong
   width: 34%
@@ -294,7 +297,7 @@ Memory bugs are sneaky: the robot moves perfectly, but its stored position is wr
   width: 28%
 - head: How you fixed it
   key: fix
-{{< /gridtable >}}
+{{< /repeattable >}}
 
 {{< ask key="p5_bug" label="Memory mismatch description" >}}Describe one time your robot's stored position did not match where it really was. What caused the mismatch?{{< /ask >}}
 

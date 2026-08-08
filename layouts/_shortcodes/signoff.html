@@ -5,20 +5,15 @@
     {{< signoff >}}
     check:
       key: done_all
-      id: z1
       label: "Every box above is ticked honestly, and my teacher has seen my robot."
     fields:
-      - id: r_team
-        key: rec_team
+      - key: rec_team
         label: Team name or number
-      - id: r_date
-        key: rec_date
+      - key: rec_date
         label: Date completed
     {{< /signoff >}}
 
-  Optional shortcode param title= (default "Sign off").
-  Required YAML: check.key, check.label; fields list with id/key/label each.
-  Optional: check.id (defaults like checklist).
+  Required YAML: check.key, check.label; fields list with key/label each.
 */ -}}
 {{- $data := .Inner | transform.Unmarshal -}}
 {{- if not $data }}{{ errorf `%s: signoff needs YAML with check and fields` .Position }}{{ end -}}
@@ -26,26 +21,14 @@
 {{- $fields := index $data "fields" -}}
 {{- if not $check }}{{ errorf `%s: signoff needs a "check" map` .Position }}{{ end -}}
 {{- if not $fields }}{{ errorf `%s: signoff needs a "fields" list` .Position }}{{ end -}}
-{{- $ckey := index $check "key" -}}
-{{- $clabel := index $check "label" -}}
-{{- if not $ckey }}{{ errorf `%s: signoff check needs a "key"` .Position }}{{ end -}}
-{{- if not $clabel }}{{ errorf `%s: signoff check needs a "label"` .Position }}{{ end -}}
-{{- $cid := index $check "id" | default (replace $ckey "_" "-") -}}
-{{- $title := .Get "title" | default "Sign off" -}}
 <div class="signoff">
-<p class="so-t">{{ $title }}</p>
+<p class="so-t">Sign off</p>
 <ul class="tick">
-<li class="key"><input type="checkbox" data-key="{{ $ckey }}" id="{{ $cid }}"><label for="{{ $cid }}">{{ $.Page.RenderString $clabel }}</label></li>
+<li class="key">{{ partial "checkbox.html" (dict "field" $check "page" .Page "position" .Position) }}</li>
 </ul>
 <div class="rec">
 {{- range $fields }}
-{{- $id := index . "id" -}}
-{{- $key := index . "key" -}}
-{{- $label := index . "label" -}}
-{{- if not $id }}{{ errorf `%s: signoff field needs an "id"` $.Position }}{{ end -}}
-{{- if not $key }}{{ errorf `%s: signoff field %q needs a "key"` $.Position $id }}{{ end -}}
-{{- if not $label }}{{ errorf `%s: signoff field %q needs a "label"` $.Position $id }}{{ end -}}
-<label for="{{ $id }}">{{ $label }}</label><input type="text" id="{{ $id }}" data-key="{{ $key }}"{{ with index . "placeholder" }} placeholder="{{ . }}"{{ end }}>
+{{- partial "text-input.html" (dict "field" . "position" $.Position) -}}
 {{- end }}
 </div>
 </div>

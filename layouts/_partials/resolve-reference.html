@@ -1,0 +1,17 @@
+{{- /* Resolve either a parsed glossary or mission reference. */ -}}
+{{- $ref := .reference -}}
+{{- $result := dict -}}
+{{- if eq $ref.kind "term" -}}
+  {{- $result = partial "glossary-entry.html" (dict "reference" $ref "track" .track "position" .position) -}}
+{{- else -}}
+  {{- $number := $ref.base -}}
+  {{- $tier := $ref.qualifier | default "base" -}}
+  {{- $mission := index hugo.Data.missions $number -}}
+  {{- if not $mission -}}
+    {{- errorf "%s: [[%s]] refers to mission %q, which is not in data/missions.yaml" .position $ref.target $number -}}
+  {{- else if not (in $mission.tiers $tier) -}}
+    {{- errorf "%s: [[%s]] asks for tier %q but mission %s only has %v" .position $ref.target $tier $number $mission.tiers -}}
+  {{- end -}}
+  {{- $result = dict "number" $number "tier" $tier "title" $mission.title "entry" $mission -}}
+{{- end -}}
+{{- return $result -}}

@@ -1,0 +1,20 @@
+{{- /* Parse TERM[:sense][|label] and @mission[:tier][|label]. */ -}}
+{{- $raw := .raw | strings.TrimSpace | strings.TrimPrefix "[[" | strings.TrimSuffix "]]" -}}
+{{- $raw = replace $raw `\|` "|" -}}
+{{- $labelParts := split $raw "|" -}}
+{{- if gt (len $labelParts) 2 }}{{ errorf "%s: reference %q has too many '|' segments" .position $raw }}{{ end -}}
+{{- $target := index $labelParts 0 | strings.TrimSpace -}}
+{{- if eq $target "" }}{{ errorf "%s: empty reference" .position }}{{ end -}}
+{{- $label := "" -}}
+{{- if eq (len $labelParts) 2 }}{{ $label = index $labelParts 1 | strings.TrimSpace }}{{ end -}}
+{{- $kind := cond (hasPrefix $target "@") "mission" "term" -}}
+{{- $name := cond (eq $kind "mission") (strings.TrimPrefix "@" $target) $target -}}
+{{- $parts := split $name ":" -}}
+{{- if gt (len $parts) 2 }}{{ errorf "%s: reference %q has too many ':' segments" .position $target }}{{ end -}}
+{{- $base := index $parts 0 | strings.TrimSpace -}}
+{{- if eq $base "" }}{{ errorf "%s: reference %q has no target" .position $target }}{{ end -}}
+{{- $qualifier := "" -}}
+{{- if eq (len $parts) 2 }}{{ $qualifier = index $parts 1 | strings.TrimSpace }}{{ end -}}
+{{- return (dict
+  "raw" $raw "target" $target "label" $label "kind" $kind
+  "base" $base "qualifier" $qualifier) -}}
