@@ -37,7 +37,8 @@
           - key: et_2in
     {{< /gridtable >}}
 
-  Cell kinds in rows mode: seed, seedmono, label, num, or key(+aria, +placeholder).
+  Cell kinds in rows mode: seed, seedmono, seedc, label, num, or
+  key(+aria, +placeholder, +align).
   A row may be a bare cell list, or {class, cells:[…]} for a row class.
 
   data-key values in count mode follow <prefix><n>_<key>.
@@ -45,6 +46,7 @@
   Parameters (both modes)
     caption         optional <caption> text
     caption_class   optional class on the caption (e.g. "a" / "b")
+    tight           true → class="grid tight" (compact seed/seedc padding)
 
   Parameters (count mode)
     count         number of answer rows
@@ -53,6 +55,7 @@
     numbered      prepend a row-number column
     number_head   heading for that column (default "Trial")
     number_width  width style for that column (default 7%)
+    number_cell   "num" → <td class="num">; omit for centered bold inline style
 
   Per-column keys (count mode)
     head, key, width
@@ -60,26 +63,32 @@
     seed        value shown in place of an input in the first answer row
     aria        override the aria-label suffix (default is the key); full label
                 is still "<label> <n> <aria>"
+    align       optional text-align on the input (e.g. "center")
 
   Rows mode YAML
     columns[].head / width
     rows[]        cell list, or {class, cells:[…]}
-    rows[][]      each cell is {seed}, {seedmono}, {label}, {num}, or {key, aria?}
+    rows[][]      each cell is {seed}, {seedmono}, {seedc}, {label}, {num},
+                  or {key, aria?, placeholder?, align?}
 */ -}}
 {{- $data := .Inner | transform.Unmarshal -}}
 {{- $caption := .Get "caption" -}}
 {{- $captionClass := .Get "caption_class" -}}
+{{- $tight := eq (printf "%v" (.Get "tight")) "true" -}}
 {{- if and (not $caption) (reflect.IsMap $data) }}{{ $caption = index $data "caption" }}{{ end -}}
 {{- if and (not $captionClass) (reflect.IsMap $data) }}{{ $captionClass = index $data "caption_class" }}{{ end -}}
+{{- if and (not $tight) (reflect.IsMap $data) }}{{ $tight = eq (printf "%v" (index $data "tight")) "true" }}{{ end -}}
+{{- $gridClass := cond $tight "grid tight" "grid" -}}
 {{- if .Get "count" -}}
 {{- $count := int (partial "require.html" (dict "sc" . "name" "count")) -}}
 {{- $prefix := partial "require.html" (dict "sc" . "name" "prefix") -}}
 {{- $label := .Get "label" -}}
 {{- $numbered := eq (printf "%v" (.Get "numbered")) "true" -}}
+{{- $numberCell := .Get "number_cell" | default "" -}}
 {{- $columns := $data -}}
 {{- $hasExample := false -}}
 {{- range $columns }}{{ if .example }}{{ $hasExample = true }}{{ end }}{{ end -}}
-<table class="grid">
+<table class="{{ $gridClass }}">
 {{- with $caption }}
 <caption{{ with $captionClass }} class="{{ . }}"{{ end }}>{{ . | $.Page.RenderString }}</caption>
 {{- end }}
@@ -98,12 +107,12 @@
 <tr>{{ if $numbered }}<td></td>{{ end }}{{ range $columns }}<td><div class="seed">{{ .example }}</div></td>{{ end }}</tr>
 {{- end }}
 {{- range $n := seq 1 $count }}
-<tr>{{ if $numbered }}<td style="text-align:center;font-weight:600">{{ $n }}</td>{{ end }}
+<tr>{{ if $numbered }}{{ if eq $numberCell "num" }}<td class="num">{{ $n }}</td>{{ else }}<td style="text-align:center;font-weight:600">{{ $n }}</td>{{ end }}{{ end }}
 {{- range $col := $columns -}}
 {{- if and (eq $n 1) $col.seed -}}
 <td><div class="seed">{{ $col.seed }}</div></td>
 {{- else -}}
-<td><input type="text" data-key="{{ $prefix }}{{ $n }}_{{ $col.key }}"{{ if $label }} aria-label="{{ $label }} {{ $n }} {{ $col.aria | default $col.key }}"{{ end }}></td>
+<td><input type="text" data-key="{{ $prefix }}{{ $n }}_{{ $col.key }}"{{ if $label }} aria-label="{{ $label }} {{ $n }} {{ $col.aria | default $col.key }}"{{ end }}{{ with $col.align }} style="text-align:{{ . }}"{{ end }}></td>
 {{- end -}}
 {{- end -}}
 </tr>
@@ -115,7 +124,7 @@
 {{- $rows := index $data "rows" -}}
 {{- if not $columns }}{{ errorf `%s: gridtable rows mode needs a "columns" list` .Position }}{{ end -}}
 {{- if not $rows }}{{ errorf `%s: gridtable rows mode needs a "rows" list` .Position }}{{ end -}}
-<table class="grid">
+<table class="{{ $gridClass }}">
 {{- with $caption }}
 <caption{{ with $captionClass }} class="{{ . }}"{{ end }}>{{ . | $.Page.RenderString }}</caption>
 {{- end }}
@@ -141,12 +150,14 @@
 <td><div class="seed">{{ index . "seed" }}</div></td>
 {{- else if isset . "seedmono" -}}
 <td><div class="seedmono">{{ index . "seedmono" }}</div></td>
+{{- else if isset . "seedc" -}}
+<td><div class="seedc">{{ index . "seedc" }}</div></td>
 {{- else if isset . "label" -}}
 <td><div class="label">{{ index . "label" }}</div></td>
 {{- else if isset . "num" -}}
 <td class="num">{{ index . "num" }}</td>
 {{- else -}}
-<td><input type="text" data-key="{{ index . "key" }}"{{ with index . "aria" }} aria-label="{{ . }}"{{ end }}{{ with index . "placeholder" }} placeholder="{{ . }}"{{ end }}></td>
+<td><input type="text" data-key="{{ index . "key" }}"{{ with index . "aria" }} aria-label="{{ . }}"{{ end }}{{ with index . "placeholder" }} placeholder="{{ . }}"{{ end }}{{ with index . "align" }} style="text-align:{{ . }}"{{ end }}></td>
 {{- end -}}
 {{- end -}}
 </tr>

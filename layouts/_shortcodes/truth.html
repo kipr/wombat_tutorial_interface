@@ -1,0 +1,19 @@
+{{- /*
+  A boolean truth table (monospace, navy headers, optional .yes row).
+
+    {{< truth >}}
+    heads:
+      - "Left on black?"
+      - "Right on black?"
+      - "&& result"
+    rows:
+      - ["no", "no", "false"]
+      - ["yes", "no", "false"]
+      - ["no", "yes", "false"]
+      - cells: ["yes", "yes", "true"]
+        class: yes
+    {{< /truth >}}
+*/ -}}
+{{- $data := .Inner | transform.Unmarshal -}}
+{{- if not $data }}{{ errorf `%s: truth needs YAML with heads and rows` .Position }}{{ end -}}
+{{ partial "truthtable.html" $data }}

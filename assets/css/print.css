@@ -39,7 +39,8 @@
   }
 
   .meta, .callout, .concept, .cmd-table, .grid, .bottom-submit,
-  .safety, .widget-step, .calc-box, .checklist li {
+  .safety, .widget-step, .calc-box, .calc, .warn, .reset-box, .console,
+  .truth, .checklist li {
     break-inside: avoid;
   }
 
@@ -84,13 +85,31 @@
 
   /* show typed values cleanly in print */
   .answer, .steps input, .grid input, .namebar input, .pin-field input,
-  .calc-line input {
+  .calc-line input, .calc .eq input {
     border: none !important;
     border-bottom: 1px solid #999 !important;
     border-radius: 0 !important;
     background: #fff !important;
     box-shadow: none !important;
     color: #000 !important;
+  }
+
+  .console {
+    background: #f2f2f2 !important;
+    color: #1a1a1a !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .console .pl {
+    color: #333 !important;
+  }
+
+  .truth th {
+    background: var(--navy) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .answer {

@@ -10,6 +10,15 @@
         Change it once and every use updates.
     {{< /concept >}}
 
+  A truth table may appear between prose/code parts (Unit 4 Boolean AND):
+
+    - truth:
+        heads: ["Left on black?", "Right on black?", "&& result"]
+        rows:
+          - ["no", "no", "false"]
+          - cells: ["yes", "yes", "true"]
+            class: yes
+
   Inner content is YAML rather than free markdown because a raw code listing
   nested inside a markdown-rendered shortcode gets re-read as markdown, and its
   blank lines split it into paragraphs. Declaring the parts keeps the listing
@@ -32,6 +41,9 @@
     "page" $.Page
     "position" $.Position
     "size" "small") | safeHTML }}
+{{- end }}
+{{- with .truth }}
+{{ partial "truthtable.html" . }}
 {{- end }}
 {{- end }}
 </div>

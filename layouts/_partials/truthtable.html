@@ -1,0 +1,35 @@
+{{- /*
+  Render a .truth table from a dict:
+    heads: ["Left on black?", "Right on black?", "&& result"]
+    rows:
+      - ["no", "no", "false"]
+      - cells: ["yes", "yes", "true"]
+        class: yes
+*/ -}}
+{{- $heads := index . "heads" -}}
+{{- $rows := index . "rows" -}}
+{{- if not $heads }}{{ errorf `truthtable needs "heads"` }}{{ end -}}
+{{- if not $rows }}{{ errorf `truthtable needs "rows"` }}{{ end -}}
+<table class="truth">
+<thead><tr>
+{{- range $heads }}
+<th>{{ . }}</th>
+{{- end }}
+</tr></thead>
+<tbody>
+{{- range $rows }}
+{{- $rowClass := "" -}}
+{{- $cells := . -}}
+{{- if reflect.IsMap . -}}
+{{- $rowClass = index . "class" | default "" -}}
+{{- $cells = index . "cells" -}}
+{{- if not $cells }}{{ errorf `truthtable row map needs a "cells" list` }}{{ end -}}
+{{- end -}}
+<tr{{ with $rowClass }} class="{{ . }}"{{ end }}>
+{{- range $cells }}
+<td>{{ . }}</td>
+{{- end }}
+</tr>
+{{- end }}
+</tbody>
+</table>

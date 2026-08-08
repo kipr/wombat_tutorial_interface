@@ -1,0 +1,12 @@
+{{- /*
+  A gold "error reset checkpoint" callout (.reset-box).
+
+    {{% resetbox title="Error Reset Checkpoint" %}}
+    Every time you call `square_up()`, think of it as a checkpoint…
+    {{% /resetbox %}}
+*/ -}}
+{{- $title := partial "require.html" (dict "sc" . "name" "title") -}}
+<div class="reset-box">
+<p class="rtitle">{{ $title }}</p>
+{{ .Inner }}
+</div>

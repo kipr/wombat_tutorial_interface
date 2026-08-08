@@ -234,6 +234,7 @@ shortcode. The mapping is:
 | `<span class="def-term" data-term="X">y</span>` | `[[X\|y]]` |
 | `<span class="fieldref" data-m="2" data-tier="base">z</span>` | `[[@2\|z]]` |
 | `<div class="callout navy">` | `{{% callout title="…" variant="navy" %}}` |
+| `<div class="callout red">` | `{{% callout title="…" variant="red" %}}` |
 | `<div class="code">` | `{{< code >}}` with plain, decoded source text |
 | `<div class="code small">` | `{{< code size="small" >}}` |
 | `<pre class="code">` | `{{< code >}}` or a named-language Markdown fence |
@@ -244,11 +245,22 @@ shortcode. The mapping is:
 | `<div class="concept">` | `{{< concept "title" >}}` |
 | `<table class="cmd-table">` | `{{< commands >}}` |
 | `<table class="grid">` with inputs | `{{< gridtable >}}` |
+| `<table class="grid tight">` | `{{< gridtable tight=true >}}` |
+| `<div class="seedc">` inside a grid | rows-mode cell `{seedc: "…"}` |
+| `<table class="truth">` | `{{< truth >}}` (or a `truth:` part inside `concept`) |
+| `<div class="calc">` | `{{< calc title="…" >}}` (blue formula box; not `calcbox`) |
+| `<div class="calc-box">` | `{{< calcbox title="…" >}}` (green fill-in arithmetic) |
+| `<div class="warn">` | `{{% warn title="…" %}}` |
+| `<div class="console">` | `{{< console >}}` |
+| `<div class="reset-box">` | `{{% resetbox title="…" %}}` |
+| `<div class="sketch">` | `{{< sketch … >}}` |
 | `<ul class="steps">` | `{{< steps >}}` |
 | `<p class="q">` + `<textarea>` | `{{< ask >}}` |
 | bare `<textarea class="answer">` | `{{< answer >}}` |
 | `<div class="figrow">` | `{{< figrow >}}` |
 | `<div class="namebar">` | `{{< namebar >}}` |
+| `<div class="filetab">` | `{{< filetab >}}` |
+| `<ul class="checklist">` | `{{< checklist >}}` |
 
 Preserve `data-key` values and `aria-label` text **exactly**. Those keys are the
 submission payload; changing one silently orphans student work saved under the
@@ -594,11 +606,16 @@ Parameters:
 | `label` | `aria-label` prefix; omit entirely for tables with no aria labels |
 | `numbered` | `true` prepends a row-number column |
 | `number_head` | header for that column (default `Trial`) |
+| `number_cell` | `num` emits `<td class="num">` (Unit 4 plan tables); omit for centered bold |
+| `tight` | `true` → `class="grid tight"` (compact seed/seedc padding) |
 
 Per-column keys: `head`, `key`, `width`, plus two ways to pre-fill examples:
 
 - `example:` — adds one fully worked row **above** the answer rows.
 - `seed:` — replaces the input in the **first** answer row with static text.
+- `align:` — optional `text-align` on the input (e.g. `center` for reset columns).
+
+Rows mode also accepts `seedc` (centered monospace seed) and `seedmono` cells.
 
 `data-key` values come out as `<prefix><n>_<key>`; aria labels as
 `<label> <n> <key>`. Both match what the original pages generated in JavaScript.
@@ -685,6 +702,102 @@ Column class follows the figure count: 2 → `two`, 3 → `three`, 4 or more →
 
 Keys default to `reflect_name` / `reflect_date`; override with `name_key` and
 `date_key`.
+
+### `calc` — a blue formula / calculation box
+
+Distinct from `calcbox` (green fill-in line). Unit 4 uses `.calc` for models,
+hand-check equations, and gold score totals.
+
+```markdown
+{{< calc title="The model is built by dividing" >}}
+- formula: "ticks_per_inch = ticks measured ÷ inches traveled"
+- note: |
+    Example: if the robot counted 250 ticks while traveling 6 inches,
+    then ticks_per_inch = 250 ÷ 6 = 41.7
+{{< /calc >}}
+
+{{< calc title="Check the math yourself" >}}
+- eq:
+  - input: { key: cal_check_ticks, placeholder: ticks, aria: ticks }
+  - op: "÷"
+  - input: { key: cal_check_inches, placeholder: inches, aria: inches }
+  - op: "="
+  - input: { key: cal_check_result, placeholder: ticks_per_inch, aria: result }
+- note: "Does your hand calculation match what the program printed? It should."
+{{< /calc >}}
+
+{{< calc title="Perfect run total: 9 + 11 + 11 + 9 = 40 points" variant="gold" >}}
+{{< /calc >}}
+```
+
+`note` becomes `<p class="muted">`. `variant="gold"` is the score-total highlight.
+
+### `calcbox` — a green fill-in arithmetic line
+
+```markdown
+{{< calcbox title="Midpoint = ( black + white ) ÷ 2" >}}
+- text: "("
+- input: { key: calc_black, aria: black value, placeholder: black }
+- text: "+"
+- input: { key: calc_white, aria: white value, placeholder: white }
+- text: ") ÷ 2 ="
+- input: { key: calc_midpoint, aria: midpoint, placeholder: midpoint }
+{{< /calcbox >}}
+```
+
+Always screen-only (`class="calc-box no-print"`). Do not use this for Unit 4's
+blue `.calc` boxes.
+
+### `truth` — a boolean truth table
+
+```markdown
+{{< truth >}}
+heads:
+  - "Left on black?"
+  - "Right on black?"
+  - "&& result"
+rows:
+  - ["no", "no", "false"]
+  - ["yes", "no", "false"]
+  - ["no", "yes", "false"]
+  - cells: ["yes", "yes", "true"]
+    class: yes
+{{< /truth >}}
+```
+
+When the table sits inside a concept box (Unit 4 Big Idea 2), use a `truth:`
+part in the concept YAML instead of nesting the shortcode.
+
+### `console` — a dark terminal sample
+
+```markdown
+{{< console >}}
+- "Run started. Score: 0"
+- "Stacked first red cube. Score: 9"
+- "Pallet on the dock. Score: 31"
+{{< /console >}}
+```
+
+Each line is prefixed with a blue `<span class="pl">&gt;</span>`.
+
+### `warn` — a red drift / caution box
+
+```markdown
+{{% warn title="⚠ Your ticks_per_inch will change over time" %}}
+The number you just measured is true *right now* — but it won't stay true forever.
+{{% /warn %}}
+```
+
+Different class from `safety`. Use `warn` for "this value drifts" cautions;
+use `safety` for hands-first hardware checks.
+
+### `resetbox` — a gold error-reset checkpoint
+
+```markdown
+{{% resetbox title="Error Reset Checkpoint" %}}
+Every time you call `square_up()`, think of it as a checkpoint…
+{{% /resetbox %}}
+```
 
 ### `safety` — a red hardware / safety warning
 
@@ -1239,14 +1352,15 @@ Do not turn it off.
 
 Migrated so far:
 
-- C labs from `unit1_bigidea1` through `unit3_bigidea5`
-- `unit4_bigidea1`
+- C labs from `unit1_bigidea1` through `unit4_bigidea5`
 - `prelab1` and the C lab section index
 - A draft-only C/Python syntax-highlighting fixture
+- Shared Unit 4 furniture: `calc`, `truth`, `console`, `warn`, `resetbox`,
+  plus `gridtable` `seedc` / `tight` / `number_cell` support
 
 Still to do:
 
-- 9 remaining C labs: `prelab0`, Unit 4 Big Ideas 2–5, and Unit 5 Big Ideas 1–4
+- 5 remaining C labs: `prelab0` and Unit 5 Big Ideas 1–4
 - 28 Python labs under `docs/Python_Labs/` — these need `track: python`, which
   selects the `python:` wording of any term that has one and makes Python the
   default Chroma lexer; follow the code conversion checklist in section 9.11

@@ -1,0 +1,68 @@
+{{- /*
+  A blue calculation / formula box (.calc). Distinct from the green calcbox
+  (.calc-box) used for fill-in midpoint arithmetic.
+
+    {{< calc title="The model is built by dividing" >}}
+    - formula: "ticks_per_inch = ticks measured ÷ inches traveled"
+    - note: |
+        Example: if the robot counted 250 ticks while traveling 6 inches,
+        then ticks_per_inch = 250 ÷ 6 = 41.7
+    {{< /calc >}}
+
+    {{< calc title="Check the math yourself" >}}
+    - eq:
+      - input:
+          key: cal_check_ticks
+          placeholder: ticks
+          aria: ticks
+      - op: "÷"
+      - input:
+          key: cal_check_inches
+          placeholder: inches
+          aria: inches
+      - op: "="
+      - input:
+          key: cal_check_result
+          placeholder: ticks_per_inch
+          aria: result
+    - note: "Does your hand calculation match what the program printed? It should."
+    {{< /calc >}}
+
+    {{< calc title="Perfect run total: 9 + 11 + 11 + 9 = 40 points" variant="gold" >}}
+    {{< /calc >}}
+
+  variant="gold" switches to the gold highlight used for score totals.
+  Inner YAML is optional when the title alone is the content.
+*/ -}}
+{{- $title := partial "require.html" (dict "sc" . "name" "title") -}}
+{{- $variant := .Get "variant" | default "" -}}
+{{- $parts := slice -}}
+{{- with trim .Inner " \n\r\t" -}}
+{{- $parts = transform.Unmarshal . -}}
+{{- end -}}
+<div class="calc{{ with $variant }} {{ . }}{{ end }}">
+<p class="ctitle">{{ $title }}</p>
+{{- range $parts }}
+{{- with .formula }}
+<div class="formula">{{ . }}</div>
+{{- end }}
+{{- with .eq }}
+<div class="eq">
+{{- range . }}
+{{- with .input }}
+<input type="text" data-key="{{ .key }}"{{ with .placeholder }} placeholder="{{ . }}"{{ end }}{{ with .aria }} aria-label="{{ . }}"{{ end }} />
+{{- end }}
+{{- with .op }}
+<span class="op">{{ . }}</span>
+{{- end }}
+{{- with .lbl }}
+<span class="lbl">{{ . }}</span>
+{{- end }}
+{{- end }}
+</div>
+{{- end }}
+{{- with .note }}
+<p class="muted">{{ $.Page.RenderString . }}</p>
+{{- end }}
+{{- end }}
+</div>
