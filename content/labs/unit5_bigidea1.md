@@ -73,26 +73,26 @@ Collect **2 orange poms and 2 blue poms**. Deliver **1 orange + 1 blue** into on
 
 {{< ask key="p2_array" label="Array concept" >}}In your own words, what is an array? Why does grouping x, y, and heading into one `pose[3]` array make more sense here than three separate variables?{{< /ask >}}
 
-{{< concept "What is #define?" >}}
+{{< concept "What is const?" >}}
 - text: |
-    A variable can change while your program runs. `#define` can't — it isn't even a variable. It's an instruction to the **[[COMPILER|compiler]]**: "everywhere you see this word in my file, swap in this text instead." That swap happens once, before your program is even compiled — not while it's running.
+    A regular variable can change while your program runs. A **constant** cannot. Adding `const` tells the **[[COMPILER|compiler]]** that the value may be set when it is declared, but cannot be reassigned later. Constants are useful for values that should always mean the same thing, such as the numbered slots in an array.
 - code: |
     // a variable: reserves memory, can be reassigned later
     double heading = 0;
 
-    // a #define: not a variable, just a stand-in name for the number 0
-    #define POSE_X 0
+    // a constant: has a type and a value, but cannot be reassigned later
+    const int POSE_X = 0;
 - text: |
-    Notice the syntax is different from every variable you've written: **no equals sign, and no [[SEMICOLON|semicolon]]** at the end of the line. `#define POSE_X 0` is the whole [[STATEMENT|statement]] — just the word `#define`, the name you're creating, and the text it stands for.
+    A constant declaration looks much like a variable declaration: it has a type, a name, an equals sign, a starting value, and a [[SEMICOLON|semicolon]]. The word `const` goes before the type to say the value cannot change. These constants use `int` because array indexes are whole numbers.
 - code: |
-    #define POSE_X 0
-    #define POSE_Y 1
-    #define POSE_R 2   // R = heading, in degrees
+    const int POSE_X = 0;
+    const int POSE_Y = 1;
+    const int POSE_R = 2;   // R = heading, in degrees
 
     // now pose[POSE_X] means exactly what it says, instead of a bare, meaningless pose[0]
 {{< /concept >}}
 
-{{< ask key="p2_define" label="Define concept" >}}Why does `#define POSE_X 0` have no equals sign and no semicolon, and how is that different from writing `double heading = 0;`?{{< /ask >}}
+{{< ask key="p2_const" label="Const concept" >}}Why does `const int POSE_X = 0;` use `int`, and what prevents it from being reassigned later like `double heading = 0;` can be?{{< /ask >}}
 
 ## Phase 3 — Concept: Reading and Writing the Pose
 
@@ -190,9 +190,9 @@ First add the pose array, the [[INDEX|index]] names, and the helper functions to
 yourname.h
 {{< /filetab >}}
 {{< code >}}
-#define POSE_X 0
-#define POSE_Y 1
-#define POSE_R 2
+const int POSE_X = 0;
+const int POSE_Y = 1;
+const int POSE_R = 2;
 
 double pose[3];   // pose[POSE_X], pose[POSE_Y], pose[POSE_R]: believed x, y, heading
 
