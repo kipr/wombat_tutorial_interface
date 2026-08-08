@@ -111,6 +111,8 @@ content/labs/foo.md
    │  from being re-read as markdown.
    │  Headings pass through layouts/_markup/render-heading.html, which adds
    │  the .phase-head / .sub classes and the .pnum badge.
+   │  Code shortcodes, concept listings, and fenced code blocks pass through
+   │  Hugo's Chroma lexer using the page track or an explicit language.
    ▼
 rendered HTML fragment
    │
@@ -158,7 +160,10 @@ body = re.sub(r'<script\b[^>]*>.*?</script>', '', src, flags=re.S)
 for name, pattern in {
     'sections':        r'<section>',
     'callouts':        r'<div class="callout([^"]*)"',
-    'code blocks':     r'<div class="code([^"]*)"',
+    'code blocks':     r'<(?:div|pre) class="code([^"]*)"',
+    'code comments':   r'<span class="(?:c|cm)">',
+    'code emphasis':   r'<span class="hl">',
+    'legacy code spans': r'<span class="(?:kw|cm|nu|st|ln)">',
     'concept boxes':   r'<div class="concept"',
     'grid tables':     r'<table class="grid"',
     'command tables':  r'<table class="cmd-table"',
@@ -210,7 +215,9 @@ Missing entries mean the page introduces a term or mission that
 
 Copy the front matter from an existing lab (`content/labs/unit1_bigidea1.md` is
 the reference implementation) and fill in the values from the original's hero
-block, `<title>`, `.meta` table, and `.credit` line. See section 5.
+block, `<title>`, `.meta` table, and `.credit` line. See section 5. Set `track`
+before converting any listings: use `c` for C labs and `python` for Python labs.
+The same value selects both glossary wording and the default Chroma lexer.
 
 ### Step 4 — Convert the body
 
@@ -227,7 +234,13 @@ shortcode. The mapping is:
 | `<span class="def-term" data-term="X">y</span>` | `[[X\|y]]` |
 | `<span class="fieldref" data-m="2" data-tier="base">z</span>` | `[[@2\|z]]` |
 | `<div class="callout navy">` | `{{% callout title="…" variant="navy" %}}` |
-| `<div class="code">` | `{{< code >}}` |
+| `<div class="code">` | `{{< code >}}` with plain, decoded source text |
+| `<div class="code small">` | `{{< code size="small" >}}` |
+| `<pre class="code">` | `{{< code >}}` or a named-language Markdown fence |
+| `<span class="c">` or `<span class="cm">` inside code | comment text (remove the span) |
+| `<span class="kw">`, `.nu`, or `.st` inside code | source text (remove the span) |
+| `<span class="hl">value</span>` inside code | `@@value@@` |
+| `<span class="ln">12</span>` inside code | remove it; request Chroma line numbers if they matter |
 | `<div class="concept">` | `{{< concept "title" >}}` |
 | `<table class="cmd-table">` | `{{< commands >}}` |
 | `<table class="grid">` with inputs | `{{< gridtable >}}` |
@@ -241,6 +254,16 @@ Preserve `data-key` values and `aria-label` text **exactly**. Those keys are the
 submission payload; changing one silently orphans student work saved under the
 old key.
 
+Treat every legacy `.code` element as source code, not reusable HTML. Preserve
+its newlines and indentation, but remove all syntax-colouring spans. Convert
+gold `.hl` spans to `@@…@@` before removing their tags, and decode entities such
+as `&lt;`, `&gt;`, `&amp;`, and `&quot;` back to the literal characters a student
+should copy. Never paste legacy `<span class="c">` or `<span class="hl">`
+markup into a shortcode. Section 9.11 gives a complete example and checklist.
+Discovery pages often use `<pre class="code">` and `.kw`, `.cm`, `.nu`, `.st`,
+or `.ln` spans instead of the lab-page variants; these are the same kind of
+legacy presentation markup and must not survive the conversion.
+
 ### Step 5 — Build
 
 ```bash
@@ -248,7 +271,18 @@ hugo --logLevel error
 ```
 
 The build fails loudly on a mistyped glossary term, an unknown mission, a
-missing shortcode parameter, or a missing stylesheet. See section 11.
+missing shortcode parameter, a missing stylesheet, or invalid code language or
+emphasis markup. If the page contains code, also run the C/Python regression:
+
+```bash
+hugo --buildDrafts --destination /tmp/wombat-highlight-check --logLevel error
+python3 tools/check_syntax_highlighting.py /tmp/wombat-highlight-check
+```
+
+The checker examines every generated code block, including the page just
+migrated, for language metadata, lexer errors, and leaked authoring markers.
+Compare the migrated page's actual code text with the original in section 10.3.
+See sections 10 and 11.
 
 ### Step 6 — If the page needs something new
 
@@ -279,13 +313,13 @@ title: "Unit 1 · Big Idea 2 — The Red Cube Breakdown"   # <title> and fallbac
 short_title: "Lab 1.2"          # prev/next link text and index listing
 weight: 40                      # ordering within the section; drives prev/next
 nav: labs                       # which data/nav.yaml entry gets class="here"
-track: c                        # c | python — selects the python: glossary variant
+track: c                        # c | python — glossary wording + default code lexer
 mission_id: unit1_bigidea2      # enables PIN bar, submit buttons, autosave key
 eyebrow: "Unit 1 · Big Idea 2"  # hero kicker
 heading: "Problems Can Be Broken Into Smaller Problems"   # hero <h1>
 subheading: "Student Lab · The Red Cube Breakdown"        # hero .sub
 credit: "KIPR · Botball Explorer · Unit 1 Big Idea 2 — Student Lab"
-styles: ["site-base", "worksheet", "print"]   # optional; this is the default
+styles: ["site-base", "worksheet", "syntax", "print"]  # optional; this is the default
 meta:                           # the definition list under the hero
   - term: "Unit Guiding Question"
     definition: "How can a machine understand and act within the world?"
@@ -302,8 +336,17 @@ Notes:
   disappear together.
 - `weight` is what `botnav.html` uses to compute previous/next. Leave gaps
   (10, 20, 30…) so a lab can be inserted without renumbering.
+- Every page containing a `code` shortcode or `concept` listing must set `track`
+  to its default supported language. A Discovery coding page whose real code is
+  primarily C should use `track: c` and override diagrams with `lang="text"`.
+  Pages without source listings may omit `track`.
 - Do **not** use a front matter key named `lang`. It is deprecated in this Hugo
-  version and will emit a warning. This project uses `track` instead.
+  version and will emit a warning. This project uses `track` for the page-level
+  code language. Use `lang="…"` only as a `code` shortcode argument when one
+  listing intentionally differs from its page.
+- Usually omit `styles`; the default includes `syntax` in the correct cascade
+  position. If a page supplies a custom list, it must include `syntax` after
+  `worksheet` and before `print`, or Chroma tokens will have no project theme.
 
 Section index pages (`content/labs/_index.md`) take a much smaller set:
 
@@ -470,6 +513,31 @@ def drive(speed):
 
 Use a fence for an ordinary listing. Use the `code` shortcode when the listing
 needs `@@…@@` token emphasis or `size="small"`.
+
+Name the language by what the block actually contains. On a C page, an IP
+address diagram or English pseudocode is not C; override it with `lang="text"`:
+
+```markdown
+{{< code lang="text" size="small" >}}
+192.168.125.1:8888
+which machine   which door
+{{< /code >}}
+```
+
+If a legacy listing has hard-coded `.ln` line-number spans, remove those digits
+from the source and let Chroma generate non-copyable line numbers:
+
+````markdown
+```c {linenos=inline}
+#include <kipr/wombat.h>
+int main() {
+    return 0;
+}
+```
+````
+
+Do not enable line numbers merely because the old HTML happened to contain
+them; retain them only when the surrounding lesson refers to line numbers.
 
 ### `concept` — a boxed explanation mixing prose and code
 
@@ -874,14 +942,65 @@ concise, never wordy.
 
 See `content/labs/unit1_bigidea1.md` for the established header style.
 
-### 9.11 Harmless differences you can ignore
+### 9.11 Convert legacy code markup back to source
+
+The hand-written pages use HTML spans as a partial highlighter. Chroma replaces
+all of that markup, so migrate the source characters and teaching emphasis—not
+the old presentation. For example:
+
+```html
+<div class="code">#!/usr/bin/python3
+<span class="c"># Read the sensor.</span>
+if k.analog(0) &gt; MIDPOINT:
+    speed = <span class="hl">____</span></div>
+```
+
+becomes this on a `track: python` page:
+
+```markdown
+{{< code >}}
+#!/usr/bin/python3
+# Read the sensor.
+if k.analog(0) > MIDPOINT:
+    speed = @@____@@
+{{< /code >}}
+```
+
+For every `code` and `concept` listing:
+
+1. Record each legacy `.hl` boundary and replace it with `@@…@@`.
+2. Remove `.c`, `.cm`, `.kw`, `.nu`, `.st`, and other syntax-only spans while
+   keeping their text.
+3. HTML-decode the source. A copied listing must contain `<`, not `&lt;`.
+   Convert `&nbsp;` or decoded non-breaking spaces to ordinary ASCII spaces.
+4. Preserve line breaks and leading spaces exactly; Python indentation is
+   executable syntax, not visual alignment.
+5. Apply the ASCII cleanup from section 9.10 without changing program meaning.
+6. Keep ordinary Python `@decorator` and matrix-multiplication `a @ b` syntax
+   unchanged. Only doubled `@@…@@` pairs are tutorial emphasis.
+7. Remove `.ln` spans and their digits from copied source. If instructional
+   line numbers matter, use a fenced block with `{linenos=inline}`.
+8. Use the page's `track` lexer unless the listing genuinely uses another
+   language. Set `lang="text"` for diagrams and pseudocode, or another explicit
+   `lang="…"` on the shortcode as appropriate.
+9. Run `tools/check_syntax_highlighting.py` as shown in section 10.
+
+Do not add `comment="#"`; that parameter was removed. Chroma recognizes C and
+Python comments from the selected language. Prefer the `code` shortcode while
+migrating legacy `.code` elements because it preserves `small` sizing and gold
+token emphasis. A named-language Markdown fence is suitable for a new, ordinary
+listing that needs neither feature.
+
+### 9.12 Harmless differences you can ignore
 
 - **`&quot;` in the output.** Goldmark escapes double quotes in text nodes. It
   renders identically to `"`. `tools/compare_render.py` decodes entities, so it
   will not report these; an ad-hoc regex diff will.
-- **Comment colouring in the first lines of a code block.** The original pages
-  left the `// Name: ___` header lines uncoloured by hand. The `code` shortcode
-  colours every `//` comment consistently. This is an intentional improvement.
+- **Syntax colouring inside a code block.** The original pages highlighted only
+  selected comments and gold tokens by hand. Chroma consistently colours every
+  token it recognizes, including header comments, keywords, strings, numbers,
+  functions, and C preprocessor directives. These extra spans and colours are
+  intentional; copied text must remain identical.
 - **`../labs/index.html` instead of `index.html`.** Generated links are always
   written from the site root, so a same-directory link gets a `../section/`
   prefix. It resolves to the same file.
@@ -899,7 +1018,7 @@ See `content/labs/unit1_bigidea1.md` for the established header style.
 
 ## 10. Verifying a migration
 
-Four checks, in increasing order of strength. Run all of them on the first few
+Five page checks, in increasing order of strength. Run all of them on the first few
 pages; once you trust a shortcode, the first two are usually enough.
 
 Before comparing an individual page, run the syntax-highlighting regression
@@ -995,8 +1114,10 @@ const seeds = d => [...d.querySelectorAll('.seed')].map(e => e.textContent.trim(
 const terms = d => [...d.querySelectorAll('.def-term')].map(e => e.dataset.term);
 const cols  = d => [...d.querySelectorAll('table.grid thead th')]
                      .map(e => (e.getAttribute('style') || '') + ' ' + e.textContent.trim());
+const code  = d => [...d.querySelectorAll('.code')]
+                     .map(e => e.textContent.trim());
 
-for (const [name, fn] of Object.entries({ fields, seeds, terms, cols })) {
+for (const [name, fn] of Object.entries({ fields, seeds, terms, cols, code })) {
   const a = fn(document), b = fn(genDoc);
   console.log(name, JSON.stringify(a) === JSON.stringify(b)
     ? `identical (${a.length})`
@@ -1005,7 +1126,11 @@ for (const [name, fn] of Object.entries({ fields, seeds, terms, cols })) {
 }
 ```
 
-Every line should read `identical`.
+Every line should read `identical`. For `code`, review and account for the two
+allowed migration differences: deliberate ASCII rewrites from section 9.10 and
+removal of hard-coded `.ln` line-number text when Chroma now supplies the
+numbers. Syntax-highlighting spans, entity decoding, and `@@…@@` authoring
+markers must not change the displayed or copied program text.
 
 ### 10.4 Layout comparison
 
@@ -1059,8 +1184,8 @@ everything. `ps -eo pid,args | grep http.server` will show it.
 
 ## 11. What fails the build
 
-Broken references stop the build rather than shipping a popup that does nothing
-when a student clicks it. Verified failure modes:
+Broken references and invalid code metadata stop the build rather than shipping
+a popup or incorrectly highlighted listing. Build-enforced failure modes:
 
 | Mistake | Error |
 |---|---|
@@ -1071,13 +1196,17 @@ when a student clicks it. Verified failure modes:
 | `[[ALGORITHM:design]]` | `asks for sense "design" but ALGORITHM has no senses` |
 | `[[A:b:c]]` | `has too many ':' segments; use TERM or TERM:sense` |
 | `{{< gridtable count=4 >}}` | `shortcode "gridtable" needs a "prefix" parameter` |
+| `{{< code >}}` on a page without `track` | `code block has no language; set page track or shortcode lang` |
+| `{{< code lang="not-a-language" >}}` | `Chroma does not support code language "not-a-language"` |
+| an unlabeled Markdown code fence | `fenced code block has no language` |
+| `speed = @@750@` | `code block contains an unmatched @@ emphasis marker` |
+| `{{< code comment="#" >}}` | `the code shortcode no longer accepts comment="#"; set lang instead` |
 | `styles: ["nope"]` | `assets/css/nope.css does not exist` |
 
 All exit non-zero. Shortcode errors include the exact file and line.
 
-A clean build currently emits one warning — `found no layout file for "html" for
-kind "home"` — because the home page has not been migrated yet. It is expected
-until section 13 is finished.
+A clean build should emit no warnings. Treat a Hugo warning as a migration
+failure unless this guide explicitly documents a temporary exception.
 
 ---
 
@@ -1108,21 +1237,25 @@ Do not turn it off.
 
 ## 13. Remaining work
 
-Migrated so far (proof of concept):
+Migrated so far:
 
-- `content/labs/unit1_bigidea1.md` — the reference implementation
-- `content/labs/unit1_bigidea2.md` — the shortcode generality check
-- `content/labs/prelab1.md` — placeholder, front matter only
-- `content/labs/_index.md` — section index
+- C labs from `unit1_bigidea1` through `unit3_bigidea5`
+- `unit4_bigidea1`
+- `prelab1` and the C lab section index
+- A draft-only C/Python syntax-highlighting fixture
 
 Still to do:
 
-- 26 remaining C labs under `docs/labs/`
+- 9 remaining C labs: `prelab0`, Unit 4 Big Ideas 2–5, and Unit 5 Big Ideas 1–4
 - 28 Python labs under `docs/Python_Labs/` — these need `track: python`, which
-  selects the `python:` wording of any term that has one
+  selects the `python:` wording of any term that has one and makes Python the
+  default Chroma lexer; follow the code conversion checklist in section 9.11
 - 35 Discovery projects under `docs/discovery/` — different page furniture; expect
   to add shortcodes, and note that these are the pages needing
-  `[[PROTOTYPE:design]]`
+  `[[PROTOTYPE:design]]`. The 17 coding projects contain a mixture of C, plain
+  text diagrams, and pseudocode; follow the per-block language rules in sections
+  7 and 9.11 instead of assuming every `.code` element is C. Use `track: c` when
+  C is the page default and `lang="text"` for diagrams or pseudocode
 - The five root pages: `index.html`, `glossary.html`, `2026-missions.html`, and
   the `discovery/` and `Python_Labs/` landing pages. `glossary.html` should be
   generated from `data/glossary.yaml` rather than converted by hand, and should
