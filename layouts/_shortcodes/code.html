@@ -1,13 +1,18 @@
 {{- /*
-  A code listing. Comments are picked out automatically.
-  Wrap a token in @…@ to emit <span class="hl">…</span> (gold emphasis).
+  A syntax-highlighted code listing. The language comes from lang="…" or the
+  page's `track` front matter. Wrap a token in @@…@@ for gold emphasis.
 
     {{< code >}} … {{< /code >}}
-    {{< code size="small" comment="#" >}} … {{< /code >}}
+    {{< code lang="python" size="small" >}} … {{< /code >}}
 
-    mav(0, @750@);   // @750@ becomes the highlighted token
+    mav(0, @@750@@);   // @@750@@ becomes the highlighted token
 */ -}}
+{{- with .Get "comment" -}}
+  {{- errorf "%s: the code shortcode no longer accepts comment=%q; set lang instead" $.Position . -}}
+{{- end -}}
 {{- partial "codeblock.html" (dict
       "code" .Inner
-      "marker" (.Get "comment")
+      "lang" ((.Get "lang") | default .Page.Params.track)
+      "page" .Page
+      "position" .Position
       "size" (.Get "size")) | safeHTML -}}

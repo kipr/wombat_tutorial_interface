@@ -74,8 +74,8 @@ Here's the catch: in a pivot, one wheel rolls forward (its tick count climbs) an
 Build `turn_right` with a tick value you'll tune. Start with a guess, run it, measure the actual angle with a protractor, and adjust `RIGHT_TICKS` until it's a true 90°.
 
 {{< code >}}
-int RIGHT_TICKS = @____@;   // ticks for a 90 degree RIGHT pivot; you'll tune this
-int LEFT_TICKS  = @____@;   // ticks for a 90 degree LEFT pivot (Phase 3)
+int RIGHT_TICKS = @@____@@;   // ticks for a 90 degree RIGHT pivot; you'll tune this
+int LEFT_TICKS  = @@____@@;   // ticks for a 90 degree LEFT pivot (Phase 3)
 
 void turn_right();   // PROTOTYPES
 void turn_left();

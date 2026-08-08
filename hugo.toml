@@ -26,6 +26,16 @@ disableKinds = ['taxonomy', 'term', 'rss', 'sitemap']
   # without dropping into raw HTML.
   block = true
 
+[markup.highlight]
+  # Chroma emits semantic token classes. Keeping the palette in our own CSS
+  # gives the worksheets one consistent screen and print theme for every
+  # language instead of baking colours into each generated code block.
+  codeFences = true
+  guessSyntax = false
+  lineNos = false
+  noClasses = false
+  wrapperClass = 'code'
+
 # Images still live beside the current site while the migration is in progress.
 [[module.mounts]]
   source = 'content'

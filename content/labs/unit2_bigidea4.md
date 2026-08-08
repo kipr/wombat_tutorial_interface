@@ -235,7 +235,7 @@ You'll reuse the [[ENCODER|encoder]] skeleton from `Tick_Drive` — clear the co
 
 #include <kipr/wombat.h>
 
-int MIDPOINT = @____@;   // YOUR midpoint from Phase 3 (black + white) / 2
+int MIDPOINT = @@____@@;   // YOUR midpoint from Phase 3 (black + white) / 2
 
 void line_follow(int ticks);   // PROTOTYPE: drive this far while steering on the line
 

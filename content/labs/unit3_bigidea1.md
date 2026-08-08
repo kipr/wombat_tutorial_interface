@@ -157,10 +157,10 @@ Type your four safe values at the top, then build the grab sequence: open the cl
 
 // YOUR safe values from the widget: never command past these,
 // or you can BURN OUT the servo by forcing it into a hard stop.
-int ARM_MIN   = @____@;   // lowest safe arm position (down)
-int ARM_MAX   = @____@;   // highest safe arm position (up)
-int CLAW_OPEN = @____@;   // safe open claw position
-int CLAW_SHUT = @____@;   // safe closed-on-cube claw position
+int ARM_MIN   = @@____@@;   // lowest safe arm position (down)
+int ARM_MAX   = @@____@@;   // highest safe arm position (up)
+int CLAW_OPEN = @@____@@;   // safe open claw position
+int CLAW_SHUT = @@____@@;   // safe closed-on-cube claw position
 
 int main() {
     enable_servo(0);    // arm servo on port 0

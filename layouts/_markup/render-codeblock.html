@@ -1,0 +1,15 @@
+{{- /*
+  Give ordinary fenced Markdown blocks the same validated Chroma pipeline and
+  wrapper as the teaching-oriented `code` shortcode. Fences intentionally do
+  not support @@…@@ token emphasis; use the shortcode when that is needed.
+*/ -}}
+{{- $lang := .Type | default "" | strings.TrimSpace | strings.ToLower -}}
+{{- if eq $lang "" -}}
+  {{- errorf "%s: fenced code block has no language" .Position -}}
+{{- end -}}
+{{- if not (transform.CanHighlight $lang) -}}
+  {{- errorf "%s: Chroma does not support fenced code language %q" .Position $lang -}}
+{{- end -}}
+{{- $options := merge .Options (dict "noClasses" false "wrapperClass" "code") -}}
+{{- $result := transform.HighlightCodeBlock . $options -}}
+{{- $result.Wrapped -}}

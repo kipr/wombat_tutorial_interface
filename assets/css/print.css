@@ -55,14 +55,6 @@
     border: 1px solid #ccc;
   }
 
-  .code .c {
-    color: #3c7a3c !important;
-  }
-
-  .code .hl {
-    color: #8a6d22 !important;
-  }
-
   .filetab {
     background: #ddd !important;
     color: #333 !important;

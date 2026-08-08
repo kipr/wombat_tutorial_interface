@@ -420,18 +420,56 @@ A robot does exactly what you tell it to do — no more, no less.
 #include <kipr/wombat.h>
 
 int main() {
-    motor(0, 100);  // this turns one of the motors on
+    motor(0, @@100@@);  // this turns one of the motors on
     ao();           // stop
 }
 {{< /code >}}
 ```
 
+Hugo's Chroma lexer highlights the listing at build time. The language defaults
+to the page's `track` front matter, so `track: c` selects C and `track: python`
+selects Python. Override it when a page shows another language:
+
+```markdown
+{{< code lang="python" size="small" >}}
+@staticmethod
+def stop():
+    k.ao()  # stop
+{{< /code >}}
+```
+
+Language guessing is deliberately disabled. A missing or unsupported language
+fails the build instead of silently producing misleading colours. Comments,
+strings, numbers, functions, keywords, and preprocessor directives are picked
+out by the selected lexer, so never hand-write syntax-highlighting spans.
+
 Content is HTML-escaped automatically, so write `<kipr/wombat.h>` literally.
-Comments are wrapped in `<span class="c">` automatically — never hand-write
-those spans.
+Wrap text in `@@…@@` to give it the tutorial's gold emphasis. The markers are
+removed from the rendered and copied code:
+
+```c
+int DRIVE_SPEED = @@750@@;
+```
+
+Use **two** `@` characters on each side. Python uses a single `@` for decorators,
+and those must pass through unchanged. Emphasis cannot cross a newline, and an
+unmatched `@@` fails the build.
 
 - `size="small"` → `class="code small"`
-- `comment="#"` → use a different comment marker (Python labs)
+- `lang="python"` → override the page-level language for this listing
+- `comment="…"` → removed; the selected lexer now understands comments
+
+Ordinary fenced Markdown code is also highlighted and must name its language:
+
+````markdown
+```python
+def drive(speed):
+    k.motor(0, speed)
+```
+````
+
+Use a fence for an ordinary listing. Use the `code` shortcode when the listing
+needs `@@…@@` token emphasis or `size="small"`.
 
 ### `concept` — a boxed explanation mixing prose and code
 
@@ -451,7 +489,8 @@ those spans.
 The inner content is YAML, a list of `text:` and `code:` parts in display order.
 This is deliberate: a raw code listing nested inside a markdown-rendered
 container gets split at its blank lines. Declaring the parts keeps the listing
-intact while the prose stays markdown.
+intact while the prose stays markdown. A `code:` part uses the page's `track`
+language and supports the same `@@…@@` emphasis markers as the `code` shortcode.
 
 ### `commands` — reference table of built-in commands
 
@@ -862,6 +901,21 @@ See `content/labs/unit1_bigidea1.md` for the established header style.
 
 Four checks, in increasing order of strength. Run all of them on the first few
 pages; once you trust a shortcode, the first two are usually enough.
+
+Before comparing an individual page, run the syntax-highlighting regression
+fixture. It builds unpublished C and Python examples, checks language and token
+classes, and proves that copied code contains neither authoring markers nor
+internal placeholders:
+
+```bash
+hugo --buildDrafts --destination /tmp/wombat-highlight-check --logLevel error
+python3 tools/check_syntax_highlighting.py /tmp/wombat-highlight-check
+```
+
+The fixture is `draft: true`, so it is omitted from normal production builds.
+Chroma adds many presentational spans to the element tree; use the checker above
+for code-text fidelity instead of expecting those spans to match the legacy
+hand-authored markup.
 
 ### 10.1 Structural comparison
 

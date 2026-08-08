@@ -193,10 +193,10 @@ Start from your tuned line-follow. Add an ET check to the loop condition and you
 
 #include <kipr/wombat.h>
 
-int MIDPOINT   = @____@;   // your Tophat threshold (from BI4)
-int STOP_VALUE = @____@;   // your ET value at ~4 inches (from Phase 3)
-int FAST       = @____@;   // your best mav fast speed (from BI5)
-int SLOW       = @____@;   // your best mav slow speed (from BI5)
+int MIDPOINT   = @@____@@;   // your Tophat threshold (from BI4)
+int STOP_VALUE = @@____@@;   // your ET value at ~4 inches (from Phase 3)
+int FAST       = @@____@@;   // your best mav fast speed (from BI5)
+int SLOW       = @@____@@;   // your best mav slow speed (from BI5)
 
 void line_follow_until_object();   // PROTOTYPE
 

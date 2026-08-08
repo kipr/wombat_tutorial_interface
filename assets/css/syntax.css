@@ -1,0 +1,112 @@
+/* Syntax highlighting -----------------------------------------------------
+ * Hugo/Chroma emits these semantic token classes at build time. The palette
+ * is intentionally project-owned so C and Python share the worksheet theme
+ * without inline styles or a browser-side highlighter.
+ */
+
+.code .chroma {
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  color: var(--code-ink);
+  background: transparent;
+  font: inherit;
+  line-height: inherit;
+  white-space: pre;
+  tab-size: 4;
+  -webkit-text-size-adjust: none;
+}
+
+.code .chroma code {
+  display: block;
+  min-width: max-content;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  line-height: inherit;
+}
+
+.code .line { display: flex; }
+.code .cl { flex: 1 0 auto; }
+.code .lnlinks { color: inherit; text-decoration: none; outline: none; }
+.code .lntable { margin: 0; padding: 0; border: 0; border-spacing: 0; }
+.code .lntd { margin: 0; padding: 0; vertical-align: top; border: 0; }
+.code .lnt,
+.code .ln {
+  margin-right: .4em;
+  padding: 0 .4em;
+  color: #9aa3b5;
+  white-space: pre;
+  user-select: none;
+}
+
+/* Chroma's optional whole-line emphasis. */
+.code .chroma .hl { background: rgba(255, 255, 255, .09); }
+
+/* Keywords, declarations, namespaces, and Python decorator names. */
+.code :is(.k, .kc, .kd, .kn, .kp, .kr) { color: #79c0ff; }
+.code .kt { color: #ffcb6b; }
+.code :is(.nd, .nc, .ne) { color: #d2a8ff; }
+
+/* Functions, attributes, constants, and other named program elements. */
+.code :is(.nf, .fm) { color: #c3e88d; }
+.code :is(.na, .no, .nx) { color: #b4d6ff; }
+.code .nt { color: #ff9cac; }
+
+/* Strings and interpolation. */
+.code :is(.l, .ld, .s, .sa, .sb, .sc, .dl, .sd, .s2, .sh, .si, .sx, .sr, .s1, .ss) {
+  color: #f1c77a;
+}
+.code .se { color: #ff9cac; }
+
+/* Numbers, operators, and punctuation. */
+.code :is(.m, .mb, .mf, .mh, .mi, .il, .mo) { color: #d2a8ff; }
+.code :is(.o, .ow, .or) { color: #89ddff; }
+.code .p { color: var(--code-ink); }
+
+/* Comments and C preprocessor tokens. */
+.code :is(.c, .ch, .cm, .c1, .cs) { color: var(--code-green); font-style: italic; }
+.code :is(.cp, .cpf) { color: #ff9cac; }
+
+/* Lexer errors should be conspicuous during authoring and review. */
+.code .err {
+  color: #ff8b9a;
+  background: rgba(255, 107, 129, .14);
+  text-decoration: underline wavy #ff8b9a;
+}
+
+/* Tutorial-specific token emphasis, restored after Chroma runs. */
+.code .code-emphasis {
+  color: #f4c95d !important;
+  background: rgba(244, 201, 93, .12);
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+.code :is(.gd, .gr) { color: #ff8b9a; }
+.code .gi { color: #c3e88d; }
+.code .ge { font-style: italic; }
+.code .gs { font-weight: 700; }
+.code .gu { color: #aeb8c9; }
+
+@media print {
+  .code .chroma {
+    color: #1a1a1a !important;
+    background: transparent !important;
+  }
+
+  .code :is(.k, .kc, .kd, .kn, .kp, .kr, .kt) { color: #174f86 !important; }
+  .code :is(.nd, .nc, .ne, .m, .mb, .mf, .mh, .mi, .il, .mo) { color: #604080 !important; }
+  .code :is(.nf, .fm, .na, .no, .nx) { color: #245f2a !important; }
+  .code :is(.l, .ld, .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss) {
+    color: #704d00 !important;
+  }
+  .code :is(.o, .ow, .or, .nt, .cp, .cpf) { color: #7a294f !important; }
+  .code :is(.c, .ch, .cm, .c1, .cs) { color: #3c7a3c !important; }
+  .code .p { color: #1a1a1a !important; }
+  .code .err { color: #8b1a2b !important; background: transparent !important; }
+  .code .code-emphasis {
+    color: #7a5b00 !important;
+    background: #fff3c4 !important;
+  }
+}

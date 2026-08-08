@@ -26,7 +26,12 @@
 {{ $.Page.RenderString (dict "display" "block") . }}
 {{- end }}
 {{- with .code }}
-{{ partial "codeblock.html" (dict "code" . "size" "small") | safeHTML }}
+{{ partial "codeblock.html" (dict
+    "code" .
+    "lang" ($.Page.Params.track | default "")
+    "page" $.Page
+    "position" $.Position
+    "size" "small") | safeHTML }}
 {{- end }}
 {{- end }}
 </div>

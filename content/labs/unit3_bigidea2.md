@@ -78,10 +78,10 @@ Build both functions with clamping. They take the position you *want*, fix it if
 #include <kipr/wombat.h>
 #include <stdlib.h>            // provides abs() for the smooth-movement loop
 
-int ARM_MIN   = @____@;   // your safe values from Big Idea 1
-int ARM_MAX   = @____@;
-int CLAW_OPEN = @____@;
-int CLAW_SHUT = @____@;
+int ARM_MIN   = @@____@@;   // your safe values from Big Idea 1
+int ARM_MAX   = @@____@@;
+int CLAW_OPEN = @@____@@;
+int CLAW_SHUT = @@____@@;
 
 void move_arm(int position);    // PROTOTYPES
 void move_claw(int position);
@@ -172,7 +172,7 @@ void move_arm(int target_position) {
         } else {
             set_servo_position(0, current_position - 2);
         }
-        msleep(@1@);   // 1 ms per step = smooth motion
+        msleep(@@1@@);   // 1 ms per step = smooth motion
         current_position = get_servo_position(0);
     }
 }
@@ -191,7 +191,7 @@ void move_claw(int target_position) {
         } else {
             set_servo_position(1, current_position - 2);
         }
-        msleep(@1@);
+        msleep(@@1@@);
         current_position = get_servo_position(1);
     }
 }

@@ -84,10 +84,10 @@ This is where your robot's movement data lives. When your code reads `gmpc(0)`, 
 - text: |
     So far your functions ran the same way every time. An **argument** lets you hand a function a number, so it can do its job *differently* depending on what you pass in.
 - code: |
-    void Tick_Drive(int @ticks@);   // the (int ticks) is the argument: a number you pass in
+    void Tick_Drive(int @@ticks@@);   // the (int ticks) is the argument: a number you pass in
 
-    Tick_Drive(@2000@);   // drive 2000 ticks
-    Tick_Drive(@1000@);   // SAME function, but only 1000 ticks this time
+    Tick_Drive(@@2000@@);   // drive 2000 ticks
+    Tick_Drive(@@1000@@);   // SAME function, but only 1000 ticks this time
 - text: |
     Inside the function, `ticks` stands for whatever number you passed. One function, any distance — no copying and pasting.
 {{< /concept >}}
@@ -174,18 +174,18 @@ Type this program. Notice `Tick_Drive` now takes an argument — `int ticks` —
 
 #include <kipr/wombat.h>
 
-void Tick_Drive(int @ticks@);   // PROTOTYPE: takes a number (the distance)
+void Tick_Drive(int @@ticks@@);   // PROTOTYPE: takes a number (the distance)
 
 int main() {
-    Tick_Drive(@2000@);   // CALL: drive this many ticks toward Botguy
+    Tick_Drive(@@2000@@);   // CALL: drive this many ticks toward Botguy
                           // (use YOUR target number from Phase 3)
     return 0;
 }
 
-void Tick_Drive(int @ticks@) {     // DEFINITION: 'ticks' is whatever you passed in
+void Tick_Drive(int @@ticks@@) {     // DEFINITION: 'ticks' is whatever you passed in
     cmpc(0);                     // clear port 0's counter to 0
 
-    while (gmpc(0) < @ticks@) {   // while we haven't reached the target...
+    while (gmpc(0) < @@ticks@@) {   // while we haven't reached the target...
         motor(0, 50);            // ...keep driving
         motor(1, 50);
     }

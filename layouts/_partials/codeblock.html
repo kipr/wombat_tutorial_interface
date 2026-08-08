@@ -1,17 +1,49 @@
 {{- /*
-  Renders a source listing: escape it, then pick out the comments so authors
-  write plain code and never hand-wrap a <span class="c">.
+  Renders a source listing with Hugo's Chroma highlighter. Language-aware
+  lexing replaces the old comment-only regular expression.
 
-  Highlight a token with @…@ — @750@ becomes <span class="hl">750</span>.
-  Use these for the gold emphasis the original pages marked by hand.
+  Highlight a token with @@…@@. The marked text is swapped for a lexer-safe
+  placeholder, highlighted, then restored as escaped HTML. This keeps Python's
+  single-@ decorator syntax intact and keeps authoring markers out of copied
+  code. The restored class is deliberately not `.hl`, which Chroma reserves
+  for whole-line highlighting.
 
-  Called with: (dict "code" "…" "marker" "//" "size" "small")
+  Called with: (dict "code" "…" "lang" "python" "size" "small"
+                     "page" .Page "position" .Position)
 */ -}}
-{{- $marker := .marker | default "//" -}}
+{{- $code := .code | strings.TrimSpace -}}
+{{- $lang := .lang | default "" | strings.TrimSpace | strings.ToLower -}}
 {{- $size := .size | default "" -}}
-{{- $escaped := .code | strings.TrimSpace | htmlEscape -}}
-{{- $pattern := printf `(?m)(%s.*)$` (strings.TrimSpace $marker) -}}
-{{- $coloured := replaceRE $pattern `<span class="c">$1</span>` $escaped -}}
-{{- $coloured = replaceRE `@([^@]+)@` `<span class="hl">$1</span>` $coloured -}}
+{{- $position := .position | default (.page.Path | default "unknown page") -}}
+
+{{- if eq $lang "" -}}
+  {{- errorf "%s: code block has no language; set page track or shortcode lang" $position -}}
+{{- end -}}
+{{- if not (transform.CanHighlight $lang) -}}
+  {{- errorf "%s: Chroma does not support code language %q" $position $lang -}}
+{{- end -}}
+{{- if and (ne $size "") (ne $size "small") -}}
+  {{- errorf "%s: code shortcode size must be %q, got %q" $position "small" $size -}}
+{{- end -}}
+{{- if strings.Contains $code "WOMBATCODEHIGHLIGHT" -}}
+  {{- errorf "%s: code block contains the renderer's reserved placeholder prefix" $position -}}
+{{- end -}}
+
+{{- $markers := findRESubmatch `@@([^\n]+?)@@` $code -}}
+{{- $restores := slice -}}
+{{- range $index, $match := $markers -}}
+  {{- $placeholder := printf "WOMBATCODEHIGHLIGHT%04dTOKEN" $index -}}
+  {{- $code = replace $code (index $match 0) $placeholder 1 -}}
+  {{- $restores = $restores | append (dict "placeholder" $placeholder "text" (index $match 1)) -}}
+{{- end -}}
+{{- if strings.Contains $code "@@" -}}
+  {{- errorf "%s: code block contains an unmatched @@ emphasis marker" $position -}}
+{{- end -}}
+
 {{- $class := cond (ne $size "") (printf "code %s" $size) "code" -}}
-{{- return printf `<div class="%s">%s</div>` $class $coloured -}}
+{{- $highlighted := transform.Highlight $code $lang (dict "noClasses" false "wrapperClass" $class) -}}
+{{- range $restores -}}
+  {{- $replacement := printf `<span class="code-emphasis">%s</span>` (.text | htmlEscape) -}}
+  {{- $highlighted = replace $highlighted .placeholder $replacement -}}
+{{- end -}}
+{{- return (safeHTML $highlighted) -}}

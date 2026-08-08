@@ -169,7 +169,7 @@ Now write it for real. Here is the **frame** — nothing more. Include your libr
 
 {{< code >}}
 #include <kipr/wombat.h>
-#include <@yourname@.h>     // all your tuned tools
+#include <@@yourname@@.h>     // all your tuned tools
 
 int main() {
     enable_servo(0);          // arm

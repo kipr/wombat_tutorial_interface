@@ -68,7 +68,7 @@ Back in your project, look at the **right side of the screen**. You'll see **new
 - text: |
     Your library will be a **header file** — its name ends in `.h`. When you write:
 - code: |
-    #include <@yourname@.h>   // pulls your whole library into this program
+    #include <@@yourname@@.h>   // pulls your whole library into this program
 - text: |
     ...the IDE drops everything from your header right into your program before it builds. Your functions become available, just like KIPR's. Because your library lives in the same project folder, the IDE knows where to find it.
 {{< /concept >}}
@@ -114,13 +114,13 @@ yourname.h
 // ---- VARIABLES (my robot's tuned values) ----
 // These live here so the whole library can use them. You can also
 // move them into main() if you'd rather set them per program.
-int ARM_MIN   = @____@;
-int ARM_MAX   = @____@;
-int CLAW_OPEN = @____@;
-int CLAW_SHUT = @____@;
-int MIDPOINT  = @____@;
-int FAST = @____@;
-int SLOW = @____@;
+int ARM_MIN   = @@____@@;
+int ARM_MAX   = @@____@@;
+int CLAW_OPEN = @@____@@;
+int CLAW_SHUT = @@____@@;
+int MIDPOINT  = @@____@@;
+int FAST = @@____@@;
+int SLOW = @@____@@;
 
 // ---- FUNCTION PROTOTYPES (the promises) ----
 void move_arm(int target_position);
@@ -235,7 +235,7 @@ main.c
 
 {{< code >}}
 #include <kipr/wombat.h>   // KIPR's library
-#include <@yourname@.h>     // YOUR library: all your tools, in one line
+#include <@@yourname@@.h>     // YOUR library: all your tools, in one line
 
 int main() {
     enable_servo(0);
