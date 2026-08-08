@@ -83,7 +83,7 @@ In your program, `digital(0)` reads this sensor: it is **0 when the button is op
     while (digital(0) == 0) {
         motor(0, -50);   // drive backward
         motor(1, -50);
-        msleep(10);      // tiny pause — just 10 ms
+        msleep(10);      // tiny pause, just 10 ms
     }
 - text: |
     That `msleep(10)` is **not** how long you drive. The loop checks the button hundreds of times a second. Without a small pause, it would check *as fast as the computer possibly can* — and that **bogs down the [[CONTROLLER|controller]]** for no benefit. A 10 ms pause slows the checking to a sensible rate so the computer isn't overwhelmed, while still feeling instant to us.
@@ -174,7 +174,7 @@ Before you ever put this on the board, **hold the robot up off the ground** and 
 Type this program. The position [[VARIABLE|variables]] are back from before — you'll reset `y_position` to zero the moment the robot reaches the wall.
 
 {{< code >}}
-// Unit 2 · Big Idea 1 — The Touch Sensor
+// Unit 2, Big Idea 1: The Touch Sensor
 // Name: _______________________   Date: ___________
 
 #include <kipr/wombat.h>
@@ -193,8 +193,8 @@ int main() {
         msleep(10);             // tiny pause so we don't overwork the computer
     }
 
-    ao();              // button was pressed — stop the motors
-    y_position = 0;    // we're home against the wall — reset our origin
+    ao();              // button was pressed: stop the motors
+    y_position = 0;    // we're home against the wall: reset our origin
 
     return 0;
 }
@@ -241,21 +241,21 @@ Once your program works, wrap the whole back-until-pressed behavior into a [[FUN
 int x_position = 0;
 int y_position = 0;
 
-void back_until_pressed();   // PROTOTYPE — the promise, above main()
+void back_until_pressed();   // PROTOTYPE: the promise, above main()
 
 int main() {
-    back_until_pressed();    // CALL — drive home using the sensor, then reset zero
+    back_until_pressed();    // CALL: drive home using the sensor, then reset zero
     return 0;
 }
 
-void back_until_pressed() {  // DEFINITION — the recipe, below main()
+void back_until_pressed() {  // DEFINITION: the recipe, below main()
     while (digital(0) == 0) { // while the button is NOT pressed...
         motor(0, -50);
         motor(1, -50);
         msleep(10);
     }
     ao();              // stop
-    y_position = 0;    // home — reset origin
+    y_position = 0;    // home: reset origin
 }
 {{< /code >}}
 

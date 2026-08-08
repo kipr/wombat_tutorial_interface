@@ -49,7 +49,7 @@ You already build `void` functions. Today you learn the professional way to orga
 - text: |
     A *prototype* tells the program "this function exists and here is its name" — **before** `main()` ever uses it. The full recipe (the *definition*) is written later, below `main()`. It's a promise now, kept later.
 - code: |
-    void push_off_line();   // PROTOTYPE — the promise (note the semicolon)
+    void push_off_line();   // PROTOTYPE: the promise (note the semicolon)
 - text: |
     A prototype ends with a [[SEMICOLON|semicolon]] and has no body. It is just the promise — not the recipe.
 {{< /concept >}}
@@ -189,26 +189,26 @@ The program below shows the *pattern*: prototypes at the top, a readable `main()
 {{% /callout %}}
 
 {{< code >}}
-// Unit 1 · Big Idea 5 — Pom Pusher  (EXAMPLE — yours will differ)
+// Unit 1, Big Idea 5: Pom Pusher (EXAMPLE: yours will differ)
 // Name: _______________________   Date: ___________
 
 #include <kipr/wombat.h>
 
 int DRIVE_SPEED = 50;
 
-// ── FUNCTION PROTOTYPES — the promises, before main() uses them ──
+// Function prototypes: the promises, before main() uses them
 void drive_forward();
 void turn_right();
 void push_off_line();
 
-// ── MAIN — your plan. The poms are NOT in a line, so the path
-//    between them is different every time. You decide how to reuse
-//    your building blocks to get from one pom to the next. ──
+// MAIN: your plan. The poms are NOT in a line, so the path
+// between them is different every time. You decide how to reuse
+// your building blocks to get from one pom to the next.
 int main() {
 
     push_off_line();   // first pom
 
-    turn_right();      // next pom is not straight ahead —
+    turn_right();      // next pom is not straight ahead
     drive_forward();   // reuse the building blocks to reach it
     push_off_line();   // second pom
 
@@ -218,7 +218,7 @@ int main() {
     return 0;
 }
 
-// ── DEFINITIONS — the full recipe for each promise above ──
+// Definitions: the full recipe for each promise above
 void drive_forward() {
     motor(0, DRIVE_SPEED);
     motor(1, DRIVE_SPEED);

@@ -68,7 +68,7 @@ You already know `int`, [[FUNCTION|functions]], and the commands `motor()`, `msl
 - code: |
     int freight_type = 1;    // ONE equals  =   SETS the value to 1
 
-    if (freight_type == 1)   // TWO equals  ==  ASKS "is it equal to 1?"
+    if (freight_type == 1)   // TWO equals  ==  ASKS if it is equal to 1
 - text: |
     A single `=` *sets* a value. A double `==` *asks a question*. Using one when you mean the other is one of the most common bugs in all of programming — so check it every time.
 {{< /concept >}}
@@ -208,7 +208,7 @@ rows:
 Type this program into your robot [[CONTROLLER|controller]]. The rule lives inside `main()`. Change `freight_type` at the top to test both paths. Fill in the actions to match your Phase 3 plan.
 
 {{< code >}}
-// Unit 1 · Big Idea 3 — Freight Sorter
+// Unit 1, Big Idea 3: Freight Sorter
 // Name: _______________________   Date: ___________
 
 #include <kipr/wombat.h>

@@ -202,9 +202,9 @@ Your midpoint is the line between "I see black" and "I see white." Write it down
 - text: |
     A **threshold** is a cutoff. Once you have your midpoint, every reading becomes a yes-or-no again:
 - code: |
-    if (analog(0) > MIDPOINT) {   // reading is HIGH — that's BLACK
+    if (analog(0) > MIDPOINT) {   // reading is HIGH: that's BLACK
         // ...we're on the line
-    } else {                       // reading is LOW — that's WHITE
+    } else {                       // reading is LOW: that's WHITE
         // ...we're on the floor
     }
 - text: |
@@ -230,14 +230,14 @@ Hold the robot up and pass the line under the sensor by hand. Watch the wheels c
 You'll reuse the [[ENCODER|encoder]] skeleton from `Tick_Drive` — clear the counter, loop to a [[TICK|tick]] target, brake at the end — but inside the loop you'll put the `if/else` that steers. Type your own `MIDPOINT` from Phase 3 at the top. [[PROTOTYPE|Prototype]] above `main()`, definition below.
 
 {{< code >}}
-// Unit 2 · Big Idea 4 — Reading the Line
+// Unit 2, Big Idea 4: Reading the Line
 // Name: _______________________   Date: ___________
 
 #include <kipr/wombat.h>
 
 int MIDPOINT = @____@;   // YOUR midpoint from Phase 3 (black + white) / 2
 
-void line_follow(int ticks);   // PROTOTYPE — drive this far while steering on the line
+void line_follow(int ticks);   // PROTOTYPE: drive this far while steering on the line
 
 int main() {
     line_follow(3000);         // follow the line for this many ticks
@@ -248,10 +248,10 @@ void line_follow(int ticks) {
     cmpc(0);                       // clear the wheel counter
 
     while (gmpc(0) < ticks) {       // keep going until we've driven far enough
-        if (analog(0) > MIDPOINT) { // HIGH reading = on BLACK = steer right
+        if (analog(0) > MIDPOINT) { // HIGH reading means BLACK, so steer right
             motor(0, 50);          // left motor faster
             motor(1, 20);          // right motor slower
-        } else {                   // LOW reading = on WHITE = steer left
+        } else {                   // LOW reading means WHITE, so steer left
             motor(0, 20);          // left motor slower
             motor(1, 50);          // right motor faster
         }

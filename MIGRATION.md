@@ -754,7 +754,27 @@ is the intended behaviour, and section 10 explains how to verify it properly.
 | `required` function | `partial "require.html"` |
 | `keys` function | not available; restructure the check |
 
-### 9.10 Harmless differences you can ignore
+### 9.10 Strip non-ASCII characters from code snippets
+
+Non-ASCII / multi-byte characters — for example `·` (middle dot) or `—`
+(em dash) — break the KISS IDE when a student copies a listing into it. When
+migrating a page, remove them from every code snippet (including `code` and
+`concept` listings). Prose outside code blocks may keep them.
+
+Do **not** swap those characters for a bare hyphen and leave the rest unchanged.
+Hyphen chains read as broken em-dash leftovers (`Unit 1 - Big Idea 1 - Title`,
+`CLEAR - reset…`). Rewrite the comment or header into brief, natural ASCII —
+a short complete sentence, or clear phrasing with commas / colons — still
+concise, never wordy.
+
+| Original (non-ASCII) | Avoid (naive hyphen) | Prefer |
+|---|---|---|
+| `// Unit 1 · Big Idea 1 — Waypoint Navigator` | `// Unit 1 - Big Idea 1 - Waypoint Navigator` | `// Unit 1, Big Idea 1: Waypoint Navigator` |
+| `// CLEAR — reset port 0's counter back to 0` | `// CLEAR - reset port 0's counter back to 0` | `// CLEAR: reset port 0's counter back to 0` |
+
+See `content/labs/unit1_bigidea1.md` for the established header style.
+
+### 9.11 Harmless differences you can ignore
 
 - **`&quot;` in the output.** Goldmark escapes double quotes in text nodes. It
   renders identically to `"`. `tools/compare_render.py` decodes entities, so it
@@ -770,6 +790,10 @@ is the intended behaviour, and section 10 explains how to verify it properly.
   the full surface form (`[[SEMICOLON|semicolons]]`). `compare_render.py`
   section 1 will show a few text-token diffs for those; sections 2–4 (keys,
   `data-term` sets, definition payloads) stay identical and are what matter.
+- **Non-ASCII characters rewritten in code snippets.** Originals sometimes use
+  characters such as `·` or `—` inside listings; those break the KISS IDE, so
+  migrated snippets are rewritten to brief natural ASCII (see 9.10). Treat any
+  resulting text-token diffs as intentional.
 
 ---
 

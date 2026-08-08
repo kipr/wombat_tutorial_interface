@@ -46,10 +46,10 @@ Telling a motor to stop and a motor actually holding still are two different thi
 - text: |
     There are two ways to end a motor's motion, and they behave very differently:
 - code: |
-    motor(0, 0);   // BRAKE — actively holds the motor at zero, resisting motion
+    motor(0, 0);   // BRAKE: actively holds the motor at zero, resisting motion
     motor(1, 0);
 
-    ao();          // "all off" — cuts power; motors go NEUTRAL and COAST
+    ao();          // "all off": cuts power; motors go NEUTRAL and COAST
 - text: |
     **`motor(0,0)` brakes.** It actively holds the wheel at zero and resists it turning — like pressing the brake pedal. The robot stops where it is and holds the line.
 
@@ -148,7 +148,7 @@ As always, hold the robot off the ground and run the program once to confirm it 
 Both versions are identical except for how they stop. Build Version A first, run your five trials, then change only the stop to make Version B and run five more. Keep the [[PROTOTYPE|prototype]] above `main()` and the definition below, as always.
 
 {{< code >}}
-// Unit 2 · Big Idea 2 — Brake vs. Coast
+// Unit 2, Big Idea 2: Brake vs. Coast
 // Name: _______________________   Date: ___________
 
 #include <kipr/wombat.h>
@@ -156,7 +156,7 @@ Both versions are identical except for how they stop. Build Version A first, run
 int x_position = 0;
 int y_position = 0;
 
-void back_until_pressed();   // from last lab — backs into wall, resets origin
+void back_until_pressed();   // from last lab: backs into wall, resets origin
 void drive_forward();        // drives forward ~6 inches (you set the time)
 
 int main() {
@@ -164,7 +164,7 @@ int main() {
     drive_forward();         // move forward about 6 inches
 
     // ---- VERSION A: COAST (neutral) ----
-    ao();                    // cut power — motors coast to a stop
+    ao();                    // cut power: motors coast to a stop
 
     // ---- VERSION B: BRAKE (active hold) ----
     // Comment out the ao() above and use these three lines instead:
@@ -188,7 +188,7 @@ void back_until_pressed() {
         msleep(10);
     }
     ao();
-    y_position = 0;          // home — reset origin
+    y_position = 0;          // home: reset origin
 }
 {{< /code >}}
 

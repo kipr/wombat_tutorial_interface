@@ -179,7 +179,7 @@ rows:
 Type this program into your robot [[CONTROLLER|controller]]. Notice the two position variables set to zero at the top, and how each move updates `y_position` right after it happens. The `printf` line shows you what the robot has stored.
 
 {{< code >}}
-// Unit 1 · Big Idea 4 — Position Keeper
+// Unit 1, Big Idea 4: Position Keeper
 // Name: _______________________   Date: ___________
 
 #include <kipr/wombat.h>
@@ -187,7 +187,7 @@ Type this program into your robot [[CONTROLLER|controller]]. Notice the two posi
 int DRIVE_SPEED = 50;
 
 // The robot's stored position. We set BOTH to zero before we start.
-// This is our "origin" — every move is measured from here.
+// This is our origin: every move is measured from here.
 int x_position = 0;
 int y_position = 0;
 

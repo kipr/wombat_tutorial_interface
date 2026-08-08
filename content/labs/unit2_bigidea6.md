@@ -188,7 +188,7 @@ Hold the robot up. Pass the line under the Tophat and watch it steer. Then move 
 Start from your tuned line-follow. Add an ET check to the loop condition and your stop value at the top. Use **your own** `MIDPOINT`, `STOP_VALUE`, and the `mav` speeds you found best. [[PROTOTYPE|Prototype]] above `main()`, definition below.
 
 {{< code >}}
-// Unit 2 · Big Idea 6 — Two Sensors, One Decision
+// Unit 2, Big Idea 6: Two Sensors, One Decision
 // Name: _______________________   Date: ___________
 
 #include <kipr/wombat.h>
@@ -217,7 +217,7 @@ void line_follow_until_object() {
         msleep(10);                    // tiny pause so we don't overwork the controller
     }
 
-    motor(0, 0);                       // object is close — brake
+    motor(0, 0);                       // object is close: brake
     motor(1, 0);
     msleep(50);                        // let the brake settle
 }

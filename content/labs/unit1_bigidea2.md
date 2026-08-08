@@ -205,16 +205,16 @@ A function has to be defined *before* the code that uses it. Since `main()` is w
 Your program structure should look like this. Notice the movement commands are now **functions you name**, and each uses the `int` speeds set at the top. Fill in each function body from your Phase 3 decomposition. Only add a function call in `main()` once that function is tested and working.
 
 {{< code >}}
-// Unit 1 · Big Idea 2 — Red Cube Breakdown
+// Unit 1, Big Idea 2: Red Cube Breakdown
 // Name: _______________________   Date: ___________
 
 #include <kipr/wombat.h>
 
-// ── Named numbers (int) — change these as you test ──
+// Named numbers (int). Change these as you test.
 int DRIVE_SPEED = 50;
 int TURN_SPEED  = 40;
 
-// ── Movement commands you can reuse (no parameters yet) ──
+// Movement commands you can reuse (no parameters yet).
 void drive_forward() {
     motor(0, DRIVE_SPEED);
     motor(1, DRIVE_SPEED);
@@ -229,14 +229,14 @@ void turn_right() {
     ao();
 }
 
-// ── Your sub-task functions — write ONE, test it, then write the next ──
+// Your sub-task functions. Write ONE, test it, then write the next.
 // Build each one out of drive_forward() and turn_right().
-// Name them using your Phase 3 list — for example, a function that
+// Name them using your Phase 3 list. For example, a function that
 // drives the robot to the cube, one that pushes it off the line,
 // or one that returns to the starting box.
 
 
-// ── Integration — only add a call here after that function passes 3 runs ──
+// Integration: only add a call here after that function passes 3 runs.
 int main() {
     // Add each call only after that function works:
     // your_first_function();
