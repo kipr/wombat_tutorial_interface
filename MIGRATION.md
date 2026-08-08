@@ -566,6 +566,10 @@ pre-fills the unit box.
 `src` is relative to the image root. `caption` defaults to `alt`. Using this
 shortcode is what causes the zoom overlay markup to be emitted at all.
 
+Column class follows the figure count: 2 → `two`, 3 → `three`, 4 or more →
+`two` (a 2×N grid, matching originals that mark four figures as
+`figrow two`). Override with `cols="two"` or `cols="three"` when needed.
+
 ### `namebar` — name and date fields
 
 ```markdown
@@ -574,6 +578,63 @@ shortcode is what causes the zoom overlay markup to be emitted at all.
 
 Keys default to `reflect_name` / `reflect_date`; override with `name_key` and
 `date_key`.
+
+### `safety` — a red hardware / safety warning
+
+```markdown
+{{% safety title="⚠ Hold the robot and watch the first run" noprint=true %}}
+Run this with the robot held still…
+{{% /safety %}}
+```
+
+Same furniture as `callout`, different class. `noprint=true` adds
+`class="no-print"` for screen-only hands-first checks.
+
+### `widgetstep` — a navy controller / widget walkthrough
+
+```markdown
+{{% widgetstep title="Use the servo widget" %}}
+Open the **Motors and Sensors** widget…
+{{% /widgetstep %}}
+```
+
+Always screen-only (`class="widget-step no-print"`).
+
+### `sketch` — a printable field-sketch area
+
+```markdown
+{{< sketch aria="Field mapping sketch area" startbox="left"
+           tag="Sketch: starting box, both cube pairs, and your path" >}}
+```
+
+`startbox` is `left` or `right`. Optional `note` prints an italic hint under
+the box; optional `label` overrides the start-box text.
+
+### `filetab` — a filename tab above a code listing
+
+Use the block form (filename on its own line) so Goldmark does not wrap
+the tab in a `<p>`.
+
+```markdown
+{{< filetab >}}
+yourname.h
+{{< /filetab >}}
+{{< code >}}…{{< /code >}}
+```
+
+### `checklist` — checkbox items with `data-key`s
+
+```markdown
+{{< checklist >}}
+- key: p5_test_tick_drive
+  label: "`Tick_Drive()` drove the measured distance"
+- key: p5_test_move_arm
+  label: "`move_arm()` moved the arm smoothly and safely"
+{{< /checklist >}}
+```
+
+`id` defaults to the key with underscores turned into hyphens. Labels are
+inline markdown.
 
 ---
 

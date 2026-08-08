@@ -37,7 +37,7 @@
           - key: et_2in
     {{< /gridtable >}}
 
-  Cell kinds in rows mode: seed, seedmono, label, or key(+aria).
+  Cell kinds in rows mode: seed, seedmono, label, num, or key(+aria, +placeholder).
   A row may be a bare cell list, or {class, cells:[…]} for a row class.
 
   data-key values in count mode follow <prefix><n>_<key>.
@@ -64,7 +64,7 @@
   Rows mode YAML
     columns[].head / width
     rows[]        cell list, or {class, cells:[…]}
-    rows[][]      each cell is {seed}, {seedmono}, {label}, or {key, aria?}
+    rows[][]      each cell is {seed}, {seedmono}, {label}, {num}, or {key, aria?}
 */ -}}
 {{- $data := .Inner | transform.Unmarshal -}}
 {{- $caption := .Get "caption" -}}
@@ -143,8 +143,10 @@
 <td><div class="seedmono">{{ index . "seedmono" }}</div></td>
 {{- else if isset . "label" -}}
 <td><div class="label">{{ index . "label" }}</div></td>
+{{- else if isset . "num" -}}
+<td class="num">{{ index . "num" }}</td>
 {{- else -}}
-<td><input type="text" data-key="{{ index . "key" }}"{{ with index . "aria" }} aria-label="{{ . }}"{{ end }}></td>
+<td><input type="text" data-key="{{ index . "key" }}"{{ with index . "aria" }} aria-label="{{ . }}"{{ end }}{{ with index . "placeholder" }} placeholder="{{ . }}"{{ end }}></td>
 {{- end -}}
 {{- end -}}
 </tr>

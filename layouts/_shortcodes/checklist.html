@@ -1,0 +1,27 @@
+{{- /*
+  A checkbox list with data-key submission fields.
+
+    {{< checklist >}}
+    - key: p5_test_tick_drive
+      label: "`Tick_Drive()` drove the measured distance"
+    - key: p5_test_move_arm
+      id: p5-test-move-arm
+      label: "`move_arm()` moved the arm smoothly and safely"
+    {{< /checklist >}}
+
+  Required per item: key, label.
+  Optional per item: id (defaults to key with underscores turned into hyphens).
+  Labels are rendered as inline markdown so backticks and emphasis work.
+*/ -}}
+{{- $items := .Inner | transform.Unmarshal -}}
+{{- if not $items }}{{ errorf `%s: checklist needs a YAML list of items` .Position }}{{ end -}}
+<ul class="checklist">
+{{- range $items }}
+{{- $key := index . "key" -}}
+{{- if not $key }}{{ errorf `%s: checklist item needs a "key"` $.Position }}{{ end -}}
+{{- $id := index . "id" | default (replace $key "_" "-") -}}
+{{- $label := index . "label" -}}
+{{- if not $label }}{{ errorf `%s: checklist item %q needs a "label"` $.Position $key }}{{ end -}}
+<li><input type="checkbox" data-key="{{ $key }}" id="{{ $id }}"><label for="{{ $id }}">{{ $.Page.RenderString $label }}</label></li>
+{{- end }}
+</ul>

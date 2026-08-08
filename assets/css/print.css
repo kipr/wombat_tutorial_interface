@@ -39,7 +39,7 @@
   }
 
   .meta, .callout, .concept, .cmd-table, .grid, .bottom-submit,
-  .safety, .widget-step, .calc-box {
+  .safety, .widget-step, .calc-box, .checklist li {
     break-inside: avoid;
   }
 
@@ -61,6 +61,22 @@
 
   .code .hl {
     color: #8a6d22 !important;
+  }
+
+  .filetab {
+    background: #ddd !important;
+    color: #333 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .checklist input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    border: 1px solid #666;
+    border-radius: 2px;
+    width: 14px;
+    height: 14px;
   }
 
   .cmd-table th, .grid th, .concept .chead {

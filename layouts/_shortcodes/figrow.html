@@ -7,11 +7,24 @@
     {{< /figrow >}}
 
   `caption` defaults to `alt`. Paths are resolved against the shared img root.
+
+  Column class is chosen from the figure count (2 → two, 3 → three,
+  4+ → two for a 2×N grid), matching the hand-authored pages. Override with
+  cols="two" or cols="three" when the count alone is wrong.
 */ -}}
 {{- $figures := .Inner | transform.Unmarshal -}}
 {{- $prefix := partial "urlprefix.html" .Page -}}
 {{- .Page.Store.Set "usedFigures" true -}}
-{{- $width := cond (eq (len $figures) 2) " two" (cond (eq (len $figures) 3) " three" "") -}}
+{{- $n := len $figures -}}
+{{- $cols := .Get "cols" -}}
+{{- if not $cols -}}
+  {{- if eq $n 2 }}{{ $cols = "two" }}
+  {{- else if eq $n 3 }}{{ $cols = "three" }}
+  {{- else if ge $n 4 }}{{ $cols = "two" }}
+  {{- end -}}
+{{- end -}}
+{{- $width := "" -}}
+{{- with $cols }}{{ $width = printf " %s" . }}{{ end -}}
 <div class="figrow{{ $width }}">
 {{- range $figures }}
 {{- $caption := .caption | default .alt }}
