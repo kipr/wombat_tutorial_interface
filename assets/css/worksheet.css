@@ -127,6 +127,7 @@
 .code {
     background: var(--code-bg);
     color: var(--code-ink);
+    border: 1px solid #ebe4d4;
     border-radius: 10px;
     padding: 16px 18px;
     margin: 12px 0;
@@ -416,7 +417,7 @@
 
 .grid .num { text-align: center; font-weight: 600; color: var(--navy); width: 42px; }
 
-.filetab { display: inline-block; background: #2b3040; color: #f4c95d; font-family: ui-monospace, Consolas, monospace; font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 8px 8px 0 0; margin-bottom: -10px; margin-left: 4px; border: 1px solid #3a4055; }
+.filetab { display: inline-block; background: #f3eee0; color: #9a6b00; font-family: ui-monospace, Consolas, monospace; font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 8px 8px 0 0; margin-bottom: -10px; margin-left: 4px; border: 1px solid #e4dcc8; }
 
 .widget-step { background: #eef4ff; border: 1px solid #bcd0f0; border-left: 6px solid var(--navy); border-radius: 10px; padding: 14px 18px; margin: 14px 0; }
 

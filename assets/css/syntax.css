@@ -2,6 +2,9 @@
  * Hugo/Chroma emits these semantic token classes at build time. The palette
  * is intentionally project-owned so C and Python share the worksheet theme
  * without inline styles or a browser-side highlighter.
+ *
+ * Screen and print both use a light cream listing with dark ink. Token hues
+ * stay saturated enough to remain distinct on white paper and on-screen.
  */
 
 .code .chroma {
@@ -35,59 +38,59 @@
 .code .ln {
   margin-right: .4em;
   padding: 0 .4em;
-  color: #9aa3b5;
+  color: #8a93a3;
   white-space: pre;
   user-select: none;
 }
 
 /* Chroma's optional whole-line emphasis. */
-.code .chroma .hl { background: rgba(255, 255, 255, .09); }
+.code .chroma .hl { background: rgba(192, 57, 43, .1); }
 
 /* Keywords, declarations, namespaces, and Python decorator names. */
-.code :is(.k, .kc, .kd, .kn, .kp, .kr) { color: #79c0ff; }
-.code .kt { color: #ffcb6b; }
-.code :is(.nd, .nc, .ne) { color: #d2a8ff; }
+.code :is(.k, .kc, .kd, .kn, .kp, .kr) { color: #0566d6; }
+.code .kt { color: #c46a00; }
+.code :is(.nd, .nc, .ne) { color: #8250df; }
 
 /* Functions, attributes, constants, and other named program elements. */
-.code :is(.nf, .fm) { color: #c3e88d; }
-.code :is(.na, .no, .nx) { color: #b4d6ff; }
-.code .nt { color: #ff9cac; }
+.code :is(.nf, .fm) { color: #1a8f32; }
+.code :is(.na, .no, .nx) { color: #0878b0; }
+.code .nt { color: #d1246b; }
 
 /* Strings and interpolation. */
 .code :is(.l, .ld, .s, .sa, .sb, .sc, .dl, .sd, .s2, .sh, .si, .sx, .sr, .s1, .ss) {
-  color: #f1c77a;
+  color: #c46a00;
 }
-.code .se { color: #ff9cac; }
+.code .se { color: #d1246b; }
 
 /* Numbers, operators, and punctuation. */
-.code :is(.m, .mb, .mf, .mh, .mi, .il, .mo) { color: #d2a8ff; }
-.code :is(.o, .ow, .or) { color: #89ddff; }
+.code :is(.m, .mb, .mf, .mh, .mi, .il, .mo) { color: #8250df; }
+.code :is(.o, .ow, .or) { color: #0a8aa8; }
 .code .p { color: var(--code-ink); }
 
 /* Comments and C preprocessor tokens. */
 .code :is(.c, .ch, .cm, .c1, .cs) { color: var(--code-green); font-style: italic; }
-.code :is(.cp, .cpf) { color: #ff9cac; }
+.code :is(.cp, .cpf) { color: #d1246b; }
 
 /* Lexer errors should be conspicuous during authoring and review. */
 .code .err {
-  color: #ff8b9a;
-  background: rgba(255, 107, 129, .14);
-  text-decoration: underline wavy #ff8b9a;
+  color: #cf222e;
+  background: rgba(207, 34, 46, .1);
+  text-decoration: underline wavy #cf222e;
 }
 
 /* Tutorial-specific token emphasis, restored after Chroma runs. */
 .code .code-emphasis {
-  color: #f4c95d !important;
-  background: rgba(244, 201, 93, .12);
+  color: #9a6b00 !important;
+  background: #ffe9a8;
   border-radius: 3px;
   font-weight: 700;
 }
 
-.code :is(.gd, .gr) { color: #ff8b9a; }
-.code .gi { color: #c3e88d; }
+.code :is(.gd, .gr) { color: #cf222e; }
+.code .gi { color: #1a8f32; }
 .code .ge { font-style: italic; }
 .code .gs { font-weight: 700; }
-.code .gu { color: #aeb8c9; }
+.code .gu { color: #6e7781; }
 
 @media print {
   .code .chroma {
