@@ -1,2 +1,16 @@
 {{- $active := eq .item.id .source.Params.nav -}}
-<a href="{{ partial "relative-url.html" (dict "source" .source "path" .item.url) }}"{{ if $active }} class="{{ .activeClass }}" aria-current="page"{{ end }}>{{ .item.name }}</a>
+{{- if not .item.id }}{{ errorf "navigation entry needs an id" }}{{ end -}}
+{{- if not .item.name }}{{ errorf "navigation entry %q needs a name" .item.id }}{{ end -}}
+{{- $hasPage := isset .item "page" -}}
+{{- $hasURL := isset .item "url" -}}
+{{- if eq $hasPage $hasURL }}
+  {{- errorf "navigation entry %q must define exactly one of page or url" .item.id -}}
+{{- end -}}
+{{- $href := "" -}}
+{{- if $hasPage -}}
+  {{- $target := partial "resolve-page.html" (dict "reference" .item.page "position" (printf "navigation entry %q" .item.id)) -}}
+  {{- $href = partial "relative-url.html" (dict "source" .source "target" $target) -}}
+{{- else -}}
+  {{- $href = partial "relative-url.html" (dict "source" .source "path" .item.url) -}}
+{{- end -}}
+<a href="{{ $href }}"{{ if $active }} class="{{ .activeClass }}" aria-current="page"{{ end }}>{{ .item.name }}</a>

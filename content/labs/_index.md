@@ -10,7 +10,7 @@ edition: "C"
 subheading: "Interactive lab sheets you fill in on screen. Enter your PIN, work through the activity, then press Submit & Download to save your results file and a printable PDF."
 toggle_text: "Prefer Python?"
 toggle_link_text: "View the Python labs →"
-toggle_path: "Python_Labs/index.html"
+toggle_page: "/python_labs"
 units:
   - number: 0
     label: "Start Here · Before Unit 1"

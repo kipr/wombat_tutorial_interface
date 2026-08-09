@@ -38,6 +38,7 @@ Shortcodes are the public API used by Markdown authors. Partials are internal bu
 - Form-control IDs are generated from keys by changing underscores to hyphens. Do not author IDs.
 - Every text input needs either a visible label or an accessible name derived by its renderer.
 - Site links and assets are emitted as relative URLs so builds work at a domain root, under a project path, and from local files.
+- Hugo content links use lowercase page references (for example, `/labs`, `/python_labs`, and `/glossary`) and resolve to page objects at build time. Use literal paths only for legacy static pages that are not managed by Hugo.
 - `.no-print` is the shared way to hide interactive-only material on paper.
 
 These are compatibility boundaries, not a demand for identical DOM structure. When one of them intentionally changes, document the migration and update the relevant consumer or test.
@@ -394,14 +395,32 @@ Unknown terms, senses, missions, and tiers fail the build. Page data includes on
 | an unknown `[[TERM]]` | term is absent from glossary data |
 | an unknown mission tier | tier is absent from mission data |
 
+## Page references and legacy paths
+
+Navigation entries define exactly one destination: `page` for Hugo content or `url` for a still-static legacy page. Page references must be lowercase and must resolve during the build.
+
+```yaml
+- id: labs
+  name: C Labs
+  page: /labs
+- id: missions
+  name: 2026 Missions
+  url: 2026-missions.html
+```
+
+Section edition toggles follow the same rule through the `toggle_page` front matter field. Do not write `.html` paths for Hugo content; page-object links emit the configured canonical URL automatically.
+
 ## Verification
 
 Build drafts and validate syntax highlighting:
 
 ```sh
-hugo --buildDrafts --destination /tmp/wombat-build --logLevel error
-python3 tools/check_syntax_highlighting.py /tmp/wombat-build
+build_dir="$(mktemp -d)"
+hugo --buildDrafts --destination "$build_dir" --printPathWarnings --logLevel error
+python3 tools/check_syntax_highlighting.py "$build_dir"
 ```
+
+Always publish from a newly created destination and replace the deployed Hugo artifact as a unit. Reusing an earlier output directory can retain obsolete flat `.html` files or the old uppercase `Python_Labs` tree.
 
 For a migration, capture a baseline build when one is available, but compare contracts rather than raw files. Appropriate checks include:
 

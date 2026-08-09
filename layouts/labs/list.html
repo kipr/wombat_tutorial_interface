@@ -4,7 +4,8 @@
   <h1 class="page-title">{{ .Params.heading }} <span>· {{ .Params.edition }}</span></h1>
   <p class="page-sub">{{ .Params.subheading }}</p>
   {{- with .Params.toggle_text }}
-  <p class="toggle-line">{{ . }} <a href="{{ partial "relative-url.html" (dict "source" $ "path" $.Params.toggle_path) }}">{{ $.Params.toggle_link_text }}</a></p>
+  {{- $toggle := partial "resolve-page.html" (dict "reference" $.Params.toggle_page "position" (printf "%s toggle_page" $.File.Path)) }}
+  <p class="toggle-line">{{ . }} <a href="{{ partial "relative-url.html" (dict "source" $ "target" $toggle) }}">{{ $.Params.toggle_link_text }}</a></p>
   {{- end }}
 
 {{- $pages := .RegularPages.ByWeight }}

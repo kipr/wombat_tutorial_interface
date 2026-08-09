@@ -12,7 +12,7 @@ edition: "Python"
 subheading: "The same Botball Explorer curriculum, written in Python. Enter your PIN, work through the activity, then press Submit & Download to save your results file and a printable PDF."
 toggle_text: "Prefer C?"
 toggle_link_text: "View the original labs →"
-toggle_path: "labs/index.html"
+toggle_page: "/labs"
 units:
   - number: 0
     label: "Start Here · Before Unit 1"

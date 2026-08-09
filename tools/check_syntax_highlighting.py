@@ -126,7 +126,7 @@ def main() -> int:
             f"teaching-emphasis count differs: source {source_markers}, output {output_emphasis}",
         )
 
-    fixture = args.build / "labs" / "syntax-highlighting-fixture.html"
+    fixture = args.build / "labs" / "syntax-highlighting-fixture" / "index.html"
     if not fixture.exists():
         fail(errors, f"missing {fixture}; build Hugo with --buildDrafts")
     else:

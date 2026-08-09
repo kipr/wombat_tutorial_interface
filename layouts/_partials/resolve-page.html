@@ -1,0 +1,11 @@
+{{- /* Resolve a content page reference and make a bad reference fail the build. */ -}}
+{{- $reference := .reference -}}
+{{- $position := .position | default "page reference" -}}
+{{- if not $reference }}
+  {{- errorf "%s is empty" $position -}}
+{{- end -}}
+{{- $page := site.GetPage $reference -}}
+{{- if not $page }}
+  {{- errorf "%s does not resolve: %q" $position $reference -}}
+{{- end -}}
+{{- return $page -}}

@@ -8,12 +8,13 @@
 {{- range $i, $p := $siblings }}{{ if eq $p.File.Path $.File.Path }}{{ $index = $i }}{{ end }}{{ end }}
 {{- $prev := cond (gt $index 0) (index $siblings (sub $index 1)) false -}}
 {{- $next := cond (and (ge $index 0) (lt $index (sub (len $siblings) 1))) (index $siblings (add $index 1)) false -}}
+{{- $glossary := partial "resolve-page.html" (dict "reference" "/glossary" "position" "worksheet glossary link") -}}
   <nav class="botnav no-print" aria-label="Page navigation">
     <a href="{{ partial "relative-url.html" (dict "source" . "target" .CurrentSection) }}">&larr; {{ .CurrentSection.Params.index_label | default "Back" }}</a>
 {{- with $prev }}
     <a href="{{ partial "relative-url.html" (dict "source" $ "target" .) }}">&larr; {{ .Params.short_title | default .Title }}</a>
 {{- end }}
-    <a class="gloss" href="{{ partial "relative-url.html" (dict "source" . "path" "glossary.html") }}">Glossary</a>
+    <a class="gloss" href="{{ partial "relative-url.html" (dict "source" . "target" $glossary) }}">Glossary</a>
 {{- with $next }}
     <a class="next" href="{{ partial "relative-url.html" (dict "source" $ "target" .) }}">{{ .Params.short_title | default .Title }} &rarr;</a>
 {{- end }}

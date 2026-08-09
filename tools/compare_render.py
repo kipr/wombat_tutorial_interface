@@ -5,8 +5,8 @@ The two files are not expected to be byte-identical: the point of the migration
 is that shared script, style and data move out of the page. So this compares
 what a browser would actually end up with:
 
-  * the element tree, with whitespace collapsed and links resolved to absolute
-    paths so ../foo.html and /prefix/foo.html count as the same target
+  * the element tree, with whitespace collapsed and links resolved to canonical
+    migrated paths so old flat URLs and new directory URLs count as the same target
   * the trial-log rows the original injects with JavaScript at load time
   * the set of data-key fields, which is exactly the submission payload
   * the glossary definitions and mission entries delivered to the page
@@ -50,9 +50,11 @@ class Tokenizer(HTMLParser):
         if self.strip_prefix and value.startswith(self.strip_prefix):
             value = "/" + value[len(self.strip_prefix):]
         if value.startswith("/"):
-            return normpath(value)
-        base = self.page_url.rsplit("/", 1)[0]
-        return normpath(f"{base}/{value}")
+            resolved = normpath(value)
+        else:
+            base = self.page_url.rsplit("/", 1)[0]
+            resolved = normpath(f"{base}/{value}")
+        return normalize_migrated_path(resolved)
 
     def handle_starttag(self, tag, attrs):
         if tag in ("script", "style"):
@@ -104,6 +106,20 @@ def render_token(token) -> str:
         return f"</{name}>"
     rendered = "".join(f' {k}="{v}"' for k, v in attrs)
     return f"<{name}{rendered}>"
+
+
+def normalize_migrated_path(path: str) -> str:
+    """Map frozen legacy content URLs to their canonical Hugo routes."""
+    if path == "/glossary.html":
+        return "/glossary"
+    match = re.fullmatch(r"/(labs|Python_Labs)/(.*)\.html", path)
+    if not match:
+        return path
+    section, page = match.groups()
+    section = "python_labs" if section == "Python_Labs" else section
+    if page == "index":
+        return f"/{section}"
+    return f"/{section}/{page}"
 
 
 def inject_js_rows(markup: str) -> str:
@@ -256,7 +272,14 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("original")
     parser.add_argument("generated")
-    parser.add_argument("--page-url", default="/labs/unit1_bigidea1.html")
+    parser.add_argument(
+        "--original-page-url", default="/labs/unit1_bigidea1.html",
+        help="public URL of the frozen original page",
+    )
+    parser.add_argument(
+        "--generated-page-url", default="/labs/unit1_bigidea1/",
+        help="public URL of the generated Hugo page",
+    )
     parser.add_argument("--strip-prefix", default="/Wombat-Tutorial-Interface/")
     parser.add_argument("--show", type=int, default=60)
     args = parser.parse_args()
@@ -265,9 +288,9 @@ def main() -> int:
     generated = pathlib.Path(args.generated).read_text()
     original_live = inject_js_rows(original)
 
-    old = Tokenizer(args.page_url)
+    old = Tokenizer(args.original_page_url)
     old.feed(original_live)
-    new = Tokenizer(args.page_url, strip_prefix=args.strip_prefix)
+    new = Tokenizer(args.generated_page_url, strip_prefix=args.strip_prefix)
     new.feed(generated)
 
     heading("1. Element tree (whitespace collapsed, links resolved)")

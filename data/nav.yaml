@@ -11,10 +11,10 @@
   url: discovery/index.html
 - id: labs
   name: C Labs
-  url: labs/index.html
+  page: /labs
 - id: python
   name: Python Labs
-  url: Python_Labs/index.html
+  page: /python_labs
 - id: glossary
   name: Glossary
-  url: glossary.html
+  page: /glossary
