@@ -1,0 +1,38 @@
+{{- $config := .Params.sidebar -}}
+{{- $title := $config.title | default "On this page" -}}
+{{- $start := $config.start_level | default 2 -}}
+{{- $end := $config.end_level | default $start -}}
+{{- if not (in (seq 1 6) $start) -}}
+  {{- errorf "%s: sidebar.start_level must be an integer from 1 through 6" .File.Path -}}
+{{- end -}}
+{{- if not (in (seq 1 6) $end) -}}
+  {{- errorf "%s: sidebar.end_level must be an integer from 1 through 6" .File.Path -}}
+{{- end -}}
+{{- if lt $end $start -}}
+  {{- errorf "%s: sidebar.end_level must be greater than or equal to start_level" .File.Path -}}
+{{- end -}}
+{{- $numbered := $config.numbered | default false -}}
+{{- if and (isset $config "numbered") (not (in (slice true false) $config.numbered)) -}}
+  {{- errorf "%s: sidebar.numbered must be true or false" .File.Path -}}
+{{- end -}}
+{{- $items := partial "document-sidebar-items.html" (dict
+  "headings" .Fragments.Headings "start" $start "end" $end "numbered" $numbered) -}}
+{{- if not (strings.TrimSpace $items) -}}
+  {{- errorf "%s: sidebar is enabled but no headings exist from level %d through %d" .File.Path $start $end -}}
+{{- end -}}
+<aside class="document-sidebar document-sidebar-desktop">
+  <nav aria-label="{{ $title }}">
+    <p class="document-sidebar-title">{{ $title }}</p>
+    {{- if $numbered }}<ol class="document-sidebar-list">{{ $items }}</ol>
+    {{- else }}<ul class="document-sidebar-list">{{ $items }}</ul>{{ end }}
+  </nav>
+</aside>
+<div class="document-sidebar document-sidebar-mobile">
+  <details>
+    <summary>{{ $title }}</summary>
+    <nav aria-label="{{ $title }}">
+      {{- if $numbered }}<ol class="document-sidebar-list">{{ $items }}</ol>
+      {{- else }}<ul class="document-sidebar-list">{{ $items }}</ul>{{ end }}
+    </nav>
+  </details>
+</div>

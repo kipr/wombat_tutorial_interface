@@ -1,0 +1,17 @@
+{{- $data := .Inner | transform.Unmarshal -}}
+{{- if not (reflect.IsMap $data) -}}
+  {{- errorf "%s: score-examples body must be a YAML mapping" .Position -}}
+{{- end -}}
+{{- range $key, $_ := $data -}}
+  {{- if not (in (slice "scores" "does_not_score") $key) -}}
+    {{- errorf "%s: score-examples accepts only scores and does_not_score; got %q" $.Position $key -}}
+  {{- end -}}
+{{- end -}}
+{{- range $key := slice "scores" "does_not_score" -}}
+  {{- $items := index $data $key -}}
+  {{- if or (not (reflect.IsSlice $items)) (eq (len $items) 0) -}}
+    {{- errorf "%s: score-examples.%s must be a non-empty YAML list" $.Position $key -}}
+  {{- end -}}
+{{- end -}}
+{{- partial "score-comparison.html" (dict
+  "page" .Page "scores" $data.scores "does_not_score" $data.does_not_score) -}}

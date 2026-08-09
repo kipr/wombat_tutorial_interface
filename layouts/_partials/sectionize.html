@@ -13,7 +13,7 @@
       {{- $out = printf "%s\n%s" $out . -}}
     {{- end -}}
   {{- else -}}
-    {{- $out = printf "%s\n<section>\n%s%s\n</section>" $out $marker (strings.TrimSpace $chunk) -}}
+    {{- $out = printf "%s\n<section>\n%s %s\n</section>" $out $marker (strings.TrimSpace $chunk) -}}
   {{- end -}}
 {{- end -}}
 {{- return $out -}}

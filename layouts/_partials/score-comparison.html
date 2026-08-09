@@ -1,0 +1,18 @@
+<div class="score-comparison">
+  <section class="score-comparison-column score-comparison-scores">
+    <h3 class="score-comparison-title">Scores</h3>
+    <ul>
+      {{- range .scores }}
+      <li>{{ partial "render-inline.html" (dict "page" $.page "text" .) | safeHTML }}</li>
+      {{- end }}
+    </ul>
+  </section>
+  <section class="score-comparison-column score-comparison-misses">
+    <h3 class="score-comparison-title">Does Not Score</h3>
+    <ul>
+      {{- range .does_not_score }}
+      <li>{{ partial "render-inline.html" (dict "page" $.page "text" .) | safeHTML }}</li>
+      {{- end }}
+    </ul>
+  </section>
+</div>

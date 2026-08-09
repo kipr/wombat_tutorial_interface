@@ -8,15 +8,15 @@
   {{- $prelab := findRESubmatch `^(PreLab \d+) — (.+)$` $text -}}
   {{- if $phase -}}
     {{- $m := index $phase 0 -}}
-<h2 class="phase-head"><span class="pnum">{{ index $m 1 }}</span> — {{ index $m 2 | safeHTML }}</h2>
+<h2 class="phase-head" id="{{ .Anchor }}"><span class="pnum">{{ index $m 1 }}</span> — {{ index $m 2 | safeHTML }}</h2>
   {{- else if $prelab -}}
     {{- $m := index $prelab 0 -}}
-<h2 class="phase-head"><span class="pnum">{{ index $m 1 }}</span> {{ index $m 2 | safeHTML }}</h2>
+<h2 class="phase-head" id="{{ .Anchor }}"><span class="pnum">{{ index $m 1 }}</span> {{ index $m 2 | safeHTML }}</h2>
   {{- else -}}
-<h2 class="phase-head">{{ $text | safeHTML }}</h2>
+<h2 class="phase-head" id="{{ .Anchor }}">{{ $text | safeHTML }}</h2>
   {{- end -}}
 {{- else if eq .Level 3 -}}
-<h3 class="sub">{{ $text | safeHTML }}</h3>
+<h3 class="sub" id="{{ .Anchor }}">{{ $text | safeHTML }}</h3>
 {{- else -}}
-<h{{ .Level }}>{{ $text | safeHTML }}</h{{ .Level }}>
+<h{{ .Level }} id="{{ .Anchor }}">{{ $text | safeHTML }}</h{{ .Level }}>
 {{- end -}}

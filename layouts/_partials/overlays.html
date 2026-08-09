@@ -10,21 +10,8 @@
   </div>
 </div>
 {{- end }}
-{{- if .Store.Get "usedMissions" }}
-<div class="fld-overlay" id="fldOverlay" role="dialog" aria-modal="true" aria-labelledby="fldTitle">
-  <div class="fld-box">
-    <div class="fld-head">
-      <span class="fld-title" id="fldTitle"></span>
-      <button class="fld-x" id="fldX" aria-label="Close field diagram">&#10005;</button>
-    </div>
-    <div class="fld-tabs" id="fldTabs"></div>
-    <div class="fld-pic"><img id="fldImg" src="" alt=""></div>
-    <p class="fld-cap" id="fldCap"></p>
-  </div>
-</div>
-{{- end }}
 {{- if .Store.Get "usedFigures" }}
-<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Enlarged picture">
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-labelledby="zcap">
   <button class="zclose" id="zclose" aria-label="Close picture">&#10005;</button>
   <img id="zimg" src="" alt="">
   <p class="zcap" id="zcap"></p>

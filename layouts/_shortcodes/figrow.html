@@ -19,22 +19,15 @@
   layout is inferred from the figure count.
 */ -}}
 {{- $figures := .Inner | transform.Unmarshal -}}
-{{- .Page.Store.Set "usedFigures" true -}}
-{{- $n := len $figures -}}
-{{- $cols := "" -}}
-{{- if eq $n 2 }}{{ $cols = "two" }}
-{{- else if eq $n 3 }}{{ $cols = "three" }}
-{{- else if ge $n 4 }}{{ $cols = "two" }}
+{{- if or (not (reflect.IsSlice $figures)) (eq (len $figures) 0) -}}
+  {{- errorf "%s: figrow body must be a non-empty YAML list" .Position -}}
 {{- end -}}
-{{- $width := "" -}}
-{{- with $cols }}{{ $width = printf " %s" . }}{{ end -}}
-<div class="figrow{{ $width }}">
-{{- range $figures }}
-{{- $checkID := index . "check_id" -}}
-{{- if $checkID -}}
-<figure class="fig checklist-item"><div class="image-wrapper"><img src="{{ partial "relative-url.html" (dict "source" $.Page "path" (printf "img/%s" .src)) }}" alt="{{ .alt }}" loading="lazy"><label class="image-checkbox" for="{{ $checkID }}"><input type="checkbox" id="{{ $checkID }}" data-key="part_{{ $checkID }}"><span>Have it</span></label></div><figcaption>{{ .alt }}</figcaption></figure>
-{{- else -}}
-<figure class="fig"><img src="{{ partial "relative-url.html" (dict "source" $.Page "path" (printf "img/%s" .src)) }}" alt="{{ .alt }}" loading="lazy"><figcaption>{{ .alt }}</figcaption></figure>
+{{- $normalized := slice -}}
+{{- range $figures -}}
+  {{- if not .src }}{{ errorf "%s: every figrow item requires src" $.Position }}{{ end -}}
+  {{- if not .alt }}{{ errorf "%s: figure %q requires alt" $.Position .src }}{{ end -}}
+  {{- $normalized = $normalized | append (dict
+    "src" (partial "relative-url.html" (dict "source" $.Page "path" (printf "img/%s" .src)))
+    "alt" .alt "check_id" (index . "check_id")) -}}
 {{- end -}}
-{{- end }}
-</div>
+{{- partial "figure-grid.html" (dict "page" .Page "figures" $normalized) -}}

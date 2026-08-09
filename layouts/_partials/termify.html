@@ -1,8 +1,7 @@
-{{- /* Rewrite validated glossary and mission references and record page usage. */ -}}
+{{- /* Rewrite validated glossary references and mission links. */ -}}
 {{- $page := .page -}}
 {{- $content := .content -}}
 {{- $usedTerms := $page.Store.Get "usedTerms" | default slice -}}
-{{- $usedMissions := $page.Store.Get "usedMissions" | default slice -}}
 {{- range findRE `\[\[[^][]+\]\]` $content -}}
   {{- $token := . -}}
   {{- $reference := partial "parse-reference.html" (dict "raw" $token "position" $page.File.Path) -}}
@@ -10,9 +9,9 @@
     "reference" $reference "track" ($page.Params.track | default "c") "position" $page.File.Path) -}}
   {{- if eq $reference.kind "mission" -}}
     {{- $text := $reference.label | default $resolved.title -}}
-    {{- $html := printf `<span class="fieldref" data-m="%s" data-tier="%s">%s</span>` $resolved.number $resolved.tier $text -}}
+    {{- $href := printf `%s#%s` $resolved.page.RelPermalink $resolved.tier -}}
+    {{- $html := printf `<a class="mission-ref" href="%s">%s</a>` $href ($text | htmlEscape) -}}
     {{- $content = replace $content $token $html -}}
-    {{- $usedMissions = $usedMissions | append $resolved.number -}}
   {{- else -}}
     {{- $text := $reference.label | default $resolved.base -}}
     {{- $html := printf `<span class="def-term" data-term="%s">%s</span>` $resolved.lookup $text -}}
@@ -21,5 +20,4 @@
   {{- end -}}
 {{- end -}}
 {{- $page.Store.Set "usedTerms" (uniq $usedTerms) -}}
-{{- $page.Store.Set "usedMissions" (uniq $usedMissions) -}}
 {{- return $content -}}

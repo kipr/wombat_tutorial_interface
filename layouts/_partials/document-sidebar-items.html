@@ -1,0 +1,19 @@
+{{- $out := "" -}}
+{{- range .headings -}}
+  {{- $children := partial "document-sidebar-items.html" (dict
+    "headings" .Headings "start" $.start "end" $.end "numbered" $.numbered) -}}
+  {{- if and (ge .Level $.start) (le .Level $.end) -}}
+    {{- $nested := "" -}}
+    {{- with strings.TrimSpace $children -}}
+      {{- if $.numbered -}}
+        {{- $nested = printf `<ol class="document-sidebar-list document-sidebar-list-nested">%s</ol>` . -}}
+      {{- else -}}
+        {{- $nested = printf `<ul class="document-sidebar-list document-sidebar-list-nested">%s</ul>` . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $out = printf `%s<li class="document-sidebar-item"><a class="document-sidebar-link" data-sidebar-target="%s" href="#%s">%s</a>%s</li>` $out .ID .ID .Title $nested -}}
+  {{- else -}}
+    {{- $out = printf "%s%s" $out $children -}}
+  {{- end -}}
+{{- end -}}
+{{- return ($out | safeHTML) -}}

@@ -11,6 +11,11 @@ eyebrow: "Unit 1 · Big Idea 1"
 heading: "Computers Follow Instructions"
 subheading: "Student Lab · The Waypoint Navigator"
 credit: "KIPR · Botball Explorer · Unit 1 Big Idea 1 — Student Lab"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Unit Guiding Question"
     definition: "How can a machine understand and act within the world?"

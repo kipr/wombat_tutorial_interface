@@ -178,74 +178,6 @@
     );
   })();
 
-  /* ----------------------------------------------------- field diagrams */
-
-  (function fieldDiagrams() {
-    var overlay = document.getElementById("fldOverlay");
-    if (!overlay) return;
-
-    var img = document.getElementById("fldImg");
-    var title = document.getElementById("fldTitle");
-    var tabs = document.getElementById("fldTabs");
-    var caption = document.getElementById("fldCap");
-    var missions = window.KIPR_MISSIONS || {};
-    var base = body.getAttribute("data-img-base") || "";
-
-    function show(number, tier) {
-      var mission = missions[number];
-      if (!mission) return;
-
-      var padded = (number < 10 ? "0" : "") + number;
-      img.src = base + "missions/mission-" + padded + "-" + tier + ".jpg";
-      img.alt = mission.title + " — " + tier + " scoring, shown on the field";
-      title.textContent = mission.title;
-      caption.textContent =
-        tier.charAt(0).toUpperCase() +
-        tier.slice(1) +
-        " scoring — arrows show where each piece has to end up.";
-
-      tabs.innerHTML = "";
-      if (mission.tiers.length > 1) {
-        mission.tiers.forEach(function (t) {
-          var b = document.createElement("button");
-          b.textContent = t;
-          b.className = t === tier ? "on" : "";
-          b.addEventListener("click", function () {
-            show(number, t);
-          });
-          tabs.appendChild(b);
-        });
-        tabs.style.display = "flex";
-      } else {
-        tabs.style.display = "none";
-      }
-
-      overlay.classList.add("open");
-      document.body.style.overflow = "hidden";
-      document.getElementById("fldX").focus();
-    }
-
-    function hide() {
-      overlay.classList.remove("open");
-      img.src = "";
-      document.body.style.overflow = "";
-    }
-
-    document.getElementById("fldX").addEventListener("click", hide);
-    overlay.addEventListener("click", function (e) {
-      if (e.target === this) hide();
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") hide();
-    });
-    document.addEventListener("click", function (e) {
-      var el = e.target.closest(".fieldref");
-      if (!el) return;
-      e.preventDefault();
-      show(parseInt(el.dataset.m, 10), el.dataset.tier || "base");
-    });
-  })();
-
   /* ---------------------------------------------------------- image zoom */
 
   (function imageZoom() {
@@ -254,8 +186,11 @@
 
     var img = document.getElementById("zimg");
     var caption = document.getElementById("zcap");
+    var trigger = null;
 
-    function open(source) {
+    function open(control) {
+      var source = control.querySelector("img");
+      trigger = control;
       img.src = source.src;
       img.alt = source.alt || "";
       var figure = source.closest("figure");
@@ -263,25 +198,28 @@
       caption.textContent = figcaption ? figcaption.textContent : "";
       zoom.classList.add("open");
       document.body.style.overflow = "hidden";
+      document.getElementById("zclose").focus();
     }
 
     function close() {
       zoom.classList.remove("open");
       img.src = "";
       document.body.style.overflow = "";
+      if (trigger) trigger.focus();
+      trigger = null;
     }
 
     document.addEventListener("click", function (e) {
-      var target = e.target.closest(".fig img");
+      var target = e.target.closest(".figure-zoom");
       if (target) {
         open(target);
         return;
       }
-      if (e.target.closest("#zoom")) close();
+      if (e.target === zoom) close();
     });
     document.getElementById("zclose").addEventListener("click", close);
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape" && zoom.classList.contains("open")) close();
     });
   })();
 })();

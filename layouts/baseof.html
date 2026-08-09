@@ -3,7 +3,10 @@
 <head>
 {{- partial "head.html" . }}
 </head>
-<body{{ if .Params.hub }} class="hub"{{ else }}{{ with .Params.mission_id }} data-mission-id="{{ . }}"{{ end }} data-mission-title="{{ .Params.mission_title | default .Title }}" data-img-base="{{ partial "relative-url.html" (dict "source" . "path" "img/") }}"{{ end }}>
+{{- $bodyClasses := slice -}}
+{{- if .Params.hub }}{{ $bodyClasses = $bodyClasses | append "hub" }}{{ end -}}
+{{- with .Params.body_class }}{{ $bodyClasses = $bodyClasses | append . }}{{ end -}}
+<body{{ with $bodyClasses }} class="{{ delimit . " " }}"{{ end }}{{ with .Params.mission_id }} data-mission-id="{{ . }}"{{ end }} data-mission-title="{{ .Params.mission_title | default .Title }}">
 
 {{ if .Params.hub }}{{ partial "hub-nav.html" . }}{{ else }}{{ partial "topbar.html" . }}{{ end }}
 
@@ -11,7 +14,8 @@
 
 {{- if .Params.hub }}
 <footer class="footer-strip">KIPR Botball © 2026 — All rights reserved</footer>
-{{- else }}
+{{- end }}
+{{- if or (not .Params.hub) (.Store.Get "usedTerms") (.Store.Get "usedFigures") }}
 {{ partial "overlays.html" . }}
 {{ partial "page-data.html" . }}
 <script src="{{ partial "relative-url.html" (dict "source" . "path" "js/lab.js") }}"></script>

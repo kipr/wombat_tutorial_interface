@@ -1,0 +1,63 @@
+{{ define "main" }}
+{{- $missions := sort (where site.RegularPages "Layout" "mission") "Weight" -}}
+{{- if ne (len $missions) 18 }}
+  {{- errorf "%s: explorer requires exactly 18 mission pages; found %d" .File.Path (len $missions) -}}
+{{- end -}}
+{{- $numbers := slice -}}
+{{- range $missions -}}
+  {{- $_ := partial "validate-mission.html" . -}}
+  {{- if in $numbers .Params.mission_number -}}
+    {{- errorf "%s: duplicate mission_number %d" .File.Path .Params.mission_number -}}
+  {{- end -}}
+  {{- $numbers = $numbers | append .Params.mission_number -}}
+{{- end -}}
+{{- if ne (delimit (sort $numbers) ",") (delimit (seq 1 18) ",") -}}
+  {{- errorf "%s: mission numbers must be exactly 1 through 18; found %v" .File.Path $numbers -}}
+{{- end -}}
+<main class="explorer-index">
+  <header class="explorer-header">
+    <p class="explorer-eyebrow">{{ .Params.eyebrow }}</p>
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Params.subtitle }}</p>
+  </header>
+  <div class="explorer-index-body">
+    {{- $rules := site.GetPage "/botball_explorer_2026/rules" -}}
+    <a class="explorer-rules-card" href="{{ $rules.RelPermalink }}">
+      <span class="explorer-rules-symbol" aria-hidden="true">§</span>
+      <span><strong>Competition Rules</strong><small>Divisions, match structure, robot requirements, scoring, and official definitions.</small></span>
+      <span class="explorer-card-action">Read Rules →</span>
+    </a>
+
+    <h2 class="explorer-grid-title">All Missions</h2>
+    <div class="explorer-mission-grid">
+    {{- range $missions }}
+      {{- $maximum := 0 -}}
+      {{- $judging := slice -}}
+      {{- range .Params.tiers }}
+        {{- $maximum = add $maximum .points -}}
+        {{- $judging = $judging | append .judging -}}
+      {{- end -}}
+      <a class="explorer-mission-card" href="{{ .RelPermalink }}">
+        <span class="explorer-card-top">
+          <span class="explorer-card-number">{{ printf "%02d" .Params.mission_number }}</span>
+          <span class="explorer-card-heading">
+            <strong>{{ partial "render-inline.html" (dict "page" $ "text" .LinkTitle) | safeHTML }}</strong>
+            <small>{{ .Params.skill }}</small>
+          </span>
+        </span>
+        <span class="explorer-card-scores">
+          {{- range .Params.tiers }}
+          <span class="explorer-point-chip explorer-point-{{ .id }}">{{ humanize .id }}: {{ .points }} {{ cond (eq .points 1) "pt" "pts" }}</span>
+          {{- end }}
+          {{- range uniq $judging }}
+          <span class="explorer-judging explorer-judging-{{ . }}">{{ humanize . }}</span>
+          {{- end }}
+          <strong>{{ $maximum }} pts max</strong>
+        </span>
+      </a>
+    {{- end }}
+    </div>
+    <div class="explorer-index-note">{{ partial "termify.html" (dict "page" . "content" .Content) | safeHTML }}</div>
+  </div>
+</main>
+{{ end }}

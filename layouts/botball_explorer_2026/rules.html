@@ -1,0 +1,4 @@
+{{ define "main" }}
+{{- $main := partial "rules-main.html" . -}}
+{{- partial "document-shell.html" (dict "page" . "main" $main "class" "explorer-document-shell") -}}
+{{ end }}

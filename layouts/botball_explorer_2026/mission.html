@@ -1,0 +1,63 @@
+{{ define "main" }}
+{{- $_ := partial "validate-mission.html" . -}}
+{{- $number := .Params.mission_number -}}
+{{- $maximum := 0 -}}
+{{- $figures := slice -}}
+<main class="explorer-mission">
+  <header class="explorer-mission-header">
+    <p class="explorer-eyebrow">2026 Fall Game — Mission {{ $number }} of 18</p>
+    <div class="explorer-mission-title"><span>{{ printf "%02d" $number }}</span><h1>{{ partial "render-inline.html" (dict "page" . "text" .LinkTitle) | safeHTML }}</h1></div>
+    <p class="explorer-mission-skill"><strong>Skill</strong> {{ .Params.skill }}</p>
+  </header>
+  <div class="explorer-mission-body">
+    <h2>Mission Components &amp; Scoring</h2>
+    <div class="explorer-tier-list">
+    {{- range .Params.tiers }}
+      {{- $maximum = add $maximum .points -}}
+      {{- $resource := $.Resources.GetMatch .image -}}
+      {{- $label := cond (eq .id "advanced") "Advanced Bonus" (printf "%s Mission" (humanize .id)) -}}
+      {{- $alt := printf "Mission %d — %s field diagram" $number $label -}}
+      {{- $figures = $figures | append (dict "src" $resource.RelPermalink "alt" $alt) -}}
+      <article class="explorer-tier explorer-tier-{{ .id }}" id="{{ .id }}">
+        <div class="explorer-tier-score">
+          <h3>{{ $label }}</h3>
+          <strong>{{ .points }} {{ cond (eq .points 1) "pt" "pts" }}</strong>
+          <span>Difficulty {{ .difficulty }}</span>
+          <span class="explorer-judging explorer-judging-{{ .judging }}">{{ humanize .judging }} judged</span>
+        </div>
+        <div class="explorer-tier-description">{{ partial "render-inline.html" (dict "page" $ "text" .description) | safeHTML }}</div>
+      </article>
+    {{- end }}
+    </div>
+
+    <h2>Field Diagrams</h2>
+    {{ partial "figure-grid.html" (dict "page" . "figures" $figures) }}
+
+    <div class="explorer-authored">{{ partial "termify.html" (dict "page" . "content" .Content) | safeHTML }}</div>
+
+    {{- with .Params.notice }}
+      {{- $notice := partial "render-inline.html" (dict "page" $ "text" .) -}}
+      {{- partial "panel.html" (dict "title" "Important" "variant" "red" "content" (printf "<p>%s</p>" $notice)) -}}
+    {{- end }}
+
+    <section class="explorer-summary" aria-labelledby="scoring-summary">
+      <h2 id="scoring-summary">Scoring Summary</h2>
+      <div class="explorer-summary-items explorer-summary-items-{{ len .Params.tiers }}">
+      {{- range .Params.tiers }}
+        {{- $label := cond (eq .id "advanced") "Advanced Bonus" (printf "%s Mission" (humanize .id)) -}}
+        <div><span>{{ $label }}</span><strong>{{ .points }} {{ cond (eq .points 1) "pt" "pts" }}</strong><small>{{ humanize .judging }} judged</small></div>
+      {{- end }}
+        <div class="explorer-summary-max"><span>Maximum</span><strong>{{ $maximum }} pts</strong></div>
+      </div>
+    </section>
+
+    <nav class="explorer-mission-nav" aria-label="Mission navigation">
+      {{- if gt $number 1 }}{{ $previous := site.GetPage (printf "/botball_explorer_2026/missions/mission-%d" (sub $number 1)) }}<a href="{{ $previous.RelPermalink }}">← Mission {{ sub $number 1 }}</a>{{ else }}<span></span>{{ end }}
+      <a href="{{ (site.GetPage "/botball_explorer_2026").RelPermalink }}">All Missions</a>
+      <a href="{{ (site.GetPage "/botball_explorer_2026/rules").RelPermalink }}">Rules</a>
+      <a href="{{ (site.GetPage "/glossary").RelPermalink }}">Glossary</a>
+      {{- if lt $number 18 }}{{ $next := site.GetPage (printf "/botball_explorer_2026/missions/mission-%d" (add $number 1)) }}<a href="{{ $next.RelPermalink }}">Mission {{ add $number 1 }} →</a>{{ else }}<span></span>{{ end }}
+    </nav>
+  </div>
+</main>
+{{ end }}

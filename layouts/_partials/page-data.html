@@ -1,9 +1,7 @@
-{{- /* Ship only the resolved glossary and mission entries referenced here. */ -}}
+{{- /* Ship only the resolved glossary entries referenced on this page. */ -}}
 {{- $terms := .Store.Get "usedTerms" -}}
-{{- $missions := .Store.Get "usedMissions" -}}
-{{- if or $terms $missions }}
-<script>
 {{- if $terms }}
+<script>
   {{- $out := dict -}}
   {{- range $terms }}
     {{- $reference := partial "parse-reference.html" (dict "raw" . "position" $.File.Path) -}}
@@ -11,15 +9,5 @@
     {{- $out = merge $out (dict $resolved.lookup (dict "title" $resolved.title "body" $resolved.body)) -}}
   {{- end }}
 window.KIPR_GLOSSARY = {{ $out | jsonify (dict "indent" "  ") | safeJS }};
-{{- end }}
-{{- if $missions }}
-  {{- $out := dict -}}
-  {{- range $missions }}
-    {{- $reference := partial "parse-reference.html" (dict "raw" (printf "@%s" .) "position" $.File.Path) -}}
-    {{- $resolved := partial "resolve-reference.html" (dict "reference" $reference "position" $.File.Path) -}}
-    {{- $out = merge $out (dict $resolved.number $resolved.entry) -}}
-  {{- end }}
-window.KIPR_MISSIONS = {{ $out | jsonify (dict "indent" "  ") | safeJS }};
-{{- end }}
 </script>
 {{- end }}

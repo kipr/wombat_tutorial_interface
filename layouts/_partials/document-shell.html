@@ -1,0 +1,5 @@
+{{- $page := .page -}}
+<div class="document-shell{{ with .class }} {{ . }}{{ end }}">
+  {{- if $page.Params.sidebar }}{{ partial "document-sidebar.html" $page }}{{ end -}}
+  {{ .main | safeHTML }}
+</div>

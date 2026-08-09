@@ -1,0 +1,9 @@
+{{- $body := partial "termify.html" (dict "page" . "content" .Content) -}}
+<main class="explorer-document explorer-rules">
+  <header class="explorer-header explorer-document-header">
+    <p class="explorer-eyebrow">{{ .Params.eyebrow }}</p>
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Params.subtitle }}</p>
+  </header>
+  <div class="explorer-rules-body">{{ $body | safeHTML }}</div>
+</main>

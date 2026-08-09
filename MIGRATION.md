@@ -66,7 +66,9 @@ Reuse these author-facing APIs from Markdown:
 | `rec` | YAML list of visibly labelled recording fields. |
 | `repeattable` | Generated rows with predictable `<prefix><row>_<key>` submission keys. |
 | `resetbox` | Semantic gold panel for error-reset checkpoints. |
+| `rule-definition` | Emits one canonical competition definition from `data/glossary.yaml`; rules definitions only. |
 | `safety` | Semantic red safety panel; optionally screen-only with `noprint=true`. |
+| `score-examples` | Required `scores` and `does_not_score` YAML lists rendered as a responsive comparison. |
 | `signoff` | PreLab completion check plus labelled team/date-style fields. |
 | `sketch` | Printable field-sketch area with a derived start-box label. |
 | `steps` | Generated numbered single-line response fields. |
@@ -86,14 +88,17 @@ Partials are internal APIs. Reuse them from layouts or shortcode implementations
 | `botnav.html` | Previous, next, section, and glossary navigation for worksheet pages. |
 | `checkbox.html` | Validated keyed checkbox plus associated label; derives the DOM ID from the key. |
 | `codeblock.html` | Shared language validation, Chroma rendering, shortcode emphasis, fence options/classes, and filename tabs. Route every code path through it. |
+| `document-shell.html` | Shared two-column document shell for a heading-derived sidebar and existing main content. |
+| `document-sidebar.html` | Validates sidebar configuration and renders desktop/mobile navigation from `.Fragments.Headings`. |
+| `figure-grid.html` | Normalized, keyboard-operable figure grid used by `figrow` and mission page resources. |
 | `glossary-entry.html` | Validates and resolves a glossary base term/sense with track-specific wording. |
 | `glossary-page-meta.html` | Produces label, class, rank, and sort metadata for glossary usage links. |
 | `glossary-page-terms.html` | Discovers the base glossary terms referenced by a page using the shared parser. |
 | `head.html` | Shared document metadata, fonts, and stylesheet links. |
 | `hub-nav.html` | Hub-page navigation shell; delegates individual data-driven links to `navigation-link.html`. |
 | `navigation-link.html` | Shared navigation anchor with configurable active class and consistent `aria-current`. |
-| `overlays.html` | Emits glossary, mission-field, and figure dialogs only when the page used them. |
-| `page-data.html` | Serializes only the glossary and mission data referenced by the current page. |
+| `overlays.html` | Emits glossary and figure dialogs only when the rendered page used them. |
+| `page-data.html` | Serializes only the glossary definitions referenced by the current page. |
 | `panel.html` | Shared red/navy/gold panel furniture used by all semantic panel shortcodes. |
 | `parse-reference.html` | Parses glossary and mission token syntax, including display labels and qualifiers. |
 | `relative-url.html` | Returns a relative URL from a source page to either a target page or site-relative path. Route internal page, image, script, and asset URLs through it. |
@@ -101,7 +106,8 @@ Partials are internal APIs. Reuse them from layouts or shortcode implementations
 | `resolve-reference.html` | Dispatches a parsed reference to glossary or mission validation/resolution. |
 | `sectionize.html` | Wraps rendered worksheet phases in sections without requiring raw wrapper HTML in Markdown. |
 | `table-cell.html` | Shared static, number, and accessible input-cell renderer for both table shortcodes. |
-| `termify.html` | Rewrites rendered reference tokens into interactive term/mission spans and records page usage. |
+| `score-comparison.html` | Shared responsive Scores / Does Not Score renderer. |
+| `termify.html` | Rewrites rendered glossary tokens into popup controls and mission tokens into validated page links. |
 | `text-input.html` | Validated visibly labelled text field used by recording, sign-off, and name/date components. |
 | `textarea.html` | Validated accessible response textarea used by `answer` and `ask`. |
 | `topbar.html` | Worksheet top bar, main navigation, PIN field, and submission controls. |
@@ -331,7 +337,7 @@ Every block must have a valid Chroma language. Emphasis markers are interpreted 
 
 ## Figures and fixed diagrams
 
-`figrow` infers its columns from the figure count. Each figure requires `src` and `alt`; `alt` is also its visible caption. `check_id` remains available for PreLab inventory overlays and produces the stable key `part_<check_id>`.
+`figrow` infers its columns from the figure count. Each figure requires `src` and `alt`; `alt` is also its visible caption. `check_id` remains available for PreLab inventory overlays and produces the stable key `part_<check_id>`. Images are rendered inside native buttons, so Enter and Space work without custom keyboard handlers. Closing the shared zoom dialog returns focus to that button.
 
 ```markdown
 {{< figrow >}}
@@ -378,7 +384,98 @@ The shared reference parser accepts:
 | `[[@2\|Mission 2]]` | mission reference |
 | `[[@2:bonus\|Mission 2]]` | mission tier reference |
 
-Unknown terms, senses, missions, and tiers fail the build. Page data includes only references actually used on that page, with Python wording selected when `track: python` is set.
+Unknown terms, senses, missions, and tiers fail the build. Mission references resolve from the mission page collection—not a parallel data file—and link to the stable `#base`, `#bonus`, or `#advanced` tier anchor. Page data contains only glossary references actually used on that page, with Python wording selected when `track: python` is set.
+
+## 2026 Explorer missions and rules
+
+The 2026 Explorer is ordinary Hugo content with no URL overrides or aliases:
+
+```text
+content/botball_explorer_2026/
+├── _index.md
+├── rules.md
+└── missions/
+    ├── mission-1/
+    │   ├── index.md
+    │   ├── base.jpg
+    │   └── bonus.jpg
+    └── mission-18/
+        ├── index.md
+        ├── base.jpg
+        ├── bonus.jpg
+        └── advanced.jpg
+```
+
+Do not add `missions/_index.md`. The Explorer root is the only mission index, and each mission is a leaf bundle whose diagrams are page resources.
+
+Mission front matter is the source of truth for index cards, tier cards, diagrams, and scoring summaries:
+
+```yaml
+title: "Mission 1 — Waypoint Alpha"
+linkTitle: "Waypoint Alpha"
+layout: mission
+nav: missions
+hub: true
+body_class: explorer
+styles: ["site-base", "hub", "explorer"]
+mission_number: 1
+weight: 1
+skill: "Basic autonomous navigation and stopping at a specified location."
+tiers:
+  - id: base
+    points: 1
+    difficulty: 1
+    judging: live
+    image: base.jpg
+    description: "A robot stops while [[IN THE ZONE]]."
+  - id: bonus
+    points: 1
+    difficulty: 1
+    judging: live
+    image: bonus.jpg
+    description: "The robot returns [[FULLY WITHIN]] a starting box."
+```
+
+Mission rendering validates the mission number, bundle name, weight, tier order, point and difficulty ranges, judging mode, and every named page resource. The root build additionally requires the unique mission numbers 1 through 18.
+
+Every mission body contains the comparison and ordinary Judge Notes:
+
+```markdown
+{{< score-examples >}}
+scores:
+  - "A robot enters and visibly stops."
+does_not_score:
+  - "The robot drives through without stopping."
+{{< /score-examples >}}
+
+## Judge Notes
+
+- Judges must clearly observe the stop.
+```
+
+Competition definitions are maintained canonical data in `data/glossary.yaml` with `source: rules`. Rules Markdown supplies the heading, examples, and notes while definition prose comes from data:
+
+```markdown
+### Touching
+
+{{< rule-definition term="TOUCHING" >}}
+```
+
+The former extraction script, `data/missions.yaml`, field-popup payload, and `window.KIPR_MISSIONS` are intentionally absent. Never regenerate curated rule definitions from legacy HTML.
+
+## Document sidebar
+
+Pages opt into the heading-derived sidebar in front matter:
+
+```yaml
+sidebar:
+  title: "Rule Sections"
+  start_level: 2
+  end_level: 2
+  numbered: true
+```
+
+Levels must be integers from 1 through 6 and the end cannot precede the start. Enabling the sidebar without a heading in that range fails the build. Labels and targets always come from Hugo's heading fragments; do not author a second navigation list. Desktop uses the sticky aside, mobile uses a closed `<details>` menu, and both are hidden in print. The `.is-active` class is reserved for a future enhancement; no scrollspy runs today.
 
 ## Expected failures
 
@@ -393,7 +490,9 @@ Unknown terms, senses, missions, and tiers fail the build. Page data includes on
 | `{{< code lang="not-a-language" >}}` | unsupported Chroma language |
 | an unmatched shortcode emphasis marker | unmatched emphasis marker |
 | an unknown `[[TERM]]` | term is absent from glossary data |
-| an unknown mission tier | tier is absent from mission data |
+| an unknown mission tier | tier is absent from the resolved mission page |
+| a mission image missing from its leaf bundle | tier image is not a page resource |
+| an empty side navigation range | sidebar has no headings in its configured range |
 
 ## Page references and legacy paths
 
@@ -405,7 +504,7 @@ Navigation entries define exactly one destination: `page` for Hugo content or `u
   page: /labs
 - id: missions
   name: 2026 Missions
-  url: 2026-missions.html
+  page: /botball_explorer_2026
 ```
 
 Section edition toggles follow the same rule through the `toggle_page` front matter field. Do not write `.html` paths for Hugo content; page-object links emit the configured canonical URL automatically.
@@ -418,6 +517,7 @@ Build drafts and validate syntax highlighting:
 build_dir="$(mktemp -d)"
 hugo --buildDrafts --destination "$build_dir" --printPathWarnings --logLevel error
 python3 tools/check_syntax_highlighting.py "$build_dir"
+python3 tools/check_explorer_migration.py "$build_dir"
 ```
 
 Always publish from a newly created destination and replace the deployed Hugo artifact as a unit. Reusing an earlier output directory can retain obsolete flat `.html` files or the old uppercase `Python_Labs` tree.
@@ -426,7 +526,7 @@ For a migration, capture a baseline build when one is available, but compare con
 
 - each page’s sorted `data-key` multiset and keyed initial values;
 - duplicate keys, duplicate IDs, unresolved `label[for]` values, and unlabelled controls;
-- glossary/mission references and serialized page-data payloads;
+- glossary references, serialized glossary payloads, and resolved mission/tier links;
 - resolved `href`/`src` targets and the published static-asset inventory;
 - figure sources/alts, overlay availability, and screen/print visibility;
 - copied code text, syntax languages, emphasis markers, and filename tabs;

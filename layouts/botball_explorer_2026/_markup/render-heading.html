@@ -1,0 +1,7 @@
+{{- $attributes := "" -}}
+{{- range $name, $value := .Attributes -}}
+  {{- if ne $name "id" -}}
+    {{- $attributes = printf `%s %s="%s"` $attributes $name ($value | htmlEscape) -}}
+  {{- end -}}
+{{- end -}}
+<h{{ .Level }} id="{{ .Anchor }}"{{ $attributes | safeHTMLAttr }}>{{ .Text | safeHTML }}</h{{ .Level }}>

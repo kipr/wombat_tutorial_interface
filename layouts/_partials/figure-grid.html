@@ -1,0 +1,24 @@
+{{- $page := .page -}}
+{{- $figures := .figures -}}
+{{- if not $figures }}{{ errorf "%s: figure grid requires at least one figure" $page.File.Path }}{{ end -}}
+{{- $page.Store.Set "usedFigures" true -}}
+{{- $count := len $figures -}}
+{{- $columns := 1 -}}
+{{- if eq $count 3 }}{{ $columns = 3 }}{{ else if ge $count 2 }}{{ $columns = 2 }}{{ end -}}
+<div class="figure-grid figure-grid-{{ $count }} figure-grid-cols-{{ $columns }}">
+{{- range $figures }}
+  {{- if not .src }}{{ errorf "%s: figure requires src" $page.File.Path }}{{ end -}}
+  {{- if not .alt }}{{ errorf "%s: figure %q requires alt text" $page.File.Path .src }}{{ end -}}
+  <figure class="figure-card fig{{ with .check_id }} checklist-item{{ end }}">
+    <div class="figure-image-wrap image-wrapper">
+      <button class="figure-zoom" type="button" aria-label="Enlarge: {{ .alt }}">
+        <img src="{{ .src }}" alt="{{ .alt }}" loading="lazy">
+      </button>
+      {{- with .check_id }}
+      <label class="image-checkbox" for="{{ . }}"><input type="checkbox" id="{{ . }}" data-key="part_{{ . }}"><span>Have it</span></label>
+      {{- end }}
+    </div>
+    <figcaption>{{ .alt }}</figcaption>
+  </figure>
+{{- end }}
+</div>

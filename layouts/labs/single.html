@@ -1,48 +1,8 @@
 {{ define "main" }}
-{{- $body := partial "termify.html" (dict "page" . "content" .Content) | partial "sectionize.html" -}}
-<main class="sheet">
-
-  <!-- ===== Hero ===== -->
-  <div class="hero">
-    <p class="eyebrow">{{ .Params.eyebrow }}</p>
-    <h1>{{ .Params.heading }}</h1>
-    <p class="sub">{{ .Params.subheading }}</p>
-  </div>
-
-{{- if .Params.mission_id }}
-  <!-- PIN echo for printed copy -->
-  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
-{{- end }}
-
-{{- with .Params.meta }}
-  <!-- ===== Meta ===== -->
-  <div class="meta">
-    <dl>
-      {{- range . }}
-      <div class="row"><dt>{{ .term }}</dt><dd>{{ partial "termify.html" (dict "page" $ "content" .definition) | safeHTML }}</dd></div>
-      {{- end }}
-    </dl>
-  </div>
-{{- end }}
-
-{{- if .Params.mission_id }}
-  <div class="pin-reminder no-print">
-    <strong>Before you start:</strong> type your PIN in the box at the top of the page. Your teacher gave you this number. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and save a copy.
-  </div>
-{{- end }}
-
-{{ $body | safeHTML }}
-
-{{- if .Params.mission_id }}
-  <!-- ===== Bottom submit ===== -->
-  <div class="bottom-submit no-print">
-    <p>When you are finished, press the button to turn in your work and save a copy.</p>
-    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
-    <div class="status" id="statusBottom" role="status" aria-live="polite" style="color:var(--grey);margin-top:10px"></div>
-  </div>
-{{- end }}
-{{ partial "botnav.html" . }}
-
-  <p class="credit">{{ .Params.credit }}</p>
-</main>
+{{- $main := partial "worksheet-main.html" . -}}
+{{- if .Params.sidebar -}}
+  {{- partial "document-shell.html" (dict "page" . "main" $main "class" "document-shell-worksheet") -}}
+{{- else -}}
+  {{- $main | safeHTML -}}
+{{- end -}}
 {{ end }}

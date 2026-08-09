@@ -6,12 +6,23 @@
 {{- else -}}
   {{- $number := $ref.base -}}
   {{- $tier := $ref.qualifier | default "base" -}}
-  {{- $mission := index hugo.Data.missions $number -}}
-  {{- if not $mission -}}
-    {{- errorf "%s: [[%s]] refers to mission %q, which is not in data/missions.yaml" .position $ref.target $number -}}
-  {{- else if not (in $mission.tiers $tier) -}}
-    {{- errorf "%s: [[%s]] asks for tier %q but mission %s only has %v" .position $ref.target $tier $number $mission.tiers -}}
+  {{- if not (findRE `^[0-9]+$` $number) -}}
+    {{- errorf "%s: [[%s]] has a non-numeric mission number" .position $ref.target -}}
   {{- end -}}
-  {{- $result = dict "number" $number "tier" $tier "title" $mission.title "entry" $mission -}}
+  {{- $missionNumber := int $number -}}
+  {{- if or (lt $missionNumber 1) (gt $missionNumber 18) -}}
+    {{- errorf "%s: [[%s]] refers to mission %d; expected 1 through 18" .position $ref.target $missionNumber -}}
+  {{- end -}}
+  {{- $mission := site.GetPage (printf "/botball_explorer_2026/missions/mission-%d" $missionNumber) -}}
+  {{- if not $mission -}}
+    {{- errorf "%s: [[%s]] does not resolve to a mission page" .position $ref.target -}}
+  {{- end -}}
+  {{- $tierMatches := where $mission.Params.tiers "id" $tier -}}
+  {{- if ne (len $tierMatches) 1 -}}
+    {{- $available := slice -}}
+    {{- range $mission.Params.tiers }}{{ $available = $available | append .id }}{{ end -}}
+    {{- errorf "%s: [[%s]] asks for tier %q but mission %d has %v" .position $ref.target $tier $missionNumber $available -}}
+  {{- end -}}
+  {{- $result = dict "number" $missionNumber "tier" $tier "title" $mission.Title "page" $mission -}}
 {{- end -}}
 {{- return $result -}}

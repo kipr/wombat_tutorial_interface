@@ -5,7 +5,7 @@
   url: index.html
 - id: missions
   name: 2026 Missions
-  url: 2026-missions.html
+  page: /botball_explorer_2026
 - id: discovery
   name: Discovery
   url: discovery/index.html

@@ -1,0 +1,44 @@
+{{- $page := . -}}
+{{- $position := $page.File.Path -}}
+{{- $number := $page.Params.mission_number -}}
+{{- if not (in (seq 1 18) $number) -}}
+  {{- errorf "%s: mission_number must be a unique integer from 1 through 18" $position -}}
+{{- end -}}
+{{- if ne $page.Weight $number -}}
+  {{- errorf "%s: weight (%d) must match mission_number (%d)" $position $page.Weight $number -}}
+{{- end -}}
+{{- $bundle := path.Base (strings.TrimSuffix "/" $page.File.Dir) -}}
+{{- if ne $bundle (printf "mission-%d" $number) -}}
+  {{- errorf "%s: mission_number %d must live in a mission-%d bundle" $position $number $number -}}
+{{- end -}}
+{{- $tiers := $page.Params.tiers -}}
+{{- if or (not (reflect.IsSlice $tiers)) (lt (len $tiers) 2) (gt (len $tiers) 3) -}}
+  {{- errorf "%s: tiers must contain base, bonus, and optionally advanced" $position -}}
+{{- end -}}
+{{- $expected := slice "base" "bonus" "advanced" -}}
+{{- $seen := slice -}}
+{{- range $index, $tier := $tiers -}}
+  {{- $id := $tier.id -}}
+  {{- if ne $id (index $expected $index) -}}
+    {{- errorf "%s: tier %d must be %q; got %q" $position (add $index 1) (index $expected $index) $id -}}
+  {{- end -}}
+  {{- if in $seen $id }}{{ errorf "%s: duplicate tier id %q" $position $id }}{{ end -}}
+  {{- $seen = $seen | append $id -}}
+  {{- $pointsType := printf "%T" $tier.points -}}
+  {{- $numericType := in (slice "int" "int64" "uint" "uint64" "float64") $pointsType -}}
+  {{- if or (not $numericType) (not (in (slice (int $tier.points)) $tier.points)) (le $tier.points 0) -}}
+    {{- errorf "%s: tier %q points must be a positive integer (got %v of type %s)" $position $id $tier.points $pointsType -}}
+  {{- end -}}
+  {{- if not (in (seq 1 8) $tier.difficulty) -}}
+    {{- errorf "%s: tier %q difficulty must be an integer from 1 through 8" $position $id -}}
+  {{- end -}}
+  {{- if not (in (slice "live" "final") $tier.judging) -}}
+    {{- errorf "%s: tier %q judging must be exactly live or final" $position $id -}}
+  {{- end -}}
+  {{- if not $tier.description }}{{ errorf "%s: tier %q requires description" $position $id }}{{ end -}}
+  {{- if not $tier.image }}{{ errorf "%s: tier %q requires image" $position $id }}{{ end -}}
+  {{- if not ($page.Resources.GetMatch $tier.image) -}}
+    {{- errorf "%s: tier %q image %q is not a page resource" $position $id $tier.image -}}
+  {{- end -}}
+{{- end -}}
+{{- return true -}}

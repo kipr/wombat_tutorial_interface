@@ -1,0 +1,4 @@
+{{- $page := .page -}}
+{{- $text := .text | default "" -}}
+{{- $rendered := $page.RenderString (dict "display" "inline") $text -}}
+{{- return (partial "termify.html" (dict "page" $page "content" $rendered)) -}}
