@@ -1,11 +1,12 @@
 ---
 title: "Unit 3 · Big Idea 2 — Smooth Operator"
-short_title: "Lab 3.2"
+short_title: "Python 3.2"
 hub_unit: 3
 description: "Clamping and step loops — build move_arm and move_claw that stay safe and move smoothly to stack a cube."
 weight: 150
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit3_bigidea2
 eyebrow: "Unit 3 · Big Idea 2"
 heading: "Smooth Operator"
@@ -59,11 +60,9 @@ Keep your `ARM_MIN`, `ARM_MAX`, `CLAW_OPEN`, and `CLAW_SHUT` from Big Idea 1 han
 - text: |
     Right now, you have to remember not to type a dangerous servo number. That's risky — one typo could burn out a servo. A better idea: build a function that **fixes** any out-of-range value before it ever reaches the servo. This is called *clamping*.
 - code: |
-    if (position > ARM_MAX) position = ARM_MAX;   // too high? pull it back to the max
-    if (position < ARM_MIN) position = ARM_MIN;   // too low? pull it up to the min
+    if position > ARM_MAX: position = ARM_MAX   # too high? pull it back to the max
+    if position < ARM_MIN: position = ARM_MIN   # too low? pull it up to the min
 - text: |
-    **Note:** The single line if statement is a shorthand way to write an if statement; that's why you don't see any curly brackets after "if". This *only* works when the instructions inside the curly brackets is a single line, not multiple.
-
     After these two lines, `position` is *guaranteed* to be inside your safe range — no matter what number came in. Even if someone asks for 3000, the servo only ever sees `ARM_MAX`.
 {{< /concept >}}
 
@@ -71,45 +70,42 @@ Keep your `ARM_MIN`, `ARM_MAX`, `CLAW_OPEN`, and `CLAW_SHUT` from Big Idea 1 han
 
 ## Phase 2 — Build: move_arm and move_claw (Clamped)
 
-Build both functions with clamping. They take the position you *want*, fix it if it's unsafe, then move. [[PROTOTYPE|Prototype]] above `main()`, definitions below — your usual structure.
+Build both functions with clamping. They take the position you *want*, fix it if it's unsafe, then move. Define them above `main()` — your usual structure.
 
 {{< code >}}
-// Unit 3, Big Idea 2: Smooth Operator
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 3, Big Idea 2: Smooth Operator
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
-#include <stdlib.h>            // provides abs() for the smooth-movement loop
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-int ARM_MIN   = @@____@@;   // your safe values from Big Idea 1
-int ARM_MAX   = @@____@@;
-int CLAW_OPEN = @@____@@;
-int CLAW_SHUT = @@____@@;
+ARM_MIN   = @@____@@   # your safe values from Big Idea 1
+ARM_MAX   = @@____@@
+CLAW_OPEN = @@____@@
+CLAW_SHUT = @@____@@
 
-void move_arm(int position);    // PROTOTYPES
-void move_claw(int position);
+def main():
+    k.enable_servo(0)            # arm
+    k.enable_servo(1)            # claw
 
-int main() {
-    enable_servo(0);            // arm
-    enable_servo(1);            // claw
+    move_arm(ARM_MAX)          # This safely moves the arm to the top.
+    move_arm(3000)             # UNSAFE number, but the clamp saves us:
+                               # the arm only goes to ARM_MAX, not 3000
 
-    move_arm(ARM_MAX);          // safe: moves to the top
-    move_arm(3000);             // UNSAFE number, but the clamp saves us:
-                                // the arm only goes to ARM_MAX, not 3000
-    return 0;
-}
+def move_arm(position):
+    if position > ARM_MAX: position = ARM_MAX   # clamp high
+    if position < ARM_MIN: position = ARM_MIN   # clamp low
+    k.set_servo_position(0, position)             # now it's guaranteed safe
 
-void move_arm(int position) {
-    if (position > ARM_MAX) position = ARM_MAX;   // clamp high
-    if (position < ARM_MIN) position = ARM_MIN;   // clamp low
-    set_servo_position(0, position);              // now it's guaranteed safe
-}
+def move_claw(position):
+    # The claw's safe endpoints are CLAW_OPEN and CLAW_SHUT. Clamp between them.
+    if position < CLAW_OPEN: position = CLAW_OPEN
+    if position > CLAW_SHUT: position = CLAW_SHUT
+    k.set_servo_position(3, position)
 
-void move_claw(int position) {
-    // the claw's safe ends are CLAW_OPEN and CLAW_SHUT: clamp between them
-    if (position < CLAW_OPEN) position = CLAW_OPEN;
-    if (position > CLAW_SHUT) position = CLAW_SHUT;
-    set_servo_position(3, position);
-}
+main()
 {{< /code >}}
 
 Note: this assumes `CLAW_OPEN` is the smaller number and `CLAW_SHUT` the larger. If yours are the other way around, swap them in the two `if` lines so the bigger value is the high clamp.
@@ -129,22 +125,20 @@ A one-tick command is too small to make the servo actually move, so these functi
 - text: |
     A new command lets you read the servo's current spot:
 - code: |
-    get_servo_position(0);   // returns the servo's current position on port 0
+    k.get_servo_position(0)   # returns the servo's current position on port 0
 - text: |
     With that, a loop can walk the servo to its target one step at a time — usually moving **+2** if it's below the target or **−2** if it's above. When the target is only one tick away, it moves that final tick directly so it cannot skip over the target:
 - code: |
-    int current_position = get_servo_position(0);
-    while (current_position != target_position) {  // until we arrive...
-        if (abs(current_position - target_position) == 1) {
-            set_servo_position(0, target_position);   // move the final tick
-        } else if (current_position < target_position) {
-            set_servo_position(0, current_position + 2);   // step up
-        } else {
-            set_servo_position(0, current_position - 2);   // step down
-        }
-        msleep(1);   // tiny pause: this is what makes it smooth
-        current_position = get_servo_position(0);
-    }
+    current_position = k.get_servo_position(0)
+    while current_position != target_position:   # until we arrive...
+        if abs(current_position - target_position) == 1:
+            k.set_servo_position(0, target_position)   # move the final tick
+        elif current_position < target_position:
+            k.set_servo_position(0, current_position + 2)   # step up
+        else:
+            k.set_servo_position(0, current_position - 2)   # step down
+        k.msleep(1)   # This tiny pause makes the motion smooth.
+        current_position = k.get_servo_position(0)
 - text: |
     Because the loop updates `current_position` after each step, it figures out which way to go on its own. You never tell it where it started — only where to end.
 {{< /concept >}}
@@ -153,50 +147,44 @@ A one-tick command is too small to make the servo actually move, so these functi
 
 ## Phase 4 — Build: Smooth move_arm and move_claw
 
-{{% safety title="⚠ Keep the clamp" noprint="true" %}}
+{{% safety title="⚠ Keep the clamp" noprint=true %}}
 The smooth version still clamps first. Clamp the target into the safe range, *then* step toward it. That way the loop can never walk the servo past a safe limit.
 {{% /safety %}}
 
-Rewrite both functions to clamp, then step smoothly to the target. Start with `msleep(1)` in the loop.
+Rewrite both functions to clamp, then step smoothly to the target. Start with `k.msleep(1)` in the loop.
 
 {{< code >}}
-void move_arm(int target_position) {
-    if (target_position > ARM_MAX) target_position = ARM_MAX;   // clamp first
-    if (target_position < ARM_MIN) target_position = ARM_MIN;
+def move_arm(target_position):
+    if target_position > ARM_MAX: target_position = ARM_MAX   # clamp first
+    if target_position < ARM_MIN: target_position = ARM_MIN
 
-    int current_position = get_servo_position(0);   // read once to avoid overloading the controller
-    while (current_position != target_position) {   // step until we arrive
-        // A 2-tick step could skip a target that is only 1 tick away.
-        if (abs(current_position - target_position) == 1) {
-            set_servo_position(0, target_position);
-        } else if (current_position < target_position) {
-            set_servo_position(0, current_position + 2);
-        } else {
-            set_servo_position(0, current_position - 2);
-        }
-        msleep(@@1@@);   // 1 ms per step = smooth motion
-        current_position = get_servo_position(0);
-    }
-}
+    current_position = k.get_servo_position(0)   # read once to avoid overloading the controller
+    while current_position != target_position:   # step until we arrive
+        # A 2-tick step could skip a target that is only 1 tick away.
+        if abs(current_position - target_position) == 1:
+            k.set_servo_position(0, target_position)
+        elif current_position < target_position:
+            k.set_servo_position(0, current_position + 2)
+        else:
+            k.set_servo_position(0, current_position - 2)
+        k.msleep(@@1@@)   # 1 ms per step = smooth motion
+        current_position = k.get_servo_position(0)
 
-void move_claw(int target_position) {
-    if (target_position < CLAW_OPEN) target_position = CLAW_OPEN;   // clamp first
-    if (target_position > CLAW_SHUT) target_position = CLAW_SHUT;
+def move_claw(target_position):
+    if target_position < CLAW_OPEN: target_position = CLAW_OPEN   # clamp first
+    if target_position > CLAW_SHUT: target_position = CLAW_SHUT
 
-    int current_position = get_servo_position(1);   // read once to avoid overloading the controller
-    while (current_position != target_position) {   // step until we arrive
-        // A 2-tick step could skip a target that is only 1 tick away.
-        if (abs(current_position - target_position) == 1) {
-            set_servo_position(3, target_position);
-        } else if (current_position < target_position) {
-            set_servo_position(3, current_position + 2);
-        } else {
-            set_servo_position(3, current_position - 2);
-        }
-        msleep(@@1@@);
-        current_position = get_servo_position(1);
-    }
-}
+    current_position = k.get_servo_position(1)   # read once to avoid overloading the controller
+    while current_position != target_position:   # step until we arrive
+        # A 2-tick step could skip a target that is only 1 tick away.
+        if abs(current_position - target_position) == 1:
+            k.set_servo_position(3, target_position)
+        elif current_position < target_position:
+            k.set_servo_position(3, current_position + 2)
+        else:
+            k.set_servo_position(3, current_position - 2)
+        k.msleep(@@1@@)
+        current_position = k.get_servo_position(1)
 {{< /code >}}
 
 {{< ask key="p4_smooth_observe" label="Smooth observation" >}}Run it and watch the arm. How is the motion different from last lab's instant `set_servo_position`? Describe what you see.{{< /ask >}}
@@ -265,7 +253,7 @@ rows:
 
 {{< ask key="p6_smooth_helped" label="Smooth helped" >}}Did smooth motion help the cube stay on the pallet compared to a sudden move? Why would a jerky arm knock it off?{{< /ask >}}
 
-## Phase 7 — Connect &amp; Reflect
+## Phase 7 — Connect & Reflect
 
 {{% callout title="AI Literacy Thread" %}}
 Intelligent systems control their actions smoothly and safely, not just quickly.

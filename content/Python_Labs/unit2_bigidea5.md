@@ -1,11 +1,12 @@
 ---
 title: "Unit 2 · Big Idea 5 — Tuning the Follow"
-short_title: "Lab 2.5"
+short_title: "Python 2.5"
 hub_unit: 2
 description: "The mav command and speed ratios — run an organized experiment to tune your line-follow to its best."
 weight: 120
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit2_bigidea5
 eyebrow: "Unit 2 · Big Idea 5"
 heading: "Tuning the Follow"
@@ -28,7 +29,7 @@ meta:
 
 ## Overview
 
-Your robot already follows a line — but does it follow it *well*? Does it wobble wildly, or glide smoothly? Today you'll find out, by treating your line-follow like an engineer treats an engine: you'll change the speeds in a careful, organized way and measure what happens. Along the way you'll trade in your old `motor()` command for a more precise one — `mav()` — that gives you far finer control over speed.
+Your robot already follows a line — but does it follow it *well*? Does it wobble wildly, or glide smoothly? Today you'll find out, by treating your line-follow like an engineer treats an engine: you'll change the speeds in a careful, organized way and measure what happens. Along the way you'll trade in your old `k.motor()` command for a more precise one — `k.mav()` — that gives you far finer control over speed.
 
 {{% callout title="Core Insight" %}}
 There's no single "right" speed. The best line-follow is found by testing — changing one thing at a time and letting the robot's behavior tell you what works.
@@ -36,8 +37,8 @@ There's no single "right" speed. The best line-follow is found by testing — ch
 
 ### By the end of this activity you will be able to:
 
-- Use `mav()` to drive motors by velocity ([[TICK|ticks]] per second) instead of percent power.
-- Explain why `mav()` gives much finer speed control than `motor()`.
+- Use `k.mav()` to drive motors by velocity ([[TICK|ticks]] per second) instead of percent power.
+- Explain why `k.mav()` gives much finer speed control than `k.motor()`.
 - Run an organized experiment changing total speed and the gap between wheel speeds.
 - Use your results to tune your line-follow to its best performance.
 {.obj}
@@ -46,9 +47,9 @@ There's no single "right" speed. The best line-follow is found by testing — ch
 
 {{< concept "mav — move at velocity" >}}
 - text: |
-    You've used `motor(port, power)`, where power is a percent from −100 to 100. Now meet its precise cousin:
+    You've used `k.motor(port, power)`, where power is a percent from −100 to 100. Now meet its precise cousin:
 - code: |
-    mav(0, 750);   // move motor 0 at 750 ticks per second
+    k.mav(0, 750)   # move motor 0 at 750 ticks per second
 - text: |
     `mav` stands for **move at velocity**. Instead of a percent, you give it a speed in *ticks per second* — the same ticks your [[ENCODER|encoder]] counts. Its range is −1500 to 1500.
 {{< /concept >}}
@@ -57,8 +58,8 @@ There's no single "right" speed. The best line-follow is found by testing — ch
 - text: |
     Look at the two ranges side by side:
 - code: |
-    motor:  -100  ...  100     // 100 steps each direction
-    mav:   -1500  ... 1500     // 1500 steps each direction
+    motor:  -100  ...  100     # 100 steps each direction
+    mav:   -1500  ... 1500     # 1500 steps each direction
 - text: |
     That's **15 times** as many speed values to choose from. With `motor`, the smallest change you can make is 1 percent. With `mav`, you can fine-tune speed in much smaller steps — which matters a lot when you're trying to stop a line-follow from wobbling.
 - text: |
@@ -70,13 +71,12 @@ There's no single "right" speed. The best line-follow is found by testing — ch
 - text: |
     Your steering logic doesn't change at all — only the command and the numbers do:
 - code: |
-    if (analog(0) > MIDPOINT) {   // on black, steer right
-        mav(0, @@750@@);            // was motor(0, 50)
-        mav(1, @@300@@);            // was motor(3, 20)
-    } else {                       // on white, steer left
-        mav(0, @@300@@);
-        mav(1, @@750@@);
-    }
+    if k.analog(0) > MIDPOINT:    # on black, steer right
+        k.mav(0, @@750@@)            # was k.motor(0, 50)
+        k.mav(1, @@300@@)            # was k.motor(3, 20)
+    else:                          # on white, steer left
+        k.mav(0, @@300@@)
+        k.mav(1, @@750@@)
 {{< /concept >}}
 
 ## Phase 1 — Activate: Coarse vs. Fine Control
@@ -231,7 +231,7 @@ Complete this section on your own.
 
 {{< namebar >}}
 
-{{< ask key="p7_q1_mav" label="Reflection 1" n=1 >}}What does `mav()` do, and how is it different from `motor()`? Why is it more precise?{{< /ask >}}
+{{< ask key="p7_q1_mav" label="Reflection 1" n=1 >}}What does `k.mav()` do, and how is it different from `k.motor()`? Why is it more precise?{{< /ask >}}
 
 {{< ask key="p7_q2_total_speed" label="Reflection 2" n=2 >}}In your experiment, what was the effect of raising the *total speed* on how well the robot followed the line?{{< /ask >}}
 
@@ -258,7 +258,7 @@ Finished early? Try one or more of these.
 
 ### Extension C — Make the Speeds [[VARIABLE|Variables]]
 
-- Put your best fast and slow speeds in two `int` variables at the top (like `FAST` and `SLOW`). Now you can re-tune by changing two numbers in one place. Why is that better?
+- Put your best fast and slow speeds in two variables at the top (like `FAST` and `SLOW`). Now you can re-tune by changing two numbers in one place. Why is that better?
 
 {{< answer key="ext_c" label="Extension C" >}}
 

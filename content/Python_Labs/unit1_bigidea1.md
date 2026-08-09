@@ -1,11 +1,12 @@
 ---
 title: "Unit 1 · Big Idea 1 — The Waypoint Navigator"
-short_title: "Lab 1.1"
+short_title: "Python 1.1"
 hub_unit: 1
 description: "Algorithms and sequencing — write, run, and debug a program that drives to a target and stops."
 weight: 30
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit1_bigidea1
 eyebrow: "Unit 1 · Big Idea 1"
 heading: "Computers Follow Instructions"
@@ -159,35 +160,38 @@ Write your plan as a numbered list. Do not write code yet. Be specific enough th
 ## Phase 4 — Build &amp; Run
 
 {{< figrow >}}
-- src: ide/code-template.png
+- src: ide/code_template_py.png
   alt: The template you start from.
-- src: ide/compile-succeeded.png
+- src: ide/compile-succeeded_py.png
   alt: What success looks like.
 {{< /figrow >}}
 
 ### Starting Code Template
 
-Type this program into your robot controller exactly as shown. Each line has a [[COMMENT|comment]] (after the `//`) that explains what it does. The comments are notes for you — the robot ignores them.
+Type this program into your robot controller exactly as shown. Each line has a [[COMMENT|comment]] (after the `#`) that explains what it does. The comments are notes for you — the robot ignores them.
 
 {{< code >}}
-// Unit 1, Big Idea 1: Waypoint Navigator
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 1, Big Idea 1: Waypoint Navigator
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-int main() {
-    motor(0,100);  //this turns one of the motors on
-    motor(3,100);  //this turns the other motor on
-    msleep(1000);  // hold still so the stop is visible
-    ao();          // turns the motors off after the msleep has completed
-    // Add your Bonus Mission call here when ready.
-    return 0;
-}
+def main():
+    k.motor(0, 100)  # this turns one of the motors on
+    k.motor(3, 100)  # this turns the other motor on
+    k.msleep(1000)   # hold still so the stop is visible
+    k.ao()           # turns the motors off after the msleep has completed
+    # Add your Bonus Mission call here when ready.
+
+main()
 {{< /code >}}
 
 ### Before You Press Run — [[CHECKLIST|Checklist]]
 
-- Your program is typed in exactly as shown, with no missing [[SEMICOLON|semicolons]]
+- Your program is typed in exactly as shown, with indentation matching the template
 - Robot is fully inside the starting box
 - You know exactly what “success” looks like before the run starts
 - You are watching to see whether the robot reaches the zone and stops
@@ -268,7 +272,7 @@ Finished early? Try one or more of these.
 
 ### Extension A — Precision Tuning
 
-- Add a third [[INTEGER|integer]] variable called SPEED to your program and connect it to your motor calls.
+- Add a variable called SPEED to your program and connect it to your motor calls.
 - Run 5 trials at SPEED = 30, then 5 at SPEED = 70.
 - Record how speed affects your travel time. What relationship do you notice?
 
@@ -292,14 +296,14 @@ Finished early? Try one or more of these.
 ### Extension D — Inputs as Numbers
 
 - Change the two motor power numbers and the msleep number, and predict what each change will do before you run it.
-- What advantage does changing a number at the top give you over changing it in many places?
+- What advantage would changing a number in one place give you over changing it in many places?
 
 {{< answer key="ext_d" label="Extension D" >}}
 
 ### Extension E — Blocks vs. Text
 
-- If you've used a block-based tool before (Scratch, Blockly, etc.), compare it to the C you just wrote. What can you do in C that blocks make awkward? What did blocks make easier?
-- Why might a real robot controller prefer a text language like C over a block-based one?
+- If you've used a block-based tool before (Scratch, Blockly, etc.), compare it to the Python you just wrote. What can you do in Python that blocks make awkward? What did blocks make easier?
+- Why might a real robot controller prefer a text language like Python over a block-based one?
 
 {{< answer key="ext_e" label="Extension E" >}}
 

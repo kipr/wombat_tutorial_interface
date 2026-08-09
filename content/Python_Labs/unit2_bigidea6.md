@@ -1,11 +1,12 @@
 ---
 title: "Unit 2 · Big Idea 6 — Two Sensors, One Decision"
-short_title: "Lab 2.6"
+short_title: "Python 2.6"
 hub_unit: 2
 description: "Sensor fusion — combine the Tophat and an ET distance sensor so the robot follows the line and stops at an object."
 weight: 130
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit2_bigidea6
 eyebrow: "Unit 2 · Big Idea 6"
 heading: "Two Sensors, One Decision"
@@ -36,7 +37,7 @@ The smartest behavior comes from combining sensors. One answers "which way?" The
 
 ### By the end of this activity you will be able to:
 
-- Read an **ET distance sensor** with `analog(1)` and explain what its values mean.
+- Read an **ET distance sensor** with `k.analog(1)` and explain what its values mean.
 - Map the ET's value-to-distance relationship, and find its close-range blind spot.
 - Combine two sensors in one loop — one to steer, one to decide when to stop.
 - Connect multi-sensor decisions to how intelligent systems fuse many inputs.
@@ -52,7 +53,7 @@ The smartest behavior comes from combining sensors. One answers "which way?" The
 {{% callout title="Setup" variant="navy" %}}
 Mount the **ET distance sensor** on the **front** of your robot, facing **forward** (looking out ahead, not down at the floor like the Tophat).
 
-Plug it into **analog [[PORT|port]] 1**. In code, `analog(1)` reads the ET. Your Tophat is still on `analog(0)`.
+Plug it into **analog [[PORT|port]] 1**. In code, `k.analog(1)` reads the ET. Your Tophat is still on `k.analog(0)`.
 {{% /callout %}}
 
 {{< concept "The ET is a distance sensor — and it works backwards from what you'd guess" >}}
@@ -148,7 +149,7 @@ You want the robot to stop with the object close — but **before** it enters th
 {{< /calc >}}
 
 {{% callout title="Why outside the blind spot" variant="gold" %}}
-If you set your stop value too high (too close), the robot would have to drive into the blind spot to reach it — where the reading misbehaves and the robot might never see the right number. Stopping around 4 inches keeps you on the part of the curve you can trust.
+If you set your stop value too high (too close), the robot would have to drive into the blind spot to reach it — where the reading misbehaves and the robot might never see the right number. Stopping around 4 inches keeps you in the range you can trust.
 {{% /callout %}}
 
 {{< ask key="p3_why_4in" label="Why 4 inches" >}}Why did you pick a stop value from around 4 inches instead of 1 or 2 inches, even though closer would "reach" the object more?{{< /ask >}}
@@ -159,8 +160,8 @@ If you set your stop value too high (too close), the robot would have to drive i
 - text: |
     Your loop will now read two sensors, each with its own job:
 
-    - **Tophat** (`analog(0)`) → *"Which way do I steer to stay on the line?"*
-    - **ET** (`analog(1)`) → *"Is there an object close enough to stop?"*
+    - **Tophat** (`k.analog(0)`) → *"Which way do I steer to stay on the line?"*
+    - **ET** (`k.analog(1)`) → *"Is there an object close enough to stop?"*
 
     Combining sensors like this is called **sensor fusion** — using more than one input together to make a decision neither could make alone.
 {{< /concept >}}
@@ -169,16 +170,14 @@ If you set your stop value too high (too close), the robot would have to drive i
 - text: |
     The `while` [[CONDITION|Condition]] watches the ET: keep going while the object is still far (the value is still *below* your stop value). Inside the loop, the same `if/else` steering you tuned before keeps the robot on the line.
 - code: |
-    while (analog(1) < STOP_VALUE) {   // ET: still far? keep going
-        if (analog(0) > MIDPOINT) {     // Tophat: steer on the line
+    while k.analog(1) < STOP_VALUE:     # ET: still far? keep going
+        if k.analog(0) > MIDPOINT:       # Tophat: steer on the line
             ...
-        } else {
+        else:
             ...
-        }
-        msleep(10);                     // tiny pause (like the touch-sensor lab)
-    }
+        k.msleep(10)                     # tiny pause (like the touch-sensor lab)
 - text: |
-    That `msleep(10)` is the same idea you used with the touch sensor: the loop checks the sensors hundreds of times a second, and a small pause keeps it from overworking the controller.
+    That `k.msleep(10)` is the same idea you used with the touch sensor: the loop checks the sensors hundreds of times a second, and a small pause keeps it from overworking the controller.
     {.muted}
 {{< /concept >}}
 
@@ -188,46 +187,44 @@ If you set your stop value too high (too close), the robot would have to drive i
 Hold the robot up. Pass the line under the Tophat and watch it steer. Then move your hand toward the ET and watch the wheels brake when your hand gets close. Only put it on the board once both reactions look right.
 {{% /safety %}}
 
-Start from your tuned line-follow. Add an ET check to the loop condition and your stop value at the top. Use **your own** `MIDPOINT`, `STOP_VALUE`, and the `mav` speeds you found best. [[PROTOTYPE|Prototype]] above `main()`, definition below.
+Start from your tuned line-follow. Add an ET check to the loop condition and your stop value at the top. Use **your own** `MIDPOINT`, `STOP_VALUE`, and the `mav` speeds you found best. Define `line_follow_until_object` above `main()`, as always.
 
 {{< code >}}
-// Unit 2, Big Idea 6: Two Sensors, One Decision
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 2, Big Idea 6: Two Sensors, One Decision
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-int MIDPOINT   = @@____@@;   // your Tophat threshold (from BI4)
-int STOP_VALUE = @@____@@;   // your ET value at ~4 inches (from Phase 3)
-int FAST       = @@____@@;   // your best mav fast speed (from BI5)
-int SLOW       = @@____@@;   // your best mav slow speed (from BI5)
+MIDPOINT   = @@____@@   # your Tophat threshold (from BI4)
+STOP_VALUE = @@____@@   # your ET value at ~4 inches (from Phase 3)
+FAST       = @@____@@   # your best mav fast speed (from BI5)
+SLOW       = @@____@@   # your best mav slow speed (from BI5)
 
-void line_follow_until_object();   // PROTOTYPE
+def main():
+    line_follow_until_object()    # follow the line, stop at the object
 
-int main() {
-    line_follow_until_object();    // follow the line, stop at the object
-    return 0;
-}
+def line_follow_until_object():
+    while k.analog(1) < STOP_VALUE:    # ET: object still far? keep going
+        if k.analog(0) > MIDPOINT:     # Tophat: on black, steer right
+            k.mav(0, FAST)
+            k.mav(1, SLOW)
+        else:                          # on white, steer left
+            k.mav(0, SLOW)
+            k.mav(1, FAST)
+        k.msleep(10)                   # tiny pause so we don't overwork the controller
 
-void line_follow_until_object() {
-    while (analog(1) < STOP_VALUE) {   // ET: object still far? keep going
-        if (analog(0) > MIDPOINT) {    // Tophat: on black, steer right
-            mav(0, FAST);
-            mav(1, SLOW);
-        } else {                       // on white, steer left
-            mav(0, SLOW);
-            mav(1, FAST);
-        }
-        msleep(10);                    // tiny pause so we don't overwork the controller
-    }
+    k.motor(0, 0)                      # The object is close, so brake.
+    k.motor(3, 0)
+    k.msleep(50)                       # let the brake settle
 
-    motor(0, 0);                       // object is close: brake
-    motor(3, 0);
-    msleep(50);                        // let the brake settle
-}
+main()
 {{< /code >}}
 
 {{% callout title="Reminders from earlier labs" variant="gold" %}}
-If the steering goes the wrong way, flip the two `mav` [[BLOCK|blocks]] (from Big Idea 4). The brake-and-settle at the end is from Big Idea 2. The `msleep(10)` in the loop is from Big Idea 1.
+If the steering goes the wrong way, flip the two `mav` [[BLOCK|blocks]] (from Big Idea 4). The brake-and-settle at the end is from Big Idea 2. The `k.msleep(10)` in the loop is from Big Idea 1.
 {{% /callout %}}
 
 ### Test Log
@@ -245,9 +242,9 @@ If the steering goes the wrong way, flip the two `mav` [[BLOCK|blocks]] (from Bi
 
 ### [[CHECKLIST|Checklist]]
 
-- The loop condition reads the ET: `analog(1) < STOP_VALUE`
-- The `if/else` inside reads the Tophat: `analog(0) > MIDPOINT`
-- There is an `msleep(10)` inside the loop
+- The loop condition reads the ET: `k.analog(1) < STOP_VALUE`
+- The `if/else` inside reads the Tophat: `k.analog(0) > MIDPOINT`
+- There is an `k.msleep(10)` inside the loop
 - Your `STOP_VALUE` is a ~4 inch reading — outside the blind spot
 - The robot brakes after the loop
 
@@ -296,7 +293,7 @@ Finished early? Try one or more of these.
 
 ### Extension B — Report the Distance
 
-- Use your Phase 2 table to turn the stopping ET value back into an approximate distance, and `printf` it. Roughly how far away did the robot actually stop?
+- Use your Phase 2 table to turn the stopping ET value back into an approximate distance, and `print` it. Roughly how far away did the robot actually stop?
 
 {{< answer key="ext_b" label="Extension B" >}}
 

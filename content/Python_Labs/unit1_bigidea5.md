@@ -1,11 +1,12 @@
 ---
 title: "Unit 1 · Big Idea 5 — The Pom Pusher"
-short_title: "Lab 1.5"
+short_title: "Python 1.5"
 hub_unit: 1
-description: "Modularity and reuse — build behaviors from prototypes and reuse them across a scattered field."
+description: "Modularity and reuse — build behaviors from small functions and reuse them across a scattered field."
 weight: 70
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit1_bigidea5
 eyebrow: "Unit 1 · Big Idea 5"
 heading: "Complex Behaviors Are Built From Smaller Behaviors"
@@ -36,44 +37,47 @@ Big behaviors are built from small ones. A few reliable building blocks, combine
 
 ### By the end of this activity you will be able to:
 
-- Write a *function [[PROTOTYPE|prototype]]* and explain why it comes before `main()`.
+- Use `id()` to see that a name is a label pointing at something, not a box holding it.
 - Build a larger behavior by combining smaller functions (*composition*).
 - Reuse the same building blocks in different combinations to solve a non-uniform layout.
 - Connect modular code to the AI literacy idea that complex behavior is built from simple, reusable parts.
 {.obj}
 
-### New This Time: Prototypes — Promise Now, Define Later
+### New This Time: A Name Is a Label, Not a Box
 
-You already build `void` functions. Today you learn the professional way to organize them: declare a **prototype** at the top, keep `main()` readable in the middle, and write the full **definitions** at the bottom.
+You already build functions with `def`. Today you learn what a name *actually* is in Python — and why that makes `def` simpler than it looks.
 {.muted}
 
-{{< concept "A prototype is a promise" >}}
+{{< concept "A name points at something — it doesn't hold it" >}}
 - text: |
-    A *prototype* tells the program "this function exists and here is its name" — **before** `main()` ever uses it. The full recipe (the *definition*) is written later, below `main()`. It's a promise now, kept later.
+    Until now, we've been referring to [[VARIABLE|variables]] as a labeled box with a value inside. Python doesn't work that way. A name is more like a **sticky note pointing at** something that lives somewhere else. You can prove it with `id()`, which returns the number of wherever that "somewhere else" is, in the Python you're using on the Wombat:
 - code: |
-    void push_off_line();   // PROTOTYPE: the promise (note the semicolon)
+    x = 5
+    print(id(x))       # This number identifies where the value 5 lives.
+
+    y = x               # y is a SECOND sticky note, pointing at the SAME place
+    print(id(y))        # the exact same number as id(x)
 - text: |
-    A prototype ends with a [[SEMICOLON|semicolon]] and has no body. It is just the promise — not the recipe.
+    Nothing got copied into a box called `y`. The name `y` just points at the same spot `x` already points at.
 {{< /concept >}}
 
-{{< concept "Prototype, call, and definition working together" >}}
+{{< concept "A function name works exactly the same way" >}}
 - text: |
-    Here is the whole pattern in one place: declare the promise at the top, *call* it inside `main()`, and *define* it at the bottom.
+    When you write `def push_off_line():`, Python builds the function and then does the *exact same thing* it did with `x = 5` — it points the name `push_off_line` at it. There's no separate "promise" step to declare first; the name-to-function connection happens the moment `def` runs:
 - code: |
-    void push_off_line();        // 1. PROTOTYPE (promise, at the top)
+    def push_off_line():        # the name now points at this function
+        drive_forward()
+        drive_forward()
 
-    int main() {
-        push_off_line();          // 2. CALL (use it here)
-        return 0;
-    }
+    print(id(push_off_line))    # This number identifies where THIS function lives.
 
-    void push_off_line() {        // 3. DEFINITION (the recipe, at the bottom)
-        drive_forward();
-        drive_forward();
-    }
+    do_it = push_off_line       # a SECOND name, pointing at the SAME function
+    do_it()                      # calling do_it() runs push_off_line's code
 - text: |
-    This keeps `main()` short and easy to read — it reads like a plan, while the details live out of the way below.
+    That's why Python doesn't need a [[PROTOTYPE|prototype]] declared above `main()` the way some other languages (like C) do: the name-to-function connection is made once, right where you write `def`, and every later use of that name just follows the same pointer.
 {{< /concept >}}
+
+{{< ask key="p0_names_as_labels" label="Names as labels" >}}In your own words: what does `id()` show you about a name? Why is "a name points at something" a more accurate picture than "a name is a box holding something"?{{< /ask >}}
 
 ## Phase 1 — Activate: One Move, Many Uses
 
@@ -127,7 +131,7 @@ Before any code, sketch what you see. Mark the right starting box (drawn for you
 
 {{< sketch aria="Field mapping sketch area" startbox="right"
            tag="Sketch your field here — poms = ◯, obstacles = ✕"
-           note="Draw on the printed copy, or describe the layout in the box below." >}}
+           note="Draw on a printed copy, or describe the layout in the box below." >}}
 
 {{< answer key="p3_layout_description" label="Field layout description"
            placeholder="Describe where the poms and obstacles are relative to the right starting box..." >}}
@@ -189,59 +193,53 @@ rows:
 ### Example Program — A Pattern to Learn From
 
 {{% callout title="This is an example, not a copy-me template" variant="gold" %}}
-The program below shows the *pattern*: prototypes at the top, a readable `main()` in the middle, definitions at the bottom, and building blocks reused in different combinations. Your poms are in different places than this example, so **your** `main()` will have a different order of moves. Use this to learn the shape — then write your own from your Phase 3 plan.
+The program below shows the *pattern*: a readable `main()` at the top calling functions that are defined below it, with building blocks reused in different combinations. Your poms are in different places than this example, so **your** `main()` will have a different order of moves. Use this to learn the shape — then write your own from your Phase 3 plan.
 {{% /callout %}}
 
 {{< code >}}
-// Unit 1, Big Idea 5: Pom Pusher (EXAMPLE: yours will differ)
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 1, Big Idea 5: Pom Pusher (EXAMPLE; yours will differ)
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-int DRIVE_SPEED = 50;
+DRIVE_SPEED = 50
 
-// Function prototypes: the promises, before main() uses them
-void drive_forward();
-void turn_right();
-void push_off_line();
+# MAIN: This is your plan. The poms are NOT in a line, so the path
+#    between them is different every time. You decide how to reuse
+#    your building blocks to get from one pom to the next.
+def main():
 
-// MAIN: your plan. The poms are NOT in a line, so the path
-// between them is different every time. You decide how to reuse
-// your building blocks to get from one pom to the next.
-int main() {
+    push_off_line()    # first pom
 
-    push_off_line();   // first pom
+    turn_right()       # The next pom is not straight ahead.
+    drive_forward()    # reuse the building blocks to reach it
+    push_off_line()    # second pom
 
-    turn_right();      // next pom is not straight ahead
-    drive_forward();   // reuse the building blocks to reach it
-    push_off_line();   // second pom
+    drive_forward()    # a different path again to the third
+    push_off_line()    # third pom
 
-    drive_forward();   // a different path again to the third
-    push_off_line();   // third pom
+# DEFINITIONS: Each name below points at the recipe it runs.
+def drive_forward():
+    k.motor(0, DRIVE_SPEED)
+    k.motor(3, DRIVE_SPEED)
+    k.msleep(1000)
+    k.ao()
 
-    return 0;
-}
+def turn_right():
+    k.motor(0, DRIVE_SPEED)
+    k.motor(3, -DRIVE_SPEED)
+    k.msleep(600)
+    k.ao()
 
-// Definitions: the full recipe for each promise above
-void drive_forward() {
-    motor(0, DRIVE_SPEED);
-    motor(3, DRIVE_SPEED);
-    msleep(1000);
-    ao();
-}
+# push_off_line is a BIGGER behavior built from SMALLER ones:
+def push_off_line():
+    drive_forward()    # drive into the pom, pushing it off the line
+    drive_forward()    # keep going to clear it fully
 
-void turn_right() {
-    motor(0, DRIVE_SPEED);
-    motor(3, -DRIVE_SPEED);
-    msleep(600);
-    ao();
-}
-
-// push_off_line is a BIGGER behavior built from a SMALLER one:
-void push_off_line() {
-    drive_forward();   // drive into the pom, pushing it off the line
-    drive_forward();   // keep going to clear it fully
-}
+main()
 {{< /code >}}
 
 ### Count Your Reuse
@@ -276,8 +274,7 @@ rows:
 
 ### [[CHECKLIST|Checklist]]
 
-- Every prototype at the top ends with a semicolon and has no body
-- Every prototype has a matching definition below `main()`
+- Every function is defined with `def` before the point where it gets called
 - `main()` reads like a plan — mostly function calls, not raw motor commands
 - At least one building block is reused in more than one place
 - Your `main()` matches the path you mapped in Phase 3 (it is not a copy of the example)
@@ -289,7 +286,7 @@ When you reuse one building block everywhere, a single weak block causes failure
 {{% callout title="Common reuse bugs" variant="gold" %}}
 **One block is slightly off:** if `drive_forward()` goes a little too far, every pom is reached a little too far. Fix the block, not each call.
 
-**Prototype without a definition:** you promised a function at the top but never wrote its recipe below — the program won't build.
+**Called before it's defined:** if `main()` tries to call a function whose `def` comes later in the file, Python stops with `NameError: name 'push_off_line' is not defined` — the name doesn't point at anything yet. Check that every `def` comes before the point where it's actually run.
 
 **Right blocks, wrong order:** the robot does real moves but ends up in the wrong place. Re-check the order in `main()` against your map.
 {{% /callout %}}
@@ -337,7 +334,7 @@ Complete this section on your own.
 
 {{< namebar >}}
 
-{{< ask key="p7_q1_prototype" label="Reflection 1" n=1 >}}What is a function prototype, and why is it written above `main()`?{{< /ask >}}
+{{< ask key="p7_q1_prototype" label="Reflection 1" n=1 >}}What does `id()` show you about a function's name? Why didn't you need to declare anything before `main()` the way some other languages require?{{< /ask >}}
 
 {{< ask key="p7_q2_composition" label="Reflection 2" n=2 >}}Explain *composition* in your own words. Give one example of a bigger behavior you built from smaller ones today.{{< /ask >}}
 

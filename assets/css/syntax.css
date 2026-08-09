@@ -52,18 +52,18 @@
 .code :is(.nd, .nc, .ne) { color: #8250df; }
 
 /* Functions, attributes, constants, and other named program elements. */
-.code :is(.nf, .fm) { color: #1a8f32; }
+.code :is(.nf, .fm) { color: #000000; }
 .code :is(.na, .no, .nx) { color: #0878b0; }
 .code .nt { color: #d1246b; }
 
 /* Strings and interpolation. */
 .code :is(.l, .ld, .s, .sa, .sb, .sc, .dl, .sd, .s2, .sh, .si, .sx, .sr, .s1, .ss) {
-  color: #c46a00;
+  color: #ff0606;
 }
 .code .se { color: #d1246b; }
 
 /* Numbers, operators, and punctuation. */
-.code :is(.m, .mb, .mf, .mh, .mi, .il, .mo) { color: #8250df; }
+.code :is(.m, .mb, .mf, .mh, .mi, .il, .mo) { color: #00cc99; }
 .code :is(.o, .ow, .or) { color: #0a8aa8; }
 .code .p { color: var(--code-ink); }
 
@@ -80,8 +80,8 @@
 
 /* Tutorial-specific token emphasis, restored after Chroma runs. */
 .code .code-emphasis {
-  color: #9a6b00 !important;
-  background: #ffe9a8;
+  color: hsl(50, 100%, 40%) !important;
+  /* background: #ffe9a8; */
   border-radius: 3px;
   font-weight: 700;
 }

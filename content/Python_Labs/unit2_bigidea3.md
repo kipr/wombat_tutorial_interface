@@ -1,11 +1,12 @@
 ---
 title: "Unit 2 · Big Idea 3 — Drive by the Numbers"
-short_title: "Lab 2.3"
+short_title: "Python 2.3"
 hub_unit: 2
 description: "Encoders and arguments — use gmpc/cmpc and a function that takes a distance to drive out and touch Botguy."
 weight: 100
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit2_bigidea3
 eyebrow: "Unit 2 · Big Idea 3"
 heading: "Drive by the Numbers"
@@ -36,7 +37,7 @@ A robot that can measure its own movement can act precisely. Instead of "drive f
 
 ### By the end of this activity you will be able to:
 
-- Read a motor's encoder with `gmpc()` and reset it with `cmpc()`.
+- Read a motor's encoder with `k.gmpc()` and reset it with `k.cmpc()`.
 - Write a `while` loop that exits on a number you choose, not just a button.
 - Build a function that takes an *argument* so one function can drive any distance.
 - Drive a measured distance from the starting box to touch Botguy.
@@ -49,7 +50,7 @@ On the Wombat controller, open the **motors / [[SENSOR|sensors]] graph widget** 
 
 Now **turn that wheel by hand**, slowly. Watch the number on the screen climb as the wheel turns forward, and fall as you turn it backward. Those are *ticks* — the counter is counting how far the wheel has rotated.
 
-This is where your robot's movement data lives. When your code reads `gmpc(0)`, it is reading this exact number.
+This is where your robot's movement data lives. When your code reads `k.gmpc(0)`, it is reading this exact number.
 {{% /widgetstep %}}
 
 {{< ask key="widget_ticks_per_turn" label="Ticks per turn observed" >}}Turn the port-0 wheel one full turn by hand. About how many ticks did the counter change? Write the number you saw.{{< /ask >}}
@@ -60,16 +61,15 @@ This is where your robot's movement data lives. When your code reads `gmpc(0)`, 
 - text: |
     Each motor counts how far it has turned, in *ticks*. Two commands let you use that counter:
 - code: |
-    cmpc(0);    // CLEAR: reset port 0's counter back to 0
-    gmpc(0);    // GET: read how many ticks port 0 has turned
+    k.cmpc(0)    # CLEAR resets port 0's counter to 0.
+    k.gmpc(0)    # GET reads how many ticks port 0 has turned.
 - text: |
     The pattern is: clear the counter to zero, start driving, and keep checking the counter until it reaches the distance you want.
 - code: |
-    cmpc(0);                  // start counting from 0
-    while (gmpc(0) < 2000) {   // while we haven't gone 2000 ticks yet...
-        motor(0, 50);          // ...keep driving
-        motor(3, 50);
-    }
+    k.cmpc(0)                    # start counting from 0
+    while k.gmpc(0) < 2000:      # while we haven't gone 2000 ticks yet...
+        k.motor(0, 50)            # ...keep driving
+        k.motor(3, 50)
 - text: |
     We're reading just port 0 for now. Later, we may come back and read *both* wheels at once to help the robot drive straighter.
     {.muted}
@@ -77,19 +77,20 @@ This is where your robot's movement data lives. When your code reads `gmpc(0)`, 
 
 {{< concept "A new kind of loop exit — a number, not a button" >}}
 - text: |
-    Last unit, your loop watched a touch sensor: `digital(0)` was only ever 0 or 1 — two possibilities. This loop watches a *counter* that climbs through **thousands** of values: 0, 1, 2, ... all the way up to your target.
+    Last unit, your loop watched a touch sensor: `k.digital(0)` was only ever 0 or 1 — two possibilities. This loop watches a *counter* that climbs through **thousands** of values: 0, 1, 2, ... all the way up to your target.
 
-    The condition `gmpc(0) < 2000` stays true while the count is below 2000, and flips false the instant it reaches it. The loop isn't waiting for an on/off — it's waiting for a number to grow big enough.
+    The condition `k.gmpc(0) < 2000` stays true while the count is below 2000, and flips false the instant it reaches it. The loop isn't waiting for an on/off — it's waiting for a number to grow big enough.
 {{< /concept >}}
 
 {{< concept "A function that takes an argument" >}}
 - text: |
     So far your functions ran the same way every time. An **argument** lets you hand a function a number, so it can do its job *differently* depending on what you pass in.
 - code: |
-    void Tick_Drive(int @@ticks@@);   // the (int ticks) is the argument: a number you pass in
+    def Tick_Drive(@@ticks@@):   # The ticks argument is a number you pass in.
+        ...
 
-    Tick_Drive(@@2000@@);   // drive 2000 ticks
-    Tick_Drive(@@1000@@);   // SAME function, but only 1000 ticks this time
+    Tick_Drive(@@2000@@)   # drive 2000 ticks
+    Tick_Drive(@@1000@@)   # Call the SAME function with only 1000 ticks this time.
 - text: |
     Inside the function, `ticks` stands for whatever number you passed. One function, any distance — no copying and pasting.
 {{< /concept >}}
@@ -98,7 +99,7 @@ This is where your robot's movement data lives. When your code reads `gmpc(0)`, 
 
 {{< figrow >}}
 - src: kit/motor.jpg
-  alt: The drive motor. The encoder that counts ticks lives inside the motor.
+  alt: The motor ports. The encoder that counts ticks lives inside the motor.
 {{< /figrow >}}
 
 Imagine you're told "walk to the door." You could guess at the time it takes — or you could **count your steps**. If the door is 10 steps away, you walk until your step count reaches 10, then stop. You're not timing yourself; you're measuring your own movement and stopping at a number.
@@ -168,34 +169,33 @@ Hold the robot off the ground and run the program once. Watch the wheels spin an
 
 ### Starting Code Template
 
-Type this program. Notice `Tick_Drive` now takes an argument — `int ticks` — so you can call it with any distance. [[PROTOTYPE|Prototype]] above `main()`, definition below, as always.
+Type this program. Notice `Tick_Drive` now takes an argument — `ticks` — so you can call it with any distance. Define it above `main()`, as always.
 
 {{< code >}}
-// Unit 2, Big Idea 3: Drive by the Numbers
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 2, Big Idea 3: Drive by the Numbers
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-void Tick_Drive(int @@ticks@@);   // PROTOTYPE: takes a number (the distance)
+def main():
+    Tick_Drive(@@2000@@)   # Call this to drive this many ticks toward Botguy.
+                       # (use YOUR target number from Phase 3)
 
-int main() {
-    Tick_Drive(@@2000@@);   // CALL: drive this many ticks toward Botguy
-                          // (use YOUR target number from Phase 3)
-    return 0;
-}
+def Tick_Drive(@@ticks@@):     # The 'ticks' parameter receives the value you passed in.
+    k.cmpc(0)                     # clear port 0's counter to 0
 
-void Tick_Drive(int @@ticks@@) {     // DEFINITION: 'ticks' is whatever you passed in
-    cmpc(0);                     // clear port 0's counter to 0
+    while k.gmpc(0) < @@ticks@@:   # while we haven't reached the target...
+        k.motor(0, 50)            # ...keep driving
+        k.motor(3, 50)
 
-    while (gmpc(0) < @@ticks@@) {   // while we haven't reached the target...
-        motor(0, 50);            // ...keep driving
-        motor(3, 50);
-    }
+    k.motor(0, 0)                 # BRAKE (from last lab)
+    k.motor(3, 0)
+    k.msleep(50)                  # let the brake settle
 
-    motor(0, 0);                 // BRAKE (from last lab)
-    motor(3, 0);
-    msleep(50);                  // let the brake settle
-}
+main()
 {{< /code >}}
 
 ### Tune to Botguy
@@ -226,20 +226,20 @@ rows:
 
 ### [[CHECKLIST|Checklist]]
 
-- `Tick_Drive` has `(int ticks)` in both the prototype and the definition
-- `cmpc(0)` clears the counter *before* the loop
-- The loop condition is `gmpc(0) < ticks`
-- The robot brakes with `motor(0,0); motor(3,0); msleep(50);` after the loop
+- `Tick_Drive` takes `ticks` as its argument, in both its definition and its call
+- `k.cmpc(0)` clears the counter *before* the loop
+- The loop condition is `k.gmpc(0) < ticks`
+- The robot brakes with `k.motor(0,0); k.motor(3,0); k.msleep(50)` after the loop
 - You changed only the number passed in to tune the distance — not the function itself
 
 ## Phase 5 — Debug &amp; Extend
 
 {{% callout title="Common encoder bugs" variant="gold" %}}
-**Forgot `cmpc(0)`:** the counter still holds ticks from a previous run, so the robot stops early (or doesn't move). Always clear before the loop.
+**Forgot `k.cmpc(0)`:** the counter still holds ticks from a previous run, so the robot stops early (or doesn't move). Always clear before the loop.
 
-**Robot never stops:** if the motors aren't actually turning port 0, `gmpc(0)` never climbs and the loop runs forever. Check your wiring and that you're reading the right port.
+**Robot never stops:** if the motors aren't actually turning port 0, `k.gmpc(0)` never climbs and the loop runs forever. Check your wiring and that you're reading the right port.
 
-**Brake missing:** no `motor(0,0)` after the loop means the robot coasts past Botguy — remember last lab.
+**Brake missing:** no `k.motor(0,0)` after the loop means the robot coasts past Botguy — remember last lab.
 {{% /callout %}}
 
 ### [[DEBUGGING|Debugging]] Log
@@ -282,7 +282,7 @@ Complete this section on your own.
 
 {{< namebar >}}
 
-{{< ask key="p7_q1_encoders" label="Reflection 1" n=1 >}}What do `cmpc(0)` and `gmpc(0)` each do? Why must you clear before you read in a loop?{{< /ask >}}
+{{< ask key="p7_q1_encoders" label="Reflection 1" n=1 >}}What do `k.cmpc(0)` and `k.gmpc(0)` each do? Why must you clear before you read in a loop?{{< /ask >}}
 
 {{< ask key="p7_q2_argument" label="Reflection 2" n=2 >}}What is an *argument*? Explain how one `Tick_Drive()` function can drive many different distances.{{< /ask >}}
 
@@ -311,7 +311,7 @@ Finished early? Try one or more of these.
 
 ### Extension C — Read Both Wheels (a peek ahead)
 
-- Print `gmpc(0)` and the other drive motor's counter side by side as the robot drives. Do they climb at exactly the same rate?
+- Print `k.gmpc(0)` and the other drive motor's counter side by side as the robot drives. Do they climb at exactly the same rate?
 - If they don't, what might that tell you about why the robot drifts? (We'll use this idea later.)
 
 {{< answer key="ext_c" label="Extension C" >}}

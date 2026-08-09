@@ -157,7 +157,7 @@ void move_arm(int target_position) {
     }
 }
 
-// move_claw: Smoothly moves the claw servo (port 1) to a position.
+// move_claw: Smoothly moves the claw servo (port 3) to a position.
 //   Works just like move_arm, but for the claw. Clamps between
 //   CLAW_SHUT and CLAW_OPEN so the claw never strains.
 //   Pass in CLAW_OPEN to open, CLAW_SHUT to close on a cube.
@@ -168,11 +168,11 @@ void move_claw(int target_position) {
     while (current_position != target_position) {
         // A 2-tick step could skip a target that is only 1 tick away.
         if (abs(current_position - target_position) == 1) {
-            set_servo_position(1, target_position);
+            set_servo_position(3, target_position);
         } else if (current_position < target_position) {
-            set_servo_position(1, current_position + 2);
+            set_servo_position(3, current_position + 2);
         } else {
-            set_servo_position(1, current_position - 2);
+            set_servo_position(3, current_position - 2);
         }
         msleep(1);
         current_position = get_servo_position(1);
@@ -185,10 +185,10 @@ void move_claw(int target_position) {
 void back_until_pressed() {
     while (digital(0) == 0) {
         motor(0, -50);
-        motor(1, -50);
+        motor(3, -50);
         msleep(10);
     }
-    motor(0, 0); motor(1, 0); msleep(50);
+    motor(0, 0); motor(3, 0); msleep(50);
 }
 
 // Tick_Drive: Drives the robot straight forward a measured distance.
@@ -198,9 +198,9 @@ void Tick_Drive(int ticks) {
     cmpc(0);
     while (gmpc(0) < ticks) {
         motor(0, 50);
-        motor(1, 50);
+        motor(3, 50);
     }
-    motor(0, 0); motor(1, 0); msleep(50);
+    motor(0, 0); motor(3, 0); msleep(50);
 }
 
 // line_follow: Follows a line for a measured distance using the
@@ -213,7 +213,7 @@ void line_follow(int ticks) {
         if (analog(0) > MIDPOINT) { mav(0, FAST); mav(1, SLOW); }
         else                      { mav(0, SLOW); mav(1, FAST); }
     }
-    motor(0, 0); motor(1, 0); msleep(50);
+    motor(0, 0); motor(3, 0); msleep(50);
 }
 {{< /code >}}
 

@@ -1,11 +1,12 @@
 ---
 title: "Unit 3 · Big Idea 1 — Meet the Servos"
-short_title: "Lab 3.1"
+short_title: "Python 3.1"
 hub_unit: 3
 description: "Servo basics and safe ranges — calibrate an arm and claw, find their limits, and try a first cube pick-up."
 weight: 140
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit3_bigidea1
 eyebrow: "Unit 3 · Big Idea 1"
 heading: "Meet the Servos"
@@ -63,8 +64,8 @@ On each servo cord, the **orange wire must be closest to the screen**. Plugging 
 - text: |
     A motor spins freely. A **servo** is different: it turns to a specific *position* in its range and holds there. Think of a protractor — its arm can point to any angle and stay. A servo's range is divided into numbered positions from **0 to 2047**.
 - code: |
-    enable_servo(0);              // turn on the servo on port 0
-    set_servo_position(0, 1024);  // send it to position 1024 (the center)
+    k.enable_servo(0)              # turn on the servo on port 0
+    k.set_servo_position(0, 1024)  # send it to position 1024 (the center)
 - text: |
     The bigger the number, the farther it turns one way; the smaller, the farther the other way.
 {{< /concept >}}
@@ -159,40 +160,42 @@ Every `set_servo_position` in your code must use a number between the safe value
 Type your four safe values at the top, then build the grab sequence: open the claw, lower the arm, close on the cube, and lift. Each move gets a pause so the servo has time to arrive.
 
 {{< code >}}
-// Unit 3, Big Idea 1: Meet the Servos
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 3, Big Idea 1: Meet the Servos
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-// YOUR safe values from the widget: never command past these,
-// or you can BURN OUT the servo by forcing it into a hard stop.
-int ARM_MIN   = @@____@@;   // lowest safe arm position (down)
-int ARM_MAX   = @@____@@;   // highest safe arm position (up)
-int CLAW_OPEN = @@____@@;   // safe open claw position
-int CLAW_SHUT = @@____@@;   // safe closed-on-cube claw position
+# Use YOUR safe values from the widget. Never command past these values,
+# or you can BURN OUT the servo by forcing it into a hard stop.
+ARM_MIN   = @@____@@   # lowest safe arm position (down)
+ARM_MAX   = @@____@@   # highest safe arm position (up)
+CLAW_OPEN = @@____@@   # safe open claw position
+CLAW_SHUT = @@____@@   # safe closed-on-cube claw position
 
-int main() {
-    enable_servo(0);    // arm servo on port 0
-    enable_servo(1);    // claw servo on port 3
-    // (enabling sends each servo to 1024 unless told otherwise)
+def main():
+    k.enable_servo(0)    # arm servo on port 0
+    k.enable_servo(1)    # claw servo on port 3
+    # (enabling sends each servo to 1024 unless told otherwise)
 
-    set_servo_position(3, CLAW_OPEN);   // 1. open the claw
-    msleep(1000);                       // give the servo time to get there
+    k.set_servo_position(3, CLAW_OPEN)   # 1. open the claw
+    k.msleep(1000)                       # give the servo time to get there
 
-    set_servo_position(0, ARM_MIN);     // 2. lower the arm to the cube
-    msleep(1000);
+    k.set_servo_position(0, ARM_MIN)     # 2. lower the arm to the cube
+    k.msleep(1000)
 
-    set_servo_position(3, CLAW_SHUT);   // 3. close on the cube
-    msleep(1000);
+    k.set_servo_position(3, CLAW_SHUT)   # 3. close on the cube
+    k.msleep(1000)
 
-    set_servo_position(0, ARM_MAX);     // 4. raise the cube up
-    msleep(1000);
+    k.set_servo_position(0, ARM_MAX)     # 4. raise the cube up
+    k.msleep(1000)
 
-    return 0;
-}
+main()
 {{< /code >}}
 
-About the `msleep(1000)`: servos don't move instantly, so you wait for each one to arrive before the next command. We use a full second for safety while you're learning — once you know your servos, you can shorten it.
+About the `k.msleep(1000)`: servos don't move instantly, so you wait for each one to arrive before the next command. We use a full second for safety while you're learning — once you know your servos, you can shorten it.
 {.muted}
 
 {{% safety title="⚠ Hold the robot and watch the first run" noprint=true %}}
@@ -215,6 +218,7 @@ Run this with the robot held still on a table, cube in reach. Watch each move ha
 {{< ask key="p4_pickup_result" label="Pick-up result" >}}Did your robot pick up the cube? If a step didn't work (claw missed, arm too low/high), which safe value did you adjust, and why?{{< /ask >}}
 
 ## Phase 5 — Measure the Motion
+
 
 Servo positions are numbers, so you can measure your robot's reach the same way you measured driving distance. Use your values to answer these.
 

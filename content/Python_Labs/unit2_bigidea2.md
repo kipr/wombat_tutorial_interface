@@ -1,11 +1,12 @@
 ---
 title: "Unit 2 · Big Idea 2 — Brake vs. Coast"
-short_title: "Lab 2.2"
+short_title: "Python 2.2"
 hub_unit: 2
 description: "Motor braking vs. neutral — run a 5-trial experiment and let the data show which stop is more consistent."
 weight: 90
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit2_bigidea2
 eyebrow: "Unit 2 · Big Idea 2"
 heading: "Stopping Is Not the Same as Being Stopped"
@@ -48,14 +49,14 @@ Telling a motor to stop and a motor actually holding still are two different thi
 - text: |
     There are two ways to end a motor's motion, and they behave very differently:
 - code: |
-    motor(0, 0);   // BRAKE: actively holds the motor at zero, resisting motion
-    motor(3, 0);
+    k.motor(0, 0)   # BRAKE actively holds the motor at zero and resists motion.
+    k.motor(3, 0)
 
-    ao();          // "all off": cuts power; motors go NEUTRAL and COAST
+    k.ao()          # "All off" cuts power, so the motors go NEUTRAL and COAST.
 - text: |
-    **`motor(0,0)` brakes.** It actively holds the wheel at zero and resists it turning — like pressing the brake pedal. The robot stops where it is and holds the line.
+    **`k.motor(0,0)` brakes.** It actively holds the wheel at zero and resists it turning — like pressing the brake pedal. The robot stops where it is and holds the line.
 
-    **`ao()` goes neutral.** It shuts the power off and lets the motors spin freely — like shifting a car into neutral and coasting. The robot drifts to a stop on its own momentum.
+    **`k.ao()` goes neutral.** It shuts the power off and lets the motors spin freely — like shifting a car into neutral and coasting. The robot drifts to a stop on its own momentum.
 {{< /concept >}}
 
 {{< concept "Why coasting drifts — and why settle time matters" >}}
@@ -64,11 +65,11 @@ Telling a motor to stop and a motor actually holding still are two different thi
 
     Braking fights that. And after you brake, a short pause lets the motors fully settle into their hold before the next command:
 - code: |
-    motor(0, 0);
-    motor(3, 0);
-    msleep(50);    // give the motors a moment to settle and lock
+    k.motor(0, 0)
+    k.motor(3, 0)
+    k.msleep(50)    # give the motors a moment to settle and lock
 - text: |
-    That `msleep(50)` isn't a drive time — it's just enough time for the brake to take hold before the robot does anything else.
+    That `k.msleep(50)` isn't a drive time — it's just enough time for the brake to take hold before the robot does anything else.
 {{< /concept >}}
 
 ## Phase 1 — Activate: Two Ways to Stop a Bike
@@ -113,7 +114,7 @@ Because `back_until_pressed()` resets the origin against the wall every trial, i
 
 2\. Drive forward about 6 inches.
 
-3\. Stop — using **coast** (`ao()`) for Version A, or **brake** (`motor(0,0); motor(3,0); msleep(50);`) for Version B.
+3\. Stop — using **coast** (`k.ao()`) for Version A, or **brake** (`k.motor(0,0); k.motor(3,0); k.msleep(50)`) for Version B.
 
 4\. Measure how far the robot actually traveled, and note whether it stayed straight or drifted.
 
@@ -147,54 +148,51 @@ As always, hold the robot off the ground and run the program once to confirm it 
 
 ### The Two Versions
 
-Both versions are identical except for how they stop. Build Version A first, run your five trials, then change only the stop to make Version B and run five more. Keep the [[PROTOTYPE|prototype]] above `main()` and the definition below, as always.
+Both versions are identical except for how they stop. Build Version A first, run your five trials, then change only the stop to make Version B and run five more. Define both helper functions above `main()`, as always.
 
 {{< code >}}
-// Unit 2, Big Idea 2: Brake vs. Coast
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 2, Big Idea 2: Brake vs. Coast
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-int x_position = 0;
-int y_position = 0;
+x_position = 0
+y_position = 0
 
-void back_until_pressed();   // from last lab: backs into wall, resets origin
-void drive_forward();        // drives forward ~6 inches (you set the time)
+def main():
+    back_until_pressed()    # reset to a known zero at the wall
+    drive_forward()         # move forward about 6 inches
 
-int main() {
-    back_until_pressed();    // reset to a known zero at the wall
-    drive_forward();         // move forward about 6 inches
+    # ---- VERSION A: COAST (neutral) ----
+    k.ao()                    # Cut power so the motors coast to a stop.
 
-    // ---- VERSION A: COAST (neutral) ----
-    ao();                    // cut power: motors coast to a stop
+    # ---- VERSION B: BRAKE (active hold) ----
+    # Comment out the k.ao() above and use these three lines instead:
+    # k.motor(0, 0)
+    # k.motor(3, 0)
+    # k.msleep(50)            # let the brake settle and hold
 
-    // ---- VERSION B: BRAKE (active hold) ----
-    // Comment out the ao() above and use these three lines instead:
-    // motor(0, 0);
-    // motor(3, 0);
-    // msleep(50);            // let the brake settle and hold
+def drive_forward():
+    k.motor(0, 50)
+    k.motor(3, 50)
+    k.msleep(____)            # your ~6-inch time from Phase 3
 
-    return 0;
-}
+def back_until_pressed():
+    global x_position, y_position
+    while k.digital(0) == 0:
+        k.motor(0, -50)
+        k.motor(3, -50)
+        k.msleep(10)
+    k.ao()
+    y_position = 0            # We are home, so reset the origin.
 
-void drive_forward() {
-    motor(0, 50);
-    motor(3, 50);
-    msleep(____);            // your ~6-inch time from Phase 3
-}
-
-void back_until_pressed() {
-    while (digital(0) == 0) {
-        motor(0, -50);
-        motor(3, -50);
-        msleep(10);
-    }
-    ao();
-    y_position = 0;          // home: reset origin
-}
+main()
 {{< /code >}}
 
-### Version A — Coast (`ao()`)
+### Version A — Coast (`k.ao()`)
 
 Run five trials. After each, measure the distance the robot traveled forward, and note whether it stayed straight or drifted (and which way).
 
@@ -223,7 +221,7 @@ rows:
     - key: a_t5_drift
 {{< /gridtable >}}
 
-### Version B — Brake (`motor(0,0); motor(3,0); msleep(50);`)
+### Version B — Brake (`k.motor(0,0); k.motor(3,0); k.msleep(50)`)
 
 Change only the stop. Run five more trials and record the same way.
 
@@ -306,11 +304,11 @@ Complete this section on your own.
 
 {{< namebar >}}
 
-{{< ask key="p7_q1_brake_vs_coast" label="Reflection 1" n=1 >}}Explain the difference between `motor(0,0)` and `ao()` in your own words. Which one brakes, and which one coasts?{{< /ask >}}
+{{< ask key="p7_q1_brake_vs_coast" label="Reflection 1" n=1 >}}Explain the difference between `k.motor(0,0)` and `k.ao()` in your own words. Which one brakes, and which one coasts?{{< /ask >}}
 
 {{< ask key="p7_q2_drift" label="Reflection 2" n=2 >}}Why does coasting tend to make the robot drift off a straight line?{{< /ask >}}
 
-{{< ask key="p7_q3_settle" label="Reflection 3" n=3 >}}What is the `msleep(50)` after the brake for? What is it NOT for?{{< /ask >}}
+{{< ask key="p7_q3_settle" label="Reflection 3" n=3 >}}What is the `k.msleep(50)` after the brake for? What is it NOT for?{{< /ask >}}
 
 {{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete this in 2–3 sentences: "A reliable robot is built on data, not hope. This means that before I trust a behavior in a real match, I should..."{{< /ask >}}
 
@@ -321,7 +319,7 @@ Finished early? Try one or more of these.
 
 ### Extension A — Does Settle Time Matter?
 
-- Try the brake version with `msleep(50)`, then again with no pause, then with `msleep(200)`.
+- Try the brake version with `k.msleep(50)`, then again with no pause, then with `k.msleep(200)`.
 - Does more settle time change the consistency? What's the smallest pause that still holds well?
 
 {{< answer key="ext_a" label="Extension A" >}}
@@ -340,7 +338,7 @@ Finished early? Try one or more of these.
 
 ### Extension D — Build a "stop_and_hold" Function
 
-- Wrap the brake-and-settle lines into their own function (prototype above, definition below) so you can reuse one clean call every time you stop.
+- Wrap the brake-and-settle lines into their own function, defined above where you call it, so you can reuse one clean call every time you stop.
 - What did you name it? Where would you use it across the whole game?
 
 {{< answer key="ext_d" label="Extension D" >}}

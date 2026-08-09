@@ -1,11 +1,12 @@
 ---
 title: "Unit 1 · Big Idea 4 — The Position Keeper"
-short_title: "Lab 1.4"
+short_title: "Python 1.4"
 hub_unit: 1
 description: "Variables and state — store and update the robot's position from a zero origin, then test it."
 weight: 60
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit1_bigidea4
 eyebrow: "Unit 1 · Big Idea 4"
 heading: "Computers Store Information"
@@ -44,14 +45,14 @@ A robot doesn't magically know where it is. It knows only what it has *stored* �
 
 ### New This Time: Memory That Changes
 
-You already know how to create an `int` and set it once. Today the variable becomes a **running record** — the program changes it as it goes.
+You already know how to create a variable and set it once. Today the variable becomes a **running record** — the program changes it as it goes.
 
 {{< concept "Set a zero before you start — the origin" >}}
 - text: |
     You can't track position without a starting point to measure from. Before the robot moves, set its position to zero. This is the **origin** — everywhere else is measured from this spot.
 - code: |
-    int x_position = 0;   // start at the origin
-    int y_position = 0;   // both zero before the first move
+    x_position = 0   # start at the origin
+    y_position = 0   # both zero before the first move
 - text: |
     The robot doesn't know where it is on the planet. It only knows where it is *compared to this zero*.
 {{< /concept >}}
@@ -60,7 +61,7 @@ You already know how to create an `int` and set it once. Today the variable beco
 - text: |
     To remember a move, you change a variable based on its *own* current value:
 - code: |
-    y_position = y_position + 1;
+    y_position = y_position + 1
 - text: |
     Read it right to left: take what's stored in `y_position`, add 1, and store the result back into `y_position`. If it held 2, now it holds 3. The variable remembers its new position.
 
@@ -103,7 +104,7 @@ rows:
 
 ### A Variable Stores Information
 
-A variable is a named box that holds a value. Until now, you set the box once and left it alone. Today the box is alive — the program reads it, changes it, and stores a new value back. What a variable holds *right now* is part of the program's **state**: everything the program currently remembers.
+A variable is a named box that holds a value. Until now, you set the box once and left it alone. Today the box is active — the program reads it, changes it, and stores a new value back. What a variable holds *right now* is part of the program's **state**: everything the program currently remembers.
 
 ### Coordinates Represent Position
 
@@ -177,41 +178,43 @@ rows:
 
 ### Starting Code Template
 
-Type this program into your robot [[CONTROLLER|controller]]. Notice the two position variables set to zero at the top, and how each move updates `y_position` right after it happens. The `printf` line shows you what the robot has stored.
+Type this program into your robot [[CONTROLLER|controller]]. Notice the two position variables set to zero at the top, and how each move updates `y_position` right after it happens. The `print()` line shows you what the robot has stored.
 
 {{< code >}}
-// Unit 1, Big Idea 4: Position Keeper
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 1, Big Idea 4: Position Keeper
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-int DRIVE_SPEED = 50;
+DRIVE_SPEED = 50
 
-// The robot's stored position. We set BOTH to zero before we start.
-// This is our origin: every move is measured from here.
-int x_position = 0;
-int y_position = 0;
+# The robot's stored position. We set BOTH to zero before we start.
+# This is our "origin." Every move is measured from here.
+x_position = 0
+y_position = 0
 
-void drive_forward() {
-    motor(0, DRIVE_SPEED);
-    motor(3, DRIVE_SPEED);
-    msleep(1000);
-    ao();
-}
+def drive_forward():
+    k.motor(0, DRIVE_SPEED)
+    k.motor(3, DRIVE_SPEED)
+    k.msleep(1000)
+    k.ao()
 
-int main() {
+def main():
+    global x_position, y_position  # tells Python: change the stored values above, not a new local copy
 
-    drive_forward();              // move the robot one step forward
-    y_position = y_position + 1;  // update memory: we moved +1 in y
+    drive_forward()                # move the robot one step forward
+    y_position = y_position + 1    # update memory: we moved +1 in y
 
-    drive_forward();              // move again
-    y_position = y_position + 1;  // update memory again
+    drive_forward()                # move again
+    y_position = y_position + 1    # update memory again
 
-    // Show what the robot has stored about where it is now
-    printf("x = %d, y = %d\n", x_position, y_position);
+    # Show what the robot has stored about where it is now
+    print(f"x = {x_position}, y = {y_position}")
 
-    return 0;
-}
+main()
 {{< /code >}}
 
 ### Run It — Measure the Real Distance
@@ -360,7 +363,7 @@ Finished early? Try one or more of these.
 
 ### Extension D — Print After Every Move
 
-- Add a `printf` line after each update so you can watch the stored position change step by step.
+- Add a `print()` line after each update so you can watch the stored position change step by step.
 - How does seeing the memory update after every move help you find a mistake faster?
 
 {{< answer key="ext_d" label="Extension D" >}}
@@ -368,6 +371,6 @@ Finished early? Try one or more of these.
 ### Extension E — Counting Like a Computer
 
 - Every number your robot stores is actually just 1s and 0s in memory — binary. Convert the number 13 to binary by hand (hint: which powers of 2 add up to 13?).
-- A variable declared as a small [[INTEGER|integer]] type can only hold numbers up to a certain size before it "wraps around" or breaks. Why do you think a computer can't just store an infinitely large number in a normal variable?
+- Python variables can, in theory, store infinitely large numbers. What do you think would actually happen if you tried to keep growing a variable forever?
 
 {{< answer key="ext_e" label="Extension E" >}}

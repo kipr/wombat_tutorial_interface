@@ -6,6 +6,10 @@ title = 'KIPR · Botball Explorer'
 # bookmark, printed handout, and cross-link keeps working after the migration.
 uglyURLs = true
 
+# Preserve content directory casing so Python_Labs/ matches the legacy docs tree
+# and nav/toggle hrefs (Hugo otherwise emits python_labs/).
+disablePathToLower = true
+
 disableKinds = ['taxonomy', 'term', 'rss', 'sitemap']
 
 [markup.goldmark.renderer]

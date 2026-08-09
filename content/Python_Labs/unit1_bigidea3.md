@@ -1,11 +1,12 @@
 ---
 title: "Unit 1 · Big Idea 3 — The Freight Sorter"
-short_title: "Lab 1.3"
+short_title: "Python 1.3"
 hub_unit: 1
 description: "Decisions with if/else — make the robot choose an action based on a rule you write."
 weight: 50
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit1_bigidea3
 eyebrow: "Unit 1 · Big Idea 3"
 heading: "Computers Make Decisions Using Rules"
@@ -38,7 +39,7 @@ The robot doesn't "know" anything. It checks a value against a rule you wrote �
 
 ### By the end of this activity you will be able to:
 
-- Explain what a *[[CONDITION|Condition]]* is and how an `if` [[STATEMENT|statement]] uses one to make a decision.
+- Explain what a *[[CONDITION|Condition]]* is and how an `if` statement uses one to make a decision.
 - Use `if` / `else` to make a robot take different actions for different values.
 - Predict what a program will do by reading its rule before you run it.
 - Connect rule-based decisions to how intelligent systems classify and respond to the world.
@@ -46,20 +47,19 @@ The robot doesn't "know" anything. It checks a value against a rule you wrote �
 
 ### New This Time: Making a Decision
 
-You already know `int`, [[FUNCTION|functions]], and the commands `motor()`, `msleep()`, and `ao()`. Today you add one new tool: the `if` statement.
+You already know [[VARIABLE|variables]], [[FUNCTION|functions]], and the commands `k.motor()`, `k.msleep()`, and `k.ao()`. Today you add one new tool: the `if` statement.
 {.muted}
 
 {{< concept "An if statement — a rule the computer checks" >}}
 - text: |
-    An `if` statement checks whether something is true. If it is, the computer runs the code inside the curly braces. If it is not, it can run a different [[BLOCK|block]] after `else` instead.
+    An `if` statement checks whether something is true. If it is, the computer runs the indented code underneath it. If it is not, it can run a different [[BLOCK|block]] after `else` instead.
 - code: |
-    int freight_type = 1;       // a number YOU set
+    freight_type = 1             # a number YOU set
 
-    if (freight_type == 1) {    // IF freight_type is 1...
-        drive_forward();         // ...do this
-    } else {                    // OTHERWISE...
-        turn_right();            // ...do this instead
-    }
+    if freight_type == 1:        # IF freight_type is 1...
+        drive_forward()           # ...do this
+    else:                         # OTHERWISE...
+        turn_right()              # ...do this instead
 - text: |
     Change `freight_type` to a different number, and the robot makes a different choice — without you rewriting the rule.
 {{< /concept >}}
@@ -68,9 +68,9 @@ You already know `int`, [[FUNCTION|functions]], and the commands `motor()`, `msl
 - text: |
     Watch the symbol carefully. There are **two** equals signs in a rule, not one:
 - code: |
-    int freight_type = 1;    // ONE equals  =   SETS the value to 1
+    freight_type = 1      # ONE equals  =   SETS the value to 1
 
-    if (freight_type == 1)   // TWO equals  ==  ASKS if it is equal to 1
+    if freight_type == 1:  # TWO equals  ==  ASKS "is it equal to 1?"
 - text: |
     A single `=` *sets* a value. A double `==` *asks a question*. Using one when you mean the other is one of the most common bugs in all of programming — so check it every time.
 {{< /concept >}}
@@ -203,48 +203,47 @@ rows:
       aria: Trace 3 action
 {{< /gridtable >}}
 
-## Phase 4 — Build &amp; Run
+## Phase 4 — Build & Run
 
 ### Starting Code Template
 
 Type this program into your robot [[CONTROLLER|controller]]. The rule lives inside `main()`. Change `freight_type` at the top to test both paths. Fill in the actions to match your Phase 3 plan.
 
 {{< code >}}
-// Unit 1, Big Idea 3: Freight Sorter
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 1, Big Idea 3: Freight Sorter
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-int DRIVE_SPEED = 50;
+DRIVE_SPEED = 50
 
-// A number YOU set. Think of it as the freight you're sorting.
-// Change this value and the robot makes a different decision.
-int freight_type = @@1@@;     // try 1, then try 2
+# A number YOU set. Think of it as the freight you're sorting.
+# Change this value and the robot makes a different decision.
+freight_type = @@1@@     # try 1, then try 2
 
-void drive_forward() {
-    motor(0, DRIVE_SPEED);
-    motor(3, DRIVE_SPEED);
-    msleep(1000);
-    ao();
-}
+def drive_forward():
+    k.motor(0, DRIVE_SPEED)
+    k.motor(3, DRIVE_SPEED)
+    k.msleep(1000)
+    k.ao()
 
-void turn_right() {
-    motor(0, DRIVE_SPEED);
-    motor(3, -DRIVE_SPEED);
-    msleep(600);
-    ao();
-}
+def turn_right():
+    k.motor(0, DRIVE_SPEED)
+    k.motor(3, -DRIVE_SPEED)
+    k.msleep(600)
+    k.ao()
 
-int main() {
+def main():
 
-    if (freight_type == 1) {   // IF the freight is type 1...
-        drive_forward();        // ...send it straight ahead
-    } else {                    // OTHERWISE (it's not type 1)...
-        turn_right();           // ...send it to the right instead
-    }
+    if freight_type == 1:       # IF the freight is type 1...
+        drive_forward()          # ...send it straight ahead
+    else:                        # OTHERWISE (it's not type 1)...
+        turn_right()             # ...send it to the right instead
 
-    return 0;
-}
+main()
 {{< /code >}}
 
 ### Run It Both Ways — Results
@@ -270,7 +269,7 @@ rows:
 ### [[CHECKLIST|Checklist]]
 
 - You used `==` (two equals) inside the `if`, not a single `=`
-- Every `{` has a matching `}`
+- Every [[BLOCK|BLOCK]] is indented to the same level
 - You tested BOTH values, not just one
 - The robot did something different for each value
 
@@ -279,11 +278,9 @@ rows:
 Decisions create a brand-new kind of bug: the robot does the *wrong* action, even though it runs without an error. That means the rule ran fine — but it was the wrong rule, or the value was not what you thought.
 
 {{% callout title="The most common decision bugs" variant="gold" %}}
-**Single = instead of ==:** writing `if (freight_type = 1)` sets the value instead of asking the question. Always use `==` in a rule.
+**Wrong value:** If the robot turned when you expected straight, check what `freight_type` is actually set to at the top.
 
-**Wrong value:** the robot turned when you expected straight? Check what `freight_type` is actually set to at the top.
-
-**Mismatched braces:** a missing `}` makes the program refuse to build. Count them.
+**Incorrect indentation:** Any line that is not indented correctly will cause an error.
 {{% /callout %}}
 
 ### [[DEBUGGING|Debugging]] Log
@@ -343,7 +340,7 @@ Finished early? Try one or more of these.
 
 ### Extension A — A Third Choice
 
-- Right now your rule has two outcomes. Add a middle case using `else if`: type 1 does one thing, type 2 does another, everything else does a third.
+- Right now your rule has two outcomes. Add a middle case using `elif`: type 1 does one thing, type 2 does another, everything else does a third.
 - Trace your new rule by hand for `freight_type` = 1, 2, and 9 before you run it.
 
 {{< answer key="ext_a" label="Extension A" >}}
@@ -371,7 +368,7 @@ Finished early? Try one or more of these.
 
 ### Extension E — Random Freight
 
-- Real freight wouldn't always be the same type every run. Use `rand() % 10` to generate a random `freight_type` each time your program runs (you'll need `#include <stdlib.h>`, `#include <time.h>` and a call to `srand(time(NULL))` once at the top of `main()`).
+- Real freight wouldn't always be the same type every run. Add `import random` to the line after `import _kipr as k`, then use `random.randint(1, 10)` to generate a random `freight_type` each time your program runs.
 - Run it several times. Does your sorting rule still make the correct choice across many random values?
 
 {{< answer key="ext_e" label="Extension E" >}}

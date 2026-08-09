@@ -1,11 +1,12 @@
 ---
 title: "Unit 2 · Big Idea 4 — Reading the Line"
-short_title: "Lab 2.4"
+short_title: "Python 2.4"
 hub_unit: 2
 description: "Analog sensors and thresholds — calibrate a Tophat, find the midpoint, and steer along a line with if/else."
 weight: 110
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit2_bigidea4
 eyebrow: "Unit 2 · Big Idea 4"
 heading: "Information Must Be Interpreted"
@@ -36,7 +37,7 @@ Raw sensor data is messy and meaningless on its own. The intelligence is in turn
 
 ### By the end of this activity you will be able to:
 
-- Read an *analog* sensor with `analog(0)` and explain why its values are noisy.
+- Read an *analog* sensor with `k.analog(0)` and explain why its values are noisy.
 - Calibrate the sensor: measure black and white, and find the best mounting height.
 - Calculate a *threshold* (midpoint) that separates "black" from "white."
 - Use `if/else` on the live reading to steer a robot along a line.
@@ -58,7 +59,7 @@ This is the biggest lab yet. You'll do a lot of measuring and thinking before an
 {{% callout title="Setup" variant="navy" %}}
 Mount the **Tophat sensor** on the **front** of your robot, facing down at the floor, about **1/4 inch** off the surface.
 
-Plug it into **analog [[PORT|port]] 0**. In code, `analog(0)` reads this sensor.
+Plug it into **analog [[PORT|port]] 0**. In code, `k.analog(0)` reads this sensor.
 {{% /callout %}}
 
 ### Find It on the [[CONTROLLER|Controller]]
@@ -71,7 +72,7 @@ Hold the sensor still over a white part of the board and just watch the number. 
 
 {{< ask key="p1_white_bounce" label="White bounce range" >}}Hold the sensor still over white and watch the port-0 value for a few seconds. What was the lowest number you saw, and the highest? How much did it bounce?{{< /ask >}}
 
-{{< ask key="p1_why_bounce_problem" label="Why bounce is a problem" >}}Why is a sensor that bounces around a problem if you wanted to check for one exact value like `analog(0) == 2000`?{{< /ask >}}
+{{< ask key="p1_why_bounce_problem" label="Why bounce is a problem" >}}Why is a sensor that bounces around a problem if you wanted to check for one exact value like `k.analog(0) == 2000`?{{< /ask >}}
 
 ## Phase 2 — Find the Best Height
 
@@ -205,11 +206,10 @@ Your midpoint is the line between "I see black" and "I see white." Write it down
 - text: |
     A **threshold** is a cutoff. Once you have your midpoint, every reading becomes a yes-or-no again:
 - code: |
-    if (analog(0) > MIDPOINT) {   // reading is HIGH: that's BLACK
-        // ...we're on the line
-    } else {                       // reading is LOW: that's WHITE
-        // ...we're on the floor
-    }
+    if k.analog(0) > MIDPOINT:    # A HIGH reading indicates BLACK.
+        # ...we're on the line
+    else:                          # A LOW reading indicates WHITE.
+        # ...we're on the floor
 - text: |
     This is the same `if/else` you learned in Unit 1 — but now the [[CONDITION|condition]] reads a **live sensor**, not a number you typed. The robot is interpreting the real world.
 {{< /concept >}}
@@ -230,40 +230,39 @@ Your midpoint is the line between "I see black" and "I see white." Write it down
 Hold the robot up and pass the line under the sensor by hand. Watch the wheels change speed as you move from white to black. Only put it on the board once the steering reacts the right way.
 {{% /safety %}}
 
-You'll reuse the [[ENCODER|encoder]] skeleton from `Tick_Drive` — clear the counter, loop to a [[TICK|tick]] target, brake at the end — but inside the loop you'll put the `if/else` that steers. Type your own `MIDPOINT` from Phase 3 at the top. [[PROTOTYPE|Prototype]] above `main()`, definition below.
+You'll reuse the [[ENCODER|encoder]] skeleton from `Tick_Drive` — clear the counter, loop to a [[TICK|tick]] target, brake at the end — but inside the loop you'll put the `if/else` that steers. Type your own `MIDPOINT` from Phase 3 at the top. Define `line_follow` above `main()`, as always.
 
 {{< code >}}
-// Unit 2, Big Idea 4: Reading the Line
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 2, Big Idea 4: Reading the Line
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-int MIDPOINT = @@____@@;   // YOUR midpoint from Phase 3 (black + white) / 2
+MIDPOINT = @@____@@   # YOUR midpoint from Phase 3 (black + white) / 2
 
-void line_follow(int ticks);   // PROTOTYPE: drive this far while steering on the line
+def main():
+    line_follow(3000)         # follow the line for this many ticks
 
-int main() {
-    line_follow(3000);         // follow the line for this many ticks
-    return 0;
-}
+def line_follow(ticks):
+    k.cmpc(0)                       # clear the wheel counter
 
-void line_follow(int ticks) {
-    cmpc(0);                       // clear the wheel counter
+    while k.gmpc(0) < ticks:        # keep going until we've driven far enough
+        if k.analog(0) > MIDPOINT:  # HIGH reading = on BLACK = steer right
+            k.motor(0, 50)          # left motor faster
+            k.motor(3, 20)          # right motor slower
+        else:                       # LOW reading = on WHITE = steer left
+            k.motor(0, 20)          # left motor slower
+            k.motor(3, 50)          # right motor faster
+        msleep(10);                 # Small pause to avoid overloading computer
 
-    while (gmpc(0) < ticks) {       // keep going until we've driven far enough
-        if (analog(0) > MIDPOINT) { // HIGH reading means BLACK, so steer right
-            motor(0, 50);          // left motor faster
-            motor(3, 20);          // right motor slower
-        } else {                   // LOW reading means WHITE, so steer left
-            motor(0, 20);          // left motor slower
-            motor(3, 50);          // right motor faster
-        }
-    }
+    k.motor(0, 0)                   # brake (from Big Idea 2)
+    k.motor(3, 0)
+    k.msleep(50)
 
-    motor(0, 0);                   // brake (from Big Idea 2)
-    motor(3, 0);
-    msleep(50);
-}
+main()
 {{< /code >}}
 
 {{% callout title="If your robot steers the WRONG way — flip the branches" variant="gold" %}}
@@ -288,9 +287,9 @@ Run it on the line. Adjust your speeds (the 50 and 20) and re-test. Record what 
 ### [[CHECKLIST|Checklist]]
 
 - You typed your own measured `MIDPOINT` at the top
-- The `if` tests `analog(0) > MIDPOINT`
+- The `if` tests `k.analog(0) > MIDPOINT`
 - The black branch and white branch set the two motors to different speeds
-- The loop still uses `cmpc(0)` and `gmpc(0) < ticks` to control distance
+- The loop still uses `k.cmpc(0)` and `k.gmpc(0) < ticks` to control distance
 - The robot brakes at the end
 
 ## Phase 6 — Connect: The AI Literacy Bridge
@@ -344,7 +343,7 @@ Finished early? Try one or more of these.
 
 ### Extension C — Make is_on_black()
 
-- Write a small helper function (prototype above, definition below) that returns whether the sensor sees black, using your threshold. How could that make `line_follow` easier to read?
+- Write a small helper function, defined above where you use it, that returns whether the sensor sees black, using your threshold. How could that make `line_follow` easier to read?
 
 {{< answer key="ext_c" label="Extension C" >}}
 

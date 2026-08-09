@@ -3,7 +3,9 @@
   <p class="page-eyebrow">{{ .Params.eyebrow }}</p>
   <h1 class="page-title">{{ .Params.heading }} <span>· {{ .Params.edition }}</span></h1>
   <p class="page-sub">{{ .Params.subheading }}</p>
-  <p class="toggle-line">Prefer Python? <a href="{{ partial "relative-url.html" (dict "source" . "path" "Python_Labs/index.html") }}">View the Python labs →</a></p>
+  {{- with .Params.toggle_text }}
+  <p class="toggle-line">{{ . }} <a href="{{ partial "relative-url.html" (dict "source" $ "path" $.Params.toggle_path) }}">{{ $.Params.toggle_link_text }}</a></p>
+  {{- end }}
 
 {{- $pages := .RegularPages.ByWeight }}
 {{- range $unit := .Params.units }}

@@ -1,11 +1,12 @@
 ---
 title: "Unit 1 · Big Idea 2 — The Red Cube Breakdown"
-short_title: "Lab 1.2"
+short_title: "Python 1.2"
 hub_unit: 1
 description: "Decomposition and functions — break a mission into small behaviors and build them one at a time."
 weight: 40
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit1_bigidea2
 eyebrow: "Unit 1 · Big Idea 2"
 heading: "Problems Can Be Broken Into Smaller Problems"
@@ -46,33 +47,32 @@ It solves many small problems in sequence — and the intelligence lies in knowi
 
 ### New This Time: [[VARIABLE|Variables]] and Functions
 
-Two new tools you'll use today. You already know `motor()`, `msleep()`, and `ao()` — these let you organize them.
+Two new tools you'll use today. You already know `k.motor()`, `k.msleep()`, and `k.ao()` — these let you organize them.
 {.muted}
 
-{{< concept "An int — a named number" >}}
+{{< concept "A variable — a named number" >}}
 - text: |
-    `int` stands for *[[INTEGER|Integer]]* — a whole number. When you write an `int`, you give a number a **name**, so you can use the name instead of typing the number everywhere. Change it once at the top, and every place that uses the name updates.
+    A variable gives a number a **name**, so you can use the name instead of typing the number everywhere. Change it once at the top, and every place that uses the name updates.
 - code: |
-    int DRIVE_SPEED = 50;   // name a number: DRIVE_SPEED now means 50
+    DRIVE_SPEED = 50        # name a number: DRIVE_SPEED now means 50
 
-    motor(0, DRIVE_SPEED);  // same as writing motor(0, 50);
-    motor(3, DRIVE_SPEED);  // same as writing motor(3, 50);
+    k.motor(0, DRIVE_SPEED)  # same as writing k.motor(0, 50)
+    k.motor(3, DRIVE_SPEED)  # same as writing k.motor(3, 50)
 - text: |
     Here you've named your motors' speed once. If you want them slower later, you change `50` in one spot instead of hunting through your whole program.
 {{< /concept >}}
 
 {{< concept "A function — a name for a group of commands" >}}
 - text: |
-    A function lets you take several commands and give them **one name**. After you build it once, you can run all of those commands by just writing its name. `void` means the function does a job but doesn't hand a number back.
+    A function lets you take several commands and give them **one name**. After you build it once, you can run all of those commands by just writing its name. Writing `def` means you're defining a function that does a job but doesn't hand a number back.
 - code: |
-    void drive_forward() {     // make a new command called drive_forward
-        motor(0, DRIVE_SPEED);  // these lines are the job it does
-        motor(3, DRIVE_SPEED);
-        msleep(1000);
-        ao();                   // stop at the end
-    }
+    def drive_forward():        # make a new command called drive_forward
+        k.motor(0, DRIVE_SPEED)  # these lines are the job it does
+        k.motor(3, DRIVE_SPEED)
+        k.msleep(1000)
+        k.ao()                   # stop at the end
 - text: |
-    Now, anywhere in your program, writing `drive_forward();` runs all of those lines. You built your own command.
+    Now, anywhere in your program, writing `drive_forward()` runs all of those lines. You built your own command.
 {{< /concept >}}
 
 ## Phase 1 — Activate: The Impossible Errand
@@ -94,7 +94,7 @@ Break "Make dinner" into the smallest steps you can. How many steps do you end u
 
 {{< ask key="p1_similar_to_mission" label="Similarity to a robot mission" >}}How is "Make dinner" similar to a robot mission on the Foundations field?{{< /ask >}}
 
-## Phase 2 — Concept: Decomposition &amp; Abstraction
+## Phase 2 — Concept: Decomposition & Abstraction
 
 ### Decomposition
 
@@ -201,51 +201,53 @@ A function "works" when it produces the correct result on 3 runs in a row withou
 ### Code Scaffold
 
 {{% callout title="Where do functions go?" variant="gold" %}}
-A function has to be defined *before* the code that uses it. Since `main()` is what runs your program, your functions live **above** `main()`. The computer reads top to bottom, so it needs to know what `drive_forward()` means before it reaches the line that calls it.
+A function has to be defined *before* the code that uses it. Since `main()` is what runs your program, your functions live **above the place** `main()` **is called**. The computer reads top to bottom, so it needs to know what `drive_forward()` means before it reaches the line that calls it.
 {{% /callout %}}
 
-Your program structure should look like this. Notice the movement commands are now **functions you name**, and each uses the `int` speeds set at the top. Fill in each function body from your Phase 3 decomposition. Only add a function call in `main()` once that function is tested and working.
+Your program structure should look like this. Notice the movement commands are now **functions you name**, and each uses the named speed variables set at the top. Fill in each function body from your Phase 3 decomposition. Only add a function call in `main()` once that function is tested and working.
 
 {{< code >}}
-// Unit 1, Big Idea 2: Red Cube Breakdown
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 1, Big Idea 2: Red Cube Breakdown
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-// Named numbers (int). Change these as you test.
-int DRIVE_SPEED = @@50@@;
-int TURN_SPEED  = @@40@@;
+# Named values to change as you test
+DRIVE_SPEED = @@50@@
+TURN_SPEED  = @@40@@
 
-// Movement commands you can reuse (no parameters yet).
-void drive_forward() {
-    motor(0, DRIVE_SPEED);
-    motor(3, DRIVE_SPEED);
-    msleep(1000);
-    ao();
-}
+# Main is defined here, and it can use functions written anywhere in this file.
+def main():
+    # Integration: only add each call only after that function works:
+    # your_first_function()
+    # your_second_function()
+    # your_third_function()
+    pass
 
-void turn_right() {
-    motor(0, TURN_SPEED);
-    motor(3, -TURN_SPEED);
-    msleep(600);
-    ao();
-}
+# Movement commands you can reuse (no parameters yet)
+def drive_forward():
+    k.motor(0, DRIVE_SPEED)
+    k.motor(3, DRIVE_SPEED)
+    k.msleep(1000)
+    k.ao()
 
-// Your sub-task functions. Write ONE, test it, then write the next.
-// Build each one out of drive_forward() and turn_right().
-// Name them using your Phase 3 list. For example, a function that
-// drives the robot to the cube, one that pushes it off the line,
-// or one that returns to the starting box.
+def turn_right():
+    k.motor(0, TURN_SPEED)
+    k.motor(3, -TURN_SPEED)
+    k.msleep(600)
+    k.ao()
 
+# Write and test ONE sub-task function before moving to the next.
+# Build each function using drive_forward() and turn_right().
+# Use the names from your Phase 3 list. For example, write a function that
+# drives the robot to the cube, pushes it off the line,
+# or returns the robot to the starting box.
 
-// Integration: only add a call here after that function passes 3 runs.
-int main() {
-    // Add each call only after that function works:
-    // your_first_function();
-    // your_second_function();
-    // your_third_function();
-    return 0;
-}
+# Main is called here, so all functions it uses must be defined above it.
+main()
 {{< /code >}}
 
 ### Build Log — Track Each Function
@@ -277,7 +279,7 @@ Once all your individual functions pass, add all the calls in `main()` and run t
 {{% callout title="What to watch for during integration" variant="gold" %}}
 Functions that worked alone sometimes fail when combined. Why? Because the robot's position at the end of one function is the starting position for the next.
 
-If function B fails after function A, the problem is usually function A — it left the robot in the wrong position. Fix function A before [[TOUCHING]] function B.
+If function B fails after function A, the problem is usually function A — it left the robot in the wrong position. Fix function A before modifying function B.
 {{% /callout %}}
 
 ### Integration Trial Log

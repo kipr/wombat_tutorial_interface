@@ -138,6 +138,7 @@
 "FOR LOOP":
   title: "For Loop"
   body: "A loop that repeats a known number of times. Its three parts — where to start, when to stop, and how much to change each time — all sit together inside one set of parentheses, separated by semicolons."
+  python: "A loop that repeats once for each item in a sequence — often a range of numbers or a list. Python writes the sequence after the word in; there are no semicolons and no separate start/stop/step slots in parentheses."
 "FULLY WITHIN":
   title: "FULLY WITHIN"
   body: "An object or robot is FULLY WITHIN an area when every part of the object or robot lies inside the boundary of that area — no portion may touch or cross the boundary line."

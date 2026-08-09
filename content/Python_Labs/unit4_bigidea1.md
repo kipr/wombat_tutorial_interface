@@ -1,11 +1,12 @@
 ---
 title: "Unit 4 · Big Idea 1 — The Model"
-short_title: "Lab 4.1"
+short_title: "Python 4.1"
 hub_unit: 4
-description: "Prediction and the double type — build a ticks_per_inch model and a Drive function that commands distance in inches."
+description: "Division, precision, and round() — build a ticks_per_inch model and a Drive function that commands distance in inches."
 weight: 190
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit4_bigidea1
 eyebrow: "Unit 4 · Big Idea 1"
 heading: "The Model"
@@ -19,7 +20,7 @@ meta:
   - term: "AI Literacy Thread"
     definition: "Intelligent systems use models to predict what should happen next."
   - term: "CS1 Concepts"
-    definition: "The double Type · Mathematical Models · [[CALIBRATION|Calibration]] · Prediction"
+    definition: "Division and Precision · Mathematical Models · [[CALIBRATION|Calibration]] · Prediction"
   - term: "Game Context"
     definition: "Driving an exact distance in inches"
   - term: "What You Need"
@@ -36,25 +37,37 @@ A model is a relationship the robot can use to predict. If it knows how many tic
 
 ### By the end of this activity you will be able to:
 
-- Use the `double` type to store numbers with decimals.
+- Use division to build a number with a decimal part, and understand why that precision matters.
 - Explain what `ticks_per_inch` is and why it's a model.
 - Build a calibration [[FUNCTION|function]] that measures your robot's `ticks_per_inch`.
-- Write a `Drive(double inches)` function that predicts ticks from inches.
+- Write a `Drive(inches)` function that predicts ticks from inches, converting the result deliberately.
 {.obj}
 
-## Phase 1 — New Tool: The double Type
+## Phase 1 — New Tool: Division Keeps Its Decimal
 
-{{< concept "int throws away decimals — double keeps them" >}}
+{{< concept "Dividing with / always keeps the decimal part" >}}
 - text: |
-    You've always used `int` for whole numbers. But the relationship between ticks and inches won't be a whole number — it might be **41.7** ticks per inch. And you might want to drive **6.5** inches. An `int` can't hold those — it would chop off the decimals and ruin your accuracy.
+    The relationship between ticks and inches won't be a whole number — it might be **41.7** ticks per inch. When you divide two numbers with `/`, Python keeps the full decimal result automatically. You don't have to ask for it or set anything up — it just happens:
 - code: |
-    int    a = 41.7;   // becomes 41: decimal LOST
-    double b = 41.7;   // stays 41.7: decimal KEPT
+    print(250 / 6)    # The decimal is kept: 41.666666666666664.
 - text: |
-    A `double` is just a number that can have a decimal point. You use it exactly like an `int`, but it remembers the fractional part. For measurements and math, that precision matters.
+    Whole numbers (like `250` and `6`) are called **ints**. A number with a decimal point (like `41.7`) is called a **float**. You can check which one you have with `type()`:
+- code: |
+    print(type(250))          # <class 'int'>
+    print(type(250 / 6))      # Division produced a float: <class 'float'>.
 {{< /concept >}}
 
-{{< ask key="p1_why_double" label="Why double" >}}Why would using an `int` for `ticks_per_inch` make your robot's driving less accurate? Use the 41.7 example.{{< /ask >}}
+{{< concept "Going the other way takes a deliberate choice" >}}
+- text: |
+    Division keeps the decimal for free. Going *back* to a whole number does not happen automatically — you have to choose how. Python gives you two tools for it, and they don't agree:
+- code: |
+    print(int(41.7))     # This prints 41 by removing everything after the decimal point.
+    print(round(41.7))   # This prints 42 by rounding to the NEAREST whole number.
+- text: |
+    `int()` always rounds *down* toward zero, no matter how close the decimal is to the next whole number — even `int(41.99)` is still `41`. `round()` looks at the decimal and picks whichever whole number is actually closer. For something like a predicted tick count, that difference is a real, measurable amount of driving distance — so which one you pick actually matters.
+{{< /concept >}}
+
+{{< ask key="p1_why_double" label="Why precision matters" >}}Why would using `int()` to convert every predicted tick count introduce a small, consistent error in one direction? Use the 41.7 example.{{< /ask >}}
 
 ## Phase 2 — Concept: A Model Is a Relationship
 
@@ -62,7 +75,7 @@ A model is a relationship the robot can use to predict. If it knows how many tic
 - text: |
     Your [[ENCODER|encoder]] counts **ticks**. You measure the world in **inches**. A model connects the two with a single number: how many ticks happen in one inch.
 - code: |
-    double ticks_per_inch;   // the MODEL: ticks in a single inch
+    ticks_per_inch = @@____@@   # the MODEL: ticks in a single inch
 - text: |
     If you drive a known distance and count the ticks, you can *compute* that number:
 {{< /concept >}}
@@ -77,7 +90,7 @@ A model is a relationship the robot can use to predict. If it knows how many tic
 - text: |
     Flip the math around, and the model *predicts* ticks for any distance you want:
 - code: |
-    ticks = inches * ticks_per_inch;   // predict ticks for ANY distance
+    ticks = inches * ticks_per_inch   # predict ticks for ANY distance
 - text: |
     Want to drive 12 inches? Predict: 12 × 41.7 = 500 ticks. No more guessing — the model does the work.
 {{< /concept >}}
@@ -93,36 +106,38 @@ Before running, use your ruler to measure the distance from where the **Tophat s
 {{% /callout %}}
 
 {{< code >}}
-// Unit 4, Big Idea 1: The Model
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 4, Big Idea 1: The Model
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-int    MIDPOINT = @@____@@;   // your Tophat threshold from before
-double ticks_per_inch;       // the MODEL: calibration will set this
+MIDPOINT = @@____@@       # your Tophat threshold from before
+ticks_per_inch = 0    # Calibration will set this model value.
 
-void calibrate_ticks_per_inch(double inches);   // PROTOTYPE
+def main():
+    global ticks_per_inch
+    # robot starts against the back wall of the right starting box
+    calibrate_ticks_per_inch(@@____@@)   # pass in YOUR measured inches to the line
+    print(f"ticks_per_inch = {ticks_per_inch}")  # see your model
 
-int main() {
-    // robot starts against the back wall of the right starting box
-    calibrate_ticks_per_inch(@@____@@);   // pass in YOUR measured inches to the line
-    printf("ticks_per_inch = %f\n", ticks_per_inch);  // see your model
-    return 0;
-}
+def calibrate_ticks_per_inch(inches):
+    global ticks_per_inch
+    k.cmpc(0)                            # clear the tick counter
+    while k.analog(0) < MIDPOINT:         # drive while sensor sees WHITE (low)...
+        k.motor(0, 50)                   # ...straight forward...
+        k.motor(3, 50)
+                                          # ...stops when it hits BLACK (high)
+    k.motor(0, 0); k.motor(3, 0); k.msleep(50)   # brake
 
-void calibrate_ticks_per_inch(double inches) {
-    cmpc(0);                          // clear the tick counter
-    while (analog(0) < MIDPOINT) {     // drive while sensor sees WHITE (low)...
-        motor(0, 50);                 // ...straight forward...
-        motor(3, 50);
-    }                                 // ...stops when it hits BLACK (high)
-    motor(0, 0); motor(3, 0); msleep(50);   // brake
+    ticks_per_inch = k.gmpc(0) / inches      # MODEL = ticks measured / inches known
 
-    ticks_per_inch = gmpc(0) / inches;      // MODEL = ticks measured / inches known
-}
+main()
 {{< /code >}}
 
-Remember your convention: black reads *higher* than white, so `analog(0) < MIDPOINT` is true on white and the robot keeps driving — then stops the instant it crosses onto black.
+Remember your convention: black reads *higher* than white, so `k.analog(0) < MIDPOINT` is true on white and the robot keeps driving — then stops the instant it crosses onto black.
 {.muted}
 
 ### Record Your Calibration
@@ -153,23 +168,19 @@ rows:
 
 ## Phase 4 — Build: The Drive Function
 
-Now the payoff. With `ticks_per_inch` known, `Drive` takes a distance in **inches** (a `double`), predicts the ticks, and drives. You command in human units; the model handles the rest.
+Now the payoff. With `ticks_per_inch` known, `Drive` takes a distance in **inches**, predicts the ticks, and drives. You command in human units; the model handles the rest. Notice the predicted ticks come out as a decimal — `Drive` has to deliberately convert that before it can count against it.
 
 {{< code >}}
-void Drive(double inches);   // PROTOTYPE (add near your others)
-
-void Drive(double inches) {
-    int ticks = inches * ticks_per_inch;   // PREDICT ticks from the model
-    cmpc(0);                               // clear the counter
-    while (gmpc(0) < ticks) {               // drive until we reach the predicted ticks
-        motor(0, 50);
-        motor(3, 50);
-    }
-    motor(0, 0); motor(3, 0); msleep(50);  // brake
-}
+def Drive(inches):
+    ticks = round(inches * ticks_per_inch)   # PREDICT ticks from the model, then round to a whole tick
+    k.cmpc(0)                                # clear the counter
+    while k.gmpc(0) < ticks:                  # drive until we reach the predicted ticks
+        k.motor(0, 50)
+        k.motor(3, 50)
+    k.motor(0, 0); k.motor(3, 0); k.msleep(50)   # brake
 {{< /code >}}
 
-Test it: after calibrating, call `Drive(12.0);` and measure how far the robot actually went. Then try a few more distances.
+Test it: after calibrating, call `Drive(12.0)` and measure how far the robot actually went. Then try a few more distances.
 
 {{< gridtable caption="Predict, drive, measure" >}}
 columns:
@@ -204,7 +215,7 @@ The number you just measured is true *right now* — but it won't stay true fore
 - **Grease and wear in the motors** — a freshly greased or broken-in motor behaves differently than a dry or stiff one.
 - **Motor aging** — over weeks and months, motors simply change.
 
-So if your driving starts going long or short for no obvious reason, **recalibrate**. Running your calibration function again rebuilds the model for your robot's [[CONDITION|condition]] *today*.
+So if your driving starts going long or short for no obvious reason, **recalibrate**. Running your calibration function again rebuilds the model for your robot's condition *today*.
 
 To keep track, add a comment to your `ticks_per_inch` variable with the last date you calibrated it.
 {{% /warn %}}
@@ -235,7 +246,7 @@ Complete this section on your own.
 
 {{< namebar >}}
 
-{{< ask key="p7_q1_double" label="Reflection 1" n=1 >}}What is a `double`, and why did this lab need one instead of an `int`?{{< /ask >}}
+{{< ask key="p7_q1_double" label="Reflection 1" n=1 >}}Why does dividing with `/` keep the decimal automatically, but converting a decimal back to a whole tick count take a deliberate choice? Why did `Drive` use `round()` instead of `int()`?{{< /ask >}}
 
 {{< ask key="p7_q2_calibration" label="Reflection 2" n=2 >}}Explain how the calibration function builds the `ticks_per_inch` model.{{< /ask >}}
 
@@ -288,13 +299,11 @@ Finished early? Try one or more of these.
 
 ### Extension G — Type In a Test Value
 
-- This extension requires running the program manually via SSH or the terminal. While testing (not during a competition run), use `scanf` to read a number typed by a teammate instead of hard-coding it — the same way `printf` already sends output to the console, `scanf` reads input from it.
+- This extension requires running the program manually via SSH or the terminal. While testing (not during a competition run), use `input()` to read a number typed by a teammate instead of hard-coding it. `input()` always gives you back text, even if someone types a number — wrap it in `float()` to turn that text into an actual decimal number you can do math with.
 
 {{< code >}}
-double distance;
-printf("Enter a distance to drive (inches): ");
-scanf("%lf", &distance);
-Drive(distance);
+distance = float(input("Enter a distance to drive (inches): "))
+Drive(distance)
 {{< /code >}}
 
 - Try it for a couple of different distances. Why is typing in a test value faster for testing than editing your code and re-running it each time?

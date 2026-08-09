@@ -1,11 +1,12 @@
 ---
 title: "Unit 2 · Big Idea 1 — The Touch Sensor"
-short_title: "Lab 2.1"
+short_title: "Python 2.1"
 hub_unit: 2
 description: "Sensors and while loops — drive backward until a touch sensor feels the wall, then reset the origin."
 weight: 80
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit2_bigidea1
 eyebrow: "Unit 2 · Big Idea 1"
 heading: "Computers Gather Information From Their Environment"
@@ -36,7 +37,7 @@ A sensor is how a machine gathers information about the world. Without sensors, 
 
 ### By the end of this activity you will be able to:
 
-- Explain what a *digital sensor* is and read the touch sensor with `digital(0)`.
+- Explain what a *digital sensor* is and read the touch sensor with `k.digital(0)`.
 - Write a `while` loop that repeats an action until a [[CONDITION|condition]] changes.
 - Drive the robot backward until the touch sensor is pressed, then stop.
 - Use reaching the wall as a known spot to reset the robot's stored origin.
@@ -49,7 +50,7 @@ Attach the push button (touch) sensor to the **back** of your robot, facing back
 
 Plug it into **digital [[PORT|port]] 0**.
 
-In your program, `digital(0)` reads this sensor: it is **0 when the button is open** and **1 when the button is pressed**.
+In your program, `k.digital(0)` reads this sensor: it is **0 when the button is open** and **1 when the button is pressed**.
 {{% /callout %}}
 
 ### New This Time: The while Loop
@@ -58,39 +59,36 @@ In your program, `digital(0)` reads this sensor: it is **0 when the button is op
 - text: |
     Until now your code ran top to bottom, once. A `while` loop lets a [[BLOCK|block]] run **over and over**, checking a condition each time before it repeats.
 - code: |
-    while (condition) {
-        // this runs again and again,
-        // as long as the condition is true
-    }
+    while condition:
+        # this runs again and again,
+        # as long as the condition is true
 - text: |
     How it works, step by step:
 
-    1. Check the condition in the parentheses.
-    2. If it is **true**, run the code in the braces — then go back to step 1.
-    3. If it is **false**, skip the braces and move on.
+    1. Check the condition.
+    2. If it is **true**, run the indented code — then go back to step 1.
+    3. If it is **false**, skip the indented code and move on.
 
     The loop keeps checking. That is what lets a robot *wait for* something to happen instead of guessing how long it will take. To drive until the button is pressed, we loop **while the button is NOT pressed**:
 - code: |
-    while (digital(0) == 0) {   // while the button is NOT pressed...
-        // keep driving and keep checking
-    }
+    while k.digital(0) == 0:   # while the button is NOT pressed...
+        # keep driving and keep checking
 - text: |
-    The moment the button reads 1, the condition `digital(0) == 0` becomes false, the loop stops, and the program moves on.
+    The moment the button reads 1, the condition `k.digital(0) == 0` becomes false, the loop stops, and the program moves on.
 {{< /concept >}}
 
 {{< concept "Why a tiny msleep goes inside the loop" >}}
 - text: |
-    You've used `msleep()` to drive for a set time. Inside a loop it does something different — and much smaller.
+    You've used `k.msleep()` to drive for a set time. Inside a loop it does something different — and much smaller.
 - code: |
-    while (digital(0) == 0) {
-        motor(0, -50);   // drive backward
-        motor(3, -50);
-        msleep(10);      // tiny pause, just 10 ms
-    }
+    while k.digital(0) == 0:
+        k.motor(0, -50)   # drive backward
+        k.motor(3, -50)
+        k.msleep(10)      # Pause briefly for just 10 ms.
 - text: |
-    That `msleep(10)` is **not** how long you drive. The loop checks the button hundreds of times a second. Without a small pause, it would check *as fast as the computer possibly can* — and that **bogs down the [[CONTROLLER|controller]]** for no benefit. A 10 ms pause slows the checking to a sensible rate so the computer isn't overwhelmed, while still feeling instant to us.
+    That `k.msleep(10)` is **not** how long you drive. The loop checks the button hundreds of times a second. Without a small pause, it would check *as fast as the computer possibly can* — and that **bogs down the [[CONTROLLER|controller]]** for no benefit. A 10 ms pause slows the checking to a sensible rate so the computer isn't overwhelmed, while still feeling instant to us.
 
-    Notice how small this is compared to before: `msleep(1000)` used to mean "drive for a whole second." Here `msleep(10)` just means "wait a blink before checking the button again." Same command, completely different job.
+    Notice how small this is compared to before: `k.msleep(1000)` used to mean "drive for a whole second." Here `k.msleep(10)` just means "wait a blink before checking the button again." Same command, completely different job.
     {.muted}
 {{< /concept >}}
 
@@ -115,7 +113,7 @@ How many times per second do you think your hand was "checking" for the wall?
 
 ### A Sensor Is an Input
 
-An *input* is information coming *into* the program from the outside world. A sensor is a device that turns something physical — a touch, a distance, a brightness — into a number the program can read. Reading `digital(0)` is the robot gathering an input.
+An *input* is information coming *into* the program from the outside world. A sensor is a device that turns something physical — a touch, a distance, a brightness — into a number the program can read. Reading `k.digital(0)` is the robot gathering an input.
 
 ### Digital Means Two States
 
@@ -137,13 +135,13 @@ Your robot starts in the field. It must drive **backward** until its touch senso
 
 ### Step 1 — Predict the Sensor Readings
 
-Fill in what `digital(0)` reads in each situation, and what the loop should do.
+Fill in what `k.digital(0)` reads in each situation, and what the loop should do.
 
 {{< gridtable >}}
 columns:
   - head: Situation
     width: 46%
-  - head: "`digital(0)` reads"
+  - head: "`k.digital(0)` reads"
     width: 27%
   - head: Loop keeps going?
 rows:
@@ -167,7 +165,7 @@ Before any code, describe your program in order — including what happens the m
 
 ## Phase 4 — Build &amp; Run
 
-{{% safety title="⚠ Test in your hands FIRST" noprint="true" %}}
+{{% safety title="⚠ Test in your hands FIRST" noprint=true %}}
 Before you ever put this on the board, **hold the robot up off the ground** and run the program. The wheels will spin backward. Press the button with your finger and watch the wheels stop. Only once that works should you set it on the field. This keeps the robot from driving off a table while you test.
 {{% /safety %}}
 
@@ -176,33 +174,35 @@ Before you ever put this on the board, **hold the robot up off the ground** and 
 Type this program. The position [[VARIABLE|variables]] are back from before — you'll reset `y_position` to zero the moment the robot reaches the wall.
 
 {{< code >}}
-// Unit 2, Big Idea 1: The Touch Sensor
-// Name: _______________________   Date: ___________
+#!/usr/bin/python3
+# Unit 2, Big Idea 1: The Touch Sensor
+# Name: _______________________   Date: ___________
 
-#include <kipr/wombat.h>
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-// The robot's stored position (from Unit 1). Start at the origin.
-int x_position = 0;
-int y_position = 0;
+# The robot's stored position (from Unit 1). Start at the origin.
+x_position = 0
+y_position = 0
 
-int main() {
+def main():
+    global x_position, y_position
 
-    // Drive BACKWARD and keep checking the button.
-    // digital(0) is 0 when open, 1 when pressed.
-    while (digital(0) == 0) {   // while the button is NOT pressed...
-        motor(0, -50);          // ...drive backward
-        motor(3, -50);
-        msleep(10);             // tiny pause so we don't overwork the computer
-    }
+    # Drive BACKWARD and keep checking the button.
+    # k.digital(0) is 0 when open, 1 when pressed.
+    while k.digital(0) == 0:    # while the button is NOT pressed...
+        k.motor(0, -50)          # ...drive backward
+        k.motor(3, -50)
+        k.msleep(10)             # tiny pause so we don't overwork the computer
 
-    ao();              // button was pressed: stop the motors
-    y_position = 0;    // we're home against the wall: reset our origin
+    k.ao()              # The button was pressed, so stop the motors.
+    y_position = 0       # We are home against the wall, so reset our origin.
 
-    return 0;
-}
+main()
 {{< /code >}}
 
-Looking ahead: next lab, you'll move the two `motor()` lines to just *above* the loop, so the loop body is only the `msleep`. The motors will already be running, and the loop will just wait and watch the sensor.
+Looking ahead: next lab, you'll move the two `k.motor()` lines to just *above* the loop, so the loop body is only the `msleep`. The motors will already be running, and the loop will just wait and watch the sensor.
 {.muted}
 
 ### Run Log
@@ -228,37 +228,37 @@ rows:
 ### [[CHECKLIST|Checklist]]
 
 - You tested in your hands and saw the wheels stop when you pressed the button
-- The loop condition is `digital(0) == 0` (keep going while NOT pressed)
-- There is an `msleep(10)` inside the loop
-- `ao()` comes right after the loop, so the robot stops when pressed
-- `y_position = 0;` resets the origin once the robot is home
+- The loop condition is `k.digital(0) == 0` (keep going while NOT pressed)
+- There is a `k.msleep(10)` inside the loop
+- `k.ao()` comes right after the loop, so the robot stops when pressed
+- `y_position = 0` resets the origin once the robot is home
 
 ## Phase 5 — Make It a Reusable Behavior
 
-Once your program works, wrap the whole back-until-pressed behavior into a [[FUNCTION|function]] so you can reuse it. Build it the way you've been doing it: write the **[[PROTOTYPE|prototype]]** above `main()`, call it inside `main()`, and put the full **definition** below.
+Once your program works, wrap the whole back-until-pressed behavior into a [[FUNCTION|function]] so you can reuse it. Remember, in Python you don't write a separate [[PROTOTYPE|prototype]] — you just **define** the function above `main()`, then call it inside `main()`.
 
 {{< code >}}
-#include <kipr/wombat.h>
+#!/usr/bin/python3
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
 
-int x_position = 0;
-int y_position = 0;
+x_position = 0
+y_position = 0
 
-void back_until_pressed();   // PROTOTYPE: the promise, above main()
+def back_until_pressed():   # This definition is written above main().
+    global x_position, y_position
+    while k.digital(0) == 0: # while the button is NOT pressed...
+        k.motor(0, -50)
+        k.motor(3, -50)
+        k.msleep(10)
+    k.ao()              # stop
+    y_position = 0      # We are home, so reset the origin.
 
-int main() {
-    back_until_pressed();    // CALL: drive home using the sensor, then reset zero
-    return 0;
-}
+def main():
+    back_until_pressed()    # Call this to drive home using the sensor and then reset zero.
 
-void back_until_pressed() {  // DEFINITION: the recipe, below main()
-    while (digital(0) == 0) { // while the button is NOT pressed...
-        motor(0, -50);
-        motor(3, -50);
-        msleep(10);
-    }
-    ao();              // stop
-    y_position = 0;    // home: reset origin
-}
+main()
 {{< /code >}}
 
 {{< ask key="p5_function_value" label="Value of the function" >}}Now that `main()` just says `back_until_pressed()`, what does it read like? Why is wrapping the loop in a named function helpful for the rest of the game?{{< /ask >}}
@@ -303,11 +303,11 @@ Complete this section on your own.
 
 {{< namebar >}}
 
-{{< ask key="p7_q1_digital" label="Reflection 1" n=1 >}}What is a digital sensor? What two values can `digital(0)` return, and what does each mean for the touch button?{{< /ask >}}
+{{< ask key="p7_q1_digital" label="Reflection 1" n=1 >}}What is a digital sensor? What two values can `k.digital(0)` return, and what does each mean for the touch button?{{< /ask >}}
 
 {{< ask key="p7_q2_while" label="Reflection 2" n=2 >}}Explain what a `while` loop does, in your own words. What makes it stop?{{< /ask >}}
 
-{{< ask key="p7_q3_msleep" label="Reflection 3" n=3 >}}Why is there a small `msleep(10)` inside the loop? What would happen to the controller without it?{{< /ask >}}
+{{< ask key="p7_q3_msleep" label="Reflection 3" n=3 >}}Why is there a small `k.msleep(10)` inside the loop? What would happen to the controller without it?{{< /ask >}}
 
 {{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete this in 2–3 sentences: "Intelligent systems rely on sensors to gather information about the world. This means that a robot without sensors can only..."{{< /ask >}}
 
@@ -331,7 +331,7 @@ Finished early? Try one or more of these.
 
 ### Extension C — Try a Different msleep
 
-- Change the loop's `msleep(10)` to `msleep(200)`. Press the button quickly and release. Does the robot still catch it? What does this tell you about how often it's checking?
+- Change the loop's `k.msleep(10)` to `k.msleep(200)`. Press the button quickly and release. Does the robot still catch it? What does this tell you about how often it's checking?
 
 {{< answer key="ext_c" label="Extension C" >}}
 

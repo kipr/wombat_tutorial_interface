@@ -1,11 +1,12 @@
 ---
 title: "Unit 3 · Big Idea 5 — The Double Stack"
-short_title: "Lab 3.5"
+short_title: "Python 3.5"
 hub_unit: 3
 description: "Mission 3 — plan and compose your whole library into a full mission that stacks two cubes and repositions between them."
 weight: 180
-nav: labs
-track: c
+nav: python
+track: python
+type: labs
 mission_id: unit3_bigidea5
 eyebrow: "Unit 3 · Big Idea 5 · Capstone"
 heading: "The Double Stack"
@@ -50,7 +51,7 @@ A complex mission isn't built from new code — it's built by sequencing reliabl
 
 {{< figrow >}}
 - src: servo/what-is-a-claw.jpg
-  alt: The claw on the robot has to close together to hold or pick up something.
+  alt: What a claw actually has to do to hold something.
 {{< /figrow >}}
 
 {{% callout title="Mission 3 — Stack a Cube, Then Stack Another" %}}
@@ -81,16 +82,14 @@ Your library can drive *forward* a measured distance with `Tick_Drive` — but a
 
 {{< concept "Keep going while the count is still ABOVE the negative target" >}}
 - text: |
-    Picture the number line. You start at 0 and slide left toward −1000. The whole time, your count is *greater than* −1000 — until you arrive. So the loop runs **while `gmpc(0) > -ticks`**:
+    Picture the number line. You start at 0 and slide left toward −1000. The whole time, your count is *greater than* −1000 — until you arrive. So the loop runs **while `k.gmpc(0) > -ticks`**:
 - code: |
-    void Back_Drive(int ticks) {
-        cmpc(0);                       // clear the counter to 0
-        while (gmpc(0) > -ticks) {      // count DOWN until we reach -ticks
-            motor(0, -50);             // both wheels backward
-            motor(3, -50);
-        }
-        motor(0, 0); motor(3, 0); msleep(50);   // brake
-    }
+    def Back_Drive(ticks):
+        k.cmpc(0)                       # clear the counter to 0
+        while k.gmpc(0) > -ticks:        # count DOWN until we reach -ticks
+            k.motor(0, -50)             # both wheels backward
+            k.motor(3, -50)
+        k.motor(0, 0); k.motor(3, 0); k.msleep(50)   # brake
 - text: |
     You still pass in a *positive* number — `Back_Drive(1000)` — and the function flips the sign for you. The `-ticks` turns your 1000 into the −1000 target.
 {{< /concept >}}
@@ -156,9 +155,9 @@ With stack 1 done, your robot has to move over and line up with the second pair 
 - text: |
     For example, to shift to the right and face forward again:
 - code: |
-    turn_right();      // face sideways toward stack 2
-    Tick_Drive(____);  // drive over to line up with it
-    turn_left();       // turn back to face the cubes
+    turn_right()      # face sideways toward stack 2
+    Tick_Drive(____)  # drive over to line up with it
+    turn_left()       # turn back to face the cubes
 - text: |
     The two turns cancel out your heading, so you end up facing the same way — just shifted over. The drive distance lines you up with the second pair.
 {{< /concept >}}
@@ -170,27 +169,32 @@ With stack 1 done, your robot has to move over and line up with the second pair 
 Now write it for real. Here is the **frame** — nothing more. Include your library, enable your [[SERVO|servos]], and you'll fill each section with the calls **from your own planning tables** in Phases 4 and 5. There are no answers to copy here on purpose: the sequence lives in your plan, and only you have it.
 
 {{< code >}}
-#include <kipr/wombat.h>
-#include <@@yourname@@.h>     // all your tuned tools
+#!/usr/bin/python3
+# Unit 3, Big Idea 5: The Double Stack
+# Name: _______________________   Date: ___________
 
-int main() {
-    enable_servo(0);          // arm
-    enable_servo(1);          // claw
+import os, sys
+sys.path.append("/usr/lib")
+import _kipr as k
+from @@yourname@@ import *     # all your tuned tools
 
-    // ===== STACK 1 =====
-    // (write your calls from your Phase 4 plan)
+def main():
+    k.enable_servo(0)          # arm
+    k.enable_servo(1)          # claw
 
-
-    // ===== REPOSITION to stack 2 =====
-    // (your turn / drive / turn-back from Phase 5)
-
-
-    // ===== STACK 2 =====
-    // (your calls)
+    # ===== STACK 1 =====
+    # (write your calls from your Phase 4 plan)
 
 
-    return 0;
-}
+    # ===== REPOSITION to stack 2 =====
+    # (your turn / drive / turn-back from Phase 5)
+
+
+    # ===== STACK 2 =====
+    # (your calls)
+
+
+main()
 {{< /code >}}
 
 Translate your plan line by line. Each row of your Phase 4 table is one function call. If you skipped the planning, this is where it catches up with you — go back and finish your map first.
