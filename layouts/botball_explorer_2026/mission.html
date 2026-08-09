@@ -25,7 +25,7 @@
           <span>Difficulty {{ .difficulty }}</span>
           <span class="explorer-judging explorer-judging-{{ .judging }}">{{ humanize .judging }} judged</span>
         </div>
-        <div class="explorer-tier-description">{{ partial "render-inline.html" (dict "page" $ "text" .description) | safeHTML }}</div>
+        <div class="explorer-tier-description"><p>{{ partial "render-inline.html" (dict "page" $ "text" .description) | safeHTML }}</p></div>
       </article>
     {{- end }}
     </div>
