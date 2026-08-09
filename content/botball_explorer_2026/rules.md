@@ -319,7 +319,7 @@ does_not_score:
 {{< rule-definition term="LEGAL STARTING POSITION" >}}
 
 {{% callout title="Stack interpretation" %}}
-“Stack” is used for readability only. Scoring is determined solely by the [[ON TOP OF]] and [[TOUCHING]] definitions—traditional, pyramid, or mixed arrangements all score as long as the required relationships exist. Side-by-side, touching-only, or separated arrangements do not.
+“Stack” is used for readability only. Scoring is determined solely by the [[ON TOP OF]] and [[TOUCHING]] definitions — traditional, pyramid, or mixed arrangements all score as long as the required relationships exist. Side-by-side, touching-only, or separated arrangements do not.
 {{% /callout %}}
 
 {{% warn title="Mission-specific exceptions" %}}
