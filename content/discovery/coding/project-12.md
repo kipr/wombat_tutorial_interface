@@ -19,6 +19,11 @@ subheading: "Give twenty lines a name. Then just say the name."
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Teaching Your Robot New Moves"
 mission_label: "Mission 15 — base + bonus · 18 pts"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 12"

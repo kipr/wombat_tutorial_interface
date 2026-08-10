@@ -20,6 +20,11 @@ credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Wake Up Your Wombat"
 mission_label: "No field mission"
 no_mission: true
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 1"

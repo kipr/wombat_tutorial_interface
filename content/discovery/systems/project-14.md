@@ -20,6 +20,11 @@ eyebrow: "Discovery · Systems Project 14"
 heading: "Plans and Feedback"
 subheading: "Everything takes longer than you think. Then somebody tells you what you missed."
 credit: "KIPR · Botball Explorer · Discovery"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Project"
     definition: "Systems Project 14"

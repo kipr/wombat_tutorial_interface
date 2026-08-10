@@ -19,6 +19,11 @@ subheading: "Two knobs, three shapes — and your first drive to somewhere that 
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Learning to Turn"
 mission_label: "Mission 12 — approach only"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 5"

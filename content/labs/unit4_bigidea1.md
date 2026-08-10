@@ -11,6 +11,11 @@ eyebrow: "Unit 4 · Big Idea 1"
 heading: "The Model"
 subheading: "Student Lab · Teaching the Robot to Predict Distance"
 credit: "KIPR · Botball Explorer · Unit 4 Big Idea 1 — Student Lab"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Unit Guiding Question"
     definition: "How can a machine know where it is and where it is going?"

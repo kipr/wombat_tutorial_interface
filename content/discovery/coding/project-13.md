@@ -19,6 +19,11 @@ subheading: "Until now your robot has followed orders. Today it starts choosing.
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Deciding What to Do"
 mission_label: "Mission 3 advanced — 22 pts"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 13"

@@ -19,6 +19,11 @@ subheading: "A sensor that answers with a number, not a yes."
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Seeing Light and Dark"
 mission_label: "Missions 14 · 18 — 35 pts"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 14"

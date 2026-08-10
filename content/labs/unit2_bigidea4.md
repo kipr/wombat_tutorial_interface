@@ -11,6 +11,11 @@ eyebrow: "Unit 2 · Big Idea 4"
 heading: "Information Must Be Interpreted"
 subheading: "Student Lab · Reading the Line"
 credit: "KIPR · Botball Explorer · Unit 2 Big Idea 4 — Student Lab"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Unit Guiding Question"
     definition: "How can a machine sense and respond to the world around it?"

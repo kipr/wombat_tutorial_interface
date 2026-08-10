@@ -19,6 +19,11 @@ subheading: "A motor that goes to a place instead of just going. Seven points fo
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Your Robot’s Arm"
 mission_label: "Mission 9 — base"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 7"

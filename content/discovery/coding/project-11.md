@@ -19,6 +19,11 @@ subheading: "Same loop as last time — but now it watches a number instead of a
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Counting Wheel Ticks"
 mission_label: "Missions 9 · 8 · 18 — 40 pts"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 11"

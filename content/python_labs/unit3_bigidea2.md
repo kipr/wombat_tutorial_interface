@@ -12,6 +12,11 @@ eyebrow: "Unit 3 · Big Idea 2"
 heading: "Smooth Operator"
 subheading: "Student Lab · Safe, Smooth Servo Motion"
 credit: "KIPR · Botball Explorer · Unit 3 Big Idea 2 — Student Lab"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Unit Guiding Question"
     definition: "How can a machine act on the world, not just move through it?"

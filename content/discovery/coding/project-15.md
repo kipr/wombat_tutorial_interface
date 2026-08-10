@@ -19,6 +19,11 @@ subheading: "The sensor stops being a stop sign and becomes a steering wheel."
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Following the Line"
 mission_label: "Missions 6 · 7 · 16 · 17 — 51 pts"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 15"

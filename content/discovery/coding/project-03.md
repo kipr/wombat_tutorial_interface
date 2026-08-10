@@ -20,6 +20,11 @@ credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Motors and Ports"
 mission_label: "No field mission — robot on blocks"
 no_mission: true
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 3"

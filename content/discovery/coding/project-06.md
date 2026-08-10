@@ -24,6 +24,11 @@ build_gate:
   description: "Everything from Project 7 onward needs a working arm and claw. Build them in Systems before you continue."
   page: /discovery/systems/project-07
   label: "Go build the claw →"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 6"

@@ -11,6 +11,11 @@ eyebrow: "Unit 2 · Big Idea 5"
 heading: "Tuning the Follow"
 subheading: "Student Lab · Speed, Precision, and the mav Command"
 credit: "KIPR · Botball Explorer · Unit 2 Big Idea 5 — Student Lab"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Unit Guiding Question"
     definition: "How can a machine make increasingly intelligent [[DECISION|decisions]]?"

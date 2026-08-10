@@ -11,6 +11,11 @@ eyebrow: "Unit 5 · Big Idea 1"
 heading: "The Second Attempt"
 subheading: "Student Lab · Tracking What the Robot Believes About Itself"
 credit: "KIPR · Botball Explorer · Unit 5 Big Idea 1"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Unit Guiding Question"
     definition: "How can a machine operate reliably in an imperfect world?"

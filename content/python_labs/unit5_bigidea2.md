@@ -12,6 +12,11 @@ eyebrow: "Unit 5 · Big Idea 2"
 heading: "Ease On, Ease Off"
 subheading: "Student Lab · Driving Like a Car, Not a Light Switch"
 credit: "KIPR · Botball Explorer · Unit 5 Big Idea 2"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Unit Guiding Question"
     definition: "How can a machine operate reliably in an imperfect world?"

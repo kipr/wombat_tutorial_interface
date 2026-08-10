@@ -19,6 +19,11 @@ subheading: "Off the block and onto the field. This is the first project that sc
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Out and Back"
 mission_label: "Mission 1 · Mission 10 — base + bonus"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 4"

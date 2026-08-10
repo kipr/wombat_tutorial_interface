@@ -389,7 +389,7 @@ li { margin: 4px 0; }
 .figure-card{margin:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
 .figure-image-wrap{position:relative}
 .figure-zoom{display:block;width:100%;padding:0;border:0;background:#fff;cursor:zoom-in}
-.figure-zoom img{display:block;width:100%;height:auto;background:#fff}
+.figure-zoom img{display:block;width:100%;height:auto;max-height:75vh;object-fit:contain;background:#fff}
 .figure-zoom:focus-visible{outline:4px solid var(--red);outline-offset:-4px}
 .figure-card figcaption{padding:9px 13px;font-size:15px;color:var(--grey);background:var(--field);
   border-top:1px solid var(--line)}

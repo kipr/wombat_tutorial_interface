@@ -20,6 +20,11 @@ eyebrow: "Discovery · Systems Project 6"
 heading: "Structure and Function"
 subheading: "Decide what it has to do. Then build the shape that does it."
 credit: "KIPR · Botball Explorer · Discovery"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Project"
     definition: "Systems Project 6"

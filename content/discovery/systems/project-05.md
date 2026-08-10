@@ -20,6 +20,11 @@ eyebrow: "Discovery · Systems Project 5"
 heading: "The Design Process"
 subheading: "Build it, watch it fall over, and find out that was the plan."
 credit: "KIPR · Botball Explorer · Discovery"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Project"
     definition: "Systems Project 5"

@@ -21,6 +21,11 @@ eyebrow: "Discovery · Systems Project 7"
 heading: "The Arm and the Claw"
 subheading: "Twelve steps, and then your robot can pick things up."
 credit: "KIPR · Botball Explorer · Discovery"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Project"
     definition: "Systems Project 7"

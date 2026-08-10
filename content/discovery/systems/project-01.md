@@ -20,6 +20,11 @@ eyebrow: "Discovery · Systems Project 1"
 heading: "Meet Your Kit"
 subheading: "Everything you will build this year is in one box. Find out what is in it."
 credit: "KIPR · Botball Explorer · Discovery"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Project"
     definition: "Systems Project 1"

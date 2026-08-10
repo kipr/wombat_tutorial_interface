@@ -20,6 +20,11 @@ eyebrow: "Discovery · Systems Project 10"
 heading: "Guarding Your Information"
 subheading: "It takes fewer clues than you think to work out who someone is."
 credit: "KIPR · Botball Explorer · Discovery"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Project"
     definition: "Systems Project 10"

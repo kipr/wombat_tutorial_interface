@@ -20,6 +20,11 @@ eyebrow: "Discovery · Systems Project 13"
 heading: "Goals and Roles"
 subheading: "Everyone doing everything is the same as nobody doing anything."
 credit: "KIPR · Botball Explorer · Discovery"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Project"
     definition: "Systems Project 13"

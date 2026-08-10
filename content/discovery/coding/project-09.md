@@ -19,6 +19,11 @@ subheading: "Your comments become real code. Change a number once, and the whole
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Names for Your Numbers"
 mission_label: "Mission 5 — base + bonus · 20 pts"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 9"

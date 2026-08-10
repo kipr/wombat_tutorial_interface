@@ -20,6 +20,11 @@ eyebrow: "Discovery · Systems Project 4"
 heading: "Draw the Plan"
 subheading: "A picture of your program, before you write a line of it."
 credit: "KIPR · Botball Explorer · Discovery"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Project"
     definition: "Systems Project 4"

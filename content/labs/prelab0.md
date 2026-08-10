@@ -12,6 +12,11 @@ eyebrow: "PreLab 0 · Before Unit 1"
 heading: "The Machine"
 subheading: "PreLab · C track — completion checklist"
 credit: "KIPR · Botball Explorer — CS1 + AI Literacy · © KISS Institute for Practical Robotics 1997–2026"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Purpose"
     definition: "Know your kit, your robot’s six subsystems, and how to work safely — before you write any code."

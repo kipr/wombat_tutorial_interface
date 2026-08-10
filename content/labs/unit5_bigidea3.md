@@ -11,6 +11,11 @@ eyebrow: "Unit 5 · Big Idea 3"
 heading: "Backing Up Your Work"
 subheading: "Student Lab · Getting Your Library onto GitHub"
 credit: "KIPR · Botball Explorer · Unit 5 Big Idea 3 — Student Lab"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Unit Guiding Question"
     definition: "How can a machine operate reliably in an imperfect world?"

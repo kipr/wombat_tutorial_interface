@@ -13,6 +13,11 @@ eyebrow: "PreLab 1 · Before Unit 1"
 heading: "The Toolchain"
 subheading: "PreLab · Python track — completion checklist"
 credit: "KIPR · Botball Explorer — CS1 + AI Literacy · © KISS Institute for Practical Robotics 1997–2026"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Purpose"
     definition: "Boot the Wombat, connect to it, and run a Python program you typed yourself."

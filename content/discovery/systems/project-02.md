@@ -20,6 +20,11 @@ eyebrow: "Discovery · Systems Project 2"
 heading: "What Makes a Robot a Robot?"
 subheading: "Harder to answer than it sounds — and the answer is a list of six things."
 credit: "KIPR · Botball Explorer · Discovery"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Project"
     definition: "Systems Project 2"

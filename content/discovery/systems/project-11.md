@@ -20,6 +20,11 @@ eyebrow: "Discovery · Systems Project 11"
 heading: "Living Well Online"
 subheading: "The same six words land differently on different people."
 credit: "KIPR · Botball Explorer · Discovery"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Project"
     definition: "Systems Project 11"

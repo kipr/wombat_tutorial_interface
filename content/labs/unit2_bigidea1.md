@@ -11,6 +11,11 @@ eyebrow: "Unit 2 · Big Idea 1"
 heading: "Computers Gather Information From Their Environment"
 subheading: "Student Lab · The Touch Sensor"
 credit: "KIPR · Botball Explorer · Unit 2 Big Idea 1 — Student Lab"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Unit Guiding Question"
     definition: "How can a machine sense and respond to the world around it?"

@@ -20,6 +20,11 @@ eyebrow: "Discovery · Systems Project 9"
 heading: "Sending Messages"
 subheading: "Take it apart. Push it through a tube. Put it back together at the other end."
 credit: "KIPR · Botball Explorer · Discovery"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Project"
     definition: "Systems Project 9"

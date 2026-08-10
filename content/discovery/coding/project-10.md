@@ -19,6 +19,11 @@ subheading: ""
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Feeling for Things"
 mission_label: "Mission 13 advanced — 13 pts"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 10"

@@ -25,6 +25,11 @@ build_gate:
   description: "Project 6 pushes cubes, poms and cones off the black line. Build the blade in Systems before you reach it."
   page: /discovery/systems/project-06
   label: "Go build the blade →"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 2"

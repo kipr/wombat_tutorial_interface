@@ -12,6 +12,11 @@ eyebrow: "Unit 5 · Big Idea 4"
 heading: "Every Second Counts"
 subheading: "Student Lab · Measuring, Storing, and Making Sense of Performance"
 credit: "KIPR · Botball Explorer · Unit 5 Big Idea 4 — Student Lab"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Unit Guiding Question"
     definition: "How can a machine operate reliably in an imperfect world?"

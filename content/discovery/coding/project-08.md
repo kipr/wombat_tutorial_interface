@@ -19,6 +19,11 @@ subheading: "Two servos, one system. This is the biggest scoring project in the 
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Arm and Claw Together"
 mission_label: "Missions 12 · 3 · 11 · 13 bonus — 37 pts"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 8"

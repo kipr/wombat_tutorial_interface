@@ -19,6 +19,11 @@ subheading: "The last loop — and the last thirty-eight points on the field."
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Repeating Without Retyping"
 mission_label: "Missions 7 · 11 · 16 · 17 — 38 pts"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: Project
     definition: "Coding Project 17"

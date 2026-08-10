@@ -12,6 +12,11 @@ eyebrow: "Unit 4 · Big Idea 4"
 heading: "Keeping Score"
 subheading: "Student Lab · A Full Red-Cube Run That Tracks Its Own Points"
 credit: "KIPR · Botball Explorer · Unit 4 Big Idea 4 — Student Lab"
+sidebar:
+  title: "Activity Sections"
+  start_level: 2
+  end_level: 2
+  numbered: false
 meta:
   - term: "Unit Guiding Question"
     definition: "How can a machine know where it is and where it is going?"
