@@ -134,7 +134,7 @@ That swap is a [[TRADE-OFF|trade-off]]. Judging a technology means looking at bo
 
 ### Four that changed things recently
 
-#### [[ARTIFICIAL INTELLIGENCE|Artificial Intelligence]]
+#### Artificial Intelligence
 
 [[SOFTWARE|Software]] that finds patterns and makes predictions.
 Mobile phonesA computer, camera, map, and telephone in one pocketVoice assistantsMachines you talk to instead of type at3D printersMake a physical object from a fileArtificial intelligenceSoftwarethat finds patterns and makes predictions
@@ -317,10 +317,10 @@ Make one prediction about how technology will have changed things by the time yo
 
 ## Score It — Checkpoint
 
-Keep [[ACCESSIBILITY|accessibility]] in mind when you judge who a design works for.
+Keep accessibility in mind when you judge who a design works for.
 
 
-### Name the [[TRADE-OFF|trade-off]]
+### Name the trade-off
 
 {{< gridtable >}}
 columns:
@@ -397,7 +397,7 @@ rows:
 
 ### Think about it
 {{< ask key="p4_why_universal" label="Why universal" >}}Dropped kerbs and subtitles were built for a few people and ended up used by nearly everyone. Why do you think that keeps happening?{{< /ask >}}
-{{< ask key="p4_intelligence" label="Is it intelligence" >}}Your robot decides what to do by reading a [[SENSOR|sensor]] and comparing it to a number. Is that intelligence? Where would you draw the line?{{< /ask >}}
+{{< ask key="p4_intelligence" label="Is it intelligence" >}}Your robot decides what to do by reading a sensor and comparing it to a number. Is that intelligence? Where would you draw the line?{{< /ask >}}
 {{< ask key="p4_whose_job" label="Whose job" >}}Somebody invents something genuinely useful that also causes real harm. Whose job is it to think about the harm — the inventor, the people using it, or somebody else?{{< /ask >}}
 
 ### Next

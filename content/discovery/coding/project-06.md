@@ -2,7 +2,7 @@
 title: "Coding Project 6 — Bulldoze Run"
 short_title: "Coding Project 6"
 linkTitle: "Bulldoze Run"
-description: "Four missions and sixteen points using nothing but driving. The OFF definition, pushing technique, and chaining missions into a single run."
+description: "Four missions and sixteen points using nothing but driving. The [[OFF]] definition, pushing technique, and chaining missions into a single run."
 weight: 6
 nav: discovery
 mission_id: discovery_coding_06
@@ -61,14 +61,14 @@ Your robot cannot pick anything up yet. It can only drive and turn.
 
 That turns out to be enough for four whole missions, because those missions do not ask you to *hold* anything. They just ask you to get things **off the black line**.
 
-### What OFF actually means
+### What [[OFF]] actually means
 
 Everything in this project depends on one word. Read it carefully.
 
-{{% callout title="The OFF Definition" variant="gold" %}}
-An object is [[OFF]] a line, [[BOUNDARY|boundary]], or zone edge when **no portion** of the object is [[TOUCHING]] that line, [[BOUNDARY|boundary]], or zone edge.
+{{% callout title="The [[OFF]] Definition" variant="gold" %}}
+An object is [[OFF]] a line, [[BOUNDARY|boundary]], or zone edge when **no portion** of the object is [[TOUCHING]] that line, boundary, or zone edge.
 
-**No portion.** A cube resting with one corner on the line is not OFF. A cone leaning so its base just grazes the line is not OFF. Close does not count.
+**No portion.** A cube resting with one corner on the line is not [[OFF]]. A cone leaning so its base just grazes the line is not [[OFF]]. Close does not count.
 {{% /callout %}}
 
 ### Walk the field
@@ -78,7 +78,7 @@ Before you write anything, go look. Find each of these on the field and fill in 
 {{< gridtable >}}
 columns:
 - head: Object
-- head: "Which way is the shortest push to get it OFF?"
+- head: "Which way is the shortest push to get it [[OFF]]?"
   aria: "Direction large red"
 - head: "How far, roughly?"
   aria: "Distance large red"
@@ -134,7 +134,7 @@ Pushing looks like the easy version of picking something up. It is not — it is
 | --- | --- |
 | `Dead center` | The object slides forward in a straight line, roughly where you aimed. This is what you want. |
 | `Off to one side` | The object spins away at an angle. It may end up somewhere you cannot reach again. |
-| `Too high` | Tall objects tip over instead of sliding. A tipped cone still counts as OFF — but only if the whole thing cleared the line. |
+| `Too high` | Tall objects tip over instead of sliding. A tipped cone still counts as [[OFF]] — but only if the whole thing cleared the line. |
 | `At an angle` | The object skids sideways. Hard to predict, hard to repeat. |
 
 {{% callout title="Square Up Before You Push" variant="navy" %}}
@@ -145,7 +145,7 @@ This is why Project 5 spent so long on turns. Arriving *pointed the right way* m
 
 You cannot see the line edge from inside your program. Your robot pushes for a set time and stops, and whatever happened, happened.
 
-So [[OVERSHOOT|overshoot]] on purpose. If the object needs to travel four inches to clear the line, push it six. There is no penalty for being further OFF, and there is a big penalty for being one millimeter short.
+So [[OVERSHOOT|overshoot]] on purpose. If the object needs to travel four inches to clear the line, push it six. There is no penalty for being further [[OFF]], and there is a big penalty for being one millimeter short.
 
 {{% safety title="⚠ But Not Into Somewhere Worse" %}}
 Do not push an object into a wall, off the field, or [[ON TOP OF]] something you need later. Look at where it will end up before you decide how hard to shove.
@@ -153,15 +153,15 @@ Do not push an object into a wall, off the field, or [[ON TOP OF]] something you
 
 ### [[SIMULTANEOUSLY]] — the trap in Mission 4
 
-Mission 4's bonus does not just ask for an orange pom OFF and a blue pom OFF. It asks for both [[SIMULTANEOUSLY]] — true at the same moment.
+Mission 4's bonus does not just ask for an orange pom [[OFF]] and a blue pom [[OFF]]. It asks for both [[SIMULTANEOUSLY]] — true at the same moment.
 
 {{< score-examples >}}
 scores:
-  - "An orange pom and a blue pom are both OFF the line at the same moment."
+  - "An orange pom and a blue pom are both [[OFF]] the line at the same moment."
   - "An orange pom is lifted completely clear of the line."
 does_not_score:
   - "Any portion of the orange pom is [[TOUCHING]] the line."
-  - "The orange pom is OFF, then later the blue pom is OFF — they are never OFF at the same time."
+  - "The orange pom is [[OFF]], then later the blue pom is [[OFF]] — they are never [[OFF]] at the same time."
 {{< /score-examples >}}
 That last one is the whole problem. Clear one pom, come back, clear the other, and if the first one rolled back onto the line in between, you get the base and not the bonus.
 
@@ -202,7 +202,7 @@ columns:
 - head: Try
 - head: "Push msleep"
   aria: "M13 try 1 ms"
-- head: "How many cubes ended up OFF?"
+- head: "How many cubes ended up [[OFF]]?"
   aria: "M13 try 1 result"
 rows:
   - cells:
@@ -226,21 +226,21 @@ rows:
 {{< /gridtable >}}
 {{< checklist >}}
 - key: p3_m13_done
-  label: "All three Unstraight Cubes are OFF the black line"
+  label: "All three Unstraight Cubes are [[OFF]] the black line"
 {{< /checklist >}}
 ### Step 2 — Mission 14 — Traffic Cones3 pts
 
 {{< mission-summary mission="14" >}}
 {{< /mission-summary >}}
 {{% safety title="⚠ A Tipped Cone Still Has to Be Clear" %}}
-Cones tip easily. That is fine — a cone on its side can still be OFF. But a tipped cone takes up more floor, so the part that lands might reach back onto the line. Push further than feels necessary.
+Cones tip easily. That is fine — a cone on its side can still be [[OFF]]. But a tipped cone takes up more floor, so the part that lands might reach back onto the line. Push further than feels necessary.
 {{% /safety %}}
 
 {{< checklist >}}
 - key: p3_m14_cone1
-  label: "First cone is completely OFF"
+  label: "First cone is completely [[OFF]]"
 - key: p3_m14_cone2
-  label: "Second cone is completely OFF"
+  label: "Second cone is completely [[OFF]]"
 {{< /checklist >}}
 {{< ask key="p3_m14_method" label="Cone method" >}}Did one push clear both cones, or did you need two moves? Describe what you did.{{< /ask >}}
 
@@ -249,19 +249,19 @@ Cones tip easily. That is fine — a cone on its side can still be OFF. But a ti
 {{< mission-summary mission="2" >}}
 {{< /mission-summary >}}
 {{% callout title="Two Objects, Judged Separately" variant="navy" %}}
-The cube and the pallet are checked independently. Both must be OFF. Shoving the cube off while the pallet stays behind on the line scores nothing — so push low enough to move them together, or move the pallet after.
+The cube and the pallet are checked independently. Both must be [[OFF]]. Shoving the cube off while the pallet stays behind on the line scores nothing — so push low enough to move them together, or move the pallet after.
 {{% /callout %}}
 
-Good news on the bonus: the small red cubes do not have to stay stacked. Knocking them apart is fine as long as both end up OFF.
+Good news on the bonus: the small red cubes do not have to stay stacked. Knocking them apart is fine as long as both end up [[OFF]].
 {.muted}
 
 {{< checklist >}}
 - key: p3_m2_cube
-  label: "Large Red Cube is OFF"
+  label: "Large Red Cube is [[OFF]]"
 - key: p3_m2_pallet
-  label: "The pallet is OFF too"
+  label: "The pallet is [[OFF]] too"
 - key: p3_m2_small
-  label: "Both Small Red Cubes are OFF"
+  label: "Both Small Red Cubes are [[OFF]]"
 {{< /checklist >}}
 ### Step 4 — Mission 4 — The Poms8 pts
 
@@ -269,14 +269,14 @@ Good news on the bonus: the small red cubes do not have to stay stacked. Knockin
 {{< /mission-summary >}}
 This is the biggest score in the project and the fussiest. Poms are light — they roll, they bounce, and they do not always go where you pushed them.
 
-Get the base first: one orange pom, completely OFF. Then work out how to take a blue one with it in the same motion.
+Get the base first: one orange pom, completely [[OFF]]. Then work out how to take a blue one with it in the same motion.
 
 {{< gridtable >}}
 columns:
 - head: Try
 - head: "What I changed"
   aria: "M4 try 1 change"
-- head: "Orange OFF? Blue OFF? Same time?"
+- head: "Orange [[OFF]]? Blue [[OFF]]? Same time?"
   aria: "M4 try 1 result"
 rows:
   - cells:
@@ -306,13 +306,13 @@ rows:
 {{< /gridtable >}}
 {{< checklist >}}
 - key: p3_m4_base
-  label: "An Orange Pom is completely OFF the line"
+  label: "An Orange Pom is completely [[OFF]] the line"
 - key: p3_m4_bonus
-  label: "Orange and Blue are OFF at the same moment"
+  label: "Orange and Blue are [[OFF]] at the same moment"
 {{< /checklist >}}
 ### Step 5 — Chain them into one run
 
-New project called `Bulldoze`. Copy your four working programs into it, one after another, with a [[COMMENT|comment]] banner above each section.
+New project called `Bulldoze`. Copy your four working programs into it, one after another, with a comment banner above each section.
 
 Now the hard part: the end of one section is the start of the next. After a push, your robot is not where it began — you need to drive it from wherever it ended up to wherever the next mission starts.
 
@@ -500,27 +500,27 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 13 — Base (all three cubes OFF)"
+      - text: "Mission 13 — Base (all three cubes [[OFF]])"
       - key: p4_s_m13
         aria: "Score M13"
       - text: 1
   - cells:
-      - text: "Mission 2 — Base (large cube + pallet OFF)"
+      - text: "Mission 2 — Base (large cube + pallet [[OFF]])"
       - key: p4_s_m2b
         aria: "Score M2 base"
       - text: 1
   - cells:
-      - text: "Mission 2 — Bonus (both small red cubes OFF)"
+      - text: "Mission 2 — Bonus (both small red cubes [[OFF]])"
       - key: p4_s_m2bo
         aria: "Score M2 bonus"
       - text: 3
   - cells:
-      - text: "Mission 14 — Base (both cones OFF)"
+      - text: "Mission 14 — Base (both cones [[OFF]])"
       - key: p4_s_m14
         aria: "Score M14"
       - text: 3
   - cells:
-      - text: "Mission 4 — Base (orange pom OFF)"
+      - text: "Mission 4 — Base (orange pom [[OFF]])"
       - key: p4_s_m4b
         aria: "Score M4 base"
       - text: 3
@@ -560,7 +560,7 @@ rows:
 
 {{< checklist >}}
 - key: p4_can_off
-  label: "I can state the OFF definition and judge whether an object satisfies it"
+  label: "I can state the [[OFF]] definition and judge whether an object satisfies it"
 - key: p4_can_square
   label: "I can square my robot up to an object before pushing it"
 - key: p4_can_overshoot

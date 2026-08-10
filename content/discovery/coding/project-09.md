@@ -124,22 +124,22 @@ int arm = 0;
 
 | Code / part | What it means |
 | --- | --- |
-| `int` | Short for [[INTEGER]] — a whole number. [[PORT|PORTs]] and servo positions are always whole numbers. |
+| `int` | Short for [[INTEGER\|integer]] — a whole number. Ports and servo positions are always whole numbers. |
 | `arm` | The name. Pick something you and your team will understand next month. |
 | `= 0` | The value it holds. |
-| `;` | A [[SEMICOLON]], same as any other [[STATEMENT]]. |
+| `;` | A [[SEMICOLON\|semicolon]], same as any other [[STATEMENT\|statement]]. |
 
-{{% callout title="Where [[VARIABLE|Variables]] Go" variant="navy" %}}
+{{% callout title="Where Variables Go" variant="navy" %}}
 Inside the [[BLOCK|block]] — after the opening `{` of `main`, above everything else. Not outside the braces, and not scattered through the middle of your program.
 {{% /callout %}}
 
-### [[COMMENT|Comments]] to code: three small edits
+### Comments to code: three small edits
 
 You have been writing your positions as [[COMMENT|comments]] since Project 7, in the **name = number** format. There was a reason for that. Turning a comment into a variable takes three changes:
 
 - Delete the two slashes.
 - Add `int` at the front.
-- Add a [[SEMICOLON|semicolon]] at the end.
+- Add a semicolon at the end.
 
 **Before — comments**
 
@@ -264,7 +264,7 @@ Add a variable you do not use anywhere:
 int notused = 999;
 ```
 
-[[COMPILE|compile]] and look at the banner colour.
+Compile and look at the banner colour.
 
 {{< short-answer key="p3_warning_text" label="Warning text" prompt="What did the warning say?" >}}
 
@@ -402,10 +402,10 @@ This one asks your arm to reach higher than anything so far. The large red cube 
 
 {{< score-examples >}}
 scores:
-  - "One Small Red Cube is ON TOP OF the Large Red Cube."
+  - "One Small Red Cube is [[ON TOP OF]] the Large Red Cube."
   - "A Small Red Cube touches the upper surface while supported by a robot."
-  - "A Small Red Cube is ON TOP OF, and later falls off."
-  - "Both Small Red Cubes are ON TOP OF at the same time."
+  - "A Small Red Cube is [[ON TOP OF]], and later falls off."
+  - "Both Small Red Cubes are [[ON TOP OF]] at the same time."
 does_not_score:
   - "A Small Red Cube [[TOUCHING]] only the *side* of the Large Red Cube."
   - "A Small Red Cube hovering above without [[TOUCHING]]."
@@ -423,7 +423,7 @@ In Project 6 you pushed the Large Red Cube, its [[PALLET|pallet]], and both Smal
 
 {{< checklist >}}
 - key: p3_m5_base
-  label: "One Small Red Cube is ON TOP OF the Large Red Cube"
+  label: "One Small Red Cube is [[ON TOP OF]] the Large Red Cube"
 - key: p3_m5_bonus
   label: "Both Small Red Cubes are up there at the same time"
 {{< /checklist >}}
@@ -564,7 +564,7 @@ That last one is legal code that does something you almost certainly do not want
 - key: p4_can_declare
   label: "I can declare a variable with `int`, a name, a value, and a semicolon"
 - key: p4_can_place
-  label: "I know variables go inside the [[BLOCK|block]], at the top of `main`"
+  label: "I know variables go inside the block, at the top of `main`"
 - key: p4_can_convert
   label: "I can turn a `// name = number` comment into a variable in three edits"
 - key: p4_can_use

@@ -299,7 +299,7 @@ Finished early? Try one or more of these.
 
 ### Extension B — Stack Two Cubes
 
-- Stack a second cube [[ON TOP OF|ON TOP OF]] the first. Does smooth motion matter even more with a taller stack? What did you have to change?
+- Stack a second cube [[ON TOP OF]] the first. Does smooth motion matter even more with a taller stack? What did you have to change?
 
 {{< answer key="ext_b" label="Extension B" >}}
 

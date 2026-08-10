@@ -107,7 +107,7 @@ So *you* have to decide where black starts. The sensor will not do it for you.
 - src: kit/analogsensors.jpg
   alt: "Analog sensors — reflectance, light, and the ET rangefinder."
 {{< /figrow >}}
-An [[ANALOG|analog]] sensor reports a value across a wide range instead of just 0 or 1.
+An analog sensor reports a value across a wide range instead of just 0 or 1.
 
 ~100
 
@@ -120,7 +120,7 @@ An [[ANALOG|analog]] sensor reports a value across a wide range instead of just 
 Your numbers will not match anyone else's. Different sensor, different mounting height, different room lighting.
 {.muted}
 
-### Your [[THRESHOLD|threshold]]
+### Your threshold
 
 A [[THRESHOLD|threshold]] is the number you pick as the dividing line. Below it, call it white. Above it, call it black.
 
@@ -138,11 +138,11 @@ That is a starting guess, not a final answer. You will adjust it.
 
 | Code / part | What it means |
 | --- | --- |
-| `analog(1);` | Gives you the number from the [[ANALOG|analog]] sensor in [[PORT]] 1. Compare it against your [[THRESHOLD]] to decide what the robot is looking at. |
+| `analog(1);` | Gives you the number from the analog sensor in port 1. Compare it against your threshold to decide what the robot is looking at. |
 
-### Your third kind of loop [[CONDITION|condition]]
+### Your third kind of loop condition
 
-The loop has not changed at all. Only what it watches.
+The loop has not changed at all. Only the [[CONDITION|condition]] it watches.
 
 **Project 10 — a switch**
 
@@ -306,8 +306,8 @@ rows:
       - key: p3_l3_res
         aria: "Line 3 result"
 {{< /gridtable >}}
-{{% callout title="This Is Something [[TICK|Ticks]] Cannot Do" variant="gold" %}}
-A tick count only works from a known starting point. This program finds the line from *anywhere* — it does not care where it began.
+{{% callout title="This Is Something Ticks Cannot Do" variant="gold" %}}
+A [[TICK|tick]] count only works from a known starting point. This program finds the line from *anywhere* — it does not care where it began.
 {{% /callout %}}
 
 ### Step 4 — Drive to black, back up to black
@@ -326,7 +326,7 @@ When the robot stops, it is *sitting on black*. If you immediately start a loop 
 {{< /checklist >}}
 ### Step 5 — Start on a light
 
-Add `wait_for_light()` to the top of a program and follow the [[CALIBRATION|calibration]] routine on the Wombat's screen.
+Add `wait_for_light()` to the top of a program and follow the calibration routine on the Wombat's screen.
 
 Now your robot sits still until someone shines a light at it.
 
@@ -336,36 +336,36 @@ Now your robot sits still until someone shines a light at it.
 {{< /checklist >}}
 {{< ask key="p3_why_light" label="Why light start" >}}Why would every robot at a tournament need to start this way, rather than someone pressing a button on each one?{{< /ask >}}
 
-### Step 6 — Mission 14 Bonus — a cone [[IN THE ZONE]]7 pts
+### Step 6 — Mission 14 Bonus — a cone [[IN THE ZONE]] · 7 pts
 
 {{< mission-summary mission="14" >}}
 {{< /mission-summary >}}
 {{% safety title="⚠ The Base Still Has to Hold" %}}
-You cannot score this bonus unless **both** cones are OFF the black line — including the one you left behind. If your second cone drifted back onto the line, the bonus is worth nothing.
+You cannot score this bonus unless **both** cones are [[OFF]] the black line — including the one you left behind. If your second cone drifted back onto the line, the bonus is worth nothing.
 {{% /safety %}}
 
 Use your line-finding program to drive to the Loading Zone [[BOUNDARY|boundary]], then place the cone.
 
 {{< checklist >}}
 - key: p3_m14_bonus
-  label: "A cone is IN the Loading Zone and the other is still OFF the line"
+  label: "A cone is [[IN]] the Loading Zone and the other is still [[OFF]] the line"
 {{< /checklist >}}
 ### Step 7 — Mission 18 — Botguy and both cones28 pts
 
 {{< mission-summary mission="18" >}}
 {{< /mission-summary >}}
-{{% safety title="⚠ IN and [[FULLY WITHIN]] Are Not the Same Thing" %}}
-Mission 14's bonus only needs a cone **IN** the zone — any part of it poking into the interior counts.
+{{% safety title="⚠ [[IN]] and [[FULLY WITHIN]] Are Not the Same Thing" %}}
+Mission 14's bonus only needs a cone **[[IN]]** the zone — any part of it poking into the interior counts.
 
-Mission 18 needs the cones **FULLY WITHIN** — every single part inside, nothing touching or crossing the [[BOUNDARY|boundary]].
+Mission 18 needs the cones **[[FULLY WITHIN]]** — every single part inside, nothing touching or crossing the boundary.
 
 A cone half over the line scores Mission 14 and *nothing* from Mission 18. This is exactly why you need the sensor: it tells you where the boundary actually is.
 {{% /safety %}}
 
 {{< score-examples >}}
 scores:
-  - "Botguy and one cone FULLY WITHIN the zone."
-  - "Botguy and both cones FULLY WITHIN the zone."
+  - "Botguy and one cone [[FULLY WITHIN]] the zone."
+  - "Botguy and both cones [[FULLY WITHIN]] the zone."
   - "Botguy and the cones do not have to touch each other."
 does_not_score:
   - "A cone is [[IN THE ZONE]] but Botguy is not."
@@ -382,11 +382,11 @@ Every part of this is final position, so nothing may drift out before the match 
 
 {{< checklist >}}
 - key: p3_m18_botguy
-  label: "Botguy is IN the Loading Zone"
+  label: "Botguy is [[IN]] the Loading Zone"
 - key: p3_m18_cone1
-  label: "One cone is FULLY WITHIN — no part over the boundary"
+  label: "One cone is [[FULLY WITHIN]] — no part over the boundary"
 - key: p3_m18_cone2
-  label: "The second cone is FULLY WITHIN too"
+  label: "The second cone is [[FULLY WITHIN]] too"
 - key: p3_m18_nothing_moved
   label: "Nothing got knocked out while placing the last one"
 {{< /checklist >}}
@@ -469,17 +469,17 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 14 — Bonus (a cone IN the Loading Zone)"
+      - text: "Mission 14 — Bonus (a cone [[IN]] the Loading Zone)"
       - key: p4_s_m14
         aria: "Score M14"
       - text: 7
   - cells:
-      - text: "Mission 18 — Bonus (Botguy + one cone FULLY WITHIN)"
+      - text: "Mission 18 — Bonus (Botguy + one cone [[FULLY WITHIN]])"
       - key: p4_s_m18b
         aria: "Score M18 bonus"
       - text: 13
   - cells:
-      - text: "Mission 18 — Advanced (Botguy + both cones FULLY WITHIN)"
+      - text: "Mission 18 — Advanced (Botguy + both cones [[FULLY WITHIN]])"
       - key: p4_s_m18a
         aria: "Score M18 advanced"
       - text: 15
@@ -518,9 +518,9 @@ rows:
       - key: p4_light_port
         aria: "Light port"
 {{< /gridtable >}}
-### IN or FULLY WITHIN?
+### [[IN]] or [[FULLY WITHIN]]?
 
-Say whether each one satisfies IN, FULLY WITHIN, both, or neither.
+Say whether each one satisfies [[IN]], [[FULLY WITHIN]], both, or neither.
 
 {{< gridtable >}}
 columns:
@@ -582,7 +582,7 @@ rows:
 - key: p4_can_light
   label: "I can start a program with `wait_for_light()`"
 - key: p4_can_defs
-  label: "I can tell IN from FULLY WITHIN and place an object to satisfy the stricter one"
+  label: "I can tell [[IN]] from [[FULLY WITHIN]] and place an object to satisfy the stricter one"
 {{< /checklist >}}
 ### Think about it
 

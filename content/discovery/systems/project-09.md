@@ -104,17 +104,17 @@ rows:
       aria: "Round 2 wrong"
 {{< /gridtable >}}
 
-{{% callout variant="gold" title="You Just Invented a [[PROTOCOL]]" %}}
+{{% callout variant="gold" title="You Just Invented a Protocol" %}}
 Most groups end up numbering the pieces. That is a rule both ends agreed on before sending anything, and it is the only reason the picture came back together.
 
 Computers do exactly this, millions of times a second.
 {{% /callout %}}
 
-## Learn It — [[PACKET|PACKETs]], Rules, and Secrets
+## Learn It — Packets, Rules, and Secrets
 
 Big things do not travel well. So computers chop information into small pieces called [[PACKET|packets]], send them separately, and rebuild them at the far end.
 
-A [[PROTOCOL]] is the set of rules both ends agreed on beforehand — how to number the packets, what to do if one goes missing, how to know when the message is complete.
+A [[PROTOCOL|protocol]] is the set of rules both ends agreed on beforehand — how to number the packets, what to do if one goes missing, how to know when the message is complete.
 
 {{% callout variant="navy" title="Packets Do Not Travel Together" %}}
 Pieces of the same picture can take different routes and arrive out of order. They can even arrive after pieces of somebody else's picture.
@@ -138,11 +138,11 @@ If the browser says **Not secure** or shows a warning, **stop**. Ask a trusted a
 HTTPS protects the **connection**. It does **not** mean everything on the page is true or safe.
 {{% /callout %}}
 
-### [[ENCRYPTION]]
+### Encryption
 
-[[ENCRYPTION]] scrambles a message so that only the intended reader can unscramble it.
+[[ENCRYPTION|Encryption]] scrambles a message so that only the intended reader can unscramble it.
 
-The scrambling follows a rule, and that rule is the [[KEY]]. Whoever has the key can read the message. Whoever does not, cannot.
+The scrambling follows a rule, and that rule is the [[KEY|key]]. Whoever has the key can read the message. Whoever does not, cannot.
 
 Here is a simple key. Every letter shifts three places along the alphabet.
 

@@ -132,7 +132,7 @@ for (position = 200; position < 1800; position++)
 | Code / part | What it means |
 | --- | --- |
 | `position = 200` | Where the counting begins. Runs once, before anything else. |
-| `position < 1800` | Checked before every trip through the [[BLOCK]]. The moment it is false, the loop ends. |
+| `position < 1800` | Checked before every trip through the block. The moment it is false, the loop ends. |
 | `position++` | Runs at the end of every trip. `++` means add one — the shorthand you met in Project 9. |
 
 Two [[SEMICOLON|semicolons]] inside the parentheses, and none after the closing one. Same rule as `while` and `if` — the braces finish the [[STATEMENT|statement]].
@@ -173,7 +173,7 @@ All three in one place. Hard to forget the step when it is right there.
 
 | Use `while` when... | Use `for` when... |
 | --- | --- |
-| You do not know how many times — it depends on a [[SENSOR]]. | You know the count before you start. Four corners. Two poms. |
+| You do not know how many times — it depends on a [[SENSOR\|sensor]]. | You know the count before you start. Four corners. Two poms. |
 | There is more than one way out of the loop. | You are counting up or down by a steady amount. |
 | Nothing needs to change by a set step each time. | You want the whole plan readable on one line. |
 
@@ -230,7 +230,7 @@ columns:
   aria: "P11 pentagon"
 rows:
   - cells:
-      - text: "Project 11 — [[TICK|ticks]], written out"
+      - text: "Project 11 — ticks, written out"
       - key: p3_sq_p11
         aria: "P11 lines"
       - key: p3_sq_p11_penta
@@ -242,7 +242,7 @@ rows:
       - key: p3_sq_p12_penta
         aria: "P12 pentagon"
   - cells:
-      - text: "Now — a [[FOR LOOP|for loop]]"
+      - text: "Now — a for loop"
       - key: p3_sq_p17
         aria: "P17 lines"
       - key: p3_sq_p17_penta
@@ -276,7 +276,7 @@ The second pom is somewhere different, so your function needs an [[ARGUMENT|argu
 <!-- unresolved mission card: Missions 16 & 17 — Shelving and Racking -->
 
 {{% callout title="A Cube On a Cube Still Counts" variant="navy" %}}
-Read the scoring examples: *one cube ON TOP OF another cube that is ON TOP OF the Large Green Cube* scores. So the second cube can go on the pile rather than beside it — whichever your claw does more reliably.
+Read the scoring examples: *one cube [[ON TOP OF]] another cube that is [[ON TOP OF]] the Large Green Cube* scores. So the second cube can go on the pile rather than beside it — whichever your claw does more reliably.
 {{% /callout %}}
 
 {{% safety title="⚠ Final Position — Both Have to Survive" %}}
@@ -291,19 +291,19 @@ Delivering the second cube is where the first one gets knocked off. Approach the
 {{< /checklist >}}
 {{< ask key="p3_knocked_off" label="Knocked off" >}}Did the second delivery ever knock the first one off? What fixed it?{{< /ask >}}
 
-### Step 5 — Mission 7 Bonus — a second [[ENCLOSURE|enclosure9]] pts
+### Step 5 — Mission 7 Bonus — a second enclosure · 9 pts
 
 {{< mission-summary mission="7" >}}
 {{< /mission-summary >}}
 {{< score-examples >}}
 scores:
-  - "Two different enclosures, each with at least one Blue and one Orange Pom."
+  - "Two different [[ENCLOSURE|enclosures]], each with at least one Blue and one Orange Pom."
 does_not_score:
   - "A Blue Pom in one enclosure and an Orange Pom in a different one."
   - "Only one pom colour in any enclosure."
   - "**The same enclosure used for both Base and Bonus.**"
 {{< /score-examples >}}
-This is the same delivery as the base, aimed somewhere else — which is exactly the case for a function with an [[ARGUMENT|argument]] called twice, or a loop over two destinations.
+This is the same delivery as the base, aimed somewhere else — which is exactly the case for a function with an argument called twice, or a loop over two destinations.
 
 {{< checklist >}}
 - key: p3_m7
@@ -491,7 +491,7 @@ rows:
 - key: p4_can_parts
   label: "I can name the three parts of a `for` loop and say what each does"
 - key: p4_can_semis
-  label: "I put two [[SEMICOLON|semicolons]] inside the parentheses and none after them"
+  label: "I put two semicolons inside the parentheses and none after them"
 - key: p4_can_count
   label: "I can work out how many times a `for` loop will run"
 - key: p4_can_choose
@@ -501,7 +501,7 @@ rows:
 - key: p4_can_repeat_fn
   label: "I can repeat a whole function call with a loop"
 - key: p4_can_smooth
-  label: "I can move a [[SERVO|servo]] smoothly instead of snapping it"
+  label: "I can move a servo smoothly instead of snapping it"
 {{< /checklist >}}
 ### Every point on the field
 
@@ -589,7 +589,7 @@ There is nothing on that field you have not been taught how to reach.
 
 ### Think about it
 
-{{< ask key="p4_hardest_loop" label="Hardest loop" >}}You have written four kinds of loop [[CONDITION|condition]] now — a switch, a tick count, a brightness, and a plain count. Which was hardest to get right, and why that one?{{< /ask >}}
+{{< ask key="p4_hardest_loop" label="Hardest loop" >}}You have written four kinds of loop condition now — a switch, a tick count, a brightness, and a plain count. Which was hardest to get right, and why that one?{{< /ask >}}
 
 {{< ask key="p4_first_program" label="First program" >}}In Project 1 you ran a program somebody else wrote and did not understand a line of it. Go back and read that program now. What does it say to you?{{< /ask >}}
 

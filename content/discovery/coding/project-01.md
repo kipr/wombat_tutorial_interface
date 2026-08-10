@@ -63,14 +63,14 @@ Find each part below. Check the box when you have found it.
 - key: p1_find_usb
   label: "The **USB [[PORT|ports]]** — on the side"
 - key: p1_find_motor
-  label: "The **motor [[PORT|ports]]** — you will use these later"
+  label: "The **motor ports** — you will use these later"
 - key: p1_find_leds
   label: "The **red power light** and the **yellow light** next to it"
 {{< /checklist >}}
 {{% safety title="⚠ You Are In Charge of This Battery" %}}
 The battery can be ruined permanently if it is treated badly. These rules are not suggestions.
 
-- Use **only** the charger that came with your [[CONTROLLER|controller]].
+- Use **only** the charger that came with your controller.
 - Never leave a battery charging unattended.
 - Charge in a cool, open space — away from anything that can burn.
 - When you are finished for the day: **turn the Wombat off, then unplug the battery.**
@@ -92,7 +92,7 @@ Your Wombat creates its own small Wi-Fi network, like a tiny hotspot. Your compu
 
 ### Two numbers you will need
 
-Every device on a network has an [[IP ADDRESS]]. Think of it as a building address — it tells your browser *which machine* to talk to.
+Every device on a network has an [[IP ADDRESS|IP address]]. Think of it as a building address — it tells your browser *which machine* to talk to.
 
 But a single machine can run many different services at once. So you also need a [[PORT NUMBER|port number]] — think of it as *which door to knock on*. For the Wombat's programming tools, that door is always `8888`.
 
@@ -109,9 +109,9 @@ The Wombat makes its own network, and on that network its address is usually the
 
 ### What you will see
 
-Once you get there, you will be looking at the [[IDE]] — the place where you write code, check it, and send it to the robot.
+Once you get there, you will be looking at the [[IDE|IDE]] — the place where you write code, check it, and send it to the robot.
 
-{{< ask key="p2_ip_vs_port" label="Difference between IP address and port number" >}}In your own words: what is the difference between an [[IP ADDRESS]] and a [[PORT NUMBER|port number]]?{{< /ask >}}
+{{< ask key="p2_ip_vs_port" label="Difference between IP address and port number" >}}In your own words: what is the difference between an IP address and a port number?{{< /ask >}}
 
 ## Do It — Get Connected
 
@@ -146,7 +146,7 @@ This is a known problem on older Wombat software. The real fix is to update the 
 
 Record these values:
 
-- Wi-Fi [[IP ADDRESS]]
+- Wi-Fi IP address
 
 {{< rec >}}
 - key: p3_ssid
@@ -182,11 +182,11 @@ You will probably see something like *"no internet connection"* or *"connected w
 {{< /figrow >}}
 Open a web browser. In the address bar, type the full web address from your card — the IP address, a colon, then `8888`. Match the punctuation exactly.
 
-You should land on the KIPR Software Suite. Click **KISS [[IDE]]**.
+You should land on the KIPR Software Suite. Click **KISS IDE**.
 
 {{< checklist >}}
 - key: p3_step_ide
-  label: "I can see the KISS [[IDE]]"
+  label: "I can see the KISS IDE"
 {{< /checklist >}}
 ### Step 6 — Make your own folder
 
@@ -243,12 +243,12 @@ Find each button before you use it.
 | Button | What it does |
 | --- | --- |
 | **Menu** | Takes you back to the main menu of the Software Suite. |
-| **Save main.c** | Saves your code. A successful [[COMPILE]] also saves it for you. |
+| **Save main.c** | Saves your code. A successful compile also saves it for you. |
 | **File Menu** | Delete or download `main.c` to your computer. One way to back up your work. |
 | **Project Menu** | Delete or download the whole project. |
 | **Undo / Redo** | Undo your last keystrokes, or put them back. |
 | **Indent** | Cleans up the spacing so your code is readable. Use this often. |
-| **[[COMPILE]]** | Turns your code into something the robot can actually run. |
+| **Compile** | Turns your code into something the robot can actually run. |
 | **Run** | Runs the program that was compiled. |
 
 ### Step 9 — Compile it

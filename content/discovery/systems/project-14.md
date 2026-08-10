@@ -293,7 +293,7 @@ That is not cheating. It is using evidence you collected ten minutes ago.
 
 ### 3. Run it, and watch the clock
 
-Do the challenge. [[TICK|tick]] each step off as it finishes and write down the real time.
+Do the challenge. Tick each step off as it finishes and write down the real time.
 
 {{< gridtable >}}
 columns:

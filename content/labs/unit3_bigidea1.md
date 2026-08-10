@@ -304,6 +304,6 @@ Finished early? Try one or more of these.
 
 - Extension E called your program "compiled." Look up what compiling means, and contrast it with an **interpreted** language (like Python) that runs line-by-line instead. Which would you guess is faster for a robot that needs to react in real time, and why?
 - C is a **strongly typed** language — every [[VARIABLE|variable]] has a fixed type (double, int, char) that can't silently change. Some languages are more loosely typed, letting a variable hold different kinds of values over its life. What's one bug that strong typing might catch for you automatically that a loosely-typed language wouldn't?
-- Your program also runs [[ON TOP OF]] an operating system on the Wombat controller. Name one thing you'd guess the OS is doing while your program runs, besides running your program.
+- Your program also runs on top of an operating system on the Wombat controller. Name one thing you'd guess the OS is doing while your program runs, besides running your program.
 
 {{< answer key="ext_f" label="Extension F" >}}

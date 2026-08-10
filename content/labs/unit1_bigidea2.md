@@ -277,7 +277,7 @@ Once all your individual functions pass, add all the calls in `main()` and run t
 {{% callout title="What to watch for during integration" variant="gold" %}}
 Functions that worked alone sometimes fail when combined. Why? Because the robot's position at the end of one function is the starting position for the next.
 
-If function B fails after function A, the problem is usually function A — it left the robot in the wrong position. Fix function A before [[TOUCHING]] function B.
+If function B fails after function A, the problem is usually function A — it left the robot in the wrong position. Fix function A before touching function B.
 {{% /callout %}}
 
 ### Integration Trial Log

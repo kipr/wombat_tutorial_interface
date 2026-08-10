@@ -61,7 +61,7 @@ Think about walking across the room. Your brain does not send one signal to "you
 
 The Wombat works the same way. Two motors, two wheels, two separate commands.
 
-### Find the [[PORT|ports]]
+### Find the ports
 
 Look at the Wombat. There are four [[PORT|ports]] for motors. Two on the left, two on the right.
 
@@ -86,7 +86,7 @@ Right side
   alt: "The Wombat controller with its two drive motors."
 {{< /figrow >}}
 {{% callout title="Counting Starts at Zero" variant="navy" %}}
-The [[PORT|ports]] are numbered 0, 1, 2, 3 — not 1, 2, 3, 4. Computer scientists start counting at zero, and you will see this everywhere from now on. There is no port 4.
+The ports are numbered 0, 1, 2, 3 — not 1, 2, 3, 4. Computer scientists start counting at zero, and you will see this everywhere from now on. There is no port 4.
 {{% /callout %}}
 
 ### Find your motors and plug them in
@@ -166,12 +166,12 @@ motor(0, 50);
    port  power
 ```
 
-Each piece of information inside the parentheses is called an [[PARAMETER|parameter]]. `printf()` took one [[PARAMETER|parameter]]. `motor()` takes two, port and power, separated by a comma.
+Each piece of information inside the parentheses is called an [[PARAMETER|parameter]]. `printf()` took one parameter. `motor()` takes two, port and power, separated by a comma.
 
 An [[ARGUMENT|argument]] is the actual value you provide to a parameter when you call a function. For example, in `motor(0, 50)`, `0` and `50` are arguments.
 
 {{% callout title="Remember This From Project 2?" variant="gold" %}}
-"Too many [[ARGUMENT|arguments]] to [[FUNCTION|function]]" was one of the errors you triggered on purpose. Now you know what an argument is — and why `msleep(2,000)` looked like two of them.
+"Too many arguments to [[FUNCTION|function]]" was one of the errors you triggered on purpose. Now you know what an argument is — and why `msleep(2,000)` looked like two of them.
 {{% /callout %}}
 
 ### Power runs from −100 to 100
@@ -307,7 +307,7 @@ int main ()
  }
 ```
 
-[[COMPILE|compile]] and run it. Watch the wheels.
+[[COMPILE|Compile]] and run it. Watch the wheels.
 
 {{< checklist >}}
 - key: p3_step_first_run

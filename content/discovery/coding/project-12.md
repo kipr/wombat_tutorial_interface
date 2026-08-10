@@ -122,7 +122,7 @@ rows:
       - key: p1_len_drive
         aria: "Drive lines"
   - cells:
-      - text: "The [[BLOCK|block]] for a 90° turn"
+      - text: "The block for a 90° turn"
       - key: p1_cnt_turn
         aria: "Turn count"
       - key: p1_len_turn
@@ -138,17 +138,17 @@ rows:
 
 ## Learn It — Three Parts, In This Order
 
-Writing your own [[FUNCTION|function]] is like adding a word to a dictionary. You need the word listed, you need its meaning written down, and then you can use it in a sentence.
+Writing your own function is like adding a word to a dictionary. You need the word listed, you need its meaning written down, and then you can use it in a sentence.
 
 | Code / part | What it means |
 | --- | --- |
-| 1 — [[PROTOTYPE]] | The [[PROTOTYPE]] goes on the line after `#include`, before `int main()`. It is the **word in the vocabulary list** — it tells the [[COMPILER]] this name exists. |
+| 1 — [[PROTOTYPE\|prototype]] | The prototype goes on the line after `#include`, before `int main()`. It is the **word in the vocabulary list** — it tells the [[COMPILER\|compiler]] this name exists. |
 | `2 — Definition` | Goes **after the last closing brace** of your program. This is the **definition of the word** — what the robot actually does. |
 | `3 — Call` | Inside `main`, where you would have typed all those lines. This is **using the word in a sentence**. |
 
-### What [[VOID|void]] means
+### What void means
 
-[[VOID|void]] means the function *does a job but hands nothing back*. `ao()` is like that — it stops the motors, it does not give you an answer.
+[[VOID|Void]] means the function *does a job but hands nothing back*. `ao()` is like that — it stops the motors, it does not give you an answer.
 
 You have seen the other kind too. `digital(0)` and `gmpc(0)` hand you a number. Yours will not, so yours say `void`.
 {.muted}
@@ -223,7 +223,7 @@ void drive_forward()       // 2 definition
 }
 ```
 
-{{% safety title="⚠ The [[PROTOTYPE|Prototype]] Gets a [[SEMICOLON|semicolon]]. The Definition Does Not." %}}
+{{% safety title="⚠ The Prototype Gets a Semicolon. The Definition Does Not." %}}
 `void drive_forward();` — [[SEMICOLON|semicolon]]. It is a [[STATEMENT|statement]] announcing the name.
 
 `void drive_forward()` followed by `{` — no semicolon. The braces do that job, exactly like `int main()`.
@@ -231,11 +231,11 @@ void drive_forward()       // 2 definition
 Putting a semicolon on the definition is the most common mistake in this project.
 {{% /safety %}}
 
-### [[ARGUMENT|Arguments]] — one function, many distances
+### Arguments — one function, many distances
 
 `drive_forward()` always drives 4000 ticks. That is fine until you need 2000.
 
-Put a [[VARIABLE|variable]] in the parentheses and you can decide the number every time you call it. That [[VARIABLE|variable]] is an **[[ARGUMENT|argument]]** — the same word you met back in Project 3.
+Put a [[VARIABLE|variable]] in the parentheses and you can decide the number every time you call it. That variable is an **[[ARGUMENT|argument]]** — the same word you met back in Project 3.
 
 ```c
 void drive_forward(int ticks);        // prototype says what it needs
@@ -303,7 +303,7 @@ Call it twice in `main`. The robot should drive the distance, then drive it agai
 
 ### Step 2 — Break the prototype on purpose
 
-Delete the prototype line. [[COMPILE|Compile]].
+Delete the prototype line. Compile.
 
 {{< short-answer key="p3_no_prototype_err" label="No prototype error" prompt="What did the error say?" >}}
 
@@ -422,7 +422,7 @@ Build the run out of the functions you just wrote. Your whole `main` should read
 
 {{< checklist >}}
 - key: p3_m15_base
-  label: "One blue pom is IN a basket and stays there"
+  label: "One blue pom is [[IN]] a basket and stays there"
 {{< /checklist >}}
 ### Step 8 — Mission 15 Bonus — do it again9 pts
 

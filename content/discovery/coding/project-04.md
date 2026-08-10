@@ -322,11 +322,11 @@ Add `ao();` then `msleep()` so the robot sits still in the zone. The mission say
 
 Now add the return trip. Same powers, both negative. Same drift correction — do not swap which wheel gets the smaller number.
 
-The robot must end **FULLY WITHIN** the starting box. Not [[TOUCHING]] the line. Not hanging over the edge. Every part inside.
+The robot must end **[[FULLY WITHIN]]** the starting box. Not [[TOUCHING]] the line. Not hanging over the edge. Every part inside.
 
 {{< checklist >}}
 - key: p3_step_back_in
-  label: "My robot returns FULLY WITHIN the starting box and stops"
+  label: "My robot returns [[FULLY WITHIN]] the starting box and stops"
 - key: p3_step_no_touch
   label: "No part of the robot touches or crosses the box line"
 {{< /checklist >}}
@@ -413,22 +413,22 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 1 — Base (stop IN THE ZONE)"
+      - text: "Mission 1 — Base (stop [[IN THE ZONE]])"
       - key: p4_m1_base
         aria: "Mission 1 base"
       - text: 1
   - cells:
-      - text: "Mission 1 — Bonus (return FULLY WITHIN)"
+      - text: "Mission 1 — Bonus (return [[FULLY WITHIN]])"
       - key: p4_m1_bonus
         aria: "Mission 1 bonus"
       - text: 1
   - cells:
-      - text: "Mission 10 — Base (stop IN THE ZONE)"
+      - text: "Mission 10 — Base (stop [[IN THE ZONE]])"
       - key: p4_m10_base
         aria: "Mission 10 base"
       - text: 1
   - cells:
-      - text: "Mission 10 — Bonus (return FULLY WITHIN)"
+      - text: "Mission 10 — Bonus (return [[FULLY WITHIN]])"
       - key: p4_m10_bonus
         aria: "Mission 10 bonus"
       - text: 1

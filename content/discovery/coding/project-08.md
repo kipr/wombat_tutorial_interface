@@ -50,13 +50,13 @@ meta:
 
 ## Try It — Be the Robot
 
-A claw is an [[EFFECTOR|effector]] — the part of the robot that does work on the world. In Project 6 your [[EFFECTOR|effector]] was the front of the robot, and it could only shove. A claw can hold.
+A claw is an [[EFFECTOR|effector]] — the part of the robot that does work on the world. In Project 6 your effector was the front of the robot, and it could only shove. A claw can hold.
 
 {{% callout title="Structure and Function" variant="navy" %}}
 A claw is **bad at pushing** and **great at grabbing.** The blade you used in Project 6 was the opposite. Neither one is better — they are shaped for different jobs, and the shape is what decides the job.
 {{% /callout %}}
 
-### Two [[SERVO|servos]], two jobs
+### Two servos, two jobs
 
 | Servo | Its job | Its two or three positions |
 | --- | --- | --- |
@@ -120,7 +120,7 @@ Grabbing is not one action. It is five or six small ones that only work in one o
 - src: servo/servo-positions.jpg
   alt: "Find the positions for up, down, horizontal, open and close."
 {{< /figrow >}}
-You already know every command you need. Nothing new gets introduced here — you just use two servos instead of one.
+You already know every command you need. Nothing new gets introduced here — you just use two [[SERVO|servos]] instead of one.
 
 ### Write down all five positions
 
@@ -316,8 +316,8 @@ Get the base first. Then work on letting go cleanly.
 
 {{< score-examples >}}
 scores:
-  - "One spilled cube is ON TOP OF another spilled cube."
-  - "A robot is supporting one or both cubes while the ON TOP OF relationship exists."
+  - "One spilled cube is [[ON TOP OF]] another spilled cube."
+  - "A robot is supporting one or both cubes while the [[ON TOP OF]] relationship exists."
   - "The stack exists and the lower cube is [[TOUCHING]] the black line."
 does_not_score:
   - "Two spilled cubes touching side-by-side."
@@ -349,15 +349,15 @@ Either order works for the base. Green on yellow, yellow on green — both score
 {{< /mission-summary >}}
 A different grip problem. Poms squash, so your closed position for a pom is not the same as for a cube.
 
-{{% callout title="IN Is Generous" %}}
-A pom only has to *partially extend into* the interior of the basket. It does not need to be sitting neatly at the bottom. But touching the outside of the basket, or resting on top of it, is not IN.
+{{% callout title="[[IN]] Is Generous" %}}
+A pom only has to *partially extend into* the interior of the basket. It does not need to be sitting neatly at the bottom. But touching the outside of the basket, or resting on top of it, is not [[IN]].
 {{% /callout %}}
 
 {{< short-answer key="p3_basket_plan" label="Basket plan" prompt="Which basket did you use, and which one are you saving for Mission 15?" >}}
 
 {{< checklist >}}
 - key: p3_m11_base
-  label: "An orange pom is IN a basket and stays there"
+  label: "An orange pom is [[IN]] a basket and stays there"
 {{< /checklist >}}
 ### Step 9 — Run the whole thing five times
 
@@ -506,7 +506,7 @@ columns:
   aria: "Arm port"
 rows:
   - cells:
-      - text: "Arm servo [[PORT|port]]"
+      - text: "Arm servo port"
       - key: p4_arm_port
         aria: "Arm port"
   - cells:
@@ -601,7 +601,7 @@ rows:
 
 ### Next
 
-You are carrying seven numbers around in [[COMMENT|comments]], retyping them everywhere, and one rebuild would break all of it.
+You are carrying seven numbers around in comments, retyping them everywhere, and one rebuild would break all of it.
 
 In **Project 9 — Names for Your Numbers**, those comments become real. You give each number a name once, and the whole program starts using it.
 

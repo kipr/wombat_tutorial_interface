@@ -96,7 +96,7 @@ Right now every improvement you make lives in exactly one project, and the other
 
 {{< ask key="p1_team_sharing" label="Team sharing" >}}Your team has four people, each working on a different mission in a different project. One of them finds a much better turn. How does that reach everyone else?{{< /ask >}}
 
-## Learn It — Your Own [[HEADER FILE|header file]]
+## Learn It — Your Own header file
 
 A [[LIBRARY|library]] is a collection of functions kept in a separate file that any program can include.
 
@@ -106,7 +106,7 @@ You have been using one since Project 2. It is the very first line of every prog
 #include <kipr/wombat.h>
 ```
 
-That is the KIPR [[LIBRARY|library]]. You cannot change it — but you can make your own beside it.
+That is the KIPR library. You cannot change it — but you can make your own beside it.
 
 ### Two kinds of include
 
@@ -118,9 +118,9 @@ That is the KIPR [[LIBRARY|library]]. You cannot change it — but you can make 
 Get the brackets wrong and the [[COMPILER|compiler]] goes looking in the wrong place. It is a small detail that causes a confusing error.
 {.muted}
 
-### What goes in your [[HEADER FILE|header file]]
+### What goes in your header file
 
-Everything. Your [[PROTOTYPE|prototypes]] and your definitions, all in the one `.h` file.
+Your [[HEADER FILE|header file]] holds everything. Your [[PROTOTYPE|prototypes]] and your definitions, all in the one `.h` file.
 
 {{% callout title="Include the KIPR Library Inside Your Library" variant="gold" %}}
 Your functions call `motor()`, `msleep()`, `analog()`. Those come from KIPR — so your `.h` file needs its own `#include <kipr/wombat.h>` at the top.
@@ -177,7 +177,7 @@ Look at what `main.c` became. Two includes and a list of what the robot does. No
 ### Making one
 
 - On the KIPR Software Suite home screen, click **User Preferences** and switch on the advanced interface. Without this you will not see the file options.
-- In the KISS [[IDE]], select your user folder.
+- In the KISS [[IDE|IDE]], select your user folder.
 - Under **Include File**, click **+ Add File**.
 - Name it — something short and yours, like your team name.
 - Click **Create**.
@@ -186,12 +186,12 @@ Include files are `.h` files. You may also see an option for source files, which
 {.muted}
 
 {{% safety title="⚠ Save. Every Time." %}}
-Editing a `.h` file and forgetting to save it is the number one reason a library "does not work." Your changes are sitting in the editor and the [[COMPILER|compiler]] never saw them.
+Editing a `.h` file and forgetting to save it is the number one reason a library "does not work." Your changes are sitting in the editor and the compiler never saw them.
 
 Save the `.h`, then [[COMPILE|compile]].
 {{% /safety %}}
 
-### When it will not [[COMPILE|compile]]
+### When it will not compile
 
 | Check this | In which file |
 | --- | --- |
@@ -199,7 +199,7 @@ Save the `.h`, then [[COMPILE|compile]].
 | Did I include my own library, with quotation marks? | `main.c` |
 | Does the name in the include exactly match the file name? | `main.c` |
 | Did I save the `.h` file after my last edit? | My `.h` |
-| Is every function's [[PROTOTYPE]] above its definition? | My `.h` |
+| Is every function's prototype above its definition? | My `.h` |
 
 ## Do It — Move In
 
@@ -209,7 +209,7 @@ Software Suite home screen → **User Preferences** → switch on the advanced i
 
 {{< checklist >}}
 - key: p3_prefs
-  label: "I can see the Include File option in the KISS [[IDE]]"
+  label: "I can see the Include File option in the KISS IDE"
 {{< /checklist >}}
 ### Step 2 — Create your library file
 
@@ -373,7 +373,7 @@ To use your library in a new project, add it under **Include File** and choose *
 
 ### Step 7 — Fix it once, watch it spread
 
-Change something in your library — sharpen the turn, adjust the [[OVERSHOOT|overshoot]]. Save. Then run **two different projects** that both include it.
+Change something in your library — sharpen the turn, adjust the overshoot. Save. Then run **two different projects** that both include it.
 
 {{< ask key="p3_spread" label="Change spread" >}}What happened in the project you did not touch?{{< /ask >}}
 
@@ -404,7 +404,7 @@ Then hand your library to another team and ask them to write a short program wit
 - key: p3_documented
   label: "Another team used my library without me explaining it"
 {{< /checklist >}}
-{{< ask key="p3_stuck_on" label="What they got stuck on" >}}What did they get stuck on? That is the thing your [[COMMENT|comments]] should have said.{{< /ask >}}
+{{< ask key="p3_stuck_on" label="What they got stuck on" >}}What did they get stuck on? That is the thing your comments should have said.{{< /ask >}}
 
 ### Step 9 — Back it up
 

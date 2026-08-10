@@ -35,7 +35,7 @@ meta:
   - term: "Strand Link"
     definition: "REQUIRED before Coding Project 7 — and everything after it"
   - term: "Before You Start"
-    definition: "**Your base demobot must already be built** — chassis, wheels, drive motors and [[CONTROLLER]]. This project adds to it."
+    definition: "**Your base demobot must already be built** — chassis, wheels, drive motors and [[CONTROLLER|controller]]. This project adds to it."
   - term: "What You Need"
     checklist:
       - key: need_1
@@ -73,7 +73,7 @@ meta:
   alt: "The completed servo demobot with arm and claw attached to the chassis"
   caption: "The finished servo demobot"
 {{< /figrow >}}
-Before you start, check you have two [[SERVO|SERVOs]], two [[SERVO]] brackets, and two 1×5 [[SERVO HORN]]s ready to go.
+Before you start, check you have two [[SERVO|servos]], two servo brackets, and two 1×5 servo horns ready to go.
 
 
 
@@ -109,7 +109,7 @@ rows:
 {{% callout variant="gold" title="Two Servos, Two Different Jobs" %}}
 One servo lifts the whole arm. The other opens and closes the claw. Neither can do the other's job.
 
-In Systems Project 6 you decided a blade's shape from its [[FUNCTION]]. Same rule here — the arm is shaped the way it is because of what it has to reach and hold.
+In Systems Project 6 you decided a blade's shape from its [[FUNCTION|function]]. Same rule here — the arm is shaped the way it is because of what it has to reach and hold.
 {{% /callout %}}
 
 ### Sort your parts first
@@ -129,9 +129,9 @@ Most of this build is bolting things together. Three details are not obvious, an
   alt: "Servo wires — check the colours before you push the plug in."
 {{< /figrow >}}
 
-A servo has a wire coming out of one end and a [[SPLINE]] — the toothed shaft that actually turns — on the top.
+A servo has a wire coming out of one end and a [[SPLINE|spline]] — the toothed shaft that actually turns — on the top.
 
-The build tells you **wire end first** and **[[SPLINE]] towards the front**. Fit it backwards and it bolts up fine, but your arm will swing the wrong way and the wire will be trapped where you cannot reach it.
+The build tells you **wire end first** and **spline towards the front**. Fit it backwards and it bolts up fine, but your arm will swing the wrong way and the wire will be trapped where you cannot reach it.
 
 ### 2. Where the horn starts
 
@@ -140,7 +140,7 @@ The build tells you **wire end first** and **[[SPLINE]] towards the front**. Fit
   alt: "Finding the middle of a servo’s travel before the horn goes on."
 {{< /figrow >}}
 
-The [[SERVO HORN]] is the arm that clips onto the spline. Here is the part people skip.
+The [[SERVO HORN|servo horn]] is the arm that clips onto the spline. Here is the part people skip.
 
 A servo does not turn forever. It has a start and an end, maybe half a circle apart. Whichever way the horn is pointing when you push it on is where that range begins.
 

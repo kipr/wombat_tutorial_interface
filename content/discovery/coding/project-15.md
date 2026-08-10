@@ -266,13 +266,13 @@ Straight lines are easy. Find a line on the field that bends and follow that.
 
 ### Step 4 — Follow, then stop for a reason
 
-Wrap the follower in a [[TICK|tick]] count so it travels a set distance and then hands over to whatever comes next. This is the pattern every mission below uses.
+Wrap the follower in a tick count so it travels a set distance and then hands over to whatever comes next. This is the pattern every mission below uses.
 
 Turn it into a [[FUNCTION|function]] while you are at it — `follow_line(int ticks)`.
 
 {{< checklist >}}
 - key: p3_follow_fn
-  label: "I have a `follow_line()` [[FUNCTION|function]] that stops after a set distance"
+  label: "I have a `follow_line()` function that stops after a set distance"
 {{< /checklist >}}
 ### Step 5 — Mission 16 — Freight Shelving9 pts
 
@@ -303,7 +303,7 @@ The Unstraight Cubes are the same three you stacked for Mission 13 back in Proje
 
 {{< checklist >}}
 - key: p3_m17
-  label: "An unstraight cube is ON TOP OF the Large Brown Cube and stays there"
+  label: "An unstraight cube is [[ON TOP OF]] the Large Brown Cube and stays there"
 {{< /checklist >}}
 ### Step 7 — Mission 7 — Hazard Containment11 pts
 
@@ -324,18 +324,18 @@ Two colours, one enclosure. Poms roll, so the second delivery is the one that kn
 - key: p3_m7
   label: "One blue and one orange pom are both [[FULLY WITHIN]] the same enclosure"
 {{< /checklist >}}
-### Step 8 — Mission 6 — [[PALLET|Pallet]] Builder22 pts
+### Step 8 — Mission 6 — Pallet Builder · 22 pts
 
 {{< mission-summary mission="6" >}}
 {{< /mission-summary >}}
 {{% callout title="The Arrangement Does Not Matter" variant="gold" %}}
-Four cubes flat on the pallet, a four-high tower, or anything in between — all of it scores, as long as every cube is part of one palletized load. Pick whatever your claw finds easiest.
+Four cubes flat on the [[PALLET|pallet]], a four-high tower, or anything in between — all of it scores, as long as every cube is part of one palletized load. Pick whatever your claw finds easiest.
 
 Better still: the cubes are **not required to stay on the pallet after the base is scored**. It is live judged, so once the judge has seen four cubes on the pallet, you can go on and move the pallet without worrying about a cube rolling off.
 {{% /callout %}}
 
 {{% safety title="⚠ Not [[TOUCHING]] Any Black Line" %}}
-The bonus is stricter than it looks. The pallet must be FULLY WITHIN the starting box *and* clear of every black line. Push it in too far or not far enough and you get nothing.
+The bonus is stricter than it looks. The pallet must be [[FULLY WITHIN]] the starting box *and* not [[TOUCHING]] any black line. Push it in too far or not far enough and you get nothing.
 {{% /safety %}}
 
 {{< ask key="p3_cube_plan" label="Cube plan" >}}These are the same four green and yellow cubes you used for Mission 3 in Projects 8 and 13. What is your plan — Mission 3's stacks or Mission 6's pallet?{{< /ask >}}
@@ -344,7 +344,7 @@ The bonus is stricter than it looks. The pallet must be FULLY WITHIN the startin
 - key: p3_m6_base
   label: "All four cubes are on one pallet"
 - key: p3_m6_bonus
-  label: "The pallet ends FULLY WITHIN a starting box, off every line"
+  label: "The pallet ends [[FULLY WITHIN]] a starting box, off every line"
 {{< /checklist >}}
 ### Step 9 — Run it five times
 

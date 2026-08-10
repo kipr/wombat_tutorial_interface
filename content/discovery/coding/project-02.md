@@ -82,20 +82,20 @@ Every C program you write on the Wombat starts from this same shape. It is calle
 
 | Code / part | What it means |
 | --- | --- |
-| `#include <kipr/wombat.h>` | Brings in the KIPR [[LIBRARY]] — a big collection of ready-made commands for driving motors, moving [[SERVO|SERVOs]], and reading [[SENSOR|SENSORs]]. Every program needs this line. Without it, the robot does not know what `printf` or `motor` mean. |
-| `int main ()` | Defines the `main` [[FUNCTION]]. When you press Run, the robot always starts here. Every program has exactly one `main`. |
-| `{` | Opens a [[BLOCK]]. Everything between this brace and its partner belongs to `main`. |
-| `printf("Hello World!\n");` | A programming [[STATEMENT]] — one action for the robot to carry out. This one prints text to the Wombat's screen. |
-| `return 0;` | Reports back to the [[CONTROLLER]] that the program finished. `0` means "no problems." This is always the last [[STATEMENT]] before the closing brace. |
-| `}` | Closes the [[BLOCK]]. The program stops here. |
+| `#include <kipr/wombat.h>` | Brings in the KIPR [[LIBRARY\|library]] — a big collection of ready-made commands for driving motors, moving [[SERVO\|servos]], and reading [[SENSOR\|sensors]]. Every program needs this line. Without it, the robot does not know what `printf` or `motor` mean. |
+| `int main ()` | Defines the `main` [[FUNCTION\|function]]. When you press Run, the robot always starts here. Every program has exactly one `main`. |
+| `{` | Opens a [[BLOCK\|block]]. Everything between this brace and its partner belongs to `main`. |
+| `printf("Hello World!\n");` | A programming [[STATEMENT\|statement]] — one action for the robot to carry out. This one prints text to the Wombat's screen. |
+| `return 0;` | Reports back to the [[CONTROLLER\|controller]] that the program finished. `0` means "no problems." This is always the last statement before the closing brace. |
+| `}` | Closes the block. The program stops here. |
 
-### [[SEMICOLON|Semicolons]] end [[STATEMENT|statements]]
+### Semicolons end statements
 
 Look at lines 5 and 6. Both end with a semicolon.
 
 A semicolon does the same job as the period at the end of an English sentence: it says *this thought is finished, move on.* Leave one out and the [[COMPILER|compiler]] runs two statements together, the way a sentence without a period becomes a run-on.
 
-Lines that open a new [[BLOCK|block]] — like `int main ()` — do **not** get a semicolon. The brace does that job instead.
+Lines that open a new block — like `int main ()` — do **not** get a semicolon. The brace does that job instead.
 {.muted}
 
 ### Order matters, and speed is not the point
@@ -106,22 +106,22 @@ It is fast. The Wombat's processor runs at 800 MHz, so it moves from one line to
 
 ### Colors are a hint
 
-The KISS [[IDE]] colors your code as you type. That coloring is a free error check — if something is the wrong color, you have made a mistake before you even [[COMPILE|compile]].
+The KISS [[IDE|IDE]] colors your code as you type. That coloring is a free error check — if something is the wrong color, you have made a mistake before you even [[COMPILE|compile]].
 
 | Color | What it is |
 | --- | --- |
-| Green | [[COMMENT|COMMENTs]] — the computer ignores these |
+| Green | [[COMMENT\|comments]] — the computer ignores these |
 | Bold blue | Keywords, like `int` and `return` |
-| Red | Text [[STRING|STRINGs]] — anything inside quotation marks |
+| Red | Text [[STRING\|strings]] — anything inside quotation marks |
 | Aqua | Numbers |
 
 {{% callout title="A Quick Trick" variant="gold" %}}
 If you open a quotation mark and forget to close it, everything after it turns red. Spotting that color spreading down the page is faster than reading an error message.
 {{% /callout %}}
 
-### [[COMMENT|Comments]]
+### Comments
 
-A [[COMMENT|comment]] starts with two slashes. The computer ignores everything after them on that line — comments are for people, not machines.
+A comment starts with two slashes. The computer ignores everything after them on that line — comments are for people, not machines.
 
 ```c
 #include <kipr/wombat.h>
@@ -142,20 +142,20 @@ Comments have three jobs, and you will use all three:
 
 ### Commands you already have
 
-These come with the KIPR [[LIBRARY|library]]. You do not have to write them. You will meet most of these in later projects — this list is here so you know they exist.
+These come with the KIPR library. You do not have to write them. You will meet most of these in later projects — this list is here so you know they exist.
 {.muted}
 
 | Command | What it does |
 | --- | --- |
 | `printf("text\n");` | Prints text to the Wombat's screen |
 | `msleep(milliseconds);` | Pauses the program for that many milliseconds |
-| `motor(port, power);` | Runs the motor in that [[PORT]] at that power level |
+| `motor(port, power);` | Runs the motor in that [[PORT\|port]] at that power level |
 | `ao();` | "All off" — stops every motor at once |
-| `enable_servos();` | Turns the [[SERVO]] [[PORT|PORTs]] on |
+| `enable_servos();` | Turns the servo ports on |
 | `set_servo_position(port, position);` | Moves the servo in that port to a position |
 | `disable_servos();` | Turns the servo ports off |
-| `digital(port);` | Reads a [[DIGITAL]] [[SENSOR]] |
-| `analog(port);` | Reads an [[ANALOG]] sensor |
+| `digital(port);` | Reads a [[DIGITAL\|digital]] sensor |
+| `analog(port);` | Reads an [[ANALOG\|analog]] sensor |
 
 ### Back to your guesses
 
@@ -203,7 +203,7 @@ Go to **Project Explorer**, pick your folder, click **+ Add Project**, and name 
 
 Write a program that prints `Hello World!` and then prints your own name on the next line.
 
-Plan it as [[PSEUDOCODE|pseudocode]] first:
+Plan it as pseudocode first:
 
 ```text
 // 1. Display "Hello World!" on the screen
@@ -261,7 +261,7 @@ Now put a two-second pause between your two `printf` lines. Compile and run.
 - key: p3_step_msleep
   label: "My name appeared two seconds after Hello World"
 {{< /checklist >}}
-### Step 5 — Turn your [[PSEUDOCODE|pseudocode]] into real comments
+### Step 5 — Turn your pseudocode into real comments
 
 Good programmers leave the plan in the finished program. Add a comment to the end of each line describing what it does, so your program reads like this:
 
@@ -318,9 +318,9 @@ rows:
         aria: "Letter O instead of zero error"
 {{< /gridtable >}}
 {{% callout title="Two Messages Worth Recognizing" %}}
-**"implicit declaration of [[FUNCTION|function]]"** almost always means you spelled a command wrong.
+**"implicit declaration of function"** almost always means you spelled a command wrong.
 
-**"too many [[ARGUMENT|arguments]] to [[FUNCTION|function]]"** means you gave a command more information than it wanted. `msleep` takes one number. Writing `2,000` looks like two things to the [[COMPILER|compiler]]: `2` and `000`. Never put commas in numbers in code.
+**"too many [[ARGUMENT|arguments]] to function"** means you gave a command more information than it wanted. `msleep` takes one number. Writing `2,000` looks like two things to the compiler: `2` and `000`. Never put commas in numbers in code.
 {{% /callout %}}
 
 {{< checklist >}}

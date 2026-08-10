@@ -81,7 +81,7 @@ There are four servo [[PORT|ports]], numbered **0 to 3**. Each one has three pin
 | `+ — red wire` | Power. |
 | `− — brown wire` | Ground. Remember it as: *the ground is down, and down is negative.* |
 
-Plug your servo into **[[PORT|port]] 0**, brown wire toward the minus side.
+Plug your servo into **port 0**, brown wire toward the minus side.
 
 {{< checklist >}}
 - key: p1_wired
@@ -129,7 +129,7 @@ The servo API accepts positions **0 to 2047** (about 180°). Classroom hardware 
 | Code / part | What it means |
 | --- | --- |
 | `enable_servos();` | Turns on all four servo ports. Nothing works until you call this. |
-| `set_servo_position(0, 800);` | Sends the servo in port 0 to position 800. Two [[ARGUMENT|ARGUMENTs]] — port first, then position. |
+| `set_servo_position(0, 800);` | Sends the servo in port 0 to position 800. Two [[ARGUMENT\|arguments]] — port first, then position. |
 | `msleep(500);` | Gives the servo time to actually get there. Not optional. |
 | `disable_servos();` | Turns the servo ports off at the end of your program. |
 
@@ -167,7 +167,7 @@ Position numbers mean nothing on their own. `set_servo_position(0, 1746);` tells
 // down       = 1746
 ```
 
-Use the format **name = number**. There is a reason for that — in Project 9 those names stop being [[COMMENT|comments]] and become part of the program.
+Use the format **name = number**. There is a reason for that — in Project 9 those names stop being comments and become part of the program.
 {.muted}
 
 ### Where you are headed
@@ -284,7 +284,7 @@ Use *your* numbers, not these. [[COMPILE|Compile]] and run.
 {{< /checklist >}}
 ### Step 4 — Prove the msleep matters
 
-Delete all three `msleep()` lines. [[COMPILE|Compile]]. Run. Watch closely.
+Delete all three `msleep()` lines. Compile. Run. Watch closely.
 
 {{< ask key="p3_no_msleep" label="Arm without msleep" >}}What did the arm do?{{< /ask >}}
 
@@ -327,8 +327,8 @@ Onto the field. New project called `Botguy`.
 
 Botguy is inside the enclosure. Your robot has to reach in and make contact — direct contact, arm to Botguy.
 
-{{% callout title="TOUCHING Means Direct Contact" variant="navy" %}}
-Two objects are TOUCHING when they are in direct physical contact. Contact through something else — a cube, a wall, another field element — does not count. Your arm has to reach Botguy himself.
+{{% callout title="[[TOUCHING]] Means Direct Contact" variant="navy" %}}
+Two objects are [[TOUCHING]] when they are in direct physical contact. Contact through something else — a cube, a wall, another field element — does not count. Your arm has to reach Botguy himself.
 {{% /callout %}}
 
 {{< gridtable >}}
@@ -413,7 +413,7 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 9 — Base (robot TOUCHING Botguy)"
+      - text: "Mission 9 — Base (robot [[TOUCHING]] Botguy)"
       - key: p4_s_m9
         aria: "Score M9"
       - text: 7

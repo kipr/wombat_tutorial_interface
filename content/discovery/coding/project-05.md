@@ -151,7 +151,7 @@ Everything else in this project is those two sentences applied on purpose.
 
 ### The three shapes
 
-**[[RADIUS TURN|radius turn]]**
+**Radius turn**
 
 [[RADIUS TURN|radius turn]]
 
@@ -164,7 +164,7 @@ motor(0, 50);
 
 motor(3, 25);
 
-**[[ONE-WHEEL TURN|one-wheel turn]]**
+**One-wheel turn**
 
 [[ONE-WHEEL TURN|one-wheel turn]]
 
@@ -177,7 +177,7 @@ motor(0, 50);
 
 motor(3, 0);
 
-**[[ZERO RADIUS TURN|zero radius turn]]**
+**Zero radius turn**
 
 [[ZERO RADIUS TURN|zero radius turn]]
 
@@ -199,7 +199,7 @@ motor(3, -50);
 {{% /callout %}}
 
 {{% callout title="Friction Matters More Than You Think" %}}
-Two moving wheels fight friction better than one moving wheel does. A [[ONE-WHEEL TURN|one-wheel turn]] asks a stopped wheel to skid sideways, so it is the least repeatable of the three. If a turn will not come out the same twice, try the same turn as zero radius instead.
+Two moving wheels fight friction better than one moving wheel does. A one-wheel turn asks a stopped wheel to skid sideways, so it is the least repeatable of the three. If a turn will not come out the same twice, try the same turn as zero radius instead.
 {{% /callout %}}
 
 ### Where you are headed
@@ -337,7 +337,7 @@ rows:
         aria: "Angle result 5"
 {{< /gridtable >}}
 {{% callout title="Test One Step at a Time" variant="gold" %}}
-Get the turn right on its own before you attach it to anything else. [[DEBUGGING|Debugging]] one command is easy. [[DEBUGGING|Debugging]] a whole run to find out which command was wrong is not.
+Get the turn right on its own before you attach it to anything else. [[DEBUGGING|Debugging]] one command is easy. Debugging a whole run to find out which command was wrong is not.
 {{% /callout %}}
 
 ### Step 5 — Prove it with a square
@@ -464,11 +464,11 @@ columns:
   aria: "Spin left power"
 rows:
   - cells:
-      - text: "[[ZERO RADIUS TURN|zero radius turn]] — left power"
+      - text: "zero radius turn — left power"
       - key: p4_spin_l
         aria: "Spin left power"
   - cells:
-      - text: "Zero [[RADIUS TURN|radius turn]] — right power"
+      - text: "Zero radius turn — right power"
       - key: p4_spin_r
         aria: "Spin right power"
   - cells:

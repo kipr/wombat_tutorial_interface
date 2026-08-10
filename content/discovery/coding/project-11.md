@@ -84,9 +84,9 @@ rows:
 Since Project 3, your motors have been keeping track of exactly how far they turned. You just had no way to ask them.
 {{% /callout %}}
 
-### Find your [[TICK|ticks]] per inch
+### Find your ticks per inch
 
-[[TICK|ticks]] are the motor's own unit. To use them you need to know how many make an inch on *your* robot.
+[[TICK|Ticks]] are the motor's own unit. To use them you need to know how many make an inch on *your* robot.
 
 - Put the robot on the floor and mark where the front edge sits.
 - Clear the counter on the Motors screen.
@@ -133,7 +133,7 @@ Use 24 inches, not 3. A small error in a short push turns into a big error per i
 
 ## Learn It — A Number Instead of a Switch
 
-A [[TICK|tick]] is one small step of the motor shaft. There are about **1820 ticks in one full revolution** of the shaft.
+A tick is one small step of the motor shaft. There are about **1820 ticks in one full revolution** of the shaft.
 
 {{% callout title="Wheel Size Does Not Change the Ticks" variant="navy" %}}
 1820 ticks is one turn of the *motor shaft*, no matter what wheel you bolt to it. But a bigger wheel travels further in that one turn — which is exactly why your ticks-per-inch is yours and not somebody else's.
@@ -143,7 +143,7 @@ A [[TICK|tick]] is one small step of the motor shaft. There are about **1820 tic
 
 | Code / part | What it means |
 | --- | --- |
-| `clear_motor_position_counter(0);` | Sets the counter for [[PORT]] 0 back to zero. Short name: `cmpc(0)`. |
+| `clear_motor_position_counter(0);` | Sets the counter for port 0 back to zero. Short name: `cmpc(0)`. |
 | `get_motor_position_counter(0);` | Gives you the number of ticks that motor has turned. Short name: `gmpc(0)`. |
 
 Both names do the same thing. The short ones are quicker to type and you will see both in other people's code.
@@ -213,7 +213,7 @@ Ask for 4000. Get 4310. The [[OVERSHOOT|overshoot]] is **4310 − 4000 = 310**.
 
 So ask for **4000 − 310 = 3690** instead, and you will land on 4000.
 
-Every robot has its own [[OVERSHOOT|overshoot]]. Faster power means more of it.
+Every robot has its own overshoot. Faster power means more of it.
 {{% /callout %}}
 
 ### Going backward makes the number go down
@@ -497,7 +497,7 @@ Mission 18 is final position, so Botguy has to still be [[IN THE ZONE]] when the
 
 {{< checklist >}}
 - key: p3_m18_base
-  label: "Botguy is IN the Loading Zone and stays there"
+  label: "Botguy is [[IN]] the Loading Zone and stays there"
 {{< /checklist >}}
 ### Step 9 — Mission 8 — deliver the red cube20 pts
 
@@ -673,7 +673,7 @@ rows:
       - key: p4_ticks_dock
         aria: "Ticks to dock"
 {{< /gridtable >}}
-### Write the [[CONDITION|condition]]
+### Write the condition
 
 {{< gridtable >}}
 columns:

@@ -128,7 +128,7 @@ if (digital(bump) == 1)
 }
 ```
 
-The [[CONDITION|condition]] in the parentheses is written exactly the same way as a `while` [[CONDITION|condition]] — same symbols, same rules, same `==` trap.
+The [[CONDITION|condition]] in the parentheses is written exactly the same way as a `while` condition — same symbols, same rules, same `==` trap.
 
 ### The one difference that matters
 
@@ -273,7 +273,7 @@ else
 Nesting more than two deep gets hard to read fast. If you need three, that is usually a sign the code wants to be a function.
 {.muted}
 
-{{% safety title="⚠ No [[SEMICOLON|Semicolon]] After the Condition" %}}
+{{% safety title="⚠ No Semicolon After the Condition" %}}
 `if (digital(bump) == 1);` — that stray [[SEMICOLON|semicolon]] makes an empty `if`. The block after it then runs **every single time**, condition or not.
 
 Same rule as `while`, and it is just as hard to spot.
@@ -405,7 +405,7 @@ Two opposite stacks *are* two stacks. Score the Advanced Bonus and the 9-point B
 scores:
   - "Two stacks with opposite colour arrangements."
   - "The stacks do not need to be next to each other."
-  - "The shape of the stack does not matter — only the ON TOP OF relationships."
+  - "The shape of the stack does not matter — only the [[ON TOP OF]] relationships."
 does_not_score:
   - "Green on Green, or Yellow on Yellow."
   - "A single three-cube stack counted as two stacks."
@@ -626,7 +626,7 @@ rows:
 
 {{< checklist >}}
 - key: p4_can_if
-  label: "I can write an `if` [[STATEMENT|statement]] with a condition and a block"
+  label: "I can write an `if` statement with a condition and a block"
 - key: p4_can_ifwhile
   label: "I can explain the difference between `if` and `while`"
 - key: p4_can_else

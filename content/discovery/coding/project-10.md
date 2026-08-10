@@ -101,7 +101,7 @@ If that is how you sorted them, you found the split that programmers care about.
 {{< /figrow >}}
 A [[SENSOR|sensor]] turns something physical — a touch, a brightness, a distance — into a number your program can read.
 
-**[[DIGITAL|Digital]] — what you have today**
+**Digital — what you have today**
 
 A [[DIGITAL|digital]] sensor is a light switch. Two readings, nothing between:
 
@@ -111,7 +111,7 @@ A [[DIGITAL|digital]] sensor is a light switch. Two readings, nothing between:
 A touch sensor is a mechanical switch. Pressing it pushes two contacts together and completes a circuit.
 {.muted}
 
-**[[ANALOG|Analog]] — Project 14**
+**Analog — Project 14**
 
 An [[ANALOG|analog]] sensor gives a whole range of numbers, from `0` to `4095`.
 
@@ -170,13 +170,13 @@ The umbrella stays up *the whole time* the [[CONDITION|condition]] is true. The 
 
 | Code / part | What it means |
 | --- | --- |
-| while ([[CONDITION]]) | Ask the question. **No [[SEMICOLON]] here** — the braces do that job, same as `int main ()`. |
+| while (condition) | Ask the question. **No [[SEMICOLON\|semicolon]] here** — the braces do that job, same as `int main ()`. |
 | `{ ... }` | Everything inside runs, over and over, as long as the answer is true. |
 | `after the }` | The moment the answer is false, the robot jumps down here. |
 
 ### Reading a touch sensor
 
-`digital(0)` reads the [[DIGITAL|digital]] sensor plugged into [[PORT|port]] 0. It gives you a `0` or a `1`.
+`digital(0)` reads the digital sensor plugged into [[PORT|port]] 0. It gives you a `0` or a `1`.
 
 ```text
 while (digital(0) == 0)     // while NOT touched...
@@ -192,7 +192,7 @@ msleep(30);                       // touched — stop
 ```
 
 {{% callout title="Read It Out Loud" variant="gold" %}}
-*"While the sensor in [[PORT|port]] 0 reads zero — while nothing is [[TOUCHING]] it — keep both motors running. As soon as it reads one, stop."*
+*"While the sensor in port 0 reads zero — while nothing is [[TOUCHING]] it — keep both motors running. As soon as it reads one, stop."*
 
 Notice the loop condition is checking for **0**, not 1. You keep going while it is *not* pressed. Students get this backwards constantly.
 {{% /callout %}}
@@ -358,7 +358,7 @@ while (a_button() == 0)
 // now run the mission
 ```
 
-Add this to the top of a program. Now your robot waits for you instead of driving off the second it [[COMPILE|compiles]].
+Add this to the top of a program. Now your robot waits for you instead of driving off the second it compiles.
 
 {{< checklist >}}
 - key: p3_button_start
@@ -532,7 +532,7 @@ rows:
 - key: p4_can_read
   label: "I can read a live sensor value on the Wombat before I write any code"
 - key: p4_can_while
-  label: "I can write a `while` loop with the braces and no [[SEMICOLON|semicolon]] after the condition"
+  label: "I can write a `while` loop with the braces and no semicolon after the condition"
 - key: p4_can_equals
   label: "I know the difference between `=` and `==` and I check it every time"
 - key: p4_can_placement

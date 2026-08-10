@@ -34,7 +34,7 @@ meta:
   - term: "Strand Link"
     definition: "REQUIRED before Coding Project 6 — that project cannot be run without this blade"
   - term: "Before You Start"
-    definition: "Systems Project 5. You need the [[DESIGN PROCESS]], because you are about to run the whole thing."
+    definition: "Systems Project 5. You need the [[DESIGN PROCESS|design process]], because you are about to run the whole thing."
   - term: "What You Need"
     checklist:
       - key: need_1
@@ -119,12 +119,12 @@ rows:
 {{% callout variant="gold" title="Shape Decides What a Tool Can Do" %}}
 Nobody chose the spoon's curve at random. Somebody worked out what it had to do — hold liquid on the way to a mouth — and then built a shape that does exactly that.
 
-Engineers do this in one direction: **[[FUNCTION]] first, then structure.**
+Engineers do this in one direction: **[[FUNCTION|function]] first, then structure.**
 {{% /callout %}}
 
 ## Learn It — Blades Have Shapes for Reasons
 
-An [[EFFECTOR]] is the part of a robot that changes the world. A blade is an [[EFFECTOR]], and so is a claw, a spoon, and a bulldozer.
+An [[EFFECTOR|effector]] is the part of a robot that changes the world. A blade is an effector, and so is a claw, a spoon, and a bulldozer.
 
 Real bulldozers come with different blades. Each shape does one job well.
 
@@ -150,9 +150,9 @@ Seen from above. The wings are the whole difference.
 **What do we already know?** You have seen blades before. Use that.
 {{% /callout %}}
 
-### [[REQUIREMENT|REQUIREMENTs]] and [[CONSTRAINT|CONSTRAINTs]] are not the same
+### Requirements and Constraints are not the same
 
-A [[REQUIREMENT]] is what your design *must do*. A [[CONSTRAINT]] is a limit it must stay inside.
+A [[REQUIREMENT|requirement]] is what your design *must do*. A [[CONSTRAINT|constraint]] is a limit it must stay inside.
 
 {{< gridtable >}}
 columns:
@@ -205,7 +205,7 @@ columns:
   - head: "What that means for my blade"
 rows:
   -
-    - text: "Large red cube on its [[PALLET]]"
+    - text: "Large red cube on its [[PALLET|pallet]]"
     - key: p3_o1_does
       aria: "Cube behaviour"
     - key: p3_o1_means
@@ -395,12 +395,12 @@ Take it to the game field and try all four object types.
 columns:
   - head: "Object"
     width: 28%
-  - head: "Went OFF the line?"
+  - head: "Went [[OFF]] the line?"
     width: 24%
   - head: "What went wrong"
 rows:
   -
-    - text: "Large red cube + [[PALLET]]"
+    - text: "Large red cube + pallet"
     - key: p3_g1
       aria: "Game cube"
     - key: p3_g1_w
@@ -426,7 +426,7 @@ rows:
 {{< /gridtable >}}
 
 {{% callout variant="gold" title="A Cone Lying on Its Side Still Counts" %}}
-[[@14:base|Mission 14]] asks for the cones to be OFF the black line. It does not say they have to stay standing.
+[[@14:base|Mission 14]] asks for the cones to be [[OFF]] the black line. It does not say they have to stay standing.
 
 Check the mission wording yourself before you spend an afternoon designing around a rule that is not there.
 {{% /callout %}}
@@ -458,7 +458,7 @@ Your class can now start **Coding Project 6 — Bulldoze Run**. That project sco
 
 ## Score It — Checkpoint
 
-### [[FUNCTION]] first
+### Function first
 
 For each tool, name the job, then the shape that does it.
 
@@ -494,7 +494,7 @@ rows:
 
 {{< gridtable >}}
 columns:
-  - head: "[[STATEMENT]]"
+  - head: "Statement"
     width: 62%
   - head: "Which one"
 rows:

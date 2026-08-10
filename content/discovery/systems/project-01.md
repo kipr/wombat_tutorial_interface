@@ -32,7 +32,7 @@ meta:
   - term: "What You Are Doing"
     definition: "Taking inventory of the kit, learning what every part is for, and setting up a way to keep track of it all year."
   - term: "Strand Link"
-    definition: "Suggested before Coding Project 1 — you will need to find the [[CONTROLLER]] and the charger."
+    definition: "Suggested before Coding Project 1 — you will need to find the [[CONTROLLER|controller]] and the charger."
   - term: "Before You Start"
     definition: "Nothing. This is the first project in the Systems strand."
   - term: "What You Need"
@@ -118,15 +118,15 @@ Hold on to how you sorted. In a minute you will see how KIPR does it.
 
 ## Learn It — Why Engineers Count Things
 
-A [[CHECKLIST]] looks like the most boring tool in engineering. It is also one of the most useful.
+A [[CHECKLIST|Checklist]] looks like the most boring tool in engineering. It is also one of the most useful.
 
 {{% callout variant="navy" title="One Missing Screw" %}}
 Imagine it is competition day. Your robot is built, your program works, and one bracket is missing a screw. You cannot buy one in the hallway. You cannot borrow one mid-match.
 
-A [[CHECKLIST]] is how you find out on *day one* instead of on the day it matters.
+A checklist is how you find out on *day one* instead of on the day it matters.
 {{% /callout %}}
 
-[[CHECKLIST|CHECKLISTs]] do three jobs:
+Checklists do three jobs:
 
 - **Account for everything** — You know what you have, so you know what is missing while there is still time to replace it.
 
@@ -136,17 +136,17 @@ A [[CHECKLIST]] is how you find out on *day one* instead of on the day it matter
 
 ### The four families of parts
 
-- **The Brain** — The Wombat [[CONTROLLER]] and its charger. This is the computer that runs everything.
+- **The Brain** — The Wombat [[CONTROLLER|controller]] and its charger. This is the computer that runs everything.
 
 - **The Body** — Chassis, brackets, LEGO, screws and stand-offs. The parts that hold everything together.
 
-- **The Muscles** — Motors and [[SERVO|SERVOs]]. The parts that make things move.
+- **The Muscles** — Motors and [[SERVO|servos]]. The parts that make things move.
 
-- **The Senses** — Touch [[SENSOR|SENSORs]], light [[SENSOR]], rangefinder, tophat sensors. The parts that gather information.
+- **The Senses** — Touch [[SENSOR|sensors]], light sensor, rangefinder, tophat sensors. The parts that gather information.
 {{< ask key="p2_missed_family" label="Missed family" >}}Look back at your own piles. Which family did you miss completely, or split up?{{< /ask >}}
 
 {{% callout variant="red" title="⚠ Two Things That Look Alike and Are Not" %}}
-You have **motors** and you have **[[SERVO|SERVOs]]**. Both make things turn. They are not interchangeable, and plugging one into the wrong [[PORT]] will not work.
+You have **motors** and you have **servos**. Both make things turn. They are not interchangeable, and plugging one into the wrong [[PORT|port]] will not work.
 
 Learn to tell them apart now, on the table, rather than later with a robot half-built.
 {{% /callout %}}
@@ -278,7 +278,7 @@ rows:
     - key: p3_c_battery
       aria: "Battery"
   -
-    - text: "Motor [[PORT|PORTs]]"
+    - text: "Motor ports"
     - key: p3_c_motor
       aria: "Motor ports"
   -
@@ -286,11 +286,11 @@ rows:
     - key: p3_c_servo
       aria: "Servo ports"
   -
-    - text: "[[DIGITAL]] ports"
+    - text: "[[DIGITAL|Digital]] ports"
     - key: p3_c_digital
       aria: "Digital ports"
   -
-    - text: "[[ANALOG]] ports"
+    - text: "[[ANALOG|Analog]] ports"
     - key: p3_c_analog
       aria: "Analog ports"
   -
@@ -303,7 +303,7 @@ rows:
       aria: "Touchscreen"
 {{< /gridtable >}}
 
-{{% callout variant="navy" title="[[DIGITAL]] and [[ANALOG]] Have Separate Ports" %}}
+{{% callout variant="navy" title="Digital and Analog Have Separate Ports" %}}
 A touch sensor goes in a **digital** port because it answers yes or no. A light sensor goes in an **analog** port because it answers with a number.
 
 Plug one into the wrong kind and it will not read properly. You will meet both properly in the Coding strand.

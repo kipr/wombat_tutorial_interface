@@ -88,7 +88,7 @@ rows:
     - key: p1_right
       aria: "How many right"
   -
-    - text: "Which one did they read [[COMPLETELY]] differently?"
+    - text: "Which one did they read completely differently?"
     - key: p1_diff
       aria: "Read differently"
 {{< /gridtable >}}
@@ -107,7 +107,7 @@ So the person reading fills the gap themselves — with whatever mood they happe
 
 ## Learn It — Being Good at This
 
-[[DIGITAL CITIZENSHIP]] means behaving well in a place where you cannot see anybody's face.
+[[DIGITAL CITIZENSHIP|Digital citizenship]] means behaving well in a place where you cannot see anybody's face.
 
 It is harder than being decent in person, for four reasons.
 
@@ -131,9 +131,9 @@ rows:
     - text: "A message can be screenshotted and kept for years"
 {{< /gridtable >}}
 
-### [[CYBERBULLYING]]
+### Cyberbullying
 
-[[CYBERBULLYING]] is using messages, posts, photos, or group chats to hurt, frighten, or humiliate somebody.
+[[CYBERBULLYING|Cyberbullying]] is using messages, posts, photos, or group chats to hurt, frighten, or humiliate somebody.
 
 It is not the same as a disagreement, and it is not the same as one unkind remark that gets apologised for. It usually keeps going, and it usually has an audience.
 
@@ -151,7 +151,7 @@ Telling a trusted adult about someone being hurt is not the same as getting some
 
 Most online unkindness has three parts — the person doing it, the person it is aimed at, and everybody watching.
 
-That last group is the [[BYSTANDER]], and it is usually the biggest.
+That last group is the [[BYSTANDER|bystander]], and it is usually the biggest.
 
 {{% callout variant="red" title="⚠ Doing Nothing Is a Choice" %}}
 Laughing, sharing, adding an emoji, or just leaving it there all tell the person doing it that this is fine.
@@ -163,7 +163,7 @@ You do not have to fight anybody. Sending one private message to the person bein
 
 The same thing applies to how you build robots together.
 
-- Give proper [[ATTRIBUTION]] for code that is not yours. Somebody wrote it, and it is their [[INTELLECTUAL PROPERTY]].
+- Give proper [[ATTRIBUTION|attribution]] for code that is not yours. Somebody wrote it, and it is their [[INTELLECTUAL PROPERTY|intellectual property]].
 - Find the goal you share, and work toward that rather than toward being right.
 - Keep everybody safe — with tools, with the robot, and with what you say.
 
@@ -203,7 +203,7 @@ rows:
 
 ### 3. Where could this happen?
 
-List the kinds of place where people your age talk to each other online — apps, games, group chats, [[COMMENT]] sections, school systems.
+List the kinds of place where people your age talk to each other online — apps, games, group chats, comment sections, school systems.
 
 {{< gridtable >}}
 columns:
@@ -357,7 +357,7 @@ rows:
 
 ### 7. Credit where it is due
 
-Go through your [[LIBRARY]] file. Find anything you did not write yourself — a snippet from another team, something a teacher showed you, code from a website.
+Go through your [[LIBRARY|library]] file. Find anything you did not write yourself — a snippet from another team, something a teacher showed you, code from a website.
 
 {{< gridtable >}}
 columns:
@@ -390,7 +390,7 @@ rows:
       aria: "Credited 3"
 {{< /gridtable >}}
 
-Add a [[COMMENT]] naming the source above anything that was missing one.
+Add a [[COMMENT|comment]] naming the source above anything that was missing one.
 
 {{< checklist >}}
 - key: p3_credited
@@ -399,7 +399,7 @@ Add a [[COMMENT]] naming the source above anything that was missing one.
 
 ## Score It — Checkpoint
 
-Credit what you borrow in your [[LIBRARY]], and remember what a [[BYSTANDER]] can do.
+Credit what you borrow in your library, and remember what a bystander can do.
 
 
 ### What would help most?
@@ -448,7 +448,7 @@ rows:
 {{< /checklist >}}
 
 ### Think about it
-{{< ask key="p4_quickly" label="Sending quickly" >}}Your partner read one of your emojis [[COMPLETELY]] differently. If that can happen with a drawing you made on purpose, what does it say about sending things quickly?{{< /ask >}}
+{{< ask key="p4_quickly" label="Sending quickly" >}}Your partner read one of your emojis completely differently. If that can happen with a drawing you made on purpose, what does it say about sending things quickly?{{< /ask >}}
 {{< ask key="p4_hard" label="Why hard" >}}Most people watching unkindness online do nothing at all. It is not that they approve. So why is it so hard to be the one who says something?{{< /ask >}}
 {{< ask key="p4_keep" label="Keeping to rules" >}}Your team agreement only matters on the day somebody breaks it. What makes a team actually keep to rules it wrote itself?{{< /ask >}}
 

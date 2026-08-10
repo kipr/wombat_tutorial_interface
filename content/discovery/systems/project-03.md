@@ -121,7 +121,7 @@ In Round 2 you had to think of everything first. Once you handed over the paper,
 
 Machines can be sorted by one question. **Who is in charge while it runs?**
 
-#### [[REMOTE CONTROL]]
+#### Remote Control
 
 It does not move on its own. A person must control it.
 
@@ -129,7 +129,7 @@ Let go of the buttons and it stops.
 
 *Examples: A toy car. A drone with a pilot. A crane.*
 
-#### [[SEMI-AUTONOMOUS]]
+#### Semi-Autonomous
 
 A person controls some of it. The machine does the rest by itself.
 
@@ -137,7 +137,7 @@ You share the job.
 
 *Examples: A car that parks itself. A plane on autopilot.*
 
-#### [[AUTONOMOUS]]
+#### Autonomous
 
 It moves around on its own. No person is controlling it.
 
@@ -147,14 +147,14 @@ You start it and step back.
 
 ### Which one is your robot?
 
-Your Botball robot is [[AUTONOMOUS]].
+Your Botball robot is [[AUTONOMOUS|autonomous]].
 
 You may touch it before the match. You may not touch it during the match.
 
 That is the whole reason your code has to be so careful. Nobody can help it once it starts.
 
-{{% callout variant="navy" title="Being [[AUTONOMOUS]] Costs You Something" %}}
-A [[REMOTE CONTROL]] robot has a person watching. If a cube rolls away, the person just steers around it.
+{{% callout variant="navy" title="Being Autonomous Costs You Something" %}}
+A [[REMOTE CONTROL|remote control]] robot has a person watching. If a cube rolls away, the person just steers around it.
 
 An autonomous robot has nobody. If a cube rolls away, it drives right into the empty spot anyway.
 
@@ -167,7 +167,7 @@ Some machines are easy to sort. Many are not.
 
 A dishwasher runs by itself once you press start. But it never moves anywhere.
 
-A [[SEMI-AUTONOMOUS]] machine sits in the middle. You do part of the job. It does the rest.
+A [[SEMI-AUTONOMOUS|semi-autonomous]] machine sits in the middle. You do part of the job. It does the rest.
 
 *When two people sort the same machine differently, that is worth talking about. Both of you noticed something real.*
 
@@ -269,7 +269,7 @@ rows:
 
 ### 5. Three posters
 
-Your class needs three big sheets of paper. Head them **[[REMOTE CONTROL]]**, **[[SEMI-AUTONOMOUS]]**, and **Autonomous**.
+Your class needs three big sheets of paper. Head them **Remote Control**, **Semi-Autonomous**, and **Autonomous**.
 
 Think of machines. Write each one on a sticky note. Stick it on the poster where you think it goes.
 

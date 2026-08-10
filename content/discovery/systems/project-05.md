@@ -94,13 +94,13 @@ That is the right idea. But you learned it slowly and by accident. Engineers do 
 
 ## Learn It — Eight Steps, In Order
 
-The [[DESIGN PROCESS]] is how engineers turn a problem into something that works. It is not a straight line — you go back and around it many times.
+The [[DESIGN PROCESS|design process]] is how engineers turn a problem into something that works. It is not a straight line — you go back and around it many times.
 
 1. **Define the problem** — Say exactly what has to be solved. This is the most important step and the one most often rushed.
 
 2. **Do background research** — Find out what already exists. Somebody has probably solved something close to this.
 
-3. **Specify requirements** — List what your answer must do to count as working. A [[REQUIREMENT]] is a test it has to pass.
+3. **Specify requirements** — List what your answer must do to count as working. A [[REQUIREMENT|requirement]] is a test it has to pass.
 
 4. **Brainstorm solutions** — Get several different ideas out. Not one idea. Several.
 
@@ -108,7 +108,7 @@ The [[DESIGN PROCESS]] is how engineers turn a problem into something that works
 
 6. **Do development work** — Work the chosen idea up properly. Sketch it. Decide the details.
 
-7. **Build a [[PROTOTYPE:design]]** — Make a first version. A [[PROTOTYPE:design]] is meant to be tested, not admired.
+7. **Build a [[PROTOTYPE:design|prototype]]** — Make a first version. A prototype is meant to be tested, not admired.
 
 8. **Test and redesign** — Find out where it fails, change it, and go round again.
 
@@ -132,7 +132,7 @@ In the 1920s both back wheels were fixed to one bar, so the engine drove them at
 
 Build, test, find the weakness, change it, build again. Engineers expect to go round this several times.
 
-A [[PROTOTYPE:design]] that fails is not a wasted afternoon. It is the step that tells you what to fix.
+A prototype that fails is not a wasted afternoon. It is the step that tells you what to fix.
 
 {{% callout variant="gold" title="Draw That Loop" %}}
 In Systems Project 4 you learned to send an arrow back up to an earlier box. The design process is exactly that shape — test, and if it failed, go back to step 6.
@@ -403,7 +403,7 @@ Say whether each one is properly defined. If not, rewrite it so it is.
 
 {{< gridtable >}}
 columns:
-  - head: "[[STATEMENT]]"
+  - head: "Statement"
     width: 44%
   - head: "Defined?"
     width: 18%
@@ -457,4 +457,4 @@ rows:
 
 You have the process. Now you point it at a real part of your robot.
 
-In **Systems Project 6 — Structure and [[FUNCTION]]**, you design the blade your robot needs — and your class cannot attempt Coding Project 6 until you do.
+In **Systems Project 6 — Structure and [[FUNCTION|Function]]**, you design the blade your robot needs — and your class cannot attempt Coding Project 6 until you do.

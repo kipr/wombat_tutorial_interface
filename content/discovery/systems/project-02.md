@@ -92,7 +92,7 @@ rows:
     - key: p1_r5_why
       aria: "Welding arm why"
   -
-    - text: "A doll that talks when you pull a [[STRING]]"
+    - text: "A doll that talks when you pull a string"
     - key: p1_r6
       aria: "Doll yes no"
     - key: p1_r6_why
@@ -149,19 +149,19 @@ Every robot — yours, a factory arm, a Mars rover — has these six.
 
 #### Structure
 
-Holds everything together and holds the [[SENSOR|SENSORs]] in position. Your skeleton does this job.
+Holds everything together and holds the [[SENSOR|sensors]] in position. Your skeleton does this job.
 
-Joints usually have an [[ACTUATOR]] attached — the robot's equivalent of a muscle.
+Joints usually have an [[ACTUATOR|actuator]] attached — the robot's equivalent of a muscle.
 
 *Examples: Chassis, brackets, frame*
 
-#### [[EFFECTOR|EFFECTORs]]
+#### Effectors
 
-An [[EFFECTOR]] changes the [[STATE]] of the robot, or changes the state of the world.
+An [[EFFECTOR|effector]] changes the [[STATE|state]] of the robot, or changes the state of the world.
 
 *Examples: Motors, arms, legs, thrusters — and also buzzers, lights, and speakers*
 
-#### [[SENSOR|SENSORs]]
+#### Sensors
 
 How the robot finds things out instead of assuming.
 
@@ -175,9 +175,9 @@ Where the energy comes from, how it gets around, and how it is kept steady.
 
 *Examples: Batteries, solar panels, springs, hydraulics — and the wires and regulators that move and manage it*
 
-#### [[COMPUTATION]]
+#### Computation
 
-The part that reads the sensor values, works out what they mean, and decides which [[EFFECTOR]] command to send.
+The part that reads the sensor values, works out what they mean, and decides which effector command to send.
 
 *Examples: Your Wombat's processor*
 
@@ -187,7 +187,7 @@ What the robot knows. How to read its sensors, how to build commands, what has h
 
 *Examples: Your code*
 
-{{% callout variant="navy" title="[[COMPUTATION]] and Information Are Not the Same Thing" %}}
+{{% callout variant="navy" title="Computation and Information Are Not the Same Thing" %}}
 **Computation** is the machinery that thinks. **Information** is what it thinks about and what it thinks with.
 
 Same Wombat, different program, completely different robot. The hardware did not change — the information did.
@@ -197,10 +197,10 @@ Same Wombat, different program, completely different robot. The hardware did not
 
 - **External** — Reports on the **world around** the robot. A touch sensor pressing a wall. A light sensor reading the mat.
 
-- **[[PROPRIOCEPTIVE]]** — Reports on the **robot's own state**. [[PROPRIOCEPTIVE]] sensing is how you know you are sitting down with your eyes shut.
+- **[[PROPRIOCEPTIVE|Proprioceptive]]** — Reports on the **robot's own state**. Proprioceptive sensing is how you know you are sitting down with your eyes shut.
 
 {{% callout variant="gold" title="You Will Meet Both in the Coding Strand" %}}
-The touch sensor and the light sensor look outward. But the counter inside each motor, telling the robot how far its own wheels have turned, looks *inward* — that one is [[PROPRIOCEPTIVE]].
+The touch sensor and the light sensor look outward. But the counter inside each motor, telling the robot how far its own wheels have turned, looks *inward* — that one is proprioceptive.
 
 Same idea as knowing where your hand is without looking at it.
 {{% /callout %}}

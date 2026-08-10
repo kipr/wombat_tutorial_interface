@@ -86,12 +86,12 @@ Now compare your drawing with a partner's.
 {{% callout variant="gold" title="You Read It Without Being Taught" %}}
 Nobody explained the shapes. You worked out that the oval starts things, the rectangles are jobs to do, and the diamond asks a question.
 
-That is the whole point of a [[FLOWCHART]]. The shapes are the same everywhere in the world, so anyone can read your plan.
+That is the whole point of a [[FLOWCHART|flowchart]]. The shapes are the same everywhere in the world, so anyone can read your plan.
 {{% /callout %}}
 
 ## Learn It — Four Shapes and Some Arrows
 
-An [[ALGORITHM]] is a list of steps that solves a problem. A flowchart is a way to draw one.
+An [[ALGORITHM|algorithm]] is a list of steps that solves a problem. A flowchart is a way to draw one.
 
 Engineers draw the chart **before** writing any code. It is far easier to fix a picture than to fix a program.
 
@@ -106,7 +106,7 @@ These are not KIPR's shapes. Engineers all over the world use them. A flowchart 
 
 ### The diamond is the interesting one
 
-Every other shape has one arrow in and one arrow out. A [[DECISION]] has **one in and two out** — one for yes, one for no.
+Every other shape has one arrow in and one arrow out. A [[DECISION|decision]] has **one in and two out** — one for yes, one for no.
 
 Label both. An unlabelled diamond is a chart nobody can follow.
 
@@ -267,7 +267,7 @@ rows:
     - key: p4_s2
       aria: "Shape 2"
   -
-    - text: "Is the [[SENSOR]] pressed?"
+    - text: "Is the [[SENSOR|sensor]] pressed?"
     - key: p4_s3
       aria: "Shape 3"
   -

@@ -30,7 +30,7 @@ meta:
   - term: "Time"
     definition: "One class period"
   - term: "What You Are Doing"
-    definition: "Being the [[HARDWARE]] and the [[SOFTWARE]] in turn, adding a translator between them, then drawing the whole system your robot actually is."
+    definition: "Being the [[HARDWARE|hardware]] and the [[SOFTWARE|software]] in turn, adding a translator between them, then drawing the whole system your robot actually is."
   - term: "Strand Link"
     definition: "Do this before Coding Project 10"
   - term: "Before You Start"
@@ -114,7 +114,7 @@ That is exactly the deal between your program and your Wombat.
 
 ## Learn It — They Do Not Speak the Same Language
 
-[[HARDWARE]] is the body of a machine — the parts you can drop on your foot. [[SOFTWARE]] is the instructions you give it.
+[[HARDWARE|Hardware]] is the body of a machine — the parts you can drop on your foot. [[SOFTWARE|software]] is the instructions you give it.
 
 There is a problem. You write instructions in something close to English. The hardware only understands numbers.
 
@@ -126,7 +126,7 @@ There is a problem. You write instructions in something close to English. The ha
 The middle box is the part you have been using without noticing.
 
 {{% callout variant="navy" title="You Have Met the Translator Already" %}}
-Every time you press **[[COMPILE]]**, a translator turns what you typed into numbers the Wombat can follow.
+Every time you press **[[COMPILE|Compile]]**, a translator turns what you typed into numbers the Wombat can follow.
 
 That is why a spelling mistake stops everything. The translator cannot guess — it can only translate.
 {{% /callout %}}
@@ -142,21 +142,21 @@ columns:
   - head: "On your robot"
 rows:
   -
-    - text: "[[INPUT]]"
+    - text: "[[INPUT|Input]]"
     - text: "Information coming in"
-    - text: "A [[SENSOR]] reading, a button press"
+    - text: "A [[SENSOR|sensor]] reading, a button press"
   -
     - text: "Processing"
     - text: "Working out what to do"
     - text: "Your program deciding"
   -
-    - text: "[[OUTPUT]]"
+    - text: "[[OUTPUT|Output]]"
     - text: "Something happening in the world"
     - text: "A motor turning, a claw closing"
   -
     - text: "Storage"
     - text: "Keeping it for later"
-    - text: "Your saved program, your [[LIBRARY]] file"
+    - text: "Your saved program, your [[LIBRARY|library]] file"
 {{< /gridtable >}}
 
 *Every computer system you will ever meet is some arrangement of those four.*
@@ -198,7 +198,7 @@ Everyone should be the translator once. It is the hardest job and the most inter
 {{< short-answer key="p3_guess_right" label="Was the guess right" prompt="Was your guess right?" >}}
 
 {{% callout variant="red" title="⚠ A Real Translator Never Guesses" %}}
-You could guess because you are a person. The [[COMPILER]] on your Wombat cannot. If your instruction is unclear, it stops and shows you an error instead.
+You could guess because you are a person. The [[COMPILER|compiler]] on your Wombat cannot. If your instruction is unclear, it stops and shows you an error instead.
 {{% /callout %}}
 
 ### 3. Put the instructions away
@@ -321,7 +321,7 @@ rows:
 
 ## Score It — Checkpoint
 
-Remember: pressing [[COMPILE]] is what runs the translator.
+Remember: pressing Compile is what runs the translator.
 
 
 ### Hardware or software?
@@ -337,15 +337,15 @@ rows:
     - key: p4_h1
       aria: "H1"
   -
-    - text: "Your `drive_forward()` [[FUNCTION]]"
+    - text: "Your `drive_forward()` [[FUNCTION|function]]"
     - key: p4_h2
       aria: "H2"
   -
-    - text: "The touch [[SENSOR]]"
+    - text: "The touch sensor"
     - key: p4_h3
       aria: "H3"
   -
-    - text: "The [[LIBRARY]] file you wrote"
+    - text: "The library file you wrote"
     - key: p4_h4
       aria: "H4"
   -

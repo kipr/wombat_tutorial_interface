@@ -30,11 +30,11 @@ meta:
   - term: "Time"
     definition: "One class period"
   - term: "What You Are Doing"
-    definition: "Working out what counts as private, where it leaks out, how people try to trick you into handing it over, and how to build a [[PASSWORD]] worth having."
+    definition: "Working out what counts as private, where it leaks out, how people try to trick you into handing it over, and how to build a [[PASSWORD|password]] worth having."
   - term: "Strand Link"
     definition: "Any time"
   - term: "Before You Start"
-    definition: "Systems Project 9. You should know what [[ENCRYPTION]] is and why HTTPS matters."
+    definition: "Systems Project 9. You should know what [[ENCRYPTION|encryption]] is and why HTTPS matters."
   - term: "What You Need"
     checklist:
       - key: need_1
@@ -126,7 +126,7 @@ rows:
 
 ## Learn It — What to Keep, and How
 
-[[PERSONAL INFORMATION]] is anything that could be used to work out who you are, where you are, or how to reach you.
+[[PERSONAL INFORMATION|Personal information]] is anything that could be used to work out who you are, where you are, or how to reach you.
 Usually safe to share
 *Things that describe your taste, not your life*
 
@@ -147,9 +147,9 @@ Keep to yourself
 Something deleted has usually already been copied, saved, or screenshotted by somebody. The safest moment to protect information is *before* you post it.
 {{% /callout %}}
 
-### [[PHISHING]]
+### Phishing
 
-[[PHISHING]] is when a message pretends to be from someone you trust so that you hand over information without thinking.
+[[PHISHING|Phishing]] is when a message pretends to be from someone you trust so that you hand over information without thinking.
 
 It usually looks like an email or a message from a real company, a game, or even a friend. The signs are nearly always the same.
 
@@ -184,7 +184,7 @@ You will never get in trouble for checking with an adult first.
 
 ### Passwords
 
-A [[PASSWORD]] is the lock on everything else. A weak one takes seconds to guess.
+A [[PASSWORD|password]] is the lock on everything else. A weak one takes seconds to guess.
 
 **These are practice examples only. Never reuse them for a real account.**
 
@@ -384,13 +384,13 @@ Scenarios 1 and 2 both involve an adult asking for real information — and the 
 
 ### 6. Match the locks
 
-Every [[DIGITAL]] protection has a real-world twin. Match them up.
+Every [[DIGITAL|digital]] protection has a real-world twin. Match them up.
 
 {{< gridtable >}}
 columns:
   - head: "In the real world"
     width: 46%
-  - head: "The [[DIGITAL]] version is…"
+  - head: "The digital version is…"
 rows:
   -
     - text: "A key on your front door"
@@ -426,7 +426,7 @@ columns:
   - head: "My answer"
 rows:
   -
-    - text: "Where is my [[LIBRARY]] file backed up?"
+    - text: "Where is my [[LIBRARY|library]] file backed up?"
     - key: p3_backup
       aria: "Backup"
   -
