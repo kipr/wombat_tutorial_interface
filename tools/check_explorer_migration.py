@@ -9,6 +9,7 @@ import pathlib
 import re
 import sys
 from html.parser import HTMLParser
+from urllib.parse import urlparse
 
 
 EXPECTED_TIERS = {
@@ -44,7 +45,7 @@ RULE_DEFINITIONS = (
     "An object is OFF a line, tape, boundary, or zone edge when no portion is touching it.",
     "A robot is IN A ZONE when touching the specified zone and not touching any black line boundary or adjacent zone.",
     "Two or more conditions are SIMULTANEOUS if all are true at the same moment. No minimum duration is required unless a mission specifies one.",
-    "An object or robot is FULLY WITHIN an area when every part lies inside the interior vertical projection of that area's boundaries.",
+    "An object or robot is FULLY WITHIN an area when every part lies inside the interior vertical projection of that area’s boundaries.",
     "A Controlled Object is any game object being carried, lifted, supported, restrained, held, pushed, pulled, trapped, or otherwise actively manipulated by a robot. Brief incidental contact does not constitute control.",
     "A robot is in a LEGAL STARTING POSITION when fully within the vertical projection of any starting box and otherwise compliant with all starting requirements.",
 )
@@ -178,12 +179,31 @@ def main():
         expected_ids = tuple(tier[0] for tier in tiers)
         if found_ids != expected_ids:
             fail(errors, f"mission {number} tier order {found_ids}, expected {expected_ids}")
-        if len(document.all(class_name="figure-card")) != len(tiers):
-            fail(errors, f"mission {number} has the wrong figure count")
+        videos = document.all("video", class_name="explorer-mission-video-player")
+        if len(videos) != 1:
+            fail(errors, f"mission {number} must contain one explanatory video")
+        else:
+            video = videos[0]
+            for attribute in ("controls", "playsinline"):
+                if attribute not in video.attrs:
+                    fail(errors, f"mission {number} video is missing {attribute}")
+            if video.attrs.get("width") != "1280" or video.attrs.get("height") != "720":
+                fail(errors, f"mission {number} video dimensions are not 1280x720")
+            sources = video.all("source")
+            if len(sources) != 1:
+                fail(errors, f"mission {number} video must contain one source")
+            else:
+                source = sources[0]
+                resource_name = pathlib.PurePosixPath(
+                    urlparse(source.attrs.get("src", "")).path
+                ).name
+                if not resource_name or not (path.parent / resource_name).is_file():
+                    fail(errors, f"mission {number} video source does not resolve")
+                if not source.attrs.get("type", "").startswith("video/"):
+                    fail(errors, f"mission {number} source does not have a video MIME type")
+        if document.all(class_name="figure-card"):
+            fail(errors, f"mission {number} still contains field-diagram figures")
         for tier_id, points, difficulty, judging in tiers:
-            resource = path.parent / f"{tier_id}.jpg"
-            if not resource.is_file():
-                fail(errors, f"mission {number} is missing {tier_id}.jpg")
             tier = next((node for node in tier_nodes if node.attrs.get("id") == tier_id), None)
             score = tier.find(class_name="explorer-tier-score") if tier else None
             score_text = text(score)
@@ -195,8 +215,6 @@ def main():
             fail(errors, f"mission {number} maximum is not {maximum}")
         if markup.count('class="score-comparison"') != 1:
             fail(errors, f"mission {number} must contain one score comparison")
-        if 'id="defOverlay"' not in markup or 'id="zoom"' not in markup or "js/lab.js" not in markup:
-            fail(errors, f"mission {number} is missing a required interactive overlay/script")
         has_notice = bool(document.all(class_name="panel"))
         if has_notice != (number in {11, 14, 15}):
             fail(errors, f"mission {number} special-notice state is incorrect")
@@ -263,7 +281,7 @@ def main():
         for error in errors:
             print(f"ERROR {error}")
         return 1
-    print("Explorer migration validation passed: 20 pages, 18 missions, 39 diagrams.")
+    print("Explorer migration validation passed: 20 pages, 18 missions, 18 videos.")
     return 0
 
 

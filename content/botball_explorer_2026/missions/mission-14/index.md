@@ -10,18 +10,17 @@ mission_number: 14
 weight: 14
 skill: "Precision bulldozing and object delivery."
 notice: "⚠️ Exception: A Traffic Cone is not considered [[OFF]] the line if any portion of the Traffic Cone is touching the line."
+video: mission.mp4
 tiers:
   - id: base
     points: 3
     difficulty: 2
     judging: live
-    image: base.jpg
     description: "Both Traffic Cones satisfy the [[OFF]] definition."
   - id: bonus
     points: 7
     difficulty: 4
     judging: final
-    image: bonus.jpg
     description: "A Traffic Cone is [[IN]] the Loading Zone. The Base Mission must be satisfied to score the Bonus Mission."
 ---
 

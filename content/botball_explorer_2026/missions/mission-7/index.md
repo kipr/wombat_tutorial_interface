@@ -9,18 +9,17 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 7
 weight: 7
 skill: "Lifting poms and moving them into enclosures."
+video: mission.mp4
 tiers:
   - id: base
     points: 11
     difficulty: 6
     judging: final
-    image: base.jpg
     description: "One Blue Pom and one Orange Pom are [[FULLY WITHIN]] the same PVC enclosure."
   - id: bonus
     points: 9
     difficulty: 5
     judging: final
-    image: bonus.jpg
     description: "A second PVC enclosure contains at least one Blue Pom and at least one Orange Pom, each [[FULLY WITHIN]] the enclosure. The Base and Bonus must use different enclosures."
 ---
 

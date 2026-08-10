@@ -65,7 +65,7 @@ What they cover:
 | --- | --- |
 | Hugo build | Template evaluation, required content, references, resources, and shortcode validation. |
 | `check_syntax_highlighting.py` | Languages, Chroma output, copied code, `@@...@@` emphasis, and stylesheet publication. |
-| `check_explorer_migration.py` | Explorer hierarchy, 18 missions, tiers, diagrams, score data, rules, sidebars, IDs, and links. |
+| `check_explorer_migration.py` | Explorer hierarchy, 18 missions, tiers, videos, score data, rules, sidebars, IDs, and links. |
 | `check_discovery_migration.py` | Clean URLs, accessible fields, assets, persistence, and legacy Discovery contracts. |
 | `test_lab_persistence.js` | Checkbox/text restore, autosave, export payload, and print submission flow. |
 | `test_glossary_dialog.js` | Semantic activation, close behavior, Escape, and focus return. |
@@ -77,8 +77,10 @@ require a browser or npm dependencies.
 
 As audited on 2026-08-10, the Hugo build, syntax check, Explorer check, and both
 Node tests pass. The complete Discovery checker reaches all 31 project pages
-but reports glossary term/sense multiset differences on 30 pages. That is an
-open baseline/exception reconciliation issue, not a reason to skip the check.
+but reports 48 existing contract differences: glossary term/sense multisets on
+30 pages, saved controls on 11 pages, and image metadata/order on 7 pages. That
+is an open baseline/exception reconciliation issue, not a reason to skip the
+check.
 
 The checker's `fixture` mode belongs to the earlier Stage 1 infrastructure
 phase and now fails because the fixture bodies have been replaced. Use `full`
@@ -114,4 +116,3 @@ them.
 No checked-in CI workflow currently defines an additional build or deploy
 process. The commands above are the repository's executable verification
 contract.
-

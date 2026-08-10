@@ -9,18 +9,17 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 4
 weight: 4
 skill: "Object displacement, object manipulation, and simultaneous task completion."
+video: mission.mp4
 tiers:
   - id: base
     points: 3
     difficulty: 2
     judging: live
-    image: base.jpg
     description: "An Orange Pom satisfies the [[OFF]] definition."
   - id: bonus
     points: 5
     difficulty: 3
     judging: live
-    image: bonus.jpg
     description: "An Orange Pom and a Blue Pom simultaneously satisfy the [[OFF]] definition."
 ---
 

@@ -9,18 +9,17 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 16
 weight: 16
 skill: "Articulating a small cube onto a tall platform."
+video: mission.mp4
 tiers:
   - id: base
     points: 9
     difficulty: 5
     judging: final
-    image: base.jpg
     description: "At least one cube originating from the Spilled Cube area is [[ON TOP OF]] the Large Green Cube."
   - id: bonus
     points: 11
     difficulty: 6
     judging: final
-    image: bonus.jpg
     description: "Two or more cubes originating from the Spilled Cube area are [[ON TOP OF]] the Large Green Cube."
 ---
 

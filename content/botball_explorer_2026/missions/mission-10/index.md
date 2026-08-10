@@ -9,18 +9,17 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 10
 weight: 10
 skill: "Basic autonomous navigation and stopping at a specified location."
+video: mission.mp4
 tiers:
   - id: base
     points: 1
     difficulty: 1
     judging: live
-    image: base.jpg
     description: "A robot enters the zone adjacent to the right starting box (Starting Box B / Bravo) and comes to a clear and complete stop while [[IN THE ZONE]]."
   - id: bonus
     points: 1
     difficulty: 1
     judging: live
-    image: bonus.jpg
     description: "The same robot that completed the Base Mission subsequently returns [[FULLY WITHIN]] a starting box and comes to a clear and complete stop."
 ---
 

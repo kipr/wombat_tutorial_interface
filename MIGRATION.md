@@ -456,18 +456,15 @@ content/botball_explorer_2026/
 └── missions/
     ├── mission-1/
     │   ├── index.md
-    │   ├── base.jpg
-    │   └── bonus.jpg
+    │   └── mission.mp4
     └── mission-18/
         ├── index.md
-        ├── base.jpg
-        ├── bonus.jpg
-        └── advanced.jpg
+        └── mission.mp4
 ```
 
-Do not add `missions/_index.md`. The Explorer root is the only mission index, and each mission is a leaf bundle whose diagrams are page resources.
+Do not add `missions/_index.md`. The Explorer root is the only mission index, and each mission is a leaf bundle whose explanatory video is a page resource.
 
-Mission front matter is the source of truth for index cards, tier cards, diagrams, and scoring summaries:
+Mission front matter is the source of truth for index cards, tier cards, video, and scoring summaries:
 
 ```yaml
 title: "Mission 1 - Waypoint Alpha"
@@ -480,18 +477,17 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 1
 weight: 1
 skill: "Basic autonomous navigation and stopping at a specified location."
+video: mission.mp4
 tiers:
   - id: base
     points: 1
     difficulty: 1
     judging: live
-    image: base.jpg
     description: "A robot stops while [[IN THE ZONE]]."
   - id: bonus
     points: 1
     difficulty: 1
     judging: live
-    image: bonus.jpg
     description: "The robot returns [[FULLY WITHIN]] a starting box."
 ```
 
@@ -550,7 +546,7 @@ Levels must be integers from 1 through 6 and the end cannot precede the start. E
 | an unmatched shortcode emphasis marker | unmatched emphasis marker |
 | an unknown `[[TERM]]` | term is absent from glossary data |
 | an unknown mission tier | tier is absent from the resolved mission page |
-| a mission image missing from its leaf bundle | tier image is not a page resource |
+| a mission video missing from its leaf bundle | mission video is not a page resource |
 | an empty side navigation range | sidebar has no headings in its configured range |
 
 ## Page references and legacy paths

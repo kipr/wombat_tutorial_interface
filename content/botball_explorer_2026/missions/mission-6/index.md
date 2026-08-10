@@ -9,18 +9,17 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 6
 weight: 6
 skill: "Multi-object manipulation, spatial reasoning, cargo management, and palletized transport."
+video: mission.mp4
 tiers:
   - id: base
     points: 15
     difficulty: 8
     judging: live
-    image: base.jpg
     description: "Place all four Green and Yellow Cubes onto a single pallet. A cube is on the pallet if touching the upper surface or [[ON TOP OF]] another cube that is on the pallet."
   - id: bonus
     points: 7
     difficulty: 4
     judging: final
-    image: bonus.jpg
     description: "The pallet is [[FULLY WITHIN]] a starting box and is not touching any black line."
 ---
 

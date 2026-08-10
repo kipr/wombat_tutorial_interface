@@ -9,24 +9,22 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 3
 weight: 3
 skill: "Object manipulation, placement accuracy, and stacking."
+video: mission.mp4
 tiers:
   - id: base
     points: 7
     difficulty: 4
     judging: live
-    image: base.jpg
     description: "Create one stack consisting of a Green Cube [[ON TOP OF]] a Yellow Cube, or a Yellow Cube [[ON TOP OF]] a Green Cube."
   - id: bonus
     points: 9
     difficulty: 5
     judging: live
-    image: bonus.jpg
     description: "Create a second stack consisting of a Green Cube and a Yellow Cube."
   - id: advanced
     points: 13
     difficulty: 7
     judging: live
-    image: advanced.jpg
     description: "Create two stacks such that one contains a Green Cube [[ON TOP OF]] a Yellow Cube, and one contains a Yellow Cube [[ON TOP OF]] a Green Cube (opposite color arrangements)."
 ---
 

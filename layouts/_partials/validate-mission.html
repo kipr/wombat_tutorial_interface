@@ -11,6 +11,13 @@
 {{- if ne $bundle (printf "mission-%d" $number) -}}
   {{- errorf "%s: mission_number %d must live in a mission-%d bundle" $position $number $number -}}
 {{- end -}}
+{{- if not $page.Params.video }}{{ errorf "%s: mission requires video" $position }}{{ end -}}
+{{- $video := $page.Resources.GetMatch $page.Params.video -}}
+{{- if not $video -}}
+  {{- errorf "%s: mission video %q is not a page resource" $position $page.Params.video -}}
+{{- else if not (hasPrefix $video.MediaType.Type "video/") -}}
+  {{- errorf "%s: mission video %q has non-video media type %q" $position $page.Params.video $video.MediaType.Type -}}
+{{- end -}}
 {{- $tiers := $page.Params.tiers -}}
 {{- if or (not (reflect.IsSlice $tiers)) (lt (len $tiers) 2) (gt (len $tiers) 3) -}}
   {{- errorf "%s: tiers must contain base, bonus, and optionally advanced" $position -}}
@@ -36,9 +43,5 @@
     {{- errorf "%s: tier %q judging must be exactly live or final" $position $id -}}
   {{- end -}}
   {{- if not $tier.description }}{{ errorf "%s: tier %q requires description" $position $id }}{{ end -}}
-  {{- if not $tier.image }}{{ errorf "%s: tier %q requires image" $position $id }}{{ end -}}
-  {{- if not ($page.Resources.GetMatch $tier.image) -}}
-    {{- errorf "%s: tier %q image %q is not a page resource" $position $id $tier.image -}}
-  {{- end -}}
 {{- end -}}
 {{- return true -}}

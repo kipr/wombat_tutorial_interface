@@ -9,24 +9,22 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 13
 weight: 13
 skill: "Bulldozing and multi-object stacking."
+video: mission.mp4
 tiers:
   - id: base
     points: 1
     difficulty: 1
     judging: live
-    image: base.jpg
     description: "All three Unstraight Cubes satisfy the [[OFF]] definition (cubes are [[OFF]] the black line)."
   - id: bonus
     points: 7
     difficulty: 4
     judging: live
-    image: bonus.jpg
     description: "Two Unstraight Cubes form a scoring stack — one Unstraight Cube is [[ON TOP OF]] another."
   - id: advanced
     points: 13
     difficulty: 7
     judging: final
-    image: advanced.jpg
     description: "All three Unstraight Cubes form a scoring stack. All cubes must originate from the Unstraight Cube area."
 ---
 

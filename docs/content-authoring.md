@@ -49,11 +49,16 @@ lowercase Hugo page reference and must resolve.
 
 ### Explorer missions
 
-Each mission is a leaf bundle named `mission-N` with `index.md` and one image
-per tier. The required identity is `layout: mission`, `mission_number: N`, and
-`weight: N`. `tiers` must be ordered `base`, `bonus`, then optional `advanced`.
-Each tier supplies positive integer `points`, difficulty 1-8, judging `live` or
-`final`, a description, and an existing bundle image.
+Each mission is a leaf bundle named `mission-N` with `index.md` and one
+explanatory video. The required identity is `layout: mission`,
+`mission_number: N`, and `weight: N`; `video` names an existing video resource
+in the bundle. `tiers` must be ordered `base`, `bonus`, then optional
+`advanced`. Each tier supplies positive integer `points`, difficulty 1-8,
+judging `live` or `final`, and a description.
+
+H.264 video in an MP4 container is the preferred single-file delivery format.
+The mission renderer infers the source MIME type from the named page resource,
+so a future format change does not require layout markup changes.
 
 Every mission body uses `score-examples` followed by ordinary `## Judge Notes`.
 The mission front matter is canonical for mission cards and any
@@ -164,8 +169,8 @@ worksheet inside `.no-print`; use `noprint=true` only for genuinely
 interactive-only material.
 
 For `figrow`, write a path below `static/img/`, for example
-`discovery/systems/project-08/diagram.svg`. For a mission tier, put the file in
-the mission bundle and name it in tier front matter.
+`discovery/systems/project-08/diagram.svg`. Put a mission video in the mission
+bundle and name it with the mission's top-level `video` front-matter field.
 
 ## Author checklist
 

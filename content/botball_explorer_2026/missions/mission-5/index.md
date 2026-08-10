@@ -9,18 +9,17 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 5
 weight: 5
 skill: "Object manipulation, vertical placement, and end-effector design."
+video: mission.mp4
 tiers:
   - id: base
     points: 9
     difficulty: 5
     judging: live
-    image: base.jpg
     description: "A Small Red Cube is [[ON TOP OF]] the Large Red Cube."
   - id: bonus
     points: 11
     difficulty: 6
     judging: live
-    image: bonus.jpg
     description: "Both Small Red Cubes are [[ON TOP OF]] the Large Red Cube."
 ---
 

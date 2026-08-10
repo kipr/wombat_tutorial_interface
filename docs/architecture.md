@@ -71,7 +71,7 @@ JSON, and restored on reload by `static/js/lab.js`.
 The Explorer root is the only mission index. Its layout requires exactly 18
 mission pages numbered 1 through 18. Each mission is a leaf bundle under
 `content/botball_explorer_2026/missions/mission-N/`; front matter supplies the
-tier cards and images are page resources in the same bundle.
+tier cards, and one explanatory video is a page resource in the same bundle.
 
 The rules page uses its own layout plus the shared document sidebar. Official
 definition prose lives in `data/glossary.yaml`, marked `source: rules`, and is
@@ -114,8 +114,8 @@ worksheet set is `site-base`, `worksheet`, `syntax`, and `print`.
 Files under `static/` keep their site-relative paths. In particular,
 `figrow` prepends `img/` to its authored `src`. Discovery-owned figures use
 `static/img/discovery/<strand>/<project>/...`; shared kit and controller images
-stay under their shared `static/img/...` directories. Mission diagrams are the
-exception: they are colocated page resources in mission leaf bundles.
+stay under their shared `static/img/...` directories. Mission videos are the
+exception: each is a colocated page resource in its mission leaf bundle.
 
 `static/score.html` is still a standalone legacy application. Link to it with a
 literal URL rather than a Hugo page reference.

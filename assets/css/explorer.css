@@ -73,6 +73,11 @@ body.explorer{background:var(--bg);min-height:100vh}
 .explorer-tier-description{display:flex;align-items:center;padding:1rem 1.2rem;line-height:1.6}
 .explorer-tier-description > p{flex:1;min-width:0;margin:0}
 .explorer-tier-description > :first-child{margin-top:0}.explorer-tier-description > :last-child{margin-bottom:0}
+.explorer-mission-video{width:100%;max-width:1280px;margin:0 auto;background:#fff}
+.explorer-mission-video-player{display:block;width:100%;height:auto;max-width:1280px;max-height:720px;
+  aspect-ratio:16/9;background:#000}
+.explorer-mission-video figcaption{padding:.55rem .8rem;border:1px solid var(--line);border-top:0;
+  color:var(--grey);font-size:.9rem}
 .explorer-authored{margin-top:1.25rem}
 .explorer-authored > .score-comparison{margin-top:0}
 .explorer-authored > ul{padding-left:1.35rem}
@@ -136,6 +141,7 @@ body.explorer{background:var(--bg);min-height:100vh}
     break-inside:avoid}
   .explorer-mission-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .explorer-mission-nav{display:none}
+  .explorer-mission-video-player{display:none}
   .explorer-tier-score,.explorer-summary-max{background:#fff;color:#000}
   .explorer-summary-max span,.explorer-summary-max strong{color:#000}
 }

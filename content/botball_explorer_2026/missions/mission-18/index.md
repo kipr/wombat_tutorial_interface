@@ -9,24 +9,22 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 18
 weight: 18
 skill: "Precise driving and servo use for multi-object delivery."
+video: mission.mp4
 tiers:
   - id: base
     points: 11
     difficulty: 6
     judging: final
-    image: base.jpg
     description: "Botguy is [[IN]] the Loading Zone."
   - id: bonus
     points: 13
     difficulty: 7
     judging: final
-    image: bonus.jpg
     description: "Botguy is [[IN]] the Loading Zone AND at least one Traffic Cone is [[FULLY WITHIN]] the Loading Zone."
   - id: advanced
     points: 15
     difficulty: 8
     judging: final
-    image: advanced.jpg
     description: "Botguy is [[IN]] the Loading Zone AND both Traffic Cones are [[FULLY WITHIN]] the Loading Zone."
 ---
 

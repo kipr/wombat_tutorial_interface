@@ -10,18 +10,17 @@ mission_number: 15
 weight: 15
 skill: "Precise driving and servo movement for object delivery."
 notice: "⚠️ Basket Exclusivity: If your team attempts both Mission 11 and Mission 15, each mission must use a different basket."
+video: mission.mp4
 tiers:
   - id: base
     points: 9
     difficulty: 5
     judging: final
-    image: base.jpg
     description: "One Blue Pom is [[IN]] a basket."
   - id: bonus
     points: 9
     difficulty: 5
     judging: final
-    image: bonus.jpg
     description: "Two or more Blue Poms are [[IN]] the same basket."
 ---
 

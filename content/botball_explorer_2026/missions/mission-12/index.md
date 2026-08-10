@@ -9,18 +9,17 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 12
 weight: 12
 skill: "Precise driving and articulating cubes into a stack."
+video: mission.mp4
 tiers:
   - id: base
     points: 11
     difficulty: 6
     judging: live
-    image: base.jpg
     description: "Two spilled cubes form a scoring stack — one spilled cube is [[ON TOP OF]] another spilled cube. Both cubes must originate from the spilled cube area."
   - id: bonus
     points: 5
     difficulty: 3
     judging: final
-    image: bonus.jpg
     description: "The scoring stack remains intact and the lower cube of the stack is touching the black line."
 ---
 

@@ -9,18 +9,17 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 2
 weight: 2
 skill: "Object displacement and bulldozing."
+video: mission.mp4
 tiers:
   - id: base
     points: 1
     difficulty: 1
     judging: live
-    image: base.jpg
     description: "The Large Red Cube and its pallet are both [[OFF]] the black line."
   - id: bonus
     points: 3
     difficulty: 2
     judging: live
-    image: bonus.jpg
     description: "Both Small Red Cubes are [[OFF]] the black line. The Small Red Cubes are not required to remain stacked."
 ---
 

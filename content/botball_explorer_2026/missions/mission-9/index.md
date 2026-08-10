@@ -9,18 +9,17 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 9
 weight: 9
 skill: "Navigating to a known coordinate and extracting a high-mass object."
+video: mission.mp4
 tiers:
   - id: base
     points: 7
     difficulty: 4
     judging: live
-    image: base.jpg
     description: "A robot is [[TOUCHING]] Botguy."
   - id: bonus
     points: 9
     difficulty: 5
     judging: live
-    image: bonus.jpg
     description: "Botguy is [[COMPLETELY]] outside the enclosure AND is touching the warehouse floor."
 ---
 

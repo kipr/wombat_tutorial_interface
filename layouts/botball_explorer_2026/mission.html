@@ -2,7 +2,7 @@
 {{- $_ := partial "validate-mission.html" . -}}
 {{- $number := .Params.mission_number -}}
 {{- $maximum := 0 -}}
-{{- $figures := slice -}}
+{{- $video := .Resources.GetMatch .Params.video -}}
 <main class="explorer-mission">
   <header class="explorer-mission-header">
     <p class="explorer-eyebrow">2026 Fall Game - Mission {{ $number }} of 18</p>
@@ -14,10 +14,7 @@
     <div class="explorer-tier-list">
     {{- range .Params.tiers }}
       {{- $maximum = add $maximum .points -}}
-      {{- $resource := $.Resources.GetMatch .image -}}
       {{- $label := partial "mission-tier-title.html" (dict "id" .id "position" $.File.Path) -}}
-      {{- $alt := printf "Mission %d - %s field diagram" $number $label -}}
-      {{- $figures = $figures | append (dict "src" $resource.RelPermalink "alt" $alt) -}}
       <article class="explorer-tier explorer-tier-{{ .id }}" id="{{ .id }}">
         <div class="explorer-tier-score">
           <h3>{{ $label }}</h3>
@@ -30,8 +27,14 @@
     {{- end }}
     </div>
 
-    <h2>Field Diagrams</h2>
-    {{ partial "figure-grid.html" (dict "page" . "figures" $figures) }}
+    <h2>Mission Video</h2>
+    <figure class="explorer-mission-video">
+      <video class="explorer-mission-video-player" controls preload="metadata" playsinline width="1280" height="720" aria-label="Mission {{ $number }} explanatory video">
+        <source src="{{ $video.RelPermalink }}" type="{{ $video.MediaType.Type }}">
+        <a href="{{ $video.RelPermalink }}">Download the Mission {{ $number }} video.</a>
+      </video>
+      <figcaption>Mission {{ $number }} explanatory video</figcaption>
+    </figure>
 
     <div class="explorer-authored">{{ partial "termify.html" (dict "page" . "content" .Content) | safeHTML }}</div>
 

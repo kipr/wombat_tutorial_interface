@@ -9,18 +9,17 @@ styles: ["site-base", "hub", "explorer"]
 mission_number: 8
 weight: 8
 skill: "Lifting palletized cubes up onto a platform."
+video: mission.mp4
 tiers:
   - id: base
     points: 11
     difficulty: 6
     judging: final
-    image: base.jpg
     description: "The pallet with the Large Red Cube is [[ON TOP OF]] the Loading Dock."
   - id: bonus
     points: 9
     difficulty: 5
     judging: final
-    image: bonus.jpg
     description: "One or more Small Red Cubes are [[ON TOP OF]] the Large Red Cube while the pallet is on the Loading Dock."
 ---
 

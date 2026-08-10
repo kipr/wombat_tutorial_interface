@@ -113,7 +113,7 @@ remain live belong as named `senses` in `data/glossary.yaml`.
 | `migrate_discovery_coding.py` | Rewrite selected/all Coding project sources; source-mutating, so review carefully. |
 | `compare_render.py` | Normalize and compare a legacy page with one generated page. |
 | `check_discovery_migration.py` | Validate generated Discovery structure and, in full mode, the inventory contract. |
-| `check_explorer_migration.py` | Validate the canonical Explorer hierarchy, rules, missions, tiers, diagrams, and links. |
+| `check_explorer_migration.py` | Validate the canonical Explorer hierarchy, rules, missions, tiers, videos, and links. |
 | `check_syntax_highlighting.py` | Validate all generated code paths and teaching emphasis. |
 
 The former extracted mission data/script payload is intentionally absent.
