@@ -88,11 +88,11 @@ rows:
 Now compare your drawing with a partner's.
 {{< ask key="p1_compare" label="Compare paths" >}}Did you both draw the same path? If not, where did you differ?{{< /ask >}}
 
-{{% callout variant="gold" title="You Read It Without Being Taught" %}}
+{{< callout variant="gold" title="You Read It Without Being Taught" >}}
 Nobody explained the shapes. You worked out that the oval starts things, the rectangles are jobs to do, and the diamond asks a question.
 
 That is the whole point of a [[FLOWCHART|flowchart]]. The shapes are the same everywhere in the world, so anyone can read your plan.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Four Shapes and Some Arrows
 
@@ -105,9 +105,9 @@ Engineers draw the chart **before** writing any code. It is far easier to fix a 
   alt: "The four flowchart shapes: oval for start and stop, rectangle for an action, diamond for a decision, arrow for flow"
 {{< /figrow >}}
 
-{{% callout variant="navy" title="Everyone Uses the Same Shapes" %}}
+{{< callout variant="navy" title="Everyone Uses the Same Shapes" >}}
 These are not KIPR's shapes. Engineers all over the world use them. A flowchart drawn in Oklahoma can be read by someone in Japan who does not speak a word of English.
-{{% /callout %}}
+{{< /callout >}}
 
 ### The diamond is the interesting one
 
@@ -115,11 +115,11 @@ Every other shape has one arrow in and one arrow out. A [[DECISION|decision]] ha
 
 Label both. An unlabelled diamond is a chart nobody can follow.
 
-{{% callout variant="red" title="⚠ Arrows Can Go Back Up" %}}
+{{< callout variant="red" title="⚠ Arrows Can Go Back Up" >}}
 Look again at the chart in Try It. The "no" arrow goes back up to an earlier box.
 
 That is how a plan repeats itself without you drawing the same boxes four times.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Rules that keep a chart readable
 
@@ -212,9 +212,9 @@ Something like: *drive forward — is there a wall? — if yes turn, if no keep 
 Hand it over. Your partner draws the path twice — once as if the answer were yes, once as if it were no.
 {{< short-answer key="p3_two_paths" label="Two paths" prompt="Did they get two different paths?" >}}
 
-{{% callout variant="gold" title="If Both Paths Were the Same, the Decision Did Nothing" %}}
+{{< callout variant="gold" title="If Both Paths Were the Same, the Decision Did Nothing" >}}
 A diamond only earns its place when the two answers lead somewhere different. If they end up the same either way, you did not need to ask.
-{{% /callout %}}
+{{< /callout >}}
 
 ### 7. Chart a real mission
 
@@ -244,9 +244,9 @@ rows:
       aria: "What it checks"
 {{< /gridtable >}}
 
-{{% callout variant="navy" title="Keep This One" %}}
+{{< callout variant="navy" title="Keep This One" >}}
 In Coding Project 6 you will chain several missions into a single run. This chart is where that run starts.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p3_mission_chart

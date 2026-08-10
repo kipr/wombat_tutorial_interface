@@ -35,9 +35,9 @@ meta:
 
 The Long Run taught you that error piles up over a mission, and that square-ups and backward touches reset it back to zero. But here's a question those labs never asked: **how would the robot know it had drifted, if nobody ever wrote the number down?** A reset only helps if something is keeping track of what the robot currently believes about its own position. Today you build that something: a small array that holds your robot's **believed pose** — its x, y, and heading — and you update it honestly every time you get a real chance to check it against the truth.
 
-{{% callout title="The Big Idea of This Unit" %}}
+{{< callout title="The Big Idea of This Unit" >}}
 A system can't recognize failure it isn't tracking. Before a robot can debug itself, recover from a bad turn, or know its plan has gone wrong, it needs some internal record of where it thinks it is — a record it can compare against reality.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -49,9 +49,9 @@ A system can't recognize failure it isn't tracking. Before a robot can debug its
 
 ## Phase 1 — The Mission: Hazard Containment
 
-{{% callout title="The run" %}}
+{{< callout title="The run" >}}
 Collect **2 orange poms and 2 blue poms**. Deliver **1 orange + 1 blue** into one PVC enclosure (Base Mission), and **1 orange + 1 blue** into a *different* PVC enclosure (Bonus Mission). The two enclosures must not be the same one.
-{{% /callout %}}
+{{< /callout >}}
 
 ### What counts
 
@@ -139,9 +139,9 @@ rows:
     Back in Unit 4, `Turn(char dir, double degrees)` already returned `1` for success or `0` for an invalid direction character — but nothing in your code actually *used* that value. Today it matters: `Turn()` should only update `pose[POSE_R]` when the turn actually succeeds. A failed call shouldn't change what the robot believes about its own heading.
 {{< /concept >}}
 
-{{% resetbox title="Convention" %}}
+{{< resetbox title="Convention" >}}
 Turning **left** increases heading (`pose[POSE_R] += degrees`); turning **right** decreases it (`pose[POSE_R] -= degrees`). Heading 0° faces straight out of the starting box. Stay consistent with this the whole run.
-{{% /resetbox %}}
+{{< /resetbox >}}
 
 {{< code filename="yourname.h" >}}
 int Turn(char dir, double degrees) {
@@ -264,9 +264,9 @@ int main() {
 }
 {{< /code >}}
 
-{{% callout title="[[REQUIREMENT|Requirement]] check" variant="gold" %}}
+{{< callout title="[[REQUIREMENT|Requirement]] check" variant="gold" >}}
 2 orange + 2 blue poms delivered, split across **two different** PVC enclosures. `initPose` called once. At least **2 real resets** each paired with a `setX`/`setY` call. **5 total** `printPose()` calls. `Turn()` only updates `pose[POSE_R]` on success.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Phase 7 — Run It and Check the Belief Against Reality
 
@@ -290,9 +290,9 @@ Run the mission. Each time it prints a pose, pause and physically measure where 
 
 ## Phase 8 — Connect &amp; Reflect
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 A system can't catch its own failures unless it keeps track of what it believes about itself.
-{{% /callout %}}
+{{< /callout >}}
 
 Every intelligent system that operates reliably keeps some version of what you built today: a running record of its own believed state, updated honestly at moments of real evidence and left alone otherwise. A GPS-guided drone tracks believed position between satellite fixes. A robot vacuum tracks believed position between wall bumps. None of them are ever perfectly right — but because they keep the number written down, they can catch the moment it drifts too far, and that is the very first requirement for [[DEBUGGING|debugging]] a failure at all: you have to know what you expected before you can recognize that something went wrong.
 

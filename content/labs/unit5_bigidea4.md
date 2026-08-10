@@ -35,9 +35,9 @@ meta:
 
 Every lab so far has asked "did it work?" Today's question is different: "did it get *better*?" You can't answer that without a number. Today you'll time a real mission run, store repeated timing results the same way you stored pose data in Big Idea 1, and then write code that actually studies that stored data — finding the best and worst runs, and putting them in order.
 
-{{% callout title="The Big Idea of This Unit" %}}
+{{< callout title="The Big Idea of This Unit" >}}
 A system that never measures its own performance can't tell whether a change actually helped. Feeling faster isn't the same as being faster — you need a number, and you need to keep it.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -50,9 +50,9 @@ A system that never measures its own performance can't tell whether a change act
 
 ## Phase 1 — The Mission: Restack & Shelve
 
-{{% callout title="The run" variant="navy" %}}
+{{< callout title="The run" variant="navy" >}}
 Pick up **2 spilled cubes** and stack one [[ON TOP OF]] the other, placed on top of the **Large Green Cube**.
-{{% /callout %}}
+{{< /callout >}}
 
 This single stacking action scores three things at once: Mission 12's Base Mission (two spilled cubes forming a valid stack), and Mission 16's Base *and* Bonus Mission (one, then a second, spilled cube ON TOP OF the Large Green Cube) — confirmed directly by the rules' own scoring examples. One clean action, most of the points on the board for these two missions.
 
@@ -278,17 +278,17 @@ while (swapped) {
 printf("Sorted: %.2f, %.2f, %.2f, %.2f\n", times[0], times[1], times[2], times[3]);
 {{< /code >}}
 
-{{% callout title="[[REQUIREMENT|Requirement]] check" variant="gold" %}}
+{{< callout title="[[REQUIREMENT|Requirement]] check" variant="gold" >}}
 4 real trial times recorded and hardcoded into `times[4]`. Fastest and slowest found by search. Full array sorted using the boolean-flag loop. Both results printed.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p6_sorted_search" label="Sorted vs search" >}}Once your array is sorted, where do the fastest and slowest values sit in it? Could you have skipped writing a separate search entirely, if you'd sorted first?{{< /ask >}}
 
 ## Phase 7 — Connect & Reflect
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 A system that never measures its own performance can't tell whether a change actually helped.
-{{% /callout %}}
+{{< /callout >}}
 
 Every real engineering team does exactly what you just did: time something, run it more than once, store the results, and actually look at the numbers instead of trusting a gut feeling. A search engine times how long a query takes across millions of runs. A game studio times level-load times across every playtest. None of them trust a single run — and none of them just eyeball the numbers either; they sort them, find the extremes, and watch how those numbers change as the system scales up.
 

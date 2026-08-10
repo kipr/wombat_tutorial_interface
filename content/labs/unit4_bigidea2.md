@@ -35,9 +35,9 @@ meta:
 
 A robot that drives "mostly straight" slowly turns crooked — and a crooked robot misses everything it's aiming for. Today you'll fix that with a **square-up**: using *two* front sensors, the robot lines itself up perfectly straight against a line, fixing its own heading. This is your setup move for the spilled-cubes mission — squaring up in the right starting box so you can bulldoze straight and true.
 
-{{% callout title="Heads-up: this is a first draft" variant="gold" %}}
+{{< callout title="Heads-up: this is a first draft" variant="gold" >}}
 There are **a lot** of ways to square up, and many are smoother and smarter than this one. We're starting with the simplest version that works, so you can see the idea clearly. Once you understand it, you'll have plenty of ideas to make it better — and that's the point.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -51,13 +51,13 @@ There are **a lot** of ways to square up, and many are smoother and smarter than
 
 Until now you had one line sensor. Square-up needs **two** — one watching each front corner — so the robot can tell if one side reached the line before the other. Move your existing sensor to one side and add a second on the other.
 
-{{% callout title="Wiring and names" variant="navy" %}}
+{{< callout title="Wiring and names" variant="navy" >}}
 Mount one tophat sensor at the front-left, one at the front-right. Plug them in so:
 
 `TOPHAT_LEFT` = `analog(0)` · `TOPHAT_RIGHT` = `analog(1)`
 
 You'll add these names to your [[LIBRARY|library]] as [[VARIABLE|variables]], so your code reads `analog(TOPHAT_LEFT)` instead of a bare number — much easier to understand.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< code >}}
 // add these to your library, with your other variables
@@ -65,9 +65,9 @@ int TOPHAT_LEFT  = 0;    // front-left tophat sensor on analog port 0
 int TOPHAT_RIGHT = 1;    // front-right tophat sensor on analog port 1
 {{< /code >}}
 
-{{% callout title="The key pairing" %}}
+{{< callout title="The key pairing" >}}
 Each sensor controls the wheel on *its own side*: `TOPHAT_LEFT` drives the **left** wheel `motor(0)`, and `TOPHAT_RIGHT` drives the **right** wheel `motor(1)`. If these get crossed, the robot will chase the line the wrong way — so double-check.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p1_two_sensors" label="Why two sensors" >}}Why does squaring up need two sensors instead of one? What can two sensors tell the robot that one cannot?{{< /ask >}}
 
@@ -83,9 +83,9 @@ Each sensor controls the wheel on *its own side*: `TOPHAT_LEFT` drives the **lef
     So the side that's behind keeps creeping forward while the side that arrived waits — and the robot naturally straightens out until both sides are on the line. Then it's square.
 {{< /concept >}}
 
-{{% callout title="Remember your color convention" variant="navy" %}}
+{{< callout title="Remember your color convention" variant="navy" >}}
 Black reads *higher* than white. So "still on white" means `analog(...) < MIDPOINT`, and "reached black" means the reading has climbed above `MIDPOINT`.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p2_tilt" label="Tilt reasoning" >}}If the robot approaches the line tilted with its left corner ahead, which wheel reaches black first and freezes? What does the other wheel keep doing until the robot is square?{{< /ask >}}
 
@@ -167,9 +167,9 @@ void square_up() {
 }
 {{< /code >}}
 
-{{% safety title="⚠ Start slow, hands ready" noprint=true %}}
+{{< safety title="⚠ Start slow, hands ready" noprint=true >}}
 Use a low speed (around 30) and keep a hand near the robot the first run. If a wheel drives the wrong way or never stops, check your sensor-to-wheel pairing and your MIDPOINT.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< ask key="p4_squareup_result" label="Square up result" >}}Run it from a slight angle. Did the robot straighten out and stop square on the line? Describe what each wheel did.{{< /ask >}}
 
@@ -177,9 +177,9 @@ Use a low speed (around 30) and keep a hand near the robot the first run. If a w
 
 Now the full move for the spilled-cubes setup. Starting in the right starting box, the robot squares up on the **first** line, drives forward just enough to **clear that line**, then squares up again to land on the **second** line — straight and true both times.
 
-{{% callout title="Use your model from last lab" variant="gold" %}}
+{{< callout title="Use your model from last lab" variant="gold" >}}
 To skip over the first line, drive a few inches with the `Drive` function you built: `Drive(3.0);` moves about 3 inches past the line so your sensors clear it before the second square-up. Adjust the number if your line spacing is different.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< code >}}
 int main() {
@@ -210,9 +210,9 @@ See how clean this reads? Three lines, three clear actions — because `square_u
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 Intelligent systems use feedback from multiple inputs to correct themselves.
-{{% /callout %}}
+{{< /callout >}}
 
 Your robot didn't just drive blindly — it *watched two sensors and corrected its own heading* until it was straight. That's a feedback loop: sense, compare, adjust, repeat, until a goal is met. It's everywhere in intelligent systems. A plane's autopilot constantly nudges itself level using multiple sensors; a thermostat watches temperature and corrects; a robot vacuum squares itself to walls. None of them assume they're aligned — they measure and fix it. You just built the same idea from two sensors and two `if` statements.
 

@@ -36,9 +36,9 @@ meta:
 
 Up to now, when you wanted the robot to drive somewhere, you guessed at a [[TICK|tick]] count and tested until it looked right. That works, but it's slow — and the ticks mean nothing to a human. Today you'll teach your robot something powerful: the **relationship** between ticks and inches. Once it knows that, you can tell it to drive "12 inches" and it will *predict* the right number of ticks on its own. You're building a **model** — and that's one of the most important ideas in all of robotics and AI.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A model is a relationship the robot can use to predict. If it knows how many ticks make one inch, it can predict the ticks for *any* distance — without guessing.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -106,9 +106,9 @@ A model is a relationship the robot can use to predict. If it knows how many tic
 
 To find *your* robot's `ticks_per_inch`, you let the robot measure itself. Set the robot against the **back wall of the right starting box**, with the black line ahead of it. The robot drives straight forward until its Tophat [[SENSOR|sensor]] reaches the black line, counting ticks the whole way. You measure the real distance it traveled, in inches, and the function does the division.
 
-{{% callout title="Measure first" variant="navy" %}}
+{{< callout title="Measure first" variant="navy" >}}
 Before running, use your ruler to measure the distance from where the **Tophat sensor starts** (robot against the back wall) to the **black line**. That real-world distance, in inches, is what you'll pass into the function.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< code >}}
 #!/usr/bin/python3
@@ -213,7 +213,7 @@ rows:
 
 ## Phase 5 — A Model Can Go Stale
 
-{{% warn title="⚠ Your ticks_per_inch will change over time" %}}
+{{< warn title="⚠ Your ticks_per_inch will change over time" >}}
 The number you just measured is true *right now* — but it won't stay true forever. Your `ticks_per_inch` can drift as your robot changes:
 
 - **Battery level** — a fresh battery drives stronger than a low one, changing how far each tick carries.
@@ -223,7 +223,7 @@ The number you just measured is true *right now* — but it won't stay true fore
 So if your driving starts going long or short for no obvious reason, **recalibrate**. Running your calibration function again rebuilds the model for your robot's condition *today*.
 
 To keep track, add a comment to your `ticks_per_inch` variable with the last date you calibrated it.
-{{% /warn %}}
+{{< /warn >}}
 
 {{< ask key="p5_stale_model" label="Stale model" >}}Your robot was driving perfectly last week, but today it always stops a little short. Nothing in your code changed. What probably happened, and what should you do?{{< /ask >}}
 
@@ -231,9 +231,9 @@ To keep track, add a comment to your `ticks_per_inch` variable with the last dat
 
 Add `ticks_per_inch`, `calibrate_ticks_per_inch`, and `Drive` to your library, fully commented. From now on you can drive in inches in any mission.
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 Intelligent systems use models to predict what should happen next.
-{{% /callout %}}
+{{< /callout >}}
 
 You just built a model and used it to predict. This is everywhere in intelligent systems: a weather model predicts tomorrow's temperature; a self-driving car models how far it travels at a given speed; an AI predicts the next word from patterns it measured. And like your `ticks_per_inch`, real models must be **recalibrated** when the world changes — a model trained on old data slowly stops matching reality. Measuring a relationship, using it to predict, and refreshing it when conditions shift is the heartbeat of how machines reason about the world.
 

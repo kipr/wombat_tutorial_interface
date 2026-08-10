@@ -24,7 +24,8 @@
           {{- end }}
           </ul>
         {{- else -}}
-          {{- partial "termify.html" (dict "page" $ "content" .definition) | safeHTML -}}
+          {{- $definition := $.Page.RenderString (dict "display" "inline") .definition -}}
+          {{- partial "termify.html" (dict "page" $ "content" $definition) | safeHTML -}}
         {{- end }}
         </dd>
       </div>

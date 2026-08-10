@@ -86,11 +86,11 @@ rows:
 {{< /gridtable >}}
 ### Now break it
 
-{{% safety title="⚠ Your Teammate Rebuilt the Claw Last Night" %}}
+{{< safety title="⚠ Your Teammate Rebuilt the Claw Last Night" >}}
 It grips better now. But the closed position is different — it is **200 lower** than it was.
 
 Find every place that number appears in your program and change it. **Time yourself.**
-{{% /safety %}}
+{{< /safety >}}
 
 {{< gridtable >}}
 columns:
@@ -113,9 +113,9 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p1_missed_one" label="What if you missed one" >}}That last question is the real problem. If you missed one, what would happen — and how would you find out?{{< /ask >}}
 
-{{% callout title="This Gets Worse, Not Better" variant="gold" %}}
+{{< callout title="This Gets Worse, Not Better" variant="gold" >}}
 Your program is going to keep growing. By the time you are running a full match, that number could be in twenty places. There is a fix, it takes one line, and you are about to learn it.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Give the Number a Name
 
@@ -134,9 +134,9 @@ int arm = 0;
 | `= 0` | The value it holds. |
 | `;` | A [[SEMICOLON\|semicolon]], same as any other [[STATEMENT\|statement]]. |
 
-{{% callout title="Where Variables Go" variant="navy" %}}
+{{< callout title="Where Variables Go" variant="navy" >}}
 Inside the [[BLOCK|block]] — after the opening `{` of `main`, above everything else. Not outside the braces, and not scattered through the middle of your program.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Comments to code: three small edits
 
@@ -219,11 +219,11 @@ int R = 3;   // R is my right wheel
 A name nobody can decode is barely better than a bare number.
 {.muted}
 
-{{% callout title="A Yellow Banner Is Not an Error" %}}
+{{< callout title="A Yellow Banner Is Not an Error" >}}
 If you declare a variable and never use it, you will get *Compilation Succeeded with Warnings* — a yellow banner instead of a green one. The program still runs.
 
 But warnings exist for a reason. A variable you declared and never used usually means you forgot to swap out one of the bare numbers.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Variables can change
 
@@ -342,9 +342,9 @@ rows:
       - key: p3_v_closed_done
         aria: "closed done"
 {{< /gridtable >}}
-{{% callout title="Convert One Mission Section at a Time" variant="gold" %}}
+{{< callout title="Convert One Mission Section at a Time" variant="gold" >}}
 Same rule as building it in the first place. Convert one section, compile, run it, then move on. Converting all four at once and finding it broken tells you nothing about where.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p3_big_converted
@@ -416,13 +416,13 @@ does_not_score:
   - "A Small Red Cube hovering above without [[TOUCHING]]."
   - "Only one Small Red Cube up there, for the Bonus."
 {{< /score-examples >}}
-{{% callout title="Live Judged Is On Your Side Here" variant="gold" %}}
+{{< callout title="Live Judged Is On Your Side Here" variant="gold" >}}
 Robot support is permitted, and the cubes do not have to stay up there. Once the judge has seen it, it counts — even if it falls a second later.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% safety title="⚠ Check What Mission 2 Did to These Cubes" %}}
+{{< safety title="⚠ Check What Mission 2 Did to These Cubes" >}}
 In Project 6 you pushed the Large Red Cube, its [[PALLET|pallet]], and both Small Red Cubes off the black line. Those are the same cubes you need here. Where they ended up decides how hard this is — so plan the two missions together, not separately.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< ask key="p3_m2_interaction" label="Mission 2 interaction" >}}Where do your red cubes end up after your Mission 2 push? Does that help or hurt you here?{{< /ask >}}
 

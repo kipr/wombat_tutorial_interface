@@ -77,9 +77,9 @@ Do not look anything up. Do not ask anyone. Just guess — you will find out in 
 
 {{< ask key="p1_guess_braces" label="Guess about curly braces" >}}There are exactly two curly braces, `{` and `}`. What do you think they are doing?{{< /ask >}}
 
-{{% callout title="Keep Your Guesses" variant="gold" %}}
+{{< callout title="Keep Your Guesses" variant="gold" >}}
 Do not erase them, even if they turn out to be wrong. Being wrong and then finding out why is how this works.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — The Template, Line by Line
 
@@ -120,9 +120,9 @@ The KISS [[IDE|IDE]] colors your code as you type. That coloring is a free error
 | Red | Text [[STRING\|strings]] — anything inside quotation marks |
 | Aqua | Numbers |
 
-{{% callout title="A Quick Trick" variant="gold" %}}
+{{< callout title="A Quick Trick" variant="gold" >}}
 If you open a quotation mark and forget to close it, everything after it turns red. Spotting that color spreading down the page is faster than reading an error message.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Comments
 
@@ -196,9 +196,9 @@ Add three comment lines at the very top, above the `#include`:
 
 This is called [[ATTRIBUTION|attribution]]. From now on, every program you write gets these three lines.
 
-{{% callout title="Borrowing Code" variant="navy" %}}
+{{< callout title="Borrowing Code" variant="navy" >}}
 If you use part of a teammate's code, you say so in a comment — where it came from, and where the borrowed part ends. That holds even when you change their idea a little to fit your robot.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p3_attribution_where" label="Where else attribution matters" >}}Where else in school are you expected to give credit for someone else's work?{{< /ask >}}
 
@@ -215,9 +215,9 @@ Plan it as pseudocode first:
 // 2. Display my name on the screen
 ```
 
-{{% callout title="What does `\\n` do?" variant="gold" %}}
+{{< callout title="What does `\\n` do?" variant="gold" >}}
 It is like pressing Enter at the end of the line. Leave it out and your next `printf` starts on the same line, jammed against the last one.
-{{% /callout %}}
+{{< /callout >}}
 
 Compile until you see **Compilation Succeeded**, then run it.
 
@@ -288,12 +288,12 @@ Now the important part. You are going to make five mistakes deliberately, one at
 
 **For each one:** break it → compile → write down what the error said → fix it → compile again.
 
-{{% safety title="⚠ How to Read an Error Message" %}}
+{{< safety title="⚠ How to Read an Error Message" >}}
 - **Fix the top error first.** One mistake often produces a pile of errors. Fixing the first may clear all of them.
 - **The line number is a hint, not an answer.** If it says line 6, the real mistake is often on line 5 — or earlier, if there are blank lines.
 - **Ignore the second number.** `5:28` means line 5, column 28. You cannot see columns. Ignore the 28.
 - **Change one thing, then recompile.** Do not fix four things at once.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< gridtable >}}
 columns:
@@ -322,11 +322,11 @@ rows:
       - key: p3_err_oh_zero
         aria: "Letter O instead of zero error"
 {{< /gridtable >}}
-{{% callout title="Two Messages Worth Recognizing" %}}
+{{< callout title="Two Messages Worth Recognizing" >}}
 **"implicit declaration of function"** almost always means you spelled a command wrong.
 
 **"too many [[ARGUMENT|arguments]] to function"** means you gave a command more information than it wanted. `msleep` takes one number. Writing `2,000` looks like two things to the compiler: `2` and `000`. Never put commas in numbers in code.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p3_step_all_fixed

@@ -106,19 +106,24 @@ This note is quieter than the surrounding instructions.
 {.muted}
 ```
 
-Raw HTML is enabled for migrated material, but new content should use Markdown
-or a shared shortcode unless no existing authoring concept fits.
+Do not author raw HTML in Markdown, shortcode bodies, or front matter. Use
+Markdown emphasis, block attributes such as `{.muted}`, or a shared shortcode
+from the catalog. Goldmark is configured with `unsafe = false`, so raw HTML is
+escaped rather than emitted.
 
-Use `%` shortcode delimiters when the body is Markdown, especially panels:
+Panel shortcodes take a Markdown body. Use `{{< >}}` delimiters (not
+`{{% %}}`) so Goldmark does not re-parse the panel HTML. The shortcode renders
+the body with `RenderString`:
 
 ```markdown
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 Markdown is rendered inside this panel.
-{{% /callout %}}
+{{< /callout >}}
 ```
 
-Use `<` delimiters for YAML-bodied widgets and field components. YAML strings
-containing Markdown, colons, or special punctuation are safest when quoted.
+Use the same `{{< >}}` form for YAML-bodied widgets and field components. YAML
+strings containing Markdown, colons, or special punctuation are safest when
+quoted.
 
 ## References and links
 
@@ -161,7 +166,7 @@ the mission bundle and name it in tier front matter.
 
 - Copy the nearest same-family page and preserve stable identity/key fields.
 - Use the established heading sequence and student-facing voice.
-- Reuse a shortcode from the catalog before adding raw HTML.
+- Reuse a shortcode from the catalog; do not add authored raw HTML.
 - Resolve glossary, mission, image, page, and stylesheet references.
 - Check screen and print meaning, labels, alt text, keyboard behavior, and
   duplicate keys/IDs.

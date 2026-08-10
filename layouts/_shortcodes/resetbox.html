@@ -1,9 +1,10 @@
 {{- /*
   A gold error-reset checkpoint panel.
 
-    {{% resetbox title="Error Reset Checkpoint" %}}
+    {{< resetbox title="Error Reset Checkpoint" >}}
     Every time you call `square_up()`, think of it as a checkpoint…
-    {{% /resetbox %}}
+    {{< /resetbox >}}
 */ -}}
 {{- $title := partial "require.html" (dict "sc" . "name" "title") -}}
-{{- partial "panel.html" (dict "title" $title "variant" "gold" "content" .Inner) -}}
+{{- $content := .Page.RenderString (dict "display" "block") .Inner -}}
+{{- partial "panel.html" (dict "title" $title "variant" "gold" "content" $content) -}}

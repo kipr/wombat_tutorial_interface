@@ -35,9 +35,9 @@ meta:
 
 All through Unit 1, your robot was blind. It drove for a set time and hoped for the best — it could not feel the world at all. Today that changes. You'll attach a **touch sensor** to the back of your robot and write a program that drives backward and **stops the instant it feels a wall**. For the first time, the robot reacts to something real instead of a guessed-at time.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A sensor is how a machine gathers information about the world. Without sensors, a robot can only follow a script. With them, it can respond to what is actually happening.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -49,13 +49,13 @@ A sensor is how a machine gathers information about the world. Without sensors, 
 
 ### Set Up Your Sensor
 
-{{% callout title="Before any code" variant="navy" %}}
+{{< callout title="Before any code" variant="navy" >}}
 Attach the push button (touch) sensor to the **back** of your robot, facing backward, so it will press when the robot backs into a wall.
 
 Plug it into **digital [[PORT|port]] 0**.
 
 In your program, `digital(0)` reads this sensor: it is **0 when the button is open** and **1 when the button is pressed**.
-{{% /callout %}}
+{{< /callout >}}
 
 ### New This Time: The while Loop
 
@@ -108,11 +108,11 @@ In your program, `digital(0)` reads this sensor: it is **0 when the button is op
 
 Close your eyes and slowly back up toward a wall with your hand out behind you. You don't count steps — you wait until your hand *feels* the wall, then stop. You are using a sensor (your hand) and checking it constantly until it tells you something changed.
 
-{{% callout title="Think it through" variant="navy" %}}
+{{< callout title="Think it through" variant="navy" >}}
 Why is "feel for the wall, then stop" more reliable than "take exactly 7 steps back"?
 
 How many times per second do you think your hand was "checking" for the wall?
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p1_timed_vs_sensed" label="Timed versus sensed" >}}A timed move (drive for 1 second) and a sensed move (drive until you feel the wall) can both reach a wall. Why is the sensed move better when you don't know exactly how far away the wall is?{{< /ask >}}
 
@@ -126,9 +126,9 @@ An *input* is information coming *into* the program from the outside world. A se
 
 A *digital* sensor has only two possible readings: **0 or 1**. Your touch sensor is digital — the button is either open (0) or pressed (1). There is no "halfway." This is the same true/false, [[BOOLEAN|Boolean]] thinking you used with `if` [[STATEMENT|statements]], now coming from the real world.
 
-{{% callout title="Digital vs. [[ANALOG|Analog]] (a look ahead)" variant="gold" %}}
+{{< callout title="Digital vs. [[ANALOG|Analog]] (a look ahead)" variant="gold" >}}
 Some sensors are *analog* — they return a whole range of numbers, not just 0 or 1 (like a distance sensor reading "how far"). You'll meet those soon. Today's touch sensor is the simplest kind: just 0 or 1.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p2_digital_meaning" label="What digital means" >}}In your own words: what does it mean that the touch sensor is "digital"? What are its only two possible values, and what does each one mean?{{< /ask >}}
 
@@ -136,9 +136,9 @@ Some sensors are *analog* — they return a whole range of numbers, not just 0 o
 
 ### The Goal
 
-{{% callout title="Back Into the Box" %}}
+{{< callout title="Back Into the Box" >}}
 Your robot starts in the field. It must drive **backward** until its touch sensor presses against the **starting-box wall**, then stop. Reaching that wall means it is home — a known, reliable spot.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Step 1 — Predict the Sensor Readings
 
@@ -172,9 +172,9 @@ Before any code, describe your program in order — including what happens the m
 
 ## Phase 4 — Build &amp; Run
 
-{{% safety title="⚠ Test in your hands FIRST" noprint="true" %}}
+{{< safety title="⚠ Test in your hands FIRST" noprint="true" >}}
 Before you ever put this on the board, **hold the robot up off the ground** and run the program. The wheels will spin backward. Press the button with your finger and watch the wheels stop. Only once that works should you set it on the field. This keeps the robot from driving off a table while you test.
-{{% /safety %}}
+{{< /safety >}}
 
 ### Starting Code Template
 
@@ -286,9 +286,9 @@ void back_until_pressed() {  // DEFINITION: the recipe, below main()
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="Big Idea 1 — AI Literacy Thread" %}}
+{{< callout title="Big Idea 1 — AI Literacy Thread" >}}
 Intelligent systems rely on sensors to gather information about the world around them.
-{{% /callout %}}
+{{< /callout >}}
 
 Today your robot stopped because it *felt* a wall, not because a timer ran out. That is the foundation of every intelligent machine: it senses the world and responds to what is really there. A phone screen senses your touch; a car senses the car ahead; a thermostat senses the room's temperature. None of them follow a fixed script — they all watch a sensor and react. And just like you, they check that sensor over and over, many times a second.
 

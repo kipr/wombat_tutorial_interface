@@ -85,9 +85,9 @@ rows:
       - key: p1_past_zero
         aria: "Past zero"
 {{< /gridtable >}}
-{{% callout title="Every Motor Has Been Counting This Whole Time" variant="gold" %}}
+{{< callout title="Every Motor Has Been Counting This Whole Time" variant="gold" >}}
 Since Project 3, your motors have been keeping track of exactly how far they turned. You just had no way to ask them.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Find your ticks per inch
 
@@ -130,9 +130,9 @@ rows:
       - key: p1_tpi_avg
         aria: "Average TPI"
 {{< /gridtable >}}
-{{% safety title="⚠ Measure Long, Not Short" %}}
+{{< safety title="⚠ Measure Long, Not Short" >}}
 Use 24 inches, not 3. A small error in a short push turns into a big error per inch. Anything under about a foot is not worth measuring.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< ask key="p1_why_differ" label="Why measurements differ" >}}Your three numbers are not identical. Why not — and which one should you use?{{< /ask >}}
 
@@ -140,9 +140,9 @@ Use 24 inches, not 3. A small error in a short push turns into a big error per i
 
 A tick is one small step of the motor shaft. There are about **1820 ticks in one full revolution** of the shaft.
 
-{{% callout title="Wheel Size Does Not Change the Ticks" variant="navy" %}}
+{{< callout title="Wheel Size Does Not Change the Ticks" variant="navy" >}}
 1820 ticks is one turn of the *motor shaft*, no matter what wheel you bolt to it. But a bigger wheel travels further in that one turn — which is exactly why your ticks-per-inch is yours and not somebody else's.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Two commands
 
@@ -186,9 +186,9 @@ msleep(30);
 
 Read the new one out loud: *"While the left motor has turned fewer than 4000 ticks, keep driving. The moment it reaches 4000, stop."*
 
-{{% callout title="Why This Is Better Than a Wall" variant="gold" %}}
+{{< callout title="Why This Is Better Than a Wall" variant="gold" >}}
 A touch [[SENSOR|sensor]] only helps where there is something to touch. A tick counter works **anywhere on the field** — open floor, mid-turn, anywhere. Your robot finally has a way to know how far it has gone without hitting something.
-{{% /callout %}}
+{{< /callout >}}
 
 Always clear before you count:
 
@@ -213,13 +213,13 @@ Run that program with a target of 4000 and then check the Motors screen. You wil
 
 Nothing is broken. Your robot has [[INERTIA|inertia]] — it is moving, and when the loop shuts the motors off it keeps coasting.
 
-{{% callout title="The Fix Is Subtraction" variant="navy" %}}
+{{< callout title="The Fix Is Subtraction" variant="navy" >}}
 Ask for 4000. Get 4310. The [[OVERSHOOT|overshoot]] is **4310 − 4000 = 310**.
 
 So ask for **4000 − 310 = 3690** instead, and you will land on 4000.
 
 Every robot has its own overshoot. Faster power means more of it.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Going backward makes the number go down
 
@@ -257,11 +257,11 @@ msleep(30);
 Both work. The first one always returns to where it started, no matter how far out it went. The second one always travels the same distance back. Those are not the same thing, and one day the difference will matter.
 {.muted}
 
-{{% safety title="⚠ Get the Direction Right or the Loop Never Ends" %}}
+{{< safety title="⚠ Get the Direction Right or the Loop Never Ends" >}}
 Driving backward with `while (gmpc(left) < 4000)` is a loop that can never finish — the number is going down, away from 4000, forever.
 
 Going forward, count **up** with `<`. Going backward, count **down** with `>`. Check this before every run.
-{{% /safety %}}
+{{< /safety >}}
 
 ## Do It — Drive by the Numbers
 
@@ -460,9 +460,9 @@ rows:
       - key: p3_sq_new_face
         aria: "New square facing"
 {{< /gridtable >}}
-{{% callout title="This Is the Whole Point of the Project" variant="gold" %}}
+{{< callout title="This Is the Whole Point of the Project" variant="gold" >}}
 Same robot. Same square. The only thing that changed is *what the robot was measuring* — and suddenly it can come back to where it started.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p3_no_drift" label="Why no drift" >}}Your timed square drifted a little more with every corner. Why does a tick-counted square not do that?{{< /ask >}}
 
@@ -489,11 +489,11 @@ Your claw can still be holding him. He just has to be clear of the enclosure and
 
 {{< mission-summary mission="18" >}}
 {{< /mission-summary >}}
-{{% callout title="One Trip, Two Missions, Twenty Points" variant="gold" %}}
+{{< callout title="One Trip, Two Missions, Twenty Points" variant="gold" >}}
 You just lifted Botguy out of the enclosure for Mission 9. Do not put him down — **carry him to the Loading Zone** and Mission 18's base scores too.
 
 This is exactly the kind of thing to look for when you plan a full match: one action, more than one mission.
-{{% /callout %}}
+{{< /callout >}}
 
 Mission 18 is final position, so Botguy has to still be [[IN THE ZONE]] when the match ends. Set him down properly and back straight away.
 {.muted}
@@ -508,17 +508,17 @@ Mission 18 is final position, so Botguy has to still be [[IN THE ZONE]] when the
 
 {{< mission-summary mission="8" >}}
 {{< /mission-summary >}}
-{{% safety title="⚠ The Pallet and the Cube Travel Together" %}}
+{{< safety title="⚠ The Pallet and the Cube Travel Together" >}}
 Read the failures carefully. **The Large Red Cube on the Loading Dock without the pallet does not score.** Neither does a pallet on the dock with the cube fallen off.
 
 They both have to end up there, cube on pallet, pallet on dock.
-{{% /safety %}}
+{{< /safety >}}
 
-{{% callout title="Look at What You Already Did to These Cubes" variant="navy" %}}
+{{< callout title="Look at What You Already Did to These Cubes" variant="navy" >}}
 In Project 6 you shoved the Large Red Cube and its pallet off the black line. In Project 9 you stacked Small Red Cubes on top of it for Mission 5.
 
 Mission 8's bonus asks for a Small Red Cube on the Large Red Cube *again* — this time with the pallet on the dock. Plan Missions 2, 5, and 8 as one sequence rather than three separate problems, and check with your judges how the scoring overlaps.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p3_m8_base

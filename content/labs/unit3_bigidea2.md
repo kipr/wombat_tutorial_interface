@@ -35,9 +35,9 @@ meta:
 
 Last lab you found your servos' safe limits — but right now, nothing *stops* you from typing a dangerous number by accident. Today you'll build two functions, `move_arm` and `move_claw`, that protect the servo automatically. Then you'll make them move **slowly and smoothly**, one tiny step at a time — because a cube balanced on a stack will topple if the arm jerks. By the end you'll stack a cube on the pallet with smooth, controlled motion.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A good function does more than move the servo — it guards against bad values, and it controls *how* the motion happens. Fast and jerky knocks the stack over; slow and smooth places it gently.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -47,9 +47,9 @@ A good function does more than move the servo — it guards against bad values, 
 - Experiment with timing to control how fast or smooth the motion is.
 {.obj}
 
-{{% callout title="You'll reuse your values from last lab" variant="navy" %}}
+{{< callout title="You'll reuse your values from last lab" variant="navy" >}}
 Keep your `ARM_MIN`, `ARM_MAX`, `CLAW_OPEN`, and `CLAW_SHUT` from Big Idea 1 handy — you'll use them again here.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Phase 1 — Concept: A Function That Protects Itself
 
@@ -126,9 +126,9 @@ Note: this assumes `CLAW_OPEN` is the smaller number and `CLAW_SHUT` the larger.
 
 Right now `set_servo_position` sends the servo to the target as fast as it can — a sudden jerk. That jerk can knock over a cube you're trying to stack. To move **smoothly**, you creep there two ticks at a time, with a tiny pause between steps.
 
-{{% callout title="Why two ticks — and why store the reading?" variant="navy" %}}
+{{< callout title="Why two ticks — and why store the reading?" variant="navy" >}}
 A one-tick command is too small to make the servo actually move, so these functions normally step by two ticks. Each call to `get_servo_position` asks the controller for another reading; calling it several times during every loop can overload the controller. Store the reading in `current_position`, reuse that variable for the comparisons and next command, then refresh it once at the end of the loop.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< concept "Read where you are, step toward where you want to be" >}}
 - text: |
@@ -158,9 +158,9 @@ A one-tick command is too small to make the servo actually move, so these functi
 
 ## Phase 4 — Build: Smooth move_arm and move_claw
 
-{{% safety title="⚠ Keep the clamp" noprint="true" %}}
+{{< safety title="⚠ Keep the clamp" noprint="true" >}}
 The smooth version still clamps first. Clamp the target into the safe range, *then* step toward it. That way the loop can never walk the servo past a safe limit.
-{{% /safety %}}
+{{< /safety >}}
 
 Rewrite both functions to clamp, then step smoothly to the target. Start with `msleep(1)` in the loop.
 
@@ -237,9 +237,9 @@ rows:
 
 Now put it to work. Using your smooth `move_arm` and `move_claw`, pick up a cube and place it on the pallet — gently enough that it stays put. Pick the timing that worked best in Phase 5.
 
-{{% callout title="Measure the lift" variant="gold" %}}
+{{< callout title="Measure the lift" variant="gold" >}}
 A servo position is a measurement — and so is the cube's real height. Record how high off the table the cube sits at each stage, so you can see your arm positions turn into real-world height.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< gridtable >}}
 columns:
@@ -272,9 +272,9 @@ rows:
 
 ## Phase 7 — Connect &amp; Reflect
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 Intelligent systems control their actions smoothly and safely, not just quickly.
-{{% /callout %}}
+{{< /callout >}}
 
 A robot that slams its arm to a position is fast but useless for delicate work. Real systems — a robot arm placing a chip on a circuit board, a crane lowering a load, a surgical tool — move *smoothly and within safe limits* on purpose. You built both of those ideas into your functions: the clamp keeps the motion safe, and the step loop keeps it smooth. That's what separates a tool that works from one that breaks things.
 

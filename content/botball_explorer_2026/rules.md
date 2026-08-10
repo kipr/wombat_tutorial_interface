@@ -23,17 +23,17 @@ sidebar:
 
 **Expedition.** Any student currently enrolled in a K–12 educational program is eligible to compete in Expedition.
 
-{{% callout title="Play-Up Rule" %}}
+{{< callout title="Play-Up Rule" >}}
 Students may compete in a higher division than their grade level would otherwise require.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% callout title="Play-Down Rule" %}}
+{{< callout title="Play-Down Rule" >}}
 Students may not compete in a division below their eligibility level.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% callout title="Discovery — Field Setup" %}}
+{{< callout title="Discovery — Field Setup" >}}
 Discovery teams may remove any game pieces from the field before the match begins.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Philosophy
 
@@ -69,15 +69,15 @@ This competition promotes creativity, engineering, teamwork, problem solving, an
 
 **Teams may not** intentionally damage the field, game objects, or another team's equipment; interfere with another team's match; use abusive or inappropriate behavior; or gain an unfair advantage through deception.
 
-{{% warn title="Violations" %}}
+{{< warn title="Violations" >}}
 may result in a verbal warning, score adjustment, match forfeiture, or disqualification, as determined by tournament officials based on severity.
-{{% /warn %}}
+{{< /warn >}}
 
 ## Game Format & Match Structure {#format}
 
-{{% callout title="Match duration" %}}
+{{< callout title="Match duration" >}}
 Each match lasts **150 seconds**. Expedition Division Timeout periods do not count toward this duration.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Official Playing Area
 
@@ -89,13 +89,13 @@ Each match lasts **150 seconds**. Expedition Division Timeout periods do not cou
 
 Every mission component is one of two types:
 
-{{% callout title="Live Judged" %}}
+{{< callout title="Live Judged" >}}
 The judge must observe the action occur (e.g. touching Botguy, stacking cubes, moving cones off the line).
-{{% /callout %}}
+{{< /callout >}}
 
-{{% callout title="Final Position Judged" %}}
+{{< callout title="Final Position Judged" >}}
 The judge determines success from the final board state after time expires (e.g. poms in baskets, objects on platforms or in loading zones).
-{{% /callout %}}
+{{< /callout >}}
 
 ### Progressive Mission Logic
 
@@ -118,13 +118,13 @@ At 150 seconds the match immediately ends. No additional robot movement, settlin
 
 ### 3D Printed Components
 
-{{% callout title="Discovery" %}}
+{{< callout title="Discovery" >}}
 3D printed robot components are prohibited.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% callout title="Expedition" %}}
+{{< callout title="Expedition" >}}
 3D printed robot components are permitted, limited to one large printed part no larger than 220 mm × 220 mm × 250 mm, plus up to six small printed parts each no larger than 75 mm × 75 mm × 85 mm. Additional restrictions may be published in future updates.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Starting Conditions
 
@@ -136,9 +136,9 @@ At the start of a match, all robots and independent structures must be fully con
 - All must begin within the Starting Volume and may only enter the field through deployment by a robot after the start.
 - They remain part of the team's robot system.
 
-{{% warn title="An independent structure may not contain" %}}
+{{< warn title="An independent structure may not contain" >}}
 an active controller, a battery, or a powered actuator.
-{{% /warn %}}
+{{< /warn >}}
 
 ### Communication & Autonomy
 
@@ -150,9 +150,9 @@ Robots may not contain components intended to damage the field, field elements, 
 
 ## Match Procedures & Recovery {#procedures}
 
-{{% callout title="Legal recovery opportunity" %}}
+{{< callout title="Legal recovery opportunity" >}}
 A legal recovery opportunity is any Touch (Discovery) or Timeout Card (Expedition).
-{{% /callout %}}
+{{< /callout >}}
 
 ### Discovery Touches
 
@@ -160,9 +160,9 @@ A legal recovery opportunity is any Touch (Discovery) or Timeout Card (Expeditio
 - The match clock continues to run during all Touches; there is no limit to the number permitted.
 - Touches are tracked at the team level and shared across all robots.
 
-{{% warn title="Touch penalty" %}}
+{{< warn title="Touch penalty" >}}
 Each Touch reduces the team's final match score by **5%**. Penalties are additive and applied after all mission scoring is complete. Final score is never reduced below zero.
-{{% /warn %}}
+{{< /warn >}}
 
 ### Expedition Timeout Cards
 
@@ -178,9 +178,9 @@ If an accidental detachment causes a team to exceed two independent structures, 
 
 ## Scoring Framework {#scoring}
 
-{{% callout %}}
+{{< callout >}}
 Mission-specific scoring requirements supersede general definitions when a conflict exists.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Multi-Scoring Policy
 
@@ -196,13 +196,13 @@ The game rewards efficient design and task integration. A single robot action, o
 
 ### Scoring Restrictions
 
-{{% warn title="Basket Exclusivity" %}}
+{{< warn title="Basket Exclusivity" >}}
 If a team attempts both Hazard Disposal and Hazard Disposal #2, the basket used for each must be different. A single basket may not score both.
-{{% /warn %}}
+{{< /warn >}}
 
-{{% warn title="Waypoint Independence" %}}
+{{< warn title="Waypoint Independence" >}}
 Waypoint Alpha and Waypoint Bravo are completed independently. A single return to a starting box may not satisfy the Bonus requirements of both.
-{{% /warn %}}
+{{< /warn >}}
 
 ### Live & Final Scoring
 
@@ -318,13 +318,13 @@ does_not_score:
 
 {{< rule-definition term="LEGAL STARTING POSITION" >}}
 
-{{% callout title="Stack interpretation" %}}
+{{< callout title="Stack interpretation" >}}
 “Stack” is used for readability only. Scoring is determined solely by the [[ON TOP OF]] and [[TOUCHING]] definitions — traditional, pyramid, or mixed arrangements all score as long as the required relationships exist. Side-by-side, touching-only, or separated arrangements do not.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% warn title="Mission-specific exceptions" %}}
+{{< warn title="Mission-specific exceptions" >}}
 **Warehouse Zone Pom —** a pom is not [[IN]] the Warehouse Zone if any portion touches a black line boundary. **Traffic Cone OFF-Line —** a cone is not [[OFF]] the line if any portion touches the line.
-{{% /warn %}}
+{{< /warn >}}
 
 ## Field Elements & Setup {#field}
 
@@ -340,9 +340,9 @@ Intended to move during a match: baskets, pallets, cubes, poms, traffic cones, B
 
 Before each match the field is reset per the official setup guide; the Head Judge verifies readiness. Pallet orientation and basket placement may be chosen by teams provided each stays within its designated location. Once a match begins, the setup is official.
 
-{{% callout title="After match start" %}}
+{{< callout title="After match start" >}}
 Minor setup variations are not grounds for replay or adjustment. The only exception is a setup error that directly causes a team to receive points that would not otherwise be earned — in which case the Head Judge may make scoring adjustments. The Head Judge's decision is final.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Displaced or Damaged Elements
 
@@ -360,9 +360,9 @@ Inspection verifies starting-configuration legality, autonomous operation, power
 
 A scoring review may be requested by a designated student representative or a coach, immediately after scoring and before the field is reset. Reviews are limited to scoring errors, data-entry errors, and mission-interpretation errors — not robot performance, programming, mechanical failures, or in-match strategy.
 
-{{% callout title="Review procedure" %}}
+{{< callout title="Review procedure" >}}
 Each team may request one scoring review per match. The Head Judge may increase, decrease, or leave a score unchanged. The decision is final and no additional appeals are permitted.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Governance & Authority {#governance}
 
@@ -383,6 +383,6 @@ If a conflict exists, the higher item takes precedence:
 
 The Head Judge interprets and enforces the rules — resolving disputes, interpreting ambiguity, determining scoring when required, and directing corrective action. The Head Judge does not create new rules but may interpret existing rules and clarifications.
 
-{{% warn title="Final authority" %}}
+{{< warn title="Final authority" >}}
 Tournament officials may take any action necessary to preserve the safety, fairness, and integrity of the competition. Such decisions should be limited to circumstances not adequately addressed by existing rules. The Head Judge's decision is final.
-{{% /warn %}}
+{{< /warn >}}

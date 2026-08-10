@@ -66,11 +66,11 @@ Hold a wheel motor in one hand and a [[SERVO|servo]] in the other. They look sim
 | How far it turns | Round and round, forever | About half a circle, then stops |
 | What you tell it | How hard to push | **Where to go** |
 
-{{% callout title="The Real Difference" variant="navy" %}}
+{{< callout title="The Real Difference" variant="navy" >}}
 You never tell a wheel motor *where* to stop — only how hard to push and for how long. A servo is the opposite: you tell it a position and it goes there and holds.
 
 That is exactly what an arm needs. "Up" is a place, not a push.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Plug it in — the wire order matters
 
@@ -102,9 +102,9 @@ On the Wombat's Home Screen, tap **Servos**. Enable port 0 and drag the slider s
 
 {{< ask key="p1_push_arm" label="Pushing the arm" >}}Now let go of the slider and try to push the arm with your finger. What happens?{{< /ask >}}
 
-{{% callout title="It Pushes Back" variant="gold" %}}
+{{< callout title="It Pushes Back" variant="gold" >}}
 A servo does not just move to a position — it *holds* that position and fights anything that tries to move it. That is why it can lift something and keep holding it there.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Positions, Not Powers
 
@@ -119,15 +119,15 @@ Counting from zero again — same as the motor ports.
 
 Position **1024** is the middle. That is where a servo goes by default.
 
-{{% safety title="⚠ Never Below 150 or Above 1900" %}}
+{{< safety title="⚠ Never Below 150 or Above 1900" >}}
 The numbers go to 2047, but your servo physically cannot reach the ends. Sending it past its limit makes it strain against its own stop, and **it will burn out.** A burnt servo does not come back.
 
 **Stay between 150 and 1900. Always.**
-{{% /safety %}}
+{{< /safety >}}
 
-{{% safety title="⚠ API range vs classroom safe limits" %}}
+{{< safety title="⚠ API range vs classroom safe limits" >}}
 The servo API accepts positions **0 to 2047** (about 180°). Classroom hardware must stay in the conservative safe band **150–1900**, with centre near **1024**. Sending commands into the burn zones (below 150 or above 1900) can destroy the servo.
-{{% /safety %}}
+{{< /safety >}}
 
 ### The four commands
 
@@ -138,9 +138,9 @@ The servo API accepts positions **0 to 2047** (about 180°). Classroom hardware 
 | `msleep(500);` | Gives the servo time to actually get there. Not optional. |
 | `disable_servos();` | Turns the servo ports off at the end of your program. |
 
-{{% callout title="Why msleep Again?" %}}
+{{< callout title="Why msleep Again?" >}}
 Same reason as the wheel motors. `set_servo_position()` tells the servo to *start* moving — it does not wait for it to arrive. Without an `msleep()`, the next line runs while the arm is still halfway there.
-{{% /callout %}}
+{{< /callout >}}
 
 ### The gotcha that catches everybody
 
@@ -148,9 +148,9 @@ When you call `enable_servos()`, every servo immediately jumps to **whatever pos
 
 If your arm was down when you last ran a program, it will slam down again the instant your new program enables the servos — possibly into the field, or into a cube, or into your hand.
 
-{{% callout title="The Preset Trick" variant="gold" %}}
+{{< callout title="The Preset Trick" variant="gold" >}}
 Call `set_servo_position()` *before* `enable_servos()`. The servo then wakes up already knowing where to go, and moves there instead of to its old position.
-{{% /callout %}}
+{{< /callout >}}
 
 ```text
 // Risky — arm snaps to wherever it was last
@@ -249,9 +249,9 @@ rows:
       - key: p3_pos_down_desc
         aria: "Down description"
 {{< /gridtable >}}
-{{% safety title="⚠ Down Means Nearly Down" %}}
+{{< safety title="⚠ Down Means Nearly Down" >}}
 Do not find a "down" that presses the arm into the floor. The servo will keep straining to reach a position it cannot get to, and that is exactly how servos die.
-{{% /safety %}}
+{{< /safety >}}
 
 ### Step 3 — The Wave
 
@@ -332,9 +332,9 @@ Onto the field. New project called `Botguy`.
 
 Botguy is inside the enclosure. Your robot has to reach in and make contact — direct contact, arm to Botguy.
 
-{{% callout title="[[TOUCHING]] Means Direct Contact" variant="navy" %}}
+{{< callout title="[[TOUCHING]] Means Direct Contact" variant="navy" >}}
 Two objects are [[TOUCHING]] when they are in direct physical contact. Contact through something else — a cube, a wall, another field element — does not count. Your arm has to reach Botguy himself.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< gridtable >}}
 columns:

@@ -57,9 +57,9 @@ meta:
 
 A claw is an [[EFFECTOR|effector]] — the part of the robot that does work on the world. In Project 6 your effector was the front of the robot, and it could only shove. A claw can hold.
 
-{{% callout title="Structure and Function" variant="navy" %}}
+{{< callout title="Structure and Function" variant="navy" >}}
 A claw is **bad at pushing** and **great at grabbing.** The blade you used in Project 6 was the opposite. Neither one is better — they are shaped for different jobs, and the shape is what decides the job.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Two servos, two jobs
 
@@ -111,11 +111,11 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p1_swap_steps" label="What goes wrong when steps swap" >}}Try swapping any two of your steps. Pick a pair and describe what would go wrong.{{< /ask >}}
 
-{{% callout title="That List Is Your Program" variant="gold" %}}
+{{< callout title="That List Is Your Program" variant="gold" >}}
 Grabbing is not one action. It is five or six small ones that only work in one order. Close the claw before the arm is down and you grab nothing. Raise the arm before you close the claw and you lift nothing.
 
 **The whole skill in this project is sequence.**
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Five Numbers and an Order
 
@@ -181,11 +181,11 @@ Look at how a mission is scored, not just what it asks for. Two missions can wan
 | `⚡ Live Judged` | A judge watches it happen during the match. It counts the moment it is true — even if it falls apart afterwards. **Your robot may be holding it.** |
 | `📋 Final Position` | Scored after the match ends, from whatever is left on the field. Your robot has to let go and the result has to survive on its own. |
 
-{{% callout title="Robot Support Is Allowed — Sometimes" variant="gold" %}}
+{{< callout title="Robot Support Is Allowed — Sometimes" variant="gold" >}}
 The [[ON TOP OF]] definition says support from a robot is permitted. So for a live-judged stack, your claw can still be holding the cube in place when the judge sees it.
 
 For a final-position stack, that is worth nothing. Let go, back away, and the stack has to stand by itself.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Setting an object down is harder than picking it up
 
@@ -195,9 +195,9 @@ Opening the claw is easy. Opening the claw *without dragging, tipping, or flicki
 - Open, then **pause**, then back away. Backing off while still opening drags the object with you.
 - Back straight away, not on a curve. A curve sweeps the claw sideways through what you just placed.
 
-{{% safety title="⚠ Basket Exclusivity" %}}
+{{< safety title="⚠ Basket Exclusivity" >}}
 Mission 11 uses orange poms. Mission 15 (Project 12) uses blue poms. If your team attempts both, **they must go in different baskets.** Decide now which basket belongs to which mission, and write it down.
-{{% /safety %}}
+{{< /safety >}}
 
 ## Do It — Grab, Carry, Stack
 
@@ -232,9 +232,9 @@ rows:
       - key: p3_claw_pom_note
         aria: "Claw pom note"
 {{< /gridtable >}}
-{{% safety title="⚠ Closed Does Not Mean All the Way Shut" %}}
+{{< safety title="⚠ Closed Does Not Mean All the Way Shut" >}}
 "Closed" is whatever number grips the cube — not the smallest number the claw can reach. If you send the claw past where the cube stops it, the servo strains against the cube and burns out. Find the number that just grips, and stay there.
-{{% /safety %}}
+{{< /safety >}}
 
 A pom squashes, a cube does not. That is why they get different numbers.
 {.muted}
@@ -299,9 +299,9 @@ Add to the end of your program: carry the cube somewhere, set it down, and back 
 {{< /mission-summary >}}
 Start here because it is the easiest stack on the field — the cubes are close together, and it is live judged, so your claw can still be holding the top cube when the judge looks.
 
-{{% callout title="Both Cubes Must Come From the Same Area" variant="navy" %}}
+{{< callout title="Both Cubes Must Come From the Same Area" variant="navy" >}}
 Both cubes have to originate from the Unstraight Cube area. Stacking an unstraight cube on a cube borrowed from somewhere else scores nothing.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p3_m13_stack
@@ -313,11 +313,11 @@ Both cubes have to originate from the Unstraight Cube area. Stacking an unstraig
 {{< /mission-summary >}}
 You already know how to get here — that was Project 5. Reuse your approach code and add the grab.
 
-{{% callout title="Two Different Jobs in One Mission" variant="gold" %}}
+{{< callout title="Two Different Jobs in One Mission" variant="gold" >}}
 The **base** is live judged, so your claw may still be holding the top cube. The **bonus** is final position — you must let go, back off, and the stack has to survive until the match ends.
 
 Get the base first. Then work on letting go cleanly.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< score-examples >}}
 scores:
@@ -354,9 +354,9 @@ Either order works for the base. Green on yellow, yellow on green — both score
 {{< /mission-summary >}}
 A different grip problem. Poms squash, so your closed position for a pom is not the same as for a cube.
 
-{{% callout title="[[IN]] Is Generous" %}}
+{{< callout title="[[IN]] Is Generous" >}}
 A pom only has to *partially extend into* the interior of the basket. It does not need to be sitting neatly at the bottom. But touching the outside of the basket, or resting on top of it, is not [[IN]].
-{{% /callout %}}
+{{< /callout >}}
 
 {{< short-answer key="p3_basket_plan" label="Basket plan" prompt="Which basket did you use, and which one are you saving for Mission 15?" >}}
 

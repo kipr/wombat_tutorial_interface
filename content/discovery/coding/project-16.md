@@ -93,11 +93,11 @@ Put the drive functions from two different projects side by side and compare the
 
 {{< ask key="p1_best_version" label="Best version" >}}Somewhere along the way you improved one of these — a better [[OVERSHOOT|overshoot]] number, a cleaner stop. Which project has your *best* version, and do the others have it?{{< /ask >}}
 
-{{% safety title="⚠ Your Good Work Is Trapped" %}}
+{{< safety title="⚠ Your Good Work Is Trapped" >}}
 Project 12 fixed the problem of writing the same code twice *inside one program*. It did nothing about writing it again in the *next* program.
 
 Right now every improvement you make lives in exactly one project, and the others quietly keep the old broken version.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< ask key="p1_team_sharing" label="Team sharing" >}}Your team has four people, each working on a different mission in a different project. One of them finds a much better turn. How does that reach everyone else?{{< /ask >}}
 
@@ -127,11 +127,11 @@ Get the brackets wrong and the [[COMPILER|compiler]] goes looking in the wrong p
 
 Your [[HEADER FILE|header file]] holds everything. Your [[PROTOTYPE|prototypes]] and your definitions, all in the one `.h` file.
 
-{{% callout title="Include the KIPR Library Inside Your Library" variant="gold" %}}
+{{< callout title="Include the KIPR Library Inside Your Library" variant="gold" >}}
 Your functions call `motor()`, `msleep()`, `analog()`. Those come from KIPR — so your `.h` file needs its own `#include <kipr/wombat.h>` at the top.
 
 Leave it out and every function inside your library breaks, even though the code looks perfect.
-{{% /callout %}}
+{{< /callout >}}
 
 myLibrary.h
 
@@ -190,11 +190,11 @@ Look at what `main.c` became. Two includes and a list of what the robot does. No
 Include files are `.h` files. You may also see an option for source files, which are `.c` — you do not need those for this.
 {.muted}
 
-{{% safety title="⚠ Save. Every Time." %}}
+{{< safety title="⚠ Save. Every Time." >}}
 Editing a `.h` file and forgetting to save it is the number one reason a library "does not work." Your changes are sitting in the editor and the compiler never saw them.
 
 Save the `.h`, then [[COMPILE|compile]].
-{{% /safety %}}
+{{< /safety >}}
 
 ### When it will not compile
 
@@ -241,9 +241,9 @@ Pick your drive function. Cut the prototype and the definition out of a project 
 
 Then add the include to `main.c` and compile.
 
-{{% callout title="One at a Time, Same as Always" variant="gold" %}}
+{{< callout title="One at a Time, Same as Always" variant="gold" >}}
 Move one function, compile, run it on the robot. If it works, move the next. Moving six at once and finding it broken tells you nothing about which one broke it.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p3_one_moved
@@ -382,9 +382,9 @@ Change something in your library — sharpen the turn, adjust the overshoot. Sav
 
 {{< ask key="p3_spread" label="Change spread" >}}What happened in the project you did not touch?{{< /ask >}}
 
-{{% callout title="That Is the Whole Point" variant="gold" %}}
+{{< callout title="That Is the Whole Point" variant="gold" >}}
 One edit, in one place, and every program that includes your library got better at the same instant. That is what a library buys you.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Step 8 — Write the instructions
 

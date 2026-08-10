@@ -35,9 +35,9 @@ meta:
 
 Your robot has followed instructions, broken problems apart, and made [[DECISION|decisions]]. But it has had no **memory** — once a command finished, the robot forgot it ever happened. Today the robot starts keeping track. It will store its own position in variables and update them as it moves, so at any moment it can answer: "Where am I now?"
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A robot doesn't magically know where it is. It knows only what it has *stored* — and that is only correct if it started from a known zero and updated honestly after every move.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -77,11 +77,11 @@ You already know how to create an `int` and set it once. Today the variable beco
 
 Picture walking across a room with your eyes closed. You can't see where you are — but if you started at a known spot and counted every step, you could still say roughly where you've ended up. That counting is memory. It's the only way you know your position without looking.
 
-{{% callout title="Think it through" variant="navy" %}}
+{{< callout title="Think it through" variant="navy" >}}
 You start at a doorway (your zero). You take 3 steps forward, then 2 steps forward. How many steps from the door are you now?
 
 If you forgot to count one step, would your answer still be right? What does that tell you about keeping a record?
-{{% /callout %}}
+{{< /callout >}}
 
 Track the steps from your zero:
 {.group-label}
@@ -118,9 +118,9 @@ To describe where something is on a flat field, we use two numbers: `x` (how far
 
 The robot's real position is out there on the field. The two numbers in memory are a *representation* of it — a model. If the model is updated correctly, it matches reality. If the robot slips or you forget to update, the model and reality drift apart, and the robot "believes" something false about where it is.
 
-{{% callout title="Example" variant="gold" %}}
+{{< callout title="Example" variant="gold" >}}
 A phone's map shows a blue dot for "you are here." That dot is a *representation* stored in the phone. When it's updated well, it tracks you. When the signal drops, the dot keeps showing the last stored spot — the model, not reality.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p2_real_vs_stored" label="Real versus stored position" >}}In your own words: what is the difference between where the robot really is and what the robot has *stored* about where it is?{{< /ask >}}
 
@@ -128,11 +128,11 @@ A phone's map shows a blue dot for "you are here." That dot is a *representation
 
 ### The Tracking Task
 
-{{% callout title="Your Goal" %}}
+{{< callout title="Your Goal" >}}
 Your robot will drive forward two times. It starts at the origin `(0, 0)`. After each forward move, it updates `y_position` so its stored memory always matches how far it has gone.
 
 Each `drive_forward()` counts as one step in `y`. We are only moving forward this time, so `x_position` stays at 0.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Step 1 — Set Your Zero
 
@@ -223,9 +223,9 @@ int main() {
 
 Your program drives the same way every time, so it should travel the same distance every time. Let's find out if it really does. Line the robot up against a wall at the start. Run the program **5 times**. After each run, measure the **exact distance from the wall** to the front of the robot, in inches.
 
-{{% callout title="How to use this table" variant="navy" %}}
+{{< callout title="How to use this table" variant="navy" >}}
 Trial 1 is your **expected distance** — the first result you got. For trials 2–5, write the measured distance, then the difference from Trial 1 (how far off it was). A difference of 0 means it matched exactly.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< gridtable >}}
 columns:
@@ -279,13 +279,13 @@ rows:
 
 Memory bugs are sneaky: the robot moves perfectly, but its stored position is wrong. The wheels and the memory got out of sync. The program runs with no error — the numbers just don't match reality.
 
-{{% callout title="The most common memory bugs" variant="gold" %}}
+{{< callout title="The most common memory bugs" variant="gold" >}}
 **Forgot to update:** the robot drove but you didn't add to `y_position`. It moved in real life but not in memory.
 
 **Updated twice:** two update lines for one move means the memory counts a step that never happened.
 
 **Never set the zero:** if you don't start the variables at 0, every stored number is off from the very first move.
-{{% /callout %}}
+{{< /callout >}}
 
 ### [[DEBUGGING|Debugging]] Log
 
@@ -307,9 +307,9 @@ Memory bugs are sneaky: the robot moves perfectly, but its stored position is wr
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="Big Idea 4 — AI Literacy Thread" %}}
+{{< callout title="Big Idea 4 — AI Literacy Thread" >}}
 Intelligent systems build and update models of the world using data.
-{{% /callout %}}
+{{< /callout >}}
 
 Your robot built a tiny model of the world — two numbers that say where it is. Every move, it updated that model. Big intelligent systems do exactly this at a huge scale: a delivery app stores where every driver is and updates it constantly; a game stores where every character is; a self-driving car keeps a live model of every nearby vehicle. The system acts on its stored model — so when the model is wrong, the system is wrong, even if every other part works perfectly.
 

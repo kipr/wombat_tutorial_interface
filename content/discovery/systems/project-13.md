@@ -96,9 +96,9 @@ rows:
 {{< ask key="p1_all_same" label="Everyone same position" >}}Now imagine everyone on that team decided to play the most exciting position at once. What happens?{{< /ask >}}
 {{< short-answer key="p1_unglam" label="Least glamorous" prompt="Which position is least glamorous but most missed when it is empty?" >}}
 
-{{% callout variant="gold" title="Now Look at Your Own Team" %}}
+{{< callout variant="gold" title="Now Look at Your Own Team" >}}
 Think about the last time you worked on the robot together. Was one person typing while everyone else watched? Did two people try to do the same job? Did anything get missed because everybody assumed somebody else had it?
-{{% /callout %}}
+{{< /callout >}}
 {{< ask key="p1_last_time" label="Last time" >}}What actually happened last time your team worked together?{{< /ask >}}
 
 ## Learn It — Goals First, Then Jobs
@@ -156,17 +156,17 @@ Keeps the robot in working order and makes changes to the hardware.
 
 *Only needed on teams of four.*
 
-{{% callout variant="navy" title="Two People, One Keyboard" %}}
+{{< callout variant="navy" title="Two People, One Keyboard" >}}
 Driver and Navigator are the oldest trick in programming, and the rule that makes it work is that the person typing is not the person deciding.
 
 It feels slow. It catches an enormous number of mistakes.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% callout variant="red" title="⚠ Roles Rotate" %}}
+{{< callout variant="red" title="⚠ Roles Rotate" >}}
 If the same person is always Driver, that person gets good at programming and everybody else gets good at watching.
 
 Rotate every challenge until each of you has done every job.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Holding each other to it
 
@@ -247,11 +247,11 @@ rows:
       aria: "Why 4"
 {{< /gridtable >}}
 
-{{% callout variant="gold" title="Ranking Is Where Teams Find Out What They Disagree About" %}}
+{{< callout variant="gold" title="Ranking Is Where Teams Find Out What They Disagree About" >}}
 "Win the tournament" and "everybody can program on their own" are both good goals. They ask for different things on a Tuesday afternoon.
 
 Deciding now which one wins is far easier than deciding in the middle of an argument.
-{{% /callout %}}
+{{< /callout >}}
 {{< ask key="p3_rank_disagree" label="Ranking disagreement" >}}Did your team disagree about the ranking? What was the disagreement?{{< /ask >}}
 
 ### 3. Five reasons and five struggles
@@ -357,9 +357,9 @@ rows:
       aria: "Round 1 caught"
 {{< /gridtable >}}
 
-{{% callout variant="red" title="⚠ Somebody Will Grab the Keyboard" %}}
+{{< callout variant="red" title="⚠ Somebody Will Grab the Keyboard" >}}
 It happens in almost every team on the first round. Say so out loud, laugh about it, and put the hands back.
-{{% /callout %}}
+{{< /callout >}}
 
 ### 6. Rotate and go again
 

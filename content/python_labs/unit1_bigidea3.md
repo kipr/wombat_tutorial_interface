@@ -36,11 +36,11 @@ meta:
 
 So far, your robot has done exactly what you told it, in exactly the order you wrote it. Today that changes. You'll write a program that **makes a choice** — it looks at a value and decides what to do based on a rule. The robot will sort freight: one action for one kind, a different action for another.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A decision is a rule the computer follows: "IF this is true, do one thing; OTHERWISE, do something else."
 
 The robot doesn't "know" anything. It checks a value against a rule you wrote — and that is what makes it look intelligent.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -84,11 +84,11 @@ You already know [[VARIABLE|variables]], [[FUNCTION|functions]], and the command
 
 Imagine you are a bouncer at the door of an event. You have exactly one rule: **if a person's ticket says "VIP," send them left; otherwise, send them right.** You don't know these people. You don't judge them. You just check the ticket against the rule and act.
 
-{{% callout title="Think it through" variant="navy" %}}
+{{< callout title="Think it through" variant="navy" >}}
 You see 5 people in a row. Their tickets say: VIP, General, VIP, General, General. Which way does each person go?
 
 Did you have to "think" about each person, or did you just apply the rule?
-{{% /callout %}}
+{{< /callout >}}
 
 Send each person left or right by your rule:
 {.group-label}
@@ -139,9 +139,9 @@ When a computer sorts things into groups using rules, that is *classification*. 
 
 Rules let a system respond to a *pattern* instead of a single fixed case. Your one rule — "if type 1, go straight; else turn" — handles every freight value you could ever set, not just one. Write the rule once, and it works for the whole pattern of cases.
 
-{{% callout title="Example" variant="gold" %}}
+{{< callout title="Example" variant="gold" >}}
 "If the light is red, stop; otherwise, go." That one rule covers every red light and every non-red light in the world. You don't write a new rule for each intersection — the pattern is handled by a single condition.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p2_fixed_vs_decision" label="Fixed steps versus decision" >}}In your own words: what is the difference between a program that follows a fixed list of steps and one that makes a decision?{{< /ask >}}
 
@@ -149,11 +149,11 @@ Rules let a system respond to a *pattern* instead of a single fixed case. Your o
 
 ### The Sorting Task
 
-{{% callout title="Your Goal" %}}
+{{< callout title="Your Goal" >}}
 Your robot is a freight sorter. A freight value is set at the top of the program. Your robot must take **one action** if the freight is type 1, and a **different action** if it is anything else.
 
 You choose what "type 1" and "anything else" mean for the robot — for example, drive straight to one bin, or turn toward another.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Step 1 — Write Your Rule in Plain English
 
@@ -282,11 +282,11 @@ rows:
 
 Decisions create a brand-new kind of bug: the robot does the *wrong* action, even though it runs without an error. That means the rule ran fine — but it was the wrong rule, or the value was not what you thought.
 
-{{% callout title="The most common decision bugs" variant="gold" %}}
+{{< callout title="The most common decision bugs" variant="gold" >}}
 **Wrong value:** If the robot turned when you expected straight, check what `freight_type` is actually set to at the top.
 
 **Incorrect indentation:** Any line that is not indented correctly will cause an error.
-{{% /callout %}}
+{{< /callout >}}
 
 ### [[DEBUGGING|Debugging]] Log
 
@@ -308,9 +308,9 @@ Decisions create a brand-new kind of bug: the robot does the *wrong* action, eve
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="Big Idea 3 — AI Literacy Thread" %}}
+{{< callout title="Big Idea 3 — AI Literacy Thread" >}}
 Intelligent systems identify patterns and use rules to make decisions.
-{{% /callout %}}
+{{< /callout >}}
 
 Your robot did not "understand" the freight. It checked a value against a rule you wrote and acted. Almost every intelligent system works this way underneath: an email app checks features of a message against rules and decides "spam or not spam." A photo app checks patterns and decides "face or not a face." The system is not judging — it is classifying with rules. The intelligence is in the rules, and a human wrote them.
 

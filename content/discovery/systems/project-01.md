@@ -115,21 +115,21 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p1_compare_piles" label="Compare piles" >}}Compare your piles with another team's. Did you sort the same way?{{< /ask >}}
 
-{{% callout variant="gold" title="There Is More Than One Right Answer" %}}
+{{< callout variant="gold" title="There Is More Than One Right Answer" >}}
 You might have sorted by size, by colour, by what it is made of, or by what you think it does. Engineers usually sort by **job** — what a part is *for*.
 
 Hold on to how you sorted. In a minute you will see how KIPR does it.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Why Engineers Count Things
 
 A [[CHECKLIST|Checklist]] looks like the most boring tool in engineering. It is also one of the most useful.
 
-{{% callout variant="navy" title="One Missing Screw" %}}
+{{< callout variant="navy" title="One Missing Screw" >}}
 Imagine it is competition day. Your robot is built, your program works, and one bracket is missing a screw. You cannot buy one in the hallway. You cannot borrow one mid-match.
 
 A checklist is how you find out on *day one* instead of on the day it matters.
-{{% /callout %}}
+{{< /callout >}}
 
 Checklists do three jobs:
 
@@ -150,11 +150,11 @@ Checklists do three jobs:
 - **The Senses** — Touch [[SENSOR|sensors]], light sensor, rangefinder, tophat sensors. The parts that gather information.
 {{< ask key="p2_missed_family" label="Missed family" >}}Look back at your own piles. Which family did you miss completely, or split up?{{< /ask >}}
 
-{{% callout variant="red" title="⚠ Two Things That Look Alike and Are Not" %}}
+{{< callout variant="red" title="⚠ Two Things That Look Alike and Are Not" >}}
 You have **motors** and you have **servos**. Both make things turn. They are not interchangeable, and plugging one into the wrong [[PORT|port]] will not work.
 
 Learn to tell them apart now, on the table, rather than later with a robot half-built.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Do It — Account for Everything
 
@@ -199,9 +199,9 @@ Find each item and tick it off. Count carefully — the number in front matters 
 
 Copy the list into your notebook in your own handwriting, grouped however makes sense to *you*.
 
-{{% callout variant="gold" title="Why Copy Something That Already Exists?" %}}
+{{< callout variant="gold" title="Why Copy Something That Already Exists?" >}}
 Because you will remember a list you wrote far better than one you were handed — and because at the end of the year your kit may not match the printed sheet exactly.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p3_own_list
@@ -308,11 +308,11 @@ rows:
       aria: "Touchscreen"
 {{< /gridtable >}}
 
-{{% callout variant="navy" title="Digital and Analog Have Separate Ports" %}}
+{{< callout variant="navy" title="Digital and Analog Have Separate Ports" >}}
 A touch sensor goes in a **digital** port because it answers yes or no. A light sensor goes in an **analog** port because it answers with a number.
 
 Plug one into the wrong kind and it will not read properly. You will meet both properly in the Coding strand.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p3_controller_known
@@ -347,9 +347,9 @@ rows:
       aria: "If missing"
 {{< /gridtable >}}
 
-{{% callout variant="red" title="⚠ The Charger Is the One to Watch" %}}
+{{< callout variant="red" title="⚠ The Charger Is the One to Watch" >}}
 You have two chargers, and without them the whole kit is a box of parts by the end of the week. Decide right now where they live, and put them back there every single time.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Score It — Checkpoint
 

@@ -134,11 +134,11 @@ Turn to the person next to you and compare. Find one you disagreed on and try to
 {{< short-answer key="p1_disagreed" label="Most disagreed" prompt="Which one did you disagree about most?" >}}
 {{< ask key="p1_changed_mind" label="Changed mind" >}}Did either of you change your mind? What was the argument that did it?{{< /ask >}}
 
-{{% callout variant="gold" title="You Have Been Using a Rule Without Saying It" %}}
+{{< callout variant="gold" title="You Have Been Using a Rule Without Saying It" >}}
 To answer any of those, you had to have some idea in your head of what a robot *is*. You have never written it down.
 
 Do it now, in one sentence: **a robot is…**
-{{% /callout %}}
+{{< /callout >}}
 {{< ask key="p1_my_definition" label="My definition" >}}My definition of a robot:{{< /ask >}}
 
 ## Learn It — Six Things Every Robot Has
@@ -192,11 +192,11 @@ What the robot knows. How to read its sensors, how to build commands, what has h
 
 *Examples: Your code*
 
-{{% callout variant="navy" title="Computation and Information Are Not the Same Thing" %}}
+{{< callout variant="navy" title="Computation and Information Are Not the Same Thing" >}}
 **Computation** is the machinery that thinks. **Information** is what it thinks about and what it thinks with.
 
 Same Wombat, different program, completely different robot. The hardware did not change — the information did.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Two kinds of sensing
 
@@ -204,11 +204,11 @@ Same Wombat, different program, completely different robot. The hardware did not
 
 - **[[PROPRIOCEPTIVE|Proprioceptive]]** — Reports on the **robot's own state**. Proprioceptive sensing is how you know you are sitting down with your eyes shut.
 
-{{% callout variant="gold" title="You Will Meet Both in the Coding Strand" %}}
+{{< callout variant="gold" title="You Will Meet Both in the Coding Strand" >}}
 The touch sensor and the light sensor look outward. But the counter inside each motor, telling the robot how far its own wheels have turned, looks *inward* — that one is proprioceptive.
 
 Same idea as knowing where your hand is without looking at it.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Do It — Find the Six
 
@@ -381,11 +381,11 @@ rows:
       aria: "Kit information alt"
 {{< /gridtable >}}
 
-{{% callout variant="red" title="⚠ One of Them Is Not in the Box" %}}
+{{< callout variant="red" title="⚠ One of Them Is Not in the Box" >}}
 Five of these you can hold. One of them you have not made yet.
 
 Which one — and what does that tell you about who finishes building this robot?
-{{% /callout %}}
+{{< /callout >}}
 
 {{< answer key="p3_not_in_box" label="Not in the box" >}}
 

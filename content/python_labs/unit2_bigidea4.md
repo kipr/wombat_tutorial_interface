@@ -36,9 +36,9 @@ meta:
 
 Your touch sensor gave a clean yes-or-no. Today's sensor is different. A **Tophat** sensor shines infrared light at the floor and measures how much bounces back — white reflects a lot, black line reflects little. But it doesn't return 0 or 1. It returns a **number** from a big range, and that number is *noisy* — it jumps around even when nothing moves. Before this sensor is useful, you have to **interpret** it: figure out what counts as "black" and what counts as "white." That work is most of this lab, and almost all of it happens before you write a single line of code.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 Raw sensor data is messy and meaningless on its own. The intelligence is in turning a jumpy number into a clear [[DECISION|decision]]: "this means line, that means floor."
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -48,9 +48,9 @@ Raw sensor data is messy and meaningless on its own. The intelligence is in turn
 - Use `if/else` on the live reading to steer a robot along a line.
 {.obj}
 
-{{% callout title="A heads-up" variant="navy" %}}
+{{< callout title="A heads-up" variant="navy" >}}
 This is the biggest lab yet. You'll do a lot of measuring and thinking before any driving. Take your time on the data — the better your calibration, the better your robot follows the line.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Phase 1 — Mount the Sensor & Find Its Values
 
@@ -61,19 +61,19 @@ This is the biggest lab yet. You'll do a lot of measuring and thinking before an
 
 ### Mount It
 
-{{% callout title="Setup" variant="navy" %}}
+{{< callout title="Setup" variant="navy" >}}
 Mount the **Tophat sensor** on the **front** of your robot, facing down at the floor, about **1/4 inch** off the surface.
 
 Plug it into **analog [[PORT|port]] 0**. In code, `k.analog(0)` reads this sensor.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Find It on the [[CONTROLLER|Controller]]
 
-{{% widgetstep title="Watch the raw values" %}}
+{{< widgetstep title="Watch the raw values" >}}
 On the Wombat, open the **Motors and Sensors** widget, then the **sensor list**. Find the **analog port 0** reading.
 
 Hold the sensor still over a white part of the board and just watch the number. **It bounces.** It won't sit on one value — it jitters up and down. That jitter is normal; it's *raw data*, and it's exactly why we can't just check for one exact number.
-{{% /widgetstep %}}
+{{< /widgetstep >}}
 
 {{< ask key="p1_white_bounce" label="White bounce range" >}}Hold the sensor still over white and watch the port-0 value for a few seconds. What was the lowest number you saw, and the highest? How much did it bounce?{{< /ask >}}
 
@@ -194,9 +194,9 @@ The **midpoint** is the value exactly halfway between black and white. It's your
       placeholder: midpoint
 {{< /calc >}}
 
-{{% callout title="This number is the heart of the lab" variant="gold" %}}
+{{< callout title="This number is the heart of the lab" variant="gold" >}}
 Your midpoint is the line between "I see black" and "I see white." Write it down — you'll type it into your code as `MIDPOINT`. Every robot's number is a little different, because every sensor is a little different.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p3_midpoint_meaning" label="Midpoint meaning" >}}Write your final midpoint value here, and explain in one sentence what it means.{{< /ask >}}
 
@@ -231,9 +231,9 @@ Your midpoint is the line between "I see black" and "I see white." Write it down
 
 ## Phase 5 — Build the line_follow [[FUNCTION|Function]]
 
-{{% safety title="⚠ Test in your hands first" noprint=true %}}
+{{< safety title="⚠ Test in your hands first" noprint=true >}}
 Hold the robot up and pass the line under the sensor by hand. Watch the wheels change speed as you move from white to black. Only put it on the board once the steering reacts the right way.
-{{% /safety %}}
+{{< /safety >}}
 
 You'll reuse the [[ENCODER|encoder]] skeleton from `Tick_Drive` — clear the counter, loop to a [[TICK|tick]] target, brake at the end — but inside the loop you'll put the `if/else` that steers. Type your own `MIDPOINT` from Phase 3 at the top. Define `line_follow` above `main()`, as always.
 
@@ -270,9 +270,9 @@ def line_follow(ticks):
 main()
 {{< /code >}}
 
-{{% callout title="If your robot steers the WRONG way — flip the branches" variant="gold" %}}
+{{< callout title="If your robot steers the WRONG way — flip the branches" variant="gold" >}}
 Every robot is wired a little differently. If your robot veers off the line instead of hugging it, swap the two motor [[BLOCK|blocks]]: put the white block's speeds in the black branch and the black block's speeds in the white branch. The logic is right; it just needs to match how *your* motors are wired.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Tuning Log
 
@@ -299,9 +299,9 @@ Run it on the line. Adjust your speeds (the 50 and 20) and re-test. Record what 
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="Big Idea — AI Literacy Thread" %}}
+{{< callout title="Big Idea — AI Literacy Thread" >}}
 Intelligent systems transform raw sensor data into meaningful information.
-{{% /callout %}}
+{{< /callout >}}
 
 Your sensor handed you a noisy, jumpy number. On its own, it meant nothing. You turned it into meaning by calibrating and setting a threshold — and only then could the robot act on it. Every intelligent system does this. A voice assistant gets a messy sound wave and has to decide "was that a word?" A medical device reads a noisy heartbeat signal and decides "is that a real beat?" The raw data is always messy; the intelligence is in interpreting it well. A bad threshold makes a bad decision, no matter how good everything else is.
 

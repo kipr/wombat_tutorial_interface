@@ -116,11 +116,11 @@ rows:
       aria: "Unseen time"
 {{< /gridtable >}}
 
-{{% callout variant="gold" title="Almost Everybody Guesses Too Low" %}}
+{{< callout variant="gold" title="Almost Everybody Guesses Too Low" >}}
 Not because people are bad at maths. Because when you picture a job, you picture it going well — you do not picture the bolt rolling under the table or the program not compiling.
 
 Professional engineers get this wrong too. The fix is not to guess better. It is to write the guess down, then find out how wrong it was.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Timelines and Honest Answers
 
@@ -148,11 +148,11 @@ rows:
     - text: "Something always goes wrong, and a plan with no room breaks"
 {{< /gridtable >}}
 
-{{% callout variant="red" title="⚠ One Late Task Is Not One Late Task" %}}
+{{< callout variant="red" title="⚠ One Late Task Is Not One Late Task" >}}
 If the claw is not built on time, the person who was going to program the claw cannot start either. A delay in one place moves everything downstream of it.
 
 That is why you say something the moment you know you will be late — not when the deadline arrives.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Feedback
 
@@ -174,11 +174,11 @@ The [[END USER|end user]] is whoever the thing is actually for. Not you, and not
 
 They know things you do not, because they are the ones who will use it. Asking them *before* you build saves you building the wrong thing.
 
-{{% callout variant="navy" title="You Have Already Met This" %}}
+{{< callout variant="navy" title="You Have Already Met This" >}}
 In Systems Project 12 you designed something for a person who could not do a task. The rule there was **ask, do not assume**.
 
 Same rule. The end user is the person you ask.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Do It — Plan It, Run It, Hand It Over
 
@@ -289,11 +289,11 @@ rows:
 {{< /gridtable >}}
 {{< short-answer key="p3_depends" label="Dependency" prompt="Which step cannot start until another one is finished?" >}}
 
-{{% callout variant="gold" title="Add a Quarter Back On" %}}
+{{< callout variant="gold" title="Add a Quarter Back On" >}}
 Look at your Try It numbers. If your team guessed low every time, add a quarter to every estimate before you start.
 
 That is not cheating. It is using evidence you collected ten minutes ago.
-{{% /callout %}}
+{{< /callout >}}
 {{< short-answer key="p3_total" label="Total expected" prompt="Total time we expect this to take:" >}}
 
 ### 3. Run it, and watch the clock
@@ -510,11 +510,11 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p3_never_thought" label="Never considered" >}}Did anybody raise something your team had never considered? What was it?{{< /ask >}}
 
-{{% callout variant="red" title="⚠ You Do Not Have to Do Everything Suggested" %}}
+{{< callout variant="red" title="⚠ You Do Not Have to Do Everything Suggested" >}}
 Some feedback will not fit your [[CONSTRAINT|constraints]], and some of it will be wrong. That is allowed.
 
 What is not allowed is ignoring it silently. Say which suggestions you took, which you did not, and why.
-{{% /callout %}}
+{{< /callout >}}
 
 ### 9. Change it and show them again
 

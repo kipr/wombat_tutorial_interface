@@ -121,11 +121,11 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p1_escape" label="Where poms escaped" >}}The flat ruler let poms escape. Where did they go, and what would have stopped them?{{< /ask >}}
 
-{{% callout variant="gold" title="Shape Decides What a Tool Can Do" %}}
+{{< callout variant="gold" title="Shape Decides What a Tool Can Do" >}}
 Nobody chose the spoon's curve at random. Somebody worked out what it had to do — hold liquid on the way to a mouth — and then built a shape that does exactly that.
 
 Engineers do this in one direction: **[[FUNCTION|function]] first, then structure.**
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Blades Have Shapes for Reasons
 
@@ -147,13 +147,13 @@ Seen from above. The wings are the whole difference.
 - If you have to **turn or back up**, sides and a front both help.
 - If the front can be **lowered over** an object, you can turn and reverse without losing it.
 
-{{% callout variant="navy" title="Three Questions Before You Design Anything" %}}
+{{< callout variant="navy" title="Three Questions Before You Design Anything" >}}
 **What is the challenge?** Say exactly what has to move, and where to.
 
 **What are the limits?** What is not allowed, and what will not fit.
 
 **What do we already know?** You have seen blades before. Use that.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Requirements and Constraints are not the same
 
@@ -181,11 +181,11 @@ rows:
     - text: "Roughly the height of a small cube"
 {{< /gridtable >}}
 
-{{% callout variant="red" title="⚠ The Starting Box Is a Hard Constraint" %}}
+{{< callout variant="red" title="⚠ The Starting Box Is a Hard Constraint" >}}
 Your robot must start **[[FULLY WITHIN]]** the starting box. If your blade is so wide that the robot no longer fits, you cannot start a match at all.
 
 Measure the box before you build. A brilliant blade that gets you disqualified is not a brilliant blade.
-{{% /callout %}}
+{{< /callout >}}
 
 ### A bulldozer only pushes
 
@@ -235,9 +235,9 @@ rows:
       aria: "Cone implication"
 {{< /gridtable >}}
 
-{{% callout variant="red" title="⚠ Two of Them Will Cause You Trouble" %}}
+{{< callout variant="red" title="⚠ Two of Them Will Cause You Trouble" >}}
 Poms roll away sideways. Cones tip over if you catch them too high. One blade has to handle both.
-{{% /callout %}}
+{{< /callout >}}
 
 ### 2. Define the problem
 
@@ -430,11 +430,11 @@ rows:
       aria: "Game cones problem"
 {{< /gridtable >}}
 
-{{% callout variant="gold" title="A Cone Lying on Its Side Still Counts" %}}
+{{< callout variant="gold" title="A Cone Lying on Its Side Still Counts" >}}
 [[@14:base|Mission 14]] asks for the cones to be [[OFF]] the black line. It does not say they have to stay standing.
 
 Check the mission wording yourself before you spend an afternoon designing around a rule that is not there.
-{{% /callout %}}
+{{< /callout >}}
 
 ### 9. Fix the worst failure
 
@@ -457,9 +457,9 @@ Put the robot in the starting box one last time, blade attached.
   label: "I could rebuild it exactly from my notes if it broke"
 {{< /checklist >}}
 
-{{% callout variant="navy" title="Hand This Over" %}}
+{{< callout variant="navy" title="Hand This Over" >}}
 Your class can now start **Coding Project 6 — Bulldoze Run**. That project scores sixteen points entirely by pushing, and none of it works without what you just built.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Score It — Checkpoint
 

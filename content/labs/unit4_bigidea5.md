@@ -35,9 +35,9 @@ meta:
 
 Every lab so far taught you that the real world is imperfect — motors [[OVERSHOOT|overshoot]], turns drift, batteries fade, models are never exact. A short move can hide those errors. But a **long run** with many steps? The tiny errors pile up until the robot is completely lost. Today's capstone is the reliability answer: a long, multi-part mission where the robot **constantly re-checks reality and wipes out its accumulated error** along the way. You'll touch Botguy and return both cones to the starting box — and stay accurate the whole time by squaring up again and again.
 
-{{% callout title="The Big Idea of This Unit" %}}
+{{< callout title="The Big Idea of This Unit" >}}
 You cannot stop errors from happening. But you *can* keep resetting them. A reliable robot doesn't trust its own dead reckoning across a long run — it keeps re-referencing known features (walls, lines) to zero out drift before it grows dangerous.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -49,9 +49,9 @@ You cannot stop errors from happening. But you *can* keep resetting them. A reli
 
 ## Phase 1 — The Mission &amp; Its Rules
 
-{{% callout title="The run" %}}
+{{< callout title="The run" >}}
 **Start** in the **right starting box**. In one continuous run: **touch Botguy**, then **move both cones back into the starting box**, and finish.
-{{% /callout %}}
+{{< /callout >}}
 
 ### The rules that make it hard
 
@@ -70,9 +70,9 @@ You cannot stop errors from happening. But you *can* keep resetting them. A reli
     A square-up fixes this. When the robot squares up against a line, it forces itself into a *known, exact* position and heading — no matter how crooked it had drifted. All the accumulated error is **wiped back to zero**. The robot gets a fresh, trustworthy starting point for the next leg.
 {{< /concept >}}
 
-{{% resetbox title="Error Reset Checkpoint" %}}
+{{< resetbox title="Error Reset Checkpoint" >}}
 Every time you call `square_up()` (or `back_until_pressed()`), think of it as a checkpoint that says: "I don't care how much I drifted — I now know *exactly* where I am again." That's why this run needs at least six of them.
-{{% /resetbox %}}
+{{< /resetbox >}}
 
 {{< ask key="p2_reset" label="Reset concept" >}}In your own words, why does error "accumulate" over a long run? How does a square-up reset it?{{< /ask >}}
 
@@ -152,17 +152,17 @@ int main() {
 }
 {{< /code >}}
 
-{{% callout title="[[REQUIREMENT|Requirement]] check" variant="gold" %}}
+{{< callout title="[[REQUIREMENT|Requirement]] check" variant="gold" >}}
 At least **6** square-ups, a **backward touch** to start, a path that **avoids the large cube**, and it must **touch Botguy** and **return both cones**. The skeleton shows six reset points — fill the driving/turning/collecting from your Phase 3–4 plan.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Phase 6 — Run It, Then Test Its Reliability
 
 Get it working one leg at a time. Then do the real reliability test: run the *whole* thing several times from the same start, and see how **consistent** it is. A reliable run succeeds the same way every time.
 
-{{% callout title="Reliability = repeatability" %}}
+{{< callout title="Reliability = repeatability" >}}
 A run that works once might be luck. A run that works 4 times out of 4 is *reliable*. Your square-up resets are what turn a lucky run into a repeatable one.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< repeattable count=4 prefix="run" caption="Run it 4+ times — how consistent is it?" >}}
 - kind: number
@@ -182,9 +182,9 @@ A run that works once might be luck. A run that works 4 times out of 4 is *relia
 
 ## Phase 7 — Connect &amp; Reflect
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 Reliable systems constantly re-check reality and reset their accumulated error.
-{{% /callout %}}
+{{< /callout >}}
 
 Your robot succeeded across a long run not by being perfect, but by *never trusting its own drift for too long*. Every square-up pulled it back to a known truth. This is one of the deepest ideas in reliable autonomy. A spacecraft re-checks its position against the stars. A self-driving car re-locates itself against lane lines and landmarks constantly. A surveyor re-references known benchmarks. None of them assume their internal estimate is still correct — they keep measuring reality and correcting. You just built that same discipline into a robot: act, but keep re-checking the world and resetting your error before it grows.
 

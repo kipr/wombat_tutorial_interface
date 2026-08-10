@@ -35,9 +35,9 @@ meta:
 
 Your turns right now are stuck at 90°. But missions need all kinds of angles — 45°, 180°, whatever the field demands. Today you'll build one flexible function, `Turn`, that takes a **direction** and an **angle** and handles them all. Along the way you'll meet four new tools: a new [[VARIABLE|variable]] type for letters, a new kind of loop, functions that take more than one input, and functions that hand a value back. And you'll discover something real engineers live with every day: a model is never perfect — it's the best fit you can find.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A model like "[[TICK|ticks]] per degree" lets one function turn *any* angle. But the real world fights back — [[INERTIA|inertia]] and friction mean no single number is perfect. You find the one that fits *best*.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -58,9 +58,9 @@ A model like "[[TICK|ticks]] per degree" lets one function turn *any* angle. But
     This is perfect for telling the robot which way to turn: `'R'` for right, `'L'` for left.
 {{< /concept >}}
 
-{{% callout title="Single quotes, not double" variant="navy" %}}
+{{< callout title="Single quotes, not double" variant="navy" >}}
 `'R'` (single quotes) is a `char` — one character. `"R"` (double quotes) is a *[[STRING|string]]* — a whole different, more complicated type. For one letter, always use single quotes. And remember: `'R'` and `'r'` are *different* characters to the computer.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p1_char" label="char meaning" >}}What is a `char`, and how is `'R'` different from `"R"`? Why is a `char` a good fit for a turn direction?{{< /ask >}}
 
@@ -147,9 +147,9 @@ rows:
     - key: cal_c_tpd
 {{< /gridtable >}}
 
-{{% callout title="They won't perfectly agree — and that's the lesson" variant="gold" %}}
+{{< callout title="They won't perfectly agree — and that's the lesson" variant="gold" >}}
 You'll find it's *incredibly hard* to make all three land on a perfect 360°. Every time the robot starts and stops a chunk, **inertia** carries it a little extra, and friction varies. More chunks (eight 45s) means more start-stops and more error pile-up. There is no single perfect `ticks_per_degree` — your job is to find the value that fits your robot **best across the cases you care about**.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p3_disagree" label="Why they disagree" >}}Did your three `ticks_per_degree` values come out the same? Why might the eight-turn version (B) drift more than the two-turn version (C)?{{< /ask >}}
 
@@ -257,9 +257,9 @@ rows:
 
 Add `ticks_per_degree` and your `Turn` function to your library. Now any mission can turn any angle, either direction, with one readable call — and you can retire the old fixed 90° turns.
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 Models are best-fit approximations — never perfect, but good enough to act on.
-{{% /callout %}}
+{{< /callout >}}
 
 Your three calibration runs disagreed, and no single `ticks_per_degree` was perfect. That's not failure — that's how models work everywhere in AI. A weather model, a self-driving car's physics, a language model's predictions: none are exactly right. They're the *best fit* to messy real-world data, good enough to act on while never being flawless. The skill isn't finding a perfect model — it's finding one that fits well enough and knowing its limits.
 

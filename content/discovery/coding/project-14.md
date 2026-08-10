@@ -61,9 +61,9 @@ Your touch sensor answers one question: *am I [[TOUCHING]] something?* Yes or no
 
 This one is different. Plug the [[REFLECTANCE|reflectance]] sensor — the little round one, sometimes called a tophat — into an **[[ANALOG|analog]]** [[PORT|port]]. Then open the Sensor List on the Wombat and watch the number while you hold it over things.
 
-{{% safety title="⚠ Hold It About a Quarter Inch Up" %}}
+{{< safety title="⚠ Hold It About a Quarter Inch Up" >}}
 Pointed straight down, roughly 1/4 inch off the surface. [[TOUCHING]] the surface or held way up both give you useless numbers.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< gridtable >}}
 columns:
@@ -100,11 +100,11 @@ rows:
 
 {{< ask key="p1_why" label="Why the numbers" >}}The sensor shines a tiny light down and measures how much bounces back. Use that to explain why the numbers came out the way they did.{{< /ask >}}
 
-{{% callout title="There Is No \"Black\" Reading" variant="gold" %}}
+{{< callout title="There Is No \"Black\" Reading" variant="gold" >}}
 You did not get a yes or a no. You got a number somewhere in a big range, and it drifts a little every time you look.
 
 So *you* have to decide where black starts. The sensor will not do it for you.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Pick Your Own Dividing Line
 
@@ -187,13 +187,13 @@ A number that jumps around a bit.
 
 Read the new one out loud: *"While the sensor is seeing something lighter than my threshold, keep driving. The moment it sees something darker, stop."*
 
-{{% callout title="When It Does Not Work, Move the Threshold" variant="navy" %}}
+{{< callout title="When It Does Not Work, Move the Threshold" variant="navy" >}}
 **Stops too early, before reaching black?** Your threshold is too low. Move it up, toward your black value.
 
 **Drives straight over the line and keeps going?** Your threshold is too high. Move it down, toward your white value.
 
 Also check the obvious: is the sensor pointed straight down, about a quarter inch off the surface?
-{{% /callout %}}
+{{< /callout >}}
 
 ### Starting on a light
 
@@ -311,17 +311,17 @@ rows:
       - key: p3_l3_res
         aria: "Line 3 result"
 {{< /gridtable >}}
-{{% callout title="This Is Something Ticks Cannot Do" variant="gold" %}}
+{{< callout title="This Is Something Ticks Cannot Do" variant="gold" >}}
 A [[TICK|tick]] count only works from a known starting point. This program finds the line from *anywhere* — it does not care where it began.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Step 4 — Drive to black, back up to black
 
 Now do it twice in a row. Drive forward to a line, stop, then reverse until you find a line again.
 
-{{% safety title="⚠ Think Before You Write This One" %}}
+{{< safety title="⚠ Think Before You Write This One" >}}
 When the robot stops, it is *sitting on black*. If you immediately start a loop that says "back up while you see white," what does the sensor see on the very first check?
-{{% /safety %}}
+{{< /safety >}}
 
 {{< ask key="p3_off_first_line" label="Getting off the line" >}}What did you have to do to get off the first line before looking for the next one?{{< /ask >}}
 
@@ -345,9 +345,9 @@ Now your robot sits still until someone shines a light at it.
 
 {{< mission-summary mission="14" >}}
 {{< /mission-summary >}}
-{{% safety title="⚠ The Base Still Has to Hold" %}}
+{{< safety title="⚠ The Base Still Has to Hold" >}}
 You cannot score this bonus unless **both** cones are [[OFF]] the black line — including the one you left behind. If your second cone drifted back onto the line, the bonus is worth nothing.
-{{% /safety %}}
+{{< /safety >}}
 
 Use your line-finding program to drive to the Loading Zone [[BOUNDARY|boundary]], then place the cone.
 
@@ -359,13 +359,13 @@ Use your line-finding program to drive to the Loading Zone [[BOUNDARY|boundary]]
 
 {{< mission-summary mission="18" >}}
 {{< /mission-summary >}}
-{{% safety title="⚠ [[IN]] and [[FULLY WITHIN]] Are Not the Same Thing" %}}
+{{< safety title="⚠ [[IN]] and [[FULLY WITHIN]] Are Not the Same Thing" >}}
 Mission 14's bonus only needs a cone **[[IN]]** the zone — any part of it poking into the interior counts.
 
 Mission 18 needs the cones **[[FULLY WITHIN]]** — every single part inside, nothing touching or crossing the boundary.
 
 A cone half over the line scores Mission 14 and *nothing* from Mission 18. This is exactly why you need the sensor: it tells you where the boundary actually is.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< score-examples >}}
 scores:
@@ -377,11 +377,11 @@ does_not_score:
   - "Botguy touching only the outside boundary of the zone."
   - "Botguy and only one cone, for the Advanced Bonus."
 {{< /score-examples >}}
-{{% callout title="One Delivery, Three Scores" variant="gold" %}}
+{{< callout title="One Delivery, Three Scores" variant="gold" >}}
 Put Botguy and **both** cones fully inside the Loading Zone and you collect Mission 14's bonus, Mission 18's bonus, and Mission 18's advanced — 35 points from one trip pattern.
 
 Every part of this is final position, so nothing may drift out before the match ends.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p3_delivery_order" label="Delivery order" >}}Which order will you deliver them in, and why that order?{{< /ask >}}
 

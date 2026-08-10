@@ -35,9 +35,9 @@ meta:
 
 So far, each behavior used one sensor. Your line-follow watches the Tophat. Your touch-stop watched the button. Today the robot uses **two sensors at the same time**: the Tophat to stay on the line, and a new **ET distance sensor** to watch for an object ahead. The robot will follow the line — and the moment something appears in front of it, stop. Neither sensor could do this alone. Together, they can.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 The smartest behavior comes from combining sensors. One answers "which way?" The other answers "stop yet?" Put together, the robot does something neither sensor could do by itself.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -54,24 +54,24 @@ The smartest behavior comes from combining sensors. One answers "which way?" The
   alt: The ET rangefinder.
 {{< /figrow >}}
 
-{{% callout title="Setup" variant="navy" %}}
+{{< callout title="Setup" variant="navy" >}}
 Mount the **ET distance sensor** on the **front** of your robot, facing **forward** (looking out ahead, not down at the floor like the Tophat).
 
 Plug it into **analog [[PORT|port]] 1**. In code, `analog(1)` reads the ET. Your Tophat is still on `analog(0)`.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< concept "The ET is a distance sensor — and it works backwards from what you'd guess" >}}
 - text: |
     The ET shines infrared light forward and measures how much bounces back off an object. The key rule:
 
-    <p style="text-align:center;font-weight:600;color:var(--navy)">The CLOSER the object, the HIGHER the value.</p>
+    ***The CLOSER the object, the HIGHER the value.***
 
     So a far-away object gives a low number, and as it gets nearer the number climbs. It's not a neat straight line, either — the value changes faster up close than far away. That's why you have to measure it yourself.
 {{< /concept >}}
 
-{{% widgetstep title="Watch it on the [[CONTROLLER|controller]]" %}}
+{{< widgetstep title="Watch it on the [[CONTROLLER|controller]]" >}}
 Open the **Motors and Sensors** widget, then the **sensor list**, and find **analog port 1**. Move your hand toward and away from the sensor and watch the number rise as you get closer, fall as you back away.
-{{% /widgetstep %}}
+{{< /widgetstep >}}
 
 {{< ask key="p1_et_behavior" label="ET behavior" >}}Move an object from far to near while watching analog(1). Describe what the number did. Did it climb steadily, or faster at some distances than others?{{< /ask >}}
 
@@ -106,9 +106,9 @@ rows:
 
 ### Now Investigate the Close Range
 
-{{% safety title="⚠ The blind spot — read this" %}}
+{{< safety title="⚠ The blind spot — read this" >}}
 The ET sensor stops behaving below about **3 inches**. Get closer than that and the reading does something strange — it can *drop* or bounce even as the object gets nearer. The sensor has a close-range **blind spot** where its numbers can't be trusted.
-{{% /safety %}}
+{{< /safety >}}
 
 Carefully push the object in past 3 inches and watch what the value does. Record it — this is real data about where the sensor fails.
 
@@ -152,9 +152,9 @@ You want the robot to stop with the object close — but **before** it enters th
       placeholder: stop_value
 {{< /calc >}}
 
-{{% callout title="Why outside the blind spot" variant="gold" %}}
+{{< callout title="Why outside the blind spot" variant="gold" >}}
 If you set your stop value too high (too close), the robot would have to drive into the blind spot to reach it — where the reading misbehaves and the robot might never see the right number. Stopping around 4 inches keeps you on the part of the curve you can trust.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p3_why_4in" label="Why 4 inches" >}}Why did you pick a stop value from around 4 inches instead of 1 or 2 inches, even though closer would "reach" the object more?{{< /ask >}}
 
@@ -189,9 +189,9 @@ If you set your stop value too high (too close), the robot would have to drive i
 
 ## Phase 5 — Build line_follow_until_object
 
-{{% safety title="⚠ Test in your hands first" noprint=true %}}
+{{< safety title="⚠ Test in your hands first" noprint=true >}}
 Hold the robot up. Pass the line under the Tophat and watch it steer. Then move your hand toward the ET and watch the wheels brake when your hand gets close. Only put it on the board once both reactions look right.
-{{% /safety %}}
+{{< /safety >}}
 
 Start from your tuned line-follow. Add an ET check to the loop condition and your stop value at the top. Use **your own** `MIDPOINT`, `STOP_VALUE`, and the `mav` speeds you found best. [[PROTOTYPE|Prototype]] above `main()`, definition below.
 
@@ -231,9 +231,9 @@ void line_follow_until_object() {
 }
 {{< /code >}}
 
-{{% callout title="Reminders from earlier labs" variant="gold" %}}
+{{< callout title="Reminders from earlier labs" variant="gold" >}}
 If the steering goes the wrong way, flip the two `mav` [[BLOCK|blocks]] (from Big Idea 4). The brake-and-settle at the end is from Big Idea 2. The `msleep(10)` in the loop is from Big Idea 1.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Test Log
 
@@ -258,9 +258,9 @@ If the steering goes the wrong way, flip the two `mav` [[BLOCK|blocks]] (from Bi
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="Big Idea — AI Literacy Thread" %}}
+{{< callout title="Big Idea — AI Literacy Thread" >}}
 Intelligent systems combine multiple sources of information to make decisions.
-{{% /callout %}}
+{{< /callout >}}
 
 Your robot just did something it never could with one sensor: it stayed on a path *and* watched for an obstacle, at the same time. This is called **sensor fusion**, and it's how every advanced intelligent system works. A self-driving car blends cameras, radar, and GPS at once — no single one is enough. Your phone blends the touchscreen, the accelerometer, and the light sensor to decide what to show. Intelligence grows when a system stops relying on one input and starts combining many.
 

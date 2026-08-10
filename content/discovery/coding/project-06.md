@@ -70,11 +70,11 @@ That turns out to be enough for four whole missions, because those missions do n
 
 Everything in this project depends on one word. Read it carefully.
 
-{{% callout title="The [[OFF]] Definition" variant="gold" %}}
+{{< callout title="The [[OFF]] Definition" variant="gold" >}}
 An object is [[OFF]] a line, [[BOUNDARY|boundary]], or zone edge when **no portion** of the object is [[TOUCHING]] that line, boundary, or zone edge.
 
 **No portion.** A cube resting with one corner on the line is not [[OFF]]. A cone leaning so its base just grazes the line is not [[OFF]]. Close does not count.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Walk the field
 
@@ -142,9 +142,9 @@ Pushing looks like the easy version of picking something up. It is not — it is
 | `Too high` | Tall objects tip over instead of sliding. A tipped cone still counts as [[OFF]] — but only if the whole thing cleared the line. |
 | `At an angle` | The object skids sideways. Hard to predict, hard to repeat. |
 
-{{% callout title="Square Up Before You Push" variant="navy" %}}
+{{< callout title="Square Up Before You Push" variant="navy" >}}
 This is why Project 5 spent so long on turns. Arriving *pointed the right way* matters more than arriving in exactly the right spot. A robot that is square to the object and an inch off center will still push it straight. A robot in the perfect spot but angled 20° will send it sideways.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Push far enough, then a bit more
 
@@ -152,9 +152,9 @@ You cannot see the line edge from inside your program. Your robot pushes for a s
 
 So [[OVERSHOOT|overshoot]] on purpose. If the object needs to travel four inches to clear the line, push it six. There is no penalty for being further [[OFF]], and there is a big penalty for being one millimeter short.
 
-{{% safety title="⚠ But Not Into Somewhere Worse" %}}
+{{< safety title="⚠ But Not Into Somewhere Worse" >}}
 Do not push an object into a wall, off the field, or [[ON TOP OF]] something you need later. Look at where it will end up before you decide how hard to shove.
-{{% /safety %}}
+{{< /safety >}}
 
 ### [[SIMULTANEOUSLY]] — the trap in Mission 4
 
@@ -237,9 +237,9 @@ rows:
 
 {{< mission-summary mission="14" >}}
 {{< /mission-summary >}}
-{{% safety title="⚠ A Tipped Cone Still Has to Be Clear" %}}
+{{< safety title="⚠ A Tipped Cone Still Has to Be Clear" >}}
 Cones tip easily. That is fine — a cone on its side can still be [[OFF]]. But a tipped cone takes up more floor, so the part that lands might reach back onto the line. Push further than feels necessary.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< checklist >}}
 - key: p3_m14_cone1
@@ -253,9 +253,9 @@ Cones tip easily. That is fine — a cone on its side can still be [[OFF]]. But 
 
 {{< mission-summary mission="2" >}}
 {{< /mission-summary >}}
-{{% callout title="Two Objects, Judged Separately" variant="navy" %}}
+{{< callout title="Two Objects, Judged Separately" variant="navy" >}}
 The cube and the pallet are checked independently. Both must be [[OFF]]. Shoving the cube off while the pallet stays behind on the line scores nothing — so push low enough to move them together, or move the pallet after.
-{{% /callout %}}
+{{< /callout >}}
 
 Good news on the bonus: the small red cubes do not have to stay stacked. Knocking them apart is fine as long as both end up [[OFF]].
 {.muted}
@@ -321,9 +321,9 @@ New project called `Bulldoze`. Copy your four working programs into it, one afte
 
 Now the hard part: the end of one section is the start of the next. After a push, your robot is not where it began — you need to drive it from wherever it ended up to wherever the next mission starts.
 
-{{% callout title="Add One Section at a Time" variant="gold" %}}
+{{< callout title="Add One Section at a Time" variant="gold" >}}
 Get mission one working from the starting box. Then add mission two and test the whole thing. Then add three. Never add two sections between tests — if it breaks you will not know which one did it.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p3_order_reason" label="Mission order reasoning" >}}What order did you put the four missions in, and why that order?{{< /ask >}}
 
@@ -453,11 +453,11 @@ msleep(30);
 Three lines instead of one. You still give it the thirty milliseconds to settle, because even a held motor
     takes a moment for the robot to stop rocking.
 
-{{% callout title="Try Both, Right Now" variant="gold" %}}
+{{< callout title="Try Both, Right Now" variant="gold" >}}
 Drive forward for two seconds and stop with `ao();`. Mark where the robot ends up.
 
 Reset, run it again, and stop with the three-line freeze instead. Mark that spot too.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< gridtable >}}
 columns:
@@ -482,10 +482,10 @@ rows:
 {{< /gridtable >}}
 {{< short-answer key="p3_stop_gap" label="Gap between the two stops" prompt="How far apart were the two finishing points?" >}}
 
-{{% safety title="⚠ From Here On" %}}
+{{< safety title="⚠ From Here On" >}}
 Every project after this one uses the freeze. If you go back and reuse code you wrote in Projects 3 to 6,
       swap the `ao();` for the three lines before you trust it.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< checklist >}}
 - key: p3_freeze_tested

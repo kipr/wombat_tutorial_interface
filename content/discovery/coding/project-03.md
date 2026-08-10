@@ -54,11 +54,11 @@ meta:
         label: "Your computer"
 ---
 
-{{% safety title="⚠ Wheels Off the Ground — All Project" %}}
+{{< safety title="⚠ Wheels Off the Ground — All Project" >}}
 Put your robot on a block or a thick book so the wheels spin freely in the air. Every single thing you do in this project happens with the robot up on a block.
 
 A robot that drives off a table lands on the floor. Do not find out.
-{{% /safety %}}
+{{< /safety >}}
 
 ## Try It — Which Way Does It Go?
 
@@ -90,9 +90,9 @@ Right side
 - src: kit/zoommotorports.jpg
   alt: "The Wombat controller with its two drive motors."
 {{< /figrow >}}
-{{% callout title="Counting Starts at Zero" variant="navy" %}}
+{{< callout title="Counting Starts at Zero" variant="navy" >}}
 The ports are numbered 0, 1, 2, 3 — not 1, 2, 3, 4. Computer scientists start counting at zero, and you will see this everywhere from now on. There is no port 4.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Find your motors and plug them in
 
@@ -114,9 +114,9 @@ There is no mark on the motor plug telling you which way is right. You can put i
 
 A motor spins in whichever direction the electricity flows through it. Flip the plug, and the wheel spins the other way.
 
-{{% callout title="The Wheel-Spin Trick" variant="gold" %}}
+{{< callout title="The Wheel-Spin Trick" variant="gold" >}}
 You do not need a program to find out which way a motor is wired. **Turn the wheel with your hand** and watch the little light next to that [[PORT NUMBER|port number]] on the board.
-{{% /callout %}}
+{{< /callout >}}
 
 Green
 
@@ -149,11 +149,11 @@ rows:
       - key: p1_flip_port3
         aria: "Flip port 3"
 {{< /gridtable >}}
-{{% callout title="If One Is Green and One Is Red" %}}
+{{< callout title="If One Is Green and One Is Red" >}}
 Unplug the red one, turn the plug 180°, and plug it back in. Spin the wheel again. Both should now be green when the wheels turn forward.
 
 If you skip this, your robot will not drive forward — it will spin in a circle, because one wheel is going forward and the other backward.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p1_both_green
@@ -175,9 +175,9 @@ Each piece of information inside the parentheses is called an [[PARAMETER|parame
 
 An [[ARGUMENT|argument]] is the actual value you provide to a parameter when you call a function. For example, in `motor(0, 50)`, `0` and `50` are arguments.
 
-{{% callout title="Remember This From Project 2?" variant="gold" %}}
+{{< callout title="Remember This From Project 2?" variant="gold" >}}
 "Too many arguments to [[FUNCTION|function]]" was one of the errors you triggered on purpose. Now you know what an argument is — and why `msleep(2,000)` looked like two of them.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Power runs from −100 to 100
 
@@ -203,22 +203,22 @@ Your robot has two driven wheels and one small free-rolling wheel called a [[CAS
     Before you send it anywhere, decide which end is the front — because that decides what
     `motor(0, 100)` actually does.
 
-{{% callout title="Pull the Caster, Do Not Push It" variant="gold" %}}
+{{< callout title="Pull the Caster, Do Not Push It" variant="gold" >}}
 A caster swivels. Pushed from behind it wanders, wobbles, and takes a moment to swing round every
       time you change direction. **Pulled along behind the driven wheels it tracks straight.**
 
 So the driven wheels go at the **front**, and the caster trails.
-{{% /callout %}}
+{{< /callout >}}
 
 Set your robot up so that the **green power LED and the ports face forward** — the same end
     the arm will eventually go on. That end is the front, and everything you write from now on assumes it.
 
-{{% safety title="⚠ Decide Now, Not Later" %}}
+{{< safety title="⚠ Decide Now, Not Later" >}}
 If half your team calls one end the front and the other half calls the other end the front, your turns
       will go the wrong way and nobody will be able to see why.
 
 Agree it, and write it in your notebook: *the front of our robot is the end with ___ on it.*
-{{% /safety %}}
+{{< /safety >}}
 
 ### Turning motors off
 

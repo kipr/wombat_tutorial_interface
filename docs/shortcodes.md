@@ -39,7 +39,10 @@ migration.
 
 ## Panels
 
-Panel bodies are Markdown, so use `%` delimiters.
+Panel bodies are Markdown. Use `{{< >}}` delimiters; each panel shortcode
+renders its body with `RenderString` so the wrapper HTML is not re-parsed.
+Do not nest other shortcodes inside a panel body: Hugo expands the nested
+shortcode first, leaving raw HTML in `.Inner`, which Goldmark then omits.
 
 | Shortcode | Parameters | Meaning |
 | --- | --- | --- |
@@ -51,9 +54,9 @@ Panel bodies are Markdown, so use `%` delimiters.
 | `resetbox` | required `title` | Gold error-reset checkpoint. |
 
 ```markdown
-{{% safety title="⚠ Test in your hands first" noprint=true %}}
+{{< safety title="⚠ Test in your hands first" noprint=true >}}
 Hold the robot clear of the floor before running the program.
-{{% /safety %}}
+{{< /safety >}}
 ```
 
 Prefer a semantic panel name over using a color to imply the meaning.

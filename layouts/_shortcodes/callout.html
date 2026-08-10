@@ -1,2 +1,15 @@
+{{- /*
+  A colored insight / setup panel. Inner content is Markdown; use {{< >}}
+  delimiters so the panel HTML is not re-parsed (and stripped) by Goldmark.
+
+    {{< callout title="Core Insight" >}}
+    Markdown is rendered inside this panel.
+    {{< /callout >}}
+
+    {{< callout title="Setup" variant="navy" >}}
+    Mount the sensor on the front of the robot.
+    {{< /callout >}}
+*/ -}}
 {{- $variant := .Get "variant" | default "red" -}}
-{{- partial "panel.html" (dict "title" (.Get "title") "variant" $variant "content" .Inner) -}}
+{{- $content := .Page.RenderString (dict "display" "block") .Inner -}}
+{{- partial "panel.html" (dict "title" (.Get "title") "variant" $variant "content" $content) -}}

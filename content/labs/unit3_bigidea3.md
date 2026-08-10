@@ -35,9 +35,9 @@ meta:
 
 You've built a lot of useful [[FUNCTION|functions]] — `move_arm`, `move_claw`, `back_until_pressed`, `Tick_Drive`, `line_follow` — but every time you start a new program, you've had to type them all again. That ends today. You'll gather all your best functions into one **[[LIBRARY|library]]**: a single file you write once and pull into *any* program with one line. Real programmers don't rewrite their tools; they build a toolbox and carry it everywhere.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A library lets you write a function once and reuse it in every program forever. Your `main` stays short and readable, and all your tools live in one organized place.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -56,9 +56,9 @@ The IDE normally hides its more powerful features to keep things simple. To work
 3. Change the interface setting to **Advanced**.
 4. Go **back to the project menu**.
 
-{{% callout title="What changed?" variant="navy" %}}
+{{< callout title="What changed?" variant="navy" >}}
 Back in your project, look at the **right side of the screen**. You'll see **new areas** that weren't there before — including places for your project's source files and header files. That's where your library will live.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p1_new_areas" label="New areas observed" >}}After switching to Advanced and returning to your project, what new areas appeared on the right side of the screen that you didn't see before?{{< /ask >}}
 
@@ -98,9 +98,9 @@ rows:
       placeholder: e.g. maria.h
 {{< /gridtable >}}
 
-{{% callout title="It's portable" variant="gold" %}}
+{{< callout title="It's portable" variant="gold" >}}
 Once your library exists, you can take it anywhere. Select it and use the **File menu** to **download** it, then drop it into any other project. Write your tools once, carry them forever.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Phase 4 — Move Your Functions Into the Library
 
@@ -222,9 +222,9 @@ void line_follow(int ticks) {
 }
 {{< /code >}}
 
-{{% callout title="[[COMMENT|Comment]] like a teacher" variant="navy" %}}
+{{< callout title="[[COMMENT|Comment]] like a teacher" variant="navy" >}}
 Notice every function has a comment explaining what it does, written for someone who has *never seen it before*. That's your job here: above each function, write a clear note saying what it does, what you pass in, and what happens. One day that "someone" will be you, six months from now — and you'll be glad you wrote it.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p4_your_comment" label="Your function comment" >}}Pick one of your functions. Write the comment you'd put above it to explain it to a brand-new user who has never seen your code.{{< /ask >}}
 
@@ -277,9 +277,9 @@ Run your program and check off each function as you confirm it works from the li
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 Complex intelligent systems are built from organized, reusable building blocks.
-{{% /callout %}}
+{{< /callout >}}
 
 No one builds a giant intelligent system as one enormous program. They build small, tested, reusable pieces and organize them into libraries — then combine those pieces into something big. The code that runs a self-driving car, a phone, or an AI model is built on layers of libraries, most written by other people, each one a tool someone built once and shared. Today you took your own scattered tools and organized them into a library. That's exactly how real software is built: not by rewriting everything, but by standing on well-organized, reusable parts.
 

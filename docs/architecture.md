@@ -9,7 +9,7 @@ JavaScript tests use Node's built-in modules.
 
 Goldmark is configured in `hugo.toml` to:
 
-- allow raw HTML because migrated worksheets still contain some authored HTML;
+- reject authored raw HTML (`unsafe = false`); pages use Markdown, shortcodes, and block attributes instead;
 - preserve authored punctuation by disabling typographic substitutions;
 - allow block attributes such as `{.muted}` and `{.obj}`;
 - leave standalone images unwrapped; and

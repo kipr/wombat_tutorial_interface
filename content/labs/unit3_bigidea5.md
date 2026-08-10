@@ -35,9 +35,9 @@ meta:
 
 This is it — the moment everything comes together. Over this unit you built a whole toolbox: driving a measured distance, turning a reliable 90°, and lifting with a safe, smooth arm and claw. Today you'll **compose** those tools into a complete mission. Your robot will drive to a cube, pick it up, stack it on a cube of the opposite color — then **reposition itself** and do it a second time for the bonus. No new commands today. The challenge is *planning*: putting your tested tools in exactly the right order.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A complex mission isn't built from new code — it's built by sequencing reliable tools you already trust. The hard part is the plan, not the parts.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -47,9 +47,9 @@ A complex mission isn't built from new code — it's built by sequencing reliabl
 - Complete Mission 3 — two cubes stacked on opposite-color cubes.
 {.obj}
 
-{{% callout title="Your toolbox (all from your library)" variant="navy" %}}
+{{< callout title="Your toolbox (all from your library)" variant="navy" >}}
 `Tick_Drive(ticks)` · `Back_Drive(ticks)` · `turn_right()` · `turn_left()` · `move_arm(position)` · `move_claw(position)` — plus your tuned values `ARM_MIN`, `ARM_MAX`, `CLAW_OPEN`, `CLAW_SHUT`. You'll build `Back_Drive` in Phase 2.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Phase 1 — Understand the Mission
 
@@ -58,13 +58,13 @@ A complex mission isn't built from new code — it's built by sequencing reliabl
   alt: The claw on the robot has to close together to hold or pick up something.
 {{< /figrow >}}
 
-{{% callout title="Mission 3 — Stack a Cube, Then Stack Another" %}}
+{{< callout title="Mission 3 — Stack a Cube, Then Stack Another" >}}
 **Base:** stack a green or yellow cube [[ON TOP OF]] a cube of the *opposite* color.
 
 **Bonus (your goal today):** do it *twice* — build two stacks.
 
 The two stacks are in different spots, so after finishing the first, your robot has to move over and line up with the second. That repositioning is the new challenge.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p1_restate" label="Restate mission" >}}Say the mission back in your own words. What makes the *second* stack harder than the first?{{< /ask >}}
 
@@ -207,9 +207,9 @@ Translate your plan line by line. Each row of your Phase 4 table is one function
 
 Run the mission. It almost certainly won't be perfect the first time — that's normal for a full mission. Test it in pieces: get stack 1 working first, then the reposition, then stack 2. Record what you fix.
 
-{{% callout title="Debug in chunks" variant="gold" %}}
+{{< callout title="Debug in chunks" variant="gold" >}}
 Don't try to fix the whole run at once. [[COMMENT|Comment]] out everything after stack 1 and get that perfect. Then add the reposition. Then stack 2. A mission is easiest to fix one piece at a time.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< repeattable count=5 prefix="debug" >}}
 - kind: number
@@ -245,9 +245,9 @@ rows:
 
 ## Phase 8 — Connect &amp; Reflect
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 Complex tasks are accomplished by sequencing reliable, reusable behaviors.
-{{% /callout %}}
+{{< /callout >}}
 
 You just completed a real mission — and you did it without writing a single new low-level command. Every piece was a tool you'd already built and tested. That's how all complex automation works: a warehouse robot fulfilling an order, a factory line assembling a product, a Mars rover collecting a sample — each is a *sequence* of reliable, reusable behaviors, planned carefully and run in order. The intelligence is in the planning and the trust you've earned in each part.
 

@@ -35,9 +35,9 @@ meta:
 
 Your robot already follows a line — but does it follow it *well*? Does it wobble wildly, or glide smoothly? Today you'll find out, by treating your line-follow like an engineer treats an engine: you'll change the speeds in a careful, organized way and measure what happens. Along the way you'll trade in your old `motor()` command for a more precise one — `mav()` — that gives you far finer control over speed.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 There's no single "right" speed. The best line-follow is found by testing — changing one thing at a time and letting the robot's behavior tell you what works.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -88,9 +88,9 @@ There's no single "right" speed. The best line-follow is found by testing — ch
 
 Imagine a faucet with only 3 settings: off, trickle, blast. Now imagine one with a smooth dial you can turn to any flow you want. Which one lets you fill a cup to exactly the right level without overflowing? The dial — because it gives you *finer control*. `motor` is the 3-setting faucet compared to `mav`'s smooth dial.
 
-{{% callout title="Think it through" variant="navy" %}}
+{{< callout title="Think it through" variant="navy" >}}
 When your line-follow wobbles, you want to make a *small* speed change to calm it down. Why is that easier with 1500 possible speeds than with 100?
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p1_fine_control" label="Fine control reasoning" >}}Why does having more possible speed values (finer control) help you tune a robot that's wobbling? Use the faucet idea if it helps.{{< /ask >}}
 
@@ -101,9 +101,9 @@ Your line-follow has two numbers that matter: the **fast wheel** speed and the *
 - **Total speed** — how fast both wheels go overall. Faster covers ground quicker, but gives the robot less time to react, so it can [[OVERSHOOT|overshoot]] and jitter.
 - **The gap** — the difference between fast and slow. A bigger gap turns harder each correction; a smaller gap turns gently.
 
-{{% callout title="The experiment plan" variant="gold" %}}
+{{< callout title="The experiment plan" variant="gold" >}}
 You'll run two organized series. In **Series 1**, the gap stays at 30 (×15 = 450 in mav terms) while total speed climbs. In **Series 2**, the gap widens to 40 (×15 = 600) and total speed climbs again. By changing one thing at a time, you'll see what each does.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p2_predict_speed" label="Speed prediction" >}}Predict: as total speed goes up, do you think the robot will follow the line *better* or *worse*? Why?{{< /ask >}}
 
@@ -111,9 +111,9 @@ You'll run two organized series. In **Series 1**, the gap stays at 30 (×15 = 45
 
 Start from your Unit 2 speeds and raise both wheels by 10 (×15 = 150 in mav) each trial, keeping the gap at 30 (×15 = 450). After each run, rate how well the robot followed the line: **poor / ok / great**. Also note if it jittered.
 
-{{% safety title="⚠ Same line, same start" noprint="true" %}}
+{{< safety title="⚠ Same line, same start" noprint="true" >}}
 Run every trial on the same line from the same starting spot, so the only thing changing is the speed. That's what makes it a fair test.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< gridtable caption="Series 1 — Gap of 30 (mav gap 450)" >}}
 columns:
@@ -216,9 +216,9 @@ Now you're the engineer. Using what your two series showed, pick your own fast a
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 Intelligent systems are tuned and optimized using evidence, not guesses.
-{{% /callout %}}
+{{< /callout >}}
 
 You didn't find your best settings by guessing — you ran an organized experiment, changed one thing at a time, and let the data guide you. This is exactly how real intelligent systems get good. Engineers tuning a self-driving car, or researchers training an AI model, adjust settings (called *[[PARAMETER|parameters]]*), measure the result, and adjust again — thousands of times. The "intelligence" of a system is often the result of careful tuning, not a single lucky setting.
 

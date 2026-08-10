@@ -36,9 +36,9 @@ meta:
 
 Your robot can drive, sense, and follow lines — but it can't yet *touch* the world. To stack cubes, it needs an arm and a claw. Those are run by **servos**: motors that move to an exact position and hold it. Today you'll build a demobot arm and claw, learn to move each servo to a precise spot, and — most important — find the **safe limits** of your servos so you never damage them. Then you'll try your first pick-up.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A servo doesn't spin like a wheel — it goes to a *position* and holds. That precision is what lets a robot grab, lift, and place objects exactly.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -50,11 +50,11 @@ A servo doesn't spin like a wheel — it goes to a *position* and holds. That pr
 
 ### Build &amp; Plug In the Servos
 
-{{% callout title="Wiring — get this right before powering on" variant="navy" %}}
+{{< callout title="Wiring — get this right before powering on" variant="navy" >}}
 Plug the **arm** servo into **servo [[PORT|port]] 0** and the **claw** servo into **servo port 3**.
 
 On each servo cord, the **orange wire must be closest to the screen**. Plugging it in backward can damage the servo or the [[CONTROLLER|controller]] — double-check before you power on.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Phase 1 — Concept: How a Servo Works
 
@@ -98,12 +98,15 @@ On each servo cord, the **orange wire must be closest to the screen**. Plugging 
   alt: Centre the horn before you trust any position number.
 {{< /figrow >}}
 
-{{% safety title="⚠ This step protects your servo — do it carefully" noprint=true %}}
+{{< safety title="⚠ This step protects your servo — do it carefully" noprint=true >}}
 A servo can only turn so far before it hits a hard mechanical stop. If you command it *past* that stop, the motor keeps straining against the wall and can **burn out**. You must find the highest and lowest positions your arm can reach *without* forcing it, and never command outside them.
-{{% /safety %}}
+{{< /safety >}}
 
-{{% widgetstep title="Use the servo widget" %}}
+{{< widgetstep title="Use the servo widget" >}}
 Open the **Motors and [[SENSOR|Sensors]]** widget and find the **servo** page. Select **port 0** (the arm). Slowly move the position up and down. **Watch and listen:** stop the moment the arm reaches its physical limit — do not push it into a strain or buzzing sound.
+
+Record the lowest safe position (arm all the way down) and the highest safe position (arm all the way up).
+{{< /widgetstep >}}
 
 {{< figrow >}}
 - src: servo/widget.jpg
@@ -111,9 +114,6 @@ Open the **Motors and [[SENSOR|Sensors]]** widget and find the **servo** page. S
 - src: servo/widget-testing.jpg
   alt: Drag the slider to find a position before you code it.
 {{< /figrow >}}
-
-Record the lowest safe position (arm all the way down) and the highest safe position (arm all the way up).
-{{% /widgetstep %}}
 
 {{< gridtable caption="Arm (port 0) safe range" >}}
 columns:
@@ -136,9 +136,9 @@ rows:
 
 ## Phase 3 — Find the Claw's Safe Range
 
-{{% widgetstep title="Same careful process, port 3" %}}
+{{< widgetstep title="Same careful process, port 3" >}}
 Select **port 3** (the claw) in the servo widget. Slowly open and close it. Find the position where it's **open** wide enough to fit around a cube, and the position where it's **closed** snugly on the cube — without straining past either stop.
-{{% /widgetstep %}}
+{{< /widgetstep >}}
 
 {{< gridtable caption="Claw (port 3) safe range" >}}
 columns:
@@ -158,9 +158,9 @@ rows:
 
 ## Phase 4 — Build: Your First Pick-Up
 
-{{% safety title="⚠ Never command past your safe values" noprint=true %}}
+{{< safety title="⚠ Never command past your safe values" noprint=true >}}
 Every `set_servo_position` in your code must use a number between the safe values you found. If you type a number outside them, you risk burning out the servo. Use your `ARM_MIN`, `ARM_MAX`, `CLAW_OPEN`, and `CLAW_SHUT` — not random numbers.
-{{% /safety %}}
+{{< /safety >}}
 
 Type your four safe values at the top, then build the grab sequence: open the claw, lower the arm, close on the cube, and lift. Each move gets a pause so the servo has time to arrive.
 
@@ -203,9 +203,9 @@ main()
 About the `k.msleep(1000)`: servos don't move instantly, so you wait for each one to arrive before the next command. We use a full second for safety while you're learning — once you know your servos, you can shorten it.
 {.muted}
 
-{{% safety title="⚠ Hold the robot and watch the first run" noprint=true %}}
+{{< safety title="⚠ Hold the robot and watch the first run" noprint=true >}}
 Run this with the robot held still on a table, cube in reach. Watch each move happen. If anything strains, buzzes, or pushes against a stop, **stop the program immediately** and re-check your values.
-{{% /safety %}}
+{{< /safety >}}
 
 ### Pick-Up Log
 
@@ -245,9 +245,9 @@ rows:
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 Intelligent systems must know the limits of their own bodies to act safely.
-{{% /callout %}}
+{{< /callout >}}
 
 Before your robot could safely lift anything, you had to teach it the limits of its own arm and claw — how far they can go before they break. Every robot that acts on the world has this problem. A factory arm knows exactly how far each joint can bend; a surgical robot has hard limits built in so it can never over-extend. Knowing your own physical limits isn't a weakness — it's what makes safe, precise action possible. A system that doesn't know its limits will eventually destroy itself.
 

@@ -22,7 +22,7 @@ meta:
   - term: "Purpose"
     definition: "Know your kit, your robot’s six subsystems, and how to work safely — before you write any code."
   - term: "Where This Sits"
-    definition: "<strong>Before Unit 1, Big Idea 1.</strong> Do PreLab 0, then PreLab 1, then start Lab 1.1."
+    definition: "**Before Unit 1, Big Idea 1.** Do PreLab 0, then PreLab 1, then start Lab 1.1."
   - term: "How It Is Assessed"
     definition: "Completion only. Tick boxes and record four values — there is nothing to write up."
   - term: "What You Need"
@@ -173,6 +173,6 @@ fields:
     label: Date completed
 {{< /signoff >}}
 
-{{% gate title="Next" %}}
+{{< gate title="Next" >}}
 **PreLab 1 — The Toolchain.** You cannot start Lab 1.1 until your robot boots, connects, and runs a program you wrote.
-{{% /gate %}}
+{{< /gate >}}

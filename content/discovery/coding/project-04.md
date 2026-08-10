@@ -63,9 +63,9 @@ You are about to score real points. Before you write a single line of code, find
 {{< /mission-summary >}}
 **Mission 10 — Waypoint Bravo** is the same mission on the other side: the zone next to the **right** starting box. Everything you learn here works for both.
 
-{{% safety title="⚠ They Do Not Share a Return Trip" %}}
+{{< safety title="⚠ They Do Not Share a Return Trip" >}}
 Mission 1 and Mission 10 must be completed **independently**. One drive back into a starting box cannot pay for both bonuses. Each one needs its own out-and-back run.
-{{% /safety %}}
+{{< /safety >}}
 
 ### What scores and what does not
 
@@ -80,11 +80,11 @@ does_not_score:
   - "Robot enters, instantly reverses, and leaves without stopping."
   - "One robot does the base, a different robot does the bonus."
 {{< /score-examples >}}
-{{% callout title="The Judge Has to See It" variant="navy" %}}
+{{< callout title="The Judge Has to See It" variant="navy" >}}
 If a judge cannot clearly tell that your robot stopped, the mission does not score — even if you know it stopped. A stop that is too short to see is worth zero.
 
 Moving an arm or claw while the robot stays in place is still stopped. What matters is that its *position on the field* is not changing.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Walk it first
 
@@ -133,20 +133,20 @@ Send 50 to both motors and your robot will drift. Every robot does. The reasons 
 - One wheel has more friction than the other.
 - Weight is not spread evenly across the robot.
 
-{{% callout title="The Fix Is in the Numbers" variant="gold" %}}
+{{< callout title="The Fix Is in the Numbers" variant="gold" >}}
 You cannot make the motors identical. You *can* give them different numbers so they end up going the same speed.
 
 If your robot drifts **left**, the left wheel is going too slow — or the right one too fast. Speed up the left, or slow down the right.
 
 If it drifts **right**, do the opposite.
-{{% /callout %}}
+{{< /callout >}}
 
 Change one wheel at a time, by 2 or 3 at a time. Big jumps [[OVERSHOOT|overshoot]] and you end up chasing it.
 {.muted}
 
-{{% callout title="It Will Drift Again Later" %}}
+{{< callout title="It Will Drift Again Later" >}}
 The correction that works on a cold robot may not work after twenty runs — motors change as they warm up. The more power you use, the bigger the correction you need. Expect to re-check this on competition day.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Reverse is just a minus sign
 
@@ -160,9 +160,9 @@ motor(0, -50);   // backward
 motor(3, -50);
 ```
 
-{{% callout title="Watch Out" variant="navy" %}}
+{{< callout title="Watch Out" variant="navy" >}}
 If your straight-driving fix was `motor(0, 50); motor(3, 47);`, then reverse is `motor(0, -50); motor(3, -47);` — the *same* correction, both numbers negative. Students often flip which wheel gets the smaller number and then wonder why the robot curves on the way home.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Shape of the program
 

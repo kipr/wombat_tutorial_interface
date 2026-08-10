@@ -36,9 +36,9 @@ meta:
 
 This is the capstone of Unit 1. Your robot starts in the **right starting box** and must push poms off the line — Mission 4. The poms are **not** in a neat row, and there are other objects on the field to work around. You won't write a brand-new command for every move. Instead, you'll build a few small, reliable behaviors and **reuse** them — in different combinations — to handle a messy, real layout.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 Big behaviors are built from small ones. A few reliable building blocks, combined in the right order, can solve a complex task — without writing anything new.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -88,11 +88,11 @@ You already build functions with `def`. Today you learn what a name *actually* i
 
 Think about a single dance move — say, a step-and-clap. On its own it's tiny. But a whole routine is just that move and a few others, combined in different orders. You don't invent a new body each time; you **reuse** moves you already have, arranged to fit the music.
 
-{{% callout title="Think it through" variant="navy" %}}
+{{< callout title="Think it through" variant="navy" >}}
 You know three small moves: *step forward*, *turn*, and *clap*. Using only those three, how many different short routines could you make?
 
 If you wanted to add a "spin" to every routine, would you rather rewrite each routine, or build "spin" once and drop it in?
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p1_reuse_power" label="Power of reusable moves" >}}Why is it powerful to have a few small moves you can reuse, instead of memorizing every full routine from scratch?{{< /ask >}}
 
@@ -112,9 +112,9 @@ The whole point of a module is that you write it once and *reuse* it many times.
 
 When you build a bigger behavior out of smaller ones, that's *composition*. A function like `push_off_line()` doesn't contain new motor commands — it's *composed* of calls to building blocks you already trust. You stack the simple to make the complex.
 
-{{% callout title="Example" variant="gold" %}}
+{{< callout title="Example" variant="gold" >}}
 A music app's "play" button is composed of smaller behaviors: find the file, read it, send sound to the speaker, update the screen. Nobody rewrites "send sound to the speaker" for every song — it's a reusable block, called whenever it's needed.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p2_giant_vs_modular" label="Giant versus modular" >}}In your own words: what is the difference between writing one giant function that does everything, and building the same behavior out of small reusable pieces?{{< /ask >}}
 
@@ -122,13 +122,13 @@ A music app's "play" button is composed of smaller behaviors: find the file, rea
 
 ### The Mission
 
-{{% callout title="Mission 4 — Push the Pom Off the Line" %}}
+{{< callout title="Mission 4 — Push the Pom Off the Line" >}}
 **Start:** your robot begins in the **right starting box**.
 
 **Base:** push the orange pom off the line.
 
 **Watch out:** the poms are scattered — not in a straight line — and there are other objects on the field you must drive around. The path from one pom to the next is different each time.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Step 1 — Map the Field
 
@@ -197,9 +197,9 @@ rows:
 
 ### Example Program — A Pattern to Learn From
 
-{{% callout title="This is an example, not a copy-me template" variant="gold" %}}
+{{< callout title="This is an example, not a copy-me template" variant="gold" >}}
 The program below shows the *pattern*: a readable `main()` at the top calling functions that are defined below it, with building blocks reused in different combinations. Your poms are in different places than this example, so **your** `main()` will have a different order of moves. Use this to learn the shape — then write your own from your Phase 3 plan.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< code >}}
 #!/usr/bin/python3
@@ -288,13 +288,13 @@ rows:
 
 When you reuse one building block everywhere, a single weak block causes failures all over the run. The flip side: fix that one block, and every place that uses it improves at once. That is the power — and the risk — of reuse.
 
-{{% callout title="Common reuse bugs" variant="gold" %}}
+{{< callout title="Common reuse bugs" variant="gold" >}}
 **One block is slightly off:** if `drive_forward()` goes a little too far, every pom is reached a little too far. Fix the block, not each call.
 
 **Called before it's defined:** if `main()` tries to call a function whose `def` comes later in the file, Python stops with `NameError: name 'push_off_line' is not defined` — the name doesn't point at anything yet. Check that every `def` comes before the point where it's actually run.
 
 **Right blocks, wrong order:** the robot does real moves but ends up in the wrong place. Re-check the order in `main()` against your map.
-{{% /callout %}}
+{{< /callout >}}
 
 ### [[DEBUGGING|Debugging]] Log
 
@@ -317,9 +317,9 @@ When you reuse one building block everywhere, a single weak block causes failure
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="Big Idea 5 — AI Literacy Thread" %}}
+{{< callout title="Big Idea 5 — AI Literacy Thread" >}}
 Intelligent systems combine simple behaviors to accomplish complex goals.
-{{% /callout %}}
+{{< /callout >}}
 
 Your pom-pushing run looked complex, but it was built from a few simple behaviors reused in different orders. Every large intelligent system works this way: a self-driving car combines "stay in lane," "keep distance," and "obey signals" into a full trip; a warehouse robot combines "navigate," "grab," and "place" into an entire shift. No one writes a single giant behavior for "drive across the country." They compose it from small, tested parts.
 

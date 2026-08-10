@@ -2,8 +2,9 @@
   A navy instructional box for controller / widget walkthroughs. Always
   screen-only (class="no-print") — students can't do the widget on paper.
 
-    {{% widgetstep title="Watch the raw values" %}}
+    {{< widgetstep title="Watch the raw values" >}}
     On the Wombat, open the **Motors and Sensors** widget…
-    {{% /widgetstep %}}
+    {{< /widgetstep >}}
 */ -}}
-{{- partial "panel.html" (dict "title" (.Get "title") "variant" "navy" "noprint" true "content" .Inner) -}}
+{{- $content := .Page.RenderString (dict "display" "block") .Inner -}}
+{{- partial "panel.html" (dict "title" (.Get "title") "variant" "navy" "noprint" true "content" $content) -}}

@@ -22,7 +22,7 @@ meta:
   - term: "Purpose"
     definition: "Boot the Wombat, connect to it, and run a Python program you typed yourself."
   - term: "Where This Sits"
-    definition: "<strong>After PreLab 0, before Lab 1.1.</strong> Lab 1.1 assumes all of this already works."
+    definition: "**After PreLab 0, before Lab 1.1.** Lab 1.1 assumes all of this already works."
   - term: "How It Is Assessed"
     definition: "Completion only. Tick boxes and record your robot's address — there is nothing to write up."
   - term: "What You Need"
@@ -153,7 +153,7 @@ fields:
     label: Date completed
 {{< /signoff >}}
 
-{{% gate title="You are ready" %}}
+{{< gate title="You are ready" >}}
 **Lab 1.1 — Computers Follow Instructions** assumes everything on this page.
 Start there.
-{{% /gate %}}
+{{< /gate >}}

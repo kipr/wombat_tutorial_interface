@@ -1,9 +1,10 @@
 {{- /*
   A PreLab "next / you are ready" gate box. Inner content is markdown.
 
-    {{% gate title="Next" %}}
+    {{< gate title="Next" >}}
     **PreLab 1 — The Toolchain.** You cannot start Lab 1.1 until…
-    {{% /gate %}}
+    {{< /gate >}}
 */ -}}
 {{- $title := partial "require.html" (dict "sc" . "name" "title") -}}
-{{- partial "panel.html" (dict "title" $title "variant" "red" "content" .Inner) -}}
+{{- $content := .Page.RenderString (dict "display" "block") .Inner -}}
+{{- partial "panel.html" (dict "title" $title "variant" "red" "content" $content) -}}

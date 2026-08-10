@@ -35,9 +35,9 @@ meta:
 
 Time to bring it *all* together. You'll write a complete red-cube run that drives, squares up, stacks cubes, and docks the pallet — using every major tool in your library. But this run does something new: it **keeps its own score**. After each point-scoring maneuver, the program adds the points to a running total and **prints a report** of what it just did and where the score stands. By the end, your robot narrates its own competition run.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A single variable can hold a running total that grows as the program runs. Printing it after each step turns your robot into something that reports its own progress — exactly how real systems keep track of what they've accomplished.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -47,9 +47,9 @@ A single variable can hold a running total that grows as the program runs. Print
 - Read the real Botball point values for the maneuvers you complete.
 {.obj}
 
-{{% callout title="Every one of these must appear in your run" variant="navy" %}}
+{{< callout title="Every one of these must appear in your run" variant="navy" >}}
 `back_until_pressed()` · `square_up()` · `Drive()` · `Turn()` · `move_arm()` · `move_claw()` — your full toolbox, working together.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Phase 1 — Concept: A Variable That Remembers
 
@@ -77,9 +77,9 @@ A single variable can hold a running total that grows as the program runs. Print
     The `%d` gets replaced by the value of `score`, and `\n` starts a new line. After your robot adds points, a line like this tells you exactly what happened and the new total.
 {{< /concept >}}
 
-{{% callout title="The pattern: do → score → report" variant="navy" %}}
+{{< callout title="The pattern: do → score → report" variant="navy" >}}
 Every scoring maneuver follows the same three-step rhythm: **do** the maneuver (library calls), **add** the points to `score`, then **print** the report. Do, score, report — every time.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p2_printf" label="printf meaning" >}}What does the `%d` do inside a `printf`? Why is printing a report after each maneuver useful during a competition run?{{< /ask >}}
 
@@ -184,9 +184,9 @@ int main() {
 }
 {{< /code >}}
 
-{{% callout title="[[REQUIREMENT|Requirement]] check" variant="gold" %}}
+{{< callout title="[[REQUIREMENT|Requirement]] check" variant="gold" >}}
 Your finished run must use all six: `back_until_pressed`, `square_up`, `Drive`, `Turn`, `move_arm`, and `move_claw`. Fill the planning blanks with real calls so each one appears.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Phase 6 — Run It and Read the Report
 
@@ -217,9 +217,9 @@ Run your program and watch the console. A perfect run prints a growing score, en
 
 ## Phase 7 — Connect &amp; Reflect
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 Intelligent systems track their own state and report what they have done.
-{{% /callout %}}
+{{< /callout >}}
 
 Your robot didn't just act — it *kept track of its own progress and reported it*. That's everywhere in real systems. A delivery robot logs each package dropped; a game tracks your score; a fitness band counts your steps and tells you the total. Keeping a running state and reporting it is how machines stay accountable — to their users and to the people [[DEBUGGING|debugging]] them. The printed log you built is exactly the kind of record engineers rely on to see what a system actually did, step by step.
 

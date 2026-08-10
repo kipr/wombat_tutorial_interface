@@ -35,9 +35,9 @@ meta:
 
 Right now, your library — every [[FUNCTION|function]] you've written across every lab — lives in exactly one place: the IDE. If that IDE account is lost, if a Chromebook gets wiped, if you simply want to work on your code somewhere else, your work is gone unless you've backed it up. Today you're going to give your library a permanent, recoverable home using **GitHub**, the tool almost every professional software team on Earth uses to store and share code.
 
-{{% callout title="The Big Idea of This Unit" %}}
+{{< callout title="The Big Idea of This Unit" >}}
 A reliable system doesn't depend on one fragile copy of anything. It keeps a history it can recover from — the same reason your pose [[ARRAY|array]] kept a record of belief in Big Idea 1, GitHub keeps a record of every version of your code.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -68,9 +68,9 @@ Before you can back anything up, you need a copy of it on your own computer.
 4. Verify your email if GitHub asks you to (check your inbox for a confirmation link or code).
 {.steps}
 
-{{% callout title="Why this matters beyond today" variant="gold" %}}
+{{< callout title="Why this matters beyond today" variant="gold" >}}
 A GitHub account is something you'll likely keep for your entire career. Many software job applications ask for your GitHub username directly.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< gridtable caption="Your account" >}}
 columns:
@@ -142,9 +142,9 @@ You don't need any special software to get a file onto GitHub. This path works o
 
 ## Phase 6 — How Push Actually Works on the Command Line
 
-{{% warn title="⚠ You probably can't run this at school" %}}
+{{< warn title="⚠ You probably can't run this at school" >}}
 Most school Chromebooks don't give you a terminal or let you install `git`. That's completely normal — this phase is for understanding what's happening under the hood, not something you need to complete hands-on today. If you have a laptop at home with git installed, feel free to actually try it.
-{{% /warn %}}
+{{< /warn >}}
 
 Here's the sequence a developer runs from a terminal to get a local change onto GitHub:
 
@@ -174,9 +174,9 @@ Notice this is the exact same push/pull idea from Phase 5 — just as explicit t
 
 ## Phase 7 — Connect & Reflect
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 A robust workflow doesn't trust one file on one computer — it keeps a recoverable history of every change, and lets others build on it safely.
-{{% /callout %}}
+{{< /callout >}}
 
 Every serious software project — the operating system on your phone, the app you use to message friends, the code running self-driving cars — is built this way: many people push and pull changes to a shared, recoverable history, instead of emailing files back and forth and hoping nothing gets overwritten. The license you added in Phase 3 is part of that same reliability story — it's what lets other people build on your work with confidence, instead of guessing whether they're allowed to.
 

@@ -109,11 +109,11 @@ rows:
       aria: "Round 2 wrong"
 {{< /gridtable >}}
 
-{{% callout variant="gold" title="You Just Invented a Protocol" %}}
+{{< callout variant="gold" title="You Just Invented a Protocol" >}}
 Most groups end up numbering the pieces. That is a rule both ends agreed on before sending anything, and it is the only reason the picture came back together.
 
 Computers do exactly this, millions of times a second.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Packets, Rules, and Secrets
 
@@ -121,11 +121,11 @@ Big things do not travel well. So computers chop information into small pieces c
 
 A [[PROTOCOL|protocol]] is the set of rules both ends agreed on beforehand — how to number the packets, what to do if one goes missing, how to know when the message is complete.
 
-{{% callout variant="navy" title="Packets Do Not Travel Together" %}}
+{{< callout variant="navy" title="Packets Do Not Travel Together" >}}
 Pieces of the same picture can take different routes and arrive out of order. They can even arrive after pieces of somebody else's picture.
 
 The protocol is what sorts that out. Without it, everything is just a pile.
-{{% /callout %}}
+{{< /callout >}}
 
 ### HTTP and HTTPS
 
@@ -133,7 +133,7 @@ When you load a web page, your computer uses a protocol called **HTTP** — Hype
 
 You will more often see **HTTPS**. The extra **S** stands for **secure**. It means the browser is using a **protected connection** to the website — the packets are scrambled so people along the way cannot easily read them.
 
-{{% callout variant="red" title="⚠ How to Check Before You Type Anything Private" %}}
+{{< callout variant="red" title="⚠ How to Check Before You Type Anything Private" >}}
 Look at the start of the address. Prefer addresses that begin with `https://`.
 
 A browser might also show a **connection** or **site-controls** icon near the address. It may look like a padlock — or it may not. Different browsers show this differently, so do not hunt for one special picture.
@@ -141,7 +141,7 @@ A browser might also show a **connection** or **site-controls** icon near the ad
 If the browser says **Not secure** or shows a warning, **stop**. Ask a trusted adult before you enter a password, address, or other private information.
 
 HTTPS protects the **connection**. It does **not** mean everything on the page is true or safe.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Encryption
 
@@ -213,9 +213,9 @@ rows:
       aria: "Fix"
 {{< /gridtable >}}
 
-{{% callout variant="gold" title="Every Real Packet Carries an Address" %}}
+{{< callout variant="gold" title="Every Real Packet Carries an Address" >}}
 The colour was doing the job an address does. A real packet says who it is for, who it came from, and where it belongs in the message.
-{{% /callout %}}
+{{< /callout >}}
 
 ### 3. Lose one on purpose
 
@@ -333,11 +333,11 @@ rows:
       aria: "Telling letters"
 {{< /gridtable >}}
 
-{{% callout variant="red" title="⚠ Simple Keys Are Easy to Break" %}}
+{{< callout variant="red" title="⚠ Simple Keys Are Easy to Break" >}}
 A letter shift can be cracked by trying all twenty-five of them. Real encryption uses keys so large that guessing them all would take longer than anyone has.
 
 The idea is the same. The size is not.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Score It — Checkpoint
 

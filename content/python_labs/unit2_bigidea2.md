@@ -36,9 +36,9 @@ meta:
 
 Last lab, your robot used its touch sensor to back into the wall and reset its origin. Today you'll use that same reliable starting point to run an **experiment**. You'll drive forward a short distance and stop — two different ways — and measure which way is more consistent. The two ways of "stopping" are not the same, and your own data is going to prove it.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 Telling a motor to stop and a motor actually holding still are two different things. How you stop changes how consistent — and how straight — your robot is.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -86,11 +86,11 @@ Telling a motor to stop and a motor actually holding still are two different thi
 
 Picture riding a bike to a line on the ground. You could **squeeze the brakes** and stop right on it — or you could just **stop pedaling** and coast, hoping you roll to a stop at the right spot. One is controlled. The other depends on your speed, the ground, and luck.
 
-{{% callout title="Think it through" variant="navy" %}}
+{{< callout title="Think it through" variant="navy" >}}
 Which method stops you closer to the exact line every time — braking, or coasting?
 
 If you coasted to a stop ten times, would you land on the exact same spot each time? Why or why not?
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p1_bike" label="Bike braking versus coasting" >}}A coasting bike and a braking bike can both stop. Why is the braking one more *predictable*? Connect this to a robot that needs to stop in the same place every run.{{< /ask >}}
 
@@ -104,9 +104,9 @@ A robot that drives "about 6 inches" isn't good enough for a competition — you
 
 To test which stopping method is better, you change **only** the stop — everything else stays the same. Same start (the wall reset), same forward move, same five trials. The only difference is brake vs. coast. That's a fair experiment: when one thing changes and the rest is held still, you know the difference is caused by that one thing.
 
-{{% callout title="Why the wall reset matters here" variant="gold" %}}
+{{< callout title="Why the wall reset matters here" variant="gold" >}}
 Because `back_until_pressed()` resets the origin against the wall every trial, it does not matter how far from the wall the robot started — it always re-establishes the **same zero**. That gives every trial a fair, identical starting line to measure from.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p2_why_five" label="Why five trials" >}}Why can't you judge which stopping method is more consistent from just one run of each? What does running five trials let you see that one run hides?{{< /ask >}}
 
@@ -114,7 +114,7 @@ Because `back_until_pressed()` resets the origin against the wall every trial, i
 
 ### The Experiment
 
-{{% callout title="What Each Trial Does" %}}
+{{< callout title="What Each Trial Does" >}}
 1\. `back_until_pressed()` — back into the wall, reset the origin.
 
 2\. Drive forward about 6 inches.
@@ -124,7 +124,7 @@ Because `back_until_pressed()` resets the origin against the wall every trial, i
 4\. Measure how far the robot actually traveled, and note whether it stayed straight or drifted.
 
 You'll run Version A five times, then Version B five times.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Predict First
 
@@ -147,9 +147,9 @@ rows:
 
 ## Phase 4 — Build &amp; Run the Experiment
 
-{{% safety title="⚠ Test in your hands first" noprint="true" %}}
+{{< safety title="⚠ Test in your hands first" noprint="true" >}}
 As always, hold the robot off the ground and run the program once to confirm it backs up, presses, then drives forward — before you set it on the field.
-{{% /safety %}}
+{{< /safety >}}
 
 ### The Two Versions
 
@@ -289,9 +289,9 @@ rows:
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="Reliability Comes From Evidence" %}}
+{{< callout title="Reliability Comes From Evidence" >}}
 Intelligent systems aren't trusted because someone hopes they work — they're trusted because they've been tested and the data shows they're consistent.
-{{% /callout %}}
+{{< /callout >}}
 
 Today you didn't take anyone's word for which stop was better — you ran it ten times and let the numbers decide. That's exactly how real [[AUTONOMOUS|autonomous]] systems are built. A self-driving car's braking isn't shipped because it "seemed fine"; it's tested thousands of times and measured for consistency. When a system has to do the same thing reliably, engineers gather data on how much it varies — just like you did.
 

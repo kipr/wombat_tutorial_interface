@@ -35,9 +35,9 @@ meta:
 
 Until now, your robot drove for a set *time* and hoped it went the right distance — and last lab proved how inconsistent that can be. Today the robot measures its **own wheels**. Each motor has a built-in counter that [[TICK|ticks]] up as it turns. By watching that counter, the robot can drive an exact distance instead of an exact time. You'll use this to drive out from the starting box and touch Botguy — Mission 9.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A robot that can measure its own movement can act precisely. Instead of "drive for one second," it can say "drive until I've turned exactly this far."
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -49,13 +49,13 @@ A robot that can measure its own movement can act precisely. Instead of "drive f
 
 ### First: Meet the Motor Graph on the [[CONTROLLER|Controller]]
 
-{{% widgetstep title="Watch the counter move — before any code" %}}
+{{< widgetstep title="Watch the counter move — before any code" >}}
 On the Wombat controller, open the **motors / [[SENSOR|sensors]] graph widget** (the live readout screen). Find the position counter for the motor on **[[PORT|Port]] 0**.
 
 Now **turn that wheel by hand**, slowly. Watch the number on the screen climb as the wheel turns forward, and fall as you turn it backward. Those are *ticks* — the counter is counting how far the wheel has rotated.
 
 This is where your robot's movement data lives. When your code reads `gmpc(0)`, it is reading this exact number.
-{{% /widgetstep %}}
+{{< /widgetstep >}}
 
 {{< ask key="widget_ticks_per_turn" label="Ticks per turn observed" >}}Turn the port-0 wheel one full turn by hand. About how many ticks did the counter change? Write the number you saw.{{< /ask >}}
 
@@ -108,11 +108,11 @@ This is where your robot's movement data lives. When your code reads `gmpc(0)`, 
 
 Imagine you're told "walk to the door." You could guess at the time it takes — or you could **count your steps**. If the door is 10 steps away, you walk until your step count reaches 10, then stop. You're not timing yourself; you're measuring your own movement and stopping at a number.
 
-{{% callout title="Think it through" variant="navy" %}}
+{{< callout title="Think it through" variant="navy" >}}
 Why is "walk until I've taken 10 steps" more reliable than "walk for 6 seconds"?
 
 The robot's wheel counter is its version of counting steps. What is one "step" for the robot called?
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p1_counting_steps" label="Counting steps analogy" >}}How is counting your steps to a target like the robot counting encoder ticks to a target? Why does measuring movement beat guessing at time?{{< /ask >}}
 
@@ -126,9 +126,9 @@ Earlier sensors told the robot about the *outside* world — a wall, a button. A
 
 You've built functions that always did exactly the same thing. An *argument* is a value you pass into a function to change what it does. `Tick_Drive(2000)` and `Tick_Drive(1000)` are the same function doing two different distances. The function is written once; the number makes it flexible.
 
-{{% callout title="Why this matters for a real run" variant="gold" %}}
+{{< callout title="Why this matters for a real run" variant="gold" >}}
 To touch Botguy you need one exact distance. But a whole mission needs many different distances. With an argument, you write `Tick_Drive()` once and call it with whatever number each leg of the trip needs — instead of writing a new function for every distance.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p2_argument_meaning" label="What an argument is" >}}In your own words: what is an argument, and how does `Tick_Drive(2000)` differ from `Tick_Drive(1000)` even though it's the same function?{{< /ask >}}
 
@@ -136,13 +136,13 @@ To touch Botguy you need one exact distance. But a whole mission needs many diff
 
 ### The Mission
 
-{{% callout title="Mission 9 — Touch Botguy" %}}
+{{< callout title="Mission 9 — Touch Botguy" >}}
 **Start:** your robot begins in the **right starting box**.
 
 **Base:** drive out and touch Botguy.
 
 **Later (bonus):** removing Botguy from his [[ENCLOSURE|enclosure]] and getting him to the warehouse floor needs an arm — that's a manipulation task for a future lesson. Today is just: drive a measured distance and touch him.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Step 1 — Find Your Target Number
 
@@ -167,9 +167,9 @@ Describe your program in order — including clearing the counter, the loop, and
 
 ## Phase 4 — Build &amp; Run
 
-{{% safety title="⚠ Test in your hands first" noprint=true %}}
+{{< safety title="⚠ Test in your hands first" noprint=true >}}
 Hold the robot off the ground and run the program once. Watch the wheels spin and then brake to a stop on their own when the count is reached — before you put it on the field toward Botguy.
-{{% /safety %}}
+{{< /safety >}}
 
 ### Starting Code Template
 
@@ -239,13 +239,13 @@ rows:
 
 ## Phase 5 — Debug &amp; Extend
 
-{{% callout title="Common encoder bugs" variant="gold" %}}
+{{< callout title="Common encoder bugs" variant="gold" >}}
 **Forgot `cmpc(0)`:** the counter still holds ticks from a previous run, so the robot stops early (or doesn't move). Always clear before the loop.
 
 **Robot never stops:** if the motors aren't actually turning port 0, `gmpc(0)` never climbs and the loop runs forever. Check your wiring and that you're reading the right port.
 
 **Brake missing:** no `motor(0,0)` after the loop means the robot coasts past Botguy — remember last lab.
-{{% /callout %}}
+{{< /callout >}}
 
 ### [[DEBUGGING|Debugging]] Log
 
@@ -267,9 +267,9 @@ rows:
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="Big Idea — AI Literacy Thread" %}}
+{{< callout title="Big Idea — AI Literacy Thread" >}}
 Intelligent systems sense their own actions and use that feedback to act precisely.
-{{% /callout %}}
+{{< /callout >}}
 
 Your robot didn't just act — it *watched itself* act and stopped at exactly the right point. That's feedback, and it's everywhere in intelligent systems. A 3D printer counts the steps of its motors to place plastic precisely; a robot arm in a factory knows the angle of every joint; a self-driving car tracks its own wheel rotation to know how far it's gone. None of them guess — they measure their own motion and adjust. Today your robot joined them: it sensed its own wheels and used that number to reach a goal.
 

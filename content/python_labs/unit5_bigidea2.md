@@ -36,9 +36,9 @@ meta:
 
 Every `Drive()` you've written so far does the same thing the whole way: full speed, then slam to a stop the instant the [[TICK|tick]] count is reached. That works, but think about how a car actually drives — it eases onto the gas, cruises, then eases onto the brake well before the stop sign. It never slams from 60 to 0 in one instant. Today you rebuild `Drive()` to do the same thing: ease on for the first few ticks, cruise in the middle, and ease off for the last several hundred ticks before the target — using a new tool, the **elif chain**, to decide which of those three zones the robot is in right now.
 
-{{% callout title="The Big Idea of This Unit" %}}
+{{< callout title="The Big Idea of This Unit" >}}
 A robust system doesn't treat "far from the goal" and "about to arrive" the same way. It measures how close it is and adjusts its behavior smoothly — proportional response instead of all-or-nothing.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -50,9 +50,9 @@ A robust system doesn't treat "far from the goal" and "about to arrive" the same
 
 ## Phase 1 — The Mission: Move Botguy
 
-{{% callout title="The run" variant="navy" %}}
+{{< callout title="The run" variant="navy" >}}
 Move **Botguy** into the **loading zone**. This mission is scored by Botguy's **final position** — it doesn't matter how he got there, only where he ends up.
-{{% /callout %}}
+{{< /callout >}}
 
 Here's why this mission is a perfect fit for today: Botguy isn't fixed to the floor. If your robot arrives at full speed and slams to a stop, the impact can shove Botguy off target in the last instant — the exact moment accuracy matters most. A robot that eases off its speed as it approaches is far less likely to [[OVERSHOOT|overshoot]] the zone or knock Botguy out of position on contact.
 
@@ -142,9 +142,9 @@ def Drive(inches):
 
 Test your new `Drive()` on a medium-to-long distance (24+ inches works well, so all three zones actually get used). Watch the robot closely as it drives — does it visibly ease on, cruise, then ease off? Or does something look off?
 
-{{% warn title="⚠ Something to watch for" %}}
+{{< warn title="⚠ Something to watch for" >}}
 The cruise speed in the skeleton is **750**. Plug `ticks_remaining = 500` (the instant deceleration begins) into the decel formula: `500 × 2 + 150 = 1150`. That's *faster* than cruise speed — the robot would speed up right as it's supposed to start slowing down. Watch for this when you test. If you see it, that's not a mistake in the lab — it's your `m` and `b` constants not yet matching your cruise speed.
-{{% /warn %}}
+{{< /warn >}}
 
 {{< gridtable caption="Tune your constants" >}}
 columns:
@@ -201,9 +201,9 @@ Using your tuned `Drive()`, drive to Botguy and move him into the loading zone. 
 
 ## Phase 7 — Connect & Reflect
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 Reliable systems respond proportionally to how close they are to a goal, instead of acting the same way right up until they suddenly stop.
-{{% /callout %}}
+{{< /callout >}}
 
 This idea shows up everywhere intelligent systems need to be trusted with something delicate. A self-driving car doesn't brake at one constant rate regardless of following distance — it eases harder the closer it gets to a stopped car ahead. A robotic arm placing a fragile part slows dramatically in its last few millimeters of travel. Even a thermostat easing a heater's output as room temperature approaches the target, instead of blasting full heat until the exact instant it's satisfied, is the same pattern: **proportional response near the goal, not all-or-nothing action right up to it.**
 

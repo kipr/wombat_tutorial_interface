@@ -35,9 +35,9 @@ meta:
 
 Every stacking mission needs your robot to turn — left to face a cube, right to face the [[PALLET|pallet]]. But a turn that's "about 90°" will wreck a mission: after a few turns, the robot is pointing the wrong way entirely. Today you'll build **reliable** 90° turns, left and right, by counting encoder [[TICK|ticks]] — and then you'll run a clever test that reveals exactly how much error hides in each turn. This is the heart of *localization*: knowing, and trusting, where your robot is pointed.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A turn is never perfect on the first try. You build a good turn by testing it, measuring the error, and adjusting — until it's reliable enough to trust again and again.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -72,9 +72,9 @@ A turn is never perfect on the first try. You build a good turn by testing it, m
     The number of ticks that makes exactly 90° is something you'll have to **find by testing** — it depends on your robot's wheels and width.
 {{< /concept >}}
 
-{{% callout title="Watch the forward wheel" variant="gold" %}}
+{{< callout title="Watch the forward wheel" variant="gold" >}}
 Here's the catch: in a pivot, one wheel rolls forward (its tick count climbs) and one rolls backward (its count goes negative). Always count the wheel that's going **forward**. So a right pivot watches the left wheel — `gmpc(0)` — and a left pivot watches the right wheel — `gmpc(1)`.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Phase 2 — Build &amp; Tune the Right Turn
 
@@ -143,9 +143,9 @@ void turn_left() {
 }
 {{< /code >}}
 
-{{% callout title="Why a separate number?" variant="navy" %}}
+{{< callout title="Why a separate number?" variant="navy" >}}
 Your left and right turns may need *different* tick values. Motors aren't perfectly matched, weight isn't perfectly centered — so `LEFT_TICKS` might not equal `RIGHT_TICKS`. That's normal. Tune each one on its own.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Tuning Log — Left Turn
 
@@ -205,9 +205,9 @@ rows:
       aria: Degrees off
 {{< /gridtable >}}
 
-{{% callout title="Now correct it" variant="gold" %}}
+{{< callout title="Now correct it" variant="gold" >}}
 If the robot turned too far (over), your tick value is a little too big — lower it slightly. If it didn't turn far enough (under), raise it. Because 8 turns multiplied the error, even a small tick change makes a big difference. Adjust and run the eight-turn test again.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Correction Log
 
@@ -252,9 +252,9 @@ void turn_left() {
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="AI Literacy Thread" %}}
+{{< callout title="AI Literacy Thread" >}}
 Small errors compound — intelligent systems must measure and correct for drift.
-{{% /callout %}}
+{{< /callout >}}
 
 One turn looked fine, but eight turns revealed an error hiding in every single one. This is one of the most important truths in robotics and AI: **small errors add up**. A self-driving car that misjudges its heading by 1° is fine for a second and lost after a mile. A spacecraft off by a fraction of a degree misses a planet by thousands of miles. Smart systems don't assume they're perfect — they constantly measure their drift and correct it. Your eight-turn test is exactly the kind of test real engineers run to catch errors that are invisible at small scale.
 

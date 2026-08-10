@@ -111,11 +111,11 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p1_new_ability" label="New ability" >}}Your robot can already push things. What will it be able to do after this that it cannot do now?{{< /ask >}}
 
-{{% callout variant="gold" title="Two Servos, Two Different Jobs" %}}
+{{< callout variant="gold" title="Two Servos, Two Different Jobs" >}}
 One servo lifts the whole arm. The other opens and closes the claw. Neither can do the other's job.
 
 In Systems Project 6 you decided a blade's shape from its [[FUNCTION|function]]. Same rule here — the arm is shaped the way it is because of what it has to reach and hold.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Sort your parts first
 
@@ -149,11 +149,11 @@ The [[SERVO HORN|servo horn]] is the arm that clips onto the spline. Here is the
 
 A servo does not turn forever. It has a start and an end, maybe half a circle apart. Whichever way the horn is pointing when you push it on is where that range begins.
 
-{{% callout variant="red" title="⚠ Step 3 Is a Setup Step, Not an Assembly Step" %}}
+{{< callout variant="red" title="⚠ Step 3 Is a Setup Step, Not an Assembly Step" >}}
 You will rotate the horn to the very end of its travel, take it off, put it back a notch further, and repeat — until it will not go any further. Only then do you bolt it down, facing as far down as it will go.
 
 Get this wrong and everything still fits. Then in Coding Project 7 your arm runs out of movement halfway through a lift, and nothing in your program will fix it.
-{{% /callout %}}
+{{< /callout >}}
 
 ### 3. The washer goes underneath
 
@@ -166,9 +166,9 @@ Twice in this build a claw part mounts onto a servo with a washer *beneath* it, 
 
 The washer spreads the load so the plastic does not get chewed up. Leave it out and the joint works loose after a few dozen grabs.
 
-{{% callout variant="navy" title="Build It Once, Properly" %}}
+{{< callout variant="navy" title="Build It Once, Properly" >}}
 Every step here has a photo. Match your robot to the photo before you move on, and if it does not look the same, it is not the same.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Do It — Twelve Steps
 Servo bracket onto the chassis
@@ -210,9 +210,9 @@ Servo bracket onto the chassis
 
 **Parts** servo · 2 medium bolts · 2 nuts
 
-{{% callout variant="gold" title="Check before you bolt" %}}
+{{< callout variant="gold" title="Check before you bolt" >}}
 Wire end in first, spline facing the front. Backwards fits just as well and swings the wrong way.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p3_b2
@@ -410,17 +410,17 @@ rows:
       aria: "Starting box"
 {{< /gridtable >}}
 
-{{% callout variant="red" title="⚠ Do Not Force a Servo By Hand" %}}
+{{< callout variant="red" title="⚠ Do Not Force a Servo By Hand" >}}
 Turning a servo hard against its stop can strip the gears inside. Move things gently, and if something will not go, find out why instead of pushing harder.
-{{% /callout %}}
+{{< /callout >}}
 {{< ask key="p3_reach" label="Reach test" >}}Can the claw reach the floor? Can it reach high enough to place a cube [[ON TOP OF]] another one?{{< /ask >}}
 {{< short-answer key="p3_hold" label="Hold test" prompt="Put a cube between the claw fingers and close it by hand. Does it hold?" >}}
 
-{{% callout variant="gold" title="If the Arm Runs Out of Movement" %}}
+{{< callout variant="gold" title="If the Arm Runs Out of Movement" >}}
 Go back to step 3. Take the horn off, rotate the servo to its stop again, and re-seat the horn one notch at a time until the arm covers the whole range you need.
 
 It is a five-minute fix now. It is an unsolvable programming problem later.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p3_f_photo

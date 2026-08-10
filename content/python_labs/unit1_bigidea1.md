@@ -36,11 +36,11 @@ meta:
 
 In this activity you will write, run, and debug a program that navigates a robot to a specific location on the Foundations field and stops. That sounds simple — and the goal is simple — but the path from idea to working program will reveal something important.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 A robot does exactly what you tell it to do — no more, no less.
 
 If the robot does the wrong thing, the instructions are wrong. Your job is to find out why.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -68,13 +68,13 @@ These are built-in commands the robot already understands. You will use them ins
 
 Before you program a robot, it helps to feel what it is like to be one. A robot follows every instruction exactly as written. It cannot guess what you meant. It does only what you said — even when that is obviously not what you wanted.
 
-{{% callout title="Your Task" variant="navy" %}}
+{{< callout title="Your Task" variant="navy" >}}
 1\. In the boxes below, write step-by-step instructions for making a peanut butter sandwich.
 
 2\. When you are done, read your instructions back out loud — and imagine following them as literally as possible.
 
 3\. Every time an instruction is unclear or could go wrong, mark it.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< steps key="p1_sandwich" label="Sandwich step" count=6
           group="My sandwich instructions (write them first):" >}}
@@ -109,13 +109,13 @@ Every algorithm takes *inputs* (information it needs) and produces *outputs* (th
 
 ### Mission 1 — Waypoint Alpha: What Must Happen?
 
-{{% callout title="Mission [[REQUIREMENT|Requirement]]" %}}
+{{< callout title="Mission [[REQUIREMENT|Requirement]]" >}}
 **Base Mission:** A robot enters the Waypoint Alpha zone and comes to a clear, complete stop while [[IN THE ZONE]].
 
 **Bonus Mission:** The same robot subsequently returns [[FULLY WITHIN]] a starting box and stops.
 
 **Judging note:** If you cannot clearly see that the robot stopped, the mission does not score.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Step 1 — Field Orientation
 
@@ -240,9 +240,9 @@ Complete one row for every run. Never skip a row — even failed runs contain in
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="Big Idea 1 — AI Literacy Thread" %}}
+{{< callout title="Big Idea 1 — AI Literacy Thread" >}}
 Intelligent systems require instructions before they can act.
-{{% /callout %}}
+{{< /callout >}}
 
 Your robot did not decide to navigate to Waypoint Alpha. It followed the instructions you wrote. Every intelligent system — from a robot to a [[RECOMMENDATION_ENGINE|recommendation engine]] to a self-driving car — begins with someone writing instructions that tell the system what to do and how to do it. The quality of the system depends directly on the quality of those instructions.
 

@@ -3,8 +3,9 @@
   style warnings, not hardware
   hands-first checks (those stay as safety).
 
-    {{% warn title="⚠ Your ticks_per_inch will change over time" %}}
+    {{< warn title="⚠ Your ticks_per_inch will change over time" >}}
     The number you just measured is true *right now* — but it won't stay true forever.
-    {{% /warn %}}
+    {{< /warn >}}
 */ -}}
-{{- partial "panel.html" (dict "title" (.Get "title") "variant" "red" "content" .Inner) -}}
+{{- $content := .Page.RenderString (dict "display" "block") .Inner -}}
+{{- partial "panel.html" (dict "title" (.Get "title") "variant" "red" "content" $content) -}}

@@ -90,11 +90,11 @@ rows:
 
 {{< ask key="p1_which_way" label="Which way drifted" >}}Your robot drifts off the line. Just from the number, can it work out *which way* it drifted?{{< /ask >}}
 
-{{% safety title="⚠ One Sensor Cannot Stay on the Middle" %}}
+{{< safety title="⚠ One Sensor Cannot Stay on the Middle" >}}
 Sitting on the centre of the line, everything looks the same in both directions. Drift left, the reading goes up. Drift right, the reading goes up. The robot has no idea which happened, so it cannot know how to correct.
 
 Following the middle of a line with one sensor is impossible. So you do not.
-{{% /safety %}}
+{{< /safety >}}
 
 ## Learn It — Follow the Edge, Not the Line
 
@@ -124,11 +124,11 @@ back toward
 
 the line.
 
-{{% callout title="The Robot Never Drives Straight" variant="gold" %}}
+{{< callout title="The Robot Never Drives Straight" variant="gold" >}}
 It zigzags. Too dark, arc one way. Too light, arc back. Over and over, several times a second.
 
 From a distance it looks like the robot is following the line. Up close it is constantly overcorrecting — and that is exactly what makes it work.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Two choices, checked forever
 
@@ -159,11 +159,11 @@ msleep(30);
 | `if / else` | Picks one of two steering actions, every single time through. |
 | `no ao() inside` | Never stop the motors inside a line-follow loop. The robot should steer continuously, not stutter. |
 
-{{% safety title="⚠ Never One Motor Forward and One Backward" %}}
+{{< safety title="⚠ Never One Motor Forward and One Backward" >}}
 It is tempting to make the turns sharper by reversing a wheel. **Do not.** In a loop that switches direction several times a second, reversing a motor over and over will burn it out.
 
 Use two *different positive* speeds. A big gap between them gives a sharp turn; a small gap gives a gentle one.
-{{% /safety %}}
+{{< /safety >}}
 
 That is the same rule you found in Project 5 — the further apart the two power numbers, the sharper the curve. It has been true this whole time.
 {.muted}
@@ -283,9 +283,9 @@ Turn it into a [[FUNCTION|function]] while you are at it — `follow_line(int ti
 
 {{< mission-summary mission="16" >}}
 {{< /mission-summary >}}
-{{% safety title="⚠ The Large Green Cube, Not a Small One" %}}
+{{< safety title="⚠ The Large Green Cube, Not a Small One" >}}
 The target is the **large palletized Green Cube** field element — not the small green cubes you have been stacking since Project 8. Make sure your team is aiming at the right thing.
-{{% /safety %}}
+{{< /safety >}}
 
 Robot support is permitted, but this is final position scored — so the cube has to still be up there at the end, which means letting go cleanly.
 {.muted}
@@ -298,13 +298,13 @@ Robot support is permitted, but this is final position scored — so the cube ha
 
 {{< mission-summary mission="17" >}}
 {{< /mission-summary >}}
-{{% callout title="Same Job, Different Address" variant="gold" %}}
+{{< callout title="Same Job, Different Address" variant="gold" >}}
 This is Mission 16 with two words changed. If you wrote Mission 16 as a function with [[ARGUMENT|arguments]], this one costs you almost nothing — which is the reward for the work you did in Project 12.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% safety title="⚠ Watch Your Cube Budget" %}}
+{{< safety title="⚠ Watch Your Cube Budget" >}}
 The Unstraight Cubes are the same three you stacked for Mission 13 back in Project 10. A cube can only be in one place at the end of the match. Decide now which missions you are actually going for.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< checklist >}}
 - key: p3_m17
@@ -333,15 +333,15 @@ Two colours, one enclosure. Poms roll, so the second delivery is the one that kn
 
 {{< mission-summary mission="6" >}}
 {{< /mission-summary >}}
-{{% callout title="The Arrangement Does Not Matter" variant="gold" %}}
+{{< callout title="The Arrangement Does Not Matter" variant="gold" >}}
 Four cubes flat on the [[PALLET|pallet]], a four-high tower, or anything in between — all of it scores, as long as every cube is part of one palletized load. Pick whatever your claw finds easiest.
 
 Better still: the cubes are **not required to stay on the pallet after the base is scored**. It is live judged, so once the judge has seen four cubes on the pallet, you can go on and move the pallet without worrying about a cube rolling off.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% safety title="⚠ Not [[TOUCHING]] Any Black Line" %}}
+{{< safety title="⚠ Not [[TOUCHING]] Any Black Line" >}}
 The bonus is stricter than it looks. The pallet must be [[FULLY WITHIN]] the starting box *and* not [[TOUCHING]] any black line. Push it in too far or not far enough and you get nothing.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< ask key="p3_cube_plan" label="Cube plan" >}}These are the same four green and yellow cubes you used for Mission 3 in Projects 8 and 13. What is your plan — Mission 3's stacks or Mission 6's pallet?{{< /ask >}}
 

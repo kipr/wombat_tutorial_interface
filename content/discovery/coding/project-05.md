@@ -67,9 +67,9 @@ Start a new project called `Turns`. Put in your straight-driving program from Pr
 
 Then change **one wheel only**. Leave the left wheel at your usual power. Change the right wheel to each value below, run it, and describe the path the robot took.
 
-{{% safety title="⚠ Floor, Not Table" %}}
+{{< safety title="⚠ Floor, Not Table" >}}
 These runs go in circles and curves. Do this on an open floor with nothing in the way — not on a table, not on the field.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< gridtable >}}
 columns:
@@ -146,13 +146,13 @@ You only have two things to adjust, and they do completely different jobs.
 | `motor power` | **Sets the shape of the path.** The difference between the two numbers decides whether the robot goes straight, curves gently, curves hard, or spins on the spot. |
 | `msleep() time` | **Sets how far along that path the robot travels.** It does not change the shape at all — only how much of it you get. |
 
-{{% callout title="The Two Rules You Just Discovered" variant="gold" %}}
+{{< callout title="The Two Rules You Just Discovered" variant="gold" >}}
 **The closer the two power numbers are, the straighter the robot goes.**
 
 **The further apart they are, the sharper the curve.**
 
 Everything else in this project is those two sentences applied on purpose.
-{{% /callout %}}
+{{< /callout >}}
 
 ### The three shapes
 
@@ -195,17 +195,17 @@ motor(0, 50);
 
 motor(3, -50);
 
-{{% callout title="Which One Should You Use?" variant="navy" %}}
+{{< callout title="Which One Should You Use?" variant="navy" >}}
 **Zero radius** when you need to point a different direction without giving up your position — the usual choice on a crowded field.
 
 **Radius** when you want to travel *and* turn at the same time, like driving around an obstacle.
 
 **One-wheel** when you want to swing around something you are already next to.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% callout title="Friction Matters More Than You Think" %}}
+{{< callout title="Friction Matters More Than You Think" >}}
 Two moving wheels fight friction better than one moving wheel does. A one-wheel turn asks a stopped wheel to skid sideways, so it is the least repeatable of the three. If a turn will not come out the same twice, try the same turn as zero radius instead.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Where you are headed
 
@@ -341,9 +341,9 @@ rows:
       - key: p3_a5_res
         aria: "Angle result 5"
 {{< /gridtable >}}
-{{% callout title="Test One Step at a Time" variant="gold" %}}
+{{< callout title="Test One Step at a Time" variant="gold" >}}
 Get the turn right on its own before you attach it to anything else. [[DEBUGGING|Debugging]] one command is easy. Debugging a whole run to find out which command was wrong is not.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Step 5 — Prove it with a square
 

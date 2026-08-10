@@ -72,7 +72,7 @@ Find each part below. Check the box when you have found it.
 - key: p1_find_leds
   label: "The **red power light** and the **yellow light** next to it"
 {{< /checklist >}}
-{{% safety title="⚠ You Are In Charge of This Battery" %}}
+{{< safety title="⚠ You Are In Charge of This Battery" >}}
 The battery can be ruined permanently if it is treated badly. These rules are not suggestions.
 
 - Use **only** the charger that came with your controller.
@@ -81,7 +81,7 @@ The battery can be ruined permanently if it is treated badly. These rules are no
 - When you are finished for the day: **turn the Wombat off, then unplug the battery.**
 
 If you leave the battery plugged in and the Wombat switched on, the battery will drain so far that it can never be charged again.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< ask key="p1_battery_why" label="Why leaving the battery plugged in is bad" >}}Why do you think leaving the battery plugged in overnight would be worse than leaving a phone plugged in overnight?{{< /ask >}}
 
@@ -91,9 +91,9 @@ You will not write your programs on the Wombat itself. You will write them on yo
 
 For that to work, your computer and the Wombat have to be on the same network. So the Wombat makes its own.
 
-{{% callout title="The Big Idea" variant="navy" %}}
+{{< callout title="The Big Idea" variant="navy" >}}
 Your Wombat creates its own small Wi-Fi network, like a tiny hotspot. Your computer joins that network. Then your browser can reach the Wombat's programming tools.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Two numbers you will need
 
@@ -138,14 +138,14 @@ Flip the black power switch on the side of the Wombat. Wait for the home screen 
 
 On the Wombat's screen, tap **About**. Look for the rows labeled **SSID**, **Password**, and **Wi-Fi**. Write them on your card below — you will need them every time.
 
-{{% callout title="If the Wi-Fi line is blank" variant="gold" %}}
+{{< callout title="If the Wi-Fi line is blank" variant="gold" >}}
 This is a known problem on older Wombat software. The real fix is to update the Wombat (instructions are at kipr.org). The quick fix:
 
 - Set **Event Mode** to *Enabled*.
 - Go back to the Home Screen. Wait at least 5 seconds. Return to **About**.
 - Set **Event Mode** back to *Disabled*.
 - Go Home again, wait 5 seconds, return to **About**. Numbers should now appear.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Step 3 — Write down your Wombat's information
 
@@ -171,9 +171,9 @@ Keep this card. Every project after this one starts by connecting the same way.
 
 Open the Wi-Fi settings on your computer. Find the network name from your card, select it, and enter the password.
 
-{{% callout title="This warning is normal" %}}
+{{< callout title="This warning is normal" >}}
 You will probably see something like *"no internet connection"* or *"connected with limited access."* Nothing is wrong. The Wombat is not the internet — it is just a robot. Keep going.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p3_step_joined
@@ -203,7 +203,7 @@ You should land on the KIPR Software Suite. Click **KISS IDE**.
 {{< /figrow >}}
 In **Project Explorer**, click the **+** to add a user. Type your name. Click **Create**.
 
-{{% safety title="⚠ Naming rules — these matter" %}}
+{{< safety title="⚠ Naming rules — these matter" >}}
 No periods. No apostrophes. No exclamation points. No emojis. No symbols of any kind. Letters, numbers, and plain spaces only.
 
 **Good:** `sarah folder` · `Botguy folder` · `First Project`
@@ -211,7 +211,7 @@ No periods. No apostrophes. No exclamation points. No emojis. No symbols of any 
              **Bad:** `m.j.c.` · `my amazing project!` · `Mrs Davis's project` · `:)`
 
 A bad name will not fail right away. It will break something later, and it will be hard to find.
-{{% /safety %}}
+{{< /safety >}}
 
 Do not use the default user folder. Make your own.
 {.muted}
@@ -291,10 +291,10 @@ To watch it run **on the robot**, go to the Wombat itself:
 | 3 | **Highlight the program in the list** — tap it once so it is selected. |
 | 4 | Press **Run**. Now watch the Wombat's screen. |
 
-{{% callout title="Two Different Run Buttons" variant="navy" %}}
+{{< callout title="Two Different Run Buttons" variant="navy" >}}
 The one in the editor is for checking your code quickly from your computer. The one on the Wombat is how the
           robot actually runs on its own — which is what it will be doing in a match, with nobody touching it.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< short-answer key="p3_run_saw" label="What appeared on the Wombat screen" prompt="What appeared on the Wombat's screen?" >}}
 
@@ -327,7 +327,7 @@ Do not just flip the switch. Do it in this order:
 - key: p3_step_shutdown
   label: "Shut down in the correct order"
 {{< /checklist >}}
-{{% callout title="Back Up Your Work" variant="navy" %}}
+{{< callout title="Back Up Your Work" variant="navy" >}}
 Code that only exists on the robot can disappear. Three ways to keep a copy:
 
 - Copy the code out of the editor and paste it into a document.
@@ -335,11 +335,11 @@ Code that only exists on the robot can disappear. Three ways to keep a copy:
 - Plug a USB drive into the Wombat, then **Settings → Backup → Backup**.
 
 To bring code back from a USB drive, use **Settings → Backup → Restore**.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% callout title="Lost the Home Screen?" variant="gold" %}}
+{{< callout title="Lost the Home Screen?" variant="gold" >}}
 If the Wombat's screen ends up showing a desktop instead of the usual home screen, tap the **Botguy icon** in the top row to get back.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Score It — Checkpoint
 

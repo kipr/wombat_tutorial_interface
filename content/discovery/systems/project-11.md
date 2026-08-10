@@ -104,11 +104,11 @@ rows:
 Read this message three times — once as a joke between friends, once as annoyed, once as genuinely unkind.
 "wow. nice job."{{< ask key="p1_missing" label="What is missing" >}}Could all three readings be right? What is missing that would tell you which one was meant?{{< /ask >}}
 
-{{% callout variant="gold" title="Online, Everything Helpful Is Missing" %}}
+{{< callout variant="gold" title="Online, Everything Helpful Is Missing" >}}
 Face to face you get a voice, a face, and a pause. In a message you get none of it.
 
 So the person reading fills the gap themselves — with whatever mood they happen to be in.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Being Good at This
 
@@ -142,15 +142,15 @@ rows:
 
 It is not the same as a disagreement, and it is not the same as one unkind remark that gets apologised for. It usually keeps going, and it usually has an audience.
 
-{{% callout variant="red" title="If It Happens to You" %}}
+{{< callout variant="red" title="If It Happens to You" >}}
 
-{{% /callout %}}
+{{< /callout >}}
 
-{{% callout variant="navy" title="Telling Someone Is Not Telling Tales" %}}
+{{< callout variant="navy" title="Telling Someone Is Not Telling Tales" >}}
 Some people worry that reporting it will make things worse or get them called a snitch.
 
 Telling a trusted adult about someone being hurt is not the same as getting somebody into trouble for nothing. Adults have ways to help that you do not have.
-{{% /callout %}}
+{{< /callout >}}
 
 ### The third person in the room
 
@@ -158,11 +158,11 @@ Most online unkindness has three parts — the person doing it, the person it is
 
 That last group is the [[BYSTANDER|bystander]], and it is usually the biggest.
 
-{{% callout variant="red" title="⚠ Doing Nothing Is a Choice" %}}
+{{< callout variant="red" title="⚠ Doing Nothing Is a Choice" >}}
 Laughing, sharing, adding an emoji, or just leaving it there all tell the person doing it that this is fine.
 
 You do not have to fight anybody. Sending one private message to the person being targeted — *that was not okay, are you alright?* — changes the whole thing.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Working well with your own team
 
@@ -277,11 +277,11 @@ rows:
       aria: "Situation 5"
 {{< /gridtable >}}
 
-{{% callout variant="gold" title="The Third One Is the Hard One" %}}
+{{< callout variant="gold" title="The Third One Is the Hard One" >}}
 You meant no harm and somebody was hurt anyway. Both of those are true at once.
 
 What you meant explains it. What they felt is still real. A good apology deals with the second without arguing about the first.
-{{% /callout %}}
+{{< /callout >}}
 
 ### 5. Who would you tell?
 

@@ -60,9 +60,9 @@ Build the tallest tower you can that will hold a can of soup on top.
 
 You get **five minutes**. Start now. Do not plan, do not sketch, just build.
 
-{{% callout variant="red" title="⚠ One Rule" %}}
+{{< callout variant="red" title="⚠ One Rule" >}}
 You may not just stack bricks in a straight pile. A tower has to be built, not piled.
-{{% /callout %}}
+{{< /callout >}}
 
 When the time is up, put the can on top.
 
@@ -91,11 +91,11 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p1_would_change" label="What you would change" >}}If you got another five minutes right now, what is the first thing you would change?{{< /ask >}}
 
-{{% callout variant="gold" title="You Just Did Engineering — Badly" %}}
+{{< callout variant="gold" title="You Just Did Engineering — Badly" >}}
 You had a problem, you tried something, it worked or it did not, and you learned something.
 
 That is the right idea. But you learned it slowly and by accident. Engineers do the same thing on purpose, in an order, and they write it down.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Eight Steps, In Order
 
@@ -117,11 +117,11 @@ The [[DESIGN PROCESS|design process]] is how engineers turn a problem into somet
 
 8. **Test and redesign** — Find out where it fails, change it, and go round again.
 
-{{% callout variant="navy" title="Step 1 Is Where Projects Go Wrong" %}}
+{{< callout variant="navy" title="Step 1 Is Where Projects Go Wrong" >}}
 "Build a tall tower" is not a defined problem. **"Build the tallest tower that will hold a can of soup without falling over"** is.
 
 The second one tells you when you have finished and how to tell if you failed. The first one does not.
-{{% /callout %}}
+{{< /callout >}}
 
 ### A real example
 
@@ -139,9 +139,9 @@ Build, test, find the weakness, change it, build again. Engineers expect to go r
 
 A prototype that fails is not a wasted afternoon. It is the step that tells you what to fix.
 
-{{% callout variant="gold" title="Draw That Loop" %}}
+{{< callout variant="gold" title="Draw That Loop" >}}
 In Systems Project 4 you learned to send an arrow back up to an earlier box. The design process is exactly that shape — test, and if it failed, go back to step 6.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Do It — The Tower, Properly
 
@@ -220,9 +220,9 @@ rows:
       aria: "Test 3"
 {{< /gridtable >}}
 
-{{% callout variant="red" title="⚠ &quot;Strong&quot; Is Not a Requirement" %}}
+{{< callout variant="red" title="⚠ &quot;Strong&quot; Is Not a Requirement" >}}
 You cannot test "strong." You can test "holds a full can of soup for thirty seconds without leaning."
-{{% /callout %}}
+{{< /callout >}}
 
 ### 4. Brainstorm — three ideas, not one
 
@@ -356,9 +356,9 @@ rows:
       aria: "Compare rebuild 2"
 {{< /gridtable >}}
 
-{{% callout variant="gold" title="The Last Row Is the Real Difference" %}}
+{{< callout variant="gold" title="The Last Row Is the Real Difference" >}}
 A tower you got by guessing is a tower you cannot repeat. A tower you designed is one you can build again, explain to somebody else, and improve next week.
-{{% /callout %}}
+{{< /callout >}}
 
 ### 9. Make it harder
 

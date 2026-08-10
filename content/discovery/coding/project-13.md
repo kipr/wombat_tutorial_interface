@@ -82,11 +82,11 @@ rows:
       - key: p1_released
         aria: "Opened claw"
 {{< /gridtable >}}
-{{% safety title="⚠ Your Robot Has No Idea Anything Went Wrong" %}}
+{{< safety title="⚠ Your Robot Has No Idea Anything Went Wrong" >}}
 It drove to a spot, closed a claw on empty air, carried nothing across the field, and carefully placed nothing in the basket. Then it backed away pleased with itself.
 
 Every program you have written does this. They all assume everything goes right.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< ask key="p1_how_much_ruined" label="How much ruined" >}}Something goes slightly wrong in a real match — a cube got bumped, your robot drifted an inch. How much of your run is ruined?{{< /ask >}}
 
@@ -169,13 +169,13 @@ Checks once. Runs the block once if true, skips it if false. Either way
 
 the robot moves on immediately.
 
-{{% callout title="Same Words, Completely Different Job" variant="gold" %}}
+{{< callout title="Same Words, Completely Different Job" variant="gold" >}}
 **while** = "keep doing this until something changes."
 
          **if** = "look at this once, then decide what happens next."
 
 Swap one for the other by accident and your robot either freezes in place or blows straight past a check it needed to make.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Three shapes
 
@@ -247,9 +247,9 @@ first
 
 true one runs and the rest are skipped, even if they are also true.
 
-{{% callout title="Order Changes the Answer" variant="navy" %}}
+{{< callout title="Order Changes the Answer" variant="navy" >}}
 In an `else if` chain the robot stops at the first true condition. So put the most specific check first and the catch-all last — or your specific case will never get a look in.
-{{% /callout %}}
+{{< /callout >}}
 
 ### A decision inside a decision
 
@@ -278,11 +278,11 @@ else
 Nesting more than two deep gets hard to read fast. If you need three, that is usually a sign the code wants to be a function.
 {.muted}
 
-{{% safety title="⚠ No Semicolon After the Condition" %}}
+{{< safety title="⚠ No Semicolon After the Condition" >}}
 `if (digital(bump) == 1);` — that stray [[SEMICOLON|semicolon]] makes an empty `if`. The block after it then runs **every single time**, condition or not.
 
 Same rule as `while`, and it is just as hard to spot.
-{{% /safety %}}
+{{< /safety >}}
 
 ## Do It — Make It Choose
 
@@ -338,9 +338,9 @@ else
 }
 ```
 
-{{% callout title="Remember Waypoint Alpha and Bravo?" variant="gold" %}}
+{{< callout title="Remember Waypoint Alpha and Bravo?" variant="gold" >}}
 Back in Project 4 you wrote two nearly identical programs — one for Mission 1 on the left, one for Mission 10 on the right. Now they can be one program that asks which side it is on.
-{{% /callout %}}
+{{< /callout >}}
 
 The `&&` means "and" — keep waiting while *neither* button is pressed. You do not need to master it today; copy the pattern and it works.
 {.muted}
@@ -402,9 +402,9 @@ else
 
 {{< mission-summary mission="3" >}}
 {{< /mission-summary >}}
-{{% callout title="Going for Advanced Gets You the Bonus Too" variant="gold" %}}
+{{< callout title="Going for Advanced Gets You the Bonus Too" variant="gold" >}}
 Two opposite stacks *are* two stacks. Score the Advanced Bonus and the 9-point Bonus comes with it — 22 points from this one run.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< score-examples >}}
 scores:
@@ -416,9 +416,9 @@ does_not_score:
   - "A single three-cube stack counted as two stacks."
   - "**Reusing a cube from the first stack in the second.**"
 {{< /score-examples >}}
-{{% safety title="⚠ Four Cubes, Four Jobs" %}}
+{{< safety title="⚠ Four Cubes, Four Jobs" >}}
 Each cube may contribute to **only one** scoring stack. You need two greens and two yellows, and every one of them has a specific place to be. Get the second stack's colours the wrong way round and you drop from 22 points to 9.
-{{% /safety %}}
+{{< /safety >}}
 
 **Where the decisions go.** This run has four grabs and four placements in a row. If grab two fails and the robot does not notice, everything after it is wasted. Put a check after each grab — the pattern from step 4 — so a miss costs you one cube instead of the whole mission.
 

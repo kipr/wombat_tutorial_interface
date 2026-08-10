@@ -110,9 +110,9 @@ Now run it with your own arm positions and watch.
 
 {{< ask key="p1_vs_single" label="Versus single move" >}}How is this different from `set_servo_position(arm, 1800);` on its own?{{< /ask >}}
 
-{{% callout title="A Smooth Arm Is a Careful Arm" variant="gold" %}}
+{{< callout title="A Smooth Arm Is a Careful Arm" variant="gold" >}}
 An arm that snaps to a position throws whatever it is holding. An arm that creeps there sets things down gently — which matters for every final-position mission you have.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Where the counting lives
 
@@ -182,11 +182,11 @@ All three in one place. Hard to forget the step when it is right there.
 | There is more than one way out of the loop. | You are counting up or down by a steady amount. |
 | Nothing needs to change by a set step each time. | You want the whole plan readable on one line. |
 
-{{% callout title="Look Back at Every Loop You Have Written" variant="navy" %}}
+{{< callout title="Look Back at Every Loop You Have Written" variant="navy" >}}
 Drive until bump. Drive until 4000 [[TICK|ticks]]. Follow until you see black. **Every one of them was a `while`, and every one had to be** — the robot could not know in advance how many times round it would go.
 
 Now think about "put two poms in the basket." You know it is two. That is what `for` is for.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Counting repeats, not values
 
@@ -204,11 +204,11 @@ for (count = 0; count < 4; count++)
 
 That is a square. Four sides, four corners, four lines of code — and to make it a pentagon you change one number.
 
-{{% safety title="⚠ Starting at 0 Means Stopping Before the Count" %}}
+{{< safety title="⚠ Starting at 0 Means Stopping Before the Count" >}}
 `count = 0; count < 4` gives you 0, 1, 2, 3 — that is **four** trips, not three, and not five.
 
 Counting from zero again, same as the motor [[PORT|ports]] back in Project 3. Write out the numbers if you are not sure.
-{{% /safety %}}
+{{< /safety >}}
 
 ## Do It — Do It Again, Automatically
 
@@ -263,11 +263,11 @@ rows:
 {{< /mission-summary >}}
 Start here — it is the simplest "do it twice" on the field, and you already have the function.
 
-{{% callout title="Two Ways, Both Fine" variant="gold" %}}
+{{< callout title="Two Ways, Both Fine" variant="gold" >}}
 Call your function twice, or wrap it in a two-iteration `for` loop. Try both and see which reads better to you.
 
 The loop wins the moment the number might change — and at a tournament it always might.
-{{% /callout %}}
+{{< /callout >}}
 
 The second pom is somewhere different, so your function needs an [[ARGUMENT|argument]] or a short drive between trips. Same problem you solved for Mission 15 in Project 12.
 {.muted}
@@ -280,13 +280,13 @@ The second pom is somewhere different, so your function needs an [[ARGUMENT|argu
 
 <!-- unresolved mission card: Missions 16 & 17 — Shelving and Racking -->
 
-{{% callout title="A Cube On a Cube Still Counts" variant="navy" %}}
+{{< callout title="A Cube On a Cube Still Counts" variant="navy" >}}
 Read the scoring examples: *one cube [[ON TOP OF]] another cube that is [[ON TOP OF]] the Large Green Cube* scores. So the second cube can go on the pile rather than beside it — whichever your claw does more reliably.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% safety title="⚠ Final Position — Both Have to Survive" %}}
+{{< safety title="⚠ Final Position — Both Have to Survive" >}}
 Delivering the second cube is where the first one gets knocked off. Approach the same way each trip, and back straight away rather than turning while you are still close.
-{{% /safety %}}
+{{< /safety >}}
 
 {{< checklist >}}
 - key: p3_m16
@@ -586,11 +586,11 @@ rows:
         aria: "Grand total"
       - text: 301
 {{< /gridtable >}}
-{{% callout title="301 Is the Whole Game" variant="gold" %}}
+{{< callout title="301 Is the Whole Game" variant="gold" >}}
 Add up every base, bonus, and advanced bonus across all eighteen Stack Attack missions and the number is 301.
 
 There is nothing on that field you have not been taught how to reach.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Think about it
 

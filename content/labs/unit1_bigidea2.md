@@ -35,11 +35,11 @@ meta:
 
 Today's challenge looks impossible at first glance. Mission 2 — Relocate the Red Cube — requires your robot to drive to the Large Red Cube (which starts [[ON TOP OF]] its [[PALLET|pallet]]), push the whole palletized assembly off the black line, and then return to its starting box. That's not one task. That's a system of tasks.
 
-{{% callout title="Core Insight" %}}
+{{< callout title="Core Insight" >}}
 No intelligent system solves a complex problem all at once.
 
 It solves many small problems in sequence — and the intelligence lies in knowing how to break the big problem apart.
-{{% /callout %}}
+{{< /callout >}}
 
 ### By the end of this activity you will be able to:
 
@@ -84,13 +84,13 @@ Two new tools you'll use today. You already know `motor()`, `msleep()`, and `ao(
 
 Imagine someone gives you one instruction: **"Make dinner."**
 
-{{% callout title="Think it through" variant="navy" %}}
+{{< callout title="Think it through" variant="navy" >}}
 Why is "Make dinner" not actually a useful instruction for a robot?
 
 What does a robot need before it can act on a task that big?
 
 Break "Make dinner" into the smallest steps you can. How many steps do you end up with?
-{{% /callout %}}
+{{< /callout >}}
 
 {{< steps key="p1_dinner" label="Dinner step" count=8
           group="Break it down — list as many sub-steps as you can think of:" >}}
@@ -121,9 +121,9 @@ Abstraction means hiding the details of how something works so you can use it wi
 
 When decomposing a problem, some sub-problems must be solved before others. This ordering relationship is called a *dependency*. Identifying dependencies before you code prevents wasted effort.
 
-{{% callout title="Example" variant="gold" %}}
+{{< callout title="Example" variant="gold" >}}
 You cannot push the palletized cube off the line until the robot has driven to it. "Drive to the cube" is a dependency of "push the cube" — so you build and test the driving first, before you write a single line of the pushing. Get the order wrong and you waste time testing a push on a robot that isn't even in the right place yet.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< ask key="p2_decomp_vs_list" label="Decomposition versus a list" >}}In your own words: what is the difference between decomposition and just "making a list"?{{< /ask >}}
 
@@ -131,7 +131,7 @@ You cannot push the palletized cube off the line until the robot has driven to i
 
 ### Mission 2 — What Must Happen?
 
-{{% callout title="Mission 2 — Relocate the Red Cube" %}}
+{{< callout title="Mission 2 — Relocate the Red Cube" >}}
 **Starting state:** The Large Red Cube begins ON TOP OF its pallet.
 
 **Base:** The Large Red Cube AND its pallet are both OFF the black line.
@@ -139,15 +139,15 @@ You cannot push the palletized cube off the line until the robot has driven to i
 **Bonus:** Both Small Red Cubes are also OFF the black line.
 
 **Key rule:** Both the cube AND the pallet must independently satisfy the OFF definition. The cube rides on the pallet, so pushing the assembly together is what scores — no lifting required.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% callout title="Your target today: drive, push, return" variant="navy" %}}
+{{< callout title="Your target today: drive, push, return" variant="navy" >}}
 Your robot will use only the driving and turning commands you already have. It drives to the palletized cube, pushes the whole assembly off the black line, and returns to its starting box. No arm, no lifting — that comes in a later lesson.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% callout title="Looking ahead — Mission 8" variant="gold" %}}
+{{< callout title="Looking ahead — Mission 8" variant="gold" >}}
 Later in the game, Mission 8 — Deliver the Red Cube asks the robot to lift that same palletized cube up onto the Loading Dock. That takes an arm, which means [[SERVO|servos]] — a tool you haven't met yet. We'll worry about that lifting motion in a later lesson. For now, notice that the very first part of Mission 8 is the same as Mission 2: drive to the cube. The work you do today is a piece you'll reuse.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Step 1 — Identify the Sub-Problems
 
@@ -197,17 +197,17 @@ Each sub-task should become its own function. Name them here before you write an
 
 ## Phase 4 — Build
 
-{{% callout title="The One-Function Rule" variant="navy" %}}
+{{< callout title="The One-Function Rule" variant="navy" >}}
 Build and test one function at a time. Do not write the next function until the current one works reliably.
 
 A function "works" when it produces the correct result on 3 runs in a row without adjustment. This is the same discipline used to build every large software system ever written.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Code Scaffold
 
-{{% callout title="Where do functions go?" variant="gold" %}}
+{{< callout title="Where do functions go?" variant="gold" >}}
 A function has to be defined *before* the code that uses it. Since `main()` is what runs your program, your functions live **above** `main()`. The computer reads top to bottom, so it needs to know what `drive_forward()` means before it reaches the line that calls it.
-{{% /callout %}}
+{{< /callout >}}
 
 Your program structure should look like this. Notice the movement commands are now **functions you name**, and each uses the `int` speeds set at the top. Fill in each function body from your Phase 3 decomposition. Only add a function call in `main()` once that function is tested and working.
 
@@ -279,11 +279,11 @@ Complete one row when you finish building and testing each function. Do not move
 
 Once all your individual functions pass, add all the calls in `main()` and run the complete sequence. Record what happens.
 
-{{% callout title="What to watch for during integration" variant="gold" %}}
+{{< callout title="What to watch for during integration" variant="gold" >}}
 Functions that worked alone sometimes fail when combined. Why? Because the robot's position at the end of one function is the starting position for the next.
 
 If function B fails after function A, the problem is usually function A — it left the robot in the wrong position. Fix function A before touching function B.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Integration Trial Log
 
@@ -308,9 +308,9 @@ If function B fails after function A, the problem is usually function A — it l
 
 ## Phase 6 — Connect: The AI Literacy Bridge
 
-{{% callout title="Big Idea 2 — AI Literacy Thread" %}}
+{{< callout title="Big Idea 2 — AI Literacy Thread" >}}
 Intelligent systems solve complex problems by breaking them into smaller parts.
-{{% /callout %}}
+{{< /callout >}}
 
 A self-driving car isn't just programmed to "drive." It runs hundreds of sub-systems at once: one detects lane markings, one tracks other vehicles, one monitors speed, one predicts pedestrian movement, one manages braking, one handles steering. Each sub-system is a decomposed piece of the larger problem. The complexity of the whole emerges from the coordination of the parts. Today, you built that coordination from scratch.
 

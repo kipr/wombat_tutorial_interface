@@ -102,11 +102,11 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p1_old_better" label="Old way better" >}}Was there one where the old way was actually better in some respect? Which, and how?{{< /ask >}}
 
-{{% callout variant="gold" title="Ask Somebody Who Was There" %}}
+{{< callout variant="gold" title="Ask Somebody Who Was There" >}}
 Find an adult and ask them one question: *what is something you miss that technology replaced?*
 
 Write down what they said, even if you disagree with it.
-{{% /callout %}}
+{{< /callout >}}
 {{< ask key="p1_interview" label="Interview answer" >}}They said:{{< /ask >}}
 
 ## Learn It — Everything Has a Price
@@ -143,11 +143,11 @@ That swap is a [[TRADE-OFF|trade-off]]. Judging a technology means looking at bo
 
 [[SOFTWARE|Software]] that finds patterns and makes predictions.
 Mobile phonesA computer, camera, map, and telephone in one pocketVoice assistantsMachines you talk to instead of type at3D printersMake a physical object from a fileArtificial intelligenceSoftwarethat finds patterns and makes predictions
-{{% callout variant="navy" title="You Have Been Building One of These" %}}
+{{< callout variant="navy" title="You Have Been Building One of These" >}}
 Artificial Intelligence is not one thing. At its simplest it means a machine using information to decide what to do next.
 
 Your robot reads a [[SENSOR|sensor]], compares it against a [[THRESHOLD|threshold]], and picks an action. That is the same shape as the thing everyone is arguing about — just small enough that you can see all of it.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Who does it work for?
 
@@ -155,13 +155,13 @@ Your robot reads a [[SENSOR|sensor]], compares it against a [[THRESHOLD|threshol
 
 A design that only works for some people is not finished.
 
-{{% callout variant="gold" title="Built for Some, Useful to Everyone" %}}
+{{< callout variant="gold" title="Built for Some, Useful to Everyone" >}}
 Dropped kerbs at road crossings were built for wheelchairs. They are now used by prams, suitcases, delivery trolleys, and anybody on crutches.
 
 Subtitles were built for deaf viewers. Most people watching a video on a noisy bus use them too.
 
 Designing for the people who are usually left out tends to make the thing better for everybody.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Do It — Weigh It Up
 
@@ -241,9 +241,9 @@ rows:
       aria: "Who"
 {{< /gridtable >}}
 
-{{% callout variant="red" title="⚠ Ask, Do Not Assume" %}}
+{{< callout variant="red" title="⚠ Ask, Do Not Assume" >}}
 It is easy to guess wrong about what somebody actually needs. Real designers ask the person first, and then keep asking while they build.
-{{% /callout %}}
+{{< /callout >}}
 
 ### 4. Invent something for it
 

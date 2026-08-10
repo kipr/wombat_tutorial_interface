@@ -60,13 +60,13 @@ Work in pairs. One of you is the **software**. One of you is the **hardware**.
 
 Put an object across the room. The hardware has to walk over and pick it up.
 
-{{% callout variant="red" title="⚠ The Rules Are Strict" %}}
+{{< callout variant="red" title="⚠ The Rules Are Strict" >}}
 **Software** may only speak. No pointing, no walking over, no doing it yourself.
 
 **Hardware** may not speak at all, and does *exactly* what it is told. Not what it thinks you meant.
 
 If the software says "walk forward," you keep walking forward until you are told to stop.
-{{% /callout %}}
+{{< /callout >}}
 
 Run it. Then swap and run it again.
 
@@ -111,11 +111,11 @@ rows:
       aria: "Output"
 {{< /gridtable >}}
 
-{{% callout variant="gold" title="Neither One Is the Robot" %}}
+{{< callout variant="gold" title="Neither One Is the Robot" >}}
 The software could not move. The hardware could not decide. Only the two together got the object picked up.
 
 That is exactly the deal between your program and your Wombat.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — They Do Not Speak the Same Language
 
@@ -130,11 +130,11 @@ There is a problem. You write instructions in something close to English. The ha
 
 The middle box is the part you have been using without noticing.
 
-{{% callout variant="navy" title="You Have Met the Translator Already" %}}
+{{< callout variant="navy" title="You Have Met the Translator Already" >}}
 Every time you press **[[COMPILE|Compile]]**, a translator turns what you typed into numbers the Wombat can follow.
 
 That is why a spelling mistake stops everything. The translator cannot guess — it can only translate.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Input, output, and the bit in between
 
@@ -202,9 +202,9 @@ Everyone should be the translator once. It is the hardest job and the most inter
 {{< ask key="p3_guess" label="What you guessed" >}}As translator, what did you have to guess at?{{< /ask >}}
 {{< short-answer key="p3_guess_right" label="Was the guess right" prompt="Was your guess right?" >}}
 
-{{% callout variant="red" title="⚠ A Real Translator Never Guesses" %}}
+{{< callout variant="red" title="⚠ A Real Translator Never Guesses" >}}
 You could guess because you are a person. The [[COMPILER|compiler]] on your Wombat cannot. If your instruction is unclear, it stops and shows you an error instead.
-{{% /callout %}}
+{{< /callout >}}
 
 ### 3. Put the instructions away
 

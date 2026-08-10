@@ -99,14 +99,14 @@ Now compare with a partner, then look at your whole list at once.
 
 {{< ask key="p1_commonalities" label=Commonalities >}}What do all of them have in common? Find at least two things.{{< /ask >}}
 
-{{% callout title="You Should Have Found These" variant="gold" %}}
+{{< callout title="You Should Have Found These" variant="gold" >}}
 - Every one of them has a **name**.
 - Every one of them has a pair of **parentheses** after the name.
 - Some need information inside the parentheses — `motor(0, 100)`, `msleep(3000)`.
 - Some need nothing at all — `ao()`, `enable_servos()`.
 
 **Every command you have ever typed is a [[FUNCTION|function]].** Somebody wrote them, put them in the KIPR [[LIBRARY|library]], and gave you the names. Today you join them.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Count your own repetition
 
@@ -228,13 +228,13 @@ void drive_forward()       // 2 definition
 }
 ```
 
-{{% safety title="⚠ The Prototype Gets a Semicolon. The Definition Does Not." %}}
+{{< safety title="⚠ The Prototype Gets a Semicolon. The Definition Does Not." >}}
 `void drive_forward();` — [[SEMICOLON|semicolon]]. It is a [[STATEMENT|statement]] announcing the name.
 
 `void drive_forward()` followed by `{` — no semicolon. The braces do that job, exactly like `int main()`.
 
 Putting a semicolon on the definition is the most common mistake in this project.
-{{% /safety %}}
+{{< /safety >}}
 
 ### Arguments — one function, many distances
 
@@ -357,9 +357,9 @@ rows:
       - key: p3_sq_p12_close
         aria: "P12 closed"
 {{< /gridtable >}}
-{{% callout title="Two Different Kinds of Better" variant="gold" %}}
+{{< callout title="Two Different Kinds of Better" variant="gold" >}}
 Project 11 made the square **work**. This project makes it **readable**. Those are separate problems, and you have now solved both.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Step 5 — Add an argument
 
@@ -419,9 +419,9 @@ void fetch_pom()
 
 {{< mission-summary mission="15" >}}
 {{< /mission-summary >}}
-{{% safety title="⚠ Not the Basket You Used in Project 8" %}}
+{{< safety title="⚠ Not the Basket You Used in Project 8" >}}
 Mission 11 (orange poms) and Mission 15 (blue poms) **must use different baskets.** In Project 8 you wrote down which basket you were saving for this. Use that one.
-{{% /safety %}}
+{{< /safety >}}
 
 Build the run out of the functions you just wrote. Your whole `main` should read like a list of instructions, not a wall of code.
 
@@ -440,11 +440,11 @@ fetch_pom();
 fetch_pom();
 ```
 
-{{% callout title="Nine Points for One Line" variant="gold" %}}
+{{< callout title="Nine Points for One Line" variant="gold" >}}
 If your function had been twenty lines of copied code, doubling this mission would have meant twenty more lines to write, test, and keep in step. Instead it is one line.
 
 That is the entire argument for functions, and you just got paid for it.
-{{% /callout %}}
+{{< /callout >}}
 
 The second pom is somewhere different from the first, so your function will need a way to handle that — an argument, or a small drive between the two calls.
 {.muted}

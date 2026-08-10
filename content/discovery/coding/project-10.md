@@ -65,11 +65,11 @@ Imagine the power is out and you are trying to cross a room you know well. Your 
 
 {{< ask key="p1_what_doing" label="What you were doing" >}}You did not check once and hope. What were you doing the whole time you were walking?{{< /ask >}}
 
-{{% callout title="That Is a Loop" variant="gold" %}}
+{{< callout title="That Is a Loop" variant="gold" >}}
 Check. Step. Check. Step. Check — *touched something* — stop and do something different.
 
 Repeating an action while you wait for something to become true is called **looping**, and it is the whole idea of this project.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Sort your sensors
 
@@ -92,11 +92,11 @@ rows:
 {{< /gridtable >}}
 {{< short-answer key="p1_sort_rule" label="Sorting rule" prompt="What rule did you use?" >}}
 
-{{% callout title="One Split Matters More Than the Others" variant="navy" %}}
+{{< callout title="One Split Matters More Than the Others" variant="navy" >}}
 Some of your sensors work like a **light switch** — pressed or not pressed, and nothing in between. Others give you a whole range of readings.
 
 If that is how you sorted them, you found the split that programmers care about. If not, re-sort them that way now.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Keep Checking Until
 
@@ -125,9 +125,9 @@ Light sensors and rangefinders work this way — "how bright," not "bright or da
 You will meet these later. Today, everything is 0 or 1.
 {.muted}
 
-{{% callout title="0 and 1 Mean More Than Numbers" variant="navy" %}}
+{{< callout title="0 and 1 Mean More Than Numbers" variant="navy" >}}
 In programming, **1 means true, yes, on** and **0 means false, no, off**. That is why a sensor reading of 1 can be read as "yes, I am [[TOUCHING]] something."
-{{% /callout %}}
+{{< /callout >}}
 
 ### Why msleep cannot help you here
 
@@ -150,13 +150,13 @@ To check something, you compare two values. These are the comparisons you can us
 | `>=` | is greater than or equal to | `5 >= 5` is true |
 | `<=` | is less than or equal to | `5 <= 5` is true |
 
-{{% safety title="⚠ Two Equals Signs, Not One" %}}
+{{< safety title="⚠ Two Equals Signs, Not One" >}}
 One `=` means *make this equal to that* — it is what you used to set a [[VARIABLE|variable]] in Project 9.
 
 Two `==` means *is this equal to that?* — it is a question.
 
 Use one where you meant two and your program may still [[COMPILE|compile]] and run. It will just do the wrong thing, quietly. This is one of the hardest bugs to find, so check it every time.
-{{% /safety %}}
+{{< /safety >}}
 
 ### The while loop
 
@@ -196,17 +196,17 @@ motor(3, 0);
 msleep(30);                       // touched — stop
 ```
 
-{{% callout title="Read It Out Loud" variant="gold" %}}
+{{< callout title="Read It Out Loud" variant="gold" >}}
 *"While the sensor in port 0 reads zero — while nothing is [[TOUCHING]] it — keep both motors running. As soon as it reads one, stop."*
 
 Notice the loop condition is checking for **0**, not 1. You keep going while it is *not* pressed. Students get this backwards constantly.
-{{% /callout %}}
+{{< /callout >}}
 
-{{% safety title="⚠ No msleep, No ao Inside the Loop" %}}
+{{< safety title="⚠ No msleep, No ao Inside the Loop" >}}
 Do not put a long `msleep()` in the loop — it stops the checking. Do not put `ao()` in the loop either, or the robot will start and stop over and over instead of driving.
 
 The `ao()` goes **after** the closing brace. That is the whole point: the loop is the driving, and what comes after is what happens when the condition finally changes.
-{{% /safety %}}
+{{< /safety >}}
 
 ## Do It — Drive Until Bump
 
@@ -246,11 +246,11 @@ rows:
 {{< /checklist >}}
 ### Step 2 — Drive Until Bump — in your hands first
 
-{{% safety title="⚠ Hold the Robot in the Air for the First Run" %}}
+{{< safety title="⚠ Hold the Robot in the Air for the First Run" >}}
 Do not put this on a table or the field yet. **Hold the robot up** so the wheels spin freely, run the program, then press the sensor with your finger and watch the wheels stop.
 
 A loop that never sees its sensor never stops. Find that out in your hands, not off the edge of a table.
-{{% /safety %}}
+{{< /safety >}}
 
 New project called `Drive Until Bump`. Plan it as [[PSEUDOCODE|pseudocode]] first, then write it.
 
@@ -322,9 +322,9 @@ New project. Drive *backward* until the sensor presses against the starting box 
 // 5. Stop
 ```
 
-{{% callout title="Why This Matters More Than It Looks" variant="gold" %}}
+{{< callout title="Why This Matters More Than It Looks" variant="gold" >}}
 No matter where the robot wandered off to, it can come back and touch a wall — and now it knows *exactly* where it is. Every measurement after that starts from a spot it can trust.
-{{% /callout %}}
+{{< /callout >}}
 
 {{< checklist >}}
 - key: p3_go_home
@@ -383,11 +383,11 @@ does_not_score:
   - "Two cubes touching side-by-side without [[ON TOP OF]]."
   - "An Unstraight Cube stacked with a cube from another mission area."
 {{< /score-examples >}}
-{{% callout title="A Pyramid Counts — and It Is Easier" variant="gold" %}}
+{{< callout title="A Pyramid Counts — and It Is Easier" variant="gold" >}}
 Read the scoring examples again. **A pyramid scores exactly the same as a three-high tower.** Two cubes on the bottom, one on top.
 
 This is a final-position mission, so whatever you build has to still be standing when the match ends. A pyramid is far harder to knock over than a tower. Take the easy 13 points.
-{{% /callout %}}
+{{< /callout >}}
 
 Use the touch sensor to make your approach repeatable. If your robot can find a wall or a cube by contact instead of by timing, every placement after that starts from a known spot.
 

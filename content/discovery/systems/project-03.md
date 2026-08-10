@@ -58,11 +58,11 @@ Pick a partner. One of you is the **driver**. One of you is the **robot**.
 
 Put a chair in the middle of the room. The robot has to walk around it and touch the far wall.
 
-{{% callout variant="red" title="⚠ Rules for the Robot" %}}
+{{< callout variant="red" title="⚠ Rules for the Robot" >}}
 Keep your eyes open. But do **only** what you are told. Do not help. Do not guess.
 
 If the driver says "walk," you walk. You do not stop until you are told to stop.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Round 1 — talk them through it
 
@@ -114,13 +114,13 @@ rows:
 {{< ask key="p1_r2_wrong" label="What went wrong" >}}What went wrong in Round 2?{{< /ask >}}
 {{< ask key="p1_harder" label="Which was harder" >}}Which round was harder for the driver? Say why.{{< /ask >}}
 
-{{% callout variant="gold" title="You Just Did Both Kinds" %}}
+{{< callout variant="gold" title="You Just Did Both Kinds" >}}
 In Round 1 you were in charge the whole time. You could fix things as they went wrong.
 
 In Round 2 you had to think of everything first. Once you handed over the paper, you were done.
 
 **Round 2 is how your Botball robot works.**
-{{% /callout %}}
+{{< /callout >}}
 
 ## Learn It — Three Kinds of Control
 
@@ -158,13 +158,13 @@ You may touch it before the match. You may not touch it during the match.
 
 That is the whole reason your code has to be so careful. Nobody can help it once it starts.
 
-{{% callout variant="navy" title="Being Autonomous Costs You Something" %}}
+{{< callout variant="navy" title="Being Autonomous Costs You Something" >}}
 A [[REMOTE CONTROL|remote control]] robot has a person watching. If a cube rolls away, the person just steers around it.
 
 An autonomous robot has nobody. If a cube rolls away, it drives right into the empty spot anyway.
 
 You get speed and you get to run many robots at once. You give up the chance to fix things.
-{{% /callout %}}
+{{< /callout >}}
 
 ### The line is fuzzy
 
@@ -193,11 +193,11 @@ Pick a start spot and a finish spot. Mark them both.
 
 Write a plan that gets your robot through the whole course. Write it before anyone moves.
 
-{{% callout variant="red" title="⚠ One Leg at a Time" %}}
+{{< callout variant="red" title="⚠ One Leg at a Time" >}}
 To move forward you must tell each leg to move. And you must say how far.
 
 "Walk to the door" is not a step. "Move your left leg one step forward" is a step.
-{{% /callout %}}
+{{< /callout >}}
 
 Hand it over. Say nothing. Watch what happens.
 {{< short-answer key="p3_ended_up" label="Where robot ended up" prompt="Where did your robot end up?" >}}

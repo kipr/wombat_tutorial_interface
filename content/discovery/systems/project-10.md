@@ -78,11 +78,11 @@ rows:
       aria: "Single clue enough"
 {{< /gridtable >}}
 
-{{% callout variant="gold" title="No Single Clue Gave It Away" %}}
+{{< callout variant="gold" title="No Single Clue Gave It Away" >}}
 Hair colour on its own tells you almost nothing. Neither does a town, or a school, or a birthday.
 
 Put four of them together and there is usually only one person left. **That is how information about you works.** Each piece looks harmless on its own.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Sort it yourself
 
@@ -148,9 +148,9 @@ Keep to yourself
 - Do not over-share. Fewer clues is always safer.
 - **Do not post where you are.** Not your address, and not a photo that shows it.
 
-{{% callout variant="navy" title="The Internet Does Not Forget" %}}
+{{< callout variant="navy" title="The Internet Does Not Forget" >}}
 Something deleted has usually already been copied, saved, or screenshotted by somebody. The safest moment to protect information is *before* you post it.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Phishing
 
@@ -181,11 +181,11 @@ rows:
     - text: "One changed letter is easy to miss"
 {{< /gridtable >}}
 
-{{% callout variant="red" title="⚠ The One Rule That Always Works" %}}
+{{< callout variant="red" title="⚠ The One Rule That Always Works" >}}
 If a message asks for private information, **do not answer it** — even if it looks real. Show it to a parent or your teacher instead.
 
 You will never get in trouble for checking with an adult first.
-{{% /callout %}}
+{{< /callout >}}
 
 ### Passwords
 
@@ -207,9 +207,9 @@ What makes a password or passphrase stronger for you:
 
 Do **not** invent, type, exchange, or guess a password you actually use. This lesson only uses clearly marked fictional examples.
 
-{{% callout variant="red" title="⚠ This Includes Your Robot" %}}
+{{< callout variant="red" title="⚠ This Includes Your Robot" >}}
 Your Wombat has a password. Do not share it outside your team unless your teacher says so. Somebody with it could change or delete every program you have written.
-{{% /callout %}}
+{{< /callout >}}
 
 ## Do It — Find the Leaks
 
@@ -382,9 +382,9 @@ You need a new password but you already have one you remember. You know you shou
 
 {{< short-answer key="p3_sc7" label="Scenario 7" >}}
 
-{{% callout variant="gold" title="Two of Those Are About Trust, Not Rules" %}}
+{{< callout variant="gold" title="Two of Those Are About Trust, Not Rules" >}}
 Scenarios 1 and 2 both involve an adult asking for real information — and the answers are different. Working out *why* they are different is the whole point.
-{{% /callout %}}
+{{< /callout >}}
 {{< short-answer key="p3_disagree" label="Disagreed scenario" prompt="Which scenario did you and your partner disagree on?" >}}
 
 ### 6. Match the locks
