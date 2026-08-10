@@ -32,35 +32,3 @@ disableKinds = ['taxonomy', 'term', 'rss', 'sitemap']
   noClasses = false
   wrapperClass = 'code'
 
-# Images still live beside the current site while the migration is in progress.
-[[module.mounts]]
-  source = 'content'
-  target = 'content'
-[[module.mounts]]
-  source = 'static'
-  target = 'static'
-[[module.mounts]]
-  source = 'assets'
-  target = 'assets'
-[[module.mounts]]
-  source = 'layouts'
-  target = 'layouts'
-[[module.mounts]]
-  source = 'data'
-  target = 'data'
-[[module.mounts]]
-  source = 'docs/img'
-  target = 'static/img'
-[[module.mounts]]
-  source = 'docs/kipr-logo.png'
-  target = 'static/kipr-logo.png'
-[[module.mounts]]
-  source = 'docs/botguy.png'
-  target = 'static/botguy.png'
-[[module.mounts]]
-  source = 'docs/Explorer_2026_CheatSheet.pdf'
-  target = 'static/Explorer_2026_CheatSheet.pdf'
-[[module.mounts]]
-  source = 'docs/score.html'
-  target = 'static/score.html'
-

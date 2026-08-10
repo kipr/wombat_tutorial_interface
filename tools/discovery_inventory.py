@@ -202,7 +202,7 @@ def build_inventory(legacy_root: Path) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--legacy", type=Path, default=Path("docs/discovery"))
+    parser.add_argument("--legacy", type=Path, default=Path("backup/discovery"))
     parser.add_argument("--output", type=Path)
     parser.add_argument("--check", type=Path, help="compare freshly parsed legacy HTML with an existing inventory")
     args = parser.parse_args()
