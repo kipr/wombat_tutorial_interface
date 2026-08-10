@@ -54,3 +54,13 @@ disableKinds = ['taxonomy', 'term', 'rss', 'sitemap']
 [[module.mounts]]
   source = 'docs/kipr-logo.png'
   target = 'static/kipr-logo.png'
+[[module.mounts]]
+  source = 'docs/botguy.png'
+  target = 'static/botguy.png'
+[[module.mounts]]
+  source = 'docs/Explorer_2026_CheatSheet.pdf'
+  target = 'static/Explorer_2026_CheatSheet.pdf'
+[[module.mounts]]
+  source = 'docs/score.html'
+  target = 'static/score.html'
+

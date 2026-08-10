@@ -1,0 +1,41 @@
+{{ define "main" }}
+  {{- with .Params.cheat_sheet }}
+  <a class="cheat-banner" href="{{ partial "relative-url.html" (dict "source" $ "path" .path) }}" download>
+    <span>{{ .label }}</span>
+  </a>
+  {{- end }}
+
+  <section class="home-hero">
+    <div class="home-hero-inner">
+      <div class="home-hero-text">
+        <img src="{{ partial "relative-url.html" (dict "source" . "path" "botguy.png") }}" alt="" class="home-hero-botguy">
+        <p class="home-hero-eyebrow">{{ .Params.eyebrow }}</p>
+        <img src="{{ partial "relative-url.html" (dict "source" . "path" "kipr-logo.png") }}" alt="KIPR Logo" class="home-hero-logo">
+        <h1>{{ .Params.heading }}{{ with .Params.heading_accent }} <span>{{ . }}</span>{{ end }}</h1>
+        <p class="home-hero-sub">{{ .Description }}</p>
+      </div>
+      <div class="card-grid">
+      {{- range $i, $card := .Params.cards }}
+        {{- $hasPage := isset $card "page" -}}
+        {{- $hasURL := isset $card "url" -}}
+        {{- if eq $hasPage $hasURL -}}
+          {{- errorf "%s cards[%d]: define exactly one of page or url" $.File.Path $i -}}
+        {{- end -}}
+        {{- $href := "" -}}
+        {{- if $hasPage -}}
+          {{- $target := partial "resolve-page.html" (dict "reference" $card.page "position" (printf "%s cards[%d].page" $.File.Path $i)) -}}
+          {{- $href = partial "relative-url.html" (dict "source" $ "target" $target) -}}
+        {{- else -}}
+          {{- $href = partial "relative-url.html" (dict "source" $ "path" $card.url) -}}
+        {{- end -}}
+        <a class="doc-card" href="{{ $href }}">
+          <span class="card-num">{{ $card.kicker }}</span>
+          <span class="card-title">{{ $card.title }}</span>
+          <span class="card-desc">{{ $card.desc }}</span>
+          <span class="card-arrow">{{ $card.arrow }}</span>
+        </a>
+      {{- end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

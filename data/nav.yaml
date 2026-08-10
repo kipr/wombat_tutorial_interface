@@ -2,7 +2,8 @@
 # `id` is matched against a page's `nav` front matter to set the "here" class.
 - id: home
   name: Home
-  url: index.html
+  page: /
+
 - id: missions
   name: 2026 Missions
   page: /botball_explorer_2026
