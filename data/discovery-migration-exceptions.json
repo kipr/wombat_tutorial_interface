@@ -1,0 +1,16 @@
+{
+  "format": 1,
+  "pages": {
+    "coding/project-01.html": {
+      "figures": [
+        {
+          "index": 7,
+          "field": "alt",
+          "from": "",
+          "to": "Compilation succeeded — your project is now on the Wombat.",
+          "reason": "Approved correction for the malformed legacy alternative-text attribute."
+        }
+      ]
+    }
+  }
+}

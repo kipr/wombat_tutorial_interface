@@ -1,0 +1,6 @@
+{{- /* Canonical display title derived from a mission tier's front-matter id. */ -}}
+{{- $id := .id -}}
+{{- if not (in (slice "base" "bonus" "advanced") $id) -}}
+  {{- errorf "%s: unknown mission tier id %q" (.position | default "mission tier") $id -}}
+{{- end -}}
+{{- return (cond (eq $id "advanced") "Advanced Bonus" (printf "%s Mission" (humanize $id))) -}}

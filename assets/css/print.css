@@ -62,11 +62,11 @@
     print-color-adjust: exact;
   }
 
-  ul.tick li {
+  ul.tick li, ul.needs li {
     position: relative;
   }
 
-  ul.tick input[type="checkbox"] {
+  ul.tick input[type="checkbox"], .meta dd ul.needs input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
     border: 1px solid #666;
@@ -91,6 +91,18 @@
     text-align: center;
   }
 
+  .meta dd ul.needs input[type="checkbox"]:checked + label::before {
+    content: "✓";
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    color: #000;
+    font: 700 13px/14px sans-serif;
+    text-align: center;
+  }
+
   .sheet table:not([class]) th, .grid th, .concept .chead {
     background: var(--navy) !important;
     -webkit-print-color-adjust: exact;
@@ -103,7 +115,7 @@
   }
 
   /* show typed values cleanly in print */
-  .answer, .steps input, .grid input, .namebar input, .pin-field input,
+  .answer, .steps input, .short-answer input, .grid input, .namebar input, .pin-field input,
   .calc .equation input {
     border: none !important;
     border-bottom: 1px solid #999 !important;

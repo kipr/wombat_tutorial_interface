@@ -1,0 +1,14 @@
+{{- $section := .section -}}
+{{- $page := .page -}}
+{{- $projects := where site.RegularPages "File.Dir" $section.File.Dir -}}
+{{- $phaseNames := slice -}}
+{{- range $projects }}
+  {{- if and .Params.phase (not (in $phaseNames .Params.phase)) }}{{ $phaseNames = $phaseNames | append .Params.phase }}{{ end -}}
+{{- end -}}
+<a class="choice-card" href="{{ partial "relative-url.html" (dict "source" $page "target" $section) }}">
+  <span class="choice-kicker">{{ $section.Params.kicker }}</span>
+  <span class="choice-title">{{ $section.Params.heading }}</span>
+  <span class="choice-desc">{{ $section.Description }}</span>
+  <span class="choice-meta">{{ len $projects }} projects · {{ len $phaseNames }} phases</span>
+  <span class="choice-arrow">Open {{ $section.Params.heading }} →</span>
+</a>

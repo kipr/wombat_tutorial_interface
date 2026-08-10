@@ -1,0 +1,12 @@
+{{- $gate := .gate -}}
+{{- if or (not $gate.title) (not $gate.description) (not $gate.page) (not $gate.label) -}}
+  {{- errorf "%s: build_gate needs title, description, page, and label" .position -}}
+{{- end -}}
+{{- $target := partial "resolve-page.html" (dict "reference" $gate.page "position" (printf "%s build_gate" .position)) -}}
+<aside class="buildgate">
+  <div class="bg-txt">
+    <p class="bg-t">{{ $gate.title }}</p>
+    <p class="bg-d">{{ $gate.description }}</p>
+  </div>
+  <a class="bg-btn" href="{{ partial "relative-url.html" (dict "source" .page "target" $target) }}">{{ $gate.label }} →</a>
+</aside>

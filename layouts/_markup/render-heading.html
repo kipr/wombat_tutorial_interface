@@ -6,12 +6,16 @@
 {{- if eq .Level 2 -}}
   {{- $phase := findRESubmatch `^(Phase \d+) — (.+)$` $text -}}
   {{- $prelab := findRESubmatch `^(PreLab \d+) — (.+)$` $text -}}
+  {{- $discovery := findRESubmatch `^(Try It|Learn It|Do It|Score It) — (.+)$` $text -}}
   {{- if $phase -}}
     {{- $m := index $phase 0 -}}
 <h2 class="phase-head" id="{{ .Anchor }}"><span class="pnum">{{ index $m 1 }}</span> — {{ index $m 2 | safeHTML }}</h2>
   {{- else if $prelab -}}
     {{- $m := index $prelab 0 -}}
 <h2 class="phase-head" id="{{ .Anchor }}"><span class="pnum">{{ index $m 1 }}</span> {{ index $m 2 | safeHTML }}</h2>
+  {{- else if $discovery -}}
+    {{- $m := index $discovery 0 -}}
+<h2 class="phase-head" id="{{ .Anchor }}"><span class="pnum">{{ index $m 1 }}</span> — {{ index $m 2 | safeHTML }}</h2>
   {{- else -}}
 <h2 class="phase-head" id="{{ .Anchor }}">{{ $text | safeHTML }}</h2>
   {{- end -}}

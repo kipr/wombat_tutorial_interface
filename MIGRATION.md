@@ -43,6 +43,59 @@ Shortcodes are the public API used by Markdown authors. Partials are internal bu
 
 These are compatibility boundaries, not a demand for identical DOM structure. When one of them intentionally changes, document the migration and update the relevant consumer or test.
 
+## Discovery content model
+
+Discovery uses clean Hugo section URLs and no legacy aliases:
+
+```text
+content/discovery/_index.md
+content/discovery/coding/_index.md
+content/discovery/coding/project-01.md … project-17.md
+content/discovery/systems/_index.md
+content/discovery/systems/project-01.md … project-14.md
+```
+
+Every project uses `type: discovery` implicitly from its section and is
+validated at build time. The required project front matter is:
+
+| Field | Contract |
+| --- | --- |
+| `title`, `short_title`, `description`, `weight` | Page, navigation, and hub-card text/order. Weight equals the project number. |
+| `mission_id` | Exact legacy persistence identifier, such as `discovery_coding_14` or `discovery_systems_07`; it is not a game-mission number. |
+| `styles` | Exactly `site-base`, `worksheet`, `syntax`, `discovery`, `print`, in that order. |
+| `project_number`, `strand` | Numeric project identity and either `coding` or `systems`. |
+| `phase`, `phase_order`, `time` | Hub grouping plus worksheet metadata. |
+| `meta` | Labelled definition rows and exactly one `What You Need` row whose `checklist` items each contain stable `key` and accessible `label` values. |
+| `eyebrow`, `heading`, `subheading`, `credit` | Shared worksheet hero and footer content. |
+
+Optional card fields are `hub_title`, `mission_label`, `no_mission`, `build`,
+and a `pace` mapping with `kind` (`required`, `suggested`, or `anytime`) and
+`label`. A Coding page may place a `build_gate` after its phase; `page` is a
+Hugo page reference and therefore fails the build if its target is missing.
+The root and strand hubs derive cards, phase groups, counts, links, badges, and
+gates from section children rather than maintaining a separate project list.
+
+Discovery-owned images and extracted diagrams live at
+`static/img/discovery/<strand>/<project>/...` (for example,
+`static/img/discovery/systems/project-07/step-01a.jpg`). Shared images already
+mounted from `docs/img` remain shared. Figure source paths are resolved through
+the existing `figrow`/`figure-grid.html` path, so project Markdown does not
+introduce a Discovery-only image renderer.
+
+Discovery phase headings use one Markdown convention:
+
+```markdown
+## Try It — Observe the Wombat
+## Learn It — Understand the Sensor
+## Do It — Test Your Program
+## Score It — Check the Result
+```
+
+Only headings present in the authored source are rendered; `Score It` is not
+added automatically. The checked-in Stage 1 project pages are explicit
+`stage1_fixture` pages that exercise the infrastructure before Stage 2 replaces
+their bodies with migrated curriculum.
+
 ## Partials and shortcodes
 
 ### Shortcode catalog
@@ -63,12 +116,14 @@ Reuse these author-facing APIs from Markdown:
 | `gate` | Semantic red panel for PreLab readiness/next-step gates. |
 | `gridtable` | Explicit YAML columns and rows with static or editable cells. |
 | `namebar` | Parameterless reflection name/date fields with fixed compatibility keys. |
+| `mission-summary` | Canonical mission tier summary resolved by mission number or page reference; its optional YAML body adds tier status annotations. |
 | `rec` | YAML list of visibly labelled recording fields. |
 | `repeattable` | Generated rows with predictable `<prefix><row>_<key>` submission keys. |
 | `resetbox` | Semantic gold panel for error-reset checkpoints. |
 | `rule-definition` | Emits one canonical competition definition from `data/glossary.yaml`; rules definitions only. |
 | `safety` | Semantic red safety panel; optionally screen-only with `noprint=true`. |
 | `score-examples` | Required `scores` and `does_not_score` YAML lists rendered as a responsive comparison. |
+| `short-answer` | One-line response using the shared labelled text-input renderer; requires `key` and `label`, with optional `placeholder` or Markdown `prompt`. |
 | `signoff` | PreLab completion check plus labelled team/date-style fields. |
 | `sketch` | Printable field-sketch area with a derived start-box label. |
 | `steps` | Generated numbered single-line response fields. |
@@ -96,6 +151,8 @@ Partials are internal APIs. Reuse them from layouts or shortcode implementations
 | `glossary-page-terms.html` | Discovers the base glossary terms referenced by a page using the shared parser. |
 | `head.html` | Shared document metadata, fonts, and stylesheet links. |
 | `hub-nav.html` | Hub-page navigation shell; delegates individual data-driven links to `navigation-link.html`. |
+| `mission-summary.html` | Renders canonical mission tiers for the `mission-summary` shortcode, with optional authored status annotations. |
+| `mission-tier-title.html` / `mission-judging-label.html` | Shared canonical display labels used by both mission pages and Discovery summaries. |
 | `navigation-link.html` | Shared navigation anchor with configurable active class and consistent `aria-current`. |
 | `overlays.html` | Emits glossary and figure dialogs only when the rendered page used them. |
 | `page-data.html` | Serializes only the glossary definitions referenced by the current page. |
@@ -112,6 +169,8 @@ Partials are internal APIs. Reuse them from layouts or shortcode implementations
 | `textarea.html` | Validated accessible response textarea used by `answer` and `ask`. |
 | `topbar.html` | Worksheet top bar, main navigation, PIN field, and submission controls. |
 | `truthtable.html` | Core structured truth-table renderer used by concept content. |
+| `validate-discovery-project.html` | Enforces Discovery filenames, numbering, persistence IDs, stylesheet order, phase/time fields, and the structured What You Need checklist. |
+| `worksheet-metadata.html` | Renders definition rows and structured metadata checklists through the shared glossary and checkbox paths. |
 
 When adding a semantic alias around an existing partial, keep the alias thin: collect/validate only its distinct authoring parameters, then delegate rendering.
 
@@ -518,7 +577,21 @@ build_dir="$(mktemp -d)"
 hugo --buildDrafts --destination "$build_dir" --printPathWarnings --logLevel error
 python3 tools/check_syntax_highlighting.py "$build_dir"
 python3 tools/check_explorer_migration.py "$build_dir"
+python3 tools/discovery_inventory.py --check data/discovery-legacy-inventory.json
+python3 tools/check_discovery_migration.py --mode fixture "$build_dir"
+node tests/test_lab_persistence.js
+node tests/test_glossary_dialog.js
 ```
+
+After Stage 2 replaces all draft fixtures, run the Discovery checker with
+`--mode full`; it requires all 31 clean project URLs and compares saved-control,
+glossary, mission-reference, identity, link, asset, and accessibility contracts
+against `data/discovery-legacy-inventory.json`. Always give the checker a fresh
+Hugo destination so stale legacy output cannot satisfy a link check.
+Intentional behavioral-contract changes are recorded narrowly in
+`data/discovery-migration-exceptions.json`: each entry identifies a page,
+collection index, field, exact old/new value, and reason. The checker rejects a
+stale `from` value instead of weakening the comparison for the whole page.
 
 Always publish from a newly created destination and replace the deployed Hugo artifact as a unit. Reusing an earlier output directory can retain obsolete flat `.html` files or the old uppercase `Python_Labs` tree.
 

@@ -1,0 +1,34 @@
+{{- /*
+  Shared worksheet metadata. A row is either a rendered definition string or
+  a structured keyed checklist; keeping checklist data structured preserves
+  each persistence key and accessible label.
+*/ -}}
+{{- with .Params.meta }}
+  <div class="meta">
+    <dl>
+      {{- range . }}
+        {{- if not .term }}{{ errorf "%s: every metadata row needs a term" $.File.Path }}{{ end -}}
+        {{- $hasDefinition := isset . "definition" -}}
+        {{- $hasChecklist := isset . "checklist" -}}
+        {{- if eq $hasDefinition $hasChecklist -}}
+          {{- errorf "%s: metadata row %q must define exactly one of definition or checklist" $.File.Path .term -}}
+        {{- end }}
+      <div class="row">
+        <dt>{{ .term }}</dt>
+        <dd>
+        {{- if $hasChecklist -}}
+          {{- if not (reflect.IsSlice .checklist) }}{{ errorf "%s: metadata row %q checklist must be a list" $.File.Path .term }}{{ end -}}
+          <ul class="needs">
+          {{- range .checklist }}
+            <li>{{ partial "checkbox.html" (dict "field" . "page" $ "position" (printf "%s metadata row %q" $.File.Path .term)) }}</li>
+          {{- end }}
+          </ul>
+        {{- else -}}
+          {{- partial "termify.html" (dict "page" $ "content" .definition) | safeHTML -}}
+        {{- end }}
+        </dd>
+      </div>
+      {{- end }}
+    </dl>
+  </div>
+{{- end }}

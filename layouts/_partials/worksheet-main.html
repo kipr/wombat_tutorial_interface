@@ -10,15 +10,7 @@
   <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
 {{- end }}
 
-{{- with .Params.meta }}
-  <div class="meta">
-    <dl>
-      {{- range . }}
-      <div class="row"><dt>{{ .term }}</dt><dd>{{ partial "termify.html" (dict "page" $ "content" .definition) | safeHTML }}</dd></div>
-      {{- end }}
-    </dl>
-  </div>
-{{- end }}
+{{ partial "worksheet-metadata.html" . }}
 
 {{- if .Params.mission_id }}
   <div class="pin-reminder no-print">

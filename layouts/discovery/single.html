@@ -1,0 +1,9 @@
+{{ define "main" }}
+{{- $_ := partial "validate-discovery-project.html" . -}}
+{{- $main := partial "worksheet-main.html" . -}}
+{{- if .Params.sidebar -}}
+  {{- partial "document-shell.html" (dict "page" . "main" $main "class" "document-shell-worksheet") -}}
+{{- else -}}
+  {{- $main | safeHTML -}}
+{{- end -}}
+{{ end }}

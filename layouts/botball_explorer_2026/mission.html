@@ -15,7 +15,7 @@
     {{- range .Params.tiers }}
       {{- $maximum = add $maximum .points -}}
       {{- $resource := $.Resources.GetMatch .image -}}
-      {{- $label := cond (eq .id "advanced") "Advanced Bonus" (printf "%s Mission" (humanize .id)) -}}
+      {{- $label := partial "mission-tier-title.html" (dict "id" .id "position" $.File.Path) -}}
       {{- $alt := printf "Mission %d — %s field diagram" $number $label -}}
       {{- $figures = $figures | append (dict "src" $resource.RelPermalink "alt" $alt) -}}
       <article class="explorer-tier explorer-tier-{{ .id }}" id="{{ .id }}">
@@ -23,7 +23,7 @@
           <h3>{{ $label }}</h3>
           <strong>{{ .points }} {{ cond (eq .points 1) "pt" "pts" }}</strong>
           <span>Difficulty {{ .difficulty }}</span>
-          <span class="explorer-judging explorer-judging-{{ .judging }}">{{ humanize .judging }} judged</span>
+          <span class="explorer-judging explorer-judging-{{ .judging }}">{{ partial "mission-judging-label.html" (dict "judging" .judging "position" $.File.Path) }}</span>
         </div>
         <div class="explorer-tier-description"><p>{{ partial "render-inline.html" (dict "page" $ "text" .description) | safeHTML }}</p></div>
       </article>
@@ -44,8 +44,8 @@
       <h2 id="scoring-summary">Scoring Summary</h2>
       <div class="explorer-summary-items explorer-summary-items-{{ len .Params.tiers }}">
       {{- range .Params.tiers }}
-        {{- $label := cond (eq .id "advanced") "Advanced Bonus" (printf "%s Mission" (humanize .id)) -}}
-        <div><span>{{ $label }}</span><strong>{{ .points }} {{ cond (eq .points 1) "pt" "pts" }}</strong><small>{{ humanize .judging }} judged</small></div>
+        {{- $label := partial "mission-tier-title.html" (dict "id" .id "position" $.File.Path) -}}
+        <div><span>{{ $label }}</span><strong>{{ .points }} {{ cond (eq .points 1) "pt" "pts" }}</strong><small>{{ partial "mission-judging-label.html" (dict "judging" .judging "position" $.File.Path) }}</small></div>
       {{- end }}
         <div class="explorer-summary-max"><span>Maximum</span><strong>{{ $maximum }} pts</strong></div>
       </div>

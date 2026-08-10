@@ -1,0 +1,10 @@
+{{- /* One-line response, backed by the shared labelled text-input renderer. */ -}}
+{{- $key := partial "require.html" (dict "sc" . "name" "key") -}}
+{{- $label := partial "require.html" (dict "sc" . "name" "label") -}}
+{{- $field := dict "key" $key "label" $label -}}
+{{- with .Get "placeholder" }}{{ $field = merge $field (dict "placeholder" .) }}{{ end -}}
+{{- $prompt := .Get "prompt" | default "" | strings.TrimSpace -}}
+<div class="short-answer">
+{{- with $prompt }}<div class="short-answer-prompt">{{ $.Page.RenderString . }}</div>{{ end -}}
+{{- partial "text-input.html" (dict "field" $field "position" .Position "labelHidden" (ne $prompt "")) -}}
+</div>

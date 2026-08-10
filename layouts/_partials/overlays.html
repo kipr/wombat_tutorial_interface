@@ -1,6 +1,6 @@
 {{- /* Only emitted when the rendered page actually used the matching widget. */ -}}
 {{- if .Store.Get "usedTerms" }}
-<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm" hidden>
   <div class="def-box">
     <div class="def-head">
       <span class="def-head-term" id="defTerm"></span>

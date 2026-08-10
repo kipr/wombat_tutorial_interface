@@ -1,0 +1,4 @@
+{{- if not (in (slice "live" "final") .judging) -}}
+  {{- errorf "%s: unknown mission judging value %q" (.position | default "mission tier") .judging -}}
+{{- end -}}
+{{- return (printf "%s judged" (humanize .judging)) -}}

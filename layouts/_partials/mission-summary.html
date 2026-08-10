@@ -1,0 +1,34 @@
+{{- $page := .page -}}
+{{- $mission := .mission -}}
+{{- $_ := partial "validate-mission.html" $mission -}}
+{{- $annotations := .annotations | default dict -}}
+{{- if not (reflect.IsMap $annotations) -}}
+  {{- errorf "%s: mission-summary annotations must be a mapping from tier id to note" .position -}}
+{{- end -}}
+{{- range $tierID, $_ := $annotations -}}
+  {{- if eq (len (where $mission.Params.tiers "id" $tierID)) 0 -}}
+    {{- errorf "%s: mission-summary annotation names missing tier %q on Mission %d" $.position $tierID $mission.Params.mission_number -}}
+  {{- end -}}
+{{- end -}}
+<section class="mission-summary" aria-labelledby="mission-summary-{{ $mission.Params.mission_number }}-{{ .ordinal }}">
+  <div class="mission-summary-head">
+    <p class="mission-summary-kicker">Mission {{ $mission.Params.mission_number }}</p>
+    <h3 id="mission-summary-{{ $mission.Params.mission_number }}-{{ .ordinal }}"><a href="{{ partial "relative-url.html" (dict "source" $page "target" $mission) }}">{{ $mission.LinkTitle }}</a></h3>
+  </div>
+  <div class="mission-summary-tiers">
+  {{- range $mission.Params.tiers }}
+    {{- $title := partial "mission-tier-title.html" (dict "id" .id "position" $mission.File.Path) -}}
+    {{- $judging := partial "mission-judging-label.html" (dict "judging" .judging "position" $mission.File.Path) -}}
+    {{- $annotation := index $annotations .id | default "" -}}
+    <article class="mission-summary-tier" id="mission-summary-{{ $mission.Params.mission_number }}-{{ $.ordinal }}-{{ .id }}">
+      <header>
+        <h4><a href="{{ partial "relative-url.html" (dict "source" $page "target" $mission) }}#{{ .id }}">{{ $title }}</a></h4>
+        <strong>{{ .points }} {{ cond (eq .points 1) "point" "points" }}</strong>
+        <span>{{ $judging }}</span>
+        {{- with $annotation }}<em class="mission-summary-annotation">{{ $page.RenderString (dict "display" "inline") . }}</em>{{ end }}
+      </header>
+      <p>{{ partial "render-inline.html" (dict "page" $page "text" .description) | safeHTML }}</p>
+    </article>
+  {{- end }}
+  </div>
+</section>

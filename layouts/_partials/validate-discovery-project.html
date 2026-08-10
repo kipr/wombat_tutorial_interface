@@ -1,0 +1,37 @@
+{{- $page := . -}}
+{{- $position := $page.File.Path -}}
+{{- $strand := $page.Params.strand -}}
+{{- if not (in (slice "coding" "systems") $strand) -}}
+  {{- errorf "%s: Discovery project strand must be coding or systems" $position -}}
+{{- end -}}
+{{- $maximum := cond (eq $strand "coding") 17 14 -}}
+{{- $number := $page.Params.project_number -}}
+{{- if not (in (seq 1 $maximum) $number) -}}
+  {{- errorf "%s: project_number must be from 1 through %d" $position $maximum -}}
+{{- end -}}
+{{- if ne $page.Weight $number -}}
+  {{- errorf "%s: weight (%d) must match project_number (%d)" $position $page.Weight $number -}}
+{{- end -}}
+{{- if ne $page.File.BaseFileName (printf "project-%02d" $number) -}}
+  {{- errorf "%s: project %d must use filename project-%02d.md" $position $number $number -}}
+{{- end -}}
+{{- $expectedID := printf "discovery_%s_%02d" $strand $number -}}
+{{- if ne $page.Params.mission_id $expectedID -}}
+  {{- errorf "%s: mission_id must preserve %q; got %q" $position $expectedID $page.Params.mission_id -}}
+{{- end -}}
+{{- range (slice "short_title" "phase" "phase_order" "time") -}}
+  {{- if not ($page.Param .) }}{{ errorf "%s: Discovery project needs %s" $position . }}{{ end -}}
+{{- end -}}
+{{- $expectedStyles := slice "site-base" "worksheet" "syntax" "discovery" "print" -}}
+{{- if ne $page.Params.styles $expectedStyles -}}
+  {{- errorf "%s: Discovery worksheet styles must be %v, in that order" $position $expectedStyles -}}
+{{- end -}}
+{{- $needsRows := where $page.Params.meta "term" "What You Need" -}}
+{{- if ne (len $needsRows) 1 -}}
+  {{- errorf "%s: metadata must contain exactly one What You Need row" $position -}}
+{{- end -}}
+{{- $needs := index $needsRows 0 -}}
+{{- if or (not (isset $needs "checklist")) (not (reflect.IsSlice $needs.checklist)) (eq (len $needs.checklist) 0) -}}
+  {{- errorf "%s: What You Need must be a non-empty structured checklist" $position -}}
+{{- end -}}
+{{- return true -}}

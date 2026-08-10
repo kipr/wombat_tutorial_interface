@@ -1,0 +1,21 @@
+{{- /*
+  Resolve canonical mission front matter by number or page reference. Optional
+  YAML body maps tier ids to short Discovery status annotations.
+*/ -}}
+{{- $number := .Get "mission" -}}
+{{- $reference := .Get "page" -}}
+{{- if eq (not (not $number)) (not (not $reference)) -}}
+  {{- errorf "%s: mission-summary needs exactly one of mission or page" .Position -}}
+{{- end -}}
+{{- $mission := false -}}
+{{- with $number -}}
+  {{- if not (findRE `^[0-9]+$` .) }}{{ errorf "%s: mission-summary mission must be a number" $.Position }}{{ end -}}
+  {{- $mission = partial "resolve-page.html" (dict "reference" (printf "/botball_explorer_2026/missions/mission-%d" (int .)) "position" $.Position) -}}
+{{- else -}}
+  {{- $mission = partial "resolve-page.html" (dict "reference" $reference "position" .Position) -}}
+{{- end -}}
+{{- $annotations := dict -}}
+{{- with strings.TrimSpace .Inner }}{{ $annotations = transform.Unmarshal . }}{{ end -}}
+{{- $ordinal := .Page.Store.Get "missionSummaryOrdinal" | default 0 | add 1 -}}
+{{- .Page.Store.Set "missionSummaryOrdinal" $ordinal -}}
+{{- partial "mission-summary.html" (dict "page" .Page "mission" $mission "annotations" $annotations "position" .Position "ordinal" $ordinal) -}}

@@ -1,0 +1,14 @@
+{{- $project := .project -}}
+{{- $page := .page -}}
+<a class="proj-card{{ if $project.Params.build }} build{{ end }}" href="{{ partial "relative-url.html" (dict "source" $page "target" $project) }}">
+  <span class="proj-num">Project {{ $project.Params.project_number }}</span>
+  <span class="proj-title">{{ $project.Params.hub_title | default $project.LinkTitle }}</span>
+  {{- with $project.Description }}<span class="proj-desc">{{ . }}</span>{{ end }}
+  {{- with $project.Params.mission_label }}<span class="proj-anchor{{ if $.project.Params.no_mission }} none{{ end }}">{{ . }}</span>{{ end }}
+  {{- with $project.Params.pace }}
+    {{- if not .label }}{{ errorf "%s: pace needs a label" $project.File.Path }}{{ end -}}
+    {{- if not (in (slice "required" "suggested" "anytime") .kind) }}{{ errorf "%s: pace kind must be required, suggested, or anytime" $project.File.Path }}{{ end -}}
+  <span class="pace {{ .kind }}">{{ .label }}</span>
+  {{- end }}
+  <span class="proj-arrow">Open Project →</span>
+</a>

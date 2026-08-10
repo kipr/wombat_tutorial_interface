@@ -14,7 +14,7 @@
     {{- $content = replace $content $token $html -}}
   {{- else -}}
     {{- $text := $reference.label | default $resolved.base -}}
-    {{- $html := printf `<span class="def-term" data-term="%s">%s</span>` $resolved.lookup $text -}}
+    {{- $html := printf `<button type="button" class="def-term" data-term="%s" aria-haspopup="dialog" aria-controls="defOverlay">%s</button>` $resolved.lookup $text -}}
     {{- $content = replace $content $token $html -}}
     {{- $usedTerms = $usedTerms | append $resolved.lookup -}}
   {{- end -}}

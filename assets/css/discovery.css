@@ -1,0 +1,38 @@
+/* Discovery strand hubs and small worksheet additions. Shared worksheet
+ * controls remain in worksheet.css; legacy page-specific aliases are omitted. */
+.phase-label{font-family:var(--font-display);font-weight:700;font-size:.8rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--grey);margin:2.5rem 0 1rem;border-bottom:1px solid var(--line);
+  padding-bottom:.6rem;display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.discovery-phase:first-of-type .phase-label{margin-top:0}
+.phase-label .pcount{letter-spacing:.06em;font-size:.72rem;opacity:.75}
+.proj-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.75rem;
+  text-decoration:none;display:flex;flex-direction:column;gap:.6rem;transition:border-color .2s,transform .2s,box-shadow .2s;
+  position:relative;overflow:hidden;box-shadow:0 1px 0 rgba(28,28,28,.04)}
+.proj-card::before{content:'';position:absolute;inset:0 0 auto;height:3px;background:var(--red);transform:scaleX(0);
+  transform-origin:left;transition:transform .3s}.proj-card:hover{border-color:rgba(192,57,43,.45);transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(28,28,28,.08)}.proj-card:hover::before{transform:scaleX(1)}
+.proj-card:focus-visible{outline:3px solid rgba(192,57,43,.35);outline-offset:3px}
+.proj-num{font-family:var(--font-display);font-size:.72rem;font-weight:700;letter-spacing:.2em;color:var(--red);text-transform:uppercase}
+.proj-title{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--navy);line-height:1.1}
+.proj-desc{font-size:.85rem;color:var(--grey);line-height:1.55}.proj-anchor{font-size:.75rem;font-weight:600;letter-spacing:.04em;
+  color:var(--red);border-top:1px solid var(--line);padding-top:.7rem;margin-top:.3rem}.proj-anchor.none{color:var(--grey);font-weight:400}
+.proj-arrow{margin-top:auto;padding-top:.75rem;font-family:var(--font-display);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.pace{display:inline-flex;align-items:center;gap:.4rem;align-self:flex-start;font-family:var(--font-display);font-size:.7rem;
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .6rem;border-radius:3px;margin-top:.2rem}
+.pace.required{background:#fbeef0;color:var(--red);border:1px solid rgba(192,57,43,.45)}
+.pace.suggested{background:#eef1f7;color:var(--navy);border:1px solid #cfdcef}
+.pace.anytime{background:var(--field);color:var(--grey);border:1px solid var(--line)}.proj-card.build{border-color:rgba(192,57,43,.35)}
+.legend{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;margin:0 0 1.5rem;font-size:.85rem;color:var(--grey)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:.4rem;vertical-align:middle}
+.legend i.r{background:var(--red)}.legend i.s{background:var(--navy)}
+.buildgate{display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap;background:#fbeef0;border:1px solid var(--line);
+  border-left:5px solid var(--red);border-radius:8px;padding:1rem 1.2rem;margin:1.15rem 0}
+.buildgate .bg-txt{flex:1 1 300px;min-width:0}.buildgate .bg-t{font-family:var(--font-display);font-weight:800;
+  font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--red);margin:0 0 .3rem}
+.buildgate .bg-d{color:var(--grey);font-size:.95rem;margin:0;line-height:1.5}.buildgate .bg-btn{flex-shrink:0;
+  display:inline-flex;align-items:center;gap:.5rem;background:var(--red);color:#fff;text-decoration:none;font-family:var(--font-display);
+  font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;padding:.68rem 1.1rem;border-radius:6px}
+.buildgate .bg-btn:hover{background:var(--red-dark)}
+@media(max-width:640px){.buildgate .bg-btn{width:100%;justify-content:center}}
+@media print{.buildgate,.mission-summary{break-inside:avoid}.legend{display:none}}

@@ -15,6 +15,43 @@
   var MISSION_ID = body.getAttribute("data-mission-id");
   var MISSION_TITLE = body.getAttribute("data-mission-title") || document.title;
 
+  function readControl(el) {
+    return el.type === "checkbox" ? (el.checked ? "yes" : "") : el.value;
+  }
+
+  function writeControl(el, value) {
+    if (el.type === "checkbox") {
+      el.checked = value === "yes";
+    } else {
+      el.value = value;
+    }
+  }
+
+  function collectAnswers(root) {
+    var answers = {};
+    root.querySelectorAll("[data-key]").forEach(function (el) {
+      answers[el.getAttribute("data-key")] = readControl(el);
+    });
+    return answers;
+  }
+
+  function restoreAnswers(root, answers) {
+    if (!answers) return;
+    root.querySelectorAll("[data-key]").forEach(function (el) {
+      var key = el.getAttribute("data-key");
+      if (key in answers) writeControl(el, answers[key]);
+    });
+  }
+
+  /* Kept small and DOM-agnostic so persistence behavior can be regression
+   * tested without duplicating the production serialization rules. */
+  window.KIPR_WORKSHEET_PERSISTENCE = {
+    readControl: readControl,
+    writeControl: writeControl,
+    collectAnswers: collectAnswers,
+    restoreAnswers: restoreAnswers
+  };
+
   /* ---------------------------------------------------------------- submit */
 
   (function submitFlow() {
@@ -25,14 +62,6 @@
     var statusBottom = document.getElementById("statusBottom");
     var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
     var submitting = false;
-
-    function collectAnswers() {
-      var answers = {};
-      document.querySelectorAll("[data-key]").forEach(function (el) {
-        answers[el.getAttribute("data-key")] = el.value;
-      });
-      return answers;
-    }
 
     function restoreDraft() {
       var raw;
@@ -49,18 +78,14 @@
         return;
       }
       if (data.pin) pinInput.value = data.pin;
-      if (!data.answers) return;
-      document.querySelectorAll("[data-key]").forEach(function (el) {
-        var k = el.getAttribute("data-key");
-        if (k in data.answers) el.value = data.answers[k];
-      });
+      restoreAnswers(document, data.answers);
     }
 
     function saveDraft() {
       try {
         window.localStorage.setItem(
           SAVE_KEY,
-          JSON.stringify({ pin: pinInput.value.trim(), answers: collectAnswers() })
+          JSON.stringify({ pin: pinInput.value.trim(), answers: collectAnswers(document) })
         );
       } catch (e) {
         /* storage full or blocked — ignore */
@@ -107,7 +132,7 @@
         missionTitle: MISSION_TITLE,
         pin: pin,
         submittedAt: new Date().toISOString(),
-        answers: collectAnswers()
+        answers: collectAnswers(document)
       });
 
       var echo = document.getElementById("pinEcho");
@@ -127,6 +152,9 @@
     document.addEventListener("input", function (e) {
       if (e.target.matches("[data-key], #pin")) saveDraft();
     });
+    document.addEventListener("change", function (e) {
+      if (e.target.matches("[data-key], #pin")) saveDraft();
+    });
     ["submitTop", "submitBottom"].forEach(function (id) {
       var btn = document.getElementById(id);
       if (btn) btn.addEventListener("click", handleSubmit);
@@ -142,20 +170,28 @@
     var termEl = document.getElementById("defTerm");
     var bodyEl = document.getElementById("defBody");
     var defs = window.KIPR_GLOSSARY || {};
+    var trigger = null;
 
-    function open(key) {
+    function open(control) {
+      var key = control.dataset.term;
       var entry = defs[key];
       if (!entry) return;
+      trigger = control;
       termEl.textContent = entry.title;
       bodyEl.textContent = entry.body;
+      overlay.hidden = false;
       overlay.classList.add("open");
       document.getElementById("defClose").focus();
       document.body.style.overflow = "hidden";
     }
 
     function close() {
+      if (!overlay.classList.contains("open")) return;
       overlay.classList.remove("open");
+      overlay.hidden = true;
       document.body.style.overflow = "";
+      if (trigger) trigger.focus();
+      trigger = null;
     }
 
     document.getElementById("defClose").addEventListener("click", close);
@@ -163,19 +199,15 @@
       if (e.target === this) close();
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape" && overlay.classList.contains("open")) close();
     });
     document.addEventListener("click", function (e) {
       var el = e.target.closest(".def-term");
-      if (el) open(el.dataset.term);
+      if (el) {
+        e.preventDefault();
+        open(el);
+      }
     });
-    document.addEventListener(
-      "touchend",
-      function (e) {
-        if (e.target.closest(".def-term")) e.preventDefault();
-      },
-      { passive: false }
-    );
   })();
 
   /* ---------------------------------------------------------- image zoom */
