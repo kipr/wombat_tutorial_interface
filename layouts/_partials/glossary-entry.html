@@ -2,7 +2,7 @@
 {{- $ref := .reference -}}
 {{- $base := $ref.base -}}
 {{- $sense := $ref.qualifier -}}
-{{- $entry := index site.Data.glossary $base -}}
+{{- $entry := index hugo.Data.glossary $base -}}
 {{- if not $entry -}}
   {{- errorf "%s: [[%s]] is not a term in data/glossary.yaml" .position $ref.target -}}
 {{- else if and (ne $sense "") (not (isset $entry "senses")) -}}
