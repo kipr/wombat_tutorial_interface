@@ -3,4 +3,6 @@
 {{- if not $key }}{{ errorf "%s: checkbox needs a key" .position }}{{ end -}}
 {{- if not $label }}{{ errorf "%s: checkbox %q needs a label" .position $key }}{{ end -}}
 {{- $id := replace $key "_" "-" -}}
-<input type="checkbox" data-key="{{ $key }}" id="{{ $id }}"><label for="{{ $id }}">{{ .page.RenderString $label }}</label>
+{{- $page := .page -}}
+{{- if not $page }}{{ errorf "%s: checkbox %q needs a page for label rendering" .position $key }}{{ end -}}
+<input type="checkbox" data-key="{{ $key }}" id="{{ $id }}"><label for="{{ $id }}">{{ partial "render-inline.html" (dict "page" $page "text" $label) | safeHTML }}</label>

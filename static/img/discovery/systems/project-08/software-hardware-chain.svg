@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 120" role="img" aria-label="A chain: software, then translator, then hardware, with input arriving and output leaving">
+  <title>A chain: software, then translator, then hardware, with input arriving and output leaving</title>
+        <defs>
+          <marker id="software-hardware-chain-a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#666666"/>
+          </marker>
+        </defs>
+        <g font-family="Barlow, sans-serif" font-size="13" text-anchor="middle">
+          <rect x="20" y="34" width="140" height="48" rx="5" fill="#2a6099"/>
+          <text x="90" y="63" fill="#fff" font-weight="600">SOFTWARE</text>
+          <line x1="162" y1="58" x2="222" y2="58" stroke="#666666" stroke-width="2" marker-end="url(#software-hardware-chain-a1)"/>
+          <rect x="226" y="34" width="140" height="48" rx="5" fill="#C0392B"/>
+          <text x="296" y="63" fill="#ffffff" font-weight="600">TRANSLATOR</text>
+          <line x1="368" y1="58" x2="428" y2="58" stroke="#666666" stroke-width="2" marker-end="url(#software-hardware-chain-a1)"/>
+          <rect x="432" y="34" width="140" height="48" rx="5" fill="#1C1C1C"/>
+          <text x="502" y="63" fill="#fff" font-weight="600">HARDWARE</text>
+          <text x="90" y="24" fill="#666666" font-size="12">what you wrote</text>
+          <text x="296" y="24" fill="#666666" font-size="12">turns it into numbers</text>
+          <text x="502" y="24" fill="#666666" font-size="12">does the work</text>
+          <text x="502" y="104" fill="#666666" font-size="12">wheels turn, claw closes</text>
+        </g>
+      </svg>

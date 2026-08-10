@@ -6,7 +6,7 @@ styles: ["site-base", "hub", "discovery"]
 eyebrow: "Botball Explorer · Entry Tier"
 heading: "Discovery"
 heading_accent: "Projects"
-description: "Two strands for learning how to program a Wombat and how technical systems are designed, used, and improved."
+description: "Two strands you can work through independently. Everything you build gets tested against a real Stack Attack mission."
 ---
 
-**Stage 1 infrastructure fixture:** the project cards exercise shared rendering until Stage 2 replaces them with the migrated curriculum.
+**Which one first?** Either. The strands do not depend on each other — pick whichever your team is ready for. Watch for the badges on the Systems cards — a few of them need doing before certain Coding projects, and the claw build is a hard gate before Coding Project 7.

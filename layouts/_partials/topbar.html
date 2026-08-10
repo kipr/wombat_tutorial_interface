@@ -2,7 +2,7 @@
 <div class="topbar no-print">
   <div class="topbar-inner">
     <a class="brand" href="{{ partial "relative-url.html" (dict "source" . "path" "index.html") }}">KIPR · Botball <span>Explorer</span></a>
-      <nav class="mainnav" aria-label="Main">{{ range hugo.Data.nav }}{{ partial "navigation-link.html" (dict "source" $ "item" . "activeClass" "here") }}{{ end }}</nav>
+      <nav class="mainnav" aria-label="Main">{{ range site.Data.nav }}{{ partial "navigation-link.html" (dict "source" $ "item" . "activeClass" "here") }}{{ end }}</nav>
   </div>
 {{- if .Params.mission_id }}
   <div class="pinbar">

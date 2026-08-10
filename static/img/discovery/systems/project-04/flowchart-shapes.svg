@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 130" role="img" aria-label="The four flowchart shapes: oval for start and stop, rectangle for an action, diamond for a decision, arrow for flow">
+  <title>The four flowchart shapes: oval for start and stop, rectangle for an action, diamond for a decision, arrow for flow</title>
+        <defs>
+          <marker id="flowchart-shapes-ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#666666"/>
+          </marker>
+        </defs>
+        <g font-family="Barlow, sans-serif" font-size="13" text-anchor="middle">
+          <rect x="14" y="26" width="122" height="42" rx="21" fill="#1E8449"/>
+          <text x="75" y="52" fill="#fff" font-weight="600">START / STOP</text>
+          <text x="75" y="92" fill="#1C1C1C" font-size="13" font-weight="600">Oval</text>
+          <text x="75" y="110" fill="#666666" font-size="12">Where it begins and ends</text>
+
+          <rect x="166" y="26" width="122" height="42" rx="4" fill="#2a6099"/>
+          <text x="227" y="52" fill="#fff" font-weight="600">DO THIS</text>
+          <text x="227" y="92" fill="#1C1C1C" font-size="13" font-weight="600">Rectangle</text>
+          <text x="227" y="110" fill="#666666" font-size="12">One action to carry out</text>
+
+          <path d="M379,24 L440,47 L379,70 L318,47 z" fill="#C0392B"/>
+          <text x="379" y="52" fill="#ffffff" font-weight="600">YES / NO?</text>
+          <text x="379" y="92" fill="#1C1C1C" font-size="13" font-weight="600">Diamond</text>
+          <text x="379" y="110" fill="#666666" font-size="12">A question with two ways out</text>
+
+          <line x1="490" y1="47" x2="590" y2="47" stroke="#666666" stroke-width="2" marker-end="url(#flowchart-shapes-ar2)"/>
+          <text x="540" y="92" fill="#1C1C1C" font-size="13" font-weight="600">Arrow</text>
+          <text x="540" y="110" fill="#666666" font-size="12">Which way to go next</text>
+        </g>
+      </svg>

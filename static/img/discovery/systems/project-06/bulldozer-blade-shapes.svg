@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 200" role="img" aria-label="Three bulldozer blade shapes seen from above: straight S-blade, universal U-blade with large side wings, and the S-U combination">
+  <title>Three bulldozer blade shapes seen from above: straight S-blade, universal U-blade with large side wings, and the S-U combination</title>
+        <g font-family="Barlow, sans-serif" font-size="13" text-anchor="middle">
+          <text x="110" y="22" fill="#1C1C1C" font-size="15" font-weight="600">S-Blade</text>
+          <path d="M40,60 L180,60 L180,76 L40,76 z" fill="#666666"/>
+          <path d="M60,100 L160,100" stroke="#C0392B" stroke-width="2" stroke-dasharray="4 4"/>
+          <text x="110" y="120" fill="#666666">material spreads sideways</text>
+          <text x="110" y="150" fill="#1C1C1C" font-size="12.5">Straight, no wings.</text>
+          <text x="110" y="168" fill="#666666" font-size="12.5">Good for levelling. Loses loose things.</text>
+
+          <text x="330" y="22" fill="#1C1C1C" font-size="15" font-weight="600">U-Blade</text>
+          <path d="M262,60 L398,60 L398,76 L262,76 z" fill="#666666"/>
+          <path d="M262,60 L262,110 L278,110 L278,76 z" fill="#666666"/>
+          <path d="M398,60 L398,110 L382,110 L382,76 z" fill="#666666"/>
+          <text x="330" y="132" fill="#666666">wings hold it in</text>
+          <text x="330" y="150" fill="#1C1C1C" font-size="12.5">Tall, curved, big side wings.</text>
+          <text x="330" y="168" fill="#666666" font-size="12.5">Carries the most. Wide and heavy.</text>
+
+          <text x="550" y="22" fill="#1C1C1C" font-size="15" font-weight="600">S-U Blade</text>
+          <path d="M486,60 L614,60 L614,76 L486,76 z" fill="#666666"/>
+          <path d="M486,60 L486,92 L500,92 L500,76 z" fill="#666666"/>
+          <path d="M614,60 L614,92 L600,92 L600,76 z" fill="#666666"/>
+          <text x="550" y="132" fill="#666666">short wings</text>
+          <text x="550" y="150" fill="#1C1C1C" font-size="12.5">A bit of both.</text>
+          <text x="550" y="168" fill="#666666" font-size="12.5">Pushes piles without being huge.</text>
+        </g>
+      </svg>

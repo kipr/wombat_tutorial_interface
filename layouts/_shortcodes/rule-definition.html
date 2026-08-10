@@ -1,6 +1,6 @@
 {{- $term := .Get "term" -}}
 {{- if not $term }}{{ errorf "%s: rule-definition needs term" .Position }}{{ end -}}
-{{- $entry := index hugo.Data.glossary $term -}}
+{{- $entry := index site.Data.glossary $term -}}
 {{- if not $entry }}{{ errorf "%s: rule-definition term %q is missing from data/glossary.yaml" .Position $term }}{{ end -}}
 {{- if ne ($entry.source | default "") "rules" }}
   {{- errorf "%s: rule-definition term %q is not marked source: rules" .Position $term -}}

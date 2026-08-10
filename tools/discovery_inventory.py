@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import collections
 import json
+import re
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -139,9 +140,15 @@ def parse_page(path: Path, root: Path) -> dict:
 
     body = next((node for node in nodes if node.tag == "body"), None)
     ids = [node.attrs["id"] for node in nodes if node.attrs.get("id")]
+    persistence_id = body.attrs.get("data-mission-id", "") if body else ""
+    if not persistence_id:
+        markup = path.read_text(encoding="utf-8")
+        match = re.search(r'var\s+MISSION_ID\s*=\s*"([^"]+)"', markup)
+        if match:
+            persistence_id = match.group(1)
     return {
         "source": path.relative_to(root).as_posix(),
-        "persistence_id": body.attrs.get("data-mission-id", "") if body else "",
+        "persistence_id": persistence_id,
         "controls": controls,
         "duplicate_keys": sorted(key for key, count in collections.Counter(item["key"] for item in controls).items() if count > 1),
         "duplicate_ids": sorted(key for key, count in collections.Counter(ids).items() if count > 1),

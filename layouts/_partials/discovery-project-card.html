@@ -1,6 +1,6 @@
 {{- $project := .project -}}
 {{- $page := .page -}}
-<a class="proj-card{{ if $project.Params.build }} build{{ end }}" href="{{ partial "relative-url.html" (dict "source" $page "target" $project) }}">
+<a class="proj-card{{ if $project.Params.build_project }} build{{ end }}" href="{{ partial "relative-url.html" (dict "source" $page "target" $project) }}">
   <span class="proj-num">Project {{ $project.Params.project_number }}</span>
   <span class="proj-title">{{ $project.Params.hub_title | default $project.LinkTitle }}</span>
   {{- with $project.Description }}<span class="proj-desc">{{ . }}</span>{{ end }}

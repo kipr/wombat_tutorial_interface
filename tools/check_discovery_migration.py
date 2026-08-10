@@ -68,6 +68,53 @@ def figures(nodes):
 
 def apply_exceptions(baseline: dict, page_exceptions: dict, errors: list[str]) -> dict:
     expected = copy.deepcopy(baseline)
+    if "persistence_id" in page_exceptions:
+        change = page_exceptions["persistence_id"]
+        reason = change.get("reason", "").strip() if isinstance(change, dict) else ""
+        if not reason or not isinstance(change, dict):
+            fail(errors, f"{baseline['source']}: malformed persistence_id exception")
+        elif expected.get("persistence_id") != change.get("from"):
+            fail(errors, f"{baseline['source']}: persistence_id exception has stale from value")
+        else:
+            expected["persistence_id"] = change.get("to")
+    for change in page_exceptions.get("remove_controls", []):
+        reason = change.get("reason", "").strip()
+        key = change.get("key")
+        if not reason or not key:
+            fail(errors, f"{baseline['source']}: malformed remove_controls exception")
+            continue
+        matches = [i for i, item in enumerate(expected["controls"]) if item["key"] == key]
+        if len(matches) != 1:
+            fail(errors, f"{baseline['source']}: remove_controls key {key!r} matches {len(matches)} controls")
+            continue
+        del expected["controls"][matches[0]]
+    for change in page_exceptions.get("replace_control", []):
+        reason = change.get("reason", "").strip()
+        key = change.get("key")
+        if not reason or not key or "to" not in change:
+            fail(errors, f"{baseline['source']}: malformed replace_control exception")
+            continue
+        matches = [i for i, item in enumerate(expected["controls"]) if item["key"] == key]
+        if len(matches) != 1:
+            fail(errors, f"{baseline['source']}: replace_control key {key!r} matches {len(matches)} controls")
+            continue
+        current = expected["controls"][matches[0]]
+        if "from" in change and current != change["from"]:
+            fail(errors, f"{baseline['source']}: replace_control {key!r} has stale from value")
+            continue
+        expected["controls"][matches[0]] = change["to"]
+    for change in page_exceptions.get("glossary", []):
+        reason = change.get("reason", "").strip()
+        if not reason or "from" not in change or "to" not in change:
+            fail(errors, f"{baseline['source']}: malformed glossary exception")
+            continue
+        terms = expected["glossary"]
+        try:
+            index = next(i for i, term in enumerate(terms) if term == change["from"])
+        except StopIteration:
+            fail(errors, f"{baseline['source']}: glossary exception from value {change['from']!r} not found")
+            continue
+        terms[index] = change["to"]
     for collection_name in ("controls", "figures"):
         for change in page_exceptions.get(collection_name, []):
             reason = change.get("reason", "").strip()
@@ -84,6 +131,14 @@ def apply_exceptions(baseline: dict, page_exceptions: dict, errors: list[str]) -
                 fail(errors, f"{baseline['source']}: {collection_name}[{index}].{field} exception has stale from value")
                 continue
             collection[index][field] = change.get("to")
+    # Intentional glossary multiset edits (e.g. canonical mission-summary text).
+    for term in page_exceptions.get("glossary_remove", []):
+        if term in expected["glossary"]:
+            expected["glossary"].remove(term)
+        else:
+            fail(errors, f"{baseline['source']}: glossary_remove missing {term!r}")
+    for term in page_exceptions.get("glossary_add", []):
+        expected["glossary"].append(term)
     return expected
 
 

@@ -18,7 +18,7 @@
       <label class="image-checkbox" for="{{ . }}"><input type="checkbox" id="{{ . }}" data-key="part_{{ . }}"><span>Have it</span></label>
       {{- end }}
     </div>
-    <figcaption>{{ .alt }}</figcaption>
+    <figcaption>{{ .caption | default .alt }}</figcaption>
   </figure>
 {{- end }}
 </div>

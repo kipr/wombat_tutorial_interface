@@ -4,7 +4,7 @@
 {{- if eq (index $cell "kind" | default "") "number" -}}
 <td class="number-cell">{{ index $cell "text" }}</td>
 {{- else if isset $cell "text" -}}
-<td class="static-cell">{{ .page.RenderString (printf "%v" (index $cell "text")) }}</td>
+<td class="static-cell">{{ partial "render-inline.html" (dict "page" .page "text" (printf "%v" (index $cell "text"))) | safeHTML }}</td>
 {{- else -}}
   {{- $sourceKey := index $cell "key" | default (index $column "key") -}}
   {{- if not $sourceKey }}{{ errorf "%s: table input cell needs a key" .position }}{{ end -}}

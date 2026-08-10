@@ -7,7 +7,7 @@
     {{< /figrow >}}
 
   PreLab kit inventories add an overlay checkbox with check_id. The submission
-  key is always part_<check_id>, matching the original JS-built rows:
+    key is always part_<check_id>, matching the original JS-built rows:
 
     {{< figrow >}}
     - src: kit/wambatfaceon.jpg
@@ -15,8 +15,9 @@
       check_id: wombat-controller
     {{< /figrow >}}
 
-  `alt` is also the visible caption. Paths use the shared img root. Column
-  layout is inferred from the figure count.
+  Optional `caption` overrides the visible figcaption when it should differ
+  from `alt` (Discovery build sequences). Paths use the shared img root.
+  Column layout is inferred from the figure count.
 */ -}}
 {{- $figures := .Inner | transform.Unmarshal -}}
 {{- if or (not (reflect.IsSlice $figures)) (eq (len $figures) 0) -}}
@@ -26,8 +27,10 @@
 {{- range $figures -}}
   {{- if not .src }}{{ errorf "%s: every figrow item requires src" $.Position }}{{ end -}}
   {{- if not .alt }}{{ errorf "%s: figure %q requires alt" $.Position .src }}{{ end -}}
+  {{- $caption := .alt -}}
+  {{- with index . "caption" }}{{ $caption = . }}{{ end -}}
   {{- $normalized = $normalized | append (dict
     "src" (partial "relative-url.html" (dict "source" $.Page "path" (printf "img/%s" .src)))
-    "alt" .alt "check_id" (index . "check_id")) -}}
+    "alt" .alt "caption" $caption "check_id" (index . "check_id")) -}}
 {{- end -}}
 {{- partial "figure-grid.html" (dict "page" .Page "figures" $normalized) -}}

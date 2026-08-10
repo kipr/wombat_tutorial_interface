@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{- $terms := slice -}}
-{{- range $key, $entry := hugo.Data.glossary -}}
+{{- range $key, $entry := site.Data.glossary -}}
   {{- if ne ($entry.source | default "") "rules" -}}
     {{- $terms = $terms | append (dict "key" $key "title" $entry.title "entry" $entry) -}}
   {{- end -}}

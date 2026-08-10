@@ -9,7 +9,7 @@
     "reference" $reference "track" ($page.Params.track | default "c") "position" $page.File.Path) -}}
   {{- if eq $reference.kind "mission" -}}
     {{- $text := $reference.label | default $resolved.title -}}
-    {{- $href := printf `%s#%s` $resolved.page.RelPermalink $resolved.tier -}}
+    {{- $href := printf `%s#%s` (partial "relative-url.html" (dict "source" $page "target" $resolved.page)) $resolved.tier -}}
     {{- $html := printf `<a class="mission-ref" href="%s">%s</a>` $href ($text | htmlEscape) -}}
     {{- $content = replace $content $token $html -}}
   {{- else -}}

@@ -4,7 +4,7 @@
     <span>Botball 2026</span>
   </a>
   <div class="nav-links">
-  {{- range hugo.Data.nav }}
+  {{- range site.Data.nav }}
     {{ partial "navigation-link.html" (dict "source" $ "item" . "activeClass" "active") }}
   {{- end }}
   </div>

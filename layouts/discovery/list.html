@@ -2,7 +2,7 @@
 <main class="wrap discovery-hub">
   <p class="page-eyebrow">{{ .Params.eyebrow }}</p>
   <h1 class="page-title">{{ .Params.heading }}{{ with .Params.heading_accent }} <span>{{ . }}</span>{{ end }}</h1>
-  <p class="page-sub">{{ .Description }}</p>
+  <p class="page-sub">{{ with .Params.subheading }}{{ . }}{{ else }}{{ .Description }}{{ end }}</p>
 
 {{- if not .Params.strand }}
   <div class="choice-grid">
@@ -34,6 +34,7 @@
   </section>
     {{- range $phasePages }}{{ with .Params.build_gate }}{{ partial "discovery-build-gate.html" (dict "page" $ "gate" . "position" $first.File.Path) }}{{ end }}{{ end }}
   {{- end }}
+  {{- with .Content }}<div class="note">{{ . }}</div>{{ end }}
 {{- end }}
 </main>
 {{ end }}

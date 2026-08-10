@@ -10,6 +10,449 @@
           "to": "Compilation succeeded — your project is now on the Wombat.",
           "reason": "Approved correction for the malformed legacy alternative-text attribute."
         }
+      ],
+      "wording": [
+        {
+          "from": "whe`re",
+          "to": "where",
+          "reason": "Approved editorial correction: remove stray backtick in the word where."
+        }
+      ]
+    },
+    "coding/project-14.html": {
+      "wording": [
+        {
+          "from": "It senses infrared, so an incandescent bulb or a phone flashlight works — a plain LED usually will not.",
+          "to": "Any moderately powerful flashlight should work with the light sensor, including a phone flashlight. Point the light at the sensor and watch the reading change.",
+          "reason": "Approved Coding Project 14 flashlight guidance: avoid unsupported tech claims; any moderately powerful flashlight including phone flashlight works; focus on pointing at the sensor."
+        },
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ],
+      "glossary_remove": [
+        "ANALOG",
+        "PORT",
+        "THRESHOLD"
+      ],
+      "glossary_add": [
+        "OFF",
+        "IN",
+        "IN",
+        "IN"
+      ]
+    },
+    "coding/project-06.html": {
+      "wording": [
+        {
+          "from": "Embedded legacy mission card titles for Missions 2, 4, 13, and 14",
+          "to": "Canonical mission-summary shortcode resolving titles from mission pages",
+          "reason": "Approved correction: resolve stale embedded titles by sourcing from canonical mission pages."
+        },
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ],
+      "glossary_remove": [
+        "PALLET",
+        "SIMULTANEOUSLY"
+      ],
+      "glossary_add": [
+        "OFF",
+        "OFF",
+        "OFF",
+        "OFF",
+        "OFF",
+        "OFF",
+        "OFF",
+        "ON TOP OF",
+        "IN"
+      ]
+    },
+    "coding/project-07.html": {
+      "wording": [
+        {
+          "from": "Visual rangebar with inline widths implying API ends equal classroom limits",
+          "to": "Safety panel distinguishing API range 0–2047 from classroom safe band 150–1900",
+          "reason": "Approved review: keep supported API ranges distinct from conservative classroom operating limits."
+        },
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ],
+      "glossary_remove": [
+        "ENCLOSURE",
+        "TOUCHING"
+      ],
+      "glossary_add": [
+        "COMPLETELY"
+      ]
+    },
+    "systems/project-04.html": {
+      "figures": [
+        {
+          "index": 0,
+          "field": "src",
+          "from": "",
+          "to": "square-path-flowchart.svg",
+          "reason": "Approved Stage 2 extraction: inline SVG moved to standalone Discovery asset under static/img/discovery/."
+        },
+        {
+          "index": 0,
+          "field": "caption",
+          "from": "",
+          "to": "A flowchart: start, then a loop of drive forward two feet and turn right, repeated four times, then stop",
+          "reason": "Extracted diagram uses the shared figure component; visible caption mirrors the accessible alternative text."
+        },
+        {
+          "index": 1,
+          "field": "src",
+          "from": "",
+          "to": "flowchart-shapes.svg",
+          "reason": "Approved Stage 2 extraction: inline SVG moved to standalone Discovery asset under static/img/discovery/."
+        },
+        {
+          "index": 1,
+          "field": "caption",
+          "from": "",
+          "to": "The four flowchart shapes: oval for start and stop, rectangle for an action, diamond for a decision, arrow for flow",
+          "reason": "Extracted diagram uses the shared figure component; visible caption mirrors the accessible alternative text."
+        }
+      ]
+    },
+    "systems/project-06.html": {
+      "figures": [
+        {
+          "index": 0,
+          "field": "src",
+          "from": "",
+          "to": "bulldozer-blade-shapes.svg",
+          "reason": "Approved Stage 2 extraction: inline SVG moved to standalone Discovery asset under static/img/discovery/."
+        },
+        {
+          "index": 0,
+          "field": "caption",
+          "from": "",
+          "to": "Three bulldozer blade shapes seen from above: straight S-blade, universal U-blade with large side wings, and the S-U combination",
+          "reason": "Extracted diagram uses the shared figure component; visible caption mirrors the accessible alternative text."
+        }
+      ]
+    },
+    "systems/project-08.html": {
+      "figures": [
+        {
+          "index": 0,
+          "field": "src",
+          "from": "",
+          "to": "software-hardware-chain.svg",
+          "reason": "Approved Stage 2 extraction: inline SVG moved to standalone Discovery asset under static/img/discovery/."
+        },
+        {
+          "index": 0,
+          "field": "caption",
+          "from": "",
+          "to": "A chain: software, then translator, then hardware, with input arriving and output leaving",
+          "reason": "Extracted diagram uses the shared figure component; visible caption mirrors the accessible alternative text."
+        }
+      ]
+    },
+    "systems/project-05.html": {
+      "glossary": [
+        {
+          "from": "PROTOTYPE",
+          "to": "PROTOTYPE:design",
+          "reason": "Systems curriculum means the design-prototype sense; canonical glossary requires an explicit sense."
+        },
+        {
+          "from": "PROTOTYPE",
+          "to": "PROTOTYPE:design",
+          "reason": "Systems curriculum means the design-prototype sense; canonical glossary requires an explicit sense."
+        },
+        {
+          "from": "PROTOTYPE",
+          "to": "PROTOTYPE:design",
+          "reason": "Systems curriculum means the design-prototype sense; canonical glossary requires an explicit sense."
+        }
+      ],
+      "notes": [
+        {
+          "from": "Bare PROTOTYPE glossary markup",
+          "to": "[[PROTOTYPE:design]]",
+          "reason": "Agreed migration decision: use the design sense where Systems means a design prototype."
+        }
+      ]
+    },
+    "systems/project-09.html": {
+      "notes": [
+        {
+          "from": "Browser-specific padlock language and 'Padlock shown?' column",
+          "to": "Browser-neutral HTTPS lesson: https:// protected connection; connection/site-controls icon may not be a padlock; Not secure/warnings → ask trusted adult; HTTPS ≠ content true/safe",
+          "reason": "Approved Systems Project 9 HTTPS curriculum update per DISCOVERY.md and Chrome connection-security guidance (conceptual, not browser-specific icon names)."
+        }
+      ]
+    },
+    "systems/project-10.html": {
+      "remove_controls": [
+        {
+          "key": "p3_pw",
+          "reason": "Approved password revision: do not persist a field that invites inventing or typing a (practice) password secret."
+        },
+        {
+          "key": "p3_pw_mix",
+          "reason": "Approved password revision: do not teach mandatory character mixing as the main strength measure."
+        },
+        {
+          "key": "p3_pw_partner",
+          "reason": "Approved password revision: do not ask students to exchange or guess passwords with a partner."
+        }
+      ],
+      "replace_control": [
+        {
+          "key": "p4_can_pw",
+          "from": {
+            "key": "p4_can_pw",
+            "type": "checkbox",
+            "label": "I can build a strong password and say why it is strong",
+            "placeholder": "",
+            "initial_value": ""
+          },
+          "to": {
+            "key": "p4_can_pw",
+            "type": "checkbox",
+            "label": "I can explain what makes a password or passphrase stronger (length, uniqueness) without inventing a real one",
+            "placeholder": "",
+            "initial_value": ""
+          },
+          "reason": "Approved password revision: assess understanding of length/uniqueness without requiring students to invent a real password."
+        }
+      ],
+      "notes": [
+        {
+          "from": "Invent/type/exchange practice password; character-mixing as primary strength rule",
+          "to": "Fictional passphrase examples only; emphasize length, uniqueness, memorable passphrases, password managers, MFA; no persisted secret fields",
+          "reason": "Approved Systems Project 10 strong-password update per NIST guidance adapted for K–6."
+        }
+      ]
+    },
+    "systems/project-14.html": {
+      "notes": [
+        {
+          "from": "Review missing Score It section",
+          "to": "Score It Checkpoint retained as in current legacy source",
+          "reason": "Reviewed during Stage 2: legacy Systems Project 14 already includes Score It Checkpoint; omission is not present in the current source, so no curriculum addition was required."
+        }
+      ]
+    },
+    "coding/project-05.html": {
+      "wording": [
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ],
+      "glossary_remove": [
+        "TOUCHING"
+      ],
+      "glossary_add": []
+    },
+    "coding/project-08.html": {
+      "wording": [
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ],
+      "glossary_remove": [
+        "TOUCHING"
+      ],
+      "glossary_add": [
+        "ON TOP OF",
+        "ON TOP OF",
+        "ON TOP OF",
+        "ON TOP OF",
+        "ON TOP OF",
+        "OFF",
+        "OFF",
+        "IN"
+      ]
+    },
+    "coding/project-09.html": {
+      "wording": [
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ]
+    },
+    "coding/project-10.html": {
+      "wording": [
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ],
+      "glossary_remove": [],
+      "glossary_add": [
+        "OFF",
+        "OFF",
+        "ON TOP OF"
+      ]
+    },
+    "coding/project-11.html": {
+      "wording": [
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ],
+      "glossary_remove": [
+        "ENCLOSURE",
+        "PALLET",
+        "PALLET"
+      ],
+      "glossary_add": [
+        "COMPLETELY",
+        "IN",
+        "IN",
+        "FULLY WITHIN",
+        "FULLY WITHIN"
+      ]
+    },
+    "coding/project-12.html": {
+      "wording": [
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ],
+      "glossary_remove": [],
+      "glossary_add": [
+        "IN"
+      ]
+    },
+    "coding/project-13.html": {
+      "wording": [
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ],
+      "glossary_remove": [
+        "BLOCK",
+        "CONDITION"
+      ],
+      "glossary_add": [
+        "ON TOP OF",
+        "ON TOP OF"
+      ]
+    },
+    "coding/project-15.html": {
+      "wording": [
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ],
+      "glossary_remove": [
+        "THRESHOLD",
+        "ENCLOSURE",
+        "ENCLOSURE",
+        "PALLET",
+        "TOUCHING"
+      ],
+      "glossary_add": [
+        "ON TOP OF",
+        "ON TOP OF",
+        "ON TOP OF",
+        "FULLY WITHIN",
+        "FULLY WITHIN"
+      ]
+    },
+    "coding/project-16.html": {
+      "wording": [
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ]
+    },
+    "coding/project-17.html": {
+      "wording": [
+        {
+          "from": "Embedded mission-card glossary terms",
+          "to": "Canonical mission-summary glossary terms",
+          "reason": "Canonical mission-summary replaces embedded mission-card glossary wording."
+        }
+      ],
+      "glossary_remove": [
+        "ON TOP OF",
+        "ON TOP OF",
+        "ENCLOSURE"
+      ],
+      "glossary_add": [
+        "IN",
+        "IN"
+      ]
+    }
+  },
+  "hubs": {
+    "index.html": {
+      "notes": [
+        {
+          "from": "choice-meta suffixes 'complete' and 'in progress'",
+          "to": "choice-meta shows live 'N projects · M phases' counts only",
+          "reason": "Stage 1 strand cards derive counts from section children. Drop the stale Systems 'in progress' label now that all 14 Systems projects exist; omit the parallel Coding 'complete' suffix for the same live-count presentation."
+        },
+        {
+          "from": "Discovery glossary.html link on the Discovery landing page / nav context",
+          "to": "Site nav Glossary resolves to the canonical /glossary page",
+          "reason": "Agreed migration decision: do not migrate the legacy Discovery glossary as a separate content page."
+        }
+      ]
+    },
+    "coding/index.html": {
+      "notes": [
+        {
+          "from": "Strand complete block used legacy .upcoming markup",
+          "to": "Same closing message rendered from hub Markdown Content inside the shared .note panel",
+          "reason": "Stage 1 Discovery hub layout has no .upcoming component; preserve the curriculum closing statement without reintroducing page-local hub chrome."
+        }
+      ]
+    }
+  },
+  "assets": {
+    "systems": {
+      "notes": [
+        {
+          "from": "docs/discovery/systems/img/step-04.jpg, step-09.jpg, step-10.jpg present on disk",
+          "to": "Not copied into static/img/discovery/",
+          "reason": "Verified obsolete for the published worksheet: Project 7 steps 4, 9, and 10 already use shared kit images (h_pin_attach.png, claw_liftarm_servo_horn.png, claw_onto_servo.png) instead of these local step photos."
+        },
+        {
+          "from": "Project 7 referenced local build photos under docs/discovery/systems/img/",
+          "to": "Copied used photos to static/img/discovery/systems/project-07/",
+          "reason": "Stage 2 asset convention for Discovery-owned Systems build sequences."
+        },
+        {
+          "from": "Inline SVG diagrams in Systems Projects 4, 6, and 8",
+          "to": "Standalone SVG files under static/img/discovery/systems/project-0{4,6,8}/",
+          "reason": "Agreed migration decision: extract inline SVG diagrams; do not rasterize."
+        }
       ]
     }
   }
