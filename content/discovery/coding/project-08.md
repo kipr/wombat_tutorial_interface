@@ -295,7 +295,7 @@ Add to the end of your program: carry the cube somewhere, set it down, and back 
 
 ### Step 5 --- Mission 13 Bonus --- your first stack7 pts
 
-{{< mission-summary mission="13" >}}
+{{< mission-summary mission="13" video=true >}}
 {{< /mission-summary >}}
 Start here because it is the easiest stack on the field --- the cubes are close together, and it is live judged, so your claw can still be holding the top cube when the judge looks.
 
@@ -309,7 +309,7 @@ Both cubes have to originate from the Unstraight Cube area. Stacking an unstraig
 {{< /checklist >}}
 ### Step 6 --- Mission 12 --- complete it16 pts
 
-{{< mission-summary mission="12" >}}
+{{< mission-summary mission="12" video=true >}}
 {{< /mission-summary >}}
 You already know how to get here --- that was Project 5. Reuse your approach code and add the grab.
 
@@ -340,7 +340,7 @@ does_not_score:
 
 ### Step 7 --- Mission 3 --- Mixed Freight7 pts
 
-{{< mission-summary mission="3" >}}
+{{< mission-summary mission="3" video=true >}}
 {{< /mission-summary >}}
 Either order works for the base. Green on yellow, yellow on green --- both score. Same colour on same colour scores nothing.
 
@@ -350,7 +350,7 @@ Either order works for the base. Green on yellow, yellow on green --- both score
 {{< /checklist >}}
 ### Step 8 --- Mission 11 --- Hazard Disposal7 pts
 
-{{< mission-summary mission="11" >}}
+{{< mission-summary mission="11" video=true >}}
 {{< /mission-summary >}}
 A different grip problem. Poms squash, so your closed position for a pom is not the same as for a cube.
 

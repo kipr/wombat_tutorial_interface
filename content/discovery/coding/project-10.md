@@ -373,7 +373,7 @@ Add this to the top of a program. Now your robot waits for you instead of drivin
 
 ### Step 8 --- Mission 13 Advanced --- all three cubes13 pts
 
-{{< mission-summary mission="13" >}}
+{{< mission-summary mission="13" video=true >}}
 {{< /mission-summary >}}
 {{< score-examples >}}
 scores:

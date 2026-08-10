@@ -400,7 +400,7 @@ else
 
 ### Step 6 --- Mission 3 Advanced --- two opposite stacks13 pts
 
-{{< mission-summary mission="3" >}}
+{{< mission-summary mission="3" video=true >}}
 {{< /mission-summary >}}
 {{< callout title="Going for Advanced Gets You the Bonus Too" variant="gold" >}}
 Two opposite stacks *are* two stacks. Score the Advanced Bonus and the 9-point Bonus comes with it --- 22 points from this one run.

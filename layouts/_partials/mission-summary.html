@@ -15,6 +15,19 @@
     <p class="mission-summary-kicker">Mission {{ $mission.Params.mission_number }}</p>
     <h3 id="mission-summary-{{ $mission.Params.mission_number }}-{{ .ordinal }}"><a href="{{ partial "relative-url.html" (dict "source" $page "target" $mission) }}">{{ $mission.LinkTitle }}</a></h3>
   </div>
+  {{- if .showVideo }}
+    {{- $video := $mission.Resources.GetMatch $mission.Params.video -}}
+    {{- $videoURL := partial "relative-url.html" (dict "source" $page "path" $video.RelPermalink) -}}
+  <details class="mission-summary-video">
+    <summary>Watch Mission {{ $mission.Params.mission_number }} video</summary>
+    <div class="mission-summary-video-body">
+      <video class="mission-summary-video-player" controls preload="none" playsinline width="1280" height="720" aria-label="Mission {{ $mission.Params.mission_number }} explanatory video">
+        <source src="{{ $videoURL }}" type="{{ $video.MediaType.Type }}">
+        <a href="{{ $videoURL }}">Download the Mission {{ $mission.Params.mission_number }} video.</a>
+      </video>
+    </div>
+  </details>
+  {{- end }}
   <div class="mission-summary-tiers">
   {{- range $mission.Params.tiers }}
     {{- $title := partial "mission-tier-title.html" (dict "id" .id "position" $mission.File.Path) -}}

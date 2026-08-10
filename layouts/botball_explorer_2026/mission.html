@@ -3,6 +3,7 @@
 {{- $number := .Params.mission_number -}}
 {{- $maximum := 0 -}}
 {{- $video := .Resources.GetMatch .Params.video -}}
+{{- $videoURL := partial "relative-url.html" (dict "source" . "path" $video.RelPermalink) -}}
 <main class="explorer-mission">
   <header class="explorer-mission-header">
     <p class="explorer-eyebrow">2026 Fall Game - Mission {{ $number }} of 18</p>
@@ -30,8 +31,8 @@
     <h2>Mission Video</h2>
     <figure class="explorer-mission-video">
       <video class="explorer-mission-video-player" controls preload="metadata" playsinline width="1280" height="720" aria-label="Mission {{ $number }} explanatory video">
-        <source src="{{ $video.RelPermalink }}" type="{{ $video.MediaType.Type }}">
-        <a href="{{ $video.RelPermalink }}">Download the Mission {{ $number }} video.</a>
+        <source src="{{ $videoURL }}" type="{{ $video.MediaType.Type }}">
+        <a href="{{ $videoURL }}">Download the Mission {{ $number }} video.</a>
       </video>
       <figcaption>Mission {{ $number }} explanatory video</figcaption>
     </figure>

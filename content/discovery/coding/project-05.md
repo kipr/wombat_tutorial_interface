@@ -209,7 +209,7 @@ Two moving wheels fight friction better than one moving wheel does. A one-wheel 
 
 ### Where you are headed
 
-{{< mission-summary mission="12" >}}
+{{< mission-summary mission="12" video=true >}}
 {{< /mission-summary >}}
 ## Do It --- Learn to Aim
 

@@ -9,7 +9,7 @@ import pathlib
 import re
 import sys
 from html.parser import HTMLParser
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 
 
 EXPECTED_TIERS = {
@@ -260,6 +260,43 @@ def main():
     lab_ids = re.findall(r'\bid="([^"]+)"', lab_markup)
     if len(lab_ids) != len(set(lab_ids)):
         fail(errors, "Lab 1.1 contains duplicate IDs")
+
+    summary_count = 0
+    for project_path in sorted((build / "discovery" / "coding").glob("project-*/index.html")):
+        project = parse(project_path)
+        for summary in project.all(class_name="mission-summary"):
+            summary_count += 1
+            disclosures = summary.all("details", class_name="mission-summary-video")
+            if len(disclosures) != 1:
+                fail(errors, f"{project_path.relative_to(build)} mission summary must contain one video disclosure")
+                continue
+            disclosure = disclosures[0]
+            if "open" in disclosure.attrs:
+                fail(errors, f"{project_path.relative_to(build)} mission video disclosure must start collapsed")
+            videos = disclosure.all("video", class_name="mission-summary-video-player")
+            if len(videos) != 1:
+                fail(errors, f"{project_path.relative_to(build)} mission video disclosure must contain one video")
+                continue
+            video = videos[0]
+            if video.attrs.get("preload") != "none":
+                fail(errors, f"{project_path.relative_to(build)} inline mission video must use preload=none")
+            for attribute in ("controls", "playsinline"):
+                if attribute not in video.attrs:
+                    fail(errors, f"{project_path.relative_to(build)} inline mission video is missing {attribute}")
+            if video.attrs.get("width") != "1280" or video.attrs.get("height") != "720":
+                fail(errors, f"{project_path.relative_to(build)} inline mission video dimensions are not 1280x720")
+            sources = video.all("source")
+            if len(sources) != 1:
+                fail(errors, f"{project_path.relative_to(build)} inline mission video must contain one source")
+                continue
+            source = sources[0]
+            source_path = unquote(urlparse(source.attrs.get("src", "")).path)
+            if not source_path or not (project_path.parent / source_path).resolve().is_file():
+                fail(errors, f"{project_path.relative_to(build)} inline mission video source does not resolve")
+            if not source.attrs.get("type", "").startswith("video/"):
+                fail(errors, f"{project_path.relative_to(build)} inline mission source lacks a video MIME type")
+    if summary_count != 26:
+        fail(errors, f"Discovery contains {summary_count} mission summaries; expected 26")
 
     prelab_markup = (build / "labs" / "prelab0" / "index.html").read_text()
     if prelab_markup.count('class="figure-zoom"') != 21:

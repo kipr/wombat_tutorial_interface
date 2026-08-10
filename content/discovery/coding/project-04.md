@@ -59,7 +59,7 @@ meta:
 
 You are about to score real points. Before you write a single line of code, find out exactly what the judge is looking for.
 
-{{< mission-summary mission="1" >}}
+{{< mission-summary mission="1" video=true >}}
 {{< /mission-summary >}}
 **Mission 10 --- Waypoint Bravo** is the same mission on the other side: the zone next to the **right** starting box. Everything you learn here works for both.
 

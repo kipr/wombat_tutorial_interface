@@ -417,7 +417,7 @@ void fetch_pom()
 {{< /checklist >}}
 ### Step 7 --- Mission 15 --- one blue pom9 pts
 
-{{< mission-summary mission="15" >}}
+{{< mission-summary mission="15" video=true >}}
 {{< /mission-summary >}}
 {{< safety title="⚠ Not the Basket You Used in Project 8" >}}
 Mission 11 (orange poms) and Mission 15 (blue poms) **must use different baskets.** In Project 8 you wrote down which basket you were saving for this. Use that one.

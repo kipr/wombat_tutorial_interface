@@ -25,6 +25,10 @@
     display: none !important;
   }
 
+  .mission-summary-video {
+    display: none !important;
+  }
+
   .sheet {
     margin: 0;
     max-width: none;

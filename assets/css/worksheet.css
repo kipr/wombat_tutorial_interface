@@ -312,6 +312,14 @@
   font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .mission-summary-head h3 { margin: 2px 0 0; font-family: var(--font-display); font-size: 22px; }
 .mission-summary-head a { color: inherit; }
+.mission-summary-video { border-bottom: 1px solid var(--line); background: #fff; }
+.mission-summary-video summary { padding: 10px 16px; color: var(--navy); cursor: pointer;
+  font-family: var(--font-display); font-weight: 700; }
+.mission-summary-video summary:hover { background: var(--field); }
+.mission-summary-video summary:focus-visible { outline: 3px solid rgba(33,57,94,.35); outline-offset: -3px; }
+.mission-summary-video-body { padding: 0 16px 16px; }
+.mission-summary-video-player { display: block; width: 100%; height: auto; max-width: 1280px; max-height: 720px;
+  margin: 0 auto; aspect-ratio: 16/9; background: #000; }
 .mission-summary-tiers { display: grid; gap: 1px; background: var(--line); }
 .mission-summary-tier { margin: 0; padding: 13px 16px; background: var(--panel); }
 .mission-summary-tier header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 5px 12px; }

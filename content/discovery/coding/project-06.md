@@ -198,7 +198,7 @@ One mission at a time. New project for each, then a combined one at the end.
 
 ### Step 1 --- Mission 13 --- Unstraight Cubes1 pt
 
-{{< mission-summary mission="13" >}}
+{{< mission-summary mission="13" video=true >}}
 {{< /mission-summary >}}
 All three. Leave one cube grazing the line and you score nothing.
 
@@ -235,7 +235,7 @@ rows:
 {{< /checklist >}}
 ### Step 2 --- Mission 14 --- Traffic Cones3 pts
 
-{{< mission-summary mission="14" >}}
+{{< mission-summary mission="14" video=true >}}
 {{< /mission-summary >}}
 {{< safety title="⚠ A Tipped Cone Still Has to Be Clear" >}}
 Cones tip easily. That is fine --- a cone on its side can still be [[OFF]]. But a tipped cone takes up more floor, so the part that lands might reach back onto the line. Push further than feels necessary.
@@ -251,7 +251,7 @@ Cones tip easily. That is fine --- a cone on its side can still be [[OFF]]. But 
 
 ### Step 3 --- Mission 2 --- Red Cubes4 pts
 
-{{< mission-summary mission="2" >}}
+{{< mission-summary mission="2" video=true >}}
 {{< /mission-summary >}}
 {{< callout title="Two Objects, Judged Separately" variant="navy" >}}
 The cube and the pallet are checked independently. Both must be [[OFF]]. Shoving the cube off while the pallet stays behind on the line scores nothing --- so push low enough to move them together, or move the pallet after.
@@ -270,7 +270,7 @@ Good news on the bonus: the small red cubes do not have to stay stacked. Knockin
 {{< /checklist >}}
 ### Step 4 --- Mission 4 --- The Poms8 pts
 
-{{< mission-summary mission="4" >}}
+{{< mission-summary mission="4" video=true >}}
 {{< /mission-summary >}}
 This is the biggest score in the project and the fussiest. Poms are light --- they roll, they bounce, and they do not always go where you pushed them.
 

@@ -177,7 +177,7 @@ Use the format **name = number**. There is a reason for that --- in Project 9 th
 
 ### Where you are headed
 
-{{< mission-summary mission="9" >}}
+{{< mission-summary mission="9" video=true >}}
 {{< /mission-summary >}}
 {{< score-examples >}}
 scores:

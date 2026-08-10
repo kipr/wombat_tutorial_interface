@@ -281,7 +281,7 @@ Turn it into a [[FUNCTION|function]] while you are at it --- `follow_line(int ti
 {{< /checklist >}}
 ### Step 5 --- Mission 16 --- Freight Shelving9 pts
 
-{{< mission-summary mission="16" >}}
+{{< mission-summary mission="16" video=true >}}
 {{< /mission-summary >}}
 {{< safety title="⚠ The Large Green Cube, Not a Small One" >}}
 The target is the **large palletized Green Cube** field element --- not the small green cubes you have been stacking since Project 8. Make sure your team is aiming at the right thing.
@@ -296,7 +296,7 @@ Robot support is permitted, but this is final position scored --- so the cube ha
 {{< /checklist >}}
 ### Step 6 --- Mission 17 --- Freight Racking9 pts
 
-{{< mission-summary mission="17" >}}
+{{< mission-summary mission="17" video=true >}}
 {{< /mission-summary >}}
 {{< callout title="Same Job, Different Address" variant="gold" >}}
 This is Mission 16 with two words changed. If you wrote Mission 16 as a function with [[ARGUMENT|arguments]], this one costs you almost nothing --- which is the reward for the work you did in Project 12.
@@ -312,7 +312,7 @@ The Unstraight Cubes are the same three you stacked for Mission 13 back in Proje
 {{< /checklist >}}
 ### Step 7 --- Mission 7 --- Hazard Containment11 pts
 
-{{< mission-summary mission="7" >}}
+{{< mission-summary mission="7" video=true >}}
 {{< /mission-summary >}}
 {{< score-examples >}}
 scores:
@@ -331,7 +331,7 @@ Two colours, one enclosure. Poms roll, so the second delivery is the one that kn
 {{< /checklist >}}
 ### Step 8 --- Mission 6 --- Pallet Builder · 22 pts
 
-{{< mission-summary mission="6" >}}
+{{< mission-summary mission="6" video=true >}}
 {{< /mission-summary >}}
 {{< callout title="The Arrangement Does Not Matter" variant="gold" >}}
 Four cubes flat on the [[PALLET|pallet]], a four-high tower, or anything in between --- all of it scores, as long as every cube is part of one palletized load. Pick whatever your claw finds easiest.

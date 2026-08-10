@@ -468,7 +468,7 @@ Same robot. Same square. The only thing that changed is *what the robot was meas
 
 ### Step 7 --- Mission 9 Bonus --- get Botguy out9 pts
 
-{{< mission-summary mission="9" >}}
+{{< mission-summary mission="9" video=true >}}
 {{< /mission-summary >}}
 {{< score-examples >}}
 scores:
@@ -487,7 +487,7 @@ Your claw can still be holding him. He just has to be clear of the enclosure and
 {{< /checklist >}}
 ### Step 8 --- Mission 18 Base --- take him to the loading zone11 pts
 
-{{< mission-summary mission="18" >}}
+{{< mission-summary mission="18" video=true >}}
 {{< /mission-summary >}}
 {{< callout title="One Trip, Two Missions, Twenty Points" variant="gold" >}}
 You just lifted Botguy out of the enclosure for Mission 9. Do not put him down --- **carry him to the Loading Zone** and Mission 18's base scores too.
@@ -506,7 +506,7 @@ Mission 18 is final position, so Botguy has to still be [[IN THE ZONE]] when the
 {{< /checklist >}}
 ### Step 9 --- Mission 8 --- deliver the red cube20 pts
 
-{{< mission-summary mission="8" >}}
+{{< mission-summary mission="8" video=true >}}
 {{< /mission-summary >}}
 {{< safety title="⚠ The Pallet and the Cube Travel Together" >}}
 Read the failures carefully. **The Large Red Cube on the Loading Dock without the pallet does not score.** Neither does a pallet on the dock with the cube fallen off.

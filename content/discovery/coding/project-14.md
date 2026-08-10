@@ -343,7 +343,7 @@ Now your robot sits still until someone shines a light at it.
 
 ### Step 6 --- Mission 14 Bonus --- a cone [[IN THE ZONE]] · 7 pts
 
-{{< mission-summary mission="14" >}}
+{{< mission-summary mission="14" video=true >}}
 {{< /mission-summary >}}
 {{< safety title="⚠ The Base Still Has to Hold" >}}
 You cannot score this bonus unless **both** cones are [[OFF]] the black line --- including the one you left behind. If your second cone drifted back onto the line, the bonus is worth nothing.
@@ -357,7 +357,7 @@ Use your line-finding program to drive to the Loading Zone [[BOUNDARY|boundary]]
 {{< /checklist >}}
 ### Step 7 --- Mission 18 --- Botguy and both cones28 pts
 
-{{< mission-summary mission="18" >}}
+{{< mission-summary mission="18" video=true >}}
 {{< /mission-summary >}}
 {{< safety title="⚠ [[IN]] and [[FULLY WITHIN]] Are Not the Same Thing" >}}
 Mission 14's bonus only needs a cone **[[IN]]** the zone --- any part of it poking into the interior counts.

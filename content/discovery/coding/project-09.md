@@ -401,7 +401,7 @@ Hold that thought. Project 10 gives you the tool that makes it one line instead 
 
 ### Step 6 --- Mission 5 --- Top Shelf Delivery20 pts
 
-{{< mission-summary mission="5" >}}
+{{< mission-summary mission="5" video=true >}}
 {{< /mission-summary >}}
 This one asks your arm to reach higher than anything so far. The large red cube is the platform; the small ones go [[ON TOP OF]] it.
 

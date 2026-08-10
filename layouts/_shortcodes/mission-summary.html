@@ -4,8 +4,12 @@
 */ -}}
 {{- $number := .Get "mission" -}}
 {{- $reference := .Get "page" -}}
+{{- $showVideo := .Get "video" | default false -}}
 {{- if eq (not (not $number)) (not (not $reference)) -}}
   {{- errorf "%s: mission-summary needs exactly one of mission or page" .Position -}}
+{{- end -}}
+{{- if ne (printf "%T" $showVideo) "bool" -}}
+  {{- errorf "%s: mission-summary video must be true or false" .Position -}}
 {{- end -}}
 {{- $mission := false -}}
 {{- with $number -}}
@@ -18,4 +22,4 @@
 {{- with strings.TrimSpace .Inner }}{{ $annotations = transform.Unmarshal . }}{{ end -}}
 {{- $ordinal := .Page.Store.Get "missionSummaryOrdinal" | default 0 | add 1 -}}
 {{- .Page.Store.Set "missionSummaryOrdinal" $ordinal -}}
-{{- partial "mission-summary.html" (dict "page" .Page "mission" $mission "annotations" $annotations "position" .Position "ordinal" $ordinal) -}}
+{{- partial "mission-summary.html" (dict "page" .Page "mission" $mission "annotations" $annotations "position" .Position "ordinal" $ordinal "showVideo" $showVideo) -}}

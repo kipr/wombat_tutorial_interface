@@ -259,7 +259,7 @@ rows:
 {{< /checklist >}}
 ### Step 3 --- Mission 11 Bonus --- two orange poms7 pts
 
-{{< mission-summary mission="11" >}}
+{{< mission-summary mission="11" video=true >}}
 {{< /mission-summary >}}
 Start here --- it is the simplest "do it twice" on the field, and you already have the function.
 
@@ -298,7 +298,7 @@ Delivering the second cube is where the first one gets knocked off. Approach the
 
 ### Step 5 --- Mission 7 Bonus --- a second enclosure · 9 pts
 
-{{< mission-summary mission="7" >}}
+{{< mission-summary mission="7" video=true >}}
 {{< /mission-summary >}}
 {{< score-examples >}}
 scores:
