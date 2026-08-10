@@ -8,4 +8,3 @@
     "source=${localEnv:HOME}/.config/codex,target=/var/hugo/.codex,type=bind,consistency=cached"
   ]
 }
-
