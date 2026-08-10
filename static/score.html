@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>scoring.html — Botball Explorer: Stack Attack</title>
+<title>scoring.html - Botball Explorer: Stack Attack</title>
 <style>
   /* fonts via site-base.css */
 
@@ -337,7 +337,7 @@
   <section class="screen active" id="setupScreen">
     <div class="page-head">
       <h2>Declare your missions</h2>
-      <p>Check off every mission your team plans to attempt this match. Only the Base Mission is required to declare &mdash; Bonus and Advanced Bonus stages unlock automatically once their Base is scored.</p>
+      <p>Check off every mission your team plans to attempt this match. Only the Base Mission is required to declare - Bonus and Advanced Bonus stages unlock automatically once their Base is scored.</p>
     </div>
 
     <div class="setup-toolbar">
@@ -367,8 +367,8 @@
 </main>
 
 <footer class="rulesfoot">
-  <p><b>Live vs. final scoring:</b> some stages must be observed as they happen, others are judged on the field's state after the 150-second match ends &mdash; use the official 2026 Rules V3.0 rulebook as the ruling authority. This app assists tracking only.</p>
-  <p><b>Fresh start:</b> scores are not saved between sessions &mdash; reloading or closing this page clears the match.</p>
+  <p><b>Live vs. final scoring:</b> some stages must be observed as they happen, others are judged on the field's state after the 150-second match ends - use the official 2026 Rules V3.0 rulebook as the ruling authority. This app assists tracking only.</p>
+  <p><b>Fresh start:</b> scores are not saved between sessions - reloading or closing this page clears the match.</p>
 </footer>
 
 <script>
@@ -380,7 +380,7 @@
     { id:1,  title:"Waypoint Alpha",
       base:{desc:"Robot stops in the zone next to the left starting box.", pts:1},
       bonus:{desc:"Same robot returns fully within a starting box and stops.", pts:1},
-      note:"Independent of Mission 10 — one starting-box return can't score both Waypoint bonuses." },
+      note:"Independent of Mission 10 - one starting-box return can't score both Waypoint bonuses." },
     { id:2,  title:"Relocate the Red Cube",
       base:{desc:"Large Red Cube and its pallet are both off the black line.", pts:1},
       bonus:{desc:"Both Small Red Cubes are off the black line.", pts:2} },
@@ -410,7 +410,7 @@
     { id:10, title:"Waypoint Bravo",
       base:{desc:"Robot stops in the zone next to the right starting box.", pts:1},
       bonus:{desc:"Same robot returns fully within a starting box and stops.", pts:1},
-      note:"Independent of Mission 1 — one starting-box return can't score both Waypoint bonuses." },
+      note:"Independent of Mission 1 - one starting-box return can't score both Waypoint bonuses." },
     { id:11, title:"Hazard Disposal",
       base:{desc:"One Orange Pom is in a basket.", pts:4},
       bonus:{desc:"Two Orange Poms are in the same basket.", pts:4},
@@ -444,7 +444,7 @@
       advanced:{desc:"Both Traffic Cones are in the Loading Zone with Botguy.", pts:8} },
   ];
 
-  // ---------- State (in-memory only — no persistence, per design) ----------
+  // ---------- State (in-memory only - no persistence, per design) ----------
   let declared = new Set();          // mission ids the team is attempting
   let progress = {};                 // id -> 0 none, 1 base done, 2 bonus done, 3 advanced done
   let timerSeconds = 150;

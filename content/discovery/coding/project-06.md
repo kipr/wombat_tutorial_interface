@@ -60,7 +60,7 @@ meta:
         label: "Your Project 4 and 5 numbers"
 ---
 
-## Try It — Sixteen Points Without a Claw
+## Try It --- Sixteen Points Without a Claw
 
 Your robot cannot pick anything up yet. It can only drive and turn.
 
@@ -129,9 +129,9 @@ rows:
 
 {{< ask key="p1_front_width" label="Robot front width" >}}Look at the front of your robot. How wide is the part that would do the pushing, and does that width help or hurt you?{{< /ask >}}
 
-## Learn It — Pushing Is a Skill
+## Learn It --- Pushing Is a Skill
 
-Pushing looks like the easy version of picking something up. It is not — it is a different problem with its own rules.
+Pushing looks like the easy version of picking something up. It is not --- it is a different problem with its own rules.
 
 ### Where you hit it decides where it goes
 
@@ -139,7 +139,7 @@ Pushing looks like the easy version of picking something up. It is not — it is
 | --- | --- |
 | `Dead center` | The object slides forward in a straight line, roughly where you aimed. This is what you want. |
 | `Off to one side` | The object spins away at an angle. It may end up somewhere you cannot reach again. |
-| `Too high` | Tall objects tip over instead of sliding. A tipped cone still counts as [[OFF]] — but only if the whole thing cleared the line. |
+| `Too high` | Tall objects tip over instead of sliding. A tipped cone still counts as [[OFF]] --- but only if the whole thing cleared the line. |
 | `At an angle` | The object skids sideways. Hard to predict, hard to repeat. |
 
 {{< callout title="Square Up Before You Push" variant="navy" >}}
@@ -156,9 +156,9 @@ So [[OVERSHOOT|overshoot]] on purpose. If the object needs to travel four inches
 Do not push an object into a wall, off the field, or [[ON TOP OF]] something you need later. Look at where it will end up before you decide how hard to shove.
 {{< /safety >}}
 
-### [[SIMULTANEOUSLY]] — the trap in Mission 4
+### [[SIMULTANEOUSLY]] --- the trap in Mission 4
 
-Mission 4's bonus does not just ask for an orange pom [[OFF]] and a blue pom [[OFF]]. It asks for both [[SIMULTANEOUSLY]] — true at the same moment.
+Mission 4's bonus does not just ask for an orange pom [[OFF]] and a blue pom [[OFF]]. It asks for both [[SIMULTANEOUSLY]] --- true at the same moment.
 
 {{< score-examples >}}
 scores:
@@ -166,7 +166,7 @@ scores:
   - "An orange pom is lifted completely clear of the line."
 does_not_score:
   - "Any portion of the orange pom is [[TOUCHING]] the line."
-  - "The orange pom is [[OFF]], then later the blue pom is [[OFF]] — they are never [[OFF]] at the same time."
+  - "The orange pom is [[OFF]], then later the blue pom is [[OFF]] --- they are never [[OFF]] at the same time."
 {{< /score-examples >}}
 That last one is the whole problem. Clear one pom, come back, clear the other, and if the first one rolled back onto the line in between, you get the base and not the bonus.
 
@@ -177,7 +177,7 @@ The reliable answer is one push that takes both. That is a positioning problem, 
 
 Build each mission on its own first. Get it working. *Then* join them together.
 
-The order matters — after every push, your robot is somewhere new, facing a new direction, and the next section has to start from there.
+The order matters --- after every push, your robot is somewhere new, facing a new direction, and the next section has to start from there.
 
 ```text
 // ---- Mission 13: unstraight cubes ----
@@ -192,11 +192,11 @@ The order matters — after every push, your robot is somewhere new, facing a ne
 
 Use [[COMMENT|comment]] banners like these to mark each section. When one mission stops working, you will know exactly which [[BLOCK|block]] of code to look at.
 
-## Do It — Clear the Line
+## Do It --- Clear the Line
 
 One mission at a time. New project for each, then a combined one at the end.
 
-### Step 1 — Mission 13 — Unstraight Cubes1 pt
+### Step 1 --- Mission 13 --- Unstraight Cubes1 pt
 
 {{< mission-summary mission="13" >}}
 {{< /mission-summary >}}
@@ -233,12 +233,12 @@ rows:
 - key: p3_m13_done
   label: "All three Unstraight Cubes are [[OFF]] the black line"
 {{< /checklist >}}
-### Step 2 — Mission 14 — Traffic Cones3 pts
+### Step 2 --- Mission 14 --- Traffic Cones3 pts
 
 {{< mission-summary mission="14" >}}
 {{< /mission-summary >}}
 {{< safety title="⚠ A Tipped Cone Still Has to Be Clear" >}}
-Cones tip easily. That is fine — a cone on its side can still be [[OFF]]. But a tipped cone takes up more floor, so the part that lands might reach back onto the line. Push further than feels necessary.
+Cones tip easily. That is fine --- a cone on its side can still be [[OFF]]. But a tipped cone takes up more floor, so the part that lands might reach back onto the line. Push further than feels necessary.
 {{< /safety >}}
 
 {{< checklist >}}
@@ -249,12 +249,12 @@ Cones tip easily. That is fine — a cone on its side can still be [[OFF]]. But 
 {{< /checklist >}}
 {{< ask key="p3_m14_method" label="Cone method" >}}Did one push clear both cones, or did you need two moves? Describe what you did.{{< /ask >}}
 
-### Step 3 — Mission 2 — Red Cubes4 pts
+### Step 3 --- Mission 2 --- Red Cubes4 pts
 
 {{< mission-summary mission="2" >}}
 {{< /mission-summary >}}
 {{< callout title="Two Objects, Judged Separately" variant="navy" >}}
-The cube and the pallet are checked independently. Both must be [[OFF]]. Shoving the cube off while the pallet stays behind on the line scores nothing — so push low enough to move them together, or move the pallet after.
+The cube and the pallet are checked independently. Both must be [[OFF]]. Shoving the cube off while the pallet stays behind on the line scores nothing --- so push low enough to move them together, or move the pallet after.
 {{< /callout >}}
 
 Good news on the bonus: the small red cubes do not have to stay stacked. Knocking them apart is fine as long as both end up [[OFF]].
@@ -268,11 +268,11 @@ Good news on the bonus: the small red cubes do not have to stay stacked. Knockin
 - key: p3_m2_small
   label: "Both Small Red Cubes are [[OFF]]"
 {{< /checklist >}}
-### Step 4 — Mission 4 — The Poms8 pts
+### Step 4 --- Mission 4 --- The Poms8 pts
 
 {{< mission-summary mission="4" >}}
 {{< /mission-summary >}}
-This is the biggest score in the project and the fussiest. Poms are light — they roll, they bounce, and they do not always go where you pushed them.
+This is the biggest score in the project and the fussiest. Poms are light --- they roll, they bounce, and they do not always go where you pushed them.
 
 Get the base first: one orange pom, completely [[OFF]]. Then work out how to take a blue one with it in the same motion.
 
@@ -315,14 +315,14 @@ rows:
 - key: p3_m4_bonus
   label: "Orange and Blue are [[OFF]] at the same moment"
 {{< /checklist >}}
-### Step 5 — Chain them into one run
+### Step 5 --- Chain them into one run
 
 New project called `Bulldoze`. Copy your four working programs into it, one after another, with a comment banner above each section.
 
-Now the hard part: the end of one section is the start of the next. After a push, your robot is not where it began — you need to drive it from wherever it ended up to wherever the next mission starts.
+Now the hard part: the end of one section is the start of the next. After a push, your robot is not where it began --- you need to drive it from wherever it ended up to wherever the next mission starts.
 
 {{< callout title="Add One Section at a Time" variant="gold" >}}
-Get mission one working from the starting box. Then add mission two and test the whole thing. Then add three. Never add two sections between tests — if it breaks you will not know which one did it.
+Get mission one working from the starting box. Then add mission two and test the whole thing. Then add three. Never add two sections between tests --- if it breaks you will not know which one did it.
 {{< /callout >}}
 
 {{< ask key="p3_order_reason" label="Mission order reasoning" >}}What order did you put the four missions in, and why that order?{{< /ask >}}
@@ -331,7 +331,7 @@ Get mission one working from the starting box. Then add mission two and test the
 - key: p3_chained
   label: "All four missions run from one program, one start"
 {{< /checklist >}}
-### Step 6 — Run it five times and time it
+### Step 6 --- Run it five times and time it
 
 Same standard as always. Reset the field between runs. Time each one with a stopwatch.
 
@@ -426,7 +426,7 @@ rows:
 
 ### One last thing before the arm
 
-You have been stopping with `ao()` — **a**ll **o**ff. It cuts power to
+You have been stopping with `ao()` --- **a**ll **o**ff. It cuts power to
     every motor and lets them coast to a halt.
 
 That has been fine so far. From the next project it will not be, because you are about to add an arm, and an
@@ -435,12 +435,12 @@ That has been fine so far. From the next project it will not be, because you are
 ### Freezing instead of switching off
 
 Setting a motor's power to **zero** is not the same as switching it off. Zero power is still a
-    command — the motor actively holds position instead of rolling free.
+    command --- the motor actively holds position instead of rolling free.
 
 | This | Does | Robot behaves like |
 | --- | --- | --- |
-| `ao();` | Cuts the power | A bike with the pedals let go — it rolls on |
-| `motor(0, 0); motor(3, 0);` | Commands zero | A bike with the brakes held — it stops where it is |
+| `ao();` | Cuts the power | A bike with the pedals let go --- it rolls on |
+| `motor(0, 0); motor(3, 0);` | Commands zero | A bike with the brakes held --- it stops where it is |
 
 So from Project 7 onwards, every stop looks like this:
 
@@ -493,7 +493,7 @@ Every project after this one uses the freeze. If you go back and reuse code you 
 - key: p3_freeze_get
   label: "I can explain why zero power is not the same as no power"
 {{< /checklist >}}
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### My best run
 
@@ -505,32 +505,32 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 13 — Base (all three cubes [[OFF]])"
+      - text: "Mission 13 --- Base (all three cubes [[OFF]])"
       - key: p4_s_m13
         aria: "Score M13"
       - text: 1
   - cells:
-      - text: "Mission 2 — Base (large cube + pallet [[OFF]])"
+      - text: "Mission 2 --- Base (large cube + pallet [[OFF]])"
       - key: p4_s_m2b
         aria: "Score M2 base"
       - text: 1
   - cells:
-      - text: "Mission 2 — Bonus (both small red cubes [[OFF]])"
+      - text: "Mission 2 --- Bonus (both small red cubes [[OFF]])"
       - key: p4_s_m2bo
         aria: "Score M2 bonus"
       - text: 3
   - cells:
-      - text: "Mission 14 — Base (both cones [[OFF]])"
+      - text: "Mission 14 --- Base (both cones [[OFF]])"
       - key: p4_s_m14
         aria: "Score M14"
       - text: 3
   - cells:
-      - text: "Mission 4 — Base (orange pom [[OFF]])"
+      - text: "Mission 4 --- Base (orange pom [[OFF]])"
       - key: p4_s_m4b
         aria: "Score M4 base"
       - text: 3
   - cells:
-      - text: "Mission 4 — Bonus (orange + blue simultaneously)"
+      - text: "Mission 4 --- Bonus (orange + blue simultaneously)"
       - key: p4_s_m4bo
         aria: "Score M4 bonus"
       - text: 5
@@ -581,7 +581,7 @@ rows:
 {{< /checklist >}}
 ### Think about it
 
-{{< ask key="p4_repetition" label="Repetition problem" >}}Your program is getting long, and big chunks of it are nearly identical — drive, turn, drive, push, back off, over and over. What is annoying about that?{{< /ask >}}
+{{< ask key="p4_repetition" label="Repetition problem" >}}Your program is getting long, and big chunks of it are nearly identical --- drive, turn, drive, push, back off, over and over. What is annoying about that?{{< /ask >}}
 
 {{< ask key="p4_ripple" label="Ripple effect" >}}You change one `msleep()` near the start of the run. What happens to every mission that comes after it, and why?{{< /ask >}}
 
@@ -589,8 +589,8 @@ rows:
 
 ### Next
 
-You have taken pushing about as far as it goes. Everything left on the field has to be *lifted* — and that needs a claw.
+You have taken pushing about as far as it goes. Everything left on the field has to be *lifted* --- and that needs a claw.
 
-Before **Project 7 — Your Robot's Arm**, go build one. The claw build lives in the **Systems** strand, and this is the one place where the two strands have to meet.
+Before **Project 7 --- Your Robot's Arm**, go build one. The claw build lives in the **Systems** strand, and this is the one place where the two strands have to meet.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

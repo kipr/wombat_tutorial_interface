@@ -88,7 +88,7 @@
           JSON.stringify({ pin: pinInput.value.trim(), answers: collectAnswers(document) })
         );
       } catch (e) {
-        /* storage full or blocked — ignore */
+        /* storage full or blocked - ignore */
       }
     }
 
@@ -125,7 +125,7 @@
         return;
       }
       submitting = true;
-      setStatus("Turning in your work…");
+      setStatus("Turning in your work...");
 
       downloadJSON({
         mission: MISSION_ID,
@@ -138,7 +138,7 @@
       var echo = document.getElementById("pinEcho");
       if (echo) echo.textContent = pin;
       setStatus(
-        "Saved your results file to Downloads. Opening the print dialog so you can save your PDF…",
+        "Saved your results file to Downloads. Opening the print dialog so you can save your PDF...",
         "ok"
       );
 

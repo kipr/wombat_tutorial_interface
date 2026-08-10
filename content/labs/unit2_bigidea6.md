@@ -33,7 +33,7 @@ meta:
 
 ## Overview
 
-So far, each behavior used one sensor. Your line-follow watches the Tophat. Your touch-stop watched the button. Today the robot uses **two sensors at the same time**: the Tophat to stay on the line, and a new **ET distance sensor** to watch for an object ahead. The robot will follow the line — and the moment something appears in front of it, stop. Neither sensor could do this alone. Together, they can.
+So far, each behavior used one sensor. Your line-follow watches the Tophat. Your touch-stop watched the button. Today the robot uses **two sensors at the same time**: the Tophat to stay on the line, and a new **ET distance sensor** to watch for an object ahead. The robot will follow the line --- and the moment something appears in front of it, stop. Neither sensor could do this alone. Together, they can.
 
 {{< callout title="Core Insight" >}}
 The smartest behavior comes from combining sensors. One answers "which way?" The other answers "stop yet?" Put together, the robot does something neither sensor could do by itself.
@@ -43,11 +43,11 @@ The smartest behavior comes from combining sensors. One answers "which way?" The
 
 - Read an **ET distance sensor** with `analog(1)` and explain what its values mean.
 - Map the ET's value-to-distance relationship, and find its close-range blind spot.
-- Combine two sensors in one loop — one to steer, one to decide when to stop.
+- Combine two sensors in one loop --- one to steer, one to decide when to stop.
 - Connect multi-sensor decisions to how intelligent systems fuse many inputs.
 {.obj}
 
-## Phase 1 — Meet the ET Sensor
+## Phase 1 --- Meet the ET Sensor
 
 {{< figrow >}}
 - src: kit/1ETsensor.jpg
@@ -60,13 +60,13 @@ Mount the **ET distance sensor** on the **front** of your robot, facing **forwar
 Plug it into **analog [[PORT|port]] 1**. In code, `analog(1)` reads the ET. Your Tophat is still on `analog(0)`.
 {{< /callout >}}
 
-{{< concept "The ET is a distance sensor — and it works backwards from what you'd guess" >}}
+{{< concept "The ET is a distance sensor --- and it works backwards from what you'd guess" >}}
 - text: |
     The ET shines infrared light forward and measures how much bounces back off an object. The key rule:
 
     ***The CLOSER the object, the HIGHER the value.***
 
-    So a far-away object gives a low number, and as it gets nearer the number climbs. It's not a neat straight line, either — the value changes faster up close than far away. That's why you have to measure it yourself.
+    So a far-away object gives a low number, and as it gets nearer the number climbs. It's not a neat straight line, either --- the value changes faster up close than far away. That's why you have to measure it yourself.
 {{< /concept >}}
 
 {{< widgetstep title="Watch it on the [[CONTROLLER|controller]]" >}}
@@ -75,7 +75,7 @@ Open the **Motors and Sensors** widget, then the **sensor list**, and find **ana
 
 {{< ask key="p1_et_behavior" label="ET behavior" >}}Move an object from far to near while watching analog(1). Describe what the number did. Did it climb steadily, or faster at some distances than others?{{< /ask >}}
 
-## Phase 2 — Map Value vs. Distance
+## Phase 2 --- Map Value vs. Distance
 
 Place an object squarely in front of the sensor at each distance and record the ET value (pick the middle of the bounce). This table is your map from "value" to "real distance."
 
@@ -106,13 +106,13 @@ rows:
 
 ### Now Investigate the Close Range
 
-{{< safety title="⚠ The blind spot — read this" >}}
-The ET sensor stops behaving below about **3 inches**. Get closer than that and the reading does something strange — it can *drop* or bounce even as the object gets nearer. The sensor has a close-range **blind spot** where its numbers can't be trusted.
+{{< safety title="⚠ The blind spot --- read this" >}}
+The ET sensor stops behaving below about **3 inches**. Get closer than that and the reading does something strange --- it can *drop* or bounce even as the object gets nearer. The sensor has a close-range **blind spot** where its numbers can't be trusted.
 {{< /safety >}}
 
-Carefully push the object in past 3 inches and watch what the value does. Record it — this is real data about where the sensor fails.
+Carefully push the object in past 3 inches and watch what the value does. Record it --- this is real data about where the sensor fails.
 
-{{< gridtable caption="Close range — the blind spot" >}}
+{{< gridtable caption="Close range --- the blind spot" >}}
 columns:
   - head: Distance to object
     width: 34%
@@ -137,9 +137,9 @@ rows:
 
 {{< ask key="p2_blind_spot" label="Blind spot observations" >}}What happened to the value when you went closer than 3 inches? Why is it dangerous to trust the sensor in that range?{{< /ask >}}
 
-## Phase 3 — Choose Your Stop Value
+## Phase 3 --- Choose Your Stop Value
 
-You want the robot to stop with the object close — but **before** it enters the untrustworthy blind spot. A safe target is around **4 inches**: close enough to count as "reached the object," but safely outside the bad zone under 3 inches.
+You want the robot to stop with the object close --- but **before** it enters the untrustworthy blind spot. A safe target is around **4 inches**: close enough to count as "reached the object," but safely outside the bad zone under 3 inches.
 
 {{< calc title="My stop value" noprint=true >}}
 - prose: |
@@ -153,12 +153,12 @@ You want the robot to stop with the object close — but **before** it enters th
 {{< /calc >}}
 
 {{< callout title="Why outside the blind spot" variant="gold" >}}
-If you set your stop value too high (too close), the robot would have to drive into the blind spot to reach it — where the reading misbehaves and the robot might never see the right number. Stopping around 4 inches keeps you on the part of the curve you can trust.
+If you set your stop value too high (too close), the robot would have to drive into the blind spot to reach it --- where the reading misbehaves and the robot might never see the right number. Stopping around 4 inches keeps you on the part of the curve you can trust.
 {{< /callout >}}
 
 {{< ask key="p3_why_4in" label="Why 4 inches" >}}Why did you pick a stop value from around 4 inches instead of 1 or 2 inches, even though closer would "reach" the object more?{{< /ask >}}
 
-## Phase 4 — Concept: Two Sensors in One Loop
+## Phase 4 --- Concept: Two Sensors in One Loop
 
 {{< concept "Each sensor answers a different question" >}}
 - text: |
@@ -167,7 +167,7 @@ If you set your stop value too high (too close), the robot would have to drive i
     - **Tophat** (`analog(0)`) → *"Which way do I steer to stay on the line?"*
     - **ET** (`analog(1)`) → *"Is there an object close enough to stop?"*
 
-    Combining sensors like this is called **sensor fusion** — using more than one input together to make a decision neither could make alone.
+    Combining sensors like this is called **sensor fusion** --- using more than one input together to make a decision neither could make alone.
 {{< /concept >}}
 
 {{< concept "The loop checks the ET; the body steers with the Tophat" >}}
@@ -187,7 +187,7 @@ If you set your stop value too high (too close), the robot would have to drive i
     {.muted}
 {{< /concept >}}
 
-## Phase 5 — Build line_follow_until_object
+## Phase 5 --- Build line_follow_until_object
 
 {{< safety title="⚠ Test in your hands first" noprint=true >}}
 Hold the robot up. Pass the line under the Tophat and watch it steer. Then move your hand toward the ET and watch the wheels brake when your hand gets close. Only put it on the board once both reactions look right.
@@ -253,27 +253,27 @@ If the steering goes the wrong way, flip the two `mav` [[BLOCK|blocks]] (from Bi
 - The loop condition reads the ET: `analog(1) < STOP_VALUE`
 - The `if/else` inside reads the Tophat: `analog(0) > MIDPOINT`
 - There is an `msleep(10)` inside the loop
-- Your `STOP_VALUE` is a ~4 inch reading — outside the blind spot
+- Your `STOP_VALUE` is a ~4 inch reading --- outside the blind spot
 - The robot brakes after the loop
 
-## Phase 6 — Connect: The AI Literacy Bridge
+## Phase 6 --- Connect: The AI Literacy Bridge
 
-{{< callout title="Big Idea — AI Literacy Thread" >}}
+{{< callout title="Big Idea --- AI Literacy Thread" >}}
 Intelligent systems combine multiple sources of information to make decisions.
 {{< /callout >}}
 
-Your robot just did something it never could with one sensor: it stayed on a path *and* watched for an obstacle, at the same time. This is called **sensor fusion**, and it's how every advanced intelligent system works. A self-driving car blends cameras, radar, and GPS at once — no single one is enough. Your phone blends the touchscreen, the accelerometer, and the light sensor to decide what to show. Intelligence grows when a system stops relying on one input and starts combining many.
+Your robot just did something it never could with one sensor: it stayed on a path *and* watched for an obstacle, at the same time. This is called **sensor fusion**, and it's how every advanced intelligent system works. A self-driving car blends cameras, radar, and GPS at once --- no single one is enough. Your phone blends the touchscreen, the accelerometer, and the light sensor to decide what to show. Intelligence grows when a system stops relying on one input and starts combining many.
 
 Read each scenario. Think it through, then write your answer.
 {.muted}
 
-{{< ask key="p6_both_needed" label="Both sensors needed" >}}Your robot used the Tophat AND the ET together. Describe a task that needs *both* — something neither sensor could accomplish alone.{{< /ask >}}
+{{< ask key="p6_both_needed" label="Both sensors needed" >}}Your robot used the Tophat AND the ET together. Describe a task that needs *both* --- something neither sensor could accomplish alone.{{< /ask >}}
 
 {{< ask key="p6_trust_limits" label="Knowing sensor limits" >}}You learned the ET can't be trusted closer than ~3 inches. Why is it important for an intelligent system to know not just what its sensors say, but *when not to trust them*?{{< /ask >}}
 
 {{< ask key="p6_why_combine" label="Why combine sensors" >}}A self-driving car combines cameras, radar, and GPS. Why is combining several sensors safer than relying on the single "best" one?{{< /ask >}}
 
-## Phase 7 — Individual Reflection
+## Phase 7 --- Individual Reflection
 
 Complete this section on your own.
 {.muted}
@@ -286,45 +286,45 @@ Complete this section on your own.
 
 {{< ask key="p7_q3_two_questions" label="Reflection 3" n=3 >}}In your loop, what question did the Tophat answer, and what question did the ET answer? Why did you need both?{{< /ask >}}
 
-{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete this in 2–3 sentences: "Intelligent systems combine multiple sources of information to make decisions. This means that the more a system can sense, the better it can..."{{< /ask >}}
+{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete this in 2--3 sentences: "Intelligent systems combine multiple sources of information to make decisions. This means that the more a system can sense, the better it can..."{{< /ask >}}
 
 ## Extension Challenges
 
 Finished early? Try one or more of these.
 {.muted}
 
-### Extension A — Back Off to a Safe Distance
+### Extension A --- Back Off to a Safe Distance
 
 - After stopping, what if the object is a little too close? Add a short backward move so the robot ends at a consistent distance. How does this avoid the blind spot entirely?
 
 {{< answer key="ext_a" label="Extension A" >}}
 
-### Extension B — Report the Distance
+### Extension B --- Report the Distance
 
 - Use your Phase 2 table to turn the stopping ET value back into an approximate distance, and `printf` it. Roughly how far away did the robot actually stop?
 
 {{< answer key="ext_b" label="Extension B" >}}
 
-### Extension C — Two Conditions to Keep Going
+### Extension C --- Two Conditions to Keep Going
 
 - What if you wanted the robot to also stop after a maximum number of [[TICK|ticks]], even if it never sees an object? How could the loop check the ET *and* the [[ENCODER|encoder]]? (Think about combining conditions.)
 
 {{< answer key="ext_c" label="Extension C" >}}
 
-### Extension D — Add a Third Sensor
+### Extension D --- Add a Third Sensor
 
 - Imagine adding the touch sensor from Big Idea 1 as a backup bumper. How would three sensors together make the robot even more reliable? Sketch the idea in words.
 
 {{< answer key="ext_d" label="Extension D" >}}
 
-### Extension E — Automatic Data Collection
+### Extension E --- Automatic Data Collection
 
-- Your ET sensor automatically collects distance data the entire time your robot runs — no one approves each individual reading. Real devices do this constantly: traffic cameras, smart doorbells, fitness trackers.
+- Your ET sensor automatically collects distance data the entire time your robot runs --- no one approves each individual reading. Real devices do this constantly: traffic cameras, smart doorbells, fitness trackers.
 - What privacy concerns come up when a device collects data automatically instead of only when someone asks it to? Who should get to see that data, and who should decide?
 
 {{< answer key="ext_e" label="Extension E" >}}
 
-### Extension F — A Simple Rule-Based Decision
+### Extension F --- A Simple Rule-Based Decision
 
 - Right now your robot stops using one rule: distance < [[THRESHOLD|threshold]]. A basic rule-based decision system combines multiple pieces of evidence before acting, instead of reacting to a single reading.
 - Add a second condition: only stop if the object reads close on **three readings in a row**, not just one (to ignore a single noisy blip). Does requiring repeated evidence reduce false stops?

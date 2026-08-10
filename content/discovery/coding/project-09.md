@@ -53,9 +53,9 @@ meta:
         label: "Your Project 8 program and [[SERVO|servo]] card"
 ---
 
-## Try It — Count the Damage
+## Try It --- Count the Damage
 
-Open your Project 8 program — the big one with all four missions in it. Scroll through it slowly.
+Open your Project 8 program --- the big one with all four missions in it. Scroll through it slowly.
 
 {{< gridtable >}}
 columns:
@@ -87,7 +87,7 @@ rows:
 ### Now break it
 
 {{< safety title="⚠ Your Teammate Rebuilt the Claw Last Night" >}}
-It grips better now. But the closed position is different — it is **200 lower** than it was.
+It grips better now. But the closed position is different --- it is **200 lower** than it was.
 
 Find every place that number appears in your program and change it. **Time yourself.**
 {{< /safety >}}
@@ -111,13 +111,13 @@ rows:
       - key: p1_certain
         aria: Certain
 {{< /gridtable >}}
-{{< ask key="p1_missed_one" label="What if you missed one" >}}That last question is the real problem. If you missed one, what would happen — and how would you find out?{{< /ask >}}
+{{< ask key="p1_missed_one" label="What if you missed one" >}}That last question is the real problem. If you missed one, what would happen --- and how would you find out?{{< /ask >}}
 
 {{< callout title="This Gets Worse, Not Better" variant="gold" >}}
 Your program is going to keep growing. By the time you are running a full match, that number could be in twenty places. There is a fix, it takes one line, and you are about to learn it.
 {{< /callout >}}
 
-## Learn It — Give the Number a Name
+## Learn It --- Give the Number a Name
 
 A [[VARIABLE|variable]] is a name that holds a value. You set it once at the top of your program, then use the name everywhere instead of the number.
 
@@ -129,13 +129,13 @@ int arm = 0;
 
 | Code / part | What it means |
 | --- | --- |
-| `int` | Short for [[INTEGER\|integer]] — a whole number. Ports and servo positions are always whole numbers. |
+| `int` | Short for [[INTEGER\|integer]] --- a whole number. Ports and servo positions are always whole numbers. |
 | `arm` | The name. Pick something you and your team will understand next month. |
 | `= 0` | The value it holds. |
 | `;` | A [[SEMICOLON\|semicolon]], same as any other [[STATEMENT\|statement]]. |
 
 {{< callout title="Where Variables Go" variant="navy" >}}
-Inside the [[BLOCK|block]] — after the opening `{` of `main`, above everything else. Not outside the braces, and not scattered through the middle of your program.
+Inside the [[BLOCK|block]] --- after the opening `{` of `main`, above everything else. Not outside the braces, and not scattered through the middle of your program.
 {{< /callout >}}
 
 ### Comments to code: three small edits
@@ -146,7 +146,7 @@ You have been writing your positions as [[COMMENT|comments]] since Project 7, in
 - Add `int` at the front.
 - Add a semicolon at the end.
 
-**Before — comments**
+**Before --- comments**
 
 ```c
 int main ()
@@ -159,7 +159,7 @@ int main ()
 }
 ```
 
-**After — variables**
+**After --- variables**
 
 ```c
 int main ()
@@ -201,7 +201,7 @@ Read both versions out loud. One is a list of numbers. The other tells you what 
 
 ### Five reasons this is worth the trouble
 
-- You do not have to remember which port is the arm and which is the claw — the computer remembers for you.
+- You do not have to remember which port is the arm and which is the claw --- the computer remembers for you.
 - You do not have to remember which number is up, down, open, or closed.
 - Your program is easier to read.
 - Your program is easier to debug.
@@ -220,14 +220,14 @@ A name nobody can decode is barely better than a bare number.
 {.muted}
 
 {{< callout title="A Yellow Banner Is Not an Error" >}}
-If you declare a variable and never use it, you will get *Compilation Succeeded with Warnings* — a yellow banner instead of a green one. The program still runs.
+If you declare a variable and never use it, you will get *Compilation Succeeded with Warnings* --- a yellow banner instead of a green one. The program still runs.
 
 But warnings exist for a reason. A variable you declared and never used usually means you forgot to swap out one of the bare numbers.
 {{< /callout >}}
 
 ### Variables can change
 
-Most of your variables hold one value forever — a port is always the same port. But a variable is called a *variable* because it can vary.
+Most of your variables hold one value forever --- a port is always the same port. But a variable is called a *variable* because it can vary.
 
 ```text
 int position = 250;
@@ -246,9 +246,9 @@ Adding or subtracting one is so common it has its own shorthand:
 You will meet the real use for these in Project 10, once you have a loop to put them in.
 {.muted}
 
-## Do It — Clean It Up, Then Score
+## Do It --- Clean It Up, Then Score
 
-### Step 1 — Convert one small program first
+### Step 1 --- Convert one small program first
 
 Open your `Wave` program from Project 7. Turn the three position comments into variables, then replace the numbers in the `set_servo_position()` lines with the names.
 
@@ -261,7 +261,7 @@ Open your `Wave` program from Project 7. Turn the three position comments into v
 If it behaves differently, you swapped two values. That is the most common mistake here.
 {.muted}
 
-### Step 2 — Trigger the yellow banner on purpose
+### Step 2 --- Trigger the yellow banner on purpose
 
 Add a variable you do not use anywhere:
 
@@ -275,7 +275,7 @@ Compile and look at the banner colour.
 
 Delete the line. Get your green banner back.
 
-### Step 3 — Convert your big Project 8 program
+### Step 3 --- Convert your big Project 8 program
 
 This is the real job. Declare all your variables at the top, then work down the program replacing bare numbers with names.
 
@@ -350,7 +350,7 @@ Same rule as building it in the first place. Convert one section, compile, run i
 - key: p3_big_converted
   label: "My whole Project 8 program uses variables and still scores the same"
 {{< /checklist >}}
-### Step 4 — Now do the claw change again
+### Step 4 --- Now do the claw change again
 
 Same problem as Try It. Your claw's closed position drops by 200. Change it.
 
@@ -371,7 +371,7 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p3_compare" label="Compare before and after" >}}Compare those two numbers with the ones you wrote in Try It.{{< /ask >}}
 
-### Step 5 — Try changing a variable while the program runs
+### Step 5 --- Try changing a variable while the program runs
 
 Small experiment. Add this to a test program and watch the arm.
 
@@ -399,7 +399,7 @@ disable_servos();
 Hold that thought. Project 10 gives you the tool that makes it one line instead of thirty.
 {.muted}
 
-### Step 6 — Mission 5 — Top Shelf Delivery20 pts
+### Step 6 --- Mission 5 --- Top Shelf Delivery20 pts
 
 {{< mission-summary mission="5" >}}
 {{< /mission-summary >}}
@@ -417,11 +417,11 @@ does_not_score:
   - "Only one Small Red Cube up there, for the Bonus."
 {{< /score-examples >}}
 {{< callout title="Live Judged Is On Your Side Here" variant="gold" >}}
-Robot support is permitted, and the cubes do not have to stay up there. Once the judge has seen it, it counts — even if it falls a second later.
+Robot support is permitted, and the cubes do not have to stay up there. Once the judge has seen it, it counts --- even if it falls a second later.
 {{< /callout >}}
 
 {{< safety title="⚠ Check What Mission 2 Did to These Cubes" >}}
-In Project 6 you pushed the Large Red Cube, its [[PALLET|pallet]], and both Small Red Cubes off the black line. Those are the same cubes you need here. Where they ended up decides how hard this is — so plan the two missions together, not separately.
+In Project 6 you pushed the Large Red Cube, its [[PALLET|pallet]], and both Small Red Cubes off the black line. Those are the same cubes you need here. Where they ended up decides how hard this is --- so plan the two missions together, not separately.
 {{< /safety >}}
 
 {{< ask key="p3_m2_interaction" label="Mission 2 interaction" >}}Where do your red cubes end up after your Mission 2 push? Does that help or hurt you here?{{< /ask >}}
@@ -434,7 +434,7 @@ In Project 6 you pushed the Large Red Cube, its [[PALLET|pallet]], and both Smal
 {{< /checklist >}}
 {{< ask key="p3_second_harder" label="Why second is harder" >}}The bonus needs both cubes up there *at the same time*. Why does that make the second one harder than the first?{{< /ask >}}
 
-### Step 7 — Run it five times
+### Step 7 --- Run it five times
 
 {{< gridtable >}}
 columns:
@@ -487,7 +487,7 @@ rows:
       - key: p3_r5_pts
         aria: "R5 points"
 {{< /gridtable >}}
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### My score
 
@@ -499,12 +499,12 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 5 — Base (one small red cube on top)"
+      - text: "Mission 5 --- Base (one small red cube on top)"
       - key: p4_s_m5b
         aria: "Score M5 base"
       - text: 9
   - cells:
-      - text: "Mission 5 — Bonus (both small red cubes on top)"
+      - text: "Mission 5 --- Bonus (both small red cubes on top)"
       - key: p4_s_m5bo
         aria: "Score M5 bonus"
       - text: 11
@@ -539,7 +539,7 @@ rows:
 {{< /gridtable >}}
 ### Read the code
 
-Given `int arm = 0;` and `int down = 230;` — what does each line do?
+Given `int arm = 0;` and `int down = 230;` --- what does each line do?
 
 {{< gridtable >}}
 columns:
@@ -583,16 +583,16 @@ That last one is legal code that does something you almost certainly do not want
 {{< /checklist >}}
 ### Think about it
 
-{{< ask key="p4_what_improved" label="What improved" >}}Nothing your robot does changed in this project — it drives, grabs, and stacks exactly as it did before. So what actually got better?{{< /ask >}}
+{{< ask key="p4_what_improved" label="What improved" >}}Nothing your robot does changed in this project --- it drives, grabs, and stacks exactly as it did before. So what actually got better?{{< /ask >}}
 
 {{< ask key="p4_variables_vs_repetition" label="Variables vs repetition" >}}Variables fixed the problem of one number appearing in many places. But your program still has the six-step grab sequence typed out four separate times. Would variables fix that too? Why or why not?{{< /ask >}}
 
-{{< ask key="p4_who_for" label="Who code is for" >}}Your teammate opens your program for the first time. Which version would they be able to work on — the one from Project 8, or this one? What does that tell you about who you are really writing code for?{{< /ask >}}
+{{< ask key="p4_who_for" label="Who code is for" >}}Your teammate opens your program for the first time. Which version would they be able to work on --- the one from Project 8, or this one? What does that tell you about who you are really writing code for?{{< /ask >}}
 
 ### Next
 
 Your robot still cannot tell when it has arrived anywhere. It drives for a length of time and hopes.
 
-In **Project 10 — Feeling for Things**, it gets its first sense: a switch that knows when it has touched something — and the loop that keeps checking.
+In **Project 10 --- Feeling for Things**, it gets its first sense: a switch that knows when it has touched something --- and the loop that keeps checking.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

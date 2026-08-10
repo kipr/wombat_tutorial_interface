@@ -54,7 +54,7 @@ meta:
         label: "Somebody outside your team to review your work"
 ---
 
-## Try It — Guess, Then Time It
+## Try It --- Guess, Then Time It
 
 Before you do anything, write down how long you think each of these will take your team. Guess in minutes.
 
@@ -117,12 +117,12 @@ rows:
 {{< /gridtable >}}
 
 {{< callout variant="gold" title="Almost Everybody Guesses Too Low" >}}
-Not because people are bad at maths. Because when you picture a job, you picture it going well — you do not picture the bolt rolling under the table or the program not compiling.
+Not because people are bad at maths. Because when you picture a job, you picture it going well --- you do not picture the bolt rolling under the table or the program not compiling.
 
 Professional engineers get this wrong too. The fix is not to guess better. It is to write the guess down, then find out how wrong it was.
 {{< /callout >}}
 
-## Learn It — Timelines and Honest Answers
+## Learn It --- Timelines and Honest Answers
 
 A timeline is a list of what has to be done, in order, with a time against each one.
 
@@ -130,7 +130,7 @@ Each thing that must be finished before the next can start is a [[MILESTONE|mile
 
 {{< gridtable >}}
 columns:
-  - head: "A timeline gives you…"
+  - head: "A timeline gives you..."
     width: 30%
   - head: "Which matters because"
 rows:
@@ -151,7 +151,7 @@ rows:
 {{< callout variant="red" title="⚠ One Late Task Is Not One Late Task" >}}
 If the claw is not built on time, the person who was going to program the claw cannot start either. A delay in one place moves everything downstream of it.
 
-That is why you say something the moment you know you will be late — not when the deadline arrives.
+That is why you say something the moment you know you will be late --- not when the deadline arrives.
 {{< /callout >}}
 
 ### Feedback
@@ -166,7 +166,7 @@ Receiving it
 - Listen to all of it before you answer.
 - Ask a question if you do not understand.
 - They want you to succeed. That is why they bothered.
-- You do not have to take every suggestion — but say why not.
+- You do not have to take every suggestion --- but say why not.
 
 ### The end user
 
@@ -180,7 +180,7 @@ In Systems Project 12 you designed something for a person who could not do a tas
 Same rule. The end user is the person you ask.
 {{< /callout >}}
 
-## Do It — Plan It, Run It, Hand It Over
+## Do It --- Plan It, Run It, Hand It Over
 
 ### 1. A goal for each role
 
@@ -392,7 +392,7 @@ A robot that puts recyclables into the right bin.
 Option B
 A robot that greets people by waving as they come into the classroom.
 Option C
-A robot that works as a quiz timer — starts driving and waving when time is up.
+A robot that works as a quiz timer --- starts driving and waving when time is up.
 
 {{< gridtable >}}
 columns:
@@ -527,7 +527,7 @@ Make the changes you decided on. Take it back to the same people.
   label: "We went round the loop at least twice"
 {{< /checklist >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### Better feedback
 
@@ -561,7 +561,7 @@ rows:
 
 {{< gridtable >}}
 columns:
-  - head: "For this project, the end user is…"
+  - head: "For this project, the end user is..."
     width: 62%
   - head: "Who"
 rows:
@@ -607,6 +607,6 @@ rows:
 
 That is the Systems strand finished. You have taken a machine apart, designed for a real problem, built the arm your robot needed, worked out how machines talk, protected what is yours, and learnt to work with people.
 
-Everything from here is the **Coding strand** — and every gate is now open.
+Everything from here is the **Coding strand** --- and every gate is now open.
 
 *Take your team goals from Project 13 back out and see how many you have met.*

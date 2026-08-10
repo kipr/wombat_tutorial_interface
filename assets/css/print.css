@@ -2,7 +2,7 @@
  *
  * Previously an inline <style> block pasted into every sheet. That copy also
  * carried a duplicate set of .botnav rules nested inside @media print, which
- * meant they only ever applied on paper — where .botnav is hidden anyway.
+ * meant they only ever applied on paper - where .botnav is hidden anyway.
  * worksheet.css already styles .botnav for screen, so they are dropped here.
  */
 

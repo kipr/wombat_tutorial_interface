@@ -54,7 +54,7 @@ meta:
         label: "Your notebook"
 ---
 
-## Try It — It Will Not Fit Through the Tube
+## Try It --- It Will Not Fit Through the Tube
 
 Take a picture. Try to pass it to your partner through a kitchen-roll tube.
 
@@ -115,11 +115,11 @@ Most groups end up numbering the pieces. That is a rule both ends agreed on befo
 Computers do exactly this, millions of times a second.
 {{< /callout >}}
 
-## Learn It — Packets, Rules, and Secrets
+## Learn It --- Packets, Rules, and Secrets
 
 Big things do not travel well. So computers chop information into small pieces called [[PACKET|packets]], send them separately, and rebuild them at the far end.
 
-A [[PROTOCOL|protocol]] is the set of rules both ends agreed on beforehand — how to number the packets, what to do if one goes missing, how to know when the message is complete.
+A [[PROTOCOL|protocol]] is the set of rules both ends agreed on beforehand --- how to number the packets, what to do if one goes missing, how to know when the message is complete.
 
 {{< callout variant="navy" title="Packets Do Not Travel Together" >}}
 Pieces of the same picture can take different routes and arrive out of order. They can even arrive after pieces of somebody else's picture.
@@ -129,14 +129,14 @@ The protocol is what sorts that out. Without it, everything is just a pile.
 
 ### HTTP and HTTPS
 
-When you load a web page, your computer uses a protocol called **HTTP** — Hypertext Transfer Protocol. It is the agreement that lets any browser talk to any web server.
+When you load a web page, your computer uses a protocol called **HTTP** --- Hypertext Transfer Protocol. It is the agreement that lets any browser talk to any web server.
 
-You will more often see **HTTPS**. The extra **S** stands for **secure**. It means the browser is using a **protected connection** to the website — the packets are scrambled so people along the way cannot easily read them.
+You will more often see **HTTPS**. The extra **S** stands for **secure**. It means the browser is using a **protected connection** to the website --- the packets are scrambled so people along the way cannot easily read them.
 
 {{< callout variant="red" title="⚠ How to Check Before You Type Anything Private" >}}
 Look at the start of the address. Prefer addresses that begin with `https://`.
 
-A browser might also show a **connection** or **site-controls** icon near the address. It may look like a padlock — or it may not. Different browsers show this differently, so do not hunt for one special picture.
+A browser might also show a **connection** or **site-controls** icon near the address. It may look like a padlock --- or it may not. Different browsers show this differently, so do not hunt for one special picture.
 
 If the browser says **Not secure** or shows a warning, **stop**. Ask a trusted adult before you enter a password, address, or other private information.
 
@@ -159,7 +159,7 @@ Here is a simple key. Every letter shifts three places along the alphabet.
 
 *Notice the end wraps round: X becomes A, Y becomes B, Z becomes C.*
 
-## Do It — Send It, Sort It, Hide It
+## Do It --- Send It, Sort It, Hide It
 
 ### 1. Three groups, three jobs
 
@@ -295,13 +295,13 @@ rows:
 
 ### 6. Make your own key
 
-Invent your own way of scrambling letters. It does not have to be a shift — swap pairs, reverse the alphabet, use symbols.
+Invent your own way of scrambling letters. It does not have to be a shift --- swap pairs, reverse the alphabet, use symbols.
 {{< ask key="p3_my_key" label="My key" >}}My key works like this:{{< /ask >}}
 {{< short-answer key="p3_my_secret" label="My encrypted message" prompt="My short message, encrypted:" >}}
 
 ### 7. Trade and decode
 
-Swap encrypted messages with a partner — **and** swap keys. Decode theirs.
+Swap encrypted messages with a partner --- **and** swap keys. Decode theirs.
 {{< short-answer key="p3_their_msg" label="Their message" prompt="Their message said:" >}}
 
 {{< checklist >}}
@@ -339,7 +339,7 @@ A letter shift can be cracked by trying all twenty-five of them. Real encryption
 The idea is the same. The size is not.
 {{< /callout >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### Say what it means
 
@@ -421,4 +421,4 @@ rows:
 
 You have seen how easily a message can be read by somebody it was not meant for. Most of what you send every day is about you.
 
-In **Systems Project 10 — Guarding Your Information**, you find out what you are giving away and how to stop.
+In **Systems Project 10 --- Guarding Your Information**, you find out what you are giving away and how to stop.

@@ -1,21 +1,22 @@
 {{- /*
   Worksheet headings carry fixed classes, and phase headings split their number
   into a .pnum badge. Doing it here means the markdown stays plain `##` / `###`.
+  Typographer turns source `---` into &mdash; before this hook sees .Text.
 */ -}}
 {{- $text := .Text -}}
 {{- if eq .Level 2 -}}
-  {{- $phase := findRESubmatch `^(Phase \d+) — (.+)$` $text -}}
-  {{- $prelab := findRESubmatch `^(PreLab \d+) — (.+)$` $text -}}
-  {{- $discovery := findRESubmatch `^(Try It|Learn It|Do It|Score It) — (.+)$` $text -}}
+  {{- $phase := findRESubmatch `^(Phase \d+) &mdash; (.+)$` $text -}}
+  {{- $prelab := findRESubmatch `^(PreLab \d+) &mdash; (.+)$` $text -}}
+  {{- $discovery := findRESubmatch `^(Try It|Learn It|Do It|Score It) &mdash; (.+)$` $text -}}
   {{- if $phase -}}
     {{- $m := index $phase 0 -}}
-<h2 class="phase-head" id="{{ .Anchor }}"><span class="pnum">{{ index $m 1 }}</span> — {{ index $m 2 | safeHTML }}</h2>
+<h2 class="phase-head" id="{{ .Anchor }}"><span class="pnum">{{ index $m 1 }}</span> &mdash; {{ index $m 2 | safeHTML }}</h2>
   {{- else if $prelab -}}
     {{- $m := index $prelab 0 -}}
 <h2 class="phase-head" id="{{ .Anchor }}"><span class="pnum">{{ index $m 1 }}</span> {{ index $m 2 | safeHTML }}</h2>
   {{- else if $discovery -}}
     {{- $m := index $discovery 0 -}}
-<h2 class="phase-head" id="{{ .Anchor }}"><span class="pnum">{{ index $m 1 }}</span> — {{ index $m 2 | safeHTML }}</h2>
+<h2 class="phase-head" id="{{ .Anchor }}"><span class="pnum">{{ index $m 1 }}</span> &mdash; {{ index $m 2 | safeHTML }}</h2>
   {{- else -}}
 <h2 class="phase-head" id="{{ .Anchor }}">{{ $text | safeHTML }}</h2>
   {{- end -}}

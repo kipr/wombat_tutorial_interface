@@ -55,36 +55,36 @@ meta:
         label: "Your Project 4 and 5 numbers"
 ---
 
-## Try It — A Different Kind of Motor
+## Try It --- A Different Kind of Motor
 
 Hold a wheel motor in one hand and a [[SERVO|servo]] in the other. They look similar. They are not.
 
 |  | Wheel motor | Servo |
 | --- | --- | --- |
-| Wires | Two — red and black | **Three** — orange, red, brown |
+| Wires | Two --- red and black | **Three** --- orange, red, brown |
 | Plug | Two metal prongs | Black plastic plug |
 | How far it turns | Round and round, forever | About half a circle, then stops |
 | What you tell it | How hard to push | **Where to go** |
 
 {{< callout title="The Real Difference" variant="navy" >}}
-You never tell a wheel motor *where* to stop — only how hard to push and for how long. A servo is the opposite: you tell it a position and it goes there and holds.
+You never tell a wheel motor *where* to stop --- only how hard to push and for how long. A servo is the opposite: you tell it a position and it goes there and holds.
 
 That is exactly what an arm needs. "Up" is a place, not a push.
 {{< /callout >}}
 
-### Plug it in — the wire order matters
+### Plug it in --- the wire order matters
 
 {{< figrow >}}
 - src: kit/servo_port_plugin.png
-  alt: "Servo wires — check the colours before you push the plug in."
+  alt: "Servo wires --- check the colours before you push the plug in."
 {{< /figrow >}}
 There are four servo [[PORT|ports]], numbered **0 to 3**. Each one has three pins, and putting the plug in backwards will not work.
 
 | Code / part | What it means |
 | --- | --- |
-| `S — orange wire` | Signal. This is the wire that carries the position you asked for. |
-| `+ — red wire` | Power. |
-| `− — brown wire` | Ground. Remember it as: *the ground is down, and down is negative.* |
+| `S --- orange wire` | Signal. This is the wire that carries the position you asked for. |
+| `+ --- red wire` | Power. |
+| `− --- brown wire` | Ground. Remember it as: *the ground is down, and down is negative.* |
 
 Plug your servo into **port 0**, brown wire toward the minus side.
 
@@ -92,7 +92,7 @@ Plug your servo into **port 0**, brown wire toward the minus side.
 - key: p1_wired
   label: "My servo is in port 0 with the wires the right way round"
 - key: p1_horn
-  label: "A servo horn is attached — washer first, then horn, then the small screw"
+  label: "A servo horn is attached --- washer first, then horn, then the small screw"
 {{< /checklist >}}
 ### Try the widget before you write anything
 
@@ -103,18 +103,18 @@ On the Wombat's Home Screen, tap **Servos**. Enable port 0 and drag the slider s
 {{< ask key="p1_push_arm" label="Pushing the arm" >}}Now let go of the slider and try to push the arm with your finger. What happens?{{< /ask >}}
 
 {{< callout title="It Pushes Back" variant="gold" >}}
-A servo does not just move to a position — it *holds* that position and fights anything that tries to move it. That is why it can lift something and keep holding it there.
+A servo does not just move to a position --- it *holds* that position and fights anything that tries to move it. That is why it can lift something and keep holding it there.
 {{< /callout >}}
 
-## Learn It — Positions, Not Powers
+## Learn It --- Positions, Not Powers
 
 {{< figrow >}}
 - src: servo/range-of-motion.jpg
-  alt: "A servo’s range is like a protractor — 180° split into positions 0 to 2047."
+  alt: "A servo's range is like a protractor --- 180° split into positions 0 to 2047."
 {{< /figrow >}}
 A servo turns about 180°, and that half circle is divided into **2048 positions**, numbered 0 to 2047.
 
-Counting from zero again — same as the motor ports.
+Counting from zero again --- same as the motor ports.
 {.muted}
 
 Position **1024** is the middle. That is where a servo goes by default.
@@ -126,7 +126,7 @@ The numbers go to 2047, but your servo physically cannot reach the ends. Sending
 {{< /safety >}}
 
 {{< safety title="⚠ API range vs classroom safe limits" >}}
-The servo API accepts positions **0 to 2047** (about 180°). Classroom hardware must stay in the conservative safe band **150–1900**, with centre near **1024**. Sending commands into the burn zones (below 150 or above 1900) can destroy the servo.
+The servo API accepts positions **0 to 2047** (about 180°). Classroom hardware must stay in the conservative safe band **150--1900**, with centre near **1024**. Sending commands into the burn zones (below 150 or above 1900) can destroy the servo.
 {{< /safety >}}
 
 ### The four commands
@@ -134,30 +134,30 @@ The servo API accepts positions **0 to 2047** (about 180°). Classroom hardware 
 | Code / part | What it means |
 | --- | --- |
 | `enable_servos();` | Turns on all four servo ports. Nothing works until you call this. |
-| `set_servo_position(0, 800);` | Sends the servo in port 0 to position 800. Two [[ARGUMENT\|arguments]] — port first, then position. |
+| `set_servo_position(0, 800);` | Sends the servo in port 0 to position 800. Two [[ARGUMENT\|arguments]] --- port first, then position. |
 | `msleep(500);` | Gives the servo time to actually get there. Not optional. |
 | `disable_servos();` | Turns the servo ports off at the end of your program. |
 
 {{< callout title="Why msleep Again?" >}}
-Same reason as the wheel motors. `set_servo_position()` tells the servo to *start* moving — it does not wait for it to arrive. Without an `msleep()`, the next line runs while the arm is still halfway there.
+Same reason as the wheel motors. `set_servo_position()` tells the servo to *start* moving --- it does not wait for it to arrive. Without an `msleep()`, the next line runs while the arm is still halfway there.
 {{< /callout >}}
 
 ### The gotcha that catches everybody
 
 When you call `enable_servos()`, every servo immediately jumps to **whatever position it was in last time.** Which might be anywhere.
 
-If your arm was down when you last ran a program, it will slam down again the instant your new program enables the servos — possibly into the field, or into a cube, or into your hand.
+If your arm was down when you last ran a program, it will slam down again the instant your new program enables the servos --- possibly into the field, or into a cube, or into your hand.
 
 {{< callout title="The Preset Trick" variant="gold" >}}
 Call `set_servo_position()` *before* `enable_servos()`. The servo then wakes up already knowing where to go, and moves there instead of to its old position.
 {{< /callout >}}
 
 ```text
-// Risky — arm snaps to wherever it was last
+// Risky --- arm snaps to wherever it was last
 enable_servos();
 set_servo_position(0, 524);
 
-// Better — arm wakes up already aimed at 524
+// Better --- arm wakes up already aimed at 524
 set_servo_position(0, 524);
 enable_servos();
 ```
@@ -172,7 +172,7 @@ Position numbers mean nothing on their own. `set_servo_position(0, 1746);` tells
 // down       = 1746
 ```
 
-Use the format **name = number**. There is a reason for that — in Project 9 those names stop being comments and become part of the program.
+Use the format **name = number**. There is a reason for that --- in Project 9 those names stop being comments and become part of the program.
 {.muted}
 
 ### Where you are headed
@@ -185,10 +185,10 @@ scores:
 does_not_score:
   - "A robot is near Botguy but not touching him."
 {{< /score-examples >}}
-Seven points for one touch. It is the best points-per-effort deal on the field — as long as you actually make contact.
+Seven points for one touch. It is the best points-per-effort deal on the field --- as long as you actually make contact.
 {.muted}
 
-## Do It — Reach and Touch
+## Do It --- Reach and Touch
 
 {{< figrow >}}
 - src: servo/servo-ports.jpg
@@ -196,7 +196,7 @@ Seven points for one touch. It is the best points-per-effort deal on the field �
 - src: servo/plugged-port-0.jpg
   alt: "A servo plugged into port 0."
 {{< /figrow >}}
-### Step 1 — Centre the horn first
+### Step 1 --- Centre the horn first
 
 {{< figrow >}}
 - src: servo/widget.jpg
@@ -204,7 +204,7 @@ Seven points for one touch. It is the best points-per-effort deal on the field �
 - src: servo/widget-testing.jpg
   alt: "Drag the slider to test a servo before you write any code."
 {{< /figrow >}}
-Your servo can only reach half a circle — but looking at it, you cannot tell *which* half. Fix that mechanically before you write any code.
+Your servo can only reach half a circle --- but looking at it, you cannot tell *which* half. Fix that mechanically before you write any code.
 
 - Unscrew the servo horn.
 - In the Servo Widget, enable the servo and set it to **1024**.
@@ -218,9 +218,9 @@ Your servo can only reach half a circle — but looking at it, you cannot tell *
 Skip this and you will spend the rest of the project fighting an arm that runs out of travel halfway through a move.
 {.muted}
 
-### Step 2 — Find your three positions
+### Step 2 --- Find your three positions
 
-Using the widget, find the number for each of these and write it down. Stay inside 150–1900.
+Using the widget, find the number for each of these and write it down. Stay inside 150--1900.
 
 {{< gridtable >}}
 columns:
@@ -253,7 +253,7 @@ rows:
 Do not find a "down" that presses the arm into the floor. The servo will keep straining to reach a position it cannot get to, and that is exactly how servos die.
 {{< /safety >}}
 
-### Step 3 — The Wave
+### Step 3 --- The Wave
 
 New project called `Wave`. Move the arm to all three positions with a one-second pause between each. Put your position comments at the top.
 
@@ -287,7 +287,7 @@ Use *your* numbers, not these. [[COMPILE|Compile]] and run.
 - key: p3_wave_works
   label: "My arm moves to all three positions with a pause between each"
 {{< /checklist >}}
-### Step 4 — Prove the msleep matters
+### Step 4 --- Prove the msleep matters
 
 Delete all three `msleep()` lines. Compile. Run. Watch closely.
 
@@ -295,7 +295,7 @@ Delete all three `msleep()` lines. Compile. Run. Watch closely.
 
 Put them back.
 
-### Step 5 — Prove the preset trick matters
+### Step 5 --- Prove the preset trick matters
 
 Run your Wave program so the arm finishes **up**. Now swap lines 9 and 10 so `enable_servos()` comes first, and run it again.
 
@@ -305,14 +305,14 @@ Run your Wave program so the arm finishes **up**. Now swap lines 9 and 10 so `en
 
 Put it back the safe way round.
 
-### Step 6 — Drive and touch
+### Step 6 --- Drive and touch
 
 New project called `Reach`. Practice away from the field first: put any object a short drive away, then drive to it and touch it with the arm.
 
 Two rules, borrowed from how the mission works:
 
 - The arm must **start up** and move down to touch. No driving around with the arm already out front.
-- Touch it with the arm only — not with the robot's body.
+- Touch it with the arm only --- not with the robot's body.
 
 ```text
 // 1. Arm starts up
@@ -326,14 +326,14 @@ Two rules, borrowed from how the mission works:
 - key: p3_reach_works
   label: "I can drive to an object and touch it with the arm"
 {{< /checklist >}}
-### Step 7 — Mission 9 — touch Botguy7 pts
+### Step 7 --- Mission 9 --- touch Botguy7 pts
 
 Onto the field. New project called `Botguy`.
 
-Botguy is inside the enclosure. Your robot has to reach in and make contact — direct contact, arm to Botguy.
+Botguy is inside the enclosure. Your robot has to reach in and make contact --- direct contact, arm to Botguy.
 
 {{< callout title="[[TOUCHING]] Means Direct Contact" variant="navy" >}}
-Two objects are [[TOUCHING]] when they are in direct physical contact. Contact through something else — a cube, a wall, another field element — does not count. Your arm has to reach Botguy himself.
+Two objects are [[TOUCHING]] when they are in direct physical contact. Contact through something else --- a cube, a wall, another field element --- does not count. Your arm has to reach Botguy himself.
 {{< /callout >}}
 
 {{< gridtable >}}
@@ -375,9 +375,9 @@ rows:
 - key: p3_m9_no_knock
   label: "I did not knock the enclosure out of place getting there"
 {{< /checklist >}}
-{{< short-answer key="p3_harder_part" label="Which was harder" prompt="Which was harder — getting the robot into position, or getting the arm to the right height?" >}}
+{{< short-answer key="p3_harder_part" label="Which was harder" prompt="Which was harder --- getting the robot into position, or getting the arm to the right height?" >}}
 
-### Step 8 — Run it five times
+### Step 8 --- Run it five times
 
 {{< gridtable >}}
 columns:
@@ -406,7 +406,7 @@ rows:
       - key: p3_r5
         aria: "Run 5"
 {{< /gridtable >}}
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### My score
 
@@ -418,7 +418,7 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 9 — Base (robot [[TOUCHING]] Botguy)"
+      - text: "Mission 9 --- Base (robot [[TOUCHING]] Botguy)"
       - key: p4_s_m9
         aria: "Score M9"
       - text: 7
@@ -492,6 +492,6 @@ rows:
 
 ### Next
 
-In **Project 8 — Arm and Claw Together**, a second servo joins the first. Two servos working as one system means you can finally grab, carry, and release — and a whole set of missions opens up at once.
+In **Project 8 --- Arm and Claw Together**, a second servo joins the first. Two servos working as one system means you can finally grab, carry, and release --- and a whole set of missions opens up at once.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

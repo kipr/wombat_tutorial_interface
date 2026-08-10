@@ -55,7 +55,7 @@ meta:
         label: "This project sheet"
 ---
 
-## Try It — Guess Before You Know
+## Try It --- Guess Before You Know
 
 In Project 1 you compiled and ran code that somebody else wrote. Here it is again.
 
@@ -69,7 +69,7 @@ int main ()
 }
 ```
 
-Do not look anything up. Do not ask anyone. Just guess — you will find out in a few minutes whether you were right.
+Do not look anything up. Do not ask anyone. Just guess --- you will find out in a few minutes whether you were right.
 
 {{< ask key="p1_guess_other_lines" label="Guess what the other lines do" >}}Line 5 is the only line that made something happen on the screen. What do you think the other lines are for?{{< /ask >}}
 
@@ -81,16 +81,16 @@ Do not look anything up. Do not ask anyone. Just guess — you will find out in 
 Do not erase them, even if they turn out to be wrong. Being wrong and then finding out why is how this works.
 {{< /callout >}}
 
-## Learn It — The Template, Line by Line
+## Learn It --- The Template, Line by Line
 
 Every C program you write on the Wombat starts from this same shape. It is called the **template**.
 
 | Code / part | What it means |
 | --- | --- |
-| `#include <kipr/wombat.h>` | Brings in the KIPR [[LIBRARY\|library]] — a big collection of ready-made commands for driving motors, moving [[SERVO\|servos]], and reading [[SENSOR\|sensors]]. Every program needs this line. Without it, the robot does not know what `printf` or `motor` mean. |
+| `#include <kipr/wombat.h>` | Brings in the KIPR [[LIBRARY\|library]] --- a big collection of ready-made commands for driving motors, moving [[SERVO\|servos]], and reading [[SENSOR\|sensors]]. Every program needs this line. Without it, the robot does not know what `printf` or `motor` mean. |
 | `int main ()` | Defines the `main` [[FUNCTION\|function]]. When you press Run, the robot always starts here. Every program has exactly one `main`. |
 | `{` | Opens a [[BLOCK\|block]]. Everything between this brace and its partner belongs to `main`. |
-| `printf("Hello World!\n");` | A programming [[STATEMENT\|statement]] — one action for the robot to carry out. This one prints text to the Wombat's screen. |
+| `printf("Hello World!\n");` | A programming [[STATEMENT\|statement]] --- one action for the robot to carry out. This one prints text to the Wombat's screen. |
 | `return 0;` | Reports back to the [[CONTROLLER\|controller]] that the program finished. `0` means "no problems." This is always the last statement before the closing brace. |
 | `}` | Closes the block. The program stops here. |
 
@@ -100,7 +100,7 @@ Look at lines 5 and 6. Both end with a semicolon.
 
 A semicolon does the same job as the period at the end of an English sentence: it says *this thought is finished, move on.* Leave one out and the [[COMPILER|compiler]] runs two statements together, the way a sentence without a period becomes a run-on.
 
-Lines that open a new block — like `int main ()` — do **not** get a semicolon. The brace does that job instead.
+Lines that open a new block --- like `int main ()` --- do **not** get a semicolon. The brace does that job instead.
 {.muted}
 
 ### Order matters, and speed is not the point
@@ -111,13 +111,13 @@ It is fast. The Wombat's processor runs at 800 MHz, so it moves from one line to
 
 ### Colors are a hint
 
-The KISS [[IDE|IDE]] colors your code as you type. That coloring is a free error check — if something is the wrong color, you have made a mistake before you even [[COMPILE|compile]].
+The KISS [[IDE|IDE]] colors your code as you type. That coloring is a free error check --- if something is the wrong color, you have made a mistake before you even [[COMPILE|compile]].
 
 | Color | What it is |
 | --- | --- |
-| Green | [[COMMENT\|comments]] — the computer ignores these |
+| Green | [[COMMENT\|comments]] --- the computer ignores these |
 | Bold blue | Keywords, like `int` and `return` |
-| Red | Text [[STRING\|strings]] — anything inside quotation marks |
+| Red | Text [[STRING\|strings]] --- anything inside quotation marks |
 | Aqua | Numbers |
 
 {{< callout title="A Quick Trick" variant="gold" >}}
@@ -126,7 +126,7 @@ If you open a quotation mark and forget to close it, everything after it turns r
 
 ### Comments
 
-A comment starts with two slashes. The computer ignores everything after them on that line — comments are for people, not machines.
+A comment starts with two slashes. The computer ignores everything after them on that line --- comments are for people, not machines.
 
 ```c
 #include <kipr/wombat.h>
@@ -142,12 +142,12 @@ int main ()
 Comments have three jobs, and you will use all three:
 
 - **Explain** what a line does, so you still understand it next week.
-- **Plan** — writing your steps as comments first is called [[PSEUDOCODE|pseudocode]].
-- **Give credit** — if you borrow code, you say so in a comment.
+- **Plan** --- writing your steps as comments first is called [[PSEUDOCODE|pseudocode]].
+- **Give credit** --- if you borrow code, you say so in a comment.
 
 ### Commands you already have
 
-These come with the KIPR library. You do not have to write them. You will meet most of these in later projects — this list is here so you know they exist.
+These come with the KIPR library. You do not have to write them. You will meet most of these in later projects --- this list is here so you know they exist.
 {.muted}
 
 | Command | What it does |
@@ -155,7 +155,7 @@ These come with the KIPR library. You do not have to write them. You will meet m
 | `printf("text\n");` | Prints text to the Wombat's screen |
 | `msleep(milliseconds);` | Pauses the program for that many milliseconds |
 | `motor(port, power);` | Runs the motor in that [[PORT\|port]] at that power level |
-| `ao();` | "All off" — stops every motor at once |
+| `ao();` | "All off" --- stops every motor at once |
 | `enable_servos();` | Turns the servo ports on |
 | `set_servo_position(port, position);` | Moves the servo in that port to a position |
 | `disable_servos();` | Turns the servo ports off |
@@ -166,11 +166,11 @@ These come with the KIPR library. You do not have to write them. You will meet m
 
 {{< ask key="p2_guess_review" label="Reviewing your guesses" >}}Look at what you wrote in Try It. Which guess were you closest on, and which one were you furthest off?{{< /ask >}}
 
-## Do It — Make It Yours
+## Do It --- Make It Yours
 
 Connect to your Wombat the same way you did in Project 1. Open your `First Project`.
 
-### Step 1 — Add a comment and prove it does nothing
+### Step 1 --- Add a comment and prove it does nothing
 
 Click at the end of the `printf` line and type:
 
@@ -184,7 +184,7 @@ Compile. Then run it on the Wombat: from the Home Screen tap **Programs**, pick 
 
 {{< ask key="p3_comment_why" label="Why the comment did not appear" >}}Why not?{{< /ask >}}
 
-### Step 2 — Sign your work
+### Step 2 --- Sign your work
 
 Add three comment lines at the very top, above the `#include`:
 
@@ -197,12 +197,12 @@ Add three comment lines at the very top, above the `#include`:
 This is called [[ATTRIBUTION|attribution]]. From now on, every program you write gets these three lines.
 
 {{< callout title="Borrowing Code" variant="navy" >}}
-If you use part of a teammate's code, you say so in a comment — where it came from, and where the borrowed part ends. That holds even when you change their idea a little to fit your robot.
+If you use part of a teammate's code, you say so in a comment --- where it came from, and where the borrowed part ends. That holds even when you change their idea a little to fit your robot.
 {{< /callout >}}
 
 {{< ask key="p3_attribution_where" label="Where else attribution matters" >}}Where else in school are you expected to give credit for someone else's work?{{< /ask >}}
 
-### Step 3 — Start a new project and say hello yourself
+### Step 3 --- Start a new project and say hello yourself
 
 Go to **Project Explorer**, pick your folder, click **+ Add Project**, and name it `Printf Statements`.
 
@@ -227,9 +227,9 @@ Compile until you see **Compilation Succeeded**, then run it.
 {{< /checklist >}}
 {{< ask key="p3_same_instant" label="Why both lines appeared at once" >}}The two lines appeared at what looked like the same instant. Why?{{< /ask >}}
 
-### Step 4 — Slow it down
+### Step 4 --- Slow it down
 
-`msleep()` pauses the program. The number inside is milliseconds — thousandths of a second.
+`msleep()` pauses the program. The number inside is milliseconds --- thousandths of a second.
 
 ```text
 msleep(1000);   // pause for 1 second
@@ -266,7 +266,7 @@ Now put a two-second pause between your two `printf` lines. Compile and run.
 - key: p3_step_msleep
   label: "My name appeared two seconds after Hello World"
 {{< /checklist >}}
-### Step 5 — Turn your pseudocode into real comments
+### Step 5 --- Turn your pseudocode into real comments
 
 Good programmers leave the plan in the finished program. Add a comment to the end of each line describing what it does, so your program reads like this:
 
@@ -282,7 +282,7 @@ int main ()
 }
 ```
 
-### Step 6 — Break it on purpose
+### Step 6 --- Break it on purpose
 
 Now the important part. You are going to make five mistakes deliberately, one at a time, so that when you make them by accident you already know what they look like.
 
@@ -290,7 +290,7 @@ Now the important part. You are going to make five mistakes deliberately, one at
 
 {{< safety title="⚠ How to Read an Error Message" >}}
 - **Fix the top error first.** One mistake often produces a pile of errors. Fixing the first may clear all of them.
-- **The line number is a hint, not an answer.** If it says line 6, the real mistake is often on line 5 — or earlier, if there are blank lines.
+- **The line number is a hint, not an answer.** If it says line 6, the real mistake is often on line 5 --- or earlier, if there are blank lines.
 - **Ignore the second number.** `5:28` means line 5, column 28. You cannot see columns. Ignore the 28.
 - **Change one thing, then recompile.** Do not fix four things at once.
 {{< /safety >}}
@@ -330,7 +330,7 @@ rows:
 
 {{< checklist >}}
 - key: p3_step_all_fixed
-  label: "All five bugs broken, read, and fixed — program compiles cleanly"
+  label: "All five bugs broken, read, and fixed --- program compiles cleanly"
 {{< /checklist >}}
 {{< ask key="p3_hardest_bug" label="Hardest bug to find" >}}Which of the five bugs would have been hardest to find if you had made it by accident? Why that one?{{< /ask >}}
 
@@ -338,6 +338,6 @@ rows:
 
 ### Next
 
-You can now make the robot say things and wait. In **Project 3 — Motors and Ports**, it stops talking and starts moving.
+You can now make the robot say things and wait. In **Project 3 --- Motors and Ports**, it stops talking and starts moving.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

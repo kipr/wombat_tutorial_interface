@@ -55,11 +55,11 @@ meta:
         label: "The game field"
 ---
 
-## Try It — How Dark Is It?
+## Try It --- How Dark Is It?
 
 Your touch sensor answers one question: *am I [[TOUCHING]] something?* Yes or no. Nothing else.
 
-This one is different. Plug the [[REFLECTANCE|reflectance]] sensor — the little round one, sometimes called a tophat — into an **[[ANALOG|analog]]** [[PORT|port]]. Then open the Sensor List on the Wombat and watch the number while you hold it over things.
+This one is different. Plug the [[REFLECTANCE|reflectance]] sensor --- the little round one, sometimes called a tophat --- into an **[[ANALOG|analog]]** [[PORT|port]]. Then open the Sensor List on the Wombat and watch the number while you hold it over things.
 
 {{< safety title="⚠ Hold It About a Quarter Inch Up" >}}
 Pointed straight down, roughly 1/4 inch off the surface. [[TOUCHING]] the surface or held way up both give you useless numbers.
@@ -96,7 +96,7 @@ rows:
       - key: p1_v_light
         aria: "Light object reading"
 {{< /gridtable >}}
-{{< short-answer key="p1_which_bigger" label="Which is bigger" prompt="Which gives the bigger number — dark surfaces or light ones?" >}}
+{{< short-answer key="p1_which_bigger" label="Which is bigger" prompt="Which gives the bigger number --- dark surfaces or light ones?" >}}
 
 {{< ask key="p1_why" label="Why the numbers" >}}The sensor shines a tiny light down and measures how much bounces back. Use that to explain why the numbers came out the way they did.{{< /ask >}}
 
@@ -106,21 +106,21 @@ You did not get a yes or a no. You got a number somewhere in a big range, and it
 So *you* have to decide where black starts. The sensor will not do it for you.
 {{< /callout >}}
 
-## Learn It — Pick Your Own Dividing Line
+## Learn It --- Pick Your Own Dividing Line
 
 {{< figrow >}}
 - src: kit/analogsensors.jpg
-  alt: "Analog sensors — reflectance, light, and the ET rangefinder."
+  alt: "Analog sensors --- reflectance, light, and the ET rangefinder."
 {{< /figrow >}}
 An analog sensor reports a value across a wide range instead of just 0 or 1.
 
 ~100
 
-— white, lots of light bounced back
+--- white, lots of light bounced back
 
 ~2500
 
-— black, most light absorbed
+--- black, most light absorbed
 
 Your numbers will not match anyone else's. Different sensor, different mounting height, different room lighting.
 {.muted}
@@ -149,7 +149,7 @@ That is a starting guess, not a final answer. You will adjust it.
 
 The loop has not changed at all. Only the [[CONDITION|condition]] it watches.
 
-**Project 10 — a switch**
+**Project 10 --- a switch**
 
 ```text
 while (digital(bump)
@@ -161,7 +161,7 @@ while (digital(bump)
 
 Two possible values.
 
-**Project 11 — a count**
+**Project 11 --- a count**
 
 ```text
 while (gmpc(left)
@@ -173,7 +173,7 @@ while (gmpc(left)
 
 A number that climbs steadily.
 
-**Now — a brightness**
+**Now --- a brightness**
 
 ```text
 while (analog(line)
@@ -204,16 +204,16 @@ wait_for_light(3);   // wait for light on port 3, then continue
 ```
 
 - You do not have to mount it on the robot.
-- It runs its own [[CALIBRATION|calibration]] routine on screen — follow the steps it gives you.
+- It runs its own [[CALIBRATION|calibration]] routine on screen --- follow the steps it gives you.
 - Call it near the very top of your program.
 - Any **moderately powerful flashlight** should work with the light sensor, including a phone flashlight. Point the light at the sensor and watch the reading change.
 - More light means a *lower* reading, which is the opposite of what most people guess.
 
-## Do It — Find the Line, Then Use It
+## Do It --- Find the Line, Then Use It
 
-### Step 1 — Mount it and set your threshold
+### Step 1 --- Mount it and set your threshold
 
-Fix the reflectance sensor to the front underside of your robot, pointing straight down, about 1/4 inch clear of the mat. Then take fresh readings from the mounted position — they will not match what you got holding it in your hand.
+Fix the reflectance sensor to the front underside of your robot, pointing straight down, about 1/4 inch clear of the mat. Then take fresh readings from the mounted position --- they will not match what you got holding it in your hand.
 
 {{< gridtable >}}
 columns:
@@ -234,11 +234,11 @@ rows:
       - key: p3_black
         aria: "Black mounted"
   - cells:
-      - text: "My threshold — (white + black) / 2"
+      - text: "My threshold --- (white + black) / 2"
       - key: p3_threshold
         aria: Threshold
 {{< /gridtable >}}
-### Step 2 — Find the Line
+### Step 2 --- Find the Line
 
 New project called `Find the Line`. Drive forward until the sensor sees black, then stop.
 
@@ -249,7 +249,7 @@ New project called `Find the Line`. Drive forward until the sensor sees black, t
 // 4. Stop everything
 ```
 
-Use [[VARIABLE|variables]] for your motors and your threshold — you have known better than bare numbers since Project 9.
+Use [[VARIABLE|variables]] for your motors and your threshold --- you have known better than bare numbers since Project 9.
 
 {{< gridtable >}}
 columns:
@@ -282,7 +282,7 @@ rows:
 - key: p3_finds_line
   label: "My robot stops on the black line"
 {{< /checklist >}}
-### Step 3 — Three lines, three distances
+### Step 3 --- Three lines, three distances
 
 The real test of a threshold is whether it works when you did not tune it for that exact spot.
 
@@ -312,10 +312,10 @@ rows:
         aria: "Line 3 result"
 {{< /gridtable >}}
 {{< callout title="This Is Something Ticks Cannot Do" variant="gold" >}}
-A [[TICK|tick]] count only works from a known starting point. This program finds the line from *anywhere* — it does not care where it began.
+A [[TICK|tick]] count only works from a known starting point. This program finds the line from *anywhere* --- it does not care where it began.
 {{< /callout >}}
 
-### Step 4 — Drive to black, back up to black
+### Step 4 --- Drive to black, back up to black
 
 Now do it twice in a row. Drive forward to a line, stop, then reverse until you find a line again.
 
@@ -329,7 +329,7 @@ When the robot stops, it is *sitting on black*. If you immediately start a loop 
 - key: p3_two_lines
   label: "My robot finds a line going forward and another going backward"
 {{< /checklist >}}
-### Step 5 — Start on a light
+### Step 5 --- Start on a light
 
 Add `wait_for_light()` to the top of a program and follow the calibration routine on the Wombat's screen.
 
@@ -341,12 +341,12 @@ Now your robot sits still until someone shines a light at it.
 {{< /checklist >}}
 {{< ask key="p3_why_light" label="Why light start" >}}Why would every robot at a tournament need to start this way, rather than someone pressing a button on each one?{{< /ask >}}
 
-### Step 6 — Mission 14 Bonus — a cone [[IN THE ZONE]] · 7 pts
+### Step 6 --- Mission 14 Bonus --- a cone [[IN THE ZONE]] · 7 pts
 
 {{< mission-summary mission="14" >}}
 {{< /mission-summary >}}
 {{< safety title="⚠ The Base Still Has to Hold" >}}
-You cannot score this bonus unless **both** cones are [[OFF]] the black line — including the one you left behind. If your second cone drifted back onto the line, the bonus is worth nothing.
+You cannot score this bonus unless **both** cones are [[OFF]] the black line --- including the one you left behind. If your second cone drifted back onto the line, the bonus is worth nothing.
 {{< /safety >}}
 
 Use your line-finding program to drive to the Loading Zone [[BOUNDARY|boundary]], then place the cone.
@@ -355,14 +355,14 @@ Use your line-finding program to drive to the Loading Zone [[BOUNDARY|boundary]]
 - key: p3_m14_bonus
   label: "A cone is [[IN]] the Loading Zone and the other is still [[OFF]] the line"
 {{< /checklist >}}
-### Step 7 — Mission 18 — Botguy and both cones28 pts
+### Step 7 --- Mission 18 --- Botguy and both cones28 pts
 
 {{< mission-summary mission="18" >}}
 {{< /mission-summary >}}
 {{< safety title="⚠ [[IN]] and [[FULLY WITHIN]] Are Not the Same Thing" >}}
-Mission 14's bonus only needs a cone **[[IN]]** the zone — any part of it poking into the interior counts.
+Mission 14's bonus only needs a cone **[[IN]]** the zone --- any part of it poking into the interior counts.
 
-Mission 18 needs the cones **[[FULLY WITHIN]]** — every single part inside, nothing touching or crossing the boundary.
+Mission 18 needs the cones **[[FULLY WITHIN]]** --- every single part inside, nothing touching or crossing the boundary.
 
 A cone half over the line scores Mission 14 and *nothing* from Mission 18. This is exactly why you need the sensor: it tells you where the boundary actually is.
 {{< /safety >}}
@@ -378,7 +378,7 @@ does_not_score:
   - "Botguy and only one cone, for the Advanced Bonus."
 {{< /score-examples >}}
 {{< callout title="One Delivery, Three Scores" variant="gold" >}}
-Put Botguy and **both** cones fully inside the Loading Zone and you collect Mission 14's bonus, Mission 18's bonus, and Mission 18's advanced — 35 points from one trip pattern.
+Put Botguy and **both** cones fully inside the Loading Zone and you collect Mission 14's bonus, Mission 18's bonus, and Mission 18's advanced --- 35 points from one trip pattern.
 
 Every part of this is final position, so nothing may drift out before the match ends.
 {{< /callout >}}
@@ -389,13 +389,13 @@ Every part of this is final position, so nothing may drift out before the match 
 - key: p3_m18_botguy
   label: "Botguy is [[IN]] the Loading Zone"
 - key: p3_m18_cone1
-  label: "One cone is [[FULLY WITHIN]] — no part over the boundary"
+  label: "One cone is [[FULLY WITHIN]] --- no part over the boundary"
 - key: p3_m18_cone2
   label: "The second cone is [[FULLY WITHIN]] too"
 - key: p3_m18_nothing_moved
   label: "Nothing got knocked out while placing the last one"
 {{< /checklist >}}
-### Step 8 — Run it five times
+### Step 8 --- Run it five times
 
 {{< gridtable >}}
 columns:
@@ -462,7 +462,7 @@ rows:
 {{< /gridtable >}}
 {{< short-answer key="p3_what_failed" label="What failed" prompt="If a placement failed, was it the driving or the letting go?" >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### My score
 
@@ -474,17 +474,17 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 14 — Bonus (a cone [[IN]] the Loading Zone)"
+      - text: "Mission 14 --- Bonus (a cone [[IN]] the Loading Zone)"
       - key: p4_s_m14
         aria: "Score M14"
       - text: 7
   - cells:
-      - text: "Mission 18 — Bonus (Botguy + one cone [[FULLY WITHIN]])"
+      - text: "Mission 18 --- Bonus (Botguy + one cone [[FULLY WITHIN]])"
       - key: p4_s_m18b
         aria: "Score M18 bonus"
       - text: 13
   - cells:
-      - text: "Mission 18 — Advanced (Botguy + both cones [[FULLY WITHIN]])"
+      - text: "Mission 18 --- Advanced (Botguy + both cones [[FULLY WITHIN]])"
       - key: p4_s_m18a
         aria: "Score M18 advanced"
       - text: 15
@@ -599,6 +599,6 @@ rows:
 
 ### Next
 
-That last question is the whole of the next project. In **Project 15 — Following the Line**, the sensor stops being a stop sign and becomes a steering wheel.
+That last question is the whole of the next project. In **Project 15 --- Following the Line**, the sensor stops being a stop sign and becomes a steering wheel.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

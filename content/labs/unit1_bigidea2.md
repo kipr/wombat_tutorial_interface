@@ -33,12 +33,12 @@ meta:
 
 ## Overview
 
-Today's challenge looks impossible at first glance. Mission 2 — Relocate the Red Cube — requires your robot to drive to the Large Red Cube (which starts [[ON TOP OF]] its [[PALLET|pallet]]), push the whole palletized assembly off the black line, and then return to its starting box. That's not one task. That's a system of tasks.
+Today's challenge looks impossible at first glance. Mission 2 --- Relocate the Red Cube --- requires your robot to drive to the Large Red Cube (which starts [[ON TOP OF]] its [[PALLET|pallet]]), push the whole palletized assembly off the black line, and then return to its starting box. That's not one task. That's a system of tasks.
 
 {{< callout title="Core Insight" >}}
 No intelligent system solves a complex problem all at once.
 
-It solves many small problems in sequence — and the intelligence lies in knowing how to break the big problem apart.
+It solves many small problems in sequence --- and the intelligence lies in knowing how to break the big problem apart.
 {{< /callout >}}
 
 ### By the end of this activity you will be able to:
@@ -51,12 +51,12 @@ It solves many small problems in sequence — and the intelligence lies in knowi
 
 ### New This Time: [[VARIABLE|Variables]] and Functions
 
-Two new tools you'll use today. You already know `motor()`, `msleep()`, and `ao()` — these let you organize them.
+Two new tools you'll use today. You already know `motor()`, `msleep()`, and `ao()` --- these let you organize them.
 {.muted}
 
-{{< concept "An int — a named number" >}}
+{{< concept "An int --- a named number" >}}
 - text: |
-    `int` stands for *[[INTEGER|Integer]]* — a whole number. When you write an `int`, you give a number a **name**, so you can use the name instead of typing the number everywhere. Change it once at the top, and every place that uses the name updates.
+    `int` stands for *[[INTEGER|Integer]]* --- a whole number. When you write an `int`, you give a number a **name**, so you can use the name instead of typing the number everywhere. Change it once at the top, and every place that uses the name updates.
 - code: |
     int DRIVE_SPEED = 50;   // name a number: DRIVE_SPEED now means 50
 
@@ -66,7 +66,7 @@ Two new tools you'll use today. You already know `motor()`, `msleep()`, and `ao(
     Here you've named your motors' speed once. If you want them slower later, you change `50` in one spot instead of hunting through your whole program.
 {{< /concept >}}
 
-{{< concept "A function — a name for a group of commands" >}}
+{{< concept "A function --- a name for a group of commands" >}}
 - text: |
     A function lets you take several commands and give them **one name**. After you build it once, you can run all of those commands by just writing its name. `void` means the function does a job but doesn't hand a number back.
 - code: |
@@ -80,7 +80,7 @@ Two new tools you'll use today. You already know `motor()`, `msleep()`, and `ao(
     Now, anywhere in your program, writing `drive_forward();` runs all of those lines. You built your own command.
 {{< /concept >}}
 
-## Phase 1 — Activate: The Impossible Errand
+## Phase 1 --- Activate: The Impossible Errand
 
 Imagine someone gives you one instruction: **"Make dinner."**
 
@@ -93,13 +93,13 @@ Break "Make dinner" into the smallest steps you can. How many steps do you end u
 {{< /callout >}}
 
 {{< steps key="p1_dinner" label="Dinner step" count=8
-          group="Break it down — list as many sub-steps as you can think of:" >}}
+          group="Break it down --- list as many sub-steps as you can think of:" >}}
 
 {{< ask key="p1_stop_point" label="When you stopped decomposing" >}}At what point did you stop breaking it down? What made you decide a step was "small enough"?{{< /ask >}}
 
 {{< ask key="p1_similar_to_mission" label="Similarity to a robot mission" >}}How is "Make dinner" similar to a robot mission on the Foundations field?{{< /ask >}}
 
-## Phase 2 — Concept: Decomposition &amp; Abstraction
+## Phase 2 --- Concept: Decomposition &amp; Abstraction
 
 ### Decomposition
 
@@ -115,47 +115,47 @@ Why Decomposition Works
 
 ### Abstraction
 
-Abstraction means hiding the details of how something works so you can use it without thinking about those details. When you call `drive_forward()`, you don't think about motor power, wheel friction, or timing. You just think: "the robot drives forward." That's abstraction. In this activity, every function you write is an abstraction — once it works, you use it without thinking about its internals.
+Abstraction means hiding the details of how something works so you can use it without thinking about those details. When you call `drive_forward()`, you don't think about motor power, wheel friction, or timing. You just think: "the robot drives forward." That's abstraction. In this activity, every function you write is an abstraction --- once it works, you use it without thinking about its internals.
 
 ### Dependencies
 
 When decomposing a problem, some sub-problems must be solved before others. This ordering relationship is called a *dependency*. Identifying dependencies before you code prevents wasted effort.
 
 {{< callout title="Example" variant="gold" >}}
-You cannot push the palletized cube off the line until the robot has driven to it. "Drive to the cube" is a dependency of "push the cube" — so you build and test the driving first, before you write a single line of the pushing. Get the order wrong and you waste time testing a push on a robot that isn't even in the right place yet.
+You cannot push the palletized cube off the line until the robot has driven to it. "Drive to the cube" is a dependency of "push the cube" --- so you build and test the driving first, before you write a single line of the pushing. Get the order wrong and you waste time testing a push on a robot that isn't even in the right place yet.
 {{< /callout >}}
 
 {{< ask key="p2_decomp_vs_list" label="Decomposition versus a list" >}}In your own words: what is the difference between decomposition and just "making a list"?{{< /ask >}}
 
-## Phase 3 — Analyze
+## Phase 3 --- Analyze
 
-### Mission 2 — What Must Happen?
+### Mission 2 --- What Must Happen?
 
-{{< callout title="Mission 2 — Relocate the Red Cube" >}}
+{{< callout title="Mission 2 --- Relocate the Red Cube" >}}
 **Starting state:** The Large Red Cube begins ON TOP OF its pallet.
 
 **Base:** The Large Red Cube AND its pallet are both OFF the black line.
 
 **Bonus:** Both Small Red Cubes are also OFF the black line.
 
-**Key rule:** Both the cube AND the pallet must independently satisfy the OFF definition. The cube rides on the pallet, so pushing the assembly together is what scores — no lifting required.
+**Key rule:** Both the cube AND the pallet must independently satisfy the OFF definition. The cube rides on the pallet, so pushing the assembly together is what scores --- no lifting required.
 {{< /callout >}}
 
 {{< callout title="Your target today: drive, push, return" variant="navy" >}}
-Your robot will use only the driving and turning commands you already have. It drives to the palletized cube, pushes the whole assembly off the black line, and returns to its starting box. No arm, no lifting — that comes in a later lesson.
+Your robot will use only the driving and turning commands you already have. It drives to the palletized cube, pushes the whole assembly off the black line, and returns to its starting box. No arm, no lifting --- that comes in a later lesson.
 {{< /callout >}}
 
-{{< callout title="Looking ahead — Mission 8" variant="gold" >}}
-Later in the game, Mission 8 — Deliver the Red Cube asks the robot to lift that same palletized cube up onto the Loading Dock. That takes an arm, which means [[SERVO|servos]] — a tool you haven't met yet. We'll worry about that lifting motion in a later lesson. For now, notice that the very first part of Mission 8 is the same as Mission 2: drive to the cube. The work you do today is a piece you'll reuse.
+{{< callout title="Looking ahead --- Mission 8" variant="gold" >}}
+Later in the game, Mission 8 --- Deliver the Red Cube asks the robot to lift that same palletized cube up onto the Loading Dock. That takes an arm, which means [[SERVO|servos]] --- a tool you haven't met yet. We'll worry about that lifting motion in a later lesson. For now, notice that the very first part of Mission 8 is the same as Mission 2: drive to the cube. The work you do today is a piece you'll reuse.
 {{< /callout >}}
 
-### Step 1 — Identify the Sub-Problems
+### Step 1 --- Identify the Sub-Problems
 
-Before writing any code, decompose Mission 2 into its smallest independent pieces. List every distinct action your robot must perform, in order — from leaving the starting box to returning to it.
+Before writing any code, decompose Mission 2 into its smallest independent pieces. List every distinct action your robot must perform, in order --- from leaving the starting box to returning to it.
 
 {{< steps key="p3_subtask" label="Sub-task" count=6 >}}
 
-### Step 2 — Identify Dependencies
+### Step 2 --- Identify Dependencies
 
 For each sub-task, note what must happen first, and whether you could test it on its own. The first row is filled in as an example.
 
@@ -174,7 +174,7 @@ For each sub-task, note what must happen first, and whether you could test it on
   example: "Yes"
 {{< /repeattable >}}
 
-### Step 3 — Name Your Functions
+### Step 3 --- Name Your Functions
 
 Each sub-task should become its own function. Name them here before you write any code. Good function names describe exactly what the function does. The first row is an example.
 
@@ -195,7 +195,7 @@ Each sub-task should become its own function. Name them here before you write an
 
 {{< ask key="p3_uncertain_fn" label="Most uncertain function" >}}Look at your function list. Which function are you most uncertain about? What specifically makes it hard?{{< /ask >}}
 
-## Phase 4 — Build
+## Phase 4 --- Build
 
 {{< callout title="The One-Function Rule" variant="navy" >}}
 Build and test one function at a time. Do not write the next function until the current one works reliably.
@@ -253,7 +253,7 @@ int main() {
 }
 {{< /code >}}
 
-### Build Log — Track Each Function
+### Build Log --- Track Each Function
 
 Complete one row when you finish building and testing each function. Do not move to the next function until the current one passes 3 runs in a row.
 
@@ -275,14 +275,14 @@ Complete one row when you finish building and testing each function. Do not move
   key: fix
 {{< /repeattable >}}
 
-## Phase 5 — Integrate
+## Phase 5 --- Integrate
 
 Once all your individual functions pass, add all the calls in `main()` and run the complete sequence. Record what happens.
 
 {{< callout title="What to watch for during integration" variant="gold" >}}
 Functions that worked alone sometimes fail when combined. Why? Because the robot's position at the end of one function is the starting position for the next.
 
-If function B fails after function A, the problem is usually function A — it left the robot in the wrong position. Fix function A before touching function B.
+If function B fails after function A, the problem is usually function A --- it left the robot in the wrong position. Fix function A before touching function B.
 {{< /callout >}}
 
 ### Integration Trial Log
@@ -306,9 +306,9 @@ If function B fails after function A, the problem is usually function A — it l
 
 {{< ask key="p5_integration_fail" label="Integration failure description" >}}Did any function that passed alone fail during integration? Describe exactly what happened and why.{{< /ask >}}
 
-## Phase 6 — Connect: The AI Literacy Bridge
+## Phase 6 --- Connect: The AI Literacy Bridge
 
-{{< callout title="Big Idea 2 — AI Literacy Thread" >}}
+{{< callout title="Big Idea 2 --- AI Literacy Thread" >}}
 Intelligent systems solve complex problems by breaking them into smaller parts.
 {{< /callout >}}
 
@@ -319,11 +319,11 @@ Read each scenario. Think it through, then write your answer.
 
 {{< ask key="p6_search_decomp" label="Search engine decomposition" >}}A search engine returns results in under a second for any query ever typed. Decompose this: what are at least four distinct sub-problems the system must solve to do this?{{< /ask >}}
 
-{{< ask key="p6_abstraction" label="Abstraction question" >}}Each sub-task function you wrote is an abstraction — once it works, you call it by name without thinking about the `drive_forward()` and `turn_right()` steps inside it. Pick one of your functions: what details does it hide from the rest of your program? Why does hiding those details make your code better?{{< /ask >}}
+{{< ask key="p6_abstraction" label="Abstraction question" >}}Each sub-task function you wrote is an abstraction --- once it works, you call it by name without thinking about the `drive_forward()` and `turn_right()` steps inside it. Pick one of your functions: what details does it hide from the rest of your program? Why does hiding those details make your code better?{{< /ask >}}
 
 {{< ask key="p6_integration_lesson" label="Integration lesson" >}}In Phase 5 you may have found that functions interacted in unexpected ways during integration. What does this tell you about the challenge of building large AI systems from many smaller components?{{< /ask >}}
 
-## Phase 7 — Individual Reflection
+## Phase 7 --- Individual Reflection
 
 Complete this section on your own.
 {.muted}
@@ -336,14 +336,14 @@ Complete this section on your own.
 
 {{< ask key="p7_q3_one_function_rule" label="Reflection 3" n=3 >}}The One-Function Rule says: don't write the next function until the current one works. Why is this discipline hard to follow? What happens when you skip it?{{< /ask >}}
 
-{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete this in 2–3 sentences: "Intelligent systems solve complex problems by breaking them into smaller parts. This means that when an AI system fails at a complex task..."{{< /ask >}}
+{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete this in 2--3 sentences: "Intelligent systems solve complex problems by breaking them into smaller parts. This means that when an AI system fails at a complex task..."{{< /ask >}}
 
 ## Extension Challenges
 
 Finished early? Try one or more of these.
 {.muted}
 
-### Extension A — Going for the Bonus
+### Extension A --- Going for the Bonus
 
 - The Mission 2 bonus also requires both Small Red Cubes to be OFF the black line.
 - Where are the small cubes relative to your push path? Could one push clear everything, or do you need a separate move?
@@ -351,15 +351,15 @@ Finished early? Try one or more of these.
 
 {{< answer key="ext_a" label="Extension A" >}}
 
-### Extension B — Dependency Map
+### Extension B --- Dependency Map
 
 - Create a visual dependency map of your full program. Each function is a node; draw an arrow from A to B if B depends on A.
-- What shape does your map have — a linear chain, a branching tree, something else?
+- What shape does your map have --- a linear chain, a branching tree, something else?
 - What does the shape tell you about the structure of your solution?
 
 {{< answer key="ext_b" label="Extension B" >}}
 
-### Extension C — The Reuse Test
+### Extension C --- The Reuse Test
 
 - Can any of your sub-task functions be reused for a different mission?
 - Which functions are specific to Mission 2? Which are general-purpose?
@@ -367,7 +367,7 @@ Finished early? Try one or more of these.
 
 {{< answer key="ext_c" label="Extension C" >}}
 
-### Extension D — Abstraction Levels
+### Extension D --- Abstraction Levels
 
 - Right now your program has two levels: `main()` calls sub-task functions, which call movement functions.
 - Add a third level: group your sub-task functions into two or three higher-level functions (e.g., `relocate_cube()`, `return_home()`).

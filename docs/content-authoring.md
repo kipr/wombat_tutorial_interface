@@ -17,7 +17,7 @@ matter contains:
 - `nav` and `track` (`c` or `python`);
 - stable `mission_id` for persistence and exported filenames;
 - `eyebrow`, `heading`, `subheading`, and `credit` for the worksheet shell;
-- `meta`, usually including purpose/concepts/context and “What You Need”; and
+- `meta`, usually including purpose/concepts/context and "What You Need"; and
 - an optional `sidebar` heading range.
 
 The two tracks mirror the same curriculum and interaction keys. Preserve the
@@ -52,7 +52,7 @@ lowercase Hugo page reference and must resolve.
 Each mission is a leaf bundle named `mission-N` with `index.md` and one image
 per tier. The required identity is `layout: mission`, `mission_number: N`, and
 `weight: N`. `tiers` must be ordered `base`, `bonus`, then optional `advanced`.
-Each tier supplies positive integer `points`, difficulty 1–8, judging `live` or
+Each tier supplies positive integer `points`, difficulty 1-8, judging `live` or
 `final`, a description, and an existing bundle image.
 
 Every mission body uses `score-examples` followed by ordinary `## Judge Notes`.
@@ -76,21 +76,26 @@ The site addresses students directly in plain, concrete language. Match these
 patterns:
 
 - lead with an observable task, question, or goal;
-- use “you” and “your robot,” short paragraphs, and active instructions;
+- use "you" and "your robot," short paragraphs, and active instructions;
 - explain abstractions through physical analogies before formal vocabulary;
 - scaffold work as predict/try, learn, plan, build, test, record, and reflect;
 - make safety directions explicit and explain the consequence;
 - ask one focused question per response field and supply a useful accessible
-  `label`, not merely “answer”; and
+  `label`, not merely "answer"; and
 - distinguish what the machine literally does from what a student intended.
 
-C/Python labs normally use `## Overview`, numbered `## Phase N — ...`
+C/Python labs normally use `## Overview`, numbered `## Phase N --- ...`
 sections, and `## Extension Challenges`. Discovery projects use the exact
 level-two family `Try It`, `Learn It`, `Do It`, and, when authored, `Score It`.
 The heading render hook supplies the visual phase badge; do not hand-code it.
 
-Use sentence-style headings, curly punctuation already present in the source,
-and em dashes for explanatory breaks. Hugo will not rewrite punctuation.
+Punctuation rules differ by where the text lives:
+
+- **Front matter** is not run through Goldmark, so write the final characters
+  there: curly quotes, en/em dashes (`–` / `—`), and ellipses (`…`).
+- **Markdown prose** (page bodies and shortcode Markdown) uses plain ASCII
+  (`"`, `'`, `--`, `---`, `...`). Typographer converts those on render.
+
 All-caps glossary display is reserved mainly for official competition terms.
 
 ## Markdown conventions
@@ -149,7 +154,7 @@ only for a non-Hugo static target such as `score.html`; do not write legacy
 ## Fields, assets, print, and accessibility
 
 A field's `key` becomes `data-key` and stored/exported data. Do not rename,
-reuse, or “clean up” an existing key during editorial work. Renderers derive
+reuse, or "clean up" an existing key during editorial work. Renderers derive
 DOM IDs from keys; authors should not supply IDs.
 
 Every input needs a meaningful visible label or renderer-provided accessible

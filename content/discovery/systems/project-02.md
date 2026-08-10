@@ -52,9 +52,9 @@ meta:
         label: "A partner and a class to argue with"
 ---
 
-## Try It — Robot or Not?
+## Try It --- Robot or Not?
 
-Go down this list. For each one, decide **yes** or **no** — and write the reason that made you choose.
+Go down this list. For each one, decide **yes** or **no** --- and write the reason that made you choose.
 
 *Do this on your own first. No talking yet.*
 
@@ -64,7 +64,7 @@ columns:
     width: 36%
   - head: "Yes / No"
     width: 16%
-  - head: "Because…"
+  - head: "Because..."
 rows:
   -
     - text: "A robot vacuum cleaner"
@@ -137,26 +137,26 @@ Turn to the person next to you and compare. Find one you disagreed on and try to
 {{< callout variant="gold" title="You Have Been Using a Rule Without Saying It" >}}
 To answer any of those, you had to have some idea in your head of what a robot *is*. You have never written it down.
 
-Do it now, in one sentence: **a robot is…**
+Do it now, in one sentence: **a robot is...**
 {{< /callout >}}
 {{< ask key="p1_my_definition" label="My definition" >}}My definition of a robot:{{< /ask >}}
 
-## Learn It — Six Things Every Robot Has
+## Learn It --- Six Things Every Robot Has
 
 {{< figrow >}}
 - src: kit/wambatmotors.jpg
-  alt: "The controller and its motors — computation and actuators in one picture."
+  alt: "The controller and its motors --- computation and actuators in one picture."
 {{< /figrow >}}
 
 People have argued about the definition of "robot" for a hundred years and have not settled it. But engineers agree on something more useful: **what a robot is made of.**
 
-Every robot — yours, a factory arm, a Mars rover — has these six.
+Every robot --- yours, a factory arm, a Mars rover --- has these six.
 
 #### Structure
 
 Holds everything together and holds the [[SENSOR|sensors]] in position. Your skeleton does this job.
 
-Joints usually have an [[ACTUATOR|actuator]] attached — the robot's equivalent of a muscle.
+Joints usually have an [[ACTUATOR|actuator]] attached --- the robot's equivalent of a muscle.
 
 *Examples: Chassis, brackets, frame*
 
@@ -164,7 +164,7 @@ Joints usually have an [[ACTUATOR|actuator]] attached — the robot's equivalent
 
 An [[EFFECTOR|effector]] changes the [[STATE|state]] of the robot, or changes the state of the world.
 
-*Examples: Motors, arms, legs, thrusters — and also buzzers, lights, and speakers*
+*Examples: Motors, arms, legs, thrusters --- and also buzzers, lights, and speakers*
 
 #### Sensors
 
@@ -178,7 +178,7 @@ Some report on the **world**. Some report on the **robot itself**.
 
 Where the energy comes from, how it gets around, and how it is kept steady.
 
-*Examples: Batteries, solar panels, springs, hydraulics — and the wires and regulators that move and manage it*
+*Examples: Batteries, solar panels, springs, hydraulics --- and the wires and regulators that move and manage it*
 
 #### Computation
 
@@ -188,29 +188,29 @@ The part that reads the sensor values, works out what they mean, and decides whi
 
 #### Information
 
-What the robot knows. How to read its sensors, how to build commands, what has happened so far — and the program that decides what it does.
+What the robot knows. How to read its sensors, how to build commands, what has happened so far --- and the program that decides what it does.
 
 *Examples: Your code*
 
 {{< callout variant="navy" title="Computation and Information Are Not the Same Thing" >}}
 **Computation** is the machinery that thinks. **Information** is what it thinks about and what it thinks with.
 
-Same Wombat, different program, completely different robot. The hardware did not change — the information did.
+Same Wombat, different program, completely different robot. The hardware did not change --- the information did.
 {{< /callout >}}
 
 ### Two kinds of sensing
 
-- **External** — Reports on the **world around** the robot. A touch sensor pressing a wall. A light sensor reading the mat.
+- **External** --- Reports on the **world around** the robot. A touch sensor pressing a wall. A light sensor reading the mat.
 
-- **[[PROPRIOCEPTIVE|Proprioceptive]]** — Reports on the **robot's own state**. Proprioceptive sensing is how you know you are sitting down with your eyes shut.
+- **[[PROPRIOCEPTIVE|Proprioceptive]]** --- Reports on the **robot's own state**. Proprioceptive sensing is how you know you are sitting down with your eyes shut.
 
 {{< callout variant="gold" title="You Will Meet Both in the Coding Strand" >}}
-The touch sensor and the light sensor look outward. But the counter inside each motor, telling the robot how far its own wheels have turned, looks *inward* — that one is proprioceptive.
+The touch sensor and the light sensor look outward. But the counter inside each motor, telling the robot how far its own wheels have turned, looks *inward* --- that one is proprioceptive.
 
 Same idea as knowing where your hand is without looking at it.
 {{< /callout >}}
 
-## Do It — Find the Six
+## Do It --- Find the Six
 
 ### 1. Snowball your definition
 
@@ -218,7 +218,7 @@ Copy your one-sentence definition from Try It onto scrap paper. No name on it.
 
 Screw it into a ball. On the count of three, everyone throws. Pick up whichever one lands near you.
 
-Read it. Now improve it — add something it missed, or cut something that is not really needed.
+Read it. Now improve it --- add something it missed, or cut something that is not really needed.
 {{< short-answer key="p3_snowball_got" label="Definition picked up" prompt="The definition I picked up said:" >}}
 {{< ask key="p3_snowball_changed" label="What I changed" >}}What I changed, and why:{{< /ask >}}
 
@@ -227,7 +227,7 @@ Throw again. Do it twice more. Then read a few out to the class.
 
 ### 2. Become the expert on one component
 
-Split the six components across your team, one each — or one per pair if you are a small team.
+Split the six components across your team, one each --- or one per pair if you are a small team.
 
 Yours is the one you have to explain to everybody else. Write it in your own words, not copied from above, and find **one example that is not on this sheet**.
 
@@ -288,7 +288,7 @@ People and robots solve the same problems in different materials. Match each one
 columns:
   - head: "People"
     width: 30%
-  - head: "Robots — letter"
+  - head: "Robots --- letter"
     width: 30%
   - head: "Why that one"
 rows:
@@ -339,7 +339,7 @@ Back to the table. For each component, point at the actual part.
 columns:
   - head: "Component"
     width: 26%
-  - head: "In my kit, this is…"
+  - head: "In my kit, this is..."
     width: 38%
   - head: "Do I have more than one option?"
 rows:
@@ -384,7 +384,7 @@ rows:
 {{< callout variant="red" title="⚠ One of Them Is Not in the Box" >}}
 Five of these you can hold. One of them you have not made yet.
 
-Which one — and what does that tell you about who finishes building this robot?
+Which one --- and what does that tell you about who finishes building this robot?
 {{< /callout >}}
 
 {{< answer key="p3_not_in_box" label="Not in the box" >}}
@@ -415,7 +415,7 @@ rows:
     - key: p3_rm3_res
       aria: "Remove 3 result"
 {{< /gridtable >}}
-{{< ask key="p3_which_essential" label="Which is essential" >}}Which one, taken away, stops it being a robot at all — rather than just a worse robot?{{< /ask >}}
+{{< ask key="p3_which_essential" label="Which is essential" >}}Which one, taken away, stops it being a robot at all --- rather than just a worse robot?{{< /ask >}}
 
 ### 6. Go back to your list
 
@@ -489,13 +489,13 @@ rows:
 {{< /gridtable >}}
 {{< short-answer key="p3_surprising" label="Surprising count" prompt="How many did the class find that nobody would have called a robot an hour ago?" >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### Name the component
 
 {{< gridtable >}}
 columns:
-  - head: "This part of a robot…"
+  - head: "This part of a robot..."
     width: 56%
   - head: "Which of the six?"
 rows:
@@ -579,6 +579,6 @@ rows:
 
 You have found that some machines do what they are told the instant you tell them, and some are left to get on with it alone. That difference has a name, and it turns out to matter more than almost anything else.
 
-In **Systems Project 3 — Who's Driving?**, you sort the world into three kinds of control.
+In **Systems Project 3 --- Who's Driving?**, you sort the world into three kinds of control.
 
 *You are also ready for **Coding Project 3**, where the effectors on your own robot start turning.*

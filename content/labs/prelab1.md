@@ -28,7 +28,7 @@ meta:
     definition: "Your robot · a charged battery · a computer on the same network · about one session"
 ---
 
-## PreLab 1 — Get the Robot Listening to You
+## PreLab 1 --- Get the Robot Listening to You
 
 Completion only again. The point is that by the end of this page your robot has run
 a program that you typed, and you have written down the numbers you will need every session after this.
@@ -42,9 +42,9 @@ a program that you typed, and you have written down the numbers you will need ev
 - src: ide/chromebook-connection-guide.png
   alt: "Connect to Wombat through computer's Wi-Fi settings."
 - src: ide/software-suite.jpg
-  alt: "The KIPR Software Suite — click KISS IDE."
+  alt: "The KIPR Software Suite --- click KISS IDE."
 - src: ide/new-folder-a.jpg
-  alt: "Project Explorer — add a user folder."
+  alt: "Project Explorer --- add a user folder."
 {{< /figrow >}}
 
 {{< checklist >}}
@@ -92,10 +92,10 @@ The IDE turns your C into numbers the Wombat can follow. That step is called com
 - src: ide/code-template.png
   alt: "Every new project starts like this."
 - src: ide/compile-succeeded.png
-  alt: "\"Compilation succeeded\" — it is on the robot."
+  alt: "\"Compilation succeeded\" --- it is on the robot."
 {{< /figrow >}}
 
-Make a new project called **hello_c** and type this in. Do not paste it — type it.
+Make a new project called **hello_c** and type this in. Do not paste it --- type it.
 
 {{< code >}}
 #include <kipr/wombat.h>
@@ -124,7 +124,7 @@ int main()
 
 {{< figrow >}}
 - src: botui/shutdown_guide.png
-  alt: "Shut down from the menu — never straight off the switch."
+  alt: "Shut down from the menu --- never straight off the switch."
 {{< /figrow >}}
 
 {{< checklist >}}
@@ -152,6 +152,6 @@ fields:
 {{< /signoff >}}
 
 {{< gate title="You are ready" >}}
-**Lab 1.1 — Computers Follow Instructions** assumes everything on this page.
+**Lab 1.1 --- Computers Follow Instructions** assumes everything on this page.
 Start there.
 {{< /gate >}}

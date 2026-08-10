@@ -54,7 +54,7 @@ meta:
         label: "A timer"
 ---
 
-## Try It — Five Minutes, No Planning
+## Try It --- Five Minutes, No Planning
 
 Build the tallest tower you can that will hold a can of soup on top.
 
@@ -91,31 +91,31 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p1_would_change" label="What you would change" >}}If you got another five minutes right now, what is the first thing you would change?{{< /ask >}}
 
-{{< callout variant="gold" title="You Just Did Engineering — Badly" >}}
+{{< callout variant="gold" title="You Just Did Engineering --- Badly" >}}
 You had a problem, you tried something, it worked or it did not, and you learned something.
 
 That is the right idea. But you learned it slowly and by accident. Engineers do the same thing on purpose, in an order, and they write it down.
 {{< /callout >}}
 
-## Learn It — Eight Steps, In Order
+## Learn It --- Eight Steps, In Order
 
-The [[DESIGN PROCESS|design process]] is how engineers turn a problem into something that works. It is not a straight line — you go back and around it many times.
+The [[DESIGN PROCESS|design process]] is how engineers turn a problem into something that works. It is not a straight line --- you go back and around it many times.
 
-1. **Define the problem** — Say exactly what has to be solved. This is the most important step and the one most often rushed.
+1. **Define the problem** --- Say exactly what has to be solved. This is the most important step and the one most often rushed.
 
-2. **Do background research** — Find out what already exists. Somebody has probably solved something close to this.
+2. **Do background research** --- Find out what already exists. Somebody has probably solved something close to this.
 
-3. **Specify requirements** — List what your answer must do to count as working. A [[REQUIREMENT|requirement]] is a test it has to pass.
+3. **Specify requirements** --- List what your answer must do to count as working. A [[REQUIREMENT|requirement]] is a test it has to pass.
 
-4. **Brainstorm solutions** — Get several different ideas out. Not one idea. Several.
+4. **Brainstorm solutions** --- Get several different ideas out. Not one idea. Several.
 
-5. **Choose the best one** — Compare your ideas against the requirements and pick. Say why you picked it.
+5. **Choose the best one** --- Compare your ideas against the requirements and pick. Say why you picked it.
 
-6. **Do development work** — Work the chosen idea up properly. Sketch it. Decide the details.
+6. **Do development work** --- Work the chosen idea up properly. Sketch it. Decide the details.
 
-7. **Build a [[PROTOTYPE:design|prototype]]** — Make a first version. A prototype is meant to be tested, not admired.
+7. **Build a [[PROTOTYPE:design|prototype]]** --- Make a first version. A prototype is meant to be tested, not admired.
 
-8. **Test and redesign** — Find out where it fails, change it, and go round again.
+8. **Test and redesign** --- Find out where it fails, change it, and go round again.
 
 {{< callout variant="navy" title="Step 1 Is Where Projects Go Wrong" >}}
 "Build a tall tower" is not a defined problem. **"Build the tallest tower that will hold a can of soup without falling over"** is.
@@ -131,7 +131,7 @@ In the 1920s both back wheels were fixed to one bar, so the engine drove them at
 
 **The defined problem:** let the two wheels turn at different speeds while the engine still drives them both.
 
-*Someone had to notice the skidding, work out why it happened, and say what a solution would have to do — before anyone could design one.*
+*Someone had to notice the skidding, work out why it happened, and say what a solution would have to do --- before anyone could design one.*
 
 ### Steps 7 and 8 are a loop
 
@@ -140,10 +140,10 @@ Build, test, find the weakness, change it, build again. Engineers expect to go r
 A prototype that fails is not a wasted afternoon. It is the step that tells you what to fix.
 
 {{< callout variant="gold" title="Draw That Loop" >}}
-In Systems Project 4 you learned to send an arrow back up to an earlier box. The design process is exactly that shape — test, and if it failed, go back to step 6.
+In Systems Project 4 you learned to send an arrow back up to an earlier box. The design process is exactly that shape --- test, and if it failed, go back to step 6.
 {{< /callout >}}
 
-## Do It — The Tower, Properly
+## Do It --- The Tower, Properly
 
 ### 1. Define the problem
 
@@ -154,7 +154,7 @@ Write it in one sentence. It must say what you are building, what it has to hold
 
 ### 2. Look at towers that already exist
 
-Think of tall structures you have seen — bridges, cranes, pylons, radio masts, scaffolding.
+Think of tall structures you have seen --- bridges, cranes, pylons, radio masts, scaffolding.
 
 {{< gridtable >}}
 columns:
@@ -196,7 +196,7 @@ List what your tower must do. Each one has to be something you can measure or te
 columns:
   - head: "#"
     width: 14%
-  - head: "My tower must…"
+  - head: "My tower must..."
     width: 52%
   - head: "How I will test it"
 rows:
@@ -224,7 +224,7 @@ rows:
 You cannot test "strong." You can test "holds a full can of soup for thirty seconds without leaning."
 {{< /callout >}}
 
-### 4. Brainstorm — three ideas, not one
+### 4. Brainstorm --- three ideas, not one
 
 Sketch three different towers. Genuinely different, not the same one three times.
 
@@ -370,7 +370,7 @@ Two cans. Or a can balanced off to one side. Pick a harder test and run the loop
   label: "I made at least one change that came from a failed test"
 {{< /checklist >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### Which step is this?
 
@@ -456,10 +456,10 @@ rows:
 ### Think about it
 {{< ask key="p4_taller" label="Was it a waste" >}}Your Try It tower may well have been taller than your designed one. Does that mean the process was a waste of time?{{< /ask >}}
 {{< ask key="p4_rush" label="Rushing step 1" >}}Step 1 is the one people rush. What actually goes wrong later when the problem was never properly defined?{{< /ask >}}
-{{< ask key="p4_bulldoze" label="Bulldoze problem" >}}Your robot has to push objects off a line. Write that as a defined problem — one sentence, with a test in it.{{< /ask >}}
+{{< ask key="p4_bulldoze" label="Bulldoze problem" >}}Your robot has to push objects off a line. Write that as a defined problem --- one sentence, with a test in it.{{< /ask >}}
 
 ### Next
 
 You have the process. Now you point it at a real part of your robot.
 
-In **Systems Project 6 — Structure and [[FUNCTION|Function]]**, you design the blade your robot needs — and your class cannot attempt Coding Project 6 until you do.
+In **Systems Project 6 --- Structure and [[FUNCTION|Function]]**, you design the blade your robot needs --- and your class cannot attempt Coding Project 6 until you do.

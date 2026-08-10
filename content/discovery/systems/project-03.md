@@ -52,7 +52,7 @@ meta:
         label: "Three big sheets of paper for the class"
 ---
 
-## Try It — Move a Person
+## Try It --- Move a Person
 
 Pick a partner. One of you is the **driver**. One of you is the **robot**.
 
@@ -64,7 +64,7 @@ Keep your eyes open. But do **only** what you are told. Do not help. Do not gues
 If the driver says "walk," you walk. You do not stop until you are told to stop.
 {{< /callout >}}
 
-### Round 1 — talk them through it
+### Round 1 --- talk them through it
 
 The driver stands and watches. Say each step out loud as the robot goes.
 
@@ -72,7 +72,7 @@ You can see what happens. You can fix it right away.
 {{< short-answer key="p1_r1_time" label="Round 1 time" prompt="How long did Round 1 take?" >}}
 {{< short-answer key="p1_r1_bump" label="Round 1 bump" prompt="Did the robot bump the chair?" >}}
 
-### Round 2 — write it down first
+### Round 2 --- write it down first
 
 Now swap jobs. This time the driver may not talk at all.
 
@@ -122,7 +122,7 @@ In Round 2 you had to think of everything first. Once you handed over the paper,
 **Round 2 is how your Botball robot works.**
 {{< /callout >}}
 
-## Learn It — Three Kinds of Control
+## Learn It --- Three Kinds of Control
 
 Machines can be sorted by one question. **Who is in charge while it runs?**
 
@@ -176,7 +176,7 @@ A [[SEMI-AUTONOMOUS|semi-autonomous]] machine sits in the middle. You do part of
 
 *When two people sort the same machine differently, that is worth talking about. Both of you noticed something real.*
 
-## Do It — Sort the World
+## Do It --- Sort the World
 
 ### 1. Build a course
 
@@ -363,7 +363,7 @@ Write which kind it is at each of these times.
 
 {{< gridtable >}}
 columns:
-  - head: "Right now my robot is…"
+  - head: "Right now my robot is..."
     width: 56%
   - head: "Which kind?"
 rows:
@@ -386,7 +386,7 @@ rows:
 {{< /gridtable >}}
 {{< short-answer key="p3_changes" label="When it changes" prompt="One of those four is the moment it changes. Which one?" >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### Sort these
 
@@ -440,6 +440,6 @@ rows:
 
 Writing your plan on paper worked. But a long list of steps is hard to read.
 
-In **Systems Project 4 — Draw the Plan**, you learn to draw a plan instead of writing one.
+In **Systems Project 4 --- Draw the Plan**, you learn to draw a plan instead of writing one.
 
 *You are also ready for **Coding Project 4**. That is the first run your robot does on its own.*

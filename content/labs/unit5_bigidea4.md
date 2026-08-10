@@ -33,10 +33,10 @@ meta:
 
 ## Overview
 
-Every lab so far has asked "did it work?" Today's question is different: "did it get *better*?" You can't answer that without a number. Today you'll time a real mission run, store repeated timing results the same way you stored pose data in Big Idea 1, and then write code that actually studies that stored data — finding the best and worst runs, and putting them in order.
+Every lab so far has asked "did it work?" Today's question is different: "did it get *better*?" You can't answer that without a number. Today you'll time a real mission run, store repeated timing results the same way you stored pose data in Big Idea 1, and then write code that actually studies that stored data --- finding the best and worst runs, and putting them in order.
 
 {{< callout title="The Big Idea of This Unit" >}}
-A system that never measures its own performance can't tell whether a change actually helped. Feeling faster isn't the same as being faster — you need a number, and you need to keep it.
+A system that never measures its own performance can't tell whether a change actually helped. Feeling faster isn't the same as being faster --- you need a number, and you need to keep it.
 {{< /callout >}}
 
 ### By the end of this activity you will be able to:
@@ -48,28 +48,28 @@ A system that never measures its own performance can't tell whether a change act
 - Write a simple sort, and reason about how its cost changes as the data set grows.
 {.obj}
 
-## Phase 1 — The Mission: Restack & Shelve
+## Phase 1 --- The Mission: Restack & Shelve
 
 {{< callout title="The run" variant="navy" >}}
 Pick up **2 spilled cubes** and stack one [[ON TOP OF]] the other, placed on top of the **Large Green Cube**.
 {{< /callout >}}
 
-This single stacking action scores three things at once: Mission 12's Base Mission (two spilled cubes forming a valid stack), and Mission 16's Base *and* Bonus Mission (one, then a second, spilled cube ON TOP OF the Large Green Cube) — confirmed directly by the rules' own scoring examples. One clean action, most of the points on the board for these two missions.
+This single stacking action scores three things at once: Mission 12's Base Mission (two spilled cubes forming a valid stack), and Mission 16's Base *and* Bonus Mission (one, then a second, spilled cube ON TOP OF the Large Green Cube) --- confirmed directly by the rules' own scoring examples. One clean action, most of the points on the board for these two missions.
 
 {{< ask key="p1_restate" label="Restate mission" >}}Say the mission back in your own words. Why does stacking the cubes *on the Large Green Cube*, instead of just on each other, matter for how many points you earn?{{< /ask >}}
 
-## Phase 2 — Concept: Measuring and Reading Elapsed Time
+## Phase 2 --- Concept: Measuring and Reading Elapsed Time
 
 {{< concept "A new type: unsigned long" >}}
 - text: |
     You've stored numbers in `double`, `int`, and `char` so far. Timing needs a new one: `unsigned long`.
 
-    `long` is an [[INTEGER|integer]] type, like `int`, but built to hold *larger* whole numbers — useful here because a running clock value climbs quickly and keeps climbing the whole time your robot is on. `unsigned` means the variable can never be negative; in exchange for giving up negative numbers, it can count even higher using the same amount of memory. A timer value is never negative and never needs to be — a perfect match for `unsigned long`.
+    `long` is an [[INTEGER|integer]] type, like `int`, but built to hold *larger* whole numbers --- useful here because a running clock value climbs quickly and keeps climbing the whole time your robot is on. `unsigned` means the variable can never be negative; in exchange for giving up negative numbers, it can count even higher using the same amount of memory. A timer value is never negative and never needs to be --- a perfect match for `unsigned long`.
 {{< /concept >}}
 
 {{< concept "What does systime() actually return?" >}}
 - text: |
-    `systime()` returns an `unsigned long` that keeps climbing the whole time your robot is powered on — but the documentation doesn't spell out the exact unit, so don't guess. Find out for yourself, the same way you found `ticks_per_inch` by measuring instead of assuming:
+    `systime()` returns an `unsigned long` that keeps climbing the whole time your robot is powered on --- but the documentation doesn't spell out the exact unit, so don't guess. Find out for yourself, the same way you found `ticks_per_inch` by measuring instead of assuming:
 - code: |
     unsigned long start = systime();
     msleep(5000);   // wait exactly 5 real seconds
@@ -92,21 +92,21 @@ This single stacking action scores three things at once: Mission 12's Base Missi
 
 {{< concept "Modulo: making a raw number readable" >}}
 - text: |
-    A raw elapsed value is hard to read at a glance. `%` is the **modulo** operator — it gives you the *remainder* of division, not the quotient. That's exactly the tool for splitting a total into readable parts:
+    A raw elapsed value is hard to read at a glance. `%` is the **modulo** operator --- it gives you the *remainder* of division, not the quotient. That's exactly the tool for splitting a total into readable parts:
 - code: |
     unsigned long total_sec = elapsed / 1000;   // whole seconds (adjust if your unit differs)
     unsigned long minutes = total_sec / 60;
     unsigned long seconds = total_sec % 60;     // <-- THIS % is the modulo operator (math), not the %lu below (text formatting)
     printf("Elapsed: %lu:%02lu\n", minutes, seconds);
 - text: |
-    `%` is new — you've used `/` plenty, but division only gives you how many whole groups fit. Modulo gives you what's left over after those whole groups are removed.
+    `%` is new --- you've used `/` plenty, but division only gives you how many whole groups fit. Modulo gives you what's left over after those whole groups are removed.
 
-    Careful: you're about to see **two completely different jobs** for the `%` symbol in the same few lines. In `total_sec % 60`, it's **math** — the modulo operator, computing a remainder. In `"%lu"` inside a `printf` [[STRING|string]], it's not math at all — it's a placeholder telling `printf` "put a number here." Same symbol, two unrelated meanings, depending on whether it's sitting inside quotes or out in your code doing arithmetic.
+    Careful: you're about to see **two completely different jobs** for the `%` symbol in the same few lines. In `total_sec % 60`, it's **math** --- the modulo operator, computing a remainder. In `"%lu"` inside a `printf` [[STRING|string]], it's not math at all --- it's a placeholder telling `printf` "put a number here." Same symbol, two unrelated meanings, depending on whether it's sitting inside quotes or out in your code doing arithmetic.
 {{< /concept >}}
 
 {{< ask key="p2_modulo" label="Modulo reasoning" >}}If `total_sec` is 197, what do `197 / 60` and `197 % 60` each give you, and what do those two numbers mean together?{{< /ask >}}
 
-## Phase 3 — Build: Time the Restack Run
+## Phase 3 --- Build: Time the Restack Run
 
 Wrap your Restack & Shelve routine in the timing pattern from Phase 2, using your own library calls.
 
@@ -131,11 +131,11 @@ int main() {
 }
 {{< /code >}}
 
-{{< ask key="p3_timing" label="Timing placement" >}}Why does `init_time` get captured *before* the mission code runs, and `elapsed` get calculated *after* it finishes — what would go wrong if you calculated `elapsed` too early?{{< /ask >}}
+{{< ask key="p3_timing" label="Timing placement" >}}Why does `init_time` get captured *before* the mission code runs, and `elapsed` get calculated *after* it finishes --- what would go wrong if you calculated `elapsed` too early?{{< /ask >}}
 
-## Phase 4 — Run It 4 Times
+## Phase 4 --- Run It 4 Times
 
-Reset the 2 spilled cubes to their starting positions between attempts, and run the full mission 4 separate times. Record each printed elapsed time (in seconds — convert from the MM:SS your program prints).
+Reset the 2 spilled cubes to their starting positions between attempts, and run the full mission 4 separate times. Record each printed elapsed time (in seconds --- convert from the MM:SS your program prints).
 
 {{< repeattable count=4 prefix="trial" caption="Record your 4 trial times" >}}
 - kind: number
@@ -150,7 +150,7 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
   aria: seconds
 {{< /repeattable >}}
 
-## Phase 5 — Concept: Studying Your Own Data
+## Phase 5 --- Concept: Studying Your Own Data
 
 {{< concept "An array of results, not just one" >}}
 - text: |
@@ -167,11 +167,11 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
         // this block runs once for i=0, once for i=1, once for i=2, once for i=3
     }
 - text: |
-    - `int i = 0` — runs once, right at the start: create a counter and set where it begins.
-    - `i < 4` — checked before every trip through the loop: keep going as long as this is true.
-    - `i++` — runs at the end of every trip: add 1 to the counter.
+    - `int i = 0` --- runs once, right at the start: create a counter and set where it begins.
+    - `i < 4` --- checked before every trip through the loop: keep going as long as this is true.
+    - `i++` --- runs at the end of every trip: add 1 to the counter.
 
-    The new part today isn't the loop itself — it's what you do with `i` inside it. Since array slots are numbered, `i` can walk straight into your array as an [[INDEX|index]]: `times[i]` means "whichever slot `i` currently points to." As `i` counts `0, 1, 2, 3`, `times[i]` visits every slot in the array in order.
+    The new part today isn't the loop itself --- it's what you do with `i` inside it. Since array slots are numbered, `i` can walk straight into your array as an [[INDEX|index]]: `times[i]` means "whichever slot `i` currently points to." As `i` counts `0, 1, 2, 3`, `times[i]` visits every slot in the array in order.
 {{< /concept >}}
 
 {{< concept "Linear search: finding the best and worst" >}}
@@ -185,12 +185,12 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
         if (times[i] > slowest) slowest = times[i];
     }
 - text: |
-    This checks every element exactly once — that's why it's called *linear*: the work grows in a straight line with the size of the array.
+    This checks every element exactly once --- that's why it's called *linear*: the work grows in a straight line with the size of the array.
 {{< /concept >}}
 
 {{< concept "Swapping two values" >}}
 - text: |
-    Sorting means trading two values' positions. That takes three lines, not two — if you just wrote `times[i] = times[i+1];` then `times[i+1] = times[i];`, the first line would already overwrite `times[i]`'s original value before you had a chance to move it into `times[i+1]`. You need a temporary holding spot:
+    Sorting means trading two values' positions. That takes three lines, not two --- if you just wrote `times[i] = times[i+1];` then `times[i+1] = times[i];`, the first line would already overwrite `times[i]`'s original value before you had a chance to move it into `times[i+1]`. You need a temporary holding spot:
 - code: |
     double temp = times[i];        // 1. set the first value aside, so it isn't lost
     times[i] = times[i + 1];       // 2. copy the second value into the first spot
@@ -211,7 +211,7 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
         }
     }
 - text: |
-    Walk through it by hand with 4 index cards showing your own 4 times, out of order. Do the swaps yourself, pass by pass, until they're sorted. For only 4 values, 3 passes is always enough to guarantee a full sort — that's why the outer loop stops at `pass < 3`.
+    Walk through it by hand with 4 index cards showing your own 4 times, out of order. Do the swaps yourself, pass by pass, until they're sorted. For only 4 values, 3 passes is always enough to guarantee a full sort --- that's why the outer loop stops at `pass < 3`.
 - image:
     src: bubble_sort.svg
     alt: Bubble sort passes bubbling the largest value to the end
@@ -234,7 +234,7 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
         }
     }
 - text: |
-    If an entire pass finds nothing out of order, `swapped` never gets reset to 1, the `while` loop's condition goes false, and the sort stops — without wasting a pass it didn't need.
+    If an entire pass finds nothing out of order, `swapped` never gets reset to 1, the `while` loop's condition goes false, and the sort stops --- without wasting a pass it didn't need.
 {{< /concept >}}
 
 {{< ask key="p5_flag" label="Boolean flag reasoning" >}}Walk through the simple version by hand on paper first, with your own 4 numbers. Then answer: why does checking `swapped` let the improved version stop early on data that's already close to sorted? What's stored in the variable at the moment it does?{{< /ask >}}
@@ -244,9 +244,9 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
     Your search touched 4 values once each. Your sort, in the worst case, compared neighboring pairs across multiple passes over those same 4 values. Now imagine 100 recorded times instead of 4.
 {{< /concept >}}
 
-{{< ask key="p5_efficiency" label="Efficiency reasoning" >}}Would the search's work grow by roughly 25× (matching the 25× growth in data, from 4 to 100)? Would the sort's worst-case work grow by exactly 25×, or by something faster than that? This — how the amount of work grows as the data grows — is what computer scientists mean by **algorithm efficiency**.{{< /ask >}}
+{{< ask key="p5_efficiency" label="Efficiency reasoning" >}}Would the search's work grow by roughly 25× (matching the 25× growth in data, from 4 to 100)? Would the sort's worst-case work grow by exactly 25×, or by something faster than that? This --- how the amount of work grows as the data grows --- is what computer scientists mean by **algorithm efficiency**.{{< /ask >}}
 
-## Phase 6 — Build: Analyze Your Times
+## Phase 6 --- Build: Analyze Your Times
 
 Using your 4 recorded values from Phase 4, write the full analysis: hardcode the array, search for fastest/slowest, sort it, and report all of it.
 
@@ -284,46 +284,46 @@ printf("Sorted: %.2f, %.2f, %.2f, %.2f\n", times[0], times[1], times[2], times[3
 
 {{< ask key="p6_sorted_search" label="Sorted vs search" >}}Once your array is sorted, where do the fastest and slowest values sit in it? Could you have skipped writing a separate search entirely, if you'd sorted first?{{< /ask >}}
 
-## Phase 7 — Connect & Reflect
+## Phase 7 --- Connect & Reflect
 
 {{< callout title="AI Literacy Thread" >}}
 A system that never measures its own performance can't tell whether a change actually helped.
 {{< /callout >}}
 
-Every real engineering team does exactly what you just did: time something, run it more than once, store the results, and actually look at the numbers instead of trusting a gut feeling. A search engine times how long a query takes across millions of runs. A game studio times level-load times across every playtest. None of them trust a single run — and none of them just eyeball the numbers either; they sort them, find the extremes, and watch how those numbers change as the system scales up.
+Every real engineering team does exactly what you just did: time something, run it more than once, store the results, and actually look at the numbers instead of trusting a gut feeling. A search engine times how long a query takes across millions of runs. A game studio times level-load times across every playtest. None of them trust a single run --- and none of them just eyeball the numbers either; they sort them, find the extremes, and watch how those numbers change as the system scales up.
 
 Complete the reflection on your own.
 {.muted}
 
 {{< namebar >}}
 
-{{< ask key="p7_q1_timing" label="Reflection 1" n=1 >}}Walk through the `init_time` / `elapsed` pattern in your own words — what does each line actually do?{{< /ask >}}
+{{< ask key="p7_q1_timing" label="Reflection 1" n=1 >}}Walk through the `init_time` / `elapsed` pattern in your own words --- what does each line actually do?{{< /ask >}}
 
 {{< ask key="p7_q2_modulo" label="Reflection 2" n=2 >}}What does modulo (`%`) give you that regular division (`/`) doesn't?{{< /ask >}}
 
 {{< ask key="p7_q3_boolean" label="Reflection 3" n=3 >}}What was `swapped` actually tracking, and why does a stored boolean matter here in a way that an inline `&&`/`||` check couldn't?{{< /ask >}}
 
-{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete in 2–3 sentences: "A system that never measures its own performance can't tell whether a change helped. This means that before I claim my robot got faster, I should..."{{< /ask >}}
+{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete in 2--3 sentences: "A system that never measures its own performance can't tell whether a change helped. This means that before I claim my robot got faster, I should..."{{< /ask >}}
 
 ## Extension Challenges
 
 Finished early? Try one or more of these.
 {.muted}
 
-### Extension A — Time a Different Metric
+### Extension A --- Time a Different Metric
 
-- Apply the same array + search + sort pattern to a different measurement — for example, how many degrees off-target your last 4 turns landed. What changes in your code, and what stays exactly the same?
+- Apply the same array + search + sort pattern to a different measurement --- for example, how many degrees off-target your last 4 turns landed. What changes in your code, and what stays exactly the same?
 
 {{< answer key="ext_a" label="Extension A" >}}
 
-### Extension B — Watch the Early Exit
+### Extension B --- Watch the Early Exit
 
-- Add a `printf` inside the `while (swapped)` loop that prints the value of `swapped` at the end of each pass. Run your sort on data that's already close to sorted — how many passes does it actually take before `swapped` stays 0?
+- Add a `printf` inside the `while (swapped)` loop that prints the value of `swapped` at the end of each pass. Run your sort on data that's already close to sorted --- how many passes does it actually take before `swapped` stays 0?
 
 {{< answer key="ext_b" label="Extension B" >}}
 
-### Extension C — Scaling to 8
+### Extension C --- Scaling to 8
 
-- If you had 8 trial times instead of 4, how would you need to change the array declaration and the loop bounds? In the worst case, roughly how many more comparisons would the sort need — twice as many, or more than that?
+- If you had 8 trial times instead of 4, how would you need to change the array declaration and the loop bounds? In the worst case, roughly how many more comparisons would the sort need --- twice as many, or more than that?
 
 {{< answer key="ext_c" label="Extension C" >}}

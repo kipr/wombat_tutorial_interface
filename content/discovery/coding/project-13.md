@@ -53,9 +53,9 @@ meta:
         label: "Your [[FUNCTION|function]] list from Project 12"
 ---
 
-## Try It — Sabotage Your Own Robot
+## Try It --- Sabotage Your Own Robot
 
-Load your Project 12 program — the blue pom run. Before you press start, **move the first pom about four inches to one side.**
+Load your Project 12 program --- the blue pom run. Before you press start, **move the first pom about four inches to one side.**
 
 Now run it and watch closely.
 
@@ -88,7 +88,7 @@ It drove to a spot, closed a claw on empty air, carried nothing across the field
 Every program you have written does this. They all assume everything goes right.
 {{< /safety >}}
 
-{{< ask key="p1_how_much_ruined" label="How much ruined" >}}Something goes slightly wrong in a real match — a cube got bumped, your robot drifted an inch. How much of your run is ruined?{{< /ask >}}
+{{< ask key="p1_how_much_ruined" label="How much ruined" >}}Something goes slightly wrong in a real match --- a cube got bumped, your robot drifted an inch. How much of your run is ruined?{{< /ask >}}
 
 ### You do this all day
 
@@ -119,10 +119,10 @@ rows:
       - key: p1_bag
         aria: Bag
 {{< /gridtable >}}
-That last one is exactly what your robot needs — a way to notice that it is carrying nothing.
+That last one is exactly what your robot needs --- a way to notice that it is carrying nothing.
 {.muted}
 
-## Learn It — Ask Once, Then Choose
+## Learn It --- Ask Once, Then Choose
 
 An `if` [[STATEMENT|statement]] asks a question and only runs its [[BLOCK|block]] when the answer is true.
 
@@ -133,11 +133,11 @@ if (digital(bump) == 1)
 }
 ```
 
-The [[CONDITION|condition]] in the parentheses is written exactly the same way as a `while` condition — same symbols, same rules, same `==` trap.
+The [[CONDITION|condition]] in the parentheses is written exactly the same way as a `while` condition --- same symbols, same rules, same `==` trap.
 
 ### The one difference that matters
 
-**while — keeps asking**
+**while --- keeps asking**
 
 ```text
 while (digital(bump) == 0)
@@ -151,11 +151,11 @@ Checks, runs the
 
 block
 
-, checks again, runs again… until the answer changes.
+, checks again, runs again... until the answer changes.
 
 The robot stays here.
 
-**if — asks once**
+**if --- asks once**
 
 ```text
 if (digital(bump) == 0)
@@ -222,7 +222,7 @@ has no
 
 condition
 
-— it means "every other possibility."
+--- it means "every other possibility."
 
 if / else if / else
 
@@ -248,7 +248,7 @@ first
 true one runs and the rest are skipped, even if they are also true.
 
 {{< callout title="Order Changes the Answer" variant="navy" >}}
-In an `else if` chain the robot stops at the first true condition. So put the most specific check first and the catch-all last — or your specific case will never get a look in.
+In an `else if` chain the robot stops at the first true condition. So put the most specific check first and the catch-all last --- or your specific case will never get a look in.
 {{< /callout >}}
 
 ### A decision inside a decision
@@ -279,14 +279,14 @@ Nesting more than two deep gets hard to read fast. If you need three, that is us
 {.muted}
 
 {{< safety title="⚠ No Semicolon After the Condition" >}}
-`if (digital(bump) == 1);` — that stray [[SEMICOLON|semicolon]] makes an empty `if`. The block after it then runs **every single time**, condition or not.
+`if (digital(bump) == 1);` --- that stray [[SEMICOLON|semicolon]] makes an empty `if`. The block after it then runs **every single time**, condition or not.
 
 Same rule as `while`, and it is just as hard to spot.
 {{< /safety >}}
 
-## Do It — Make It Choose
+## Do It --- Make It Choose
 
-### Step 1 — Your first decision
+### Step 1 --- Your first decision
 
 New project called `Choices`. Write a program that checks the touch [[SENSOR|sensor]] once and prints a different message either way.
 
@@ -302,13 +302,13 @@ else
 msleep(3000);
 ```
 
-Run it twice — once holding the sensor pressed, once not.
+Run it twice --- once holding the sensor pressed, once not.
 
 {{< checklist >}}
 - key: p3_first_if
   label: "I get a different message depending on the sensor"
 {{< /checklist >}}
-### Step 2 — Swap if for while and watch what breaks
+### Step 2 --- Swap if for while and watch what breaks
 
 Change your `if` to a `while`. Leave everything else alone. Run it without [[TOUCHING]] the sensor.
 
@@ -316,7 +316,7 @@ Change your `if` to a `while`. Leave everything else alone. Run it without [[TOU
 
 Change it back. You have just seen the difference from the inside.
 
-### Step 3 — Pick a side with a button
+### Step 3 --- Pick a side with a button
 
 Real teams run one program from either starting box. The driver presses a button to say which side.
 
@@ -339,17 +339,17 @@ else
 ```
 
 {{< callout title="Remember Waypoint Alpha and Bravo?" variant="gold" >}}
-Back in Project 4 you wrote two nearly identical programs — one for Mission 1 on the left, one for Mission 10 on the right. Now they can be one program that asks which side it is on.
+Back in Project 4 you wrote two nearly identical programs --- one for Mission 1 on the left, one for Mission 10 on the right. Now they can be one program that asks which side it is on.
 {{< /callout >}}
 
-The `&&` means "and" — keep waiting while *neither* button is pressed. You do not need to master it today; copy the pattern and it works.
+The `&&` means "and" --- keep waiting while *neither* button is pressed. You do not need to master it today; copy the pattern and it works.
 {.muted}
 
 {{< checklist >}}
 - key: p3_side_select
   label: "One program runs from either starting box"
 {{< /checklist >}}
-### Step 4 — Did I actually grab it?
+### Step 4 --- Did I actually grab it?
 
 This is the fix for what you saw in Try It. Put a touch sensor where a held cube presses it, or check whether the claw closed further than it should have.
 
@@ -369,7 +369,7 @@ else
 }
 ```
 
-Now sabotage it again — move the pom aside like you did in Try It.
+Now sabotage it again --- move the pom aside like you did in Try It.
 
 {{< ask key="p3_retry_result" label="Retry result" >}}What did the robot do differently this time?{{< /ask >}}
 
@@ -377,7 +377,7 @@ Now sabotage it again — move the pom aside like you did in Try It.
 - key: p3_verify_grab
   label: "My robot notices a failed grab and does something about it"
 {{< /checklist >}}
-### Step 5 — A three-way choice
+### Step 5 --- A three-way choice
 
 Use `else if` to pick between three actions based on how far along the robot is.
 
@@ -398,19 +398,19 @@ else
 
 {{< ask key="p3_order_matters" label="Order matters" >}}Swap the first two conditions around and run it again. What goes wrong, and why?{{< /ask >}}
 
-### Step 6 — Mission 3 Advanced — two opposite stacks13 pts
+### Step 6 --- Mission 3 Advanced --- two opposite stacks13 pts
 
 {{< mission-summary mission="3" >}}
 {{< /mission-summary >}}
 {{< callout title="Going for Advanced Gets You the Bonus Too" variant="gold" >}}
-Two opposite stacks *are* two stacks. Score the Advanced Bonus and the 9-point Bonus comes with it — 22 points from this one run.
+Two opposite stacks *are* two stacks. Score the Advanced Bonus and the 9-point Bonus comes with it --- 22 points from this one run.
 {{< /callout >}}
 
 {{< score-examples >}}
 scores:
   - "Two stacks with opposite colour arrangements."
   - "The stacks do not need to be next to each other."
-  - "The shape of the stack does not matter — only the [[ON TOP OF]] relationships."
+  - "The shape of the stack does not matter --- only the [[ON TOP OF]] relationships."
 does_not_score:
   - "Green on Green, or Yellow on Yellow."
   - "A single three-cube stack counted as two stacks."
@@ -420,7 +420,7 @@ does_not_score:
 Each cube may contribute to **only one** scoring stack. You need two greens and two yellows, and every one of them has a specific place to be. Get the second stack's colours the wrong way round and you drop from 22 points to 9.
 {{< /safety >}}
 
-**Where the decisions go.** This run has four grabs and four placements in a row. If grab two fails and the robot does not notice, everything after it is wasted. Put a check after each grab — the pattern from step 4 — so a miss costs you one cube instead of the whole mission.
+**Where the decisions go.** This run has four grabs and four placements in a row. If grab two fails and the robot does not notice, everything after it is wasted. Put a check after each grab --- the pattern from step 4 --- so a miss costs you one cube instead of the whole mission.
 
 {{< gridtable >}}
 columns:
@@ -473,7 +473,7 @@ rows:
 - key: p3_m3_nocheck
   label: "No cube is shared between the two stacks"
 {{< /checklist >}}
-### Step 7 — Run it five times
+### Step 7 --- Run it five times
 
 {{< gridtable >}}
 columns:
@@ -538,7 +538,7 @@ rows:
       - key: p3_r5_pts
         aria: "R5 points"
 {{< /gridtable >}}
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### My score
 
@@ -550,12 +550,12 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 3 — Bonus (a second mixed stack)"
+      - text: "Mission 3 --- Bonus (a second mixed stack)"
       - key: p4_s_m3bo
         aria: "Score M3 bonus"
       - text: 9
   - cells:
-      - text: "Mission 3 — Advanced (opposite arrangements)"
+      - text: "Mission 3 --- Advanced (opposite arrangements)"
       - key: p4_s_m3adv
         aria: "Score M3 advanced"
       - text: 13
@@ -651,12 +651,12 @@ rows:
 
 {{< ask key="p4_smarter" label="Is it smarter" >}}A robot that checks its own work looks smarter than one that does not. Is it actually smarter, or is it something else?{{< /ask >}}
 
-{{< ask key="p4_how_much" label="How much vs yes no" >}}Every decision you made today came from a switch — pressed or not pressed. What kinds of choices could your robot make if it could tell *how much* of something there is, instead of just yes or no?{{< /ask >}}
+{{< ask key="p4_how_much" label="How much vs yes no" >}}Every decision you made today came from a switch --- pressed or not pressed. What kinds of choices could your robot make if it could tell *how much* of something there is, instead of just yes or no?{{< /ask >}}
 
 ### Next
 
-Everything your robot senses right now is on or off. The field is not like that — a black line and a white mat are not two states of a switch, they are two brightnesses.
+Everything your robot senses right now is on or off. The field is not like that --- a black line and a white mat are not two states of a switch, they are two brightnesses.
 
-In **Project 14 — Seeing Light and Dark**, your robot gets a sensor that answers with a number instead of a yes.
+In **Project 14 --- Seeing Light and Dark**, your robot gets a sensor that answers with a number instead of a yes.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

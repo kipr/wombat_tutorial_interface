@@ -52,7 +52,7 @@ meta:
         label: "A challenge you have already solved once"
 ---
 
-## Try It — Take Away One Player
+## Try It --- Take Away One Player
 
 Pick a sport your group knows. List the positions people play, and what each one is there to do.
 
@@ -62,7 +62,7 @@ columns:
     width: 30%
   - head: "What they do"
     width: 40%
-  - head: "If nobody did it…"
+  - head: "If nobody did it..."
 rows:
   -
     - key: p1_r1
@@ -101,13 +101,13 @@ Think about the last time you worked on the robot together. Was one person typin
 {{< /callout >}}
 {{< ask key="p1_last_time" label="Last time" >}}What actually happened last time your team worked together?{{< /ask >}}
 
-## Learn It — Goals First, Then Jobs
+## Learn It --- Goals First, Then Jobs
 
 A team without an agreed goal is several people working hard in different directions.
 
 ### What makes a goal usable
 
-A good goal is [[TANGIBLE|tangible]] — you can point at it and say whether it happened.
+A good goal is [[TANGIBLE|tangible]] --- you can point at it and say whether it happened.
 
 {{< gridtable >}}
 columns:
@@ -126,7 +126,7 @@ rows:
     - text: "Everyone has been Driver at least twice"
 {{< /gridtable >}}
 
-And goals need **ranking**. When two goals pull against each other — and they will — the ranking is what settles it.
+And goals need **ranking**. When two goals pull against each other --- and they will --- the ranking is what settles it.
 
 ### The four jobs
 
@@ -170,11 +170,11 @@ Rotate every challenge until each of you has done every job.
 
 ### Holding each other to it
 
-Once people have jobs, they can be [[ACCOUNTABLE|accountable]] for them — meaning the team can fairly ask how it is going, because everybody knows who had what.
+Once people have jobs, they can be [[ACCOUNTABLE|accountable]] for them --- meaning the team can fairly ask how it is going, because everybody knows who had what.
 
-*That only works if it is kind. "You said you would have the turn accountable working — how is it going, do you need a hand?" is accountability. Blaming is not.*
+*That only works if it is kind. "You said you would have the turn accountable working --- how is it going, do you need a hand?" is accountability. Blaming is not.*
 
-## Do It — Decide, Divide, Rotate
+## Do It --- Decide, Divide, Rotate
 
 ### 1. Write your team goals
 
@@ -211,7 +211,7 @@ rows:
 
 ### 2. Rank them
 
-Put them in order — 1 is the one you would protect if you could only keep one.
+Put them in order --- 1 is the one you would protect if you could only keep one.
 
 {{< gridtable >}}
 columns:
@@ -256,7 +256,7 @@ Deciding now which one wins is far easier than deciding in the middle of an argu
 
 ### 3. Five reasons and five struggles
 
-As a class, work out why team structure matters — and what goes wrong even when you have it.
+As a class, work out why team structure matters --- and what goes wrong even when you have it.
 
 {{< gridtable >}}
 columns:
@@ -329,7 +329,7 @@ rows:
       aria: "Builder not"
 {{< /gridtable >}}
 
-### 5. Round one — a challenge you have already beaten
+### 5. Round one --- a challenge you have already beaten
 
 Pick something your team has solved before. The point is not the challenge; it is working in role while you do it.
 
@@ -476,13 +476,13 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p3_check_kindly" label="Checking kindly" >}}How will your team check whether these got done, without it turning into blame?{{< /ask >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### Whose job is it?
 
 {{< gridtable >}}
 columns:
-  - head: "Somebody needs to…"
+  - head: "Somebody needs to..."
     width: 62%
   - head: "Which role"
 rows:
@@ -562,6 +562,6 @@ rows:
 
 ### Next
 
-You know what you are aiming at and who is doing what. What you do not have yet is *when* — or any way of finding out whether it is working.
+You know what you are aiming at and who is doing what. What you do not have yet is *when* --- or any way of finding out whether it is working.
 
-In **Systems Project 14 — Plans and Feedback**, you build a timeline and then go and ask somebody what you got wrong.
+In **Systems Project 14 --- Plans and Feedback**, you build a timeline and then go and ask somebody what you got wrong.

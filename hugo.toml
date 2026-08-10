@@ -4,11 +4,6 @@ title = 'KIPR · Botball Explorer'
 
 disableKinds = ['taxonomy', 'term', 'rss', 'sitemap']
 
-[markup.goldmark.extensions.typographer]
-  # Source text already contains the correct curly quotes, dashes and ellipses.
-  # Leave them exactly as written.
-  disable = true
-
 [markup.goldmark.parser]
   wrapStandAloneImageWithinParagraph = false
 

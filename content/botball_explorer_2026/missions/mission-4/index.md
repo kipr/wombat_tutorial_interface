@@ -31,7 +31,7 @@ scores:
   - "An Orange Pom and a Blue Pom are both [[OFF]] the line at the same moment."
 does_not_score:
   - "Any portion of the Orange Pom is touching the line."
-  - "An Orange Pom satisfies [[OFF]], and a Blue Pom satisfies [[OFF]] later — they are never simultaneously [[OFF]]."
+  - "An Orange Pom satisfies [[OFF]], and a Blue Pom satisfies [[OFF]] later --- they are never simultaneously [[OFF]]."
 {{< /score-examples >}}
 
 ## Judge Notes

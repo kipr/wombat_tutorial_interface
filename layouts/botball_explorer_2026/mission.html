@@ -5,7 +5,7 @@
 {{- $figures := slice -}}
 <main class="explorer-mission">
   <header class="explorer-mission-header">
-    <p class="explorer-eyebrow">2026 Fall Game — Mission {{ $number }} of 18</p>
+    <p class="explorer-eyebrow">2026 Fall Game - Mission {{ $number }} of 18</p>
     <div class="explorer-mission-title"><span>{{ printf "%02d" $number }}</span><h1>{{ partial "render-inline.html" (dict "page" . "text" .LinkTitle) | safeHTML }}</h1></div>
     <p class="explorer-mission-skill"><strong>Skill</strong> {{ .Params.skill }}</p>
   </header>
@@ -16,7 +16,7 @@
       {{- $maximum = add $maximum .points -}}
       {{- $resource := $.Resources.GetMatch .image -}}
       {{- $label := partial "mission-tier-title.html" (dict "id" .id "position" $.File.Path) -}}
-      {{- $alt := printf "Mission %d — %s field diagram" $number $label -}}
+      {{- $alt := printf "Mission %d - %s field diagram" $number $label -}}
       {{- $figures = $figures | append (dict "src" $resource.RelPermalink "alt" $alt) -}}
       <article class="explorer-tier explorer-tier-{{ .id }}" id="{{ .id }}">
         <div class="explorer-tier-score">

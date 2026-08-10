@@ -55,13 +55,13 @@ meta:
         label: "This project sheet"
 ---
 
-## Try It — Read the Mission First
+## Try It --- Read the Mission First
 
 You are about to score real points. Before you write a single line of code, find out exactly what the judge is looking for.
 
 {{< mission-summary mission="1" >}}
 {{< /mission-summary >}}
-**Mission 10 — Waypoint Bravo** is the same mission on the other side: the zone next to the **right** starting box. Everything you learn here works for both.
+**Mission 10 --- Waypoint Bravo** is the same mission on the other side: the zone next to the **right** starting box. Everything you learn here works for both.
 
 {{< safety title="⚠ They Do Not Share a Return Trip" >}}
 Mission 1 and Mission 10 must be completed **independently**. One drive back into a starting box cannot pay for both bonuses. Each one needs its own out-and-back run.
@@ -81,14 +81,14 @@ does_not_score:
   - "One robot does the base, a different robot does the bonus."
 {{< /score-examples >}}
 {{< callout title="The Judge Has to See It" variant="navy" >}}
-If a judge cannot clearly tell that your robot stopped, the mission does not score — even if you know it stopped. A stop that is too short to see is worth zero.
+If a judge cannot clearly tell that your robot stopped, the mission does not score --- even if you know it stopped. A stop that is too short to see is worth zero.
 
 Moving an arm or claw while the robot stays in place is still stopped. What matters is that its *position on the field* is not changing.
 {{< /callout >}}
 
 ### Walk it first
 
-Do not program yet. Put your robot in the starting box, then push it by hand through the whole mission — out to the zone, stop, back into the box.
+Do not program yet. Put your robot in the starting box, then push it by hand through the whole mission --- out to the zone, stop, back into the box.
 
 Now measure and write down what you just did.
 
@@ -122,7 +122,7 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p1_room_for_error" label="Room for error" >}}Look at the zone depth and your robot's length. How much room for error do you actually have?{{< /ask >}}
 
-## Learn It — Straight Is Harder Than It Looks
+## Learn It --- Straight Is Harder Than It Looks
 
 You already know how to make both wheels turn. Here is the part nobody warns you about: **equal power does not mean equal speed.**
 
@@ -136,7 +136,7 @@ Send 50 to both motors and your robot will drift. Every robot does. The reasons 
 {{< callout title="The Fix Is in the Numbers" variant="gold" >}}
 You cannot make the motors identical. You *can* give them different numbers so they end up going the same speed.
 
-If your robot drifts **left**, the left wheel is going too slow — or the right one too fast. Speed up the left, or slow down the right.
+If your robot drifts **left**, the left wheel is going too slow --- or the right one too fast. Speed up the left, or slow down the right.
 
 If it drifts **right**, do the opposite.
 {{< /callout >}}
@@ -145,7 +145,7 @@ Change one wheel at a time, by 2 or 3 at a time. Big jumps [[OVERSHOOT|overshoot
 {.muted}
 
 {{< callout title="It Will Drift Again Later" >}}
-The correction that works on a cold robot may not work after twenty runs — motors change as they warm up. The more power you use, the bigger the correction you need. Expect to re-check this on competition day.
+The correction that works on a cold robot may not work after twenty runs --- motors change as they warm up. The more power you use, the bigger the correction you need. Expect to re-check this on competition day.
 {{< /callout >}}
 
 ### Reverse is just a minus sign
@@ -161,7 +161,7 @@ motor(3, -50);
 ```
 
 {{< callout title="Watch Out" variant="navy" >}}
-If your straight-driving fix was `motor(0, 50); motor(3, 47);`, then reverse is `motor(0, -50); motor(3, -47);` — the *same* correction, both numbers negative. Students often flip which wheel gets the smaller number and then wonder why the robot curves on the way home.
+If your straight-driving fix was `motor(0, 50); motor(3, 47);`, then reverse is `motor(0, -50); motor(3, -47);` --- the *same* correction, both numbers negative. Students often flip which wheel gets the smaller number and then wonder why the robot curves on the way home.
 {{< /callout >}}
 
 ### Shape of the program
@@ -199,17 +199,17 @@ ao();
 msleep(30);                // Stop in the box
 ```
 
-## Do It — Drive the Mission
+## Do It --- Drive the Mission
 
-### Step 1 — Mark your starting position
+### Step 1 --- Mark your starting position
 
-Your robot must start in the same spot every single run, or nothing you measure means anything. Put it in the starting box and decide exactly how you will place it — against a wall, on a mark, lined up with a corner.
+Your robot must start in the same spot every single run, or nothing you measure means anything. Put it in the starting box and decide exactly how you will place it --- against a wall, on a mark, lined up with a corner.
 
 {{< ask key="p3_start_method" label="How you place the robot" >}}Describe how you place your robot so it starts identically every time:{{< /ask >}}
 
-### Step 2 — Get out to the zone
+### Step 2 --- Get out to the zone
 
-New project called `Waypoint`. [[ATTRIBUTION|Attribution]] [[COMMENT|comments]] at the top. Drive forward and stop — that is all for now.
+New project called `Waypoint`. [[ATTRIBUTION|Attribution]] [[COMMENT|comments]] at the top. Drive forward and stop --- that is all for now.
 
 Start with power 50 and guess a time. Run it. If you stopped short, add time. If you overshot, take time away.
 
@@ -250,9 +250,9 @@ rows:
 - key: p3_step_in_zone
   label: "My robot stops [[IN THE ZONE]]"
 {{< /checklist >}}
-### Step 3 — Fix the drift
+### Step 3 --- Fix the drift
 
-Watch which way your robot pulls as it drives out. Then adjust one wheel's power — small changes only.
+Watch which way your robot pulls as it drives out. Then adjust one wheel's power --- small changes only.
 
 {{< gridtable >}}
 columns:
@@ -310,9 +310,9 @@ rows:
       - key: p3_final_right
         aria: "Final right power"
 {{< /gridtable >}}
-### Step 4 — Make the stop obvious
+### Step 4 --- Make the stop obvious
 
-Add `ao();` then `msleep()` so the robot sits still in the zone. The mission says stop — the judge needs to see it.
+Add `ao();` then `msleep()` so the robot sits still in the zone. The mission says stop --- the judge needs to see it.
 
 {{< short-answer key="p3_wait_length" label="How long the robot waits" prompt="How long did you make the robot wait, and how did you decide?" >}}
 
@@ -323,9 +323,9 @@ Add `ao();` then `msleep()` so the robot sits still in the zone. The mission say
 **Test it on a person.** Have a teammate watch a run and ask them, without warning, whether the robot stopped. If they hesitate, it is not long enough.
 {.muted}
 
-### Step 5 — Come home
+### Step 5 --- Come home
 
-Now add the return trip. Same powers, both negative. Same drift correction — do not swap which wheel gets the smaller number.
+Now add the return trip. Same powers, both negative. Same drift correction --- do not swap which wheel gets the smaller number.
 
 The robot must end **[[FULLY WITHIN]]** the starting box. Not [[TOUCHING]] the line. Not hanging over the edge. Every part inside.
 
@@ -337,7 +337,7 @@ The robot must end **[[FULLY WITHIN]]** the starting box. Not [[TOUCHING]] the l
 {{< /checklist >}}
 {{< ask key="p3_back_time_diff" label="Backward time difference" >}}Did you have to make the backward time different from the forward time? Why might that happen?{{< /ask >}}
 
-### Step 6 — Run it five times
+### Step 6 --- Run it five times
 
 One good run is luck. Five good runs is a program. Run the whole mission five times without changing anything and record what happens.
 
@@ -394,7 +394,7 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p3_consistency" label="Run consistency" >}}Did all five runs come out the same? If not, what changed between them?{{< /ask >}}
 
-### Step 7 — Do the other side
+### Step 7 --- Do the other side
 
 Copy your program into a new project called `Waypoint Bravo` and run Mission 10 from the **right** starting box.
 
@@ -406,7 +406,7 @@ Remember the rule: each mission needs its own out-and-back. You cannot score bot
 {{< /checklist >}}
 {{< ask key="p3_other_side" label="Other side differences" >}}Did the same numbers work on the other side, or did you have to change them? Why do you think that is?{{< /ask >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### My score
 
@@ -418,22 +418,22 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 1 — Base (stop [[IN THE ZONE]])"
+      - text: "Mission 1 --- Base (stop [[IN THE ZONE]])"
       - key: p4_m1_base
         aria: "Mission 1 base"
       - text: 1
   - cells:
-      - text: "Mission 1 — Bonus (return [[FULLY WITHIN]])"
+      - text: "Mission 1 --- Bonus (return [[FULLY WITHIN]])"
       - key: p4_m1_bonus
         aria: "Mission 1 bonus"
       - text: 1
   - cells:
-      - text: "Mission 10 — Base (stop [[IN THE ZONE]])"
+      - text: "Mission 10 --- Base (stop [[IN THE ZONE]])"
       - key: p4_m10_base
         aria: "Mission 10 base"
       - text: 1
   - cells:
-      - text: "Mission 10 — Bonus (return [[FULLY WITHIN]])"
+      - text: "Mission 10 --- Bonus (return [[FULLY WITHIN]])"
       - key: p4_m10_bonus
         aria: "Mission 10 bonus"
       - text: 1
@@ -499,10 +499,10 @@ rows:
 
 {{< ask key="p4_overshoot_fix" label="Fixing an overshoot" >}}A teammate's robot stops just past the zone line every time. Name two different things they could change, and say which one you would try first.{{< /ask >}}
 
-{{< ask key="p4_harder_part" label="Which was harder" >}}Which was harder — getting the robot to the right place, or getting it to do the same thing five times? What does that tell you?{{< /ask >}}
+{{< ask key="p4_harder_part" label="Which was harder" >}}Which was harder --- getting the robot to the right place, or getting it to do the same thing five times? What does that tell you?{{< /ask >}}
 
 ### Next
 
-In **Project 5 — Learning to Turn**, the robot stops going in straight lines. You will use your straight-driving numbers as the starting point and learn the two ways to make a turn — and the three shapes a turn can have.
+In **Project 5 --- Learning to Turn**, the robot stops going in straight lines. You will use your straight-driving numbers as the starting point and learn the two ways to make a turn --- and the three shapes a turn can have.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

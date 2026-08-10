@@ -7,7 +7,7 @@
           "index": 7,
           "field": "alt",
           "from": "",
-          "to": "Compilation succeeded — your project is now on the Wombat.",
+          "to": "Compilation succeeded - your project is now on the Wombat.",
           "reason": "Approved correction for the malformed legacy alternative-text attribute."
         }
       ],
@@ -22,7 +22,7 @@
     "coding/project-14.html": {
       "wording": [
         {
-          "from": "It senses infrared, so an incandescent bulb or a phone flashlight works — a plain LED usually will not.",
+          "from": "It senses infrared, so an incandescent bulb or a phone flashlight works - a plain LED usually will not.",
           "to": "Any moderately powerful flashlight should work with the light sensor, including a phone flashlight. Point the light at the sensor and watch the reading change.",
           "reason": "Approved Coding Project 14 flashlight guidance: avoid unsupported tech claims; any moderately powerful flashlight including phone flashlight works; focus on pointing at the sensor."
         },
@@ -77,7 +77,7 @@
       "wording": [
         {
           "from": "Visual rangebar with inline widths implying API ends equal classroom limits",
-          "to": "Safety panel distinguishing API range 0–2047 from classroom safe band 150–1900",
+          "to": "Safety panel distinguishing API range 0-2047 from classroom safe band 150-1900",
           "reason": "Approved review: keep supported API ranges distinct from conservative classroom operating limits."
         },
         {
@@ -236,7 +236,7 @@
         {
           "from": "Invent/type/exchange practice password; character-mixing as primary strength rule",
           "to": "Fictional passphrase examples only; emphasize length, uniqueness, memorable passphrases, password managers, MFA; no persisted secret fields",
-          "reason": "Approved Systems Project 10 strong-password update per NIST guidance adapted for K–6."
+          "reason": "Approved Systems Project 10 strong-password update per NIST guidance adapted for K-6."
         }
       ]
     },

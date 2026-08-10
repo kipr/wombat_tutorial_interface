@@ -34,7 +34,7 @@ meta:
 
 ## Overview
 
-You've built a lot of useful [[FUNCTION|functions]] — `move_arm`, `move_claw`, `back_until_pressed`, `Tick_Drive`, `line_follow` — but every time you start a new program, you've had to type them all again. That ends today. You'll gather all your best functions into one **[[LIBRARY|library]]**: a single file you write once and pull into *any* program with one line. Real programmers don't rewrite their tools; they build a toolbox and carry it everywhere.
+You've built a lot of useful [[FUNCTION|functions]] --- `move_arm`, `move_claw`, `back_until_pressed`, `Tick_Drive`, `line_follow` --- but every time you start a new program, you've had to type them all again. That ends today. You'll gather all your best functions into one **[[LIBRARY|library]]**: a single file you write once and pull into *any* program with one line. Real programmers don't rewrite their tools; they build a toolbox and carry it everywhere.
 
 {{< callout title="Core Insight" >}}
 A library lets you write a function once and reuse it in every program forever. Your `main` stays short and readable, and all your tools live in one organized place.
@@ -47,9 +47,9 @@ A library lets you write a function once and reuse it in every program forever. 
 - Import your library with `from yourname import *` and call its functions from `main`.
 {.obj}
 
-## Phase 1 — Turn On Advanced Mode
+## Phase 1 --- Turn On Advanced Mode
 
-The IDE normally hides its more powerful features to keep things simple. To work with libraries, you need **Advanced** mode. This is a setting on the *user* — so it must be turned on for any user you want to have advanced features.
+The IDE normally hides its more powerful features to keep things simple. To work with libraries, you need **Advanced** mode. This is a setting on the *user* --- so it must be turned on for any user you want to have advanced features.
 
 1. Click the **menu button** in the **upper-left** corner.
 2. Open **User Preferences**.
@@ -57,23 +57,23 @@ The IDE normally hides its more powerful features to keep things simple. To work
 4. Go **back to the project menu**.
 
 {{< callout title="What changed?" variant="navy" >}}
-Back in your project, look at the **right side of the screen**. You'll see **new areas** that weren't there before — including places for your project's modules. That's where your library will live.
+Back in your project, look at the **right side of the screen**. You'll see **new areas** that weren't there before --- including places for your project's modules. That's where your library will live.
 {{< /callout >}}
 
 {{< ask key="p1_new_areas" label="New areas observed" >}}After switching to Advanced and returning to your project, what new areas appeared on the right side of the screen that you didn't see before?{{< /ask >}}
 
-## Phase 2 — Concept: What a Library Is
+## Phase 2 --- Concept: What a Library Is
 
 {{< concept "A library is a file full of reusable functions" >}}
 - text: |
-    Every program you've written already uses a library: the very first line, `import _kipr as k`, pulls in KIPR's library — that's where `k.motor`, `k.analog`, `k.set_servo_position`, and all the rest come from. You never wrote those; you *imported* them.
+    Every program you've written already uses a library: the very first line, `import _kipr as k`, pulls in KIPR's library --- that's where `k.motor`, `k.analog`, `k.set_servo_position`, and all the rest come from. You never wrote those; you *imported* them.
 
     Today you build your **own** library the same way: a file holding your functions, that you pull into any program with one `import` line.
 {{< /concept >}}
 
 {{< concept "A module holds the code; import pulls it in" >}}
 - text: |
-    In Python, a library is just another file ending in `.py` — called a **module**. There's no separate [[HEADER FILE|header file]] like KIPR's library uses behind the scenes; your file *is* the whole thing, code and all. When you write:
+    In Python, a library is just another file ending in `.py` --- called a **module**. There's no separate [[HEADER FILE|header file]] like KIPR's library uses behind the scenes; your file *is* the whole thing, code and all. When you write:
 - code: |
     from @@yourname@@ import *   # pulls your whole library into this program
 - text: |
@@ -82,14 +82,14 @@ Back in your project, look at the **right side of the screen**. You'll see **new
 
 {{< ask key="p2_include_meaning" label="What import does" >}}You've been using `import _kipr as k` all along. Now that you know what it does, explain in your own words what an `import` line actually does.{{< /ask >}}
 
-## Phase 3 — Create Your Library File
+## Phase 3 --- Create Your Library File
 
 First, make sure your user is set to the **advanced mode** so that you can create new files. From the IDE homescreen, click on *User Preferences*, select your user from the menu at the top, then set the interface mode to *Advanced*.
 
-Then, go to the project you created and in the file area on the right, create a new **Python file**. Name it after yourself, using your **first name** and the file extension `.py` — for example, `maria.py` or `devon.py`. This is *your* library.
+Then, go to the project you created and in the file area on the right, create a new **Python file**. Name it after yourself, using your **first name** and the file extension `.py` --- for example, `maria.py` or `devon.py`. This is *your* library.
 
 {{< callout title="Watch out for name collisions" variant="navy" >}}
-A few names are already taken — by Python itself. If your first name happens to match a built-in module like `math`, `random`, `os`, or `time`, naming your library that exact word will break your *own* import, because Python will find its own module first. If that's you, add your last initial (`math_r.py`) or use your last name instead.
+A few names are already taken --- by Python itself. If your first name happens to match a built-in module like `math`, `random`, `os`, or `time`, naming your library that exact word will break your *own* import, because Python will find its own module first. If that's you, add your last initial (`math_r.py`) or use your last name instead.
 {{< /callout >}}
 
 {{< gridtable >}}
@@ -108,9 +108,9 @@ rows:
 Once your library exists, you can take it anywhere. Select it and use the **File menu** to **download** it, then drop it into any other project. Write your tools once, carry them forever.
 {{< /callout >}}
 
-## Phase 4 — Move Your Functions Into the Library
+## Phase 4 --- Move Your Functions Into the Library
 
-Now fill your library with every reusable function you've built. Organize it in two clear sections, in this order: **[[VARIABLE|variables]] at the top**, then **function definitions**. This is the same structure you've used all along — now it lives in your library. Python doesn't use separate [[PROTOTYPE|prototypes]] like you may have used before; a function just needs to be defined above the point where it's called.
+Now fill your library with every reusable function you've built. Organize it in two clear sections, in this order: **[[VARIABLE|variables]] at the top**, then **function definitions**. This is the same structure you've used all along --- now it lives in your library. Python doesn't use separate [[PROTOTYPE|prototypes]] like you may have used before; a function just needs to be defined above the point where it's called.
 
 {{< code filename="yourname.py" >}}
 # ============================================================
@@ -214,14 +214,14 @@ def line_follow(ticks):
 {{< /code >}}
 
 {{< callout title="[[COMMENT|Comment]] like a teacher" variant="navy" >}}
-Notice every function has a comment explaining what it does, written for someone who has *never seen it before*. That's your job here: above each function, write a clear note saying what it does, what you pass in, and what happens. One day that "someone" will be you, six months from now — and you'll be glad you wrote it.
+Notice every function has a comment explaining what it does, written for someone who has *never seen it before*. That's your job here: above each function, write a clear note saying what it does, what you pass in, and what happens. One day that "someone" will be you, six months from now --- and you'll be glad you wrote it.
 {{< /callout >}}
 
 {{< ask key="p4_your_comment" label="Your function comment" >}}Pick one of your functions. Write the comment you'd put above it to explain it to a brand-new user who has never seen your code.{{< /ask >}}
 
-## Phase 5 — Import It and Call Every Function
+## Phase 5 --- Import It and Call Every Function
 
-Now the payoff. In your main program, add your library with a `from yourname import *` line at the top — right under the KIPR one. Then your `main` can call any function in your library. Test **every** function once to prove the library works.
+Now the payoff. In your main program, add your library with a `from yourname import *` line at the top --- right under the KIPR one. Then your `main` can call any function in your library. Test **every** function once to prove the library works.
 
 {{< code filename="main.py" >}}
 #!/usr/bin/python3
@@ -268,22 +268,22 @@ Run your program and check off each function as you confirm it works from the li
 
 {{< ask key="p5_all_worked" label="All worked" >}}Did every function work when called from your library? If one didn't, what was the problem and how did you fix it?{{< /ask >}}
 
-## Phase 6 — Connect: The AI Literacy Bridge
+## Phase 6 --- Connect: The AI Literacy Bridge
 
 {{< callout title="AI Literacy Thread" >}}
 Complex intelligent systems are built from organized, reusable building blocks.
 {{< /callout >}}
 
-No one builds a giant intelligent system as one enormous program. They build small, tested, reusable pieces and organize them into libraries — then combine those pieces into something big. The code that runs a self-driving car, a phone, or an AI model is built on layers of libraries, most written by other people, each one a tool someone built once and shared. Today you took your own scattered tools and organized them into a library. That's exactly how real software is built: not by rewriting everything, but by standing on well-organized, reusable parts.
+No one builds a giant intelligent system as one enormous program. They build small, tested, reusable pieces and organize them into libraries --- then combine those pieces into something big. The code that runs a self-driving car, a phone, or an AI model is built on layers of libraries, most written by other people, each one a tool someone built once and shared. Today you took your own scattered tools and organized them into a library. That's exactly how real software is built: not by rewriting everything, but by standing on well-organized, reusable parts.
 
 Read each scenario. Think it through, then write your answer.
 {.muted}
 
 {{< ask key="p6_one_library" label="One library benefit" >}}Why is it better to keep your functions in one library than to copy-paste them into every new program? Think about what happens when you find a bug.{{< /ask >}}
 
-{{< ask key="p6_documentation" label="Documentation importance" >}}You wrote comments for a user who's never seen your code. Why is clear documentation so important when code is meant to be reused by others — or by your future self?{{< /ask >}}
+{{< ask key="p6_documentation" label="Documentation importance" >}}You wrote comments for a user who's never seen your code. Why is clear documentation so important when code is meant to be reused by others --- or by your future self?{{< /ask >}}
 
-## Phase 7 — Individual Reflection
+## Phase 7 --- Individual Reflection
 
 Complete this section on your own.
 {.muted}
@@ -296,45 +296,45 @@ Complete this section on your own.
 
 {{< ask key="p7_q3_readable" label="Reflection 3" n=3 >}}How does moving your functions into a library make your `main` program easier to read?{{< /ask >}}
 
-{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete in 2–3 sentences: "Complex intelligent systems are built from organized, reusable building blocks. This means that a good programmer spends time..."{{< /ask >}}
+{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete in 2--3 sentences: "Complex intelligent systems are built from organized, reusable building blocks. This means that a good programmer spends time..."{{< /ask >}}
 
 ## Extension Challenges
 
 Finished early? Try one or more of these.
 {.muted}
 
-### Extension A — Add a Helper
+### Extension A --- Add a Helper
 
 - Write one brand-new function (like `stop_and_hold()` or `open_then_lower()`) and add it to your library, fully commented. Call it from `main`.
 
 {{< answer key="ext_a" label="Extension A" >}}
 
-### Extension B — Share It
+### Extension B --- Share It
 
 - Download your library through the File menu and trade with a partner. Can you read and use *their* functions from *their* comments alone? What made it easy or hard?
 
 {{< answer key="ext_b" label="Extension B" >}}
 
-### Extension C — A Combined Behavior
+### Extension C --- A Combined Behavior
 
-- Write a function in your library that *calls other library functions* — for example, `grab_cube()` that opens, lowers, closes, and raises. Why is building big functions from small ones powerful?
+- Write a function in your library that *calls other library functions* --- for example, `grab_cube()` that opens, lowers, closes, and raises. Why is building big functions from small ones powerful?
 
 {{< answer key="ext_c" label="Extension C" >}}
 
-### Extension D — Looking Ahead: Turns
+### Extension D --- Looking Ahead: Turns
 
 - Soon you'll need the robot to turn exactly 90° left and right. What would you name those functions, and where will they go once you've perfected them?
 
 {{< answer key="ext_d" label="Extension D" >}}
 
-### Extension E — Whose Code Is It?
+### Extension E --- Whose Code Is It?
 
-- You just shared your library with a partner (Extension B). If you posted it online for any team to download, what could they do with it — use it as-is? Modify it and call it theirs? Sell it?
+- You just shared your library with a partner (Extension B). If you posted it online for any team to download, what could they do with it --- use it as-is? Modify it and call it theirs? Sell it?
 - Write one sentence saying what you *would* and *wouldn't* allow, and give your library a one-line "license" note at the top of the file.
 
 {{< answer key="ext_e" label="Extension E" >}}
 
-### Extension F — Ready for Strangers?
+### Extension F --- Ready for Strangers?
 
 - Extension B had one partner try your library. Now imagine every Botball team in your region wanted to use it. What would you need to add or change (documentation, defaults, error-checking) before a total stranger could use it without you there to explain anything?
 - Would your library work unmodified on a different KIPR [[CONTROLLER|controller]] model, or would some functions need adjusting? Sketch what "version 2" would need before a public release.

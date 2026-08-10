@@ -56,7 +56,7 @@ meta:
         label: "Your notebook"
 ---
 
-## Try It — Why Is a Spoon That Shape?
+## Try It --- Why Is a Spoon That Shape?
 
 Put a spoon and a fork on the table in front of you.
 
@@ -94,7 +94,7 @@ Put a small pile of poms on the table. Move the whole pile about a foot, three d
 
 {{< gridtable >}}
 columns:
-  - head: "Push it with…"
+  - head: "Push it with..."
     width: 32%
   - head: "How many arrived?"
     width: 24%
@@ -122,12 +122,12 @@ rows:
 {{< ask key="p1_escape" label="Where poms escaped" >}}The flat ruler let poms escape. Where did they go, and what would have stopped them?{{< /ask >}}
 
 {{< callout variant="gold" title="Shape Decides What a Tool Can Do" >}}
-Nobody chose the spoon's curve at random. Somebody worked out what it had to do — hold liquid on the way to a mouth — and then built a shape that does exactly that.
+Nobody chose the spoon's curve at random. Somebody worked out what it had to do --- hold liquid on the way to a mouth --- and then built a shape that does exactly that.
 
 Engineers do this in one direction: **[[FUNCTION|function]] first, then structure.**
 {{< /callout >}}
 
-## Learn It — Blades Have Shapes for Reasons
+## Learn It --- Blades Have Shapes for Reasons
 
 An [[EFFECTOR|effector]] is the part of a robot that changes the world. A blade is an effector, and so is a claw, a spoon, and a bulldozer.
 
@@ -142,7 +142,7 @@ Seen from above. The wings are the whole difference.
 
 ### Which one do you need?
 
-- A **flat front** works — until there is too much stuff, and then it spills round the sides.
+- A **flat front** works --- until there is too much stuff, and then it spills round the sides.
 - **Sides help** hold things in while you push.
 - If you have to **turn or back up**, sides and a front both help.
 - If the front can be **lowered over** an object, you can turn and reverse without losing it.
@@ -189,11 +189,11 @@ Measure the box before you build. A brilliant blade that gets you disqualified i
 
 ### A bulldozer only pushes
 
-You cannot lift with it and you cannot grab with it. That is not a fault — it is the trade for being simple and strong.
+You cannot lift with it and you cannot grab with it. That is not a fault --- it is the trade for being simple and strong.
 
 *Pushing also depends on *where* you push. High up, tall things tip over. Low down, they slide. Fast, they scatter. That is worth remembering before you test.*
 
-## Do It — Design the Blade
+## Do It --- Design the Blade
 
 ### 1. Look at what you actually have to push
 
@@ -251,7 +251,7 @@ One sentence. What must the blade do, to what, and how will you know it worked?
 columns:
   - head: "#"
     width: 14%
-  - head: "My blade must…"
+  - head: "My blade must..."
     width: 44%
   - head: "Requirement or constraint?"
 rows:
@@ -458,10 +458,10 @@ Put the robot in the starting box one last time, blade attached.
 {{< /checklist >}}
 
 {{< callout variant="navy" title="Hand This Over" >}}
-Your class can now start **Coding Project 6 — Bulldoze Run**. That project scores sixteen points entirely by pushing, and none of it works without what you just built.
+Your class can now start **Coding Project 6 --- Bulldoze Run**. That project scores sixteen points entirely by pushing, and none of it works without what you just built.
 {{< /callout >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### Function first
 
@@ -575,4 +575,4 @@ rows:
 
 A blade pushes. It cannot pick anything up, and half the missions on the field need exactly that.
 
-In **Systems Project 7**, you build the arm and claw — and that one unlocks everything from Coding Project 7 onwards.
+In **Systems Project 7**, you build the arm and claw --- and that one unlocks everything from Coding Project 7 onwards.

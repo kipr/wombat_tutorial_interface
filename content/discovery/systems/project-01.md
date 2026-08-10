@@ -52,7 +52,7 @@ meta:
         label: "This project sheet"
 ---
 
-## Try It — Tip It All Out
+## Try It --- Tip It All Out
 
 Empty the kit onto the table. All of it, spread out so nothing is stacked on anything else.
 
@@ -82,7 +82,7 @@ rows:
       aria: "No idea"
 {{< /gridtable >}}
 
-### Now sort it — your way
+### Now sort it --- your way
 
 Put the parts into piles. **You** decide the rule. There is no right answer yet.
 
@@ -116,12 +116,12 @@ rows:
 {{< ask key="p1_compare_piles" label="Compare piles" >}}Compare your piles with another team's. Did you sort the same way?{{< /ask >}}
 
 {{< callout variant="gold" title="There Is More Than One Right Answer" >}}
-You might have sorted by size, by colour, by what it is made of, or by what you think it does. Engineers usually sort by **job** — what a part is *for*.
+You might have sorted by size, by colour, by what it is made of, or by what you think it does. Engineers usually sort by **job** --- what a part is *for*.
 
 Hold on to how you sorted. In a minute you will see how KIPR does it.
 {{< /callout >}}
 
-## Learn It — Why Engineers Count Things
+## Learn It --- Why Engineers Count Things
 
 A [[CHECKLIST|Checklist]] looks like the most boring tool in engineering. It is also one of the most useful.
 
@@ -133,21 +133,21 @@ A checklist is how you find out on *day one* instead of on the day it matters.
 
 Checklists do three jobs:
 
-- **Account for everything** — You know what you have, so you know what is missing while there is still time to replace it.
+- **Account for everything** --- You know what you have, so you know what is missing while there is still time to replace it.
 
-- **Give parts a name** — "Pass me the thing" wastes time. "Pass me the angle bracket" does not.
+- **Give parts a name** --- "Pass me the thing" wastes time. "Pass me the angle bracket" does not.
 
-- **Prove you are packed** — At the end of a session, one person runs the list and the kit goes back complete.
+- **Prove you are packed** --- At the end of a session, one person runs the list and the kit goes back complete.
 
 ### The four families of parts
 
-- **The Brain** — The Wombat [[CONTROLLER|controller]] and its charger. This is the computer that runs everything.
+- **The Brain** --- The Wombat [[CONTROLLER|controller]] and its charger. This is the computer that runs everything.
 
-- **The Body** — Chassis, brackets, LEGO, screws and stand-offs. The parts that hold everything together.
+- **The Body** --- Chassis, brackets, LEGO, screws and stand-offs. The parts that hold everything together.
 
-- **The Muscles** — Motors and [[SERVO|servos]]. The parts that make things move.
+- **The Muscles** --- Motors and [[SERVO|servos]]. The parts that make things move.
 
-- **The Senses** — Touch [[SENSOR|sensors]], light sensor, rangefinder, tophat sensors. The parts that gather information.
+- **The Senses** --- Touch [[SENSOR|sensors]], light sensor, rangefinder, tophat sensors. The parts that gather information.
 {{< ask key="p2_missed_family" label="Missed family" >}}Look back at your own piles. Which family did you miss completely, or split up?{{< /ask >}}
 
 {{< callout variant="red" title="⚠ Two Things That Look Alike and Are Not" >}}
@@ -156,11 +156,11 @@ You have **motors** and you have **servos**. Both make things turn. They are not
 Learn to tell them apart now, on the table, rather than later with a robot half-built.
 {{< /callout >}}
 
-## Do It — Account for Everything
+## Do It --- Account for Everything
 
 ### 1. Run the official checklist
 
-Find each item and tick it off. Count carefully — the number in front matters as much as the name.
+Find each item and tick it off. Count carefully --- the number in front matters as much as the name.
 
 #### General Parts
 
@@ -200,7 +200,7 @@ Find each item and tick it off. Count carefully — the number in front matters 
 Copy the list into your notebook in your own handwriting, grouped however makes sense to *you*.
 
 {{< callout variant="gold" title="Why Copy Something That Already Exists?" >}}
-Because you will remember a list you wrote far better than one you were handed — and because at the end of the year your kit may not match the printed sheet exactly.
+Because you will remember a list you wrote far better than one you were handed --- and because at the end of the year your kit may not match the printed sheet exactly.
 {{< /callout >}}
 
 {{< checklist >}}
@@ -231,7 +231,7 @@ Pick up one motor and one servo. Compare them properly and fill in all three col
 
 Split the kit between your team so each person gets a few parts nobody else has.
 
-Take five minutes with yours. Then go round the team — each person picks up their part, names it, and says **how you can tell it apart from everything else in the box.**
+Take five minutes with yours. Then go round the team --- each person picks up their part, names it, and says **how you can tell it apart from everything else in the box.**
 
 Keep going until every item in the kit has been claimed and explained.
 
@@ -351,7 +351,7 @@ rows:
 You have two chargers, and without them the whole kit is a box of parts by the end of the week. Decide right now where they live, and put them back there every single time.
 {{< /callout >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### Name that part
 
@@ -439,6 +439,6 @@ rows:
 
 ### Next
 
-You know what is in the box. In **Systems Project 2 — What Makes a Robot a Robot?**, you find out what turns a pile of parts into something people call a robot — and why that question is harder than it sounds.
+You know what is in the box. In **Systems Project 2 --- What Makes a Robot a Robot?**, you find out what turns a pile of parts into something people call a robot --- and why that question is harder than it sounds.
 
-*If you are ready to switch strands, this is a good moment to start **Coding Project 1 — Wake Up Your Wombat**. You now know where the controller and the charger are.*
+*If you are ready to switch strands, this is a good moment to start **Coding Project 1 --- Wake Up Your Wombat**. You now know where the controller and the charger are.*

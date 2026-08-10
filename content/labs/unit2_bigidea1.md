@@ -33,7 +33,7 @@ meta:
 
 ## Overview
 
-All through Unit 1, your robot was blind. It drove for a set time and hoped for the best — it could not feel the world at all. Today that changes. You'll attach a **touch sensor** to the back of your robot and write a program that drives backward and **stops the instant it feels a wall**. For the first time, the robot reacts to something real instead of a guessed-at time.
+All through Unit 1, your robot was blind. It drove for a set time and hoped for the best --- it could not feel the world at all. Today that changes. You'll attach a **touch sensor** to the back of your robot and write a program that drives backward and **stops the instant it feels a wall**. For the first time, the robot reacts to something real instead of a guessed-at time.
 
 {{< callout title="Core Insight" >}}
 A sensor is how a machine gathers information about the world. Without sensors, a robot can only follow a script. With them, it can respond to what is actually happening.
@@ -71,7 +71,7 @@ In your program, `digital(0)` reads this sensor: it is **0 when the button is op
     How it works, step by step:
 
     1. Check the condition in the parentheses.
-    2. If it is **true**, run the code in the braces — then go back to step 1.
+    2. If it is **true**, run the code in the braces --- then go back to step 1.
     3. If it is **false**, skip the braces and move on.
 
     The loop keeps checking. That is what lets a robot *wait for* something to happen instead of guessing how long it will take. To drive until the button is pressed, we loop **while the button is NOT pressed**:
@@ -85,7 +85,7 @@ In your program, `digital(0)` reads this sensor: it is **0 when the button is op
 
 {{< concept "Why a tiny msleep goes inside the loop" >}}
 - text: |
-    You've used `msleep()` to drive for a set time. Inside a loop it does something different — and much smaller.
+    You've used `msleep()` to drive for a set time. Inside a loop it does something different --- and much smaller.
 - code: |
     while (digital(0) == 0) {
         motor(0, -50);   // drive backward
@@ -93,20 +93,20 @@ In your program, `digital(0)` reads this sensor: it is **0 when the button is op
         msleep(10);      // tiny pause, just 10 ms
     }
 - text: |
-    That `msleep(10)` is **not** how long you drive. The loop checks the button hundreds of times a second. Without a small pause, it would check *as fast as the computer possibly can* — and that **bogs down the [[CONTROLLER|controller]]** for no benefit. A 10 ms pause slows the checking to a sensible rate so the computer isn't overwhelmed, while still feeling instant to us.
+    That `msleep(10)` is **not** how long you drive. The loop checks the button hundreds of times a second. Without a small pause, it would check *as fast as the computer possibly can* --- and that **bogs down the [[CONTROLLER|controller]]** for no benefit. A 10 ms pause slows the checking to a sensible rate so the computer isn't overwhelmed, while still feeling instant to us.
 
     Notice how small this is compared to before: `msleep(1000)` used to mean "drive for a whole second." Here `msleep(10)` just means "wait a blink before checking the button again." Same command, completely different job.
     {.muted}
 {{< /concept >}}
 
-## Phase 1 — Activate: How Do You Know to Stop?
+## Phase 1 --- Activate: How Do You Know to Stop?
 
 {{< figrow >}}
 - src: kit/digitalsensors.jpg
-  alt: Digital sensors — either pressed or not, nothing in between.
+  alt: Digital sensors --- either pressed or not, nothing in between.
 {{< /figrow >}}
 
-Close your eyes and slowly back up toward a wall with your hand out behind you. You don't count steps — you wait until your hand *feels* the wall, then stop. You are using a sensor (your hand) and checking it constantly until it tells you something changed.
+Close your eyes and slowly back up toward a wall with your hand out behind you. You don't count steps --- you wait until your hand *feels* the wall, then stop. You are using a sensor (your hand) and checking it constantly until it tells you something changed.
 
 {{< callout title="Think it through" variant="navy" >}}
 Why is "feel for the wall, then stop" more reliable than "take exactly 7 steps back"?
@@ -116,31 +116,31 @@ How many times per second do you think your hand was "checking" for the wall?
 
 {{< ask key="p1_timed_vs_sensed" label="Timed versus sensed" >}}A timed move (drive for 1 second) and a sensed move (drive until you feel the wall) can both reach a wall. Why is the sensed move better when you don't know exactly how far away the wall is?{{< /ask >}}
 
-## Phase 2 — Concept: Inputs, Sensors, and Digital Values
+## Phase 2 --- Concept: Inputs, Sensors, and Digital Values
 
 ### A Sensor Is an Input
 
-An *input* is information coming *into* the program from the outside world. A sensor is a device that turns something physical — a touch, a distance, a brightness — into a number the program can read. Reading `digital(0)` is the robot gathering an input.
+An *input* is information coming *into* the program from the outside world. A sensor is a device that turns something physical --- a touch, a distance, a brightness --- into a number the program can read. Reading `digital(0)` is the robot gathering an input.
 
 ### Digital Means Two States
 
-A *digital* sensor has only two possible readings: **0 or 1**. Your touch sensor is digital — the button is either open (0) or pressed (1). There is no "halfway." This is the same true/false, [[BOOLEAN|Boolean]] thinking you used with `if` [[STATEMENT|statements]], now coming from the real world.
+A *digital* sensor has only two possible readings: **0 or 1**. Your touch sensor is digital --- the button is either open (0) or pressed (1). There is no "halfway." This is the same true/false, [[BOOLEAN|Boolean]] thinking you used with `if` [[STATEMENT|statements]], now coming from the real world.
 
 {{< callout title="Digital vs. [[ANALOG|Analog]] (a look ahead)" variant="gold" >}}
-Some sensors are *analog* — they return a whole range of numbers, not just 0 or 1 (like a distance sensor reading "how far"). You'll meet those soon. Today's touch sensor is the simplest kind: just 0 or 1.
+Some sensors are *analog* --- they return a whole range of numbers, not just 0 or 1 (like a distance sensor reading "how far"). You'll meet those soon. Today's touch sensor is the simplest kind: just 0 or 1.
 {{< /callout >}}
 
 {{< ask key="p2_digital_meaning" label="What digital means" >}}In your own words: what does it mean that the touch sensor is "digital"? What are its only two possible values, and what does each one mean?{{< /ask >}}
 
-## Phase 3 — Plan
+## Phase 3 --- Plan
 
 ### The Goal
 
 {{< callout title="Back Into the Box" >}}
-Your robot starts in the field. It must drive **backward** until its touch sensor presses against the **starting-box wall**, then stop. Reaching that wall means it is home — a known, reliable spot.
+Your robot starts in the field. It must drive **backward** until its touch sensor presses against the **starting-box wall**, then stop. Reaching that wall means it is home --- a known, reliable spot.
 {{< /callout >}}
 
-### Step 1 — Predict the Sensor Readings
+### Step 1 --- Predict the Sensor Readings
 
 Fill in what `digital(0)` reads in each situation, and what the loop should do.
 
@@ -164,13 +164,13 @@ rows:
       aria: Loop when pressed
 {{< /gridtable >}}
 
-### Step 2 — Write the Plan in Plain English
+### Step 2 --- Write the Plan in Plain English
 
-Before any code, describe your program in order — including what happens the moment the button is pressed.
+Before any code, describe your program in order --- including what happens the moment the button is pressed.
 
 {{< steps key="p3_plan" label="Plan step" count=4 >}}
 
-## Phase 4 — Build &amp; Run
+## Phase 4 --- Build &amp; Run
 
 {{< safety title="⚠ Test in your hands FIRST" noprint="true" >}}
 Before you ever put this on the board, **hold the robot up off the ground** and run the program. The wheels will spin backward. Press the button with your finger and watch the wheels stop. Only once that works should you set it on the field. This keeps the robot from driving off a table while you test.
@@ -178,7 +178,7 @@ Before you ever put this on the board, **hold the robot up off the ground** and 
 
 ### Starting Code Template
 
-Type this program. The position [[VARIABLE|variables]] are back from before — you'll reset `y_position` to zero the moment the robot reaches the wall.
+Type this program. The position [[VARIABLE|variables]] are back from before --- you'll reset `y_position` to zero the moment the robot reaches the wall.
 
 {{< code >}}
 // Unit 2, Big Idea 1: The Touch Sensor
@@ -238,7 +238,7 @@ rows:
 - `ao()` comes right after the loop, so the robot stops when pressed
 - `y_position = 0;` resets the origin once the robot is home
 
-## Phase 5 — Make It a Reusable Behavior
+## Phase 5 --- Make It a Reusable Behavior
 
 Once your program works, wrap the whole back-until-pressed behavior into a [[FUNCTION|function]] so you can reuse it. Build it the way you've been doing it: write the **[[PROTOTYPE|prototype]]** above `main()`, call it inside `main()`, and put the full **definition** below.
 
@@ -284,13 +284,13 @@ void back_until_pressed() {  // DEFINITION: the recipe, below main()
   key: fix
 {{< /repeattable >}}
 
-## Phase 6 — Connect: The AI Literacy Bridge
+## Phase 6 --- Connect: The AI Literacy Bridge
 
-{{< callout title="Big Idea 1 — AI Literacy Thread" >}}
+{{< callout title="Big Idea 1 --- AI Literacy Thread" >}}
 Intelligent systems rely on sensors to gather information about the world around them.
 {{< /callout >}}
 
-Today your robot stopped because it *felt* a wall, not because a timer ran out. That is the foundation of every intelligent machine: it senses the world and responds to what is really there. A phone screen senses your touch; a car senses the car ahead; a thermostat senses the room's temperature. None of them follow a fixed script — they all watch a sensor and react. And just like you, they check that sensor over and over, many times a second.
+Today your robot stopped because it *felt* a wall, not because a timer ran out. That is the foundation of every intelligent machine: it senses the world and responds to what is really there. A phone screen senses your touch; a car senses the car ahead; a thermostat senses the room's temperature. None of them follow a fixed script --- they all watch a sensor and react. And just like you, they check that sensor over and over, many times a second.
 
 Read each scenario. Think it through, then write your answer.
 {.muted}
@@ -301,7 +301,7 @@ Read each scenario. Think it through, then write your answer.
 
 {{< ask key="p6_keep_checking" label="Why keep checking" >}}The loop checks the sensor many times a second, with a tiny pause each time. Why does an intelligent system need to keep checking, rather than reading a sensor just once?{{< /ask >}}
 
-## Phase 7 — Individual Reflection
+## Phase 7 --- Individual Reflection
 
 Complete this section on your own.
 {.muted}
@@ -314,41 +314,41 @@ Complete this section on your own.
 
 {{< ask key="p7_q3_msleep" label="Reflection 3" n=3 >}}Why is there a small `msleep(10)` inside the loop? What would happen to the controller without it?{{< /ask >}}
 
-{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete this in 2–3 sentences: "Intelligent systems rely on sensors to gather information about the world. This means that a robot without sensors can only..."{{< /ask >}}
+{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete this in 2--3 sentences: "Intelligent systems rely on sensors to gather information about the world. This means that a robot without sensors can only..."{{< /ask >}}
 
 ## Extension Challenges
 
 Finished early? Try one or more of these.
 {.muted}
 
-### Extension A — Drive Forward After Resetting
+### Extension A --- Drive Forward After Resetting
 
 - After `back_until_pressed()` resets your origin, add a known forward move and update `y_position` as you go (like Unit 1 Big Idea 4).
 - Because you started from a trusted zero, your stored position should now be accurate. Test whether it is.
 
 {{< answer key="ext_a" label="Extension A" >}}
 
-### Extension B — Change the Speed
+### Extension B --- Change the Speed
 
 - Try a slower backward speed (for example −30). Does the robot stop more precisely at the wall? Why might slower be more accurate?
 
 {{< answer key="ext_b" label="Extension B" >}}
 
-### Extension C — Try a Different msleep
+### Extension C --- Try a Different msleep
 
 - Change the loop's `msleep(10)` to `msleep(200)`. Press the button quickly and release. Does the robot still catch it? What does this tell you about how often it's checking?
 
 {{< answer key="ext_c" label="Extension C" >}}
 
-### Extension D — Reset Both Coordinates
+### Extension D --- Reset Both Coordinates
 
 - If backing straight into the wall sets a known spot, should `x_position` reset too? Decide what makes sense for your robot's path and explain your reasoning.
 
 {{< answer key="ext_d" label="Extension D" >}}
 
-### Extension E — What If It Were Event-Driven?
+### Extension E --- What If It Were Event-Driven?
 
-- Everything you've built waits and checks in a loop (polling) — repeatedly asking "are we there yet?" An **event-driven** system instead sits idle until something happens, then a designated function runs automatically.
+- Everything you've built waits and checks in a loop (polling) --- repeatedly asking "are we there yet?" An **event-driven** system instead sits idle until something happens, then a designated function runs automatically.
 - In words (not code), rewrite how `back_until_pressed()` could work if it were event-driven instead of polling: what would the "event" be, and what function would run when it fires?
 
 {{< answer key="ext_e" label="Extension E" >}}

@@ -52,9 +52,9 @@ meta:
         label: "A large sheet of paper for the class chart"
 ---
 
-## Try It — How Many Clues Does It Take?
+## Try It --- How Many Clues Does It Take?
 
-Your teacher is going to describe somebody in a story — not anyone in the room — one clue at a time.
+Your teacher is going to describe somebody in a story --- not anyone in the room --- one clue at a time.
 
 Put your hand up the moment you think you could pick that person out of a crowd. Then count how many clues it took.
 
@@ -129,17 +129,17 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p1_riskier" label="Riskier ones" >}}Two of those are riskier than they look. Which two, and what could someone work out from them?{{< /ask >}}
 
-## Learn It — What to Keep, and How
+## Learn It --- What to Keep, and How
 
 [[PERSONAL INFORMATION|Personal information]] is anything that could be used to work out who you are, where you are, or how to reach you.
 Usually safe to share
 *Things that describe your taste, not your life*
 
-{{< answer key="p2_safe" label="Safe information" placeholder="Favourite ice cream, favourite animal, favourite colour…" >}}
+{{< answer key="p2_safe" label="Safe information" placeholder="Favourite ice cream, favourite animal, favourite colour..." >}}
 Keep to yourself
 *Things that lead someone to you*
 
-{{< answer key="p2_unsafe" label="Unsafe information" placeholder="Address, phone number, date of birth, passwords…" >}}
+{{< answer key="p2_unsafe" label="Unsafe information" placeholder="Address, phone number, date of birth, passwords..." >}}
 
 ### Four rules that cover most of it
 
@@ -182,7 +182,7 @@ rows:
 {{< /gridtable >}}
 
 {{< callout variant="red" title="⚠ The One Rule That Always Works" >}}
-If a message asks for private information, **do not answer it** — even if it looks real. Show it to a parent or your teacher instead.
+If a message asks for private information, **do not answer it** --- even if it looks real. Show it to a parent or your teacher instead.
 
 You will never get in trouble for checking with an adult first.
 {{< /callout >}}
@@ -193,17 +193,17 @@ A [[PASSWORD|password]] is the lock on everything else. A weak one takes seconds
 
 **These are practice examples only. Never reuse them for a real account.**
 
-- `12345` — *weak:* Short and everyone tries it first.
-- `password` — *weak:* Another guess people try immediately.
-- `Rufus2015` — *weak:* A pet name and a year someone could look up about you.
-- `correct-horse-battery-staple` — *stronger example:* A long, memorable **passphrase** made of unrelated words. Length and uniqueness matter more than sprinkling in a single symbol.
+- `12345` --- *weak:* Short and everyone tries it first.
+- `password` --- *weak:* Another guess people try immediately.
+- `Rufus2015` --- *weak:* A pet name and a year someone could look up about you.
+- `correct-horse-battery-staple` --- *stronger example:* A long, memorable **passphrase** made of unrelated words. Length and uniqueness matter more than sprinkling in a single symbol.
 
 What makes a password or passphrase stronger for you:
 
 - **Longer is usually stronger.** A memorable phrase with several words is easier to remember and harder to guess than a short word with one number stuck on.
 - **Unique matters.** Do not reuse one password everywhere. One break-in can then open everything else.
 - **Ask a trusted adult** before choosing passwords for school or shared accounts. A **password manager** (with an adult's help) can store long unique secrets so you do not have to memorize dozens.
-- **Extra checks help.** Many accounts offer a second step after the password (a code, an app prompt, or another check). That second step is often called multifactor authentication — it means a stolen password alone is not enough.
+- **Extra checks help.** Many accounts offer a second step after the password (a code, an app prompt, or another check). That second step is often called multifactor authentication --- it means a stolen password alone is not enough.
 
 Do **not** invent, type, exchange, or guess a password you actually use. This lesson only uses clearly marked fictional examples.
 
@@ -211,7 +211,7 @@ Do **not** invent, type, exchange, or guess a password you actually use. This le
 Your Wombat has a password. Do not share it outside your team unless your teacher says so. Somebody with it could change or delete every program you have written.
 {{< /callout >}}
 
-## Do It — Find the Leaks
+## Do It --- Find the Leaks
 
 ### 1. Where does information get out?
 
@@ -292,7 +292,7 @@ rows:
     - key: p3_f3_w
       aria: "Fake 3 why"
   -
-    - text: "\"Hey it's me, I lost my phone — what's your address again? I'll come round.\""
+    - text: "\"Hey it's me, I lost my phone --- what's your address again? I'll come round.\""
     - key: p3_f4
       aria: "Fake 4"
     - key: p3_f4_w
@@ -312,7 +312,7 @@ Use only these **fictional classroom examples** (never reuse them):
 | `BlueSky` | Short and easy to guess |
 | `orange-river-candle-maple` | Longer memorable passphrase |
 
-Talk with a partner about the examples above — without typing any real secret.
+Talk with a partner about the examples above --- without typing any real secret.
 
 {{< gridtable >}}
 columns:
@@ -338,7 +338,7 @@ rows:
 
 ### 5. What would you do?
 
-Work through these with a partner. There is no trick — just say what you would do and why.
+Work through these with a partner. There is no trick --- just say what you would do and why.
 
 #### Scenario 1
 
@@ -383,7 +383,7 @@ You need a new password but you already have one you remember. You know you shou
 {{< short-answer key="p3_sc7" label="Scenario 7" >}}
 
 {{< callout variant="gold" title="Two of Those Are About Trust, Not Rules" >}}
-Scenarios 1 and 2 both involve an adult asking for real information — and the answers are different. Working out *why* they are different is the whole point.
+Scenarios 1 and 2 both involve an adult asking for real information --- and the answers are different. Working out *why* they are different is the whole point.
 {{< /callout >}}
 {{< short-answer key="p3_disagree" label="Disagreed scenario" prompt="Which scenario did you and your partner disagree on?" >}}
 
@@ -395,7 +395,7 @@ Every [[DIGITAL|digital]] protection has a real-world twin. Match them up.
 columns:
   - head: "In the real world"
     width: 46%
-  - head: "The digital version is…"
+  - head: "The digital version is..."
 rows:
   -
     - text: "A key on your front door"
@@ -418,7 +418,7 @@ rows:
     - key: p3_m5
       aria: "Match 5"
 {{< /gridtable >}}
-{{< short-answer key="p3_own_match" label="Own match" prompt="Add one of your own — a real-world protection and its digital twin." >}}
+{{< short-answer key="p3_own_match" label="Own match" prompt="Add one of your own --- a real-world protection and its digital twin." >}}
 
 ### 7. Protect your own work
 
@@ -451,13 +451,13 @@ rows:
   label: "Our robot's password is not written anywhere public"
 {{< /checklist >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### Share or keep?
 
 {{< gridtable >}}
 columns:
-  - head: "Someone online asks for…"
+  - head: "Someone online asks for..."
     width: 62%
   - head: "Share or keep?"
 rows:
@@ -506,7 +506,7 @@ rows:
     - key: p4_p2_w
       aria: "P2 why"
   -
-    - text: "orange-river-candle-maple (fictional example — never reuse)"
+    - text: "orange-river-candle-maple (fictional example --- never reuse)"
     - key: p4_p3
       aria: "P3"
     - key: p4_p3_w
@@ -534,11 +534,11 @@ rows:
 
 ### Think about it
 {{< ask key="p4_one_thing" label="Just one thing" >}}In Try It, no single clue identified anyone. Why does that make sharing "just one small thing" harder to judge than it sounds?{{< /ask >}}
-{{< ask key="p4_feelings" label="Why feelings work" >}}A phishing message works by making you feel something — panic, excitement, sympathy. Why do those feelings make people skip checking?{{< /ask >}}
+{{< ask key="p4_feelings" label="Why feelings work" >}}A phishing message works by making you feel something --- panic, excitement, sympathy. Why do those feelings make people skip checking?{{< /ask >}}
 {{< ask key="p4_tradeoff" label="Trade-off" >}}A longer unique passphrase is safer but harder to remember without help. What is the trade between safe and easy, and where would you draw the line?{{< /ask >}}
 
 ### Next
 
 Protecting your own information is half of it. The other half is how you treat everybody else's.
 
-In **Systems Project 11 — Living Well Online**, you look at what your words do once they leave your hands.
+In **Systems Project 11 --- Living Well Online**, you look at what your words do once they leave your hands.

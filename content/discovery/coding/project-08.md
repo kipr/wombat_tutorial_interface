@@ -53,12 +53,12 @@ meta:
         label: "Your Project 5 and 7 numbers"
 ---
 
-## Try It — Be the Robot
+## Try It --- Be the Robot
 
-A claw is an [[EFFECTOR|effector]] — the part of the robot that does work on the world. In Project 6 your effector was the front of the robot, and it could only shove. A claw can hold.
+A claw is an [[EFFECTOR|effector]] --- the part of the robot that does work on the world. In Project 6 your effector was the front of the robot, and it could only shove. A claw can hold.
 
 {{< callout title="Structure and Function" variant="navy" >}}
-A claw is **bad at pushing** and **great at grabbing.** The blade you used in Project 6 was the opposite. Neither one is better — they are shaped for different jobs, and the shape is what decides the job.
+A claw is **bad at pushing** and **great at grabbing.** The blade you used in Project 6 was the opposite. Neither one is better --- they are shaped for different jobs, and the shape is what decides the job.
 {{< /callout >}}
 
 ### Two servos, two jobs
@@ -72,7 +72,7 @@ A claw is **bad at pushing** and **great at grabbing.** The blade you used in Pr
 
 Put a cube on the table in front of you. Pick it up with one hand, move it, and set it back down.
 
-Do it again — slowly this time — and write down **every separate movement**, in order. Do not skip anything, even the parts that feel too obvious to write.
+Do it again --- slowly this time --- and write down **every separate movement**, in order. Do not skip anything, even the parts that feel too obvious to write.
 
 {{< gridtable >}}
 columns:
@@ -117,7 +117,7 @@ Grabbing is not one action. It is five or six small ones that only work in one o
 **The whole skill in this project is sequence.**
 {{< /callout >}}
 
-## Learn It — Five Numbers and an Order
+## Learn It --- Five Numbers and an Order
 
 {{< figrow >}}
 - src: servo/what-is-a-claw.jpg
@@ -125,14 +125,14 @@ Grabbing is not one action. It is five or six small ones that only work in one o
 - src: servo/servo-positions.jpg
   alt: "Find the positions for up, down, horizontal, open and close."
 {{< /figrow >}}
-You already know every command you need. Nothing new gets introduced here — you just use two [[SERVO|servos]] instead of one.
+You already know every command you need. Nothing new gets introduced here --- you just use two [[SERVO|servos]] instead of one.
 
 ### Write down all five positions
 
 Put them at the top of every program, in the **name = number** format:
 
 ```text
-// Your positions will be different — do not copy these!
+// Your positions will be different --- do not copy these!
 // arm        = 0
 // up         = 1234
 // horizontal = 1000
@@ -148,7 +148,7 @@ Notice the first line of each group is the *[[PORT|port]]*, not a position. You 
 
 ### Preset both servos
 
-Project 7 taught you the preset trick for one servo. With two, it matters twice as much — an arm that slams down *and* a claw that snaps shut is a good way to break something.
+Project 7 taught you the preset trick for one servo. With two, it matters twice as much --- an arm that slams down *and* a claw that snaps shut is a good way to break something.
 
 ```text
 set_servo_position(0, 1234);   // arm up
@@ -165,23 +165,23 @@ Arm up, claw open, *then* enable. The robot wakes up in a known, safe shape ever
 | --- | --- |
 | `1. Arm up, claw open` | Preset, then enable. Safe starting shape. |
 | `2. Drive to the object` | Arm stays up and out of the way while driving. |
-| `3. Stop — ao()` | Do not grab while still rolling. |
+| `3. Stop --- ao()` | Do not grab while still rolling. |
 | `4. Arm down` | Claw comes down around the object. Wait for it. |
 | `5. Close claw` | Now, and only now, grip. |
 | `6. Arm up` | Lift. The object comes with it. |
 
-Every single grab in this project is that sequence. You will type it four times today. Remember how that feels — Project 12 is about fixing it.
+Every single grab in this project is that sequence. You will type it four times today. Remember how that feels --- Project 12 is about fixing it.
 
-### Live judged or final position — this changes your strategy
+### Live judged or final position --- this changes your strategy
 
 Look at how a mission is scored, not just what it asks for. Two missions can want the same thing and mean very different things by it.
 
 | Code / part | What it means |
 | --- | --- |
-| `⚡ Live Judged` | A judge watches it happen during the match. It counts the moment it is true — even if it falls apart afterwards. **Your robot may be holding it.** |
+| `⚡ Live Judged` | A judge watches it happen during the match. It counts the moment it is true --- even if it falls apart afterwards. **Your robot may be holding it.** |
 | `📋 Final Position` | Scored after the match ends, from whatever is left on the field. Your robot has to let go and the result has to survive on its own. |
 
-{{< callout title="Robot Support Is Allowed — Sometimes" variant="gold" >}}
+{{< callout title="Robot Support Is Allowed --- Sometimes" variant="gold" >}}
 The [[ON TOP OF]] definition says support from a robot is permitted. So for a live-judged stack, your claw can still be holding the cube in place when the judge sees it.
 
 For a final-position stack, that is worth nothing. Let go, back away, and the stack has to stand by itself.
@@ -199,11 +199,11 @@ Opening the claw is easy. Opening the claw *without dragging, tipping, or flicki
 Mission 11 uses orange poms. Mission 15 (Project 12) uses blue poms. If your team attempts both, **they must go in different baskets.** Decide now which basket belongs to which mission, and write it down.
 {{< /safety >}}
 
-## Do It — Grab, Carry, Stack
+## Do It --- Grab, Carry, Stack
 
-### Step 1 — Find your claw positions
+### Step 1 --- Find your claw positions
 
-Servo Widget again. Your arm numbers are already on your Project 7 card — now add the claw.
+Servo Widget again. Your arm numbers are already on your Project 7 card --- now add the claw.
 
 {{< gridtable >}}
 columns:
@@ -233,15 +233,15 @@ rows:
         aria: "Claw pom note"
 {{< /gridtable >}}
 {{< safety title="⚠ Closed Does Not Mean All the Way Shut" >}}
-"Closed" is whatever number grips the cube — not the smallest number the claw can reach. If you send the claw past where the cube stops it, the servo strains against the cube and burns out. Find the number that just grips, and stay there.
+"Closed" is whatever number grips the cube --- not the smallest number the claw can reach. If you send the claw past where the cube stops it, the servo strains against the cube and burns out. Find the number that just grips, and stay there.
 {{< /safety >}}
 
 A pom squashes, a cube does not. That is why they get different numbers.
 {.muted}
 
-### Step 2 — Grab it
+### Step 2 --- Grab it
 
-New project called `Grab`. No driving at all — place a cube inside the open claw by hand.
+New project called `Grab`. No driving at all --- place a cube inside the open claw by hand.
 
 Write the [[PSEUDOCODE|pseudocode]] first. Two rules: the arm **starts up** and the claw **starts open**.
 
@@ -259,14 +259,14 @@ Write the [[PSEUDOCODE|pseudocode]] first. Two rules: the arm **starts up** and 
 {{< /checklist >}}
 {{< ask key="p3_msleep_where" label="Where msleep is needed" >}}Did you need an `msleep()` between every step, or only some of them? How did you decide?{{< /ask >}}
 
-### Step 3 — Go grab
+### Step 3 --- Go grab
 
-New project called `Go Grab`. Now add driving — the cube sits a short distance away.
+New project called `Go Grab`. Now add driving --- the cube sits a short distance away.
 
 ```text
 // 1. Preset arm up, claw open, enable
 // 2. Drive forward to the cube
-// 3. Stop  — ao()
+// 3. Stop  --- ao()
 // 4. Arm down
 // 5. Close claw
 // 6. Arm up
@@ -281,7 +281,7 @@ New project called `Go Grab`. Now add driving — the cube sits a short distance
 {{< /checklist >}}
 {{< ask key="p3_gograb_first" label="First attempt result" >}}What happened the first time? Most robots either stop too early, stop too late, or push the cube away before the claw gets down.{{< /ask >}}
 
-### Step 4 — Put it down without wrecking it
+### Step 4 --- Put it down without wrecking it
 
 Add to the end of your program: carry the cube somewhere, set it down, and back away leaving it standing.
 
@@ -293,11 +293,11 @@ Add to the end of your program: carry the cube somewhere, set it down, and back 
 {{< /checklist >}}
 {{< ask key="p3_drag_fix" label="Drag fix" >}}What did you have to change to stop dragging the cube when you backed off?{{< /ask >}}
 
-### Step 5 — Mission 13 Bonus — your first stack7 pts
+### Step 5 --- Mission 13 Bonus --- your first stack7 pts
 
 {{< mission-summary mission="13" >}}
 {{< /mission-summary >}}
-Start here because it is the easiest stack on the field — the cubes are close together, and it is live judged, so your claw can still be holding the top cube when the judge looks.
+Start here because it is the easiest stack on the field --- the cubes are close together, and it is live judged, so your claw can still be holding the top cube when the judge looks.
 
 {{< callout title="Both Cubes Must Come From the Same Area" variant="navy" >}}
 Both cubes have to originate from the Unstraight Cube area. Stacking an unstraight cube on a cube borrowed from somewhere else scores nothing.
@@ -307,14 +307,14 @@ Both cubes have to originate from the Unstraight Cube area. Stacking an unstraig
 - key: p3_m13_stack
   label: "One Unstraight Cube is [[ON TOP OF]] another"
 {{< /checklist >}}
-### Step 6 — Mission 12 — complete it16 pts
+### Step 6 --- Mission 12 --- complete it16 pts
 
 {{< mission-summary mission="12" >}}
 {{< /mission-summary >}}
-You already know how to get here — that was Project 5. Reuse your approach code and add the grab.
+You already know how to get here --- that was Project 5. Reuse your approach code and add the grab.
 
 {{< callout title="Two Different Jobs in One Mission" variant="gold" >}}
-The **base** is live judged, so your claw may still be holding the top cube. The **bonus** is final position — you must let go, back off, and the stack has to survive until the match ends.
+The **base** is live judged, so your claw may still be holding the top cube. The **bonus** is final position --- you must let go, back off, and the stack has to survive until the match ends.
 
 Get the base first. Then work on letting go cleanly.
 {{< /callout >}}
@@ -338,17 +338,17 @@ does_not_score:
 {{< /checklist >}}
 {{< ask key="p3_lower_cube" label="Why lower cube" >}}Read the "does not score" list again. Why does the *lower* cube have to be the one touching the line?{{< /ask >}}
 
-### Step 7 — Mission 3 — Mixed Freight7 pts
+### Step 7 --- Mission 3 --- Mixed Freight7 pts
 
 {{< mission-summary mission="3" >}}
 {{< /mission-summary >}}
-Either order works for the base. Green on yellow, yellow on green — both score. Same colour on same colour scores nothing.
+Either order works for the base. Green on yellow, yellow on green --- both score. Same colour on same colour scores nothing.
 
 {{< checklist >}}
 - key: p3_m3_base
   label: "I have one mixed-colour stack"
 {{< /checklist >}}
-### Step 8 — Mission 11 — Hazard Disposal7 pts
+### Step 8 --- Mission 11 --- Hazard Disposal7 pts
 
 {{< mission-summary mission="11" >}}
 {{< /mission-summary >}}
@@ -364,9 +364,9 @@ A pom only has to *partially extend into* the interior of the basket. It does no
 - key: p3_m11_base
   label: "An orange pom is [[IN]] a basket and stays there"
 {{< /checklist >}}
-### Step 9 — Run the whole thing five times
+### Step 9 --- Run the whole thing five times
 
-Chain all four missions into one program, same as Project 6 — [[COMMENT|comment]] banners, one section at a time.
+Chain all four missions into one program, same as Project 6 --- [[COMMENT|comment]] banners, one section at a time.
 
 {{< gridtable >}}
 columns:
@@ -457,7 +457,7 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p3_weakest_grab" label="Weakest grab" >}}Which grab was least reliable, and what made that one harder than the others?{{< /ask >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### My best run
 
@@ -469,27 +469,27 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 13 — Bonus (two unstraight cubes stacked)"
+      - text: "Mission 13 --- Bonus (two unstraight cubes stacked)"
       - key: p4_s_m13
         aria: "Score M13 bonus"
       - text: 7
   - cells:
-      - text: "Mission 12 — Base (two spilled cubes stacked)"
+      - text: "Mission 12 --- Base (two spilled cubes stacked)"
       - key: p4_s_m12b
         aria: "Score M12 base"
       - text: 11
   - cells:
-      - text: "Mission 12 — Bonus (stack survives, lower cube on line)"
+      - text: "Mission 12 --- Bonus (stack survives, lower cube on line)"
       - key: p4_s_m12bo
         aria: "Score M12 bonus"
       - text: 5
   - cells:
-      - text: "Mission 3 — Base (mixed-colour stack)"
+      - text: "Mission 3 --- Base (mixed-colour stack)"
       - key: p4_s_m3
         aria: "Score M3"
       - text: 7
   - cells:
-      - text: "Mission 11 — Base (orange pom in a basket)"
+      - text: "Mission 11 --- Base (orange pom in a basket)"
       - key: p4_s_m11
         aria: "Score M11"
       - text: 7
@@ -602,12 +602,12 @@ rows:
 
 {{< ask key="p4_bonus_lost" label="Why bonus was lost" >}}A judge tells your team the Mission 12 stack scored the base but not the bonus. Your robot did everything you programmed. What most likely happened between the judge seeing it and the end of the match?{{< /ask >}}
 
-{{< ask key="p4_time_vs_distance" label="Time vs distance" >}}Your robot can now drive, turn, grab, carry, stack, and release. Everything it does is still measured in *time* — how long to push, how long to turn. What would change if it could measure in *distance* instead?{{< /ask >}}
+{{< ask key="p4_time_vs_distance" label="Time vs distance" >}}Your robot can now drive, turn, grab, carry, stack, and release. Everything it does is still measured in *time* --- how long to push, how long to turn. What would change if it could measure in *distance* instead?{{< /ask >}}
 
 ### Next
 
 You are carrying seven numbers around in comments, retyping them everywhere, and one rebuild would break all of it.
 
-In **Project 9 — Names for Your Numbers**, those comments become real. You give each number a name once, and the whole program starts using it.
+In **Project 9 --- Names for Your Numbers**, those comments become real. You give each number a name once, and the whole program starts using it.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

@@ -7,7 +7,7 @@
 {{- with .target }}{{ $targetPath = .RelPermalink }}{{ end -}}
 {{- if eq $targetPath "" }}{{ errorf "relative-url needs a target page or path" }}{{ end -}}
 {{- $targetPath = strings.TrimPrefix "/" (strings.TrimPrefix $base $targetPath) -}}
-{{- /* Home RelPermalink trims to "" — emit index.html so file:// and directory mounts still resolve. */ -}}
+{{- /* Home RelPermalink trims to "" - emit index.html so file:// and directory mounts still resolve. */ -}}
 {{- if eq $targetPath "" }}{{ $targetPath = "index.html" }}{{ end -}}
 {{- $depth := len (findRE `/` $sourcePath) -}}
 {{- return printf "%s%s" (strings.Repeat $depth "../") $targetPath -}}

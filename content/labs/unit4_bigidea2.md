@@ -33,10 +33,10 @@ meta:
 
 ## Overview
 
-A robot that drives "mostly straight" slowly turns crooked — and a crooked robot misses everything it's aiming for. Today you'll fix that with a **square-up**: using *two* front sensors, the robot lines itself up perfectly straight against a line, fixing its own heading. This is your setup move for the spilled-cubes mission — squaring up in the right starting box so you can bulldoze straight and true.
+A robot that drives "mostly straight" slowly turns crooked --- and a crooked robot misses everything it's aiming for. Today you'll fix that with a **square-up**: using *two* front sensors, the robot lines itself up perfectly straight against a line, fixing its own heading. This is your setup move for the spilled-cubes mission --- squaring up in the right starting box so you can bulldoze straight and true.
 
 {{< callout title="Heads-up: this is a first draft" variant="gold" >}}
-There are **a lot** of ways to square up, and many are smoother and smarter than this one. We're starting with the simplest version that works, so you can see the idea clearly. Once you understand it, you'll have plenty of ideas to make it better — and that's the point.
+There are **a lot** of ways to square up, and many are smoother and smarter than this one. We're starting with the simplest version that works, so you can see the idea clearly. Once you understand it, you'll have plenty of ideas to make it better --- and that's the point.
 {{< /callout >}}
 
 ### By the end of this activity you will be able to:
@@ -47,16 +47,16 @@ There are **a lot** of ways to square up, and many are smoother and smarter than
 - Square the robot up to a line, skip a gap, and square up on a second line.
 {.obj}
 
-## Phase 1 — Set Up Two Front Sensors
+## Phase 1 --- Set Up Two Front Sensors
 
-Until now you had one line sensor. Square-up needs **two** — one watching each front corner — so the robot can tell if one side reached the line before the other. Move your existing sensor to one side and add a second on the other.
+Until now you had one line sensor. Square-up needs **two** --- one watching each front corner --- so the robot can tell if one side reached the line before the other. Move your existing sensor to one side and add a second on the other.
 
 {{< callout title="Wiring and names" variant="navy" >}}
 Mount one tophat sensor at the front-left, one at the front-right. Plug them in so:
 
 `TOPHAT_LEFT` = `analog(0)` · `TOPHAT_RIGHT` = `analog(1)`
 
-You'll add these names to your [[LIBRARY|library]] as [[VARIABLE|variables]], so your code reads `analog(TOPHAT_LEFT)` instead of a bare number — much easier to understand.
+You'll add these names to your [[LIBRARY|library]] as [[VARIABLE|variables]], so your code reads `analog(TOPHAT_LEFT)` instead of a bare number --- much easier to understand.
 {{< /callout >}}
 
 {{< code >}}
@@ -66,12 +66,12 @@ int TOPHAT_RIGHT = 1;    // front-right tophat sensor on analog port 1
 {{< /code >}}
 
 {{< callout title="The key pairing" >}}
-Each sensor controls the wheel on *its own side*: `TOPHAT_LEFT` drives the **left** wheel `motor(0)`, and `TOPHAT_RIGHT` drives the **right** wheel `motor(1)`. If these get crossed, the robot will chase the line the wrong way — so double-check.
+Each sensor controls the wheel on *its own side*: `TOPHAT_LEFT` drives the **left** wheel `motor(0)`, and `TOPHAT_RIGHT` drives the **right** wheel `motor(1)`. If these get crossed, the robot will chase the line the wrong way --- so double-check.
 {{< /callout >}}
 
 {{< ask key="p1_two_sensors" label="Why two sensors" >}}Why does squaring up need two sensors instead of one? What can two sensors tell the robot that one cannot?{{< /ask >}}
 
-## Phase 2 — Concept: Each Wheel Watches Its Own Sensor
+## Phase 2 --- Concept: Each Wheel Watches Its Own Sensor
 
 {{< concept "The simple idea" >}}
 - text: |
@@ -80,7 +80,7 @@ Each sensor controls the wheel on *its own side*: `TOPHAT_LEFT` drives the **lef
     - If a side's sensor is still on **white** (below the midpoint), that wheel keeps **driving forward**.
     - The instant that sensor hits **black** (above the midpoint), that wheel **freezes**.
 
-    So the side that's behind keeps creeping forward while the side that arrived waits — and the robot naturally straightens out until both sides are on the line. Then it's square.
+    So the side that's behind keeps creeping forward while the side that arrived waits --- and the robot naturally straightens out until both sides are on the line. Then it's square.
 {{< /concept >}}
 
 {{< callout title="Remember your color convention" variant="navy" >}}
@@ -89,11 +89,11 @@ Black reads *higher* than white. So "still on white" means `analog(...) < MIDPOI
 
 {{< ask key="p2_tilt" label="Tilt reasoning" >}}If the robot approaches the line tilted with its left corner ahead, which wheel reaches black first and freezes? What does the other wheel keep doing until the robot is square?{{< /ask >}}
 
-## Phase 3 — New Tool: The && Operator
+## Phase 3 --- New Tool: The && Operator
 
 {{< concept "&& means \"both must be true\"" >}}
 - text: |
-    The square-up is finished only when **both** sensors are on black at the same time. You need a way to check two conditions together — that's the **logical AND** operator, written `&&`.
+    The square-up is finished only when **both** sensors are on black at the same time. You need a way to check two conditions together --- that's the **logical AND** operator, written `&&`.
 - code: |
     analog(TOPHAT_LEFT) > MIDPOINT && analog(TOPHAT_RIGHT) > MIDPOINT
     // true ONLY when BOTH sensors are on black
@@ -125,7 +125,7 @@ Black reads *higher* than white. So "still on white" means `analog(...) < MIDPOI
 
 {{< ask key="p3_and_meaning" label="AND meaning" >}}In your own words, what does `&&` do? Why is it the right operator for "stop when BOTH sensors are on the line"?{{< /ask >}}
 
-## Phase 4 — Build: The square_up [[FUNCTION|Function]]
+## Phase 4 --- Build: The square_up [[FUNCTION|Function]]
 
 Put it together. The loop runs until both sensors are on black. Inside, each wheel has its **own** `if` [[STATEMENT|statement]], checking its own sensor and either driving or freezing. Use a slow speed so it has time to react.
 
@@ -173,9 +173,9 @@ Use a low speed (around 30) and keep a hand near the robot the first run. If a w
 
 {{< ask key="p4_squareup_result" label="Square up result" >}}Run it from a slight angle. Did the robot straighten out and stop square on the line? Describe what each wheel did.{{< /ask >}}
 
-## Phase 5 — Apply: Square Up on Two Lines
+## Phase 5 --- Apply: Square Up on Two Lines
 
-Now the full move for the spilled-cubes setup. Starting in the right starting box, the robot squares up on the **first** line, drives forward just enough to **clear that line**, then squares up again to land on the **second** line — straight and true both times.
+Now the full move for the spilled-cubes setup. Starting in the right starting box, the robot squares up on the **first** line, drives forward just enough to **clear that line**, then squares up again to land on the **second** line --- straight and true both times.
 
 {{< callout title="Use your model from last lab" variant="gold" >}}
 To skip over the first line, drive a few inches with the `Drive` function you built: `Drive(3.0);` moves about 3 inches past the line so your sensors clear it before the second square-up. Adjust the number if your line spacing is different.
@@ -190,7 +190,7 @@ int main() {
 }
 {{< /code >}}
 
-See how clean this reads? Three lines, three clear actions — because `square_up` and `Drive` already do the hard work. That's your library paying off.
+See how clean this reads? Three lines, three clear actions --- because `square_up` and `Drive` already do the hard work. That's your library paying off.
 {.muted}
 
 ### Run Log
@@ -206,15 +206,15 @@ See how clean this reads? Three lines, three clear actions — because `square_u
   key: changed
 {{< /repeattable >}}
 
-{{< ask key="p5_skip" label="Skip distance" >}}Did your `Drive(3.0)` clear the first line cleanly? If the second square-up started while a sensor was still on the first line, what would go wrong — and how would you fix the skip distance?{{< /ask >}}
+{{< ask key="p5_skip" label="Skip distance" >}}Did your `Drive(3.0)` clear the first line cleanly? If the second square-up started while a sensor was still on the first line, what would go wrong --- and how would you fix the skip distance?{{< /ask >}}
 
-## Phase 6 — Connect: The AI Literacy Bridge
+## Phase 6 --- Connect: The AI Literacy Bridge
 
 {{< callout title="AI Literacy Thread" >}}
 Intelligent systems use feedback from multiple inputs to correct themselves.
 {{< /callout >}}
 
-Your robot didn't just drive blindly — it *watched two sensors and corrected its own heading* until it was straight. That's a feedback loop: sense, compare, adjust, repeat, until a goal is met. It's everywhere in intelligent systems. A plane's autopilot constantly nudges itself level using multiple sensors; a thermostat watches temperature and corrects; a robot vacuum squares itself to walls. None of them assume they're aligned — they measure and fix it. You just built the same idea from two sensors and two `if` statements.
+Your robot didn't just drive blindly --- it *watched two sensors and corrected its own heading* until it was straight. That's a feedback loop: sense, compare, adjust, repeat, until a goal is met. It's everywhere in intelligent systems. A plane's autopilot constantly nudges itself level using multiple sensors; a thermostat watches temperature and corrects; a robot vacuum squares itself to walls. None of them assume they're aligned --- they measure and fix it. You just built the same idea from two sensors and two `if` statements.
 
 Read each scenario. Think it through, then write your answer.
 {.muted}
@@ -223,7 +223,7 @@ Read each scenario. Think it through, then write your answer.
 
 {{< ask key="p6_better" label="Better way" >}}We said this is just one simple way to square up. Now that you've built it, describe one way you think it could be done *better* or smoother.{{< /ask >}}
 
-## Phase 7 — Individual Reflection
+## Phase 7 --- Individual Reflection
 
 Complete this section on your own.
 {.muted}
@@ -236,40 +236,40 @@ Complete this section on your own.
 
 {{< ask key="p7_q3_skip" label="Reflection 3" n=3 >}}Why did you use `Drive(3.0)` between the two square-ups instead of just squaring up twice in a row?{{< /ask >}}
 
-{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete in 2–3 sentences: "Intelligent systems use feedback from multiple inputs to correct themselves. This means that to stay on course, a robot should..."{{< /ask >}}
+{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete in 2--3 sentences: "Intelligent systems use feedback from multiple inputs to correct themselves. This means that to stay on course, a robot should..."{{< /ask >}}
 
 ## Extension Challenges
 
 Finished early? Try one or more of these.
 {.muted}
 
-### Extension A — Add square_up to Your Library
+### Extension A --- Add square_up to Your Library
 
 - Move `square_up` into your library, fully commented, so any mission can call it. Where does it belong among your other functions?
 
 {{< answer key="ext_a" label="Extension A" >}}
 
-### Extension B — Tune the Speed
+### Extension B --- Tune the Speed
 
 - Try the square-up at speed 20, then 50. Does slower square up more accurately? Does faster [[OVERSHOOT|overshoot]] the line? Find your best speed.
 
 {{< answer key="ext_b" label="Extension B" >}}
 
-### Extension C — Bulldoze Setup
+### Extension C --- Bulldoze Setup
 
 - This square-up sets you up to bulldoze the spilled cubes. After squaring on the second line, what would your robot do next to push cubes? Sketch the plan in library calls.
 
 {{< answer key="ext_c" label="Extension C" >}}
 
-### Extension D — The Better Way
+### Extension D --- The Better Way
 
 - Take your idea from Phase 6 for a smoother square-up and try to build it. What changed? Was it actually better?
 
 {{< answer key="ext_d" label="Extension D" >}}
 
-### Extension E — A Basic Building Block of AI
+### Extension E --- A Basic Building Block of AI
 
 - Your square-up used a sense → compare → adjust loop. Many real AI systems (a self-driving car staying in its lane, a drone stabilizing itself) use this same repeating loop as a basic building block of their decision-making.
-- In your own words, describe how a sense-compare-adjust loop like yours could "drive" a bigger AI system — like a self-driving car deciding when to brake.
+- In your own words, describe how a sense-compare-adjust loop like yours could "drive" a bigger AI system --- like a self-driving car deciding when to brake.
 
 {{< answer key="ext_e" label="Extension E" >}}

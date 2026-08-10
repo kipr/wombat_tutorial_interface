@@ -52,9 +52,9 @@ meta:
         label: "A partner"
 ---
 
-## Try It — Draw How You Feel
+## Try It --- Draw How You Feel
 
-In your notebook, draw four small faces or emojis — one for each feeling below. Draw them your own way.
+In your notebook, draw four small faces or emojis --- one for each feeling below. Draw them your own way.
 
 {{< gridtable >}}
 columns:
@@ -80,7 +80,7 @@ rows:
       aria: "Leave me alone"
 {{< /gridtable >}}
 
-Now show your drawings to a partner — **without telling them which is which**. Let them guess.
+Now show your drawings to a partner --- **without telling them which is which**. Let them guess.
 
 {{< gridtable >}}
 columns:
@@ -101,16 +101,16 @@ rows:
 
 ### Now try it with words
 
-Read this message three times — once as a joke between friends, once as annoyed, once as genuinely unkind.
+Read this message three times --- once as a joke between friends, once as annoyed, once as genuinely unkind.
 "wow. nice job."{{< ask key="p1_missing" label="What is missing" >}}Could all three readings be right? What is missing that would tell you which one was meant?{{< /ask >}}
 
 {{< callout variant="gold" title="Online, Everything Helpful Is Missing" >}}
 Face to face you get a voice, a face, and a pause. In a message you get none of it.
 
-So the person reading fills the gap themselves — with whatever mood they happen to be in.
+So the person reading fills the gap themselves --- with whatever mood they happen to be in.
 {{< /callout >}}
 
-## Learn It — Being Good at This
+## Learn It --- Being Good at This
 
 [[DIGITAL CITIZENSHIP|Digital citizenship]] means behaving well in a place where you cannot see anybody's face.
 
@@ -154,14 +154,14 @@ Telling a trusted adult about someone being hurt is not the same as getting some
 
 ### The third person in the room
 
-Most online unkindness has three parts — the person doing it, the person it is aimed at, and everybody watching.
+Most online unkindness has three parts --- the person doing it, the person it is aimed at, and everybody watching.
 
 That last group is the [[BYSTANDER|bystander]], and it is usually the biggest.
 
 {{< callout variant="red" title="⚠ Doing Nothing Is a Choice" >}}
 Laughing, sharing, adding an emoji, or just leaving it there all tell the person doing it that this is fine.
 
-You do not have to fight anybody. Sending one private message to the person being targeted — *that was not okay, are you alright?* — changes the whole thing.
+You do not have to fight anybody. Sending one private message to the person being targeted --- *that was not okay, are you alright?* --- changes the whole thing.
 {{< /callout >}}
 
 ### Working well with your own team
@@ -170,9 +170,9 @@ The same thing applies to how you build robots together.
 
 - Give proper [[ATTRIBUTION|attribution]] for code that is not yours. Somebody wrote it, and it is their [[INTELLECTUAL PROPERTY|intellectual property]].
 - Find the goal you share, and work toward that rather than toward being right.
-- Keep everybody safe — with tools, with the robot, and with what you say.
+- Keep everybody safe --- with tools, with the robot, and with what you say.
 
-## Do It — Say It Better
+## Do It --- Say It Better
 
 ### 1. Rewrite the sharp message
 
@@ -186,7 +186,7 @@ Take the message *"wow. nice job."* and write it three ways so that nobody could
 
 {{< gridtable >}}
 columns:
-  - head: "Meant as…"
+  - head: "Meant as..."
     width: 26%
   - head: "How I would write it"
 rows:
@@ -208,7 +208,7 @@ rows:
 
 ### 3. Where could this happen?
 
-List the kinds of place where people your age talk to each other online — apps, games, group chats, comment sections, school systems.
+List the kinds of place where people your age talk to each other online --- apps, games, group chats, comment sections, school systems.
 
 {{< gridtable >}}
 columns:
@@ -241,7 +241,7 @@ rows:
 
 This next part stays in your notebook
 
-Look back over your list. Quietly, just for yourself, mark any place where you have seen this happen — to you, to someone else, or where you were part of it.
+Look back over your list. Quietly, just for yourself, mark any place where you have seen this happen --- to you, to someone else, or where you were part of it.
 
 **Do not write that here and do not share it.** It is yours. If any of it is still bothering you, that is exactly the thing to take to an adult you trust.
 
@@ -330,7 +330,7 @@ Your team needs its own rules for working together. Agree five. Everybody signs.
 columns:
   - head: "#"
     width: 14%
-  - head: "On this team, we…"
+  - head: "On this team, we..."
 rows:
   -
     - text: "1"
@@ -362,7 +362,7 @@ rows:
 
 ### 7. Credit where it is due
 
-Go through your [[LIBRARY|library]] file. Find anything you did not write yourself — a snippet from another team, something a teacher showed you, code from a website.
+Go through your [[LIBRARY|library]] file. Find anything you did not write yourself --- a snippet from another team, something a teacher showed you, code from a website.
 
 {{< gridtable >}}
 columns:
@@ -402,7 +402,7 @@ Add a [[COMMENT|comment]] naming the source above anything that was missing one.
   label: "Everything in my library that came from somewhere else now says so"
 {{< /checklist >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 Credit what you borrow in your library, and remember what a bystander can do.
 
@@ -461,4 +461,4 @@ rows:
 
 You have looked at what technology does to the way people treat each other. Technology also changes what people are able to do at all.
 
-In **Systems Project 12 — Technology and People**, you weigh up what it has given us, what it has cost, and who gets left out.
+In **Systems Project 12 --- Technology and People**, you weigh up what it has given us, what it has cost, and who gets left out.

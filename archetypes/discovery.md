@@ -30,5 +30,5 @@ meta:
         label: "Required item"
 ---
 
-## Try It — Activity name
+## Try It --- Activity name
 

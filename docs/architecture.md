@@ -10,7 +10,7 @@ JavaScript tests use Node's built-in modules.
 Goldmark is configured in `hugo.toml` to:
 
 - reject authored raw HTML (`unsafe = false`); pages use Markdown, shortcodes, and block attributes instead;
-- preserve authored punctuation by disabling typographic substitutions;
+- enable typographer so ASCII quotes, dashes, and ellipses in Markdown prose become curly quotes, en/em dashes, and ellipses on render (front matter is not Markdown, so it must already contain those final characters);
 - allow block attributes such as `{.muted}` and `{.obj}`;
 - leave standalone images unwrapped; and
 - use class-based Chroma highlighting with the palette in `assets/css/syntax.css`.

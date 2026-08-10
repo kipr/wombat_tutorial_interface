@@ -33,7 +33,7 @@ scores:
 does_not_score:
   - "A Blue Pom is touching only the outside of a basket."
   - "A Blue Pom is resting above a basket without extending into it."
-  - "One Blue Pom is in Basket A and one in Basket B — does not satisfy Bonus."
+  - "One Blue Pom is in Basket A and one in Basket B --- does not satisfy Bonus."
 {{< /score-examples >}}
 
 ## Judge Notes

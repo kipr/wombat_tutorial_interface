@@ -48,7 +48,7 @@ meta:
         label: "Every project you have written since Project 12"
 ---
 
-## Try It — How Many Copies Do You Have?
+## Try It --- How Many Copies Do You Have?
 
 Open your projects from 12 onwards, one at a time, and count.
 
@@ -61,25 +61,25 @@ columns:
   aria: "P12 turn"
 rows:
   - cells:
-      - text: "12 — Teaching Your Robot New Moves"
+      - text: "12 --- Teaching Your Robot New Moves"
       - key: p1_p12_drive
         aria: "P12 drive"
       - key: p1_p12_turn
         aria: "P12 turn"
   - cells:
-      - text: "13 — Deciding What to Do"
+      - text: "13 --- Deciding What to Do"
       - key: p1_p13_drive
         aria: "P13 drive"
       - key: p1_p13_turn
         aria: "P13 turn"
   - cells:
-      - text: "14 — Seeing Light and Dark"
+      - text: "14 --- Seeing Light and Dark"
       - key: p1_p14_drive
         aria: "P14 drive"
       - key: p1_p14_turn
         aria: "P14 turn"
   - cells:
-      - text: "15 — Following the Line"
+      - text: "15 --- Following the Line"
       - key: p1_p15_drive
         aria: "P15 drive"
       - key: p1_p15_turn
@@ -91,7 +91,7 @@ Put the drive functions from two different projects side by side and compare the
 
 {{< short-answer key="p1_identical" label="Are they identical" prompt="Are they identical?" >}}
 
-{{< ask key="p1_best_version" label="Best version" >}}Somewhere along the way you improved one of these — a better [[OVERSHOOT|overshoot]] number, a cleaner stop. Which project has your *best* version, and do the others have it?{{< /ask >}}
+{{< ask key="p1_best_version" label="Best version" >}}Somewhere along the way you improved one of these --- a better [[OVERSHOOT|overshoot]] number, a cleaner stop. Which project has your *best* version, and do the others have it?{{< /ask >}}
 
 {{< safety title="⚠ Your Good Work Is Trapped" >}}
 Project 12 fixed the problem of writing the same code twice *inside one program*. It did nothing about writing it again in the *next* program.
@@ -101,7 +101,7 @@ Right now every improvement you make lives in exactly one project, and the other
 
 {{< ask key="p1_team_sharing" label="Team sharing" >}}Your team has four people, each working on a different mission in a different project. One of them finds a much better turn. How does that reach everyone else?{{< /ask >}}
 
-## Learn It — Your Own header file
+## Learn It --- Your Own header file
 
 A [[LIBRARY|library]] is a collection of functions kept in a separate file that any program can include.
 
@@ -111,7 +111,7 @@ You have been using one since Project 2. It is the very first line of every prog
 #include <kipr/wombat.h>
 ```
 
-That is the KIPR library. You cannot change it — but you can make your own beside it.
+That is the KIPR library. You cannot change it --- but you can make your own beside it.
 
 ### Two kinds of include
 
@@ -128,7 +128,7 @@ Get the brackets wrong and the [[COMPILER|compiler]] goes looking in the wrong p
 Your [[HEADER FILE|header file]] holds everything. Your [[PROTOTYPE|prototypes]] and your definitions, all in the one `.h` file.
 
 {{< callout title="Include the KIPR Library Inside Your Library" variant="gold" >}}
-Your functions call `motor()`, `msleep()`, `analog()`. Those come from KIPR — so your `.h` file needs its own `#include <kipr/wombat.h>` at the top.
+Your functions call `motor()`, `msleep()`, `analog()`. Those come from KIPR --- so your `.h` file needs its own `#include <kipr/wombat.h>` at the top.
 
 Leave it out and every function inside your library breaks, even though the code looks perfect.
 {{< /callout >}}
@@ -184,10 +184,10 @@ Look at what `main.c` became. Two includes and a list of what the robot does. No
 - On the KIPR Software Suite home screen, click **User Preferences** and switch on the advanced interface. Without this you will not see the file options.
 - In the KISS [[IDE|IDE]], select your user folder.
 - Under **Include File**, click **+ Add File**.
-- Name it — something short and yours, like your team name.
+- Name it --- something short and yours, like your team name.
 - Click **Create**.
 
-Include files are `.h` files. You may also see an option for source files, which are `.c` — you do not need those for this.
+Include files are `.h` files. You may also see an option for source files, which are `.c` --- you do not need those for this.
 {.muted}
 
 {{< safety title="⚠ Save. Every Time." >}}
@@ -206,9 +206,9 @@ Save the `.h`, then [[COMPILE|compile]].
 | Did I save the `.h` file after my last edit? | My `.h` |
 | Is every function's prototype above its definition? | My `.h` |
 
-## Do It — Move In
+## Do It --- Move In
 
-### Step 1 — Turn on the advanced interface
+### Step 1 --- Turn on the advanced interface
 
 Software Suite home screen → **User Preferences** → switch on the advanced interface.
 
@@ -216,7 +216,7 @@ Software Suite home screen → **User Preferences** → switch on the advanced i
 - key: p3_prefs
   label: "I can see the Include File option in the KISS IDE"
 {{< /checklist >}}
-### Step 2 — Create your library file
+### Step 2 --- Create your library file
 
 Add an include file and name it. Then put the KIPR include at the top and save it immediately, before you write anything else.
 
@@ -235,7 +235,7 @@ rows:
       - key: p3_include_line
         aria: "Include line"
 {{< /gridtable >}}
-### Step 3 — Move one function — just one
+### Step 3 --- Move one function --- just one
 
 Pick your drive function. Cut the prototype and the definition out of a project and paste both into your `.h` file. Save it.
 
@@ -249,7 +249,7 @@ Move one function, compile, run it on the robot. If it works, move the next. Mov
 - key: p3_one_moved
   label: "One function lives in my library and my program still runs"
 {{< /checklist >}}
-### Step 4 — Break it four ways
+### Step 4 --- Break it four ways
 
 Each of these is a mistake you will make for real one day. Make it now, on purpose, and write down what the compiler says.
 
@@ -278,9 +278,9 @@ rows:
 {{< /gridtable >}}
 {{< short-answer key="p3_least_helpful" label="Least helpful error" prompt="Which of those four gave the least helpful error message?" >}}
 
-### Step 5 — Move the rest
+### Step 5 --- Move the rest
 
-Go through the function list you wrote in Project 12 and move each one across, compiling as you go. For each function, take the **best** version you have written — not just the first one you find.
+Go through the function list you wrote in Project 12 and move each one across, compiling as you go. For each function, take the **best** version you have written --- not just the first one you find.
 
 {{< gridtable >}}
 columns:
@@ -352,7 +352,7 @@ rows:
 - key: p3_all_moved
   label: "All my functions are in my library and my program still scores"
 {{< /checklist >}}
-### Step 6 — Start fresh and pull it in
+### Step 6 --- Start fresh and pull it in
 
 Make a brand new project. Do not write a single function in it.
 
@@ -376,9 +376,9 @@ To use your library in a new project, add it under **Include File** and choose *
 {{< /checklist >}}
 {{< short-answer key="p3_new_lines" label="New main lines" prompt="How many lines is your new `main.c`?" >}}
 
-### Step 7 — Fix it once, watch it spread
+### Step 7 --- Fix it once, watch it spread
 
-Change something in your library — sharpen the turn, adjust the overshoot. Save. Then run **two different projects** that both include it.
+Change something in your library --- sharpen the turn, adjust the overshoot. Save. Then run **two different projects** that both include it.
 
 {{< ask key="p3_spread" label="Change spread" >}}What happened in the project you did not touch?{{< /ask >}}
 
@@ -386,7 +386,7 @@ Change something in your library — sharpen the turn, adjust the overshoot. Sav
 One edit, in one place, and every program that includes your library got better at the same instant. That is what a library buys you.
 {{< /callout >}}
 
-### Step 8 — Write the instructions
+### Step 8 --- Write the instructions
 
 A library nobody can use is not much good. Put a [[COMMENT|comment]] [[BLOCK|block]] at the top of your `.h` file listing what is in it.
 
@@ -403,7 +403,7 @@ A library nobody can use is not much good. Put a [[COMMENT|comment]] [[BLOCK|blo
 // ============================================
 ```
 
-Then hand your library to another team and ask them to write a short program with it — without asking you any questions.
+Then hand your library to another team and ask them to write a short program with it --- without asking you any questions.
 
 {{< checklist >}}
 - key: p3_documented
@@ -411,7 +411,7 @@ Then hand your library to another team and ask them to write a short program wit
 {{< /checklist >}}
 {{< ask key="p3_stuck_on" label="What they got stuck on" >}}What did they get stuck on? That is the thing your comments should have said.{{< /ask >}}
 
-### Step 9 — Back it up
+### Step 9 --- Back it up
 
 Your library is now the most valuable file your team owns. Download it from the **File Menu** and keep a copy somewhere off the robot.
 
@@ -422,7 +422,7 @@ Your library is now the most valuable file your team owns. Download it from the 
 Same lesson as Project 1. Code that only exists in one place is code you are about to lose.
 {.muted}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 No mission points this time. What you built is the thing that makes every future run faster to write.
 
@@ -506,12 +506,12 @@ rows:
 
 {{< ask key="p4_next_season" label="Next season" >}}Next season the game changes and the field is completely different. Which parts of your library would still be useful, and which would you throw away?{{< /ask >}}
 
-{{< ask key="p4_biggest_difference" label="Biggest difference" >}}Look at what you have built across sixteen projects. Which one thing made the biggest difference to how your code works — [[VARIABLE|variables]], functions, [[SENSOR|sensors]], or the library?{{< /ask >}}
+{{< ask key="p4_biggest_difference" label="Biggest difference" >}}Look at what you have built across sixteen projects. Which one thing made the biggest difference to how your code works --- [[VARIABLE|variables]], functions, [[SENSOR|sensors]], or the library?{{< /ask >}}
 
 ### Next
 
-One project left. Several missions still have a bonus that means nothing more than "now do that again" — and you are going to stop doing it by hand.
+One project left. Several missions still have a bonus that means nothing more than "now do that again" --- and you are going to stop doing it by hand.
 
-In **Project 17 — Repeating Without Retyping**, you meet the last loop.
+In **Project 17 --- Repeating Without Retyping**, you meet the last loop.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

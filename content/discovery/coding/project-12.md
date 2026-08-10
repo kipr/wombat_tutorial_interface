@@ -53,7 +53,7 @@ meta:
         label: "Your [[TICK|tick]] card from Project 11"
 ---
 
-## Try It — Brain Dump
+## Try It --- Brain Dump
 
 Without looking anything up, write down every command you know. Fill as many boxes as you can.
 
@@ -102,8 +102,8 @@ Now compare with a partner, then look at your whole list at once.
 {{< callout title="You Should Have Found These" variant="gold" >}}
 - Every one of them has a **name**.
 - Every one of them has a pair of **parentheses** after the name.
-- Some need information inside the parentheses — `motor(0, 100)`, `msleep(3000)`.
-- Some need nothing at all — `ao()`, `enable_servos()`.
+- Some need information inside the parentheses --- `motor(0, 100)`, `msleep(3000)`.
+- Some need nothing at all --- `ao()`, `enable_servos()`.
 
 **Every command you have ever typed is a [[FUNCTION|function]].** Somebody wrote them, put them in the KIPR [[LIBRARY|library]], and gave you the names. Today you join them.
 {{< /callout >}}
@@ -141,19 +141,19 @@ rows:
 {{< /gridtable >}}
 {{< short-answer key="p1_repeated_lines" label="Repeated lines" prompt="Multiply those out. Roughly how many lines of your program are copies of something you already wrote?" >}}
 
-## Learn It — Three Parts, In This Order
+## Learn It --- Three Parts, In This Order
 
 Writing your own function is like adding a word to a dictionary. You need the word listed, you need its meaning written down, and then you can use it in a sentence.
 
 | Code / part | What it means |
 | --- | --- |
-| 1 — [[PROTOTYPE\|prototype]] | The prototype goes on the line after `#include`, before `int main()`. It is the **word in the vocabulary list** — it tells the [[COMPILER\|compiler]] this name exists. |
-| `2 — Definition` | Goes **after the last closing brace** of your program. This is the **definition of the word** — what the robot actually does. |
-| `3 — Call` | Inside `main`, where you would have typed all those lines. This is **using the word in a sentence**. |
+| 1 --- [[PROTOTYPE\|prototype]] | The prototype goes on the line after `#include`, before `int main()`. It is the **word in the vocabulary list** --- it tells the [[COMPILER\|compiler]] this name exists. |
+| `2 --- Definition` | Goes **after the last closing brace** of your program. This is the **definition of the word** --- what the robot actually does. |
+| `3 --- Call` | Inside `main`, where you would have typed all those lines. This is **using the word in a sentence**. |
 
 ### What void means
 
-[[VOID|Void]] means the function *does a job but hands nothing back*. `ao()` is like that — it stops the motors, it does not give you an answer.
+[[VOID|Void]] means the function *does a job but hands nothing back*. `ao()` is like that --- it stops the motors, it does not give you an answer.
 
 You have seen the other kind too. `digital(0)` and `gmpc(0)` hand you a number. Yours will not, so yours say `void`.
 {.muted}
@@ -161,13 +161,13 @@ You have seen the other kind too. `digital(0)` and `gmpc(0)` hand you a number. 
 ### Naming rules
 
 - Make it **obvious**. `drive_forward`, not `thing2`.
-- No spaces — use an underscore: `drive_forward`.
+- No spaces --- use an underscore: `drive_forward`.
 - It cannot start with a number.
 - It cannot have the same name as a command that already exists. You cannot call yours `motor`.
 
 ### The whole thing, side by side
 
-**Before — twice**
+**Before --- twice**
 
 ```c
 int main()
@@ -198,7 +198,7 @@ int main()
 }
 ```
 
-**After — a function**
+**After --- a function**
 
 ```c
 #include <kipr/wombat.h>
@@ -229,26 +229,26 @@ void drive_forward()       // 2 definition
 ```
 
 {{< safety title="⚠ The Prototype Gets a Semicolon. The Definition Does Not." >}}
-`void drive_forward();` — [[SEMICOLON|semicolon]]. It is a [[STATEMENT|statement]] announcing the name.
+`void drive_forward();` --- [[SEMICOLON|semicolon]]. It is a [[STATEMENT|statement]] announcing the name.
 
-`void drive_forward()` followed by `{` — no semicolon. The braces do that job, exactly like `int main()`.
+`void drive_forward()` followed by `{` --- no semicolon. The braces do that job, exactly like `int main()`.
 
 Putting a semicolon on the definition is the most common mistake in this project.
 {{< /safety >}}
 
-### Arguments — one function, many distances
+### Arguments --- one function, many distances
 
 `drive_forward()` always drives 4000 ticks. That is fine until you need 2000.
 
-Put a [[VARIABLE|variable]] in the parentheses and you can decide the number every time you call it. That variable is an **[[ARGUMENT|argument]]** — the same word you met back in Project 3.
+Put a [[VARIABLE|variable]] in the parentheses and you can decide the number every time you call it. That variable is an **[[ARGUMENT|argument]]** --- the same word you met back in Project 3.
 
 ```c
 void drive_forward(int ticks);        // prototype says what it needs
 
 ...
 
-drive_forward(4000);                  // call — go 4000
-drive_forward(1200);                  // call — go 1200
+drive_forward(4000);                  // call --- go 4000
+drive_forward(1200);                  // call --- go 1200
 
 ...
 
@@ -267,7 +267,7 @@ void drive_forward(int ticks)         // definition uses the name
 }
 ```
 
-Two arguments? Separate them with a comma — exactly like `motor(port, power)` does.
+Two arguments? Separate them with a comma --- exactly like `motor(port, power)` does.
 {.muted}
 
 ### A function can call another function
@@ -290,9 +290,9 @@ void drive_square()
 
 Now `drive_square();` is one line. This is how a whole match run eventually becomes a short, readable list of things your robot does.
 
-## Do It — Build Your Own Commands
+## Do It --- Build Your Own Commands
 
-### Step 1 — My first function
+### Step 1 --- My first function
 
 New project called `Functions`. Take your working drive-forward code from Project 11 and turn it into a function with all three parts.
 
@@ -306,7 +306,7 @@ Call it twice in `main`. The robot should drive the distance, then drive it agai
 {{< /checklist >}}
 {{< short-answer key="p3_fn_name" label="Function name" prompt="What did you name it, and why that name?" >}}
 
-### Step 2 — Break the prototype on purpose
+### Step 2 --- Break the prototype on purpose
 
 Delete the prototype line. Compile.
 
@@ -318,7 +318,7 @@ Put it back. Now add a semicolon to the end of the *definition* line and compile
 
 Fix it. You have now seen both of the mistakes everyone makes here.
 
-### Step 3 — A turn function
+### Step 3 --- A turn function
 
 Same three parts, using your 90° turn from Project 11.
 
@@ -326,7 +326,7 @@ Same three parts, using your 90° turn from Project 11.
 - key: p3_turn_fn
   label: "My turn function works"
 {{< /checklist >}}
-### Step 4 — The square — one more time
+### Step 4 --- The square --- one more time
 
 You have now driven this square three times. Do it once more, using only function calls.
 
@@ -339,19 +339,19 @@ columns:
   aria: "P5 closed"
 rows:
   - cells:
-      - text: "Project 5 — timed"
+      - text: "Project 5 --- timed"
       - key: p3_sq_p5_lines
         aria: "P5 lines"
       - key: p3_sq_p5_close
         aria: "P5 closed"
   - cells:
-      - text: "Project 11 — ticks"
+      - text: "Project 11 --- ticks"
       - key: p3_sq_p11_lines
         aria: "P11 lines"
       - key: p3_sq_p11_close
         aria: "P11 closed"
   - cells:
-      - text: "Now — functions"
+      - text: "Now --- functions"
       - key: p3_sq_p12_lines
         aria: "P12 lines"
       - key: p3_sq_p12_close
@@ -361,9 +361,9 @@ rows:
 Project 11 made the square **work**. This project makes it **readable**. Those are separate problems, and you have now solved both.
 {{< /callout >}}
 
-### Step 5 — Add an argument
+### Step 5 --- Add an argument
 
-Change your drive function so the distance comes from an argument. Then drive a **rectangle** — two long sides, two short ones — with the same function called four times.
+Change your drive function so the distance comes from an argument. Then drive a **rectangle** --- two long sides, two short ones --- with the same function called four times.
 
 ```text
 drive_forward(4000);
@@ -382,7 +382,7 @@ turn_right();
 {{< /checklist >}}
 {{< short-answer key="p3_without_arg" label="Without argument" prompt="Without the argument, how many separate functions would a rectangle have needed?" >}}
 
-### Step 6 — Wrap the grab
+### Step 6 --- Wrap the grab
 
 The six-step grab sequence from Project 8 is your best candidate. Turn it into `grab()` and `release()`.
 
@@ -415,7 +415,7 @@ void fetch_pom()
 - key: p3_grab_fn
   label: "I have a function that calls my other functions"
 {{< /checklist >}}
-### Step 7 — Mission 15 — one blue pom9 pts
+### Step 7 --- Mission 15 --- one blue pom9 pts
 
 {{< mission-summary mission="15" >}}
 {{< /mission-summary >}}
@@ -429,7 +429,7 @@ Build the run out of the functions you just wrote. Your whole `main` should read
 - key: p3_m15_base
   label: "One blue pom is [[IN]] a basket and stays there"
 {{< /checklist >}}
-### Step 8 — Mission 15 Bonus — do it again9 pts
+### Step 8 --- Mission 15 Bonus --- do it again9 pts
 
 Here is the payoff for the whole project. To score the bonus you need a second blue pom in the **same** basket.
 
@@ -446,7 +446,7 @@ If your function had been twenty lines of copied code, doubling this mission wou
 That is the entire argument for functions, and you just got paid for it.
 {{< /callout >}}
 
-The second pom is somewhere different from the first, so your function will need a way to handle that — an argument, or a small drive between the two calls.
+The second pom is somewhere different from the first, so your function will need a way to handle that --- an argument, or a small drive between the two calls.
 {.muted}
 
 {{< ask key="p3_second_pom" label="Second pom approach" >}}How did you get the second call to reach a different pom?{{< /ask >}}
@@ -455,7 +455,7 @@ The second pom is somewhere different from the first, so your function will need
 - key: p3_m15_bonus
   label: "Two blue poms are in the same basket at the end"
 {{< /checklist >}}
-### Step 9 — Run it five times
+### Step 9 --- Run it five times
 
 {{< gridtable >}}
 columns:
@@ -508,7 +508,7 @@ rows:
       - key: p3_r5_pts
         aria: "R5 points"
 {{< /gridtable >}}
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### My score
 
@@ -520,12 +520,12 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 15 — Base (one blue pom in a basket)"
+      - text: "Mission 15 --- Base (one blue pom in a basket)"
       - key: p4_s_m15b
         aria: "Score M15 base"
       - text: 9
   - cells:
-      - text: "Mission 15 — Bonus (two in the same basket)"
+      - text: "Mission 15 --- Bonus (two in the same basket)"
       - key: p4_s_m15bo
         aria: "Score M15 bonus"
       - text: 9
@@ -636,6 +636,6 @@ rows:
 
 Your robot follows the same plan every time, no matter what it finds. If a cube is not where you expected, it grabs at nothing and carries on regardless.
 
-In **Project 13 — Deciding What to Do**, it stops following orders blindly and starts choosing.
+In **Project 13 --- Deciding What to Do**, it stops following orders blindly and starts choosing.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

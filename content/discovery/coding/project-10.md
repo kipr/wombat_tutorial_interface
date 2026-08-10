@@ -55,7 +55,7 @@ meta:
         label: "Your Project 9 program"
 ---
 
-## Try It — Walking in the Dark
+## Try It --- Walking in the Dark
 
 Imagine the power is out and you are trying to cross a room you know well. Your eyes are useless. So you put a hand out in front of you and start walking.
 
@@ -66,7 +66,7 @@ Imagine the power is out and you are trying to cross a room you know well. Your 
 {{< ask key="p1_what_doing" label="What you were doing" >}}You did not check once and hope. What were you doing the whole time you were walking?{{< /ask >}}
 
 {{< callout title="That Is a Loop" variant="gold" >}}
-Check. Step. Check. Step. Check — *touched something* — stop and do something different.
+Check. Step. Check. Step. Check --- *touched something* --- stop and do something different.
 
 Repeating an action while you wait for something to become true is called **looping**, and it is the whole idea of this project.
 {{< /callout >}}
@@ -93,34 +93,34 @@ rows:
 {{< short-answer key="p1_sort_rule" label="Sorting rule" prompt="What rule did you use?" >}}
 
 {{< callout title="One Split Matters More Than the Others" variant="navy" >}}
-Some of your sensors work like a **light switch** — pressed or not pressed, and nothing in between. Others give you a whole range of readings.
+Some of your sensors work like a **light switch** --- pressed or not pressed, and nothing in between. Others give you a whole range of readings.
 
 If that is how you sorted them, you found the split that programmers care about. If not, re-sort them that way now.
 {{< /callout >}}
 
-## Learn It — Keep Checking Until
+## Learn It --- Keep Checking Until
 
 {{< figrow >}}
 - src: kit/digitalsensors.jpg
-  alt: "Digital sensors — the long lever and large touch sensors."
+  alt: "Digital sensors --- the long lever and large touch sensors."
 {{< /figrow >}}
-A [[SENSOR|sensor]] turns something physical — a touch, a brightness, a distance — into a number your program can read.
+A [[SENSOR|sensor]] turns something physical --- a touch, a brightness, a distance --- into a number your program can read.
 
-**Digital — what you have today**
+**Digital --- what you have today**
 
 A [[DIGITAL|digital]] sensor is a light switch. Two readings, nothing between:
 
-`0` — not touched
-`1` — touched
+`0` --- not touched
+`1` --- touched
 
 A touch sensor is a mechanical switch. Pressing it pushes two contacts together and completes a circuit.
 {.muted}
 
-**Analog — Project 14**
+**Analog --- Project 14**
 
 An [[ANALOG|analog]] sensor gives a whole range of numbers, from `0` to `4095`.
 
-Light sensors and rangefinders work this way — "how bright," not "bright or dark."
+Light sensors and rangefinders work this way --- "how bright," not "bright or dark."
 
 You will meet these later. Today, everything is 0 or 1.
 {.muted}
@@ -135,7 +135,7 @@ Every time you needed the robot to wait, you used `msleep()`. That will not work
 
 **The program cannot read a sensor while it is sleeping.** If you tell it to sleep for two seconds and the sensor is pressed after half a second, the robot never notices.
 
-You need it to keep checking — over and over, as fast as it can. That is what a loop is for.
+You need it to keep checking --- over and over, as fast as it can. That is what a loop is for.
 
 ### Comparing two values
 
@@ -151,9 +151,9 @@ To check something, you compare two values. These are the comparisons you can us
 | `<=` | is less than or equal to | `5 <= 5` is true |
 
 {{< safety title="⚠ Two Equals Signs, Not One" >}}
-One `=` means *make this equal to that* — it is what you used to set a [[VARIABLE|variable]] in Project 9.
+One `=` means *make this equal to that* --- it is what you used to set a [[VARIABLE|variable]] in Project 9.
 
-Two `==` means *is this equal to that?* — it is a question.
+Two `==` means *is this equal to that?* --- it is a question.
 
 Use one where you meant two and your program may still [[COMPILE|compile]] and run. It will just do the wrong thing, quietly. This is one of the hardest bugs to find, so check it every time.
 {{< /safety >}}
@@ -175,7 +175,7 @@ The umbrella stays up *the whole time* the [[CONDITION|condition]] is true. The 
 
 | Code / part | What it means |
 | --- | --- |
-| while (condition) | Ask the question. **No [[SEMICOLON\|semicolon]] here** — the braces do that job, same as `int main ()`. |
+| while (condition) | Ask the question. **No [[SEMICOLON\|semicolon]] here** --- the braces do that job, same as `int main ()`. |
 | `{ ... }` | Everything inside runs, over and over, as long as the answer is true. |
 | `after the }` | The moment the answer is false, the robot jumps down here. |
 
@@ -193,24 +193,24 @@ while (digital(0) == 0)     // while NOT touched...
 
 motor(0, 0);
 motor(3, 0);
-msleep(30);                       // touched — stop
+msleep(30);                       // touched --- stop
 ```
 
 {{< callout title="Read It Out Loud" variant="gold" >}}
-*"While the sensor in port 0 reads zero — while nothing is [[TOUCHING]] it — keep both motors running. As soon as it reads one, stop."*
+*"While the sensor in port 0 reads zero --- while nothing is [[TOUCHING]] it --- keep both motors running. As soon as it reads one, stop."*
 
 Notice the loop condition is checking for **0**, not 1. You keep going while it is *not* pressed. Students get this backwards constantly.
 {{< /callout >}}
 
 {{< safety title="⚠ No msleep, No ao Inside the Loop" >}}
-Do not put a long `msleep()` in the loop — it stops the checking. Do not put `ao()` in the loop either, or the robot will start and stop over and over instead of driving.
+Do not put a long `msleep()` in the loop --- it stops the checking. Do not put `ao()` in the loop either, or the robot will start and stop over and over instead of driving.
 
 The `ao()` goes **after** the closing brace. That is the whole point: the loop is the driving, and what comes after is what happens when the condition finally changes.
 {{< /safety >}}
 
-## Do It — Drive Until Bump
+## Do It --- Drive Until Bump
 
-### Step 1 — Mount the sensor and read it live
+### Step 1 --- Mount the sensor and read it live
 
 Mount your touch sensor on the front of the robot so it hits things before anything else does. Plug it into a digital port and write down which one.
 
@@ -244,7 +244,7 @@ rows:
 - key: p3_sensor_works
   label: "My sensor changes between 0 and 1 when I press it"
 {{< /checklist >}}
-### Step 2 — Drive Until Bump — in your hands first
+### Step 2 --- Drive Until Bump --- in your hands first
 
 {{< safety title="⚠ Hold the Robot in the Air for the First Run" >}}
 Do not put this on a table or the field yet. **Hold the robot up** so the wheels spin freely, run the program, then press the sensor with your finger and watch the wheels stop.
@@ -267,7 +267,7 @@ New project called `Drive Until Bump`. Plan it as [[PSEUDOCODE|pseudocode]] firs
 - key: p3_floor_test
   label: "It works on the floor against a wall or a book"
 {{< /checklist >}}
-### Step 3 — Put your variables back in
+### Step 3 --- Put your variables back in
 
 You spent Project 9 learning why bare numbers are a bad idea. Do not abandon that now.
 
@@ -287,14 +287,14 @@ motor(3, 0);
 msleep(30);
 ```
 
-Note that `bump` and `left` both hold 0 — but they mean completely different things. One is a digital port, one is a motor port. The names are what keep them straight.
+Note that `bump` and `left` both hold 0 --- but they mean completely different things. One is a digital port, one is a motor port. The names are what keep them straight.
 {.muted}
 
 {{< checklist >}}
 - key: p3_variables_in
   label: "My program uses variables and still works"
 {{< /checklist >}}
-### Step 4 — Flip the condition and predict
+### Step 4 --- Flip the condition and predict
 
 Change `== 0` to `== 1`. **Before you run it,** write down what you think will happen.
 
@@ -308,7 +308,7 @@ Now run it. Then run it again while holding the sensor pressed the whole time.
 
 Put it back to `== 0`.
 
-### Step 5 — Bump and Go Home
+### Step 5 --- Bump and Go Home
 
 Here is what makes a touch sensor genuinely useful: **a wall is a place your robot can always find.**
 
@@ -323,14 +323,14 @@ New project. Drive *backward* until the sensor presses against the starting box 
 ```
 
 {{< callout title="Why This Matters More Than It Looks" variant="gold" >}}
-No matter where the robot wandered off to, it can come back and touch a wall — and now it knows *exactly* where it is. Every measurement after that starts from a spot it can trust.
+No matter where the robot wandered off to, it can come back and touch a wall --- and now it knows *exactly* where it is. Every measurement after that starts from a spot it can trust.
 {{< /callout >}}
 
 {{< checklist >}}
 - key: p3_go_home
   label: "My robot finds the wall and ends up in the same place every time"
 {{< /checklist >}}
-### Step 6 — Add a stop and settle
+### Step 6 --- Add a stop and settle
 
 A robot that has been driving is still moving when the loop ends. Momentum does not care about your program.
 
@@ -347,7 +347,7 @@ Run it with and without the pause and compare.
 
 {{< ask key="p3_settle" label="Settle difference" >}}What difference did the pause make?{{< /ask >}}
 
-### Step 7 — Wait for a button before starting
+### Step 7 --- Wait for a button before starting
 
 The Wombat has one physical push button and three soft buttons on screen, named a, b, and c. Each has a [[FUNCTION|function]] that returns 1 when pressed and 0 when not.
 
@@ -356,7 +356,7 @@ printf("Press A to start\n");
 
 while (a_button() == 0)
 {
-    // wait — do nothing at all
+    // wait --- do nothing at all
     msleep(10);
 }
 
@@ -371,19 +371,19 @@ Add this to the top of a program. Now your robot waits for you instead of drivin
 {{< /checklist >}}
 {{< ask key="p3_empty_loop" label="Empty loop" >}}This loop has nothing inside it but a tiny pause. Is it still doing something? What?{{< /ask >}}
 
-### Step 8 — Mission 13 Advanced — all three cubes13 pts
+### Step 8 --- Mission 13 Advanced --- all three cubes13 pts
 
 {{< mission-summary mission="13" >}}
 {{< /mission-summary >}}
 {{< score-examples >}}
 scores:
-  - "All three cubes participate in valid [[ON TOP OF]] relationships — **a traditional stack or a pyramid.**"
+  - "All three cubes participate in valid [[ON TOP OF]] relationships --- **a traditional stack or a pyramid.**"
 does_not_score:
   - "Only two Unstraight Cubes participate in the stack."
   - "Two cubes touching side-by-side without [[ON TOP OF]]."
   - "An Unstraight Cube stacked with a cube from another mission area."
 {{< /score-examples >}}
-{{< callout title="A Pyramid Counts — and It Is Easier" variant="gold" >}}
+{{< callout title="A Pyramid Counts --- and It Is Easier" variant="gold" >}}
 Read the scoring examples again. **A pyramid scores exactly the same as a three-high tower.** Two cubes on the bottom, one on top.
 
 This is a final-position mission, so whatever you build has to still be standing when the match ends. A pyramid is far harder to knock over than a tower. Take the easy 13 points.
@@ -391,7 +391,7 @@ This is a final-position mission, so whatever you build has to still be standing
 
 Use the touch sensor to make your approach repeatable. If your robot can find a wall or a cube by contact instead of by timing, every placement after that starts from a known spot.
 
-{{< ask key="p3_sensor_where" label="Where sensor helps" >}}Where in your run does the touch sensor help most — finding the cubes, or finding your way back?{{< /ask >}}
+{{< ask key="p3_sensor_where" label="Where sensor helps" >}}Where in your run does the touch sensor help most --- finding the cubes, or finding your way back?{{< /ask >}}
 
 {{< checklist >}}
 - key: p3_m13_three
@@ -399,7 +399,7 @@ Use the touch sensor to make your approach repeatable. If your robot can find a 
 - key: p3_m13_stands
   label: "It is still standing after the robot backs away"
 {{< /checklist >}}
-### Step 9 — Run it five times
+### Step 9 --- Run it five times
 
 {{< gridtable >}}
 columns:
@@ -452,9 +452,9 @@ rows:
       - key: p3_r5_pts
         aria: "R5 points"
 {{< /gridtable >}}
-{{< ask key="p3_fell" label="Why it fell" >}}Did the stack fall over on any run? What knocked it — the robot leaving, or the stack itself?{{< /ask >}}
+{{< ask key="p3_fell" label="Why it fell" >}}Did the stack fall over on any run? What knocked it --- the robot leaving, or the stack itself?{{< /ask >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### My score
 
@@ -466,7 +466,7 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 13 — Advanced Bonus (all three cubes stacked)"
+      - text: "Mission 13 --- Advanced Bonus (all three cubes stacked)"
       - key: p4_s_m13adv
         aria: "Score M13 advanced"
       - text: 13
@@ -476,7 +476,7 @@ rows:
         aria: Total
       - text: 13
 {{< /gridtable >}}
-With Project 6 and Project 8, Mission 13 is now worth 21 points across all three parts — the most any single mission has given you.
+With Project 6 and Project 8, Mission 13 is now worth 21 points across all three parts --- the most any single mission has given you.
 {.muted}
 
 ### Finish the loop
@@ -559,6 +559,6 @@ rows:
 
 A wall tells you where you are, but only if there is a wall. Most of the field has nothing to bump into.
 
-In **Project 11 — Counting Wheel [[TICK|ticks]]**, you point the same loop at a number instead of a switch — and your robot can finally measure how far it has actually gone.
+In **Project 11 --- Counting Wheel [[TICK|ticks]]**, you point the same loop at a number instead of a switch --- and your robot can finally measure how far it has actually gone.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

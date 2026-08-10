@@ -53,7 +53,7 @@ meta:
         label: "Your sensor card from Project 14"
 ---
 
-## Try It — Where Is the Line, Exactly?
+## Try It --- Where Is the Line, Exactly?
 
 Put your robot on the field with the sensor over a black line. Open the Sensor List, then **push the robot sideways by hand**, slowly, across the line and off the other side. Watch the number the whole way.
 
@@ -86,7 +86,7 @@ rows:
 {{< /gridtable >}}
 ### Now the question that matters
 
-{{< short-answer key="p1_tell_apart" label="Can it tell apart" prompt="Look at your first reading and your last reading — both on white, one either side of the line. Can the sensor tell them apart?" >}}
+{{< short-answer key="p1_tell_apart" label="Can it tell apart" prompt="Look at your first reading and your last reading --- both on white, one either side of the line. Can the sensor tell them apart?" >}}
 
 {{< ask key="p1_which_way" label="Which way drifted" >}}Your robot drifts off the line. Just from the number, can it work out *which way* it drifted?{{< /ask >}}
 
@@ -96,7 +96,7 @@ Sitting on the centre of the line, everything looks the same in both directions.
 Following the middle of a line with one sensor is impossible. So you do not.
 {{< /safety >}}
 
-## Learn It — Follow the Edge, Not the Line
+## Learn It --- Follow the Edge, Not the Line
 
 Put the sensor on **one edge** of the line and everything becomes answerable. Now dark and light mean two different directions.
 
@@ -127,22 +127,22 @@ the line.
 {{< callout title="The Robot Never Drives Straight" variant="gold" >}}
 It zigzags. Too dark, arc one way. Too light, arc back. Over and over, several times a second.
 
-From a distance it looks like the robot is following the line. Up close it is constantly overcorrecting — and that is exactly what makes it work.
+From a distance it looks like the robot is following the line. Up close it is constantly overcorrecting --- and that is exactly what makes it work.
 {{< /callout >}}
 
 ### Two choices, checked forever
 
-This is a `while` loop with an `if` inside it. You have had both since Projects 10 and 13 — this is the first time they work together.
+This is a `while` loop with an `if` inside it. You have had both since Projects 10 and 13 --- this is the first time they work together.
 
 ```text
 while (a_button() == 0)          // keep going until someone stops me
 {
-    if (analog(line) > threshold)   // I see black — I drifted onto the line
+    if (analog(line) > threshold)   // I see black --- I drifted onto the line
     {
         motor(left,  20);           // arc away from it
         motor(right, 60);
     }
-    else                            // I see white — I drifted off it
+    else                            // I see white --- I drifted off it
     {
         motor(left,  60);           // arc back toward it
         motor(right, 20);
@@ -165,21 +165,21 @@ It is tempting to make the turns sharper by reversing a wheel. **Do not.** In a 
 Use two *different positive* speeds. A big gap between them gives a sharp turn; a small gap gives a gentle one.
 {{< /safety >}}
 
-That is the same rule you found in Project 5 — the further apart the two power numbers, the sharper the curve. It has been true this whole time.
+That is the same rule you found in Project 5 --- the further apart the two power numbers, the sharper the curve. It has been true this whole time.
 {.muted}
 
 ### Tuning it
 
 | Problem | Try this |
 | --- | --- |
-| Wanders off the line and never comes back | Bigger gap between the two speeds — turn harder |
-| Zigzags so wildly it barely moves forward | Smaller gap — turn more gently |
+| Wanders off the line and never comes back | Bigger gap between the two speeds --- turn harder |
+| Zigzags so wildly it barely moves forward | Smaller gap --- turn more gently |
 | Loses the line on sharp corners only | Slow the whole thing down, or sharpen just the inside turn |
-| Follows for a while then drives off | Check your threshold — it may be right for one part of the field and wrong for another |
+| Follows for a while then drives off | Check your threshold --- it may be right for one part of the field and wrong for another |
 
 ### Following until something else happens
 
-Line following on its own goes forever. To be useful it has to *stop* for a reason — a [[TICK|tick]] count, a bump, or a second line crossing the first.
+Line following on its own goes forever. To be useful it has to *stop* for a reason --- a [[TICK|tick]] count, a bump, or a second line crossing the first.
 
 ```text
 cmpc(left);
@@ -196,9 +196,9 @@ msleep(30);
 
 Now the line keeps you straight and the counter tells you when you have arrived. Two sensors doing two different jobs in one loop.
 
-## Do It — Steer and Deliver
+## Do It --- Steer and Deliver
 
-### Step 1 — Build the follower
+### Step 1 --- Build the follower
 
 New project called `Line Follow`. Start with the two-choice loop. Put the sensor on the **left** edge of a line and let it run until you press a button.
 
@@ -249,7 +249,7 @@ rows:
 - key: p3_follows
   label: "My robot follows a straight line without losing it"
 {{< /checklist >}}
-### Step 2 — Switch edges
+### Step 2 --- Switch edges
 
 Move the robot to the **other** edge of the same line and run the identical program.
 
@@ -257,7 +257,7 @@ Move the robot to the **other** edge of the same line and run the identical prog
 
 {{< short-answer key="p3_edge_fix" label="Edge fix" prompt="What single change makes it follow the right edge instead?" >}}
 
-### Step 3 — Follow a curve
+### Step 3 --- Follow a curve
 
 Straight lines are easy. Find a line on the field that bends and follow that.
 
@@ -269,37 +269,37 @@ Straight lines are easy. Find a line on the field that bends and follow that.
 {{< /checklist >}}
 {{< short-answer key="p3_curve_change" label="Curve change" prompt="Did you have to change anything from your straight-line settings?" >}}
 
-### Step 4 — Follow, then stop for a reason
+### Step 4 --- Follow, then stop for a reason
 
 Wrap the follower in a tick count so it travels a set distance and then hands over to whatever comes next. This is the pattern every mission below uses.
 
-Turn it into a [[FUNCTION|function]] while you are at it — `follow_line(int ticks)`.
+Turn it into a [[FUNCTION|function]] while you are at it --- `follow_line(int ticks)`.
 
 {{< checklist >}}
 - key: p3_follow_fn
   label: "I have a `follow_line()` function that stops after a set distance"
 {{< /checklist >}}
-### Step 5 — Mission 16 — Freight Shelving9 pts
+### Step 5 --- Mission 16 --- Freight Shelving9 pts
 
 {{< mission-summary mission="16" >}}
 {{< /mission-summary >}}
 {{< safety title="⚠ The Large Green Cube, Not a Small One" >}}
-The target is the **large palletized Green Cube** field element — not the small green cubes you have been stacking since Project 8. Make sure your team is aiming at the right thing.
+The target is the **large palletized Green Cube** field element --- not the small green cubes you have been stacking since Project 8. Make sure your team is aiming at the right thing.
 {{< /safety >}}
 
-Robot support is permitted, but this is final position scored — so the cube has to still be up there at the end, which means letting go cleanly.
+Robot support is permitted, but this is final position scored --- so the cube has to still be up there at the end, which means letting go cleanly.
 {.muted}
 
 {{< checklist >}}
 - key: p3_m16
   label: "A spilled cube is [[ON TOP OF]] the Large Green Cube and stays there"
 {{< /checklist >}}
-### Step 6 — Mission 17 — Freight Racking9 pts
+### Step 6 --- Mission 17 --- Freight Racking9 pts
 
 {{< mission-summary mission="17" >}}
 {{< /mission-summary >}}
 {{< callout title="Same Job, Different Address" variant="gold" >}}
-This is Mission 16 with two words changed. If you wrote Mission 16 as a function with [[ARGUMENT|arguments]], this one costs you almost nothing — which is the reward for the work you did in Project 12.
+This is Mission 16 with two words changed. If you wrote Mission 16 as a function with [[ARGUMENT|arguments]], this one costs you almost nothing --- which is the reward for the work you did in Project 12.
 {{< /callout >}}
 
 {{< safety title="⚠ Watch Your Cube Budget" >}}
@@ -310,7 +310,7 @@ The Unstraight Cubes are the same three you stacked for Mission 13 back in Proje
 - key: p3_m17
   label: "An unstraight cube is [[ON TOP OF]] the Large Brown Cube and stays there"
 {{< /checklist >}}
-### Step 7 — Mission 7 — Hazard Containment11 pts
+### Step 7 --- Mission 7 --- Hazard Containment11 pts
 
 {{< mission-summary mission="7" >}}
 {{< /mission-summary >}}
@@ -322,19 +322,19 @@ does_not_score:
   - "A Blue Pom in one enclosure and an Orange Pom in a different one."
   - "Only one colour in any enclosure."
 {{< /score-examples >}}
-Two colours, one enclosure. Poms roll, so the second delivery is the one that knocks the first one out — go slowly and back straight away.
+Two colours, one enclosure. Poms roll, so the second delivery is the one that knocks the first one out --- go slowly and back straight away.
 {.muted}
 
 {{< checklist >}}
 - key: p3_m7
   label: "One blue and one orange pom are both [[FULLY WITHIN]] the same enclosure"
 {{< /checklist >}}
-### Step 8 — Mission 6 — Pallet Builder · 22 pts
+### Step 8 --- Mission 6 --- Pallet Builder · 22 pts
 
 {{< mission-summary mission="6" >}}
 {{< /mission-summary >}}
 {{< callout title="The Arrangement Does Not Matter" variant="gold" >}}
-Four cubes flat on the [[PALLET|pallet]], a four-high tower, or anything in between — all of it scores, as long as every cube is part of one palletized load. Pick whatever your claw finds easiest.
+Four cubes flat on the [[PALLET|pallet]], a four-high tower, or anything in between --- all of it scores, as long as every cube is part of one palletized load. Pick whatever your claw finds easiest.
 
 Better still: the cubes are **not required to stay on the pallet after the base is scored**. It is live judged, so once the judge has seen four cubes on the pallet, you can go on and move the pallet without worrying about a cube rolling off.
 {{< /callout >}}
@@ -343,7 +343,7 @@ Better still: the cubes are **not required to stay on the pallet after the base 
 The bonus is stricter than it looks. The pallet must be [[FULLY WITHIN]] the starting box *and* not [[TOUCHING]] any black line. Push it in too far or not far enough and you get nothing.
 {{< /safety >}}
 
-{{< ask key="p3_cube_plan" label="Cube plan" >}}These are the same four green and yellow cubes you used for Mission 3 in Projects 8 and 13. What is your plan — Mission 3's stacks or Mission 6's pallet?{{< /ask >}}
+{{< ask key="p3_cube_plan" label="Cube plan" >}}These are the same four green and yellow cubes you used for Mission 3 in Projects 8 and 13. What is your plan --- Mission 3's stacks or Mission 6's pallet?{{< /ask >}}
 
 {{< checklist >}}
 - key: p3_m6_base
@@ -351,7 +351,7 @@ The bonus is stricter than it looks. The pallet must be [[FULLY WITHIN]] the sta
 - key: p3_m6_bonus
   label: "The pallet ends [[FULLY WITHIN]] a starting box, off every line"
 {{< /checklist >}}
-### Step 9 — Run it five times
+### Step 9 --- Run it five times
 
 {{< gridtable >}}
 columns:
@@ -440,7 +440,7 @@ rows:
       - key: p3_r5_pts
         aria: "R5 points"
 {{< /gridtable >}}
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### My score
 
@@ -452,27 +452,27 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 16 — Base (spilled cube on the Large Green Cube)"
+      - text: "Mission 16 --- Base (spilled cube on the Large Green Cube)"
       - key: p4_s_m16
         aria: "Score M16"
       - text: 9
   - cells:
-      - text: "Mission 17 — Base (unstraight cube on the Large Brown Cube)"
+      - text: "Mission 17 --- Base (unstraight cube on the Large Brown Cube)"
       - key: p4_s_m17
         aria: "Score M17"
       - text: 9
   - cells:
-      - text: "Mission 7 — Base (blue + orange in one enclosure)"
+      - text: "Mission 7 --- Base (blue + orange in one enclosure)"
       - key: p4_s_m7
         aria: "Score M7"
       - text: 11
   - cells:
-      - text: "Mission 6 — Base (four cubes on one pallet)"
+      - text: "Mission 6 --- Base (four cubes on one pallet)"
       - key: p4_s_m6b
         aria: "Score M6 base"
       - text: 15
   - cells:
-      - text: "Mission 6 — Bonus (pallet in a starting box)"
+      - text: "Mission 6 --- Bonus (pallet in a starting box)"
       - key: p4_s_m6bo
         aria: "Score M6 bonus"
       - text: 7
@@ -535,8 +535,8 @@ rows:
 
 ### Next
 
-You have written every skill this game needs. What you have not done is tidy up — your functions live in one long file, and half your missions have a bonus that just means "now do that again."
+You have written every skill this game needs. What you have not done is tidy up --- your functions live in one long file, and half your missions have a bonus that just means "now do that again."
 
-In **Project 16 — Building Your Toolbox**, your functions move into a [[LIBRARY|library]] you can carry between projects.
+In **Project 16 --- Building Your Toolbox**, your functions move into a [[LIBRARY|library]] you can carry between projects.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

@@ -43,4 +43,4 @@ does_not_score:
 - Only cubes originating from the Spilled Cube area may be used.
 - Robot support is permitted.
 - A cube supported by another cube [[ON TOP OF]] the Large Green Cube is considered [[ON TOP OF]] the Large Green Cube.
-- The Large Green Cube is the larger palletized Green Cube field element — not the small Green Cubes used elsewhere.
+- The Large Green Cube is the larger palletized Green Cube field element --- not the small Green Cubes used elsewhere.

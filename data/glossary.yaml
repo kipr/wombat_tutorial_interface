@@ -6,13 +6,13 @@
   body: "Hiding the details behind a name so you can use something without thinking about how it works. You call drive_forward() without recalling every line inside it."
 "ACCESSIBILITY":
   title: "Accessibility"
-  body: "Designing so that as many people as possible can actually use the thing — including people who cannot see it, hear it, reach it, or hold it. A design that only works for some people is not finished."
+  body: "Designing so that as many people as possible can actually use the thing - including people who cannot see it, hear it, reach it, or hold it. A design that only works for some people is not finished."
 "ACCOUNTABLE":
   title: "Accountable"
-  body: "Being the person a job belongs to, so the team can fairly ask how it is going. Accountability needs everybody to know who had what — and it only works when the asking is kind rather than accusing."
+  body: "Being the person a job belongs to, so the team can fairly ask how it is going. Accountability needs everybody to know who had what - and it only works when the asking is kind rather than accusing."
 "ACTUATOR":
   title: "Actuator"
-  body: "A part that produces movement. Motors and servos are actuators — they are the robot’s equivalent of a muscle."
+  body: "A part that produces movement. Motors and servos are actuators - they are the robot's equivalent of a muscle."
 "ALGORITHM":
   title: "Algorithm"
   body: "A list of steps that solves a problem. A recipe is an algorithm. So is the set of instructions you write for a robot."
@@ -21,7 +21,7 @@
   body: "An analog sensor reports a value across a wide range rather than just 0 or 1. A reflectance sensor answers \"how dark is this?\" with a number, so you have to decide for yourself where dark begins."
 "ARGUMENT":
   title: "Argument"
-  body: "A piece of information you give a command, written inside its parentheses. motor() takes two arguments — the port and the power — separated by a comma."
+  body: "A piece of information you give a command, written inside its parentheses. motor() takes two arguments - the port and the power - separated by a comma."
 "ARRAY":
   title: "Array"
   body: "A single name that holds a whole row of values instead of just one. You reach each value by its position number, so one name and a number can stand in for a dozen separate variables."
@@ -40,7 +40,7 @@
   python: "Everything at a given level of indentation. A block groups statements together so the controller knows which ones belong to which function."
 "BOOLEAN":
   title: "Boolean"
-  body: "A value that can only be true or false — nothing in between. Every condition you write comes out as a boolean, which is how the robot decides which way to go."
+  body: "A value that can only be true or false - nothing in between. Every condition you write comes out as a boolean, which is how the robot decides which way to go."
 "BOUNDARY":
   title: "Boundary"
   body: "The line that marks the edge of a zone or area. Whether an object is inside, outside, or touching the boundary is often the difference between scoring and not scoring."
@@ -49,7 +49,7 @@
   body: "Somebody who sees unkindness happening but is not the one doing it or the one it is aimed at. Bystanders are usually the largest group, which is why what they do matters so much."
 "CALIBRATION":
   title: "Calibration"
-  body: "Measuring your own robot to find the numbers that describe it — ticks per inch, a light threshold, a turn count. Calibration is why one team’s numbers do not work on another team’s robot."
+  body: "Measuring your own robot to find the numbers that describe it - ticks per inch, a light threshold, a turn count. Calibration is why one team's numbers do not work on another team's robot."
 "CASTER":
   title: "Caster"
   body: "A small wheel that swivels freely instead of being driven. Pulled along behind the driven wheels it tracks straight; pushed from in front it wanders and has to swing round every time the robot changes direction."
@@ -68,10 +68,10 @@
   body: "A saved snapshot of your work in version control, with a note saying what you changed. A good commit message tells a future reader why, not just what."
 "COMPILE":
   title: "Compile"
-  body: "To translate the code you wrote into machine instructions the robot’s processor can actually carry out. If compiling fails, the program cannot run."
+  body: "To translate the code you wrote into machine instructions the robot's processor can actually carry out. If compiling fails, the program cannot run."
 "COMPILER":
   title: "Compiler"
-  body: "The program that turns the code you wrote into instructions the robot’s processor can carry out. When it finds something it cannot translate, it stops and tells you where."
+  body: "The program that turns the code you wrote into instructions the robot's processor can carry out. When it finds something it cannot translate, it stops and tells you where."
 "COMPLETELY":
   title: "COMPLETELY"
   body: "An object is COMPLETELY outside an enclosure or boundary when no portion of the object is touching or overlapping that enclosure or boundary."
@@ -81,11 +81,11 @@
   body: "The part of a robot that decides what to do. On your robot that is the Wombat running the program you wrote."
 "CONDITION":
   title: "Condition"
-  body: "The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between — every condition is one or the other."
+  body: "The question inside the parentheses of an if or a while. It compares two values and comes out either true or false. There is no in between - every condition is one or the other."
   python: "An expression that Python checks to decide whether an if block runs or a while loop repeats. Python treats the expression as true or false; it does not need parentheses and does not have to compare two values."
 "CONSTRAINT":
   title: "Constraint"
-  body: "A limit your design has to stay inside — how big, how small, how much you have to spend, what parts you are allowed. A requirement says what it must do; a constraint says what it may not exceed."
+  body: "A limit your design has to stay inside - how big, how small, how much you have to spend, what parts you are allowed. A requirement says what it must do; a constraint says what it may not exceed."
 "CONTROLLER":
   title: "Controller"
   body: "The small computer that runs your robot. Yours is a KIPR Wombat. It holds your programs, powers the motors, and reads the sensors."
@@ -95,7 +95,7 @@
   source: "rules"
 "CYBERBULLYING":
   title: "Cyberbullying"
-  body: "Using messages, posts, photos, or group chats to hurt, frighten, or humiliate somebody. It is different from a disagreement — it usually keeps going, and it usually has an audience."
+  body: "Using messages, posts, photos, or group chats to hurt, frighten, or humiliate somebody. It is different from a disagreement - it usually keeps going, and it usually has an audience."
 "DEBUGGING":
   title: "Debugging"
   body: "Finding out why a program does not do what you meant, and fixing it. The skill is not writing perfect code; it is narrowing down where the trouble actually is."
@@ -107,13 +107,13 @@
   body: "Breaking a big problem into smaller problems you can solve one at a time. Almost every hard robot task becomes easy once it is decomposed far enough."
 "DESIGN PROCESS":
   title: "Design Process"
-  body: "The ordered set of steps engineers use to turn a problem into something that works. It is a loop, not a line — testing sends you back to change your design and try again."
+  body: "The ordered set of steps engineers use to turn a problem into something that works. It is a loop, not a line - testing sends you back to change your design and try again."
 "DIGITAL":
   title: "Digital"
-  body: "A digital sensor has only two possible readings: 0 or 1. It works like a light switch — pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off."
+  body: "A digital sensor has only two possible readings: 0 or 1. It works like a light switch - pressed or not pressed, with nothing in between. In programming, 1 means true, yes, on; 0 means false, no, off."
 "DIGITAL CITIZENSHIP":
   title: "Digital Citizenship"
-  body: "Behaving well in a place where you cannot see anybody’s face. It covers how you treat other people online, how you protect your own information, and what you do when you see somebody being hurt."
+  body: "Behaving well in a place where you cannot see anybody's face. It covers how you treat other people online, how you protect your own information, and what you do when you see somebody being hurt."
 "EFFECTOR":
   title: "Effector"
   body: "The part of a robot that changes the state of the robot itself or the state of the world. Motors, arms, and legs are effectors, and so are buzzers, lights, and speakers. Its shape decides what jobs it is good at. A bulldozer blade pushes well and grabs nothing; a claw grabs well and pushes badly."
@@ -131,7 +131,7 @@
   body: "Whoever the thing is actually being built for. Not you, and not the person marking it. They know things you do not, which is why you ask them before you build rather than after."
 "FEEDBACK":
   title: "Feedback"
-  body: "Somebody telling you what they actually saw, so you can make the thing better. It is not a mark and it is not criticism — people give it because they want the work to succeed."
+  body: "Somebody telling you what they actually saw, so you can make the thing better. It is not a mark and it is not criticism - people give it because they want the work to succeed."
 "FIREWALL":
   title: "Firewall"
   body: "Software that decides what is allowed in and out of a network, like a gate with a guard on it. Schools use them to keep harmful things off their computers."
@@ -141,18 +141,18 @@
   body: "A drawing of a plan, using shapes joined by arrows. Engineers everywhere use the same shapes, so a flowchart can be read by someone who does not speak your language."
 "FOR LOOP":
   title: "For Loop"
-  body: "A loop that repeats a known number of times. Its three parts — where to start, when to stop, and how much to change each time — all sit together inside one set of parentheses, separated by semicolons."
-  python: "A loop that repeats once for each item in a sequence — often a range of numbers or a list. Python writes the sequence after the word in; there are no semicolons and no separate start/stop/step slots in parentheses."
+  body: "A loop that repeats a known number of times. Its three parts - where to start, when to stop, and how much to change each time - all sit together inside one set of parentheses, separated by semicolons."
+  python: "A loop that repeats once for each item in a sequence - often a range of numbers or a list. Python writes the sequence after the word in; there are no semicolons and no separate start/stop/step slots in parentheses."
 "FULLY WITHIN":
   title: "FULLY WITHIN"
   body: "An object or robot is FULLY WITHIN an area when every part lies inside the interior vertical projection of that area's boundaries."
   source: "rules"
 "FUNCTION":
   title: "Function"
-  body: "A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop — you call it once and all of it happens."
+  body: "A named set of instructions. Calling a function means telling the controller to carry out everything inside it. A clean_house() function might mean vacuum, dust, and mop - you call it once and all of it happens."
 "HARDWARE":
   title: "Hardware"
-  body: "The physical body of a machine — the parts you could drop on your foot. Hardware can do things but cannot decide anything."
+  body: "The physical body of a machine - the parts you could drop on your foot. Hardware can do things but cannot decide anything."
 "HEADER FILE":
   title: "Header File"
   body: "A file ending in .h that holds functions you want other programs to be able to use. You bring it into a program with an #include line at the top."
@@ -176,16 +176,16 @@
   body: "A moving object keeps moving until something stops it. When your loop shuts the motors off, the robot is still rolling, so it coasts past the tick count you asked for. More speed means more coasting."
 "INPUT":
   title: "Input"
-  body: "Information coming into a system from outside — a sensor reading, a button press, a light coming on. Without input a machine has no idea what is going on around it."
+  body: "Information coming into a system from outside - a sensor reading, a button press, a light coming on. Without input a machine has no idea what is going on around it."
 "INTEGER":
   title: "Integer"
-  body: "A whole number — no fraction, no decimal point. Servo positions, motor ports, and power levels are all integers, which is why they are declared with int."
+  body: "A whole number - no fraction, no decimal point. Servo positions, motor ports, and power levels are all integers, which is why they are declared with int."
 "INTELLECTUAL PROPERTY":
   title: "Intellectual Property"
-  body: "Something a person made with their mind rather than their hands — code, writing, music, a design. It still belongs to whoever made it, even though you can copy it in a second."
+  body: "Something a person made with their mind rather than their hands - code, writing, music, a design. It still belongs to whoever made it, even though you can copy it in a second."
 "IP ADDRESS":
   title: "IP Address"
-  body: "A number that identifies one machine on a network — like a building address. Your browser uses it to find your Wombat."
+  body: "A number that identifies one machine on a network - like a building address. Your browser uses it to find your Wombat."
 "KEY":
   title: "Key"
   body: "The rule that turns a scrambled message back into a readable one. Whoever holds the key can read the message; whoever does not, cannot. Keeping the key safe matters more than keeping the method secret."
@@ -198,7 +198,7 @@
   body: "A collection of functions kept in a separate file that any program can include. Including the KIPR library gives your program every command it needs to run motors, servos, and sensors. Your own library gives you the commands you invented."
 "LIST":
   title: "List"
-  body: "Python’s way of holding a set of values under one name. You reach each value by its index, so one name and a number can stand in for many separate variables."
+  body: "Python's way of holding a set of values under one name. You reach each value by its index, so one name and a number can stand in for many separate variables."
 "MILESTONE":
   title: "Milestone"
   body: "A point in a plan where something has to be finished before the next thing can start. Milestones are how you find out you are behind while there is still time to do something about it."
@@ -213,7 +213,7 @@
   body: "The remainder left over after dividing. 7 modulo 3 is 1, because 3 goes into 7 twice with 1 left. It is how a program makes something repeat in a cycle."
 "NESTED":
   title: "Nested"
-  body: "One structure placed inside another — an if inside an if, or an if inside a while. The inner one is only reached when the outer one lets the robot get that far."
+  body: "One structure placed inside another - an if inside an if, or an if inside a while. The inner one is only reached when the outer one lets the robot get that far."
 "OFF":
   title: "OFF"
   body: "An object is OFF a line, tape, boundary, or zone edge when no portion is touching it."
@@ -227,7 +227,7 @@
   body: "One wheel drives while the other stays stopped. The robot swings around the stopped wheel. Giving the moving wheel more power makes the swing faster, not tighter."
 "OUTPUT":
   title: "Output"
-  body: "Something a system does to the world — a motor turning, a claw closing, a message on a screen. Output is the only part of a program anyone can actually see."
+  body: "Something a system does to the world - a motor turning, a claw closing, a message on a screen. Output is the only part of a program anyone can actually see."
 "OVERSHOOT":
   title: "Overshoot"
   body: "How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you drive, the bigger the overshoot."
@@ -245,7 +245,7 @@
   body: "The lock on everything else you own online. A strong one is long, mixes different kinds of character, and contains nothing anybody could look up about you."
 "PERSONAL INFORMATION":
   title: "Personal Information"
-  body: "Anything that could be used to work out who you are, where you are, or how to reach you. Single pieces often look harmless — it is putting several together that identifies somebody."
+  body: "Anything that could be used to work out who you are, where you are, or how to reach you. Single pieces often look harmless - it is putting several together that identifies somebody."
 "PHISHING":
   title: "Phishing"
   body: "A message that pretends to be from someone you trust so that you hand over private information without thinking. It usually creates panic or excitement so you act before you check."
@@ -255,13 +255,13 @@
   python: "A socket on the Wombat where you plug something in. Digital sensor ports are 0-9. The number in your code tells the controller which socket to read."
 "PORT NUMBER":
   title: "Port Number"
-  body: "A number that tells the browser which service to reach on that machine — like which door to knock on. The Wombat’s programming tools always use 8888."
+  body: "A number that tells the browser which service to reach on that machine - like which door to knock on. The Wombat's programming tools always use 8888."
 "PROPRIOCEPTIVE":
   title: "Proprioceptive"
-  body: "Sensing your own body rather than the world outside it. Motor encoders are proprioceptive — they tell the robot how far its own wheels have turned."
+  body: "Sensing your own body rather than the world outside it. Motor encoders are proprioceptive - they tell the robot how far its own wheels have turned."
 "PROTOCOL":
   title: "Protocol"
-  body: "The set of rules both ends agree on before any message is sent — how packets are numbered, what happens if one goes missing, how you know the message is finished. Without a shared protocol, arriving packets are just a pile."
+  body: "The set of rules both ends agree on before any message is sent - how packets are numbered, what happens if one goes missing, how you know the message is finished. Without a shared protocol, arriving packets are just a pile."
 "PROTOTYPE":
   title: "Prototype"
   body: "A single line near the top of your program announcing that a function name exists, before the compiler ever reaches the code that does the work. Like listing a word in a vocabulary list before defining it."
@@ -286,7 +286,7 @@
   body: "A person drives every movement in real time. The machine makes no decisions of its own."
 "REPOSITORY":
   title: "Repository"
-  body: "The stored home of a project under version control — all its files plus the full history of every change ever made to them."
+  body: "The stored home of a project under version control - all its files plus the full history of every change ever made to them."
 "REQUIREMENT":
   title: "Requirement"
   body: "Something your design must do to count as working, written so it can actually be tested. \"Strong\" is not a requirement. \"Holds a full can for thirty seconds without leaning\" is."
@@ -295,13 +295,13 @@
   body: "The answer a function hands back to whatever called it. A function that returns a value can be used inside a calculation; a void function cannot."
 "SEMI-AUTONOMOUS":
   title: "Semi-Autonomous"
-  body: "A mix — the machine handles some things itself while a person directs the rest."
+  body: "A mix - the machine handles some things itself while a person directs the rest."
 "SEMICOLON":
   title: "Semicolon"
-  body: "The punctuation mark that ends a statement in C. It does the same job as the full stop at the end of a sentence — it says this instruction is finished, move on to the next one."
+  body: "The punctuation mark that ends a statement in C. It does the same job as the full stop at the end of a sentence - it says this instruction is finished, move on to the next one."
 "SENSOR":
   title: "Sensor"
-  body: "A device that turns something physical — a touch, a brightness, a distance — into a number your program can read. Sensors allow a robot to gather information about the world instead of just assuming."
+  body: "A device that turns something physical - a touch, a brightness, a distance - into a number your program can read. Sensors allow a robot to gather information about the world instead of just assuming."
 "SENSOR FUSION":
   title: "Sensor Fusion"
   body: "Combining readings from more than one sensor to work out something neither could tell you alone. Two sensors disagreeing is itself information."
@@ -310,7 +310,7 @@
   body: "A motor that rotates to a position you choose, rather than simply spinning. It has a range of about 180 degrees, divided into 2048 numbered positions, and holds at whatever position you send it to."
 "SERVO HORN":
   title: "Servo Horn"
-  body: "The arm that clips onto the spline and carries whatever the servo has to move. Where the horn points when you push it on decides where the servo’s range of movement begins."
+  body: "The arm that clips onto the spline and carries whatever the servo has to move. Where the horn points when you push it on decides where the servo's range of movement begins."
 "SIMULTANEOUSLY":
   title: "SIMULTANEOUSLY"
   body: "Two or more conditions are SIMULTANEOUS if all are true at the same moment. No minimum duration is required unless a mission specifies one."
@@ -320,45 +320,45 @@
   body: "The instructions a machine follows. Software can decide things but cannot move anything on its own."
 "SPLINE":
   title: "Spline"
-  body: "The toothed shaft on top of a servo — the part that actually turns. The teeth let a horn grip it in a fixed position instead of slipping."
+  body: "The toothed shaft on top of a servo - the part that actually turns. The teeth let a horn grip it in a fixed position instead of slipping."
 "STATE":
   title: "State"
-  body: "What a system is currently doing or holding — where the robot is, what it is carrying, how many cubes it has stacked. State is the information a program keeps track of as it runs."
+  body: "What a system is currently doing or holding - where the robot is, what it is carrying, how many cubes it has stacked. State is the information a program keeps track of as it runs."
 "STATEMENT":
   title: "Statement"
   body: "One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon."
   python: "A complete instruction that Python can execute. Simple statements are usually written one per line, while statements such as if and loops introduce an indented block of code."
 "STRING":
   title: "String"
-  body: "Text stored as data — letters, digits, and spaces treated as characters rather than as a number you can do arithmetic with."
+  body: "Text stored as data - letters, digits, and spaces treated as characters rather than as a number you can do arithmetic with."
 "TANGIBLE":
   title: "Tangible"
-  body: "Something you could point at and agree on. A tangible goal is one where everybody would give the same answer to “did it happen?” — unlike “get better at robotics”, which two people could argue about forever."
+  body: "Something you could point at and agree on. A tangible goal is one where everybody would give the same answer to \"did it happen?\" - unlike \"get better at robotics\", which two people could argue about forever."
 "THRESHOLD":
   title: "Threshold"
   body: "The number you choose as your dividing line. Readings below it count as one thing, readings above it count as another. A common starting point is halfway between your white and black readings, then you adjust from there."
 "TICK":
   title: "Tick"
-  body: "One small step of the motor shaft. There are about 1820 ticks in one full revolution of the shaft. Ticks count the motor turning, not the distance travelled — how far that is depends on your wheels."
+  body: "One small step of the motor shaft. There are about 1820 ticks in one full revolution of the shaft. Ticks count the motor turning, not the distance travelled - how far that is depends on your wheels."
 "TOUCHING":
   title: "Touching"
   body: "Two objects are TOUCHING only when in direct physical contact. Contact through a robot, attachment, field element, or another game object does not count."
   source: "rules"
 "TRADE-OFF":
   title: "Trade-off"
-  body: "What you give up in order to get something else. New technology rarely just adds — it swaps one set of problems for another, and judging it means looking at both sides."
+  body: "What you give up in order to get something else. New technology rarely just adds - it swaps one set of problems for another, and judging it means looking at both sides."
 "VARIABLE":
   title: "Variable"
   body: "A name that holds a value. You set it once, then use the name everywhere instead of the number. Change the value in one place and every use of that name changes with it."
 "VELOCITY":
   title: "Velocity"
-  body: "How fast something moves, measured in real units — ticks per second rather than a percentage of full power. Velocity holds steady as the battery drains; power does not."
+  body: "How fast something moves, measured in real units - ticks per second rather than a percentage of full power. Velocity holds steady as the battery drains; power does not."
 "VERSION CONTROL":
   title: "Version Control"
   body: "A system that keeps every version of your files as you change them, so you can see what changed, go back to an older version, and work alongside other people without overwriting them."
 "VOID":
   title: "Void"
-  body: "A function marked void does a job but hands nothing back. ao() is void — it stops the motors but gives you no answer. Functions like digital() and gmpc() are not void, because they hand you a number."
+  body: "A function marked void does a job but hands nothing back. ao() is void - it stops the motors but gives you no answer. Functions like digital() and gmpc() are not void, because they hand you a number."
 "ZERO RADIUS TURN":
   title: "Zero Radius Turn"
   body: "The two wheels turn in opposite directions, so the robot spins in place without traveling forward or backward. Also called a pivot turn or spin turn. This is the turn you use when you need an exact angle."

@@ -1,4 +1,4 @@
-/* KIPR Botball 2026 — Worksheet styles
+/* KIPR Botball 2026 - Worksheet styles
  * PIN/submit, answers, code, grids, sketches, lab widgets, bottom nav.
  * Used by C/Python labs and Discovery project sheets.
  */
@@ -190,7 +190,7 @@
   margin: 8px 0;
   counter-reset: s;
 }
-/* Absolute number markers — flex on <li> fragments <strong>/<code> into
+/* Absolute number markers - flex on <li> fragments <strong>/<code> into
    separate gap'd items (spaces before periods, broken wrapping). */
 .steps li {
   position: relative;

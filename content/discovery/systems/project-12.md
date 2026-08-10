@@ -52,7 +52,7 @@ meta:
         label: "Somebody older to interview"
 ---
 
-## Try It — How Did People Do It Before?
+## Try It --- How Did People Do It Before?
 
 Pick five things you did this week using a screen. For each one, work out how somebody would have done the same thing thirty years ago.
 
@@ -109,7 +109,7 @@ Write down what they said, even if you disagree with it.
 {{< /callout >}}
 {{< ask key="p1_interview" label="Interview answer" >}}They said:{{< /ask >}}
 
-## Learn It — Everything Has a Price
+## Learn It --- Everything Has a Price
 
 New technology does not simply add things. It swaps one set of problems for another.
 
@@ -146,7 +146,7 @@ Mobile phonesA computer, camera, map, and telephone in one pocketVoice assistant
 {{< callout variant="navy" title="You Have Been Building One of These" >}}
 Artificial Intelligence is not one thing. At its simplest it means a machine using information to decide what to do next.
 
-Your robot reads a [[SENSOR|sensor]], compares it against a [[THRESHOLD|threshold]], and picks an action. That is the same shape as the thing everyone is arguing about — just small enough that you can see all of it.
+Your robot reads a [[SENSOR|sensor]], compares it against a [[THRESHOLD|threshold]], and picks an action. That is the same shape as the thing everyone is arguing about --- just small enough that you can see all of it.
 {{< /callout >}}
 
 ### Who does it work for?
@@ -163,7 +163,7 @@ Subtitles were built for deaf viewers. Most people watching a video on a noisy b
 Designing for the people who are usually left out tends to make the thing better for everybody.
 {{< /callout >}}
 
-## Do It — Weigh It Up
+## Do It --- Weigh It Up
 
 ### 1. Pick one and find out about it
 
@@ -208,7 +208,7 @@ rows:
 
 ### 2. Two lists and a middle
 
-As a group, fill in all three columns. The middle is the interesting one — things that are good and bad at the same time.
+As a group, fill in all three columns. The middle is the interesting one --- things that are good and bad at the same time.
 
 #### Good about technology
 
@@ -226,7 +226,7 @@ As a group, fill in all three columns. The middle is the interesting one — thi
 
 ### 3. Find a task somebody cannot do
 
-Think of an everyday task and somebody who would find it hard or impossible — because of sight, hearing, movement, memory, height, strength, or language.
+Think of an everyday task and somebody who would find it hard or impossible --- because of sight, hearing, movement, memory, height, strength, or language.
 
 {{< gridtable >}}
 columns:
@@ -274,7 +274,7 @@ rows:
     - key: p3_inv_today
       aria: "Buildable"
 {{< /gridtable >}}
-{{< ask key="p3_who_else" label="Who else" >}}Who else — not the person you designed it for — would end up using it?{{< /ask >}}
+{{< ask key="p3_who_else" label="Who else" >}}Who else --- not the person you designed it for --- would end up using it?{{< /ask >}}
 
 ### 5. Share and improve
 
@@ -320,7 +320,7 @@ Make one prediction about how technology will have changed things by the time yo
 
 *Date this page. It will be worth reading again later.*
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 Keep accessibility in mind when you judge who a design works for.
 
@@ -359,7 +359,7 @@ rows:
 
 {{< gridtable >}}
 columns:
-  - head: "A design that…"
+  - head: "A design that..."
     width: 62%
   - head: "Accessible?"
 rows:
@@ -403,10 +403,10 @@ rows:
 ### Think about it
 {{< ask key="p4_why_universal" label="Why universal" >}}Dropped kerbs and subtitles were built for a few people and ended up used by nearly everyone. Why do you think that keeps happening?{{< /ask >}}
 {{< ask key="p4_intelligence" label="Is it intelligence" >}}Your robot decides what to do by reading a sensor and comparing it to a number. Is that intelligence? Where would you draw the line?{{< /ask >}}
-{{< ask key="p4_whose_job" label="Whose job" >}}Somebody invents something genuinely useful that also causes real harm. Whose job is it to think about the harm — the inventor, the people using it, or somebody else?{{< /ask >}}
+{{< ask key="p4_whose_job" label="Whose job" >}}Somebody invents something genuinely useful that also causes real harm. Whose job is it to think about the harm --- the inventor, the people using it, or somebody else?{{< /ask >}}
 
 ### Next
 
 You have thought about technology and the people who use it. The last two projects are about the people you build it with.
 
-In **Systems Project 13 — Goals and Roles**, your team decides what it is actually trying to do, and who does what.
+In **Systems Project 13 --- Goals and Roles**, your team decides what it is actually trying to do, and who does what.

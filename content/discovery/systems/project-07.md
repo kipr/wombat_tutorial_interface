@@ -71,7 +71,7 @@ meta:
         label: "Medium, long and small silver bolts and nuts"
 ---
 
-## Try It — Look Before You Build
+## Try It --- Look Before You Build
 
 {{< figrow >}}
 - src: discovery/systems/project-07/finished.jpg
@@ -114,16 +114,16 @@ rows:
 {{< callout variant="gold" title="Two Servos, Two Different Jobs" >}}
 One servo lifts the whole arm. The other opens and closes the claw. Neither can do the other's job.
 
-In Systems Project 6 you decided a blade's shape from its [[FUNCTION|function]]. Same rule here — the arm is shaped the way it is because of what it has to reach and hold.
+In Systems Project 6 you decided a blade's shape from its [[FUNCTION|function]]. Same rule here --- the arm is shaped the way it is because of what it has to reach and hold.
 {{< /callout >}}
 
 ### Sort your parts first
 
 Lay everything out and count it before you start. A missing nut found at step 9 costs far more than one found now.
 
-*Your parts list is at the top of this page — tick each item off as you find it, and sort out anything missing now.*
+*Your parts list is at the top of this page --- tick each item off as you find it, and sort out anything missing now.*
 
-## Learn It — Three Things That Will Trip You Up
+## Learn It --- Three Things That Will Trip You Up
 
 Most of this build is bolting things together. Three details are not obvious, and all three assemble perfectly and then fail later.
 
@@ -131,10 +131,10 @@ Most of this build is bolting things together. Three details are not obvious, an
 
 {{< figrow >}}
 - src: kit/servo_port_plugin.png
-  alt: "Servo wires — check the colours before you push the plug in."
+  alt: "Servo wires --- check the colours before you push the plug in."
 {{< /figrow >}}
 
-A servo has a wire coming out of one end and a [[SPLINE|spline]] — the toothed shaft that actually turns — on the top.
+A servo has a wire coming out of one end and a [[SPLINE|spline]] --- the toothed shaft that actually turns --- on the top.
 
 The build tells you **wire end first** and **spline towards the front**. Fit it backwards and it bolts up fine, but your arm will swing the wrong way and the wire will be trapped where you cannot reach it.
 
@@ -142,7 +142,7 @@ The build tells you **wire end first** and **spline towards the front**. Fit it 
 
 {{< figrow >}}
 - src: servo/centering-horn.jpg
-  alt: "Finding the middle of a servo’s travel before the horn goes on."
+  alt: "Finding the middle of a servo's travel before the horn goes on."
 {{< /figrow >}}
 
 The [[SERVO HORN|servo horn]] is the arm that clips onto the spline. Here is the part people skip.
@@ -150,7 +150,7 @@ The [[SERVO HORN|servo horn]] is the arm that clips onto the spline. Here is the
 A servo does not turn forever. It has a start and an end, maybe half a circle apart. Whichever way the horn is pointing when you push it on is where that range begins.
 
 {{< callout variant="red" title="⚠ Step 3 Is a Setup Step, Not an Assembly Step" >}}
-You will rotate the horn to the very end of its travel, take it off, put it back a notch further, and repeat — until it will not go any further. Only then do you bolt it down, facing as far down as it will go.
+You will rotate the horn to the very end of its travel, take it off, put it back a notch further, and repeat --- until it will not go any further. Only then do you bolt it down, facing as far down as it will go.
 
 Get this wrong and everything still fits. Then in Coding Project 7 your arm runs out of movement halfway through a lift, and nothing in your program will fix it.
 {{< /callout >}}
@@ -170,18 +170,18 @@ The washer spreads the load so the plastic does not get chewed up. Leave it out 
 Every step here has a photo. Match your robot to the photo before you move on, and if it does not look the same, it is not the same.
 {{< /callout >}}
 
-## Do It — Twelve Steps
+## Do It --- Twelve Steps
 Servo bracket onto the chassis
 {{< figrow >}}
 - src: discovery/systems/project-07/step-01a.jpg
   alt: "A servo bracket lined up on the short end of the chassis"
-  caption: "Step 1 — line up the bracket"
+  caption: "Step 1 --- line up the bracket"
 {{< /figrow >}}
 
 {{< figrow >}}
 - src: discovery/systems/project-07/step-01b.jpg
   alt: "The bracket bolted to the chassis with two medium bolts and nuts"
-  caption: "Step 1 — bolt it down"
+  caption: "Step 1 --- bolt it down"
 {{< /figrow >}}
 
 1. Line up a servo bracket on the **short end** of the chassis as shown.
@@ -196,13 +196,13 @@ Servo bracket onto the chassis
 {{< figrow >}}
 - src: discovery/systems/project-07/step-02a.jpg
   alt: "A servo sliding into the servo bracket, wire end first"
-  caption: "Step 2 — wire end first"
+  caption: "Step 2 --- wire end first"
 {{< /figrow >}}
 
 {{< figrow >}}
 - src: discovery/systems/project-07/step-02b.jpg
   alt: "The servo secured in the bracket with two medium bolts and nuts"
-  caption: "Step 2 — secure it"
+  caption: "Step 2 --- secure it"
 {{< /figrow >}}
 
 1. Slide a servo into the servo bracket, **wire end first**, with the spline towards the front of the robot.
@@ -221,7 +221,7 @@ Wire end in first, spline facing the front. Backwards fits just as well and swin
 {{< figrow >}}
 - src: discovery/systems/project-07/step-03.jpg
   alt: "A 1x5 servo horn placed on the servo on the robot"
-  caption: "Step 3 — the horn on the servo"
+  caption: "Step 3 --- the horn on the servo"
 {{< /figrow >}}
 
 1. Place the 1×5 servo horn on the robot as shown.
@@ -238,7 +238,7 @@ The servo will not turn any further and the horn faces as far down as it goesH�
 {{< figrow >}}
 - src: kit/h_pin_attach.png
   alt: "A LEGO H-pin attached to one end of a 1x7 liftarm with a long bolt and nut"
-  caption: "Step 4 — H-pin on the liftarm"
+  caption: "Step 4 --- H-pin on the liftarm"
 {{< /figrow >}}
 
 1. On one end of a 1×7 liftarm, attach a LEGO H‑pin.
@@ -253,7 +253,7 @@ The servo will not turn any further and the horn faces as far down as it goesH�
 {{< figrow >}}
 - src: discovery/systems/project-07/step-05.jpg
   alt: "An L bracket attached to a servo bracket with a medium bolt and nut"
-  caption: "Step 5 — L bracket to servo bracket"
+  caption: "Step 5 --- L bracket to servo bracket"
 {{< /figrow >}}
 
 Attach an L bracket to a servo bracket using a medium bolt and nut as shown.
@@ -267,7 +267,7 @@ Attach an L bracket to a servo bracket using a medium bolt and nut as shown.
 {{< figrow >}}
 - src: discovery/systems/project-07/step-06.jpg
   alt: "The liftarm and H-pin assembly bolted to the top of the L bracket"
-  caption: "Step 6 — assembly onto the L bracket"
+  caption: "Step 6 --- assembly onto the L bracket"
 {{< /figrow >}}
 
 Attach the LEGO assembly from step 4 to the top of the L bracket using two medium bolts and nuts.
@@ -281,13 +281,13 @@ Attach the LEGO assembly from step 4 to the top of the L bracket using two mediu
 {{< figrow >}}
 - src: discovery/systems/project-07/step-07a.jpg
   alt: "The assembly flipped over with a servo placed in the servo bracket wire first"
-  caption: "Step 7 — flip and place"
+  caption: "Step 7 --- flip and place"
 {{< /figrow >}}
 
 {{< figrow >}}
 - src: discovery/systems/project-07/step-07b.jpg
   alt: "The second servo secured with a medium bolt and nut"
-  caption: "Step 7 — secure it"
+  caption: "Step 7 --- secure it"
 {{< /figrow >}}
 
 1. Flip the assembly over and place a servo in the servo bracket **wire first**.
@@ -302,20 +302,20 @@ Attach the LEGO assembly from step 4 to the top of the L bracket using two mediu
 {{< figrow >}}
 - src: discovery/systems/project-07/step-08a.jpg
   alt: "A 3x7 bent liftarm joined to a claw liftarm with two blue axle pins and one black pin"
-  caption: "Step 8 — join the liftarms"
+  caption: "Step 8 --- join the liftarms"
 {{< /figrow >}}
 
 {{< figrow >}}
 - src: discovery/systems/project-07/step-08b.jpg
   alt: "The assembly flipped back and bolted to the servo bracket with two long bolts and nuts"
-  caption: "Step 8 — bolt to the bracket"
+  caption: "Step 8 --- bolt to the bracket"
 {{< /figrow >}}
 
 1. Attach a 3×7 bent liftarm, short end first, to the long end of a claw liftarm using **two blue axle pins and one black pin**.
 2. Flip the assembly back over and secure it to the servo bracket using two long bolts and nuts as shown.
 
 **Parts** 3×7 bent liftarm · claw liftarm · 2 blue axle pins · 1 black pin · 2 long bolts · 2 nuts
-Pin orderBlue, black, blue. The black pin is the one that lets the joint pivot — putting a blue one there locks it solid.
+Pin orderBlue, black, blue. The black pin is the one that lets the joint pivot --- putting a blue one there locks it solid.
 {{< checklist >}}
 - key: p3_b8
   label: "Done and it matches the photo"
@@ -323,7 +323,7 @@ Pin orderBlue, black, blue. The black pin is the one that lets the joint pivot �
 {{< figrow >}}
 - src: kit/claw_liftarm_servo_horn.png
   alt: "A claw liftarm attached to a 1x5 servo horn with two long bolts and nuts"
-  caption: "Step 9 — claw liftarm to horn"
+  caption: "Step 9 --- claw liftarm to horn"
 {{< /figrow >}}
 
 Attach a claw liftarm to a 1×5 servo horn using two long bolts and nuts.
@@ -337,7 +337,7 @@ Attach a claw liftarm to a 1×5 servo horn using two long bolts and nuts.
 {{< figrow >}}
 - src: kit/claw_onto_servo.png
   alt: "The claw attached to the servo with a washer beneath it and the small silver bolt"
-  caption: "Step 10 — washer, then claw"
+  caption: "Step 10 --- washer, then claw"
 {{< /figrow >}}
 
 Attach the claw to the servo with a **washer beneath it** and the small silver bolt that came with the 1×5 servo horn.
@@ -351,7 +351,7 @@ Washer underneathIt spreads the load. Without it the joint works loose after a f
 {{< figrow >}}
 - src: discovery/systems/project-07/step-11.jpg
   alt: "A 1x5 servo horn attached to the LEGO H-pin with two long bolts and nuts"
-  caption: "Step 11 — horn onto the H-pin"
+  caption: "Step 11 --- horn onto the H-pin"
 {{< /figrow >}}
 
 Attach a 1×5 servo horn to the LEGO H‑pin using two long bolts and nuts, so that **two of the middle holes** on the servo horn line up with the holes on the pin.
@@ -365,7 +365,7 @@ Attach a 1×5 servo horn to the LEGO H‑pin using two long bolts and nuts, so t
 {{< figrow >}}
 - src: discovery/systems/project-07/step-12.jpg
   alt: "The claw assembly attached to the servo on the robot with a washer and small silver bolt"
-  caption: "Step 12 — claw assembly onto the robot"
+  caption: "Step 12 --- claw assembly onto the robot"
 {{< /figrow >}}
 
 Attach the claw assembly to the servo on the robot: **washer on first**, then the claw assembly, then secure it with a small silver bolt from the 1×5 servo horns and washers.
@@ -435,13 +435,13 @@ It is a five-minute fix now. It is an unsolvable programming problem later.
   caption: "Servo demobot finished"
 {{< /figrow >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### Which part is which?
 
 {{< gridtable >}}
 columns:
-  - head: "The part that…"
+  - head: "The part that..."
     width: 56%
   - head: "Is called"
 rows:
@@ -463,11 +463,11 @@ rows:
       aria: "N4"
 {{< /gridtable >}}
 
-### What goes wrong if…
+### What goes wrong if...
 
 {{< gridtable >}}
 columns:
-  - head: "You…"
+  - head: "You..."
     width: 56%
   - head: "The result is"
 rows:
@@ -545,4 +545,4 @@ rows:
 
 Your robot has an arm and a claw and no idea how to use them.
 
-**Coding Project 7 — Your Robot's Arm** is now unlocked, and so is everything after it. Between them, the arm and claw missions are worth more than half the points on the field.
+**Coding Project 7 --- Your Robot's Arm** is now unlocked, and so is everything after it. Between them, the arm and claw missions are worth more than half the points on the field.

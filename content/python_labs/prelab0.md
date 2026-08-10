@@ -29,7 +29,7 @@ meta:
     definition: "Your robot kit · your team · about one session"
 ---
 
-## PreLab 0 — Know the Machine Before You Program It
+## PreLab 0 --- Know the Machine Before You Program It
 
 Nothing here is graded on how well you write. Work through it, tick each box honestly,
 and record the four values you will need later. It should take one session.
@@ -115,17 +115,17 @@ Every robot is built from the same six kinds of part. Point at each one on your 
 
 {{< checklist >}}
 - key: s_sensor
-  label: "**[[SENSOR|Sensors]]** — how it takes information in. I can point at two."
+  label: "**[[SENSOR|Sensors]]** --- how it takes information in. I can point at two."
 - key: s_comp
-  label: "**[[COMPUTATION|Computation]]** — where the decisions happen. I can point at it."
+  label: "**[[COMPUTATION|Computation]]** --- where the decisions happen. I can point at it."
 - key: s_act
-  label: "**[[ACTUATOR|Actuators]]** — what makes movement. I can point at three."
+  label: "**[[ACTUATOR|Actuators]]** --- what makes movement. I can point at three."
 - key: s_eff
-  label: "**[[EFFECTOR|Effectors]]** — what acts on the world. I can name what mine will be."
+  label: "**[[EFFECTOR|Effectors]]** --- what acts on the world. I can name what mine will be."
 - key: s_power
-  label: "**Power** — where the energy comes from and how it is charged."
+  label: "**Power** --- where the energy comes from and how it is charged."
 - key: s_prop
-  label: "**[[PROPRIOCEPTIVE|Proprioceptive]] sense** — how it senses *itself*. Mine is the motor [[ENCODER|encoders]]."
+  label: "**[[PROPRIOCEPTIVE|Proprioceptive]] sense** --- how it senses *itself*. Mine is the motor [[ENCODER|encoders]]."
 {{< /checklist >}}
 
 {{< endplsec >}}
@@ -151,7 +151,7 @@ Every robot is built from the same six kinds of part. Point at each one on your 
 - key: sf_stop
   label: "I know how to stop a running program immediately."
 - key: sf_servo
-  label: "I will not force a servo by hand — it strips the gears."
+  label: "I will not force a servo by hand --- it strips the gears."
 - key: sf_batt
   label: "I know how the battery is charged and that it is never left on the floor."
 - key: sf_wires
@@ -174,5 +174,5 @@ fields:
 {{< /signoff >}}
 
 {{< gate title="Next" >}}
-**PreLab 1 — The Toolchain.** You cannot start Lab 1.1 until your robot boots, connects, and runs a program you wrote.
+**PreLab 1 --- The Toolchain.** You cannot start Lab 1.1 until your robot boots, connects, and runs a program you wrote.
 {{< /gate >}}

@@ -32,11 +32,11 @@ tiers:
 
 {{< score-examples >}}
 scores:
-  - "Green on Yellow or Yellow on Green — both satisfy the Base Mission."
+  - "Green on Yellow or Yellow on Green --- both satisfy the Base Mission."
   - "Two valid mixed-color stacks satisfy the Bonus Mission."
   - "Two stacks with opposite color arrangements satisfy the Advanced Bonus."
 does_not_score:
-  - "Green on Green or Yellow on Yellow — same-color stacks do not score."
+  - "Green on Green or Yellow on Yellow --- same-color stacks do not score."
   - "A single three-cube stack does not count as two scoring stacks."
   - "Any cube used in one stack may not be reused for another stack."
 {{< /score-examples >}}
@@ -45,5 +45,5 @@ does_not_score:
 
 - Scoring is determined using the [[ON TOP OF]] definition.
 - Each cube may contribute to only one scoring stack.
-- The geometric shape of the stack is irrelevant — only the required [[ON TOP OF]] relationships are evaluated.
+- The geometric shape of the stack is irrelevant --- only the required [[ON TOP OF]] relationships are evaluated.
 - The stacks do not need to be adjacent to one another.

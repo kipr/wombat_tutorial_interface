@@ -54,13 +54,13 @@ meta:
         label: "Your computer"
 ---
 
-{{< safety title="⚠ Wheels Off the Ground — All Project" >}}
+{{< safety title="⚠ Wheels Off the Ground --- All Project" >}}
 Put your robot on a block or a thick book so the wheels spin freely in the air. Every single thing you do in this project happens with the robot up on a block.
 
 A robot that drives off a table lands on the floor. Do not find out.
 {{< /safety >}}
 
-## Try It — Which Way Does It Go?
+## Try It --- Which Way Does It Go?
 
 Think about walking across the room. Your brain does not send one signal to "your body." It sends a signal to your *left* leg and a separate signal to your *right* leg.
 
@@ -91,12 +91,12 @@ Right side
   alt: "The Wombat controller with its two drive motors."
 {{< /figrow >}}
 {{< callout title="Counting Starts at Zero" variant="navy" >}}
-The ports are numbered 0, 1, 2, 3 — not 1, 2, 3, 4. Computer scientists start counting at zero, and you will see this everywhere from now on. There is no port 4.
+The ports are numbered 0, 1, 2, 3 --- not 1, 2, 3, 4. Computer scientists start counting at zero, and you will see this everywhere from now on. There is no port 4.
 {{< /callout >}}
 
 ### Find your motors and plug them in
 
-A motor has a **two-prong plug** and a **double wire** — one red, one black.
+A motor has a **two-prong plug** and a **double wire** --- one red, one black.
 
 Plug one motor into **port 0** and the other into **port 3**.
 
@@ -108,7 +108,7 @@ Plug one motor into **port 0** and the other into **port 3**.
 - key: p1_on_block
   label: "My robot is on a block with the wheels in the air"
 {{< /checklist >}}
-### The plug goes in two ways — and it matters
+### The plug goes in two ways --- and it matters
 
 There is no mark on the motor plug telling you which way is right. You can put it in either way around, and the two ways do opposite things.
 
@@ -120,11 +120,11 @@ You do not need a program to find out which way a motor is wired. **Turn the whe
 
 Green
 
-— that direction is forward (+)
+--- that direction is forward (+)
 
 Red
 
-— that direction is reverse (−)
+--- that direction is reverse (−)
 
 Spin both wheels the direction you want the robot to drive *forward*. Record what you see.
 
@@ -152,7 +152,7 @@ rows:
 {{< callout title="If One Is Green and One Is Red" >}}
 Unplug the red one, turn the plug 180°, and plug it back in. Spin the wheel again. Both should now be green when the wheels turn forward.
 
-If you skip this, your robot will not drive forward — it will spin in a circle, because one wheel is going forward and the other backward.
+If you skip this, your robot will not drive forward --- it will spin in a circle, because one wheel is going forward and the other backward.
 {{< /callout >}}
 
 {{< checklist >}}
@@ -161,7 +161,7 @@ If you skip this, your robot will not drive forward — it will spin in a circle
 {{< /checklist >}}
 {{< ask key="p1_why_circle" label="Why the robot spins in a circle" >}}Why does a robot spin in a circle when one motor runs forward and the other runs backward?{{< /ask >}}
 
-## Learn It — The motor() Command
+## Learn It --- The motor() Command
 
 One command runs a motor. It needs two pieces of information: *which* motor, and *how hard*.
 
@@ -176,7 +176,7 @@ Each piece of information inside the parentheses is called an [[PARAMETER|parame
 An [[ARGUMENT|argument]] is the actual value you provide to a parameter when you call a function. For example, in `motor(0, 50)`, `0` and `50` are arguments.
 
 {{< callout title="Remember This From Project 2?" variant="gold" >}}
-"Too many arguments to [[FUNCTION|function]]" was one of the errors you triggered on purpose. Now you know what an argument is — and why `msleep(2,000)` looked like two of them.
+"Too many arguments to [[FUNCTION|function]]" was one of the errors you triggered on purpose. Now you know what an argument is --- and why `msleep(2,000)` looked like two of them.
 {{< /callout >}}
 
 ### Power runs from −100 to 100
@@ -194,13 +194,13 @@ A minus sign in front of the power number reverses that motor. This is how you b
 
 {{< figrow >}}
 - src: kit/wambatmotors.jpg
-  alt: "Motors plugged in — ports 0 and 3."
-  caption: "A motor plugged in — ports 0 and 3."
+  alt: "Motors plugged in --- ports 0 and 3."
+  caption: "A motor plugged in --- ports 0 and 3."
 {{< /figrow >}}
 ### Which end is the front?
 
 Your robot has two driven wheels and one small free-rolling wheel called a [[CASTER|caster]].
-    Before you send it anywhere, decide which end is the front — because that decides what
+    Before you send it anywhere, decide which end is the front --- because that decides what
     `motor(0, 100)` actually does.
 
 {{< callout title="Pull the Caster, Do Not Push It" variant="gold" >}}
@@ -210,7 +210,7 @@ A caster swivels. Pushed from behind it wanders, wobbles, and takes a moment to 
 So the driven wheels go at the **front**, and the caster trails.
 {{< /callout >}}
 
-Set your robot up so that the **green power LED and the ports face forward** — the same end
+Set your robot up so that the **green power LED and the ports face forward** --- the same end
     the arm will eventually go on. That end is the front, and everything you write from now on assumes it.
 
 {{< safety title="⚠ Decide Now, Not Later" >}}
@@ -222,11 +222,11 @@ Agree it, and write it in your notebook: *the front of our robot is the end with
 
 ### Turning motors off
 
-`ao()` stands for **a**ll **o**ff. It stops every motor at once and takes no arguments — just empty parentheses.
+`ao()` stands for **a**ll **o**ff. It stops every motor at once and takes no arguments --- just empty parentheses.
 
 ### A stop is not instant either
 
-`ao()` cuts the power. It does not grab the wheels and hold them — the robot is still
+`ao()` cuts the power. It does not grab the wheels and hold them --- the robot is still
     moving when that line finishes, and it coasts a little further before it truly stops.
 
 So give it a moment to settle before you do anything else:
@@ -241,7 +241,7 @@ msleep(30);   // let it come to rest
 ```
 
 Thirty milliseconds is not long enough to notice, and it is long enough to matter. Without it, your next
-    command starts while the robot is still drifting — and a turn that begins mid-drift ends up somewhere
+    command starts while the robot is still drifting --- and a turn that begins mid-drift ends up somewhere
     you did not ask for.
 
 From here on, every `ao()` in this curriculum is followed by
@@ -261,7 +261,7 @@ msleep(30);
 
 The wheels will not move. Not even a twitch.
 
-The [[CONTROLLER|controller]] turns both motors on, and then — faster than you can blink — reads the next line and turns them off again. Remember from Project 2: it moves through lines far quicker than your eye can follow.
+The [[CONTROLLER|controller]] turns both motors on, and then --- faster than you can blink --- reads the next line and turns them off again. Remember from Project 2: it moves through lines far quicker than your eye can follow.
 
 **Turning a motor on does not mean "run for a while." It means "run, starting now, until something tells you to stop."** The `msleep()` is what gives it that while.
 
@@ -274,7 +274,7 @@ The [[CONTROLLER|controller]] turns both motors on, and then — faster than you
 
 {{< ask key="p2_msleep_role" label="What msleep does while motors run" >}}In your own words: what is `msleep()` actually doing while the motors run?{{< /ask >}}
 
-## Do It — Make It Turn
+## Do It --- Make It Turn
 
 {{< figrow >}}
 - src: botui/motor_widget.png
@@ -283,7 +283,7 @@ The [[CONTROLLER|controller]] turns both motors on, and then — faster than you
 {{< /figrow >}}
 Robot on the block. Wheels in the air. Every time.
 
-### Step 1 — Drive the motors by hand first
+### Step 1 --- Drive the motors by hand first
 
 Find the red line for a port and drag it left and right with your finger.
 
@@ -294,7 +294,7 @@ Find the red line for a port and drag it left and right with your finger.
 Remember that number. You will use it in a much later project to drive exact distances.
 {.muted}
 
-### Step 2 — Write your first motor program
+### Step 2 --- Write your first motor program
 
 Make a new project called `Motors`. Do not forget your [[ATTRIBUTION|attribution]] [[COMMENT|comments]] at the top.
 
@@ -320,7 +320,7 @@ int main ()
 {{< /checklist >}}
 {{< ask key="p3_same_direction" label="Did both wheels spin the same way" >}}Did both wheels spin the same way? If not, what does that tell you about your plugs?{{< /ask >}}
 
-### Step 3 — Prove that msleep matters
+### Step 3 --- Prove that msleep matters
 
 Delete the `msleep(2000);` line. Compile. Run.
 
@@ -332,19 +332,19 @@ Now put it back.
 - key: p3_step_msleep_back
   label: "msleep is back and the program works again"
 {{< /checklist >}}
-### Step 4 — Prove that ao() matters
+### Step 4 --- Prove that ao() matters
 
 Now delete the `ao();` line instead. Compile. Run. Watch carefully.
 
 {{< short-answer key="p3_no_ao" label="What happened without ao" prompt="What happened this time?" >}}
 
-Put it back. Leaving motors running with no `ao()` is one of the most common bugs in Botball — and on a real field it means a robot that will not stop.
+Put it back. Leaving motors running with no `ao()` is one of the most common bugs in Botball --- and on a real field it means a robot that will not stop.
 
 {{< checklist >}}
 - key: p3_step_ao_back
   label: "ao() is back"
 {{< /checklist >}}
-### Step 5 — Explore power
+### Step 5 --- Explore power
 
 Change both power numbers, run, and record what you notice. Keep `msleep(2000)` the same every time so it is a fair test.
 
@@ -373,7 +373,7 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p3_power_double" label="Is 100 twice as fast as 50" >}}Is power 100 exactly twice as fast as power 50? What makes you say that?{{< /ask >}}
 
-### Step 6 — Go backward
+### Step 6 --- Go backward
 
 Put a minus sign in front of both power numbers:
 
@@ -390,7 +390,7 @@ Run it and watch the LEDs by the ports as well as the wheels.
 - key: p3_step_reverse
   label: "Both wheels spun backward"
 {{< /checklist >}}
-### Step 7 — Make it disagree with itself
+### Step 7 --- Make it disagree with itself
 
 Now give the two motors opposite powers:
 
@@ -406,9 +406,9 @@ Run it. The wheels are in the air, so watch what *would* happen on the ground.
 Hold on to this. It is exactly how you will make the robot turn in Project 5.
 {.muted}
 
-### Step 8 — Write three of your own
+### Step 8 --- Write three of your own
 
-Write a command for each of these. Do not run them yet — just write them.
+Write a command for each of these. Do not run them yet --- just write them.
 
 {{< gridtable >}}
 columns:
@@ -443,9 +443,9 @@ Now pick one and actually run it, to check you were right.
 - key: p3_step_own_command
   label: "I tested one of my own commands and it did what I expected"
 {{< /checklist >}}
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
-No field mission yet — that starts in Project 4. This checkpoint is about whether your motors are set up correctly and whether you can control them on purpose.
+No field mission yet --- that starts in Project 4. This checkpoint is about whether your motors are set up correctly and whether you can control them on purpose.
 
 ### My robot's setup
 
@@ -513,12 +513,12 @@ ao();
 {{< /checklist >}}
 ### Think about it
 
-{{< ask key="p4_troubleshoot" label="Two things to check" >}}A teammate says their robot "just doesn't work" — they run the program and nothing moves. Name two things you would check first, and why.{{< /ask >}}
+{{< ask key="p4_troubleshoot" label="Two things to check" >}}A teammate says their robot "just doesn't work" --- they run the program and nothing moves. Name two things you would check first, and why.{{< /ask >}}
 
-{{< ask key="p4_far_enough" label="Is power and time enough" >}}Nothing in this project told the robot how far to go — only how hard to push and for how long. Do you think that is enough to hit a target on the field? Why or why not?{{< /ask >}}
+{{< ask key="p4_far_enough" label="Is power and time enough" >}}Nothing in this project told the robot how far to go --- only how hard to push and for how long. Do you think that is enough to hit a target on the field? Why or why not?{{< /ask >}}
 
 ### Next
 
-In **Project 4 — Out and Back**, the robot comes off the block and onto the field. You will drive out of the starting box, park [[IN THE ZONE]], and drive back — and that scores a real mission.
+In **Project 4 --- Out and Back**, the robot comes off the block and onto the field. You will drive out of the starting box, park [[IN THE ZONE]], and drive back --- and that scores a real mission.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

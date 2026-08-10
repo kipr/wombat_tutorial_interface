@@ -52,7 +52,7 @@ meta:
         label: "A partner"
 ---
 
-## Try It — Follow This Chart
+## Try It --- Follow This Chart
 
 Here is a plan for a robot. Nobody has told you how to read it. Work it out.
 
@@ -94,7 +94,7 @@ Nobody explained the shapes. You worked out that the oval starts things, the rec
 That is the whole point of a [[FLOWCHART|flowchart]]. The shapes are the same everywhere in the world, so anyone can read your plan.
 {{< /callout >}}
 
-## Learn It — Four Shapes and Some Arrows
+## Learn It --- Four Shapes and Some Arrows
 
 An [[ALGORITHM|algorithm]] is a list of steps that solves a problem. A flowchart is a way to draw one.
 
@@ -111,7 +111,7 @@ These are not KIPR's shapes. Engineers all over the world use them. A flowchart 
 
 ### The diamond is the interesting one
 
-Every other shape has one arrow in and one arrow out. A [[DECISION|decision]] has **one in and two out** — one for yes, one for no.
+Every other shape has one arrow in and one arrow out. A [[DECISION|decision]] has **one in and two out** --- one for yes, one for no.
 
 Label both. An unlabelled diamond is a chart nobody can follow.
 
@@ -128,7 +128,7 @@ That is how a plan repeats itself without you drawing the same boxes four times.
 - Only diamonds get two arrows out, and both are labelled.
 - One job per rectangle. "Drive forward and turn" is two boxes, not one.
 
-## Do It — Draw, Swap, Fix
+## Do It --- Draw, Swap, Fix
 
 ### 1. Three feet forward
 
@@ -153,7 +153,7 @@ Now add to it. Forward 3 feet, then backward 3 feet, then stop.
 
 ### 3. Chart a path you invent
 
-Draw a route on paper — a path with at least four turns in it. Do not show anyone.
+Draw a route on paper --- a path with at least four turns in it. Do not show anyone.
 
 Now draw the flowchart that would make a robot follow that route.
 
@@ -201,7 +201,7 @@ Fix your chart and have them try again.
 
 Draw a new chart. This one must have a diamond in it with two labelled ways out.
 
-Something like: *drive forward — is there a wall? — if yes turn, if no keep going.*
+Something like: *drive forward --- is there a wall? --- if yes turn, if no keep going.*
 
 *Draw it with a diamond in the middle*
 {{< short-answer key="p3_question" label="Diamond question" prompt="What question does your diamond ask?" >}}
@@ -209,7 +209,7 @@ Something like: *drive forward — is there a wall? — if yes turn, if no keep 
 
 ### 6. Swap the decision chart
 
-Hand it over. Your partner draws the path twice — once as if the answer were yes, once as if it were no.
+Hand it over. Your partner draws the path twice --- once as if the answer were yes, once as if it were no.
 {{< short-answer key="p3_two_paths" label="Two paths" prompt="Did they get two different paths?" >}}
 
 {{< callout variant="gold" title="If Both Paths Were the Same, the Decision Did Nothing" >}}
@@ -220,7 +220,7 @@ A diamond only earns its place when the two answers lead somewhere different. If
 
 Pick any mission from the game field. Draw the flowchart your robot would follow to score it.
 
-Include at least one decision — something the robot should check before it carries on.
+Include at least one decision --- something the robot should check before it carries on.
 
 *Mission flowchart*
 
@@ -253,13 +253,13 @@ In Coding Project 6 you will chain several missions into a single run. This char
   label: "My mission flowchart is in my notebook, dated"
 {{< /checklist >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### Name the shape
 
 {{< gridtable >}}
 columns:
-  - head: "I need to show…"
+  - head: "I need to show..."
     width: 56%
   - head: "Which shape?"
 rows:
@@ -289,7 +289,7 @@ rows:
 
 {{< gridtable >}}
 columns:
-  - head: "In this chart…"
+  - head: "In this chart..."
     width: 56%
   - head: "What is wrong"
 rows:
@@ -337,6 +337,6 @@ rows:
 
 You can draw a plan for something you already know how to do. But most engineering starts with a problem nobody has solved yet.
 
-In **Systems Project 5 — The Design Process**, you get a problem and the steps for working through it.
+In **Systems Project 5 --- The Design Process**, you get a problem and the steps for working through it.
 
 *You are also ready for **Coding Project 6**, where several missions become one run.*

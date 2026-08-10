@@ -21,7 +21,7 @@ sidebar:
 
 **Discovery.** Students in Grade 6 and below are eligible for Discovery competition. Eligible students may compete in either Discovery or Expedition.
 
-**Expedition.** Any student currently enrolled in a K–12 educational program is eligible to compete in Expedition.
+**Expedition.** Any student currently enrolled in a K--12 educational program is eligible to compete in Expedition.
 
 {{< callout title="Play-Up Rule" >}}
 Students may compete in a higher division than their grade level would otherwise require.
@@ -31,7 +31,7 @@ Students may compete in a higher division than their grade level would otherwise
 Students may not compete in a division below their eligibility level.
 {{< /callout >}}
 
-{{< callout title="Discovery — Field Setup" >}}
+{{< callout title="Discovery --- Field Setup" >}}
 Discovery teams may remove any game pieces from the field before the match begins.
 {{< /callout >}}
 
@@ -51,7 +51,7 @@ The game is designed to reward autonomy, allow recovery from failures, preserve 
 
 - **Discovery Champion**
 - **Expedition Champion**
-- **Overall Champion** — highest-ranked team regardless of division.
+- **Overall Champion** --- highest-ranked team regardless of division.
 
 ### Tie Breakers
 
@@ -83,7 +83,7 @@ Each match lasts **150 seconds**. Expedition Division Timeout periods do not cou
 
 - Interior dimensions: 93 in × 45 in.
 - Official grid spacing: 2 in × 2 in.
-- Origin (0,0) at the lower-left corner; X-axis along the long side (0–93), Y-axis along the short side (0–45).
+- Origin (0,0) at the lower-left corner; X-axis along the long side (0--93), Y-axis along the short side (0--45).
 
 ### Mission Types
 
@@ -103,7 +103,7 @@ Missions may contain a Base, a Bonus, and an Advanced Bonus task. Completing one
 
 ### Match Flow
 
-**Pre-match —** teams declare intended missions. **Live match —** only active live-scoring items are displayed; when a live mission is completed the judge checks it, it leaves the active list, and associated bonuses become available. **Final scoring —** the judge evaluates all final-position missions. **Review —** before submission the judge may modify items and correct mistakes.
+**Pre-match ---** teams declare intended missions. **Live match ---** only active live-scoring items are displayed; when a live mission is completed the judge checks it, it leaves the active list, and associated bonuses become available. **Final scoring ---** the judge evaluates all final-position missions. **Review ---** before submission the judge may modify items and correct mistakes.
 
 ### Match End
 
@@ -142,7 +142,7 @@ an active controller, a battery, or a powered actuator.
 
 ### Communication & Autonomy
 
-After the match begins, robots must operate autonomously — no wireless control, remote control, teleoperation, or human communication. Programs and configurations may be modified between matches only; recompiling is permitted between matches only. During authorized Touch or Timeout periods teams may adjust mechanical issues but may not modify software.
+After the match begins, robots must operate autonomously --- no wireless control, remote control, teleoperation, or human communication. Programs and configurations may be modified between matches only; recompiling is permitted between matches only. During authorized Touch or Timeout periods teams may adjust mechanical issues but may not modify software.
 
 ### Safety
 
@@ -188,11 +188,11 @@ The game rewards efficient design and task integration. A single robot action, o
 
 **Valid multi-scoring combinations**
 
-- [[@2|M2 · Relocate the Red Cube]], [[@5|M5 · Top Shelf Delivery]], and [[@8|M8 · Deliver the Red Cube]] — same palletized red-cube assembly.
-- [[@12|M12 · Restack the Freight]] and [[@16|M16 · Freight Shelving]] — spilled-cube stack on the Green Cube.
-- [[@13|M13 · Rebuild the Shipment]] and [[@17|M17 · Freight Racking]] — unstraight-cube stack on the Brown Cube.
-- [[@9|M9 · Recover Botguy]] and [[@18|M18 · Safety First, All Hands on Deck]] — Botguy.
-- [[@14|M14 · Traffic Control]] and [[@18|M18 · Safety First, All Hands on Deck]] — Traffic Cones.
+- [[@2|M2 · Relocate the Red Cube]], [[@5|M5 · Top Shelf Delivery]], and [[@8|M8 · Deliver the Red Cube]] --- same palletized red-cube assembly.
+- [[@12|M12 · Restack the Freight]] and [[@16|M16 · Freight Shelving]] --- spilled-cube stack on the Green Cube.
+- [[@13|M13 · Rebuild the Shipment]] and [[@17|M17 · Freight Racking]] --- unstraight-cube stack on the Brown Cube.
+- [[@9|M9 · Recover Botguy]] and [[@18|M18 · Safety First, All Hands on Deck]] --- Botguy.
+- [[@14|M14 · Traffic Control]] and [[@18|M18 · Safety First, All Hands on Deck]] --- Traffic Cones.
 
 ### Scoring Restrictions
 
@@ -206,7 +206,7 @@ Waypoint Alpha and Waypoint Bravo are completed independently. A single return t
 
 ### Live & Final Scoring
 
-**Live Judged —** the judge must observe the scoring condition occur; once awarded it remains earned unless the mission specifies otherwise. **Final Position Judged —** only the final state of the field is considered. Before submission, judges may modify scores and correct scoring or data-entry errors.
+**Live Judged ---** the judge must observe the scoring condition occur; once awarded it remains earned unless the mission specifies otherwise. **Final Position Judged ---** only the final state of the field is considered. Before submission, judges may modify scores and correct scoring or data-entry errors.
 
 ## Definitions & Interpretations {#definitions}
 
@@ -293,7 +293,7 @@ does_not_score:
   - "Conditions satisfied sequentially rather than concurrently."
 {{< /score-examples >}}
 
-- Judges need not measure time — only observe a single instant where all required conditions are true.
+- Judges need not measure time --- only observe a single instant where all required conditions are true.
 
 ### Fully Within
 
@@ -319,11 +319,11 @@ does_not_score:
 {{< rule-definition term="LEGAL STARTING POSITION" >}}
 
 {{< callout title="Stack interpretation" >}}
-“Stack” is used for readability only. Scoring is determined solely by the [[ON TOP OF]] and [[TOUCHING]] definitions — traditional, pyramid, or mixed arrangements all score as long as the required relationships exist. Side-by-side, touching-only, or separated arrangements do not.
+"Stack" is used for readability only. Scoring is determined solely by the [[ON TOP OF]] and [[TOUCHING]] definitions --- traditional, pyramid, or mixed arrangements all score as long as the required relationships exist. Side-by-side, touching-only, or separated arrangements do not.
 {{< /callout >}}
 
 {{< warn title="Mission-specific exceptions" >}}
-**Warehouse Zone Pom —** a pom is not [[IN]] the Warehouse Zone if any portion touches a black line boundary. **Traffic Cone OFF-Line —** a cone is not [[OFF]] the line if any portion touches the line.
+**Warehouse Zone Pom ---** a pom is not [[IN]] the Warehouse Zone if any portion touches a black line boundary. **Traffic Cone OFF-Line ---** a cone is not [[OFF]] the line if any portion touches the line.
 {{< /warn >}}
 
 ## Field Elements & Setup {#field}
@@ -341,7 +341,7 @@ Intended to move during a match: baskets, pallets, cubes, poms, traffic cones, B
 Before each match the field is reset per the official setup guide; the Head Judge verifies readiness. Pallet orientation and basket placement may be chosen by teams provided each stays within its designated location. Once a match begins, the setup is official.
 
 {{< callout title="After match start" >}}
-Minor setup variations are not grounds for replay or adjustment. The only exception is a setup error that directly causes a team to receive points that would not otherwise be earned — in which case the Head Judge may make scoring adjustments. The Head Judge's decision is final.
+Minor setup variations are not grounds for replay or adjustment. The only exception is a setup error that directly causes a team to receive points that would not otherwise be earned --- in which case the Head Judge may make scoring adjustments. The Head Judge's decision is final.
 {{< /callout >}}
 
 ### Displaced or Damaged Elements
@@ -358,7 +358,7 @@ Inspection verifies starting-configuration legality, autonomous operation, power
 
 ### Judge Review & Appeals
 
-A scoring review may be requested by a designated student representative or a coach, immediately after scoring and before the field is reset. Reviews are limited to scoring errors, data-entry errors, and mission-interpretation errors — not robot performance, programming, mechanical failures, or in-match strategy.
+A scoring review may be requested by a designated student representative or a coach, immediately after scoring and before the field is reset. Reviews are limited to scoring errors, data-entry errors, and mission-interpretation errors --- not robot performance, programming, mechanical failures, or in-match strategy.
 
 {{< callout title="Review procedure" >}}
 Each team may request one scoring review per match. The Head Judge may increase, decrease, or leave a score unchanged. The decision is final and no additional appeals are permitted.
@@ -381,7 +381,7 @@ If a conflict exists, the higher item takes precedence:
 
 ### Head Judge Authority
 
-The Head Judge interprets and enforces the rules — resolving disputes, interpreting ambiguity, determining scoring when required, and directing corrective action. The Head Judge does not create new rules but may interpret existing rules and clarifications.
+The Head Judge interprets and enforces the rules --- resolving disputes, interpreting ambiguity, determining scoring when required, and directing corrective action. The Head Judge does not create new rules but may interpret existing rules and clarifications.
 
 {{< warn title="Final authority" >}}
 Tournament officials may take any action necessary to preserve the safety, fairness, and integrity of the competition. Such decisions should be limited to circumstances not adequately addressed by existing rules. The Head Judge's decision is final.

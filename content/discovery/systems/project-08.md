@@ -54,7 +54,7 @@ meta:
         label: "Two or three people"
 ---
 
-## Try It — Be the Machine
+## Try It --- Be the Machine
 
 Work in pairs. One of you is the **software**. One of you is the **hardware**.
 
@@ -99,7 +99,7 @@ Every system takes something in and puts something out. Work out what yours were
 columns:
   - head: "Part of the system"
     width: 34%
-  - head: "In this activity, that was…"
+  - head: "In this activity, that was..."
 rows:
   -
     - text: "The input"
@@ -117,9 +117,9 @@ The software could not move. The hardware could not decide. Only the two togethe
 That is exactly the deal between your program and your Wombat.
 {{< /callout >}}
 
-## Learn It — They Do Not Speak the Same Language
+## Learn It --- They Do Not Speak the Same Language
 
-[[HARDWARE|Hardware]] is the body of a machine — the parts you can drop on your foot. [[SOFTWARE|software]] is the instructions you give it.
+[[HARDWARE|Hardware]] is the body of a machine --- the parts you can drop on your foot. [[SOFTWARE|software]] is the instructions you give it.
 
 There is a problem. You write instructions in something close to English. The hardware only understands numbers.
 
@@ -133,7 +133,7 @@ The middle box is the part you have been using without noticing.
 {{< callout variant="navy" title="You Have Met the Translator Already" >}}
 Every time you press **[[COMPILE|Compile]]**, a translator turns what you typed into numbers the Wombat can follow.
 
-That is why a spelling mistake stops everything. The translator cannot guess — it can only translate.
+That is why a spelling mistake stops everything. The translator cannot guess --- it can only translate.
 {{< /callout >}}
 
 ### Input, output, and the bit in between
@@ -166,11 +166,11 @@ rows:
 
 *Every computer system you will ever meet is some arrangement of those four.*
 
-## Do It — Add a Translator
+## Do It --- Add a Translator
 
 ### 1. Three roles this time
 
-Work in threes. Same task — cross the room and pick up an object — but now nobody can talk to the person they need to reach.
+Work in threes. Same task --- cross the room and pick up an object --- but now nobody can talk to the person they need to reach.
 
 #### Software
 
@@ -194,7 +194,7 @@ You may not speak. Do exactly what is read to you.
 - key: p3_ran3
   label: "Our hardware picked up the object"
 {{< /checklist >}}
-{{< ask key="p3_lost" label="Where meaning was lost" >}}Where did meaning get lost — between software and translator, or between translator and hardware?{{< /ask >}}
+{{< ask key="p3_lost" label="Where meaning was lost" >}}Where did meaning get lost --- between software and translator, or between translator and hardware?{{< /ask >}}
 
 ### 2. Swap roles and go again
 
@@ -252,7 +252,7 @@ Draw your actual robot as a system. Show every input, where the processing happe
 columns:
   - head: "Part"
     width: 26%
-  - head: "On my robot, this is…"
+  - head: "On my robot, this is..."
 rows:
   -
     - text: "Inputs"
@@ -324,7 +324,7 @@ rows:
       aria: "Traffic output"
 {{< /gridtable >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 Remember: pressing Compile is what runs the translator.
 
@@ -333,7 +333,7 @@ Remember: pressing Compile is what runs the translator.
 
 {{< gridtable >}}
 columns:
-  - head: "This is…"
+  - head: "This is..."
     width: 62%
   - head: "Which one"
 rows:
@@ -385,6 +385,6 @@ rows:
 
 One machine talking to itself is one thing. Machines talking to *each other* is a different problem, and it needs rules everybody agrees on.
 
-In **Systems Project 9 — Sending Messages**, you take something apart, push it through a tube, and try to put it back together at the other end.
+In **Systems Project 9 --- Sending Messages**, you take something apart, push it through a tube, and try to put it back together at the other end.
 
 *You are also ready for **Coding Project 10**, where your robot gets its first real input.*

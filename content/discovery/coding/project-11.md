@@ -55,11 +55,11 @@ meta:
         label: "Your Project 5 turn numbers"
 ---
 
-## Try It — The Counter Was Always There
+## Try It --- The Counter Was Always There
 
 Back in Project 3 you dragged the slider on the Motors screen and noticed a number changing next to each [[PORT|port]]. You were told to remember it. Here it is.
 
-Open the **Motors** screen on the Wombat. Do not run anything — just turn a wheel with your hand and watch.
+Open the **Motors** screen on the Wombat. Do not run anything --- just turn a wheel with your hand and watch.
 
 {{< figrow >}}
 - src: botui/motor_widget_counter.png
@@ -126,7 +126,7 @@ rows:
         aria: "TPI 3"
   - cells:
       - text: Average
-      - text: "—"
+      - text: "---"
       - key: p1_tpi_avg
         aria: "Average TPI"
 {{< /gridtable >}}
@@ -134,14 +134,14 @@ rows:
 Use 24 inches, not 3. A small error in a short push turns into a big error per inch. Anything under about a foot is not worth measuring.
 {{< /safety >}}
 
-{{< ask key="p1_why_differ" label="Why measurements differ" >}}Your three numbers are not identical. Why not — and which one should you use?{{< /ask >}}
+{{< ask key="p1_why_differ" label="Why measurements differ" >}}Your three numbers are not identical. Why not --- and which one should you use?{{< /ask >}}
 
-## Learn It — A Number Instead of a Switch
+## Learn It --- A Number Instead of a Switch
 
 A tick is one small step of the motor shaft. There are about **1820 ticks in one full revolution** of the shaft.
 
 {{< callout title="Wheel Size Does Not Change the Ticks" variant="navy" >}}
-1820 ticks is one turn of the *motor shaft*, no matter what wheel you bolt to it. But a bigger wheel travels further in that one turn — which is exactly why your ticks-per-inch is yours and not somebody else's.
+1820 ticks is one turn of the *motor shaft*, no matter what wheel you bolt to it. But a bigger wheel travels further in that one turn --- which is exactly why your ticks-per-inch is yours and not somebody else's.
 {{< /callout >}}
 
 ### Two commands
@@ -158,7 +158,7 @@ Both names do the same thing. The short ones are quicker to type and you will se
 
 Look at these two side by side. Only the [[CONDITION|condition]] changed.
 
-**Project 10 — a switch**
+**Project 10 --- a switch**
 
 ```text
 while (digital(bump) == 0)
@@ -171,7 +171,7 @@ motor(3, 0);
 msleep(30);
 ```
 
-**Project 11 — a number**
+**Project 11 --- a number**
 
 ```text
 while (gmpc(left) < 4000)
@@ -187,7 +187,7 @@ msleep(30);
 Read the new one out loud: *"While the left motor has turned fewer than 4000 ticks, keep driving. The moment it reaches 4000, stop."*
 
 {{< callout title="Why This Is Better Than a Wall" variant="gold" >}}
-A touch [[SENSOR|sensor]] only helps where there is something to touch. A tick counter works **anywhere on the field** — open floor, mid-turn, anywhere. Your robot finally has a way to know how far it has gone without hitting something.
+A touch [[SENSOR|sensor]] only helps where there is something to touch. A tick counter works **anywhere on the field** --- open floor, mid-turn, anywhere. Your robot finally has a way to know how far it has gone without hitting something.
 {{< /callout >}}
 
 Always clear before you count:
@@ -211,7 +211,7 @@ msleep(500);                    // let it settle
 
 Run that program with a target of 4000 and then check the Motors screen. You will not see 4000. You will see something like **4310**.
 
-Nothing is broken. Your robot has [[INERTIA|inertia]] — it is moving, and when the loop shuts the motors off it keeps coasting.
+Nothing is broken. Your robot has [[INERTIA|inertia]] --- it is moving, and when the loop shuts the motors off it keeps coasting.
 
 {{< callout title="The Fix Is Subtraction" variant="navy" >}}
 Ask for 4000. Get 4310. The [[OVERSHOOT|overshoot]] is **4310 − 4000 = 310**.
@@ -225,7 +225,7 @@ Every robot has its own overshoot. Faster power means more of it.
 
 Driving in reverse decreases the counter, and it will go negative. That gives you two ways to come home.
 
-**Do not clear — count back to 0**
+**Do not clear --- count back to 0**
 
 ```text
 cmpc(left);
@@ -239,7 +239,7 @@ motor(3, 0);
 msleep(30);
 ```
 
-**Clear again — count to −4000**
+**Clear again --- count to −4000**
 
 ```text
 cmpc(left);
@@ -258,14 +258,14 @@ Both work. The first one always returns to where it started, no matter how far o
 {.muted}
 
 {{< safety title="⚠ Get the Direction Right or the Loop Never Ends" >}}
-Driving backward with `while (gmpc(left) < 4000)` is a loop that can never finish — the number is going down, away from 4000, forever.
+Driving backward with `while (gmpc(left) < 4000)` is a loop that can never finish --- the number is going down, away from 4000, forever.
 
 Going forward, count **up** with `<`. Going backward, count **down** with `>`. Check this before every run.
 {{< /safety >}}
 
-## Do It — Drive by the Numbers
+## Do It --- Drive by the Numbers
 
-### Step 1 — Measure your overshoot
+### Step 1 --- Measure your overshoot
 
 New project called `Ticks`. Clear, drive to 4000 ticks, stop. Then check the Motors screen for what you actually got.
 
@@ -304,7 +304,7 @@ rows:
 
 {{< short-answer key="p3_chosen_power" label="Chosen power" prompt="Which power will you use for the rest of this project, and why?" >}}
 
-### Step 2 — Correct for it
+### Step 2 --- Correct for it
 
 Subtract your overshoot from your target and run again. Keep adjusting until the robot lands on 4000.
 
@@ -339,7 +339,7 @@ rows:
 - key: p3_corrected
   label: "My robot lands within about 50 ticks of where I asked"
 {{< /checklist >}}
-### Step 3 — Drive a real distance
+### Step 3 --- Drive a real distance
 
 Use your ticks-per-inch from Try It. Work out the ticks for each distance, then test it with a ruler.
 
@@ -372,7 +372,7 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p3_least_accurate" label="Least accurate distance" >}}Which distance was least accurate? Why do you think that is?{{< /ask >}}
 
-### Step 4 — Out and back
+### Step 4 --- Out and back
 
 Drive out 4000 ticks, stop and settle, then return to exactly where you started. Use whichever of the two methods from Learn It you prefer.
 
@@ -385,9 +385,9 @@ Drive out 4000 ticks, stop and settle, then return to exactly where you started.
 Compare this to Project 4, where you did the same thing with a stopwatch. Notice how much less tuning it took.
 {.muted}
 
-### Step 5 — Turn by ticks
+### Step 5 --- Turn by ticks
 
-New project called `Right Turn`. [[ZERO RADIUS TURN|Zero radius turn]] — one wheel forward, one back, same speed — but this time stop it by counting ticks instead of by time.
+New project called `Right Turn`. [[ZERO RADIUS TURN|Zero radius turn]] --- one wheel forward, one back, same speed --- but this time stop it by counting ticks instead of by time.
 
 ```text
 cmpc(left);
@@ -435,9 +435,9 @@ rows:
       - key: p3_t4_res
         aria: "Turn result 4"
 {{< /gridtable >}}
-### Step 6 — The square, again
+### Step 6 --- The square, again
 
-In Project 5 you drove a square with four timed turns and it did not close. Do it again — same square, but every distance and every turn counted in ticks.
+In Project 5 you drove a square with four timed turns and it did not close. Do it again --- same square, but every distance and every turn counted in ticks.
 
 {{< gridtable >}}
 columns:
@@ -461,12 +461,12 @@ rows:
         aria: "New square facing"
 {{< /gridtable >}}
 {{< callout title="This Is the Whole Point of the Project" variant="gold" >}}
-Same robot. Same square. The only thing that changed is *what the robot was measuring* — and suddenly it can come back to where it started.
+Same robot. Same square. The only thing that changed is *what the robot was measuring* --- and suddenly it can come back to where it started.
 {{< /callout >}}
 
 {{< ask key="p3_no_drift" label="Why no drift" >}}Your timed square drifted a little more with every corner. Why does a tick-counted square not do that?{{< /ask >}}
 
-### Step 7 — Mission 9 Bonus — get Botguy out9 pts
+### Step 7 --- Mission 9 Bonus --- get Botguy out9 pts
 
 {{< mission-summary mission="9" >}}
 {{< /mission-summary >}}
@@ -485,12 +485,12 @@ Your claw can still be holding him. He just has to be clear of the enclosure and
 - key: p3_m9_bonus
   label: "Botguy is out of the enclosure and touching the floor"
 {{< /checklist >}}
-### Step 8 — Mission 18 Base — take him to the loading zone11 pts
+### Step 8 --- Mission 18 Base --- take him to the loading zone11 pts
 
 {{< mission-summary mission="18" >}}
 {{< /mission-summary >}}
 {{< callout title="One Trip, Two Missions, Twenty Points" variant="gold" >}}
-You just lifted Botguy out of the enclosure for Mission 9. Do not put him down — **carry him to the Loading Zone** and Mission 18's base scores too.
+You just lifted Botguy out of the enclosure for Mission 9. Do not put him down --- **carry him to the Loading Zone** and Mission 18's base scores too.
 
 This is exactly the kind of thing to look for when you plan a full match: one action, more than one mission.
 {{< /callout >}}
@@ -504,7 +504,7 @@ Mission 18 is final position, so Botguy has to still be [[IN THE ZONE]] when the
 - key: p3_m18_base
   label: "Botguy is [[IN]] the Loading Zone and stays there"
 {{< /checklist >}}
-### Step 9 — Mission 8 — deliver the red cube20 pts
+### Step 9 --- Mission 8 --- deliver the red cube20 pts
 
 {{< mission-summary mission="8" >}}
 {{< /mission-summary >}}
@@ -517,7 +517,7 @@ They both have to end up there, cube on pallet, pallet on dock.
 {{< callout title="Look at What You Already Did to These Cubes" variant="navy" >}}
 In Project 6 you shoved the Large Red Cube and its pallet off the black line. In Project 9 you stacked Small Red Cubes on top of it for Mission 5.
 
-Mission 8's bonus asks for a Small Red Cube on the Large Red Cube *again* — this time with the pallet on the dock. Plan Missions 2, 5, and 8 as one sequence rather than three separate problems, and check with your judges how the scoring overlaps.
+Mission 8's bonus asks for a Small Red Cube on the Large Red Cube *again* --- this time with the pallet on the dock. Plan Missions 2, 5, and 8 as one sequence rather than three separate problems, and check with your judges how the scoring overlaps.
 {{< /callout >}}
 
 {{< checklist >}}
@@ -526,9 +526,9 @@ Mission 8's bonus asks for a Small Red Cube on the Large Red Cube *again* — th
 - key: p3_m8_bonus
   label: "A Small Red Cube is on top of the Large Red Cube up there"
 {{< /checklist >}}
-{{< short-answer key="p3_m8_harder" label="M8 harder part" prompt="Which was harder — driving to the dock, or getting the pallet onto it?" >}}
+{{< short-answer key="p3_m8_harder" label="M8 harder part" prompt="Which was harder --- driving to the dock, or getting the pallet onto it?" >}}
 
-### Step 10 — Run it five times
+### Step 10 --- Run it five times
 
 {{< gridtable >}}
 columns:
@@ -605,7 +605,7 @@ rows:
       - key: p3_r5_pts
         aria: "R5 points"
 {{< /gridtable >}}
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
 ### My score
 
@@ -617,22 +617,22 @@ columns:
 - head: Points
 rows:
   - cells:
-      - text: "Mission 9 — Bonus (Botguy out and on the floor)"
+      - text: "Mission 9 --- Bonus (Botguy out and on the floor)"
       - key: p4_s_m9
         aria: "Score M9"
       - text: 9
   - cells:
-      - text: "Mission 18 — Base (Botguy in the Loading Zone)"
+      - text: "Mission 18 --- Base (Botguy in the Loading Zone)"
       - key: p4_s_m18
         aria: "Score M18"
       - text: 11
   - cells:
-      - text: "Mission 8 — Base (pallet + cube on the dock)"
+      - text: "Mission 8 --- Base (pallet + cube on the dock)"
       - key: p4_s_m8b
         aria: "Score M8 base"
       - text: 11
   - cells:
-      - text: "Mission 8 — Bonus (small red cube on top up there)"
+      - text: "Mission 8 --- Bonus (small red cube on top up there)"
       - key: p4_s_m8bo
         aria: "Score M8 bonus"
       - text: 9
@@ -721,7 +721,7 @@ rows:
 
 {{< ask key="p4_low_battery" label="Low battery" >}}Your battery is half flat, so the robot drives slower. What happens to a run built on `msleep()`? What happens to a run built on ticks?{{< /ask >}}
 
-{{< ask key="p4_wheels_vs_robot" label="Wheels vs robot" >}}Ticks tell you how far the *wheels turned* — not how far the robot moved. Name a situation where those two are different.{{< /ask >}}
+{{< ask key="p4_wheels_vs_robot" label="Wheels vs robot" >}}Ticks tell you how far the *wheels turned* --- not how far the robot moved. Name a situation where those two are different.{{< /ask >}}
 
 {{< ask key="p4_rather_do" label="Rather do" >}}You have now written the drive-a-set-distance code and the turn-90° code several times each, in several projects. What would you rather do than keep retyping them?{{< /ask >}}
 
@@ -729,6 +729,6 @@ rows:
 
 You have a robot that can measure. You also have a program that says the same twenty lines over and over.
 
-In **Project 12 — Teaching Your Robot New Moves**, you give those twenty lines a name — and then you just say the name.
+In **Project 12 --- Teaching Your Robot New Moves**, you give those twenty lines a name --- and then you just say the name.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

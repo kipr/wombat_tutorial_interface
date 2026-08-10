@@ -16,7 +16,7 @@ Judge a migration by the behavior people and integrations depend on:
 - content intended for print or screen retains that visibility;
 - essential visible meaning is preserved, even when markup or low-value styling is normalized.
 
-Byte-identical output is required only when an explicit contract demands it—for example, a snapshot specifically designated as canonical or an external consumer that parses an exact fragment. Do not treat a raw HTML diff by itself as a migration failure.
+Byte-identical output is required only when an explicit contract demands it-for example, a snapshot specifically designated as canonical or an external consumer that parses an exact fragment. Do not treat a raw HTML diff by itself as a migration failure.
 
 ### Reuse order
 
@@ -34,7 +34,7 @@ Shortcodes are the public API used by Markdown authors. Partials are internal bu
 
 ## Compatibility boundaries
 
-- A field’s `key` becomes its `data-key`. Treat it as stored data: do not rename it casually.
+- A field's `key` becomes its `data-key`. Treat it as stored data: do not rename it casually.
 - Form-control IDs are generated from keys by changing underscores to hyphens. Do not author IDs.
 - Every text input needs either a visible label or an accessible name derived by its renderer.
 - Site links and assets are emitted as relative URLs so builds work at a domain root, under a project path, and from local files.
@@ -50,9 +50,9 @@ Discovery uses clean Hugo section URLs and no legacy aliases:
 ```text
 content/discovery/_index.md
 content/discovery/coding/_index.md
-content/discovery/coding/project-01.md … project-17.md
+content/discovery/coding/project-01.md ... project-17.md
 content/discovery/systems/_index.md
-content/discovery/systems/project-01.md … project-14.md
+content/discovery/systems/project-01.md ... project-14.md
 ```
 
 Every project uses `type: discovery` implicitly from its section and is
@@ -85,10 +85,10 @@ introduce a Discovery-only image renderer.
 Discovery phase headings use one Markdown convention:
 
 ```markdown
-## Try It — Observe the Wombat
-## Learn It — Understand the Sensor
-## Do It — Test Your Program
-## Score It — Check the Result
+## Try It - Observe the Wombat
+## Learn It - Understand the Sensor
+## Do It - Test Your Program
+## Score It - Check the Result
 ```
 
 Only headings present in the authored source are rendered; `Score It` is not
@@ -109,7 +109,7 @@ Reuse these author-facing APIs from Markdown:
 | `calc` | Ordered prose, formula, equation-input, and note parts in one calculation panel. |
 | `callout` | General red/navy/gold panel. Prefer a semantic panel alias below when one fits. |
 | `checklist` | YAML checkbox list with stable submission keys and shared tick styling. |
-| `code` | Chroma code with optional filename and `@@…@@` teaching emphasis. Use a normal fence without those features. |
+| `code` | Chroma code with optional filename and `@@...@@` teaching emphasis. Use a normal fence without those features. |
 | `concept` | Structured concept explanation containing ordered text, code, truth, formula, or image parts. |
 | `plsec` / `endplsec` | Paired PreLab section shell. Keep widgets between the pair at document top level. |
 | `figrow` | Captioned, zoomable image row; also supports PreLab inventory checks through `check_id`. |
@@ -259,7 +259,7 @@ fields:
 {{< /signoff >}}
 ```
 
-The sign-off title is fixed as “Sign off.”
+The sign-off title is fixed as "Sign off."
 
 ## Tables
 
@@ -302,7 +302,7 @@ A number column uses `kind: number`, `head`, and optional `width`. Input columns
 | `aria` | optional accessible-name override |
 | `align` | optional input text alignment |
 | `example` | value in a worked example row above the answer rows |
-| `seed` | static value replacing the first row’s input |
+| `seed` | static value replacing the first row's input |
 
 Repeated input accessible names append the row number.
 
@@ -331,13 +331,13 @@ rows:
 {{< /gridtable >}}
 ```
 
-Static cells are `{text: …}`. Input cells require `key` and optionally accept `aria`, `placeholder`, `value`, and `align`. A row can be a cell list or a map with `class` and `cells`, which supports cases such as the `blind` row treatment.
+Static cells are `{text: ...}`. Input cells require `key` and optionally accept `aria`, `placeholder`, `value`, and `align`. A row can be a cell list or a map with `class` and `cells`, which supports cases such as the `blind` row treatment.
 
 Input labels fall back in this order:
 
-1. the cell’s explicit `aria`;
+1. the cell's explicit `aria`;
 2. the column heading;
-3. the row’s first static text cell;
+3. the row's first static text cell;
 4. the humanized key.
 
 If every column heading is empty, the renderer omits `<thead>` and uses a `<colgroup>` for widths.
@@ -372,7 +372,7 @@ int speed = @@750@@;
 {{< /code >}}
 ```
 
-`lang` defaults to the page’s `track`. `filename` is optional. Wrap tutorial-emphasis text in `@@…@@`; copied code contains only the inner text.
+`lang` defaults to the page's `track`. `filename` is optional. Wrap tutorial-emphasis text in `@@...@@`; copied code contains only the inner text.
 
 Use ordinary fenced blocks when emphasis and a filename are unnecessary:
 
@@ -443,7 +443,7 @@ The shared reference parser accepts:
 | `[[@2\|Mission 2]]` | mission reference |
 | `[[@2:bonus\|Mission 2]]` | mission tier reference |
 
-Unknown terms, senses, missions, and tiers fail the build. Mission references resolve from the mission page collection—not a parallel data file—and link to the stable `#base`, `#bonus`, or `#advanced` tier anchor. Page data contains only glossary references actually used on that page, with Python wording selected when `track: python` is set.
+Unknown terms, senses, missions, and tiers fail the build. Mission references resolve from the mission page collection-not a parallel data file-and link to the stable `#base`, `#bonus`, or `#advanced` tier anchor. Page data contains only glossary references actually used on that page, with Python wording selected when `track: python` is set.
 
 ## 2026 Explorer missions and rules
 
@@ -470,7 +470,7 @@ Do not add `missions/_index.md`. The Explorer root is the only mission index, an
 Mission front matter is the source of truth for index cards, tier cards, diagrams, and scoring summaries:
 
 ```yaml
-title: "Mission 1 — Waypoint Alpha"
+title: "Mission 1 - Waypoint Alpha"
 linkTitle: "Waypoint Alpha"
 layout: mission
 nav: missions
@@ -597,7 +597,7 @@ Always publish from a newly created destination and replace the deployed Hugo ar
 
 For a migration, capture a baseline build when one is available, but compare contracts rather than raw files. Appropriate checks include:
 
-- each page’s sorted `data-key` multiset and keyed initial values;
+- each page's sorted `data-key` multiset and keyed initial values;
 - duplicate keys, duplicate IDs, unresolved `label[for]` values, and unlabelled controls;
 - glossary references, serialized glossary payloads, and resolved mission/tier links;
 - resolved `href`/`src` targets and the published static-asset inventory;

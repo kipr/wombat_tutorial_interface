@@ -41,5 +41,5 @@ does_not_score:
 - The Base Mission is live scored.
 - The Bonus Mission is final position scored.
 - [[ON TOP OF]] is determined using the [[ON TOP OF]] definition.
-- The arrangement of the cubes is irrelevant — every cube must be part of a single palletized load.
+- The arrangement of the cubes is irrelevant --- every cube must be part of a single palletized load.
 - The cubes are not required to remain on the pallet after the Base Mission has been scored.

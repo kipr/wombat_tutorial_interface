@@ -59,16 +59,16 @@ meta:
         label: "Your Project 4 numbers"
 ---
 
-## Try It — Break the Straight Line
+## Try It --- Break the Straight Line
 
-In Project 4 you worked hard to make your robot drive straight. Now you are going to ruin it on purpose — and pay close attention while you do.
+In Project 4 you worked hard to make your robot drive straight. Now you are going to ruin it on purpose --- and pay close attention while you do.
 
 Start a new project called `Turns`. Put in your straight-driving program from Project 4, but keep `msleep(3000)` the same for every single run.
 
 Then change **one wheel only**. Leave the left wheel at your usual power. Change the right wheel to each value below, run it, and describe the path the robot took.
 
 {{< safety title="⚠ Floor, Not Table" >}}
-These runs go in circles and curves. Do this on an open floor with nothing in the way — not on a table, not on the field.
+These runs go in circles and curves. Do this on an open floor with nothing in the way --- not on a table, not on the field.
 {{< /safety >}}
 
 {{< gridtable >}}
@@ -137,14 +137,14 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p1_p3_prediction" label="Project 3 prediction check" >}}At the end of Project 3 you predicted what a robot would do with one wheel forward and one wheel backward. Were you right?{{< /ask >}}
 
-## Learn It — Two Knobs, Three Shapes
+## Learn It --- Two Knobs, Three Shapes
 
 You only have two things to adjust, and they do completely different jobs.
 
 | Code / part | What it means |
 | --- | --- |
 | `motor power` | **Sets the shape of the path.** The difference between the two numbers decides whether the robot goes straight, curves gently, curves hard, or spins on the spot. |
-| `msleep() time` | **Sets how far along that path the robot travels.** It does not change the shape at all — only how much of it you get. |
+| `msleep() time` | **Sets how far along that path the robot travels.** It does not change the shape at all --- only how much of it you get. |
 
 {{< callout title="The Two Rules You Just Discovered" variant="gold" >}}
 **The closer the two power numbers are, the straighter the robot goes.**
@@ -173,7 +173,7 @@ motor(3, 25);
 
 [[ONE-WHEEL TURN|one-wheel turn]]
 
-One wheel drives, the other sits still. The robot swings around the stopped wheel — like ring around the rosie.
+One wheel drives, the other sits still. The robot swings around the stopped wheel --- like ring around the rosie.
 
 More power on the moving wheel means a faster swing, not a tighter one.
 {.muted}
@@ -196,7 +196,7 @@ motor(0, 50);
 motor(3, -50);
 
 {{< callout title="Which One Should You Use?" variant="navy" >}}
-**Zero radius** when you need to point a different direction without giving up your position — the usual choice on a crowded field.
+**Zero radius** when you need to point a different direction without giving up your position --- the usual choice on a crowded field.
 
 **Radius** when you want to travel *and* turn at the same time, like driving around an obstacle.
 
@@ -211,13 +211,13 @@ Two moving wheels fight friction better than one moving wheel does. A one-wheel 
 
 {{< mission-summary mission="12" >}}
 {{< /mission-summary >}}
-## Do It — Learn to Aim
+## Do It --- Learn to Aim
 
-### Step 1 — Drive a big circle
+### Step 1 --- Drive a big circle
 
 New project called `Circles`. Put a chair in the middle of an open floor.
 
-Write a program that drives your robot in one big circle all the way around the chair, without [[TOUCHING]] it. Use **only one set** of `motor()`, `msleep()`, and `ao()` — no stopping and restarting.
+Write a program that drives your robot in one big circle all the way around the chair, without [[TOUCHING]] it. Use **only one set** of `motor()`, `msleep()`, and `ao()` --- no stopping and restarting.
 
 {{< gridtable >}}
 columns:
@@ -240,9 +240,9 @@ rows:
 - key: p3_step_big_circle
   label: "One full circle around the chair, no contact"
 {{< /checklist >}}
-### Step 2 — Drive a tight circle
+### Step 2 --- Drive a tight circle
 
-Swap the chair for something small — a tissue box works. Circle that instead, same rule: one set of commands.
+Swap the chair for something small --- a tissue box works. Circle that instead, same rule: one set of commands.
 
 {{< gridtable >}}
 columns:
@@ -263,7 +263,7 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p3_circle_compare" label="Comparing circle numbers" >}}Compare your two sets of numbers. What did you change to make the circle smaller?{{< /ask >}}
 
-### Step 3 — Try all three shapes
+### Step 3 --- Try all three shapes
 
 Run each one and record what the robot actually does.
 
@@ -296,7 +296,7 @@ rows:
 {{< /gridtable >}}
 {{< ask key="p3_least_distance" label="Which moved least" >}}Which of the three moved the robot the least distance across the floor? Why does that matter on a crowded field?{{< /ask >}}
 
-### Step 4 — Build a 90° turn
+### Step 4 --- Build a 90° turn
 
 New project called `Right Angle`. Use a **zero radius** turn and find the `msleep()` that gives you a 90° turn.
 
@@ -345,7 +345,7 @@ rows:
 Get the turn right on its own before you attach it to anything else. [[DEBUGGING|Debugging]] one command is easy. Debugging a whole run to find out which command was wrong is not.
 {{< /callout >}}
 
-### Step 5 — Prove it with a square
+### Step 5 --- Prove it with a square
 
 Here is the honest test of a 90° turn: **do it four times and see if you end up where you started, facing the way you started.**
 
@@ -359,14 +359,14 @@ Drive forward, turn 90°. Repeat four times total.
 {{< /checklist >}}
 {{< ask key="p3_square_error" label="Square error analysis" >}}If your robot did not close the square, was each turn too much or too little? How could you tell?{{< /ask >}}
 
-A small error in one turn becomes a big error after four. This is why turning by time is hard — and why Project 11 replaces it with counting.
+A small error in one turn becomes a big error after four. This is why turning by time is hard --- and why Project 11 replaces it with counting.
 {.muted}
 
-### Step 6 — Drive to the spilled cubes
+### Step 6 --- Drive to the spilled cubes
 
 Onto the field. New project called `Approach 12`.
 
-Start in your starting box, exactly the way you decided in Project 4. Drive out, turn, and stop next to the spilled cube area — close enough and square enough that a claw could pick a cube up.
+Start in your starting box, exactly the way you decided in Project 4. Drive out, turn, and stop next to the spilled cube area --- close enough and square enough that a claw could pick a cube up.
 
 Write your plan as [[PSEUDOCODE|pseudocode]] first:
 
@@ -420,7 +420,7 @@ rows:
 - key: p3_step_no_knock
   label: "It did not knock any cubes out of the area on the way in"
 {{< /checklist >}}
-### Step 7 — Run it five times
+### Step 7 --- Run it five times
 
 Same rule as Project 4. One good approach is luck.
 
@@ -451,11 +451,11 @@ rows:
       - key: p3_run5
         aria: "Approach run 5"
 {{< /gridtable >}}
-{{< short-answer key="p3_weakest_part" label="Least reliable part" prompt="Which part of the run was least reliable — the drive out, the turn, or the final approach?" >}}
+{{< short-answer key="p3_weakest_part" label="Least reliable part" prompt="Which part of the run was least reliable --- the drive out, the turn, or the final approach?" >}}
 
-## Score It — Checkpoint
+## Score It --- Checkpoint
 
-No points yet — Mission 12 does not score until something gets stacked. What you have built is the half of the mission that has to work before the other half matters.
+No points yet --- Mission 12 does not score until something gets stacked. What you have built is the half of the mission that has to work before the other half matters.
 
 ### My turning numbers
 
@@ -469,11 +469,11 @@ columns:
   aria: "Spin left power"
 rows:
   - cells:
-      - text: "zero radius turn — left power"
+      - text: "zero radius turn --- left power"
       - key: p4_spin_l
         aria: "Spin left power"
   - cells:
-      - text: "Zero radius turn — right power"
+      - text: "Zero radius turn --- right power"
       - key: p4_spin_r
         aria: "Spin right power"
   - cells:
@@ -534,7 +534,7 @@ rows:
 {{< /checklist >}}
 ### Think about it
 
-{{< ask key="p4_error_source" label="Where the error came from" >}}Your square test almost certainly did not close perfectly. Where did the error come from — was the robot doing the wrong thing, or was your program asking for something it cannot deliver?{{< /ask >}}
+{{< ask key="p4_error_source" label="Where the error came from" >}}Your square test almost certainly did not close perfectly. Where did the error come from --- was the robot doing the wrong thing, or was your program asking for something it cannot deliver?{{< /ask >}}
 
 {{< ask key="p4_surface_change" label="Surface change question" >}}A teammate's robot turns 90° perfectly on the carpet but [[OVERSHOOT|overshoots]] on the field mat. Nothing in the program changed. What happened?{{< /ask >}}
 
@@ -542,6 +542,6 @@ rows:
 
 ### Next
 
-In **Project 6 — Bulldoze Run**, you put driving and turning together to score four missions at once — and you do it all without a claw, by pushing.
+In **Project 6 --- Bulldoze Run**, you put driving and turning together to score four missions at once --- and you do it all without a claw, by pushing.
 
-KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026

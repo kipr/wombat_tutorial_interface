@@ -141,15 +141,15 @@
         },
         {
           "href": "project-03.html",
-          "text": "Project 3 Motors and Ports Motor ports, checking direction with the wheel-spin trick, the motor() command, power from −100 to 100, and why every motor program needs msleep. No field mission — robot on blocks Open Project →"
+          "text": "Project 3 Motors and Ports Motor ports, checking direction with the wheel-spin trick, the motor() command, power from −100 to 100, and why every motor program needs msleep. No field mission - robot on blocks Open Project →"
         },
         {
           "href": "project-04.html",
-          "text": "Project 4 Out and Back Drive out of the starting box, stop where a judge can see it, and return fully within the box. Fixing drift, and making it repeat five times. Mission 1 · Mission 10 — base + bonus Open Project →"
+          "text": "Project 4 Out and Back Drive out of the starting box, stop where a judge can see it, and return fully within the box. Fixing drift, and making it repeat five times. Mission 1 · Mission 10 - base + bonus Open Project →"
         },
         {
           "href": "project-05.html",
-          "text": "Project 5 Learning to Turn Two knobs and three turn shapes — radius, one-wheel, and zero radius. Build a repeatable 90° turn, then drive to the spilled cubes. Mission 12 — approach only Open Project →"
+          "text": "Project 5 Learning to Turn Two knobs and three turn shapes - radius, one-wheel, and zero radius. Build a repeatable 90° turn, then drive to the spilled cubes. Mission 12 - approach only Open Project →"
         },
         {
           "href": "project-06.html",
@@ -161,47 +161,47 @@
         },
         {
           "href": "project-07.html",
-          "text": "Project 7 Your Robot’s Arm Servos go to a position instead of just spinning. Wiring, safe limits, centring the horn, the preset trick — then reach into the enclosure and touch Botguy. Mission 9 — base Needs Systems 7 Open Project →"
+          "text": "Project 7 Your Robot's Arm Servos go to a position instead of just spinning. Wiring, safe limits, centring the horn, the preset trick - then reach into the enclosure and touch Botguy. Mission 9 - base Needs Systems 7 Open Project →"
         },
         {
           "href": "project-08.html",
-          "text": "Project 8 Arm and Claw Together Two servos as one system — grab, carry, stack, release. Live-judged versus final-position scoring, and 37 points across four missions. Missions 12 · 3 · 11 · 13 bonus — 37 pts Needs Systems 7 Open Project →"
+          "text": "Project 8 Arm and Claw Together Two servos as one system - grab, carry, stack, release. Live-judged versus final-position scoring, and 37 points across four missions. Missions 12 · 3 · 11 · 13 bonus - 37 pts Needs Systems 7 Open Project →"
         },
         {
           "href": "project-09.html",
-          "text": "Project 9 Names for Your Numbers Turn your position comments into real variables. Change a number once instead of everywhere — then stack the red cubes on the top shelf. Mission 5 — base + bonus · 20 pts Open Project →"
+          "text": "Project 9 Names for Your Numbers Turn your position comments into real variables. Change a number once instead of everywhere - then stack the red cubes on the top shelf. Mission 5 - base + bonus · 20 pts Open Project →"
         },
         {
           "href": "project-10.html",
-          "text": "Project 10 Feeling for Things The touch sensor, and the loop that keeps checking it. Drive until bump, find a wall you can trust, then stack all three unstraight cubes. Mission 13 advanced — 13 pts Open Project →"
+          "text": "Project 10 Feeling for Things The touch sensor, and the loop that keeps checking it. Drive until bump, find a wall you can trust, then stack all three unstraight cubes. Mission 13 advanced - 13 pts Open Project →"
         },
         {
           "href": "project-11.html",
-          "text": "Project 11 Counting Wheel Ticks Point the same loop at a number. Ticks per inch, correcting for overshoot, turns by count — and the square from Project 5 finally closes. Missions 9 · 8 · 18 — 40 pts Open Project →"
+          "text": "Project 11 Counting Wheel Ticks Point the same loop at a number. Ticks per inch, correcting for overshoot, turns by count - and the square from Project 5 finally closes. Missions 9 · 8 · 18 - 40 pts Open Project →"
         },
         {
           "href": "project-12.html",
-          "text": "Project 12 Teaching Your Robot New Moves Write your own commands. Prototype, definition, call — plus arguments and functions that call functions. Then double a mission score with one extra line. Mission 15 — base + bonus · 18 pts Open Project →"
+          "text": "Project 12 Teaching Your Robot New Moves Write your own commands. Prototype, definition, call - plus arguments and functions that call functions. Then double a mission score with one extra line. Mission 15 - base + bonus · 18 pts Open Project →"
         },
         {
           "href": "project-13.html",
-          "text": "Project 13 Deciding What to Do if, if/else, else if, and nesting. The difference between asking once and asking repeatedly — then a run that notices when a grab fails. Mission 3 advanced — 22 pts Open Project →"
+          "text": "Project 13 Deciding What to Do if, if/else, else if, and nesting. The difference between asking once and asking repeatedly - then a run that notices when a grab fails. Mission 3 advanced - 22 pts Open Project →"
         },
         {
           "href": "project-14.html",
-          "text": "Project 14 Seeing Light and Dark A sensor that answers with a number. Find your own threshold, drive until the line, start on a light — then place Botguy and both cones exactly inside the zone. Missions 14 · 18 — 35 pts Open Project →"
+          "text": "Project 14 Seeing Light and Dark A sensor that answers with a number. Find your own threshold, drive until the line, start on a light - then place Botguy and both cones exactly inside the zone. Missions 14 · 18 - 35 pts Open Project →"
         },
         {
           "href": "project-15.html",
-          "text": "Project 15 Following the Line Steer from a sensor reading. Follow the edge, not the middle — then use the lines to reach four of the hardest scoring targets on the field. Missions 6 · 7 · 16 · 17 — 51 pts Open Project →"
+          "text": "Project 15 Following the Line Steer from a sensor reading. Follow the edge, not the middle - then use the lines to reach four of the hardest scoring targets on the field. Missions 6 · 7 · 16 · 17 - 51 pts Open Project →"
         },
         {
           "href": "project-16.html",
-          "text": "Project 16 Building Your Toolbox Move your functions into a header file your whole team can share. Fix something once and every project that includes it gets better. No field mission — refactor Open Project →"
+          "text": "Project 16 Building Your Toolbox Move your functions into a header file your whole team can share. Fix something once and every project that includes it gets better. No field mission - refactor Open Project →"
         },
         {
           "href": "project-17.html",
-          "text": "Project 17 Repeating Without Retyping The loop that counts. Start, stop, and step all on one line — then collect every bonus that just means \"now do that again.\" Missions 7 · 11 · 16 · 17 — 38 pts Open Project →"
+          "text": "Project 17 Repeating Without Retyping The loop that counts. Start, stop, and step all on one line - then collect every bonus that just means \"now do that again.\" Missions 7 · 11 · 16 · 17 - 38 pts Open Project →"
         }
       ],
       "figures": [
@@ -263,19 +263,19 @@
         },
         {
           "href": "project-02.html",
-          "text": "Project 2 What Makes a Robot a Robot? Robot or not a robot — and why the line is harder to draw than it looks. Robot components and what each one is for. Before Coding 3 Open Project →"
+          "text": "Project 2 What Makes a Robot a Robot? Robot or not a robot - and why the line is harder to draw than it looks. Robot components and what each one is for. Before Coding 3 Open Project →"
         },
         {
           "href": "project-03.html",
-          "text": "Project 3 Who’s Driving? Autonomous, semi-autonomous, and remote control. Be the Robot — find out how exact an instruction has to be. Before Coding 4 Open Project →"
+          "text": "Project 3 Who's Driving? Autonomous, semi-autonomous, and remote control. Be the Robot - find out how exact an instruction has to be. Before Coding 4 Open Project →"
         },
         {
           "href": "project-04.html",
-          "text": "Project 4 Draw the Plan Flowchart symbols, decision points, and charting a robot’s path before writing a line of code. Before Coding 6 Open Project →"
+          "text": "Project 4 Draw the Plan Flowchart symbols, decision points, and charting a robot's path before writing a line of code. Before Coding 6 Open Project →"
         },
         {
           "href": "project-05.html",
-          "text": "Project 5 The Design Process Define, brainstorm, build, test, improve — practised on the tallest tower you can make that stays up. Before Coding 6 Open Project →"
+          "text": "Project 5 The Design Process Define, brainstorm, build, test, improve - practised on the tallest tower you can make that stays up. Before Coding 6 Open Project →"
         },
         {
           "href": "project-06.html",
@@ -283,7 +283,7 @@
         },
         {
           "href": "project-07.html",
-          "text": "Project 7 · Build The Arm and the Claw Twelve illustrated steps. Two servos, a lifting arm and a gripping claw — everything the Coding strand does from Project 7 onward needs this. Required before Coding 7 Open Project →"
+          "text": "Project 7 · Build The Arm and the Claw Twelve illustrated steps. Two servos, a lifting arm and a gripping claw - everything the Coding strand does from Project 7 onward needs this. Required before Coding 7 Open Project →"
         },
         {
           "href": "project-08.html",
@@ -365,35 +365,35 @@
         {
           "key": "p1_find_switch",
           "type": "checkbox",
-          "label": "The power switch — on the side, right next to the battery cable",
+          "label": "The power switch - on the side, right next to the battery cable",
           "placeholder": "",
           "initial_value": ""
         },
         {
           "key": "p1_find_battery",
           "type": "checkbox",
-          "label": "The yellow battery connectors — one on the battery, one on the Wombat",
+          "label": "The yellow battery connectors - one on the battery, one on the Wombat",
           "placeholder": "",
           "initial_value": ""
         },
         {
           "key": "p1_find_screen",
           "type": "checkbox",
-          "label": "The touchscreen — this is where the Wombat shows you things",
+          "label": "The touchscreen - this is where the Wombat shows you things",
           "placeholder": "",
           "initial_value": ""
         },
         {
           "key": "p1_find_usb",
           "type": "checkbox",
-          "label": "The USB ports — on the side",
+          "label": "The USB ports - on the side",
           "placeholder": "",
           "initial_value": ""
         },
         {
           "key": "p1_find_motor",
           "type": "checkbox",
-          "label": "The motor ports — you will use these later",
+          "label": "The motor ports - you will use these later",
           "placeholder": "",
           "initial_value": ""
         },
@@ -758,8 +758,8 @@
         {
           "kind": "image",
           "src": "../../img/ide/new-folder-a.jpg",
-          "alt": "Project Explorer — click + to add a user.",
-          "caption": "Project Explorer — click + to add a user."
+          "alt": "Project Explorer - click + to add a user.",
+          "caption": "Project Explorer - click + to add a user."
         },
         {
           "kind": "image",
@@ -789,13 +789,13 @@
           "kind": "image",
           "src": "../../img/ide/compile-succeeded.png",
           "alt": "",
-          "caption": "\"Compilation succeeded\" — your project is now on the Wombat."
+          "caption": "\"Compilation succeeded\" - your project is now on the Wombat."
         },
         {
           "kind": "image",
           "src": "../../img/botui/home_page.png",
-          "alt": "The Wombat's Home page — where you find Programs.",
-          "caption": "The Wombat's Home page — where you find Programs."
+          "alt": "The Wombat's Home page - where you find Programs.",
+          "caption": "The Wombat's Home page - where you find Programs."
         },
         {
           "kind": "image",
@@ -991,7 +991,7 @@
         {
           "key": "p3_step_all_fixed",
           "type": "checkbox",
-          "label": "All five bugs broken, read, and fixed — program compiles cleanly",
+          "label": "All five bugs broken, read, and fixed - program compiles cleanly",
           "placeholder": "",
           "initial_value": ""
         },
@@ -1579,7 +1579,7 @@
         {
           "level": 3,
           "id": "",
-          "text": "The plug goes in two ways — and it matters"
+          "text": "The plug goes in two ways - and it matters"
         },
         {
           "level": 2,
@@ -1703,8 +1703,8 @@
         {
           "kind": "image",
           "src": "../../img/kit/wambatmotors.jpg",
-          "alt": "Motors plugged in — ports 0 and 3.",
-          "caption": "A motor plugged in — ports 0 and 3."
+          "alt": "Motors plugged in - ports 0 and 3.",
+          "caption": "A motor plugged in - ports 0 and 3."
         },
         {
           "kind": "image",
@@ -3980,7 +3980,7 @@
         {
           "level": 3,
           "id": "",
-          "text": "SIMULTANEOUSLY — the trap in Mission 4"
+          "text": "SIMULTANEOUSLY - the trap in Mission 4"
         },
         {
           "level": 3,
@@ -4137,7 +4137,7 @@
         {
           "key": "p1_horn",
           "type": "checkbox",
-          "label": "A servo horn is attached — washer first, then horn, then the small screw",
+          "label": "A servo horn is attached - washer first, then horn, then the small screw",
           "placeholder": "",
           "initial_value": ""
         },
@@ -4518,7 +4518,7 @@
         {
           "level": 3,
           "id": "",
-          "text": "Plug it in — the wire order matters"
+          "text": "Plug it in - the wire order matters"
         },
         {
           "level": 3,
@@ -4636,14 +4636,14 @@
         {
           "kind": "image",
           "src": "../../img/kit/servo_port_plugin.png",
-          "alt": "Servo wires — check the colours before you push the plug in.",
-          "caption": "Servo wires — check the colours before you push the plug in."
+          "alt": "Servo wires - check the colours before you push the plug in.",
+          "caption": "Servo wires - check the colours before you push the plug in."
         },
         {
           "kind": "image",
           "src": "../../img/servo/range-of-motion.jpg",
-          "alt": "A servo’s range is like a protractor — 180° split into positions 0 to 2047.",
-          "caption": "A servo’s range is like a protractor — 180° split into positions 0 to 2047."
+          "alt": "A servo's range is like a protractor - 180° split into positions 0 to 2047.",
+          "caption": "A servo's range is like a protractor - 180° split into positions 0 to 2047."
         },
         {
           "kind": "image",
@@ -5433,7 +5433,7 @@
         {
           "level": 3,
           "id": "",
-          "text": "Live judged or final position — this changes your strategy"
+          "text": "Live judged or final position - this changes your strategy"
         },
         {
           "level": 3,
@@ -6870,8 +6870,8 @@
         {
           "kind": "image",
           "src": "../../img/kit/digitalsensors.jpg",
-          "alt": "Digital sensors — the long lever and large touch sensors.",
-          "caption": "Digital sensors — the long lever and large touch sensors."
+          "alt": "Digital sensors - the long lever and large touch sensors.",
+          "caption": "Digital sensors - the long lever and large touch sensors."
         },
         {
           "kind": "image",
@@ -8530,7 +8530,7 @@
         {
           "level": 3,
           "id": "",
-          "text": "Arguments — one function, many distances"
+          "text": "Arguments - one function, many distances"
         },
         {
           "level": 3,
@@ -9617,7 +9617,7 @@
         {
           "key": "p3_m18_cone1",
           "type": "checkbox",
-          "label": "One cone is FULLY WITHIN — no part over the boundary",
+          "label": "One cone is FULLY WITHIN - no part over the boundary",
           "placeholder": "",
           "initial_value": ""
         },
@@ -10143,8 +10143,8 @@
         {
           "kind": "image",
           "src": "../../img/kit/analogsensors.jpg",
-          "alt": "Analog sensors — reflectance, light, and the ET rangefinder.",
-          "caption": "Analog sensors — reflectance, light, and the ET rangefinder."
+          "alt": "Analog sensors - reflectance, light, and the ET rangefinder.",
+          "caption": "Analog sensors - reflectance, light, and the ET rangefinder."
         }
       ]
     },
@@ -12888,7 +12888,7 @@
         {
           "level": 3,
           "id": "",
-          "text": "Now sort it — your way"
+          "text": "Now sort it - your way"
         },
         {
           "level": 2,
@@ -13857,8 +13857,8 @@
         {
           "kind": "image",
           "src": "../../img/kit/wambatmotors.jpg",
-          "alt": "The controller and its motors — computation and actuators in one picture.",
-          "caption": "The controller and its motors — computation and actuators in one picture."
+          "alt": "The controller and its motors - computation and actuators in one picture.",
+          "caption": "The controller and its motors - computation and actuators in one picture."
         }
       ]
     },
@@ -14364,12 +14364,12 @@
         {
           "level": 3,
           "id": "",
-          "text": "Round 1 — talk them through it"
+          "text": "Round 1 - talk them through it"
         },
         {
           "level": 3,
           "id": "",
-          "text": "Round 2 — write it down first"
+          "text": "Round 2 - write it down first"
         },
         {
           "level": 2,
@@ -16915,7 +16915,7 @@
         {
           "level": 3,
           "id": "",
-          "text": "What goes wrong if…"
+          "text": "What goes wrong if..."
         },
         {
           "level": 3,
@@ -16994,14 +16994,14 @@
         {
           "kind": "image",
           "src": "../../img/kit/servo_port_plugin.png",
-          "alt": "Servo wires — check the colours before you push the plug in.",
-          "caption": "Servo wires — check the colours before you push the plug in."
+          "alt": "Servo wires - check the colours before you push the plug in.",
+          "caption": "Servo wires - check the colours before you push the plug in."
         },
         {
           "kind": "image",
           "src": "../../img/servo/centering-horn.jpg",
-          "alt": "Finding the middle of a servo’s travel before the horn goes on.",
-          "caption": "Finding the middle of a servo’s travel before the horn goes on."
+          "alt": "Finding the middle of a servo's travel before the horn goes on.",
+          "caption": "Finding the middle of a servo's travel before the horn goes on."
         },
         {
           "kind": "image",
@@ -17013,97 +17013,97 @@
           "kind": "image",
           "src": "img/step-01a.jpg",
           "alt": "A servo bracket lined up on the short end of the chassis",
-          "caption": "Step 1 — line up the bracket"
+          "caption": "Step 1 - line up the bracket"
         },
         {
           "kind": "image",
           "src": "img/step-01b.jpg",
           "alt": "The bracket bolted to the chassis with two medium bolts and nuts",
-          "caption": "Step 1 — bolt it down"
+          "caption": "Step 1 - bolt it down"
         },
         {
           "kind": "image",
           "src": "img/step-02a.jpg",
           "alt": "A servo sliding into the servo bracket, wire end first",
-          "caption": "Step 2 — wire end first"
+          "caption": "Step 2 - wire end first"
         },
         {
           "kind": "image",
           "src": "img/step-02b.jpg",
           "alt": "The servo secured in the bracket with two medium bolts and nuts",
-          "caption": "Step 2 — secure it"
+          "caption": "Step 2 - secure it"
         },
         {
           "kind": "image",
           "src": "img/step-03.jpg",
           "alt": "A 1x5 servo horn placed on the servo on the robot",
-          "caption": "Step 3 — the horn on the servo"
+          "caption": "Step 3 - the horn on the servo"
         },
         {
           "kind": "image",
           "src": "../../img/kit/h_pin_attach.png",
           "alt": "A LEGO H-pin attached to one end of a 1x7 liftarm with a long bolt and nut",
-          "caption": "Step 4 — H-pin on the liftarm"
+          "caption": "Step 4 - H-pin on the liftarm"
         },
         {
           "kind": "image",
           "src": "img/step-05.jpg",
           "alt": "An L bracket attached to a servo bracket with a medium bolt and nut",
-          "caption": "Step 5 — L bracket to servo bracket"
+          "caption": "Step 5 - L bracket to servo bracket"
         },
         {
           "kind": "image",
           "src": "img/step-06.jpg",
           "alt": "The liftarm and H-pin assembly bolted to the top of the L bracket",
-          "caption": "Step 6 — assembly onto the L bracket"
+          "caption": "Step 6 - assembly onto the L bracket"
         },
         {
           "kind": "image",
           "src": "img/step-07a.jpg",
           "alt": "The assembly flipped over with a servo placed in the servo bracket wire first",
-          "caption": "Step 7 — flip and place"
+          "caption": "Step 7 - flip and place"
         },
         {
           "kind": "image",
           "src": "img/step-07b.jpg",
           "alt": "The second servo secured with a medium bolt and nut",
-          "caption": "Step 7 — secure it"
+          "caption": "Step 7 - secure it"
         },
         {
           "kind": "image",
           "src": "img/step-08a.jpg",
           "alt": "A 3x7 bent liftarm joined to a claw liftarm with two blue axle pins and one black pin",
-          "caption": "Step 8 — join the liftarms"
+          "caption": "Step 8 - join the liftarms"
         },
         {
           "kind": "image",
           "src": "img/step-08b.jpg",
           "alt": "The assembly flipped back and bolted to the servo bracket with two long bolts and nuts",
-          "caption": "Step 8 — bolt to the bracket"
+          "caption": "Step 8 - bolt to the bracket"
         },
         {
           "kind": "image",
           "src": "../../img/kit/claw_liftarm_servo_horn.png",
           "alt": "A claw liftarm attached to a 1x5 servo horn with two long bolts and nuts",
-          "caption": "Step 9 — claw liftarm to horn"
+          "caption": "Step 9 - claw liftarm to horn"
         },
         {
           "kind": "image",
           "src": "../../img/kit/claw_onto_servo.png",
           "alt": "The claw attached to the servo with a washer beneath it and the small silver bolt",
-          "caption": "Step 10 — washer, then claw"
+          "caption": "Step 10 - washer, then claw"
         },
         {
           "kind": "image",
           "src": "img/step-11.jpg",
           "alt": "A 1x5 servo horn attached to the LEGO H-pin with two long bolts and nuts",
-          "caption": "Step 11 — horn onto the H-pin"
+          "caption": "Step 11 - horn onto the H-pin"
         },
         {
           "kind": "image",
           "src": "img/step-12.jpg",
           "alt": "The claw assembly attached to the servo on the robot with a washer and small silver bolt",
-          "caption": "Step 12 — claw assembly onto the robot"
+          "caption": "Step 12 - claw assembly onto the robot"
         },
         {
           "kind": "image",
@@ -18285,14 +18285,14 @@
           "key": "p2_safe",
           "type": "textarea",
           "label": "Safe information",
-          "placeholder": "Favourite ice cream, favourite animal, favourite colour…",
+          "placeholder": "Favourite ice cream, favourite animal, favourite colour...",
           "initial_value": ""
         },
         {
           "key": "p2_unsafe",
           "type": "textarea",
           "label": "Unsafe information",
-          "placeholder": "Address, phone number, date of birth, passwords…",
+          "placeholder": "Address, phone number, date of birth, passwords...",
           "initial_value": ""
         },
         {

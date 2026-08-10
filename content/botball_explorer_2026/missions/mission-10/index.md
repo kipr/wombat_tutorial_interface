@@ -41,4 +41,4 @@ does_not_score:
 - Judges should use common sense when determining whether a robot has come to a clear and complete stop.
 - Motion of servos, arms, claws, or other mechanisms does not prevent a robot from being considered stopped.
 - If a judge cannot clearly determine that the robot stopped, the mission should not be scored.
-- Waypoint Alpha (Mission 1) and Waypoint Bravo (Mission 10) must be completed independently — a single return to a starting box cannot satisfy both Bonus Missions.
+- Waypoint Alpha (Mission 1) and Waypoint Bravo (Mission 10) must be completed independently --- a single return to a starting box cannot satisfy both Bonus Missions.

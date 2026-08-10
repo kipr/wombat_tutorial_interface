@@ -33,12 +33,12 @@ meta:
 
 ## Overview
 
-So far, your robot has done exactly what you told it, in exactly the order you wrote it. Today that changes. You'll write a program that **makes a choice** — it looks at a value and decides what to do based on a rule. The robot will sort freight: one action for one kind, a different action for another.
+So far, your robot has done exactly what you told it, in exactly the order you wrote it. Today that changes. You'll write a program that **makes a choice** --- it looks at a value and decides what to do based on a rule. The robot will sort freight: one action for one kind, a different action for another.
 
 {{< callout title="Core Insight" >}}
 A decision is a rule the computer follows: "IF this is true, do one thing; OTHERWISE, do something else."
 
-The robot doesn't "know" anything. It checks a value against a rule you wrote — and that is what makes it look intelligent.
+The robot doesn't "know" anything. It checks a value against a rule you wrote --- and that is what makes it look intelligent.
 {{< /callout >}}
 
 ### By the end of this activity you will be able to:
@@ -54,7 +54,7 @@ The robot doesn't "know" anything. It checks a value against a rule you wrote �
 You already know `int`, [[FUNCTION|functions]], and the commands `motor()`, `msleep()`, and `ao()`. Today you add one new tool: the `if` statement.
 {.muted}
 
-{{< concept "An if statement — a rule the computer checks" >}}
+{{< concept "An if statement --- a rule the computer checks" >}}
 - text: |
     An `if` statement checks whether something is true. If it is, the computer runs the code inside the curly braces. If it is not, it can run a different [[BLOCK|block]] after `else` instead.
 - code: |
@@ -66,7 +66,7 @@ You already know `int`, [[FUNCTION|functions]], and the commands `motor()`, `msl
         turn_right();            // ...do this instead
     }
 - text: |
-    Change `freight_type` to a different number, and the robot makes a different choice — without you rewriting the rule.
+    Change `freight_type` to a different number, and the robot makes a different choice --- without you rewriting the rule.
 {{< /concept >}}
 
 {{< concept "== means \"is it equal?\"" >}}
@@ -77,10 +77,10 @@ You already know `int`, [[FUNCTION|functions]], and the commands `motor()`, `msl
 
     if (freight_type == 1)   // TWO equals  ==  ASKS if it is equal to 1
 - text: |
-    A single `=` *sets* a value. A double `==` *asks a question*. Using one when you mean the other is one of the most common bugs in all of programming — so check it every time.
+    A single `=` *sets* a value. A double `==` *asks a question*. Using one when you mean the other is one of the most common bugs in all of programming --- so check it every time.
 {{< /concept >}}
 
-## Phase 1 — Activate: The Bouncer at the Door
+## Phase 1 --- Activate: The Bouncer at the Door
 
 Imagine you are a bouncer at the door of an event. You have exactly one rule: **if a person's ticket says "VIP," send them left; otherwise, send them right.** You don't know these people. You don't judge them. You just check the ticket against the rule and act.
 
@@ -125,11 +125,11 @@ rows:
 
 {{< ask key="p1_bouncer_like_computer" label="Bouncer like a computer" >}}A bouncer follows a rule without deciding who "deserves" what. How is that like the way a computer makes a decision?{{< /ask >}}
 
-## Phase 2 — Concept: Conditions, Rules, and Classification
+## Phase 2 --- Concept: Conditions, Rules, and Classification
 
 ### A Condition Is a True/False Question
 
-Every decision a computer makes starts with a *condition* — a question that is either true or false. `freight_type == 1` is a condition. Right now it is either true (the value really is 1) or false (it is anything else). There is no "maybe." This is called **[[BOOLEAN|Boolean]]** thinking: every condition is true or false, nothing in between.
+Every decision a computer makes starts with a *condition* --- a question that is either true or false. `freight_type == 1` is a condition. Right now it is either true (the value really is 1) or false (it is anything else). There is no "maybe." This is called **[[BOOLEAN|Boolean]]** thinking: every condition is true or false, nothing in between.
 
 ### Classification
 
@@ -137,31 +137,31 @@ When a computer sorts things into groups using rules, that is *classification*. 
 
 ### Pattern Recognition
 
-Rules let a system respond to a *pattern* instead of a single fixed case. Your one rule — "if type 1, go straight; else turn" — handles every freight value you could ever set, not just one. Write the rule once, and it works for the whole pattern of cases.
+Rules let a system respond to a *pattern* instead of a single fixed case. Your one rule --- "if type 1, go straight; else turn" --- handles every freight value you could ever set, not just one. Write the rule once, and it works for the whole pattern of cases.
 
 {{< callout title="Example" variant="gold" >}}
-"If the light is red, stop; otherwise, go." That one rule covers every red light and every non-red light in the world. You don't write a new rule for each intersection — the pattern is handled by a single condition.
+"If the light is red, stop; otherwise, go." That one rule covers every red light and every non-red light in the world. You don't write a new rule for each intersection --- the pattern is handled by a single condition.
 {{< /callout >}}
 
 {{< ask key="p2_fixed_vs_decision" label="Fixed steps versus decision" >}}In your own words: what is the difference between a program that follows a fixed list of steps and one that makes a decision?{{< /ask >}}
 
-## Phase 3 — Plan
+## Phase 3 --- Plan
 
 ### The Sorting Task
 
 {{< callout title="Your Goal" >}}
 Your robot is a freight sorter. A freight value is set at the top of the program. Your robot must take **one action** if the freight is type 1, and a **different action** if it is anything else.
 
-You choose what "type 1" and "anything else" mean for the robot — for example, drive straight to one bin, or turn toward another.
+You choose what "type 1" and "anything else" mean for the robot --- for example, drive straight to one bin, or turn toward another.
 {{< /callout >}}
 
-### Step 1 — Write Your Rule in Plain English
+### Step 1 --- Write Your Rule in Plain English
 
 Before any code, write your sorting rule as a sentence in the form "IF ... THEN ... OTHERWISE ...".
 
 {{< answer key="p3_rule_plain_english" label="Rule in plain English" >}}
 
-### Step 2 — Predict the Two Outcomes
+### Step 2 --- Predict the Two Outcomes
 
 Fill in what the robot should do for each freight value.
 
@@ -179,9 +179,9 @@ rows:
       aria: Outcome for else
 {{< /gridtable >}}
 
-### Step 3 — Trace the Rule by Hand
+### Step 3 --- Trace the Rule by Hand
 
-Before you run anything, predict the robot's action for each value. This is called *tracing* — following the rule the way the computer will.
+Before you run anything, predict the robot's action for each value. This is called *tracing* --- following the rule the way the computer will.
 
 {{< gridtable >}}
 columns:
@@ -208,7 +208,7 @@ rows:
       aria: Trace 3 action
 {{< /gridtable >}}
 
-## Phase 4 — Build &amp; Run
+## Phase 4 --- Build &amp; Run
 
 ### Starting Code Template
 
@@ -252,7 +252,7 @@ int main() {
 }
 {{< /code >}}
 
-### Run It Both Ways — Results
+### Run It Both Ways --- Results
 
 Run the program with `freight_type = 1`, then change it to `2` and run again. Record what the robot actually did.
 
@@ -279,9 +279,9 @@ rows:
 - You tested BOTH values, not just one
 - The robot did something different for each value
 
-## Phase 5 — Debug
+## Phase 5 --- Debug
 
-Decisions create a brand-new kind of bug: the robot does the *wrong* action, even though it runs without an error. That means the rule ran fine — but it was the wrong rule, or the value was not what you thought.
+Decisions create a brand-new kind of bug: the robot does the *wrong* action, even though it runs without an error. That means the rule ran fine --- but it was the wrong rule, or the value was not what you thought.
 
 {{< callout title="The most common decision bugs" variant="gold" >}}
 **Single = instead of ==:** writing `if (freight_type = 1)` sets the value instead of asking the question. Always use `==` in a rule.
@@ -309,13 +309,13 @@ Decisions create a brand-new kind of bug: the robot does the *wrong* action, eve
 
 {{< ask key="p5_bug" label="Bug description" >}}Describe one decision bug you hit. Did the robot do the wrong thing, or refuse to run? How did you find the cause?{{< /ask >}}
 
-## Phase 6 — Connect: The AI Literacy Bridge
+## Phase 6 --- Connect: The AI Literacy Bridge
 
-{{< callout title="Big Idea 3 — AI Literacy Thread" >}}
+{{< callout title="Big Idea 3 --- AI Literacy Thread" >}}
 Intelligent systems identify patterns and use rules to make decisions.
 {{< /callout >}}
 
-Your robot did not "understand" the freight. It checked a value against a rule you wrote and acted. Almost every intelligent system works this way underneath: an email app checks features of a message against rules and decides "spam or not spam." A photo app checks patterns and decides "face or not a face." The system is not judging — it is classifying with rules. The intelligence is in the rules, and a human wrote them.
+Your robot did not "understand" the freight. It checked a value against a rule you wrote and acted. Almost every intelligent system works this way underneath: an email app checks features of a message against rules and decides "spam or not spam." A photo app checks patterns and decides "face or not a face." The system is not judging --- it is classifying with rules. The intelligence is in the rules, and a human wrote them.
 
 Read each scenario. Think it through, then write your answer.
 {.muted}
@@ -324,9 +324,9 @@ Read each scenario. Think it through, then write your answer.
 
 {{< ask key="p6_else_problem" label="Problem with a broad else" >}}Your freight sorter only knows two outcomes: type 1, or everything else. A real sorting system might have ten kinds of freight. What is one problem with a rule that lumps everything that isn't type 1 into a single "else"?{{< /ask >}}
 
-{{< ask key="p6_responsibility" label="Responsibility for misclassification" >}}Who is responsible when an automated system classifies something wrong — sends the wrong freight, flags the wrong email? Connect this to the fact that a person wrote the rule.{{< /ask >}}
+{{< ask key="p6_responsibility" label="Responsibility for misclassification" >}}Who is responsible when an automated system classifies something wrong --- sends the wrong freight, flags the wrong email? Connect this to the fact that a person wrote the rule.{{< /ask >}}
 
-## Phase 7 — Individual Reflection
+## Phase 7 --- Individual Reflection
 
 Complete this section on your own.
 {.muted}
@@ -339,42 +339,42 @@ Complete this section on your own.
 
 {{< ask key="p7_q3_why_powerful" label="Reflection 3" n=3 >}}Today your robot took different actions for different values without you rewriting the rule. Why is making a decision more powerful than a fixed list of steps?{{< /ask >}}
 
-{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete this in 2–3 sentences: "Intelligent systems identify patterns and use rules to make decisions. This means that when an AI system classifies something wrong..."{{< /ask >}}
+{{< ask key="p7_q4_complete" label="Reflection 4" n=4 >}}Complete this in 2--3 sentences: "Intelligent systems identify patterns and use rules to make decisions. This means that when an AI system classifies something wrong..."{{< /ask >}}
 
 ## Extension Challenges
 
 Finished early? Try one or more of these.
 {.muted}
 
-### Extension A — A Third Choice
+### Extension A --- A Third Choice
 
 - Right now your rule has two outcomes. Add a middle case using `else if`: type 1 does one thing, type 2 does another, everything else does a third.
 - Trace your new rule by hand for `freight_type` = 1, 2, and 9 before you run it.
 
 {{< answer key="ext_a" label="Extension A" >}}
 
-### Extension B — Flip the Rule
+### Extension B --- Flip the Rule
 
-- Change your condition so the robot does the OPPOSITE — drives straight for everything *except* type 1.
+- Change your condition so the robot does the OPPOSITE --- drives straight for everything *except* type 1.
 - What did you change? Did you change the condition, the actions, or both?
 
 {{< answer key="ext_b" label="Extension B" >}}
 
-### Extension C — Greater Than
+### Extension C --- Greater Than
 
-- `==` is not the only test. Try `if (freight_type > 3)` — "is the value greater than 3?"
+- `==` is not the only test. Try `if (freight_type > 3)` --- "is the value greater than 3?"
 - Predict, then test: what does the robot do for values 1, 3, and 7?
 
 {{< answer key="ext_c" label="Extension C" >}}
 
-### Extension D — Two Rules in a Row
+### Extension D --- Two Rules in a Row
 
 - What happens if you write two separate `if` statements one after another, each checking `freight_type`?
 - Could the robot ever do two actions in one run? When would that be useful, and when would it be a bug?
 
 {{< answer key="ext_d" label="Extension D" >}}
 
-### Extension E — Random Freight
+### Extension E --- Random Freight
 
 - Real freight wouldn't always be the same type every run. Use `rand() % 10` to generate a random `freight_type` each time your program runs (you'll need `#include <stdlib.h>`, `#include <time.h>` and a call to `srand(time(NULL))` once at the top of `main()`).
 - Run it several times. Does your sorting rule still make the correct choice across many random values?
