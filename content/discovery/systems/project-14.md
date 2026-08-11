@@ -117,7 +117,7 @@ rows:
 {{< /gridtable >}}
 
 {{< callout variant="gold" title="Almost Everybody Guesses Too Low" >}}
-Not because people are bad at maths. Because when you picture a job, you picture it going well --- you do not picture the bolt rolling under the table or the program not compiling.
+Not because people are bad at math. Because when you picture a job, you picture it going well --- you do not picture the bolt rolling under the table or the program not compiling.
 
 Professional engineers get this wrong too. The fix is not to guess better. It is to write the guess down, then find out how wrong it was.
 {{< /callout >}}

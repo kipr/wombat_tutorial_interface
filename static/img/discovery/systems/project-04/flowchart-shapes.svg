@@ -1,28 +1,155 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 130" role="img" aria-label="The four flowchart shapes: oval for start and stop, rectangle for an action, diamond for a decision, arrow for flow">
-  <title>The four flowchart shapes: oval for start and stop, rectangle for an action, diamond for a decision, arrow for flow</title>
-        <defs>
-          <marker id="flowchart-shapes-ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#666666"/>
-          </marker>
-        </defs>
-        <g font-family="Barlow, sans-serif" font-size="13" text-anchor="middle">
-          <rect x="14" y="26" width="122" height="42" rx="21" fill="#1E8449"/>
-          <text x="75" y="52" fill="#fff" font-weight="600">START / STOP</text>
-          <text x="75" y="92" fill="#1C1C1C" font-size="13" font-weight="600">Oval</text>
-          <text x="75" y="110" fill="#666666" font-size="12">Where it begins and ends</text>
-
-          <rect x="166" y="26" width="122" height="42" rx="4" fill="#2a6099"/>
-          <text x="227" y="52" fill="#fff" font-weight="600">DO THIS</text>
-          <text x="227" y="92" fill="#1C1C1C" font-size="13" font-weight="600">Rectangle</text>
-          <text x="227" y="110" fill="#666666" font-size="12">One action to carry out</text>
-
-          <path d="M379,24 L440,47 L379,70 L318,47 z" fill="#C0392B"/>
-          <text x="379" y="52" fill="#ffffff" font-weight="600">YES / NO?</text>
-          <text x="379" y="92" fill="#1C1C1C" font-size="13" font-weight="600">Diamond</text>
-          <text x="379" y="110" fill="#666666" font-size="12">A question with two ways out</text>
-
-          <line x1="490" y1="47" x2="590" y2="47" stroke="#666666" stroke-width="2" marker-end="url(#flowchart-shapes-ar2)"/>
-          <text x="540" y="92" fill="#1C1C1C" font-size="13" font-weight="600">Arrow</text>
-          <text x="540" y="110" fill="#666666" font-size="12">Which way to go next</text>
-        </g>
-      </svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 640 130"
+   role="img"
+   aria-label="The four flowchart shapes: oval for start and stop, rectangle for an action, diamond for a decision, arrow for flow"
+   version="1.1"
+   id="svg11"
+   sodipodi:docname="flowchart-shapes.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview11"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.4210938"
+     inkscape:cx="278.30676"
+     inkscape:cy="194.92029"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g11" />
+  <title
+     id="title1">The four flowchart shapes: oval for start and stop, rectangle for an action, diamond for a decision, arrow for flow</title>
+  <defs
+     id="defs1">
+    <marker
+       id="flowchart-shapes-ar2"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="7"
+       markerHeight="7"
+       orient="auto">
+      <path
+         d="M0,0 L10,5 L0,10 z"
+         fill="#666666"
+         id="path1" />
+    </marker>
+  </defs>
+  <g
+     font-family="Barlow, sans-serif"
+     font-size="13"
+     text-anchor="middle"
+     id="g11">
+    <rect
+       x="16.40023"
+       y="26"
+       width="122"
+       height="42"
+       rx="21"
+       fill="#1e8449"
+       id="rect1" />
+    <text
+       x="77.400215"
+       y="52"
+       fill="#ffffff"
+       font-weight="600"
+       id="text1">START / STOP</text>
+    <text
+       x="77.400215"
+       y="92"
+       fill="#1c1c1c"
+       font-size="13px"
+       font-weight="600"
+       id="text2">Oval</text>
+    <text
+       x="77.400215"
+       y="110"
+       fill="#666666"
+       font-size="12px"
+       id="text3">Where it begins and ends</text>
+    <rect
+       x="174.39972"
+       y="26"
+       width="122"
+       height="42"
+       rx="4"
+       fill="#2a6099"
+       id="rect3" />
+    <text
+       x="235.39972"
+       y="52"
+       fill="#ffffff"
+       font-weight="600"
+       id="text4">DO THIS</text>
+    <text
+       x="235.39972"
+       y="92"
+       fill="#1c1c1c"
+       font-size="13px"
+       font-weight="600"
+       id="text5">Rectangle</text>
+    <text
+       x="235.39972"
+       y="110"
+       fill="#666666"
+       font-size="12px"
+       id="text6">One action to carry out</text>
+    <path
+       d="m 405.8995,24 61,23 -61,23 -61,-23 z"
+       fill="#c0392b"
+       id="path6" />
+    <text
+       x="405.89981"
+       y="52"
+       fill="#ffffff"
+       font-weight="600"
+       id="text7">YES / NO?</text>
+    <text
+       x="405.89981"
+       y="92"
+       fill="#1c1c1c"
+       font-size="13px"
+       font-weight="600"
+       id="text8">Diamond</text>
+    <text
+       x="405.89981"
+       y="110"
+       fill="#666666"
+       font-size="12px"
+       id="text9">A question with two ways out</text>
+    <line
+       x1="523.70068"
+       y1="47"
+       x2="623.69977"
+       y2="47"
+       stroke="#666666"
+       stroke-width="2"
+       marker-end="url(#flowchart-shapes-ar2)"
+       id="line9" />
+    <text
+       x="573.69977"
+       y="92"
+       fill="#1c1c1c"
+       font-size="13px"
+       font-weight="600"
+       id="text10">Arrow</text>
+    <text
+       x="573.69977"
+       y="110"
+       fill="#666666"
+       font-size="12px"
+       id="text11">Which way to go next</text>
+  </g>
+</svg>

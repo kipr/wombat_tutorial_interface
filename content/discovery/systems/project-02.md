@@ -288,7 +288,7 @@ People and robots solve the same problems in different materials. Match each one
 columns:
   - head: "People"
     width: 30%
-  - head: "Robots --- letter"
+  - head: "Robots"
     width: 30%
   - head: "Why that one"
 rows:

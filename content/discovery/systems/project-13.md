@@ -132,25 +132,25 @@ And goals need **ranking**. When two goals pull against each other --- and they 
 
 Programming as a group only works if the jobs are separated. Here is the split.
 
-#### Driverhands on keyboard
+#### Driver: hands on keyboard
 
 Types the code. Only this person touches the keyboard.
 
 Does not decide what to type.
 
-#### Navigatoreyes on the screen
+#### Navigator: eyes on the screen
 
 Says what to write and checks it as it appears. Catches the missing semicolon before it is compiled.
 
 Does not touch the keyboard.
 
-#### Strategisteyes on the field
+#### Strategist: eyes on the field
 
 Works out the approach, watches the robot run, and decides whether it actually worked.
 
 Does not get pulled into typing.
 
-#### Builderhands on the robot
+#### Builder: hands on the robot
 
 Keeps the robot in working order and makes changes to the hardware.
 
@@ -170,9 +170,9 @@ Rotate every challenge until each of you has done every job.
 
 ### Holding each other to it
 
-Once people have jobs, they can be [[ACCOUNTABLE|accountable]] for them --- meaning the team can fairly ask how it is going, because everybody knows who had what.
+Once people have jobs, they can be [[ACCOUNTABLE|accountable]] for them --- meaning the team can fairly ask how it is going, because everybody knows who was responsible.
 
-*That only works if it is kind. "You said you would have the turn accountable working --- how is it going, do you need a hand?" is accountability. Blaming is not.*
+*That only works if it is kind. "You said you would have the turn working --- how is it going, do you need a hand?" is accountability. Blaming is not.*
 
 ## Do It --- Decide, Divide, Rotate
 
@@ -248,7 +248,7 @@ rows:
 {{< /gridtable >}}
 
 {{< callout variant="gold" title="Ranking Is Where Teams Find Out What They Disagree About" >}}
-"Win the tournament" and "everybody can program on their own" are both good goals. They ask for different things on a Tuesday afternoon.
+"Win the tournament" and "everybody can program on their own" are both good goals. They ask for different things during a team meeting.
 
 Deciding now which one wins is far easier than deciding in the middle of an argument.
 {{< /callout >}}
