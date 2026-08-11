@@ -183,6 +183,21 @@
 }
 
 @media print {
+  :root,
+  :root[data-theme="dark"],
+  :root:not([data-theme]) {
+    --glossary-coding-background: #F2E3E6;
+    --glossary-coding-text: #922B21;
+    --glossary-systems-background: #E8ECF6;
+    --glossary-systems-text: #1C1C1C;
+    --glossary-lab-background: #E6F0EA;
+    --glossary-lab-text: #145A32;
+    --glossary-python-background: #F3ECF7;
+    --glossary-python-text: #5B2A6B;
+    --glossary-other-background: #ECECEC;
+    --glossary-other-text: #1C1C1C;
+  }
+
   body { background: #fff; }
   .topbar,
   .glossary-controls { display: none !important; }

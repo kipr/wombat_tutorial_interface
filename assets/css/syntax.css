@@ -157,6 +157,29 @@
 .code .gu { color: var(--syntax-generic); }
 
 @media print {
+  :root,
+  :root[data-theme="dark"],
+  :root:not([data-theme]) {
+    --syntax-line-number: #6E7781;
+    --syntax-highlight-background: rgba(192,57,43,.1);
+    --syntax-keyword: #0566D6;
+    --syntax-type: #9A5200;
+    --syntax-declaration: #8250DF;
+    --syntax-function: #000000;
+    --syntax-name: #0878B0;
+    --syntax-tag: #D1246B;
+    --syntax-string: #C62828;
+    --syntax-number: #00cc99;
+    --syntax-operator: #006B83;
+    --syntax-comment: #008000;
+    --syntax-preprocessor: #D1246B;
+    --syntax-error: #CF222E;
+    --syntax-error-background: rgba(207,34,46,.1);
+    --syntax-emphasis: #7A5B00;
+    --syntax-inserted: #14752A;
+    --syntax-generic: #6E7781;
+  }
+
   .code .chroma {
     color: #1a1a1a !important;
     background: transparent !important;

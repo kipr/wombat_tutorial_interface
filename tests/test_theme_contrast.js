@@ -3,8 +3,13 @@
 
 const fs = require("node:fs");
 
-const CSS_PATH = "assets/css/site-base.css";
-const css = fs.readFileSync(CSS_PATH, "utf8");
+const BASE_CSS_PATH = "assets/css/site-base.css";
+const palettePaths = [
+  BASE_CSS_PATH,
+  "assets/css/syntax.css",
+  "assets/css/explorer.css",
+  "assets/css/glossary.css"
+];
 const errors = [];
 
 const requiredTokens = [
@@ -23,28 +28,113 @@ function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function declarationsFor(selector, theme) {
-  const match = css.match(new RegExp(`${escapeRegExp(selector)}\\s*\\{([^}]*)\\}`, "m"));
-  if (!match) {
-    errors.push(`${theme}: missing ${selector} palette rule in ${CSS_PATH}`);
-    return new Map();
+function balancedBlock(source, openBrace, label) {
+  let depth = 0;
+  for (let index = openBrace; index < source.length; index += 1) {
+    if (source[index] === "{") depth += 1;
+    if (source[index] === "}") depth -= 1;
+    if (depth === 0) return source.slice(openBrace + 1, index);
   }
+  errors.push(`${label}: unclosed block`);
+  return "";
+}
 
+function atRuleBody(source, pattern, label) {
+  const match = pattern.exec(source);
+  if (!match) {
+    errors.push(`${label}: missing media rule`);
+    return "";
+  }
+  const openBrace = source.indexOf("{", match.index);
+  return balancedBlock(source, openBrace, label);
+}
+
+function ruleBody(source, selector, label) {
+  const match = new RegExp(`${escapeRegExp(selector)}\\s*\\{`, "m").exec(source);
+  if (!match) {
+    errors.push(`${label}: missing ${selector} palette rule`);
+    return "";
+  }
+  const openBrace = source.indexOf("{", match.index);
+  return balancedBlock(source, openBrace, label);
+}
+
+function declarationsFrom(body) {
   const declarations = new Map();
-  const pattern = /(--[\w-]+)\s*:\s*([^;]+);/g;
+  const pattern = /([\w-]+)\s*:\s*([^;{}]+);/g;
   let declaration;
-  while ((declaration = pattern.exec(match[1])) !== null) {
+  while ((declaration = pattern.exec(body)) !== null) {
     declarations.set(declaration[1], declaration[2].trim());
   }
   return declarations;
 }
 
-function readPalette(selector, theme) {
-  const declarations = declarationsFor(selector, theme);
+function normalizeValue(value) {
+  return value.toLowerCase().replace(/\s+/g, "");
+}
+
+function compareDeclarations(path, expectedName, expected, actualName, actual) {
+  for (const [property, expectedValue] of expected) {
+    if (!actual.has(property)) {
+      errors.push(`${path}: ${actualName} is missing ${property} from ${expectedName}`);
+      continue;
+    }
+    const actualValue = actual.get(property);
+    if (normalizeValue(actualValue) !== normalizeValue(expectedValue)) {
+      errors.push(
+        `${path}: ${actualName} ${property} is ${actualValue}, ` +
+        `expected ${expectedValue} from ${expectedName}`
+      );
+    }
+  }
+}
+
+function validateFallbackAndPrintPalettes(path) {
+  const source = fs.readFileSync(path, "utf8");
+  const light = declarationsFrom(ruleBody(source, ":root", `${path} light`));
+  const dark = declarationsFrom(ruleBody(source, ':root[data-theme="dark"]', `${path} dark`));
+  const systemMedia = atRuleBody(
+    source,
+    /@media\s*\(\s*prefers-color-scheme\s*:\s*dark\s*\)\s*\{/m,
+    `${path} system dark`
+  );
+  const systemDark = declarationsFrom(
+    ruleBody(systemMedia, ":root:not([data-theme])", `${path} system dark`)
+  );
+  const printMedia = atRuleBody(source, /@media\s+print\s*\{/m, `${path} print`);
+  const printSelector = /:root\s*,\s*:root\[data-theme=["']dark["']\]\s*,\s*:root:not\(\[data-theme\]\)\s*\{/m;
+  if (!printSelector.test(printMedia)) {
+    errors.push(
+      `${path} print: palette selector must cover :root, explicit dark, and absent data-theme states`
+    );
+  }
+  const print = declarationsFrom(
+    ruleBody(printMedia, ":root:not([data-theme])", `${path} print`)
+  );
+
+  compareDeclarations(path, "explicit dark", dark, "system dark fallback", systemDark);
+
+  const lightThemeValues = new Map();
+  for (const property of dark.keys()) {
+    if (!light.has(property)) {
+      errors.push(`${path}: light palette is missing dark-mode property ${property}`);
+      continue;
+    }
+    lightThemeValues.set(property, light.get(property));
+  }
+  compareDeclarations(path, "light palette", lightThemeValues, "print palette", print);
+
+  return {light, dark};
+}
+
+const basePalettes = validateFallbackAndPrintPalettes(BASE_CSS_PATH);
+for (const path of palettePaths.slice(1)) validateFallbackAndPrintPalettes(path);
+
+function readContrastPalette(declarations, theme) {
   const palette = {};
   for (const token of requiredTokens) {
     if (!declarations.has(token)) {
-      errors.push(`${theme}: missing ${token} in ${selector}`);
+      errors.push(`${theme}: missing ${token} in ${BASE_CSS_PATH}`);
       continue;
     }
     const value = declarations.get(token);
@@ -92,8 +182,8 @@ const pairs = [
 ];
 
 const palettes = [
-  ["light", readPalette(":root", "light")],
-  ["dark", readPalette(':root[data-theme="dark"]', "dark")]
+  ["light", readContrastPalette(basePalettes.light, "light")],
+  ["dark", readContrastPalette(basePalettes.dark, "dark")]
 ];
 
 if (errors.length === 0) {
@@ -115,5 +205,8 @@ if (errors.length > 0) {
   for (const error of errors) console.error(`ERROR: ${error}`);
   process.exitCode = 1;
 } else {
-  console.log(`theme contrast OK: ${pairs.length * palettes.length} light/dark palette pairs`);
+  console.log(
+    `theme contrast OK: ${pairs.length * palettes.length} light/dark palette pairs; ` +
+    `${palettePaths.length} fallback/print palettes`
+  );
 }

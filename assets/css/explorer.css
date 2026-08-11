@@ -153,6 +153,15 @@ body.explorer{background:var(--surface-page);min-height:100vh}
   .explorer-rules-card{gap:.7rem}.explorer-rules-symbol{padding-right:.7rem}
 }
 @media print{
+  :root,
+  :root[data-theme="dark"],
+  :root:not([data-theme]){
+    --explorer-point-base-background:#FDF2F2;--explorer-point-base-text:#922B21;
+    --explorer-point-bonus-background:#FADBD8;--explorer-point-bonus-text:#922B21;
+    --explorer-point-advanced-background:#F5B7B1;--explorer-point-advanced-text:#7B241C;
+    --explorer-judging-live-background:#EBF5FB;--explorer-judging-live-text:#1A5276;
+    --explorer-judging-final-background:#EDF0F1;--explorer-judging-final-text:#4D5C63;
+    --explorer-tier-base-border:#C0392B;--explorer-tier-bonus-border:#922B21;--explorer-tier-advanced-border:#641E16}
   body.explorer{background:#fff;font-size:11pt}
   body.explorer .nav,body.explorer .footer-strip{display:none}
   .explorer-header,.explorer-mission-header{padding:1rem;color:#000;background:#fff!important;border:2px solid #999}

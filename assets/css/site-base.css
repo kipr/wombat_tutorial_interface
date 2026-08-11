@@ -239,6 +239,44 @@ body {
 }
 
 @media print {
+  :root,
+  :root[data-theme="dark"],
+  :root:not([data-theme]) {
+    color-scheme: light;
+    --surface-page: #F2F2F2;
+    --surface-panel: #FFFFFF;
+    --surface-subtle: #EEF0F5;
+    --surface-input: #F8F8F8;
+    --surface-input-focus: #FDF2F2;
+    --surface-code: #FFFEFC;
+    --surface-accent-subtle: #FBEEF0;
+    --surface-neutral-subtle: #EEF1F7;
+    --surface-warm-subtle: #FFF6E0;
+    --surface-success-subtle: #E6F0EA;
+    --surface-highlight: #FFF2C2;
+    --surface-image-canvas: #FFFFFF;
+    --text-primary: #1C1C1C;
+    --text-muted: #666666;
+    --text-accent: #C0392B;
+    --text-accent-strong: #922B21;
+    --text-on-dark: #FFFFFF;
+    --text-on-dark-accent: #FF9B90;
+    --text-on-dark-muted: #D7DCEA;
+    --text-warm: #745A16;
+    --text-success: #145A32;
+    --text-highlight: #1C1C1C;
+    --border-default: #CCCCCC;
+    --border-strong: #666666;
+    --nav-background: #1C1C1C;
+    --focus-ring: #C0392B;
+    --shadow-color: rgba(0,0,0,.4);
+    --shadow-card-rest: rgba(28,28,28,.04);
+    --shadow-card-hover: rgba(28,28,28,.12);
+    --grid-line: #E6E8EF;
+    --code-ink: #111111;
+    --logo-filter: none;
+  }
+
   .no-print { display: none !important; }
 }
 

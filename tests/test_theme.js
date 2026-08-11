@@ -67,7 +67,18 @@ function createHarness(options = {}) {
     addEventListener(type, callback) { documentListeners[type] = callback; },
     getElementById(id) { return id === "themeToggle" ? control : null; }
   };
-  const window = {localStorage: storage};
+  const window = {};
+  let storageAccesses = 0;
+  if (options.throwOnStorageAccess) {
+    Object.defineProperty(window, "localStorage", {
+      get() {
+        storageAccesses += 1;
+        throw new Error("storage access blocked");
+      }
+    });
+  } else {
+    window.localStorage = storage;
+  }
   if (options.hasMatchMedia !== false) {
     window.matchMedia = function (query) {
       assert.equal(query, "(prefers-color-scheme: dark)");
@@ -83,6 +94,7 @@ function createHarness(options = {}) {
     root,
     stored,
     storageCalls,
+    get storageAccesses() { return storageAccesses; },
     themeBeforeControl: root.dataset.theme,
     initializeControl() {
       control = makeControl();
@@ -142,6 +154,18 @@ for (const dark of [false, true]) {
   const harness = createHarness({throwOnGet: true, systemDark: true});
   assert.equal(harness.themeBeforeControl, "dark", "a storage read failure does not stop setup");
   assertControl(harness.initializeControl(), true);
+}
+
+{
+  const harness = createHarness({throwOnStorageAccess: true, systemDark: true});
+  assert.equal(harness.themeBeforeControl, "dark", "blocked storage access still follows the system");
+  const control = harness.initializeControl();
+  control.click();
+  assert.equal(harness.root.dataset.theme, "light", "blocked storage does not undo the page theme");
+  assertControl(control, false);
+  harness.changeSystemPreference(true);
+  assert.equal(harness.root.dataset.theme, "light", "a click still stops following the system");
+  assert.equal(harness.storageAccesses, 2, "storage is attempted only during initialization and save");
 }
 
 {
@@ -206,4 +230,4 @@ for (const dark of [false, true]) {
   assert.equal(harness.stored.get(draftKey), draftValue, "worksheet draft data remains untouched");
 }
 
-console.log("theme behavior OK: initialization, toggle state, persistence, system changes, and isolation");
+console.log("theme behavior OK: initialization, toggle state, storage failures, system changes, and isolation");
