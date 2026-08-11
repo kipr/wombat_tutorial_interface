@@ -653,6 +653,10 @@ input[type="checkbox"]:focus-visible {
 .document-sidebar-list{margin:0;padding:0;list-style-position:inside}
 .document-sidebar-list-nested{padding-left:.85rem}
 .document-sidebar-item{margin:0;color:var(--text-muted)}
+ul.document-sidebar-list{list-style:none}
+ul.document-sidebar-list > .document-sidebar-item{position:relative}
+ul.document-sidebar-list > .document-sidebar-item::before{content:"\2022";position:absolute;top:.38rem;left:0;
+  width:.7rem;font-size:.85rem;line-height:1.3;text-align:center}
 .document-sidebar-link{display:inline-block;width:calc(100% - 1.4em);padding:.38rem .7rem;
   border-left:2px solid transparent;border-radius:0 3px 3px 0;color:var(--text-primary);text-decoration:none;
   font-size:.85rem;line-height:1.3}

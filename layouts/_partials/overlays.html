@@ -4,7 +4,7 @@
   <div class="def-box">
     <div class="def-head">
       <span class="def-head-term" id="defTerm"></span>
-      <button class="def-close" id="defClose" aria-label="Close definition">&#10005;</button>
+      <button class="def-close" id="defClose" aria-label="Close definition">&times;</button>
     </div>
     <div class="def-body" id="defBody"></div>
   </div>
@@ -12,7 +12,7 @@
 {{- end }}
 {{- if .Store.Get "usedFigures" }}
 <div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-labelledby="zcap">
-  <button class="zclose" id="zclose" aria-label="Close picture">&#10005;</button>
+  <button class="zclose" id="zclose" aria-label="Close picture">&times;</button>
   <img id="zimg" src="" alt="">
   <p class="zcap" id="zcap"></p>
 </div>
