@@ -75,12 +75,12 @@ Hugo page reference and therefore fails the build if its target is missing.
 The root and strand hubs derive cards, phase groups, counts, links, badges, and
 gates from section children rather than maintaining a separate project list.
 
-Discovery-owned images and extracted diagrams live at
-`static/img/discovery/<strand>/<project>/...` (for example,
-`static/img/discovery/systems/project-07/step-01a.jpg`). Shared images already
-mounted from `docs/img` remain shared. Figure source paths are resolved through
-the existing `figrow`/`figure-grid.html` path, so project Markdown does not
-introduce a Discovery-only image renderer.
+Discovery-owned extracted diagrams are colocated with the Markdown files in
+their content section and referenced by bare filename. Shared images remain
+below `static/img/`; assembly sequences live in `static/img/kit/assembly/`.
+Figure source paths are resolved through the existing
+`figrow`/`figure-grid.html` path, so project Markdown does not introduce a
+Discovery-only image renderer.
 
 Discovery phase headings use one Markdown convention:
 

@@ -124,10 +124,12 @@ requires `src` and may set `alt`.
 
 ## Figures and diagrams
 
-`figrow` takes a non-empty YAML list. Every item requires `src` below
-`static/img/` and `alt`. Optional `caption` overrides the visible caption;
-`check_id` adds a PreLab inventory checkbox with key `part_<check_id>`. Columns,
-zoom controls, keyboard behavior, and focus return are shared.
+`figrow` takes a non-empty YAML list. Every item requires `src` and `alt`. A
+path containing a slash resolves below `static/img/`; a bare filename resolves
+to a resource colocated in the page's content section. Optional `caption`
+overrides the visible caption; `check_id` adds a PreLab inventory checkbox with
+key `part_<check_id>`. Columns, zoom controls, keyboard behavior, and focus
+return are shared.
 
 ```markdown
 {{< figrow >}}

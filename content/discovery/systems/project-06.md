@@ -134,7 +134,7 @@ An [[EFFECTOR|effector]] is the part of a robot that changes the world. A blade 
 Real bulldozers come with different blades. Each shape does one job well.
 
 {{< figrow >}}
-- src: discovery/systems/project-06/bulldozer-blade-shapes.svg
+- src: bulldozer-blade-shapes.svg
   alt: "Three bulldozer blade shapes seen from above: straight S-blade, universal U-blade with large side wings, and the S-U combination"
 {{< /figrow >}}
 

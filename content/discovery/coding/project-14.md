@@ -131,7 +131,7 @@ A [[THRESHOLD|threshold]] is the number you pick as the dividing line. Below it,
 The usual starting point is halfway between your two readings:
 
 {{< figrow >}}
-- src: discovery/systems/project-14/threshold.svg
+- src: threshold.svg
   alt: "Finding your threshold"
 {{< /figrow >}}
 

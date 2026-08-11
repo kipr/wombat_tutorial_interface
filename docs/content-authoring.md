@@ -168,9 +168,11 @@ name. Every figure needs accurate `alt`; `figrow` uses it as the caption unless
 worksheet inside `.no-print`; use `noprint=true` only for genuinely
 interactive-only material.
 
-For `figrow`, write a path below `static/img/`, for example
-`discovery/systems/project-08/diagram.svg`. Put a mission video in the mission
-bundle and name it with the mission's top-level `video` front-matter field.
+For a shared `figrow` image, write its path below `static/img/`, for example
+`kit/assembly/step-01a.jpg`. For a project-owned figure, colocate it in the
+project's content section and use its bare filename. Put a mission video in the
+mission bundle and name it with the mission's top-level `video` front-matter
+field.
 
 ## Author checklist
 

@@ -16,8 +16,9 @@
     {{< /figrow >}}
 
   Optional `caption` overrides the visible figcaption when it should differ
-  from `alt` (Discovery build sequences). Paths use the shared img root.
-  Column layout is inferred from the figure count.
+  from `alt` (Discovery build sequences). A bare filename resolves from the
+  current section bundle; paths with a slash use the shared img root. Column
+  layout is inferred from the figure count.
 */ -}}
 {{- $figures := .Inner | transform.Unmarshal -}}
 {{- if or (not (reflect.IsSlice $figures)) (eq (len $figures) 0) -}}
@@ -27,10 +28,18 @@
 {{- range $figures -}}
   {{- if not .src }}{{ errorf "%s: every figrow item requires src" $.Position }}{{ end -}}
   {{- if not .alt }}{{ errorf "%s: figure %q requires alt" $.Position .src }}{{ end -}}
+  {{- $src := "" -}}
+  {{- if strings.Contains .src "/" -}}
+    {{- $src = partial "relative-url.html" (dict "source" $.Page "path" (printf "img/%s" .src)) -}}
+  {{- else -}}
+    {{- $resource := $.Page.CurrentSection.Resources.GetMatch .src -}}
+    {{- if not $resource }}{{ errorf "%s: figure resource %q does not exist in %s" $.Position .src $.Page.CurrentSection.File.Dir }}{{ end -}}
+    {{- $src = partial "relative-url.html" (dict "source" $.Page "path" $resource.RelPermalink) -}}
+  {{- end -}}
   {{- $caption := .alt -}}
   {{- with index . "caption" }}{{ $caption = . }}{{ end -}}
   {{- $normalized = $normalized | append (dict
-    "src" (partial "relative-url.html" (dict "source" $.Page "path" (printf "img/%s" .src)))
+    "src" $src
     "alt" .alt "caption" $caption "check_id" (index . "check_id")) -}}
 {{- end -}}
 {{- partial "figure-grid.html" (dict "page" .Page "figures" $normalized) -}}

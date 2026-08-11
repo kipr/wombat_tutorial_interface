@@ -57,7 +57,7 @@ meta:
 Here is a plan for a robot. Nobody has told you how to read it. Work it out.
 
 {{< figrow >}}
-- src: discovery/systems/project-04/square-path-flowchart.svg
+- src: square-path-flowchart.svg
   alt: "A flowchart: start, then a loop of drive forward two feet and turn right, repeated four times, then stop"
 {{< /figrow >}}
 
@@ -101,7 +101,7 @@ An [[ALGORITHM|algorithm]] is a list of steps that solves a problem. A flowchart
 Engineers draw the chart **before** writing any code. It is far easier to fix a picture than to fix a program.
 
 {{< figrow >}}
-- src: discovery/systems/project-04/flowchart-shapes.svg
+- src: flowchart-shapes.svg
   alt: "The four flowchart shapes: oval for start and stop, rectangle for an action, diamond for a decision, arrow for flow"
 {{< /figrow >}}
 

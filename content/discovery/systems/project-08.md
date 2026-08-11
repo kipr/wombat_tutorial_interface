@@ -124,7 +124,7 @@ That is exactly the deal between your program and your Wombat.
 There is a problem. You write instructions in something close to English. The hardware only understands numbers.
 
 {{< figrow >}}
-- src: discovery/systems/project-08/software-hardware-chain.svg
+- src: software-hardware-chain.svg
   alt: "A chain: software, then translator, then hardware, with input arriving and output leaving"
 {{< /figrow >}}
 

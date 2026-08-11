@@ -111,11 +111,12 @@ A page's `styles` front-matter list names files under `assets/css/` without the
 extension. `head.html` resolves and publishes each resource. The default
 worksheet set is `site-base`, `worksheet`, `syntax`, and `print`.
 
-Files under `static/` keep their site-relative paths. In particular,
-`figrow` prepends `img/` to its authored `src`. Discovery-owned figures use
-`static/img/discovery/<strand>/<project>/...`; shared kit and controller images
-stay under their shared `static/img/...` directories. Mission videos are the
-exception: each is a colocated page resource in its mission leaf bundle.
+Files under `static/` keep their site-relative paths. For `figrow`, paths with
+a slash are resolved below `static/img/`. Shared kit and controller images stay
+under their shared `static/img/...` directories, including assembly sequences
+under `static/img/kit/assembly/`. A bare filename resolves to a page resource
+colocated in the current content section. Mission videos are page resources in
+their mission leaf bundles.
 
 `static/score.html` is still a standalone legacy application. Link to it with a
 literal URL rather than a Hugo page reference.

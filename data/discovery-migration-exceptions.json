@@ -101,7 +101,7 @@
           "field": "src",
           "from": "",
           "to": "square-path-flowchart.svg",
-          "reason": "Approved Stage 2 extraction: inline SVG moved to standalone Discovery asset under static/img/discovery/."
+          "reason": "Approved extraction: inline SVG moved to a standalone page resource colocated with the project Markdown."
         },
         {
           "index": 0,
@@ -115,7 +115,7 @@
           "field": "src",
           "from": "",
           "to": "flowchart-shapes.svg",
-          "reason": "Approved Stage 2 extraction: inline SVG moved to standalone Discovery asset under static/img/discovery/."
+          "reason": "Approved extraction: inline SVG moved to a standalone page resource colocated with the project Markdown."
         },
         {
           "index": 1,
@@ -133,7 +133,7 @@
           "field": "src",
           "from": "",
           "to": "bulldozer-blade-shapes.svg",
-          "reason": "Approved Stage 2 extraction: inline SVG moved to standalone Discovery asset under static/img/discovery/."
+          "reason": "Approved extraction: inline SVG moved to a standalone page resource colocated with the project Markdown."
         },
         {
           "index": 0,
@@ -151,7 +151,7 @@
           "field": "src",
           "from": "",
           "to": "software-hardware-chain.svg",
-          "reason": "Approved Stage 2 extraction: inline SVG moved to standalone Discovery asset under static/img/discovery/."
+          "reason": "Approved extraction: inline SVG moved to a standalone page resource colocated with the project Markdown."
         },
         {
           "index": 0,
@@ -445,13 +445,13 @@
         },
         {
           "from": "Project 7 referenced local build photos under docs/discovery/systems/img/",
-          "to": "Copied used photos to static/img/discovery/systems/project-07/",
-          "reason": "Stage 2 asset convention for Discovery-owned Systems build sequences."
+          "to": "Moved used photos to static/img/kit/assembly/",
+          "reason": "Current asset convention for the shared Project 7 assembly sequence."
         },
         {
           "from": "Inline SVG diagrams in Systems Projects 4, 6, and 8",
-          "to": "Standalone SVG files under static/img/discovery/systems/project-0{4,6,8}/",
-          "reason": "Agreed migration decision: extract inline SVG diagrams; do not rasterize."
+          "to": "Standalone SVG page resources colocated with their project Markdown sections.",
+          "reason": "Agreed migration decision: extract inline SVG diagrams, do not rasterize, and keep project-owned assets with content."
         }
       ]
     }
