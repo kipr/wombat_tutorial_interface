@@ -13,7 +13,7 @@ task before making changes:
 - [Architecture](docs/architecture.md) explains page families, canonical data,
   rendering paths, and asset ownership.
 - [Development and verification](docs/development.md) contains the authoritative
-  build and test commands, including the current known checker status.
+  build and test commands.
 - [Content authoring](docs/content-authoring.md) defines front matter, student
   voice, references, field keys, accessibility, and asset conventions.
 - [Shortcode reference](docs/shortcodes.md) is the public component API for
@@ -56,10 +56,8 @@ hugo --buildDrafts --destination "$build_dir" --printPathWarnings --logLevel err
 ```
 
 Run the checks that cover the changed area, following
-[docs/development.md](docs/development.md) for the full commands and any known
-baseline differences. At minimum, a source or template change should receive a
-fresh Hugo build. Content migrations should also run their family validator;
-JavaScript behavior changes should run the relevant dependency-free Node test.
+[docs/development.md](docs/development.md) for the full commands. At minimum, a
+source or template change should receive a fresh Hugo build. JavaScript
+behavior changes should run the relevant dependency-free Node test.
 
-In the final handoff, report which checks ran and distinguish new failures from
-documented baseline issues.
+In the final handoff, report which checks ran and any failures.

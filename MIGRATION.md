@@ -571,23 +571,14 @@ Build drafts and validate syntax highlighting:
 ```sh
 build_dir="$(mktemp -d)"
 hugo --buildDrafts --destination "$build_dir" --printPathWarnings --logLevel error
-python3 tools/check_syntax_highlighting.py "$build_dir"
-python3 tools/check_explorer_migration.py "$build_dir"
-python3 tools/discovery_inventory.py --check data/discovery-legacy-inventory.json
-python3 tools/check_discovery_migration.py --mode fixture "$build_dir"
+node tools/check_syntax_highlighting.js "$build_dir"
 node tests/test_lab_persistence.js
 node tests/test_glossary_dialog.js
 ```
 
-After Stage 2 replaces all draft fixtures, run the Discovery checker with
-`--mode full`; it requires all 31 clean project URLs and compares saved-control,
-glossary, mission-reference, identity, link, asset, and accessibility contracts
-against `data/discovery-legacy-inventory.json`. Always give the checker a fresh
-Hugo destination so stale legacy output cannot satisfy a link check.
-Intentional behavioral-contract changes are recorded narrowly in
-`data/discovery-migration-exceptions.json`: each entry identifies a page,
-collection index, field, exact old/new value, and reason. The checker rejects a
-stale `from` value instead of weakening the comparison for the whole page.
+The migration-specific validators and utilities were retired after the Hugo
+migration was accepted. The frozen inventory and exception data remain as
+historical evidence, but are not part of routine verification.
 
 Always publish from a newly created destination and replace the deployed Hugo artifact as a unit. Reusing an earlier output directory can retain obsolete flat `.html` files or the old uppercase `Python_Labs` tree.
 

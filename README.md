@@ -26,7 +26,7 @@ to the relevant guide:
 - [Architecture](docs/architecture.md) for the repository map and rendering
   pipeline.
 - [Development and verification](docs/development.md) for supported versions,
-  build commands, checks, and known checker status.
+  build commands, and checks.
 - [Content authoring](docs/content-authoring.md) for page families, front
   matter, links, assets, accessibility, and writing conventions.
 - [Shortcode reference](docs/shortcodes.md) for reusable authoring components.

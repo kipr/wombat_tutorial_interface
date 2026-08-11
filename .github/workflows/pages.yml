@@ -40,7 +40,7 @@
               --destination "${RUNNER_TEMP}/verify" \
               --printPathWarnings \
               --logLevel error
-            python3 tools/check_syntax_highlighting.py "${RUNNER_TEMP}/verify"
+            node tools/check_syntax_highlighting.js "${RUNNER_TEMP}/verify"
             node tests/test_lab_persistence.js
             node tests/test_glossary_dialog.js
 

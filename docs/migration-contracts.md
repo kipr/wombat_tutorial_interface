@@ -91,30 +91,25 @@ First decide whether the difference crosses one of the contracts above.
 ## Baselines and intentional exceptions
 
 `data/discovery-legacy-inventory.json` is the machine-readable frozen
-Discovery baseline. `tools/discovery_inventory.py` creates or verifies it from
-legacy HTML. Treat the inventory as immutable evidence, not as expected output
-to update casually.
+Discovery baseline. The frozen inventory was created from legacy HTML. Treat it
+as immutable evidence, not as expected output to update casually.
 
 Intentional contract changes belong in
 `data/discovery-migration-exceptions.json`. Keep each exception narrow: identify
 the page, collection/index or stable field, exact old and new value, and a
-human-readable reason. The checker verifies the old value so stale exceptions
-do not silently weaken a whole class of comparison.
+human-readable reason. These records are retained as evidence of decisions made
+during the completed migration.
 
 `data/glossary-conflicts.yaml` is a holding area for terms whose competing
 definitions still require a human decision. Intentional homonyms that should
 remain live belong as named `senses` in `data/glossary.yaml`.
 
-## Tool roles
+## Verification tool
 
-| Tool | Use |
-| --- | --- |
-| `discovery_inventory.py` | Extract or verify the legacy Discovery behavior inventory. |
-| `migrate_discovery_coding.py` | Rewrite selected/all Coding project sources; source-mutating, so review carefully. |
-| `compare_render.py` | Normalize and compare a legacy page with one generated page. |
-| `check_discovery_migration.py` | Validate generated Discovery structure and, in full mode, the inventory contract. |
-| `check_explorer_migration.py` | Validate the canonical Explorer hierarchy, rules, missions, tiers, videos, and links. |
-| `check_syntax_highlighting.py` | Validate all generated code paths and teaching emphasis. |
+`check_syntax_highlighting.js` validates all generated code paths and teaching
+emphasis. The migration-specific utilities were removed after the Hugo
+migration was accepted; the frozen inventory and exception data remain as
+historical evidence.
 
 The former extracted mission data/script payload is intentionally absent.
 Explorer mission leaf-bundle front matter is the source of truth. Curated

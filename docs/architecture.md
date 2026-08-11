@@ -4,8 +4,8 @@
 
 The site is a custom Hugo site with no theme, Hugo module, JavaScript package
 manager, or application framework. The container pins Hugo
-`v0.164.0`; Python verification scripts use only the standard library, and the
-JavaScript tests use Node's built-in modules.
+`v0.164.0`; the JavaScript validator and tests use only Node's built-in
+modules.
 
 Goldmark is configured in `hugo.toml` to:
 
@@ -30,7 +30,7 @@ under a project mount, and when opened from a local directory.
 | `data/nav.yaml` | Canonical top-level navigation. |
 | `data/glossary.yaml` | Canonical curriculum and competition definitions. |
 | `data/discovery-*.json` | Frozen legacy contract and narrowly approved migration exceptions. |
-| `tools/` | Build-output validators, migration helpers, and render comparison tools. |
+| `tools/` | The build-output validator. |
 | `tests/` | Dependency-free Node regression tests for worksheet browser behavior. |
 | `archetypes/` | Generic Hugo draft and a Discovery project starting point. |
 | `backup/` | Legacy/reference material; it is not published by Hugo. |
