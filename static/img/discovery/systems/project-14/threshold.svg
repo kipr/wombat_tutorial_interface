@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="202.38248mm"
+   height="37.896469mm"
+   viewBox="0 0 202.38248 37.896469"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <rect
+       x="74.350449"
+       y="139.65828"
+       width="68.322037"
+       height="103.48779"
+       id="rect2" />
+    <rect
+       x="74.350449"
+       y="139.65828"
+       width="152.71985"
+       height="81.383598"
+       id="rect2-2" />
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-6.4420004,-27.084679)">
+    <path
+       style="fill:#000000;stroke:#ff0000;stroke-width:2.206;stroke-dasharray:none"
+       d="m 8.2409268,55.028123 c 186.6171132,0 186.6171132,0 186.6171132,0"
+       id="path1" />
+    <path
+       style="fill:#000000;stroke:#ff0000;stroke-width:2"
+       d="m 8.8881162,48.116378 c 0,14.089326 0,14.089326 0,14.089326"
+       id="path2" />
+    <path
+       style="fill:#000000;stroke:#ff0000;stroke-width:2"
+       d="m 194.69373,48.166695 c 0,14.089326 0,14.089326 0,14.089326"
+       id="path2-3" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-13.973808,-2.8577407)"
+       id="text2"
+       style="font-size:42.6667px;font-family:sans-serif;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:80.5039;stroke-dasharray:none;stroke-opacity:1"><tspan
+         x="74.349609"
+         y="177.40823"
+         id="tspan2">0</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,161.41012,-1.6418799)"
+       id="text2-2"
+       style="font-size:42.6667px;font-family:sans-serif;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-2);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:80.5039;stroke-dasharray:none;stroke-opacity:1"><tspan
+         x="74.349609"
+         y="177.40823"
+         id="tspan3">4095</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3"
+       width="2.9242001"
+       height="19.671888"
+       x="54.55603"
+       y="45.059261" />
+    <rect
+       style="fill:#00cc99;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3-3"
+       width="2.9242001"
+       height="19.671888"
+       x="100.514"
+       y="45.058998" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3-7"
+       width="2.9242001"
+       height="19.671888"
+       x="152.60699"
+       y="45.058998" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;font-family:sans-serif;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+       x="102.66553"
+       y="31.909512"
+       id="text5"><tspan
+         id="tspan5"
+         style="font-size:6.35px;stroke-width:0"
+         x="102.66553"
+         y="31.909512">Threshold:</tspan><tspan
+         style="font-size:6.35px;stroke-width:0"
+         x="102.66553"
+         y="39.847012"
+         id="tspan6">2150</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;font-family:sans-serif;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+       x="56.207649"
+       y="31.909191"
+       id="text5-2"><tspan
+         id="tspan5-8"
+         style="font-size:6.35px;stroke-width:0"
+         x="56.207649"
+         y="31.909191">Light value:</tspan><tspan
+         style="font-size:6.35px;stroke-width:0"
+         x="56.207649"
+         y="39.846691"
+         id="tspan6-9">800</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;font-family:sans-serif;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+       x="153.892"
+       y="31.909512"
+       id="text5-6"><tspan
+         id="tspan5-0"
+         style="font-size:6.35px;stroke-width:0"
+         x="153.892"
+         y="31.909512">Dark value:</tspan><tspan
+         style="font-size:6.35px;stroke-width:0"
+         x="153.892"
+         y="39.847012"
+         id="tspan6-6">3500</tspan></text>
+  </g>
+</svg>

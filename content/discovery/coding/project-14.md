@@ -130,10 +130,16 @@ A [[THRESHOLD|threshold]] is the number you pick as the dividing line. Below it,
 
 The usual starting point is halfway between your two readings:
 
+{{< figrow >}}
+- src: discovery/systems/project-14/threshold.svg
+  alt: "Finding your threshold"
+{{< /figrow >}}
+
+
 ```c
 threshold = (white + black) / 2
 
-// For example: (100 + 2500) / 2 = 1300
+// For example: (800 + 3500) / 2 = 2150
 ```
 
 That is a starting guess, not a final answer. You will adjust it.
