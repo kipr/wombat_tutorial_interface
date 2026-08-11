@@ -28,7 +28,7 @@
     if (!control) return;
     var dark = root.dataset.theme === "dark";
     control.setAttribute("aria-pressed", dark ? "true" : "false");
-    control.textContent = dark ? "Dark mode: On" : "Dark mode: Off";
+    control.textContent = dark ? "Dark" : "Light";
   }
 
   function applyTheme(theme) {

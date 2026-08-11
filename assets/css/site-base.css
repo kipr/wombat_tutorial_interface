@@ -183,7 +183,7 @@ body {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+.nav-links { display: flex; justify-content: flex-end; gap: 1.5rem; flex-wrap: wrap; align-items: center; margin-left: auto; }
 .nav-links a {
   color: var(--text-on-dark-muted);
   text-decoration: none;
@@ -209,25 +209,26 @@ body {
   flex: 0 0 auto;
   min-width: 44px;
   min-height: 44px;
-  padding: 8px 12px;
-  border: 2px solid rgba(255,255,255,.58);
-  border-radius: 8px;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
   background: transparent;
-  color: var(--text-on-dark);
+  color: var(--text-on-dark-muted);
   font-family: var(--font-display);
-  font-size: .85rem;
-  font-weight: 700;
-  letter-spacing: .04em;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .03em;
   line-height: 1.1;
   text-transform: uppercase;
   white-space: nowrap;
   cursor: pointer;
-  transition: background .15s, border-color .15s;
+  transition: background .15s, border-color .15s, color .15s;
 }
 
 .theme-toggle:hover {
-  background: rgba(255,255,255,.1);
-  border-color: #fff;
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.3);
+  color: var(--text-on-dark);
 }
 
 .theme-toggle:active { background: rgba(255,255,255,.18); }
@@ -494,7 +495,7 @@ li { margin: 4px 0; }
     .hero h1 { font-size: 30px; }
     .topbar-inner { padding: 8px 16px; min-height: 56px; }
     .topbar .brand { font-size: 17px; }
-    .theme-toggle { padding-inline: 10px; font-size: .8rem; }
+    .theme-toggle { padding-inline: 8px; }
   }
 
 @media (prefers-reduced-motion: reduce) {

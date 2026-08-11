@@ -116,7 +116,7 @@ function createHarness(options = {}) {
 
 function assertControl(control, dark) {
   assert.equal(control.getAttribute("aria-pressed"), dark ? "true" : "false");
-  assert.equal(control.textContent, dark ? "Dark mode: On" : "Dark mode: Off");
+  assert.equal(control.textContent, dark ? "Dark" : "Light");
 }
 
 {
