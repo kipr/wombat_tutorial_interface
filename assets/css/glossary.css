@@ -1,12 +1,53 @@
 /* Search and definition-list UI for the generated glossary page. */
+:root {
+  --glossary-coding-background: #F2E3E6;
+  --glossary-coding-text: #922B21;
+  --glossary-systems-background: #E8ECF6;
+  --glossary-systems-text: #1C1C1C;
+  --glossary-lab-background: #E6F0EA;
+  --glossary-lab-text: #145A32;
+  --glossary-python-background: #F3ECF7;
+  --glossary-python-text: #5B2A6B;
+  --glossary-other-background: #ECECEC;
+  --glossary-other-text: #1C1C1C;
+}
+
+:root[data-theme="dark"] {
+  --glossary-coding-background: #3A2428;
+  --glossary-coding-text: #FFB0A8;
+  --glossary-systems-background: #252C3D;
+  --glossary-systems-text: #C7D7FF;
+  --glossary-lab-background: #1E3327;
+  --glossary-lab-text: #9FE3B6;
+  --glossary-python-background: #30233A;
+  --glossary-python-text: #DDB7EC;
+  --glossary-other-background: #303030;
+  --glossary-other-text: #E0E0E0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --glossary-coding-background: #3A2428;
+    --glossary-coding-text: #FFB0A8;
+    --glossary-systems-background: #252C3D;
+    --glossary-systems-text: #C7D7FF;
+    --glossary-lab-background: #1E3327;
+    --glossary-lab-text: #9FE3B6;
+    --glossary-python-background: #30233A;
+    --glossary-python-text: #DDB7EC;
+    --glossary-other-background: #303030;
+    --glossary-other-text: #E0E0E0;
+  }
+}
+
 .glossary-controls {
   position: sticky;
   top: 59px;
   z-index: 20;
   padding: 22px 0 14px;
   margin-bottom: 8px;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
+  background: var(--surface-page);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .glossary-search { display: block; }
@@ -15,35 +56,39 @@
   width: 100%;
   min-width: 180px;
   padding: 12px 14px;
-  border: 2px solid var(--line);
+  border: 2px solid var(--border-default);
   border-radius: 6px;
-  background: var(--field);
+  background: var(--surface-input);
+  color: var(--text-primary);
   font-family: var(--font-body);
   font-size: 17px;
 }
 
 .glossary-search input:focus {
-  outline: none;
-  border-color: var(--gold);
-  background: var(--field-focus);
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-color: var(--focus-ring);
+  background: var(--surface-input-focus);
 }
+
+.glossary-search input::placeholder { color: var(--text-muted); opacity: 1; }
 
 .glossary-count {
   margin: 10px 0 0;
-  color: var(--grey);
+  color: var(--text-muted);
   font-size: 15px;
 }
 
 .glossary-term {
   padding: 18px 0;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .glossary-term:last-of-type { border-bottom: 0; }
 
 .glossary-term h2 {
   margin: 0 0 6px;
-  color: var(--navy);
+  color: var(--text-primary);
   font-family: var(--font-display);
   font-size: 24px;
   font-weight: 800;
@@ -58,12 +103,12 @@
 .glossary-variant {
   margin-top: 12px;
   padding-left: 14px;
-  border-left: 3px solid var(--line);
+  border-left: 3px solid var(--border-default);
 }
 
 .glossary-variant-label {
   margin: 0 0 2px;
-  color: var(--red-dark);
+  color: var(--text-accent-strong);
   font-family: var(--font-display);
   font-size: 14px;
   font-weight: 700;
@@ -92,18 +137,20 @@
   line-height: 1.5;
   text-decoration: none;
   text-transform: uppercase;
+  transition: filter .15s;
 }
 
-.glossary-use.cod { background: #f2e3e6; color: #922b21; }
-.glossary-use.sys { background: #e8ecf6; color: #1c1c1c; }
-.glossary-use.lab { background: #e6f0ea; color: #145a32; }
-.glossary-use.py { background: #f3ecf7; color: #5b2a6b; }
-.glossary-use.other { background: #ececec; color: var(--ink); }
+.glossary-use.cod { background: var(--glossary-coding-background); color: var(--glossary-coding-text); }
+.glossary-use.sys { background: var(--glossary-systems-background); color: var(--glossary-systems-text); }
+.glossary-use.lab { background: var(--glossary-lab-background); color: var(--glossary-lab-text); }
+.glossary-use.py { background: var(--glossary-python-background); color: var(--glossary-python-text); }
+.glossary-use.other { background: var(--glossary-other-background); color: var(--glossary-other-text); }
 .glossary-use:hover { filter: brightness(.95); }
+.glossary-use:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
 
 .glossary-use-count,
 .glossary-unused {
-  color: var(--grey);
+  color: var(--text-muted);
   font-size: 14px;
 }
 
@@ -111,7 +158,7 @@
 
 .glossary-empty {
   padding: 40px;
-  color: var(--grey);
+  color: var(--text-muted);
   font-size: 17px;
   text-align: center;
 }
@@ -119,7 +166,8 @@
 .glossary-term mark {
   padding: 0 2px;
   border-radius: 2px;
-  background: #fff2c2;
+  background: var(--surface-highlight);
+  color: var(--text-highlight);
 }
 
 .visually-hidden {
@@ -139,5 +187,5 @@
   .topbar,
   .glossary-controls { display: none !important; }
   .glossary-term { break-inside: avoid; }
-  .glossary-use { color: var(--ink) !important; }
+  .glossary-use { color: var(--text-primary) !important; }
 }
