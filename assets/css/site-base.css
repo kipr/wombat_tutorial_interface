@@ -57,6 +57,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   padding: 0.6rem 2rem;
   min-height: 56px;
   height: auto;
@@ -99,10 +100,50 @@ body {
   border-bottom-color: var(--gold);
 }
 
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 2px solid rgba(255,255,255,.58);
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,.1);
+  border-color: #fff;
+}
+
+.theme-toggle:active { background: rgba(255,255,255,.18); }
+
+.theme-toggle:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+  border-color: var(--gold);
+}
+
+@media print {
+  .no-print { display: none !important; }
+}
+
 @media (max-width: 820px) {
   .nav { padding: 0.6rem 1rem; height: auto; min-height: 56px; flex-wrap: wrap; gap: 0.5rem; }
   /* Full-width row so link items can wrap instead of staying one long line */
-  .nav-links { gap: 0.75rem 1rem; flex: 1 1 100%; min-width: 0; }
+  .nav-links { order: 3; gap: 0.75rem 1rem; flex: 1 1 100%; min-width: 0; }
 }
 
 
@@ -313,6 +354,7 @@ li { margin: 4px 0; }
     .hero h1 { font-size: 30px; }
     .topbar-inner { padding: 8px 16px; min-height: 56px; }
     .topbar .brand { font-size: 17px; }
+    .theme-toggle { padding-inline: 10px; font-size: .8rem; }
   }
 
 @media (prefers-reduced-motion: reduce) {
@@ -419,7 +461,7 @@ li { margin: 4px 0; }
 
 .mainnav a.here{color:var(--gold);border-bottom-color:var(--gold)}
 
-@media (max-width:820px){ .mainnav{font-size:12.5px;gap:3px 13px} }
+@media (max-width:820px){ .mainnav{order:3;flex:1 1 100%;font-size:12.5px;gap:3px 13px} }
 
 @media print{ .mainnav{display:none} }
 
