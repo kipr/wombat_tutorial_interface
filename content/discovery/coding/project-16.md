@@ -157,7 +157,7 @@ void drive_forward(int ticks)
 
 void turn_right()
 {
-    // your turn code
+    // Your turn code
 }
 ```
 
@@ -362,7 +362,7 @@ Make a brand new project. Do not write a single function in it.
 
 int main()
 {
-    // write a short run using only functions from your library
+    // Write a short run using only functions from your library
 
     return 0;
 }

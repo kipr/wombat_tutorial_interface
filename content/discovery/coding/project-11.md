@@ -160,7 +160,7 @@ Look at these two side by side. Only the [[CONDITION|condition]] changed.
 
 **Project 10 --- a switch**
 
-```text
+```c
 while (digital(bump) == 0)
 {
     motor(left, 50);
@@ -173,7 +173,7 @@ msleep(30);
 
 **Project 11 --- a number**
 
-```text
+```c
 while (gmpc(left) < 4000)
 {
     motor(left, 50);
@@ -192,8 +192,9 @@ A touch [[SENSOR|sensor]] only helps where there is something to touch. A tick c
 
 Always clear before you count:
 
-```text
-cmpc(left);                      // start counting from zero
+```c
+// Start counting from zero
+cmpc(left);
 
 while (gmpc(left) < 4000)
 {
@@ -204,7 +205,8 @@ while (gmpc(left) < 4000)
 motor(0, 0);
 motor(3, 0);
 msleep(30);
-msleep(500);                    // let it settle
+// Let it settle
+msleep(500);
 ```
 
 ### It will go too far. Every time.
@@ -227,31 +229,41 @@ Driving in reverse decreases the counter, and it will go negative. That gives yo
 
 **Do not clear --- count back to 0**
 
-```text
+```c
 cmpc(left);
-while (gmpc(left) < 4000) { /* out */ }
-motor(0, 0);
-motor(3, 0); msleep(500);
+// Drive Out
+while (gmpc(left) < 4000) {
+	motor(0, 0);
+	motor(3, 0);
+	msleep(500);
+}
 
-while (gmpc(left) > 0)   { /* home */ }
-motor(0, 0);
-motor(3, 0);
-msleep(30);
+// Drive Home
+while (gmpc(left) > 0) {
+	motor(0, 0);
+	motor(3, 0);
+	msleep(30);
+}
 ```
 
 **Clear again --- count to −4000**
 
-```text
+```c
 cmpc(left);
-while (gmpc(left) < 4000) { /* out */ }
-motor(0, 0);
-motor(3, 0); msleep(500);
+// Drive Out
+while (gmpc(left) < 4000) {
+	motor(0, 0);
+	motor(3, 0);
+	msleep(500);
+}
 
 cmpc(left);
-while (gmpc(left) > -4000) { /* home */ }
-motor(0, 0);
-motor(3, 0);
-msleep(30);
+// Drive Home
+while (gmpc(left) > -4000) {
+	motor(0, 0);
+	motor(3, 0);
+	msleep(30);
+}
 ```
 
 Both work. The first one always returns to where it started, no matter how far out it went. The second one always travels the same distance back. Those are not the same thing, and one day the difference will matter.
@@ -389,7 +401,7 @@ Compare this to Project 4, where you did the same thing with a stopwatch. Notice
 
 New project called `Right Turn`. [[ZERO RADIUS TURN|Zero radius turn]] --- one wheel forward, one back, same speed --- but this time stop it by counting ticks instead of by time.
 
-```text
+```c
 cmpc(left);
 
 while (gmpc(left) < turnTicks)

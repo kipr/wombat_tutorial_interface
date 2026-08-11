@@ -147,7 +147,7 @@ Two [[SEMICOLON|semicolons]] inside the parentheses, and none after the closing 
 
 **while**
 
-```text
+```c
 int position = 200;
 
 while (position < 1800)
@@ -162,7 +162,7 @@ Three pieces in three places. Forget the last one and it never ends.
 
 **for**
 
-```text
+```c
 int position;
 
 for (position = 200; position < 1800; position++)
@@ -192,7 +192,7 @@ Now think about "put two poms in the basket." You know it is two. That is what `
 
 The counter does not have to control anything. It can just count how many times you have gone round.
 
-```text
+```c
 int count;
 
 for (count = 0; count < 4; count++)

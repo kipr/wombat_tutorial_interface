@@ -152,11 +152,13 @@ The correction that works on a cold robot may not work after twenty runs --- mot
 
 Positive power drives forward. Put a minus in front of both numbers and the robot backs up along the same path.
 
-```text
-motor(0, 50);    // forward
+```c
+// Forward
+motor(0, 50);
 motor(3, 50);
 
-motor(0, -50);   // backward
+// Backward
+motor(0, -50);
 motor(3, -50);
 ```
 
@@ -182,21 +184,25 @@ Every out-and-back run has the same five moves. Write it as [[PSEUDOCODE|pseudoc
 
 Leave a blank line between each move. It costs nothing and makes the sections of your program obvious at a glance.
 
-```text
-motor(0, 50);      // Out
+```c
+// Out
+motor(0, 50);
 motor(3, 50);
 msleep(2000);
 
+// Stop and hold
 ao();
-msleep(30);                // Stop and hold
+msleep(30);
 msleep(3000);
 
-motor(0, -50);     // Back
+// Back
+motor(0, -50);
 motor(3, -50);
 msleep(2000);
 
+// Stop in the box
 ao();
-msleep(30);                // Stop in the box
+msleep(30);
 ```
 
 ## Do It --- Drive the Mission

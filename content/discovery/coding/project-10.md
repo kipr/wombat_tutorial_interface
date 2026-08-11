@@ -183,17 +183,21 @@ The umbrella stays up *the whole time* the [[CONDITION|condition]] is true. The 
 
 `digital(0)` reads the digital sensor plugged into [[PORT|port]] 0. It gives you a `0` or a `1`.
 
-```text
-while (digital(0) == 0)     // while NOT touched...
+```c
+// While not touched
+while (digital(0) == 0)
 {
-    motor(0, 100);            // ...keep driving
+    // Keep driving
+    motor(0, 100);
     motor(3, 100);
-    msleep(10);               // tiny pause so we don't overwork the controller
+    // Tiny pause to avoid overworking the controller
+    msleep(10);
 }
 
 motor(0, 0);
 motor(3, 0);
-msleep(30);                       // touched --- stop
+// Touched: Stop
+msleep(30);
 ```
 
 {{< callout title="Read It Out Loud" variant="gold" >}}
@@ -271,10 +275,11 @@ New project called `Drive Until Bump`. Plan it as [[PSEUDOCODE|pseudocode]] firs
 
 You spent Project 9 learning why bare numbers are a bad idea. Do not abandon that now.
 
-```text
+```c
 int left  = 0;
 int right = 3;
-int bump  = 0;    // front touch sensor
+// Front touch sensor
+int bump  = 0;
 
 while (digital(bump) == 0)
 {
@@ -336,11 +341,12 @@ A robot that has been driving is still moving when the loop ends. Momentum does 
 
 Put a proper stop between the loop and whatever comes next:
 
-```text
+```c
 motor(0, 0);
 motor(3, 0);
 msleep(30);
-msleep(500);      // let the robot actually stop moving
+// Let the robot actually stop moving
+msleep(500);
 ```
 
 Run it with and without the pause and compare.
@@ -351,16 +357,16 @@ Run it with and without the pause and compare.
 
 The Wombat has one physical push button and three soft buttons on screen, named a, b, and c. Each has a [[FUNCTION|function]] that returns 1 when pressed and 0 when not.
 
-```text
+```c
 printf("Press A to start\n");
 
 while (a_button() == 0)
 {
-    // wait --- do nothing at all
+    // Wait: do nothing at all
     msleep(10);
 }
 
-// now run the mission
+// Run the mission
 ```
 
 Add this to the top of a program. Now your robot waits for you instead of driving off the second it compiles.

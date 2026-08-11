@@ -150,9 +150,11 @@ Notice the first line of each group is the *[[PORT|port]]*, not a position. You 
 
 Project 7 taught you the preset trick for one servo. With two, it matters twice as much --- an arm that slams down *and* a claw that snaps shut is a good way to break something.
 
-```text
-set_servo_position(0, 1234);   // arm up
-set_servo_position(3, 1246);   // claw open
+```c
+// Arm up
+set_servo_position(0, 1234);
+// Claw open
+set_servo_position(3, 1246);
 enable_servos();
 msleep(1000);
 ```
@@ -266,7 +268,7 @@ New project called `Go Grab`. Now add driving --- the cube sits a short distance
 ```text
 // 1. Preset arm up, claw open, enable
 // 2. Drive forward to the cube
-// 3. Stop  --- ao()
+// 3. Stop --- ao()
 // 4. Arm down
 // 5. Close claw
 // 6. Arm up

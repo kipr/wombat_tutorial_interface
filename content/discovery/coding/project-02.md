@@ -133,8 +133,9 @@ A comment starts with two slashes. The computer ignores everything after them on
 
 int main ()
 {
-    // You can put a comment on its own line...
-    printf("Hello World!\n");  // ...or at the end of a line
+    // You can put a comment on its own line
+    printf("Hello World!\n");
+    // You can also put a comment after a statement
     return 0;
 }
 ```
@@ -174,8 +175,9 @@ Connect to your Wombat the same way you did in Project 1. Open your `First Proje
 
 Click at the end of the `printf` line and type:
 
-```text
-printf("Hello World!\n");  // Prints "Hello World!" to the screen
+```c
+// Prints "Hello World!" to the screen
+printf("Hello World!\n");
 ```
 
 Compile. Then run it on the Wombat: from the Home Screen tap **Programs**, pick your program, press **Run**.
@@ -231,8 +233,9 @@ Compile until you see **Compilation Succeeded**, then run it.
 
 `msleep()` pauses the program. The number inside is milliseconds --- thousandths of a second.
 
-```text
-msleep(1000);   // pause for 1 second
+```c
+// Pause for 1 second
+msleep(1000);
 ```
 
 Fill this in before you write any code:
@@ -275,9 +278,12 @@ Good programmers leave the plan in the finished program. Add a comment to the en
 
 int main ()
 {
-    printf("Hello World!\n");   // Print "Hello World"
-    msleep(2000);              // Pause for 2 seconds
-    printf("Hello Sam!\n");     // Print my name
+    // Print "Hello World"
+    printf("Hello World!\n");
+    // Pause for 2 seconds
+    msleep(2000);
+    // Print my name
+    printf("Hello Sam!\n");
     return 0;
 }
 ```

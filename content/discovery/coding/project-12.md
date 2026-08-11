@@ -203,17 +203,20 @@ int main()
 ```c
 #include <kipr/wombat.h>
 
-void drive_forward();      // 1 prototype
+// 1. Prototype
+void drive_forward();
 
 int main()
 {
-    drive_forward();       // 3 call
+    // 3. Call
+    drive_forward();
     drive_forward();
 
     return 0;
 }
 
-void drive_forward()       // 2 definition
+// 2. Definition
+void drive_forward()
 {
     cmpc(left);
     while (gmpc(left) < 4000)
@@ -243,16 +246,20 @@ Putting a semicolon on the definition is the most common mistake in this project
 Put a [[VARIABLE|variable]] in the parentheses and you can decide the number every time you call it. That variable is an **[[ARGUMENT|argument]]** --- the same word you met back in Project 3.
 
 ```c
-void drive_forward(int ticks);        // prototype says what it needs
+// Prototype says what it needs
+void drive_forward(int ticks);
 
 ...
 
-drive_forward(4000);                  // call --- go 4000
-drive_forward(1200);                  // call --- go 1200
+// Call: go 4000
+drive_forward(4000);
+// Call: go 1200
+drive_forward(1200);
 
 ...
 
-void drive_forward(int ticks)         // definition uses the name
+// Definition uses the name
+void drive_forward(int ticks)
 {
     cmpc(left);
     while (gmpc(left) < ticks)
@@ -365,7 +372,7 @@ Project 11 made the square **work**. This project makes it **readable**. Those a
 
 Change your drive function so the distance comes from an argument. Then drive a **rectangle** --- two long sides, two short ones --- with the same function called four times.
 
-```text
+```c
 drive_forward(4000);
 turn_right();
 drive_forward(2000);
@@ -435,7 +442,7 @@ Here is the payoff for the whole project. To score the bonus you need a second b
 
 You do not write any new code. **You call your function a second time.**
 
-```text
+```c
 fetch_pom();
 fetch_pom();
 ```

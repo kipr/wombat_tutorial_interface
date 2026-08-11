@@ -103,7 +103,7 @@ But a single machine can run many different services at once. So you also need a
 
 You put them together with a colon between them, like this:
 
-```text
+```text {.console}
 192.168.125.1:8888
    ↑              ↑
 which machine   which door

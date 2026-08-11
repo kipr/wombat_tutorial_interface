@@ -231,13 +231,14 @@ Agree it, and write it in your notebook: *the front of our robot is the end with
 
 So give it a moment to settle before you do anything else:
 
-```text
+```c
 motor(0, 50);
 motor(3, 50);
 msleep(2000);
 ao();
 msleep(30);
-msleep(30);   // let it come to rest
+// Let it come to rest
+msleep(30);
 ```
 
 Thirty milliseconds is not long enough to notice, and it is long enough to matter. Without it, your next
@@ -252,7 +253,7 @@ From here on, every `ao()` in this curriculum is followed by
 
 Here is the thing that surprises everyone. Look at this program:
 
-```text
+```c
 motor(0, 50);
 motor(3, 50);
 ao();
@@ -303,13 +304,17 @@ Make a new project called `Motors`. Do not forget your [[ATTRIBUTION|attribution
 
 int main ()
 {
-    motor(0, 50);      // Motor 0 on at 50% power
-    motor(3, 50);      // Motor 3 on at 50% power
-    msleep(2000);      // Keep them running for 2 seconds
+    // Turn motor 0 on at 50% power
+    motor(0, 50);
+    // Turn motor 3 on at 50% power
+    motor(3, 50);
+    // Keep both motors running for 2 seconds
+    msleep(2000);
+    // Turn all motors off
     ao();
-      msleep(30);               // All off
+    msleep(30);
     return 0;
- }
+}
 ```
 
 [[COMPILE|Compile]] and run it. Watch the wheels.
@@ -377,7 +382,7 @@ rows:
 
 Put a minus sign in front of both power numbers:
 
-```text
+```c
 motor(0, -50);
 motor(3, -50);
 ```
@@ -394,7 +399,7 @@ Run it and watch the LEDs by the ports as well as the wheels.
 
 Now give the two motors opposite powers:
 
-```text
+```c
 motor(0, 50);
 motor(3, -50);
 ```
@@ -479,7 +484,7 @@ rows:
 
 What will this program do? Write it out before you run it.
 
-```text
+```c
 motor(0, 100);
 motor(3, 100);
 msleep(1000);
@@ -487,7 +492,8 @@ motor(0, -100);
 motor(3, -100);
 msleep(1000);
 ao();
-  msleep(30);```
+msleep(30);
+```
 
 {{< answer key="p4_predict_program" label="Predict what the program does" >}}
 

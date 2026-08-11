@@ -126,7 +126,7 @@ That last one is exactly what your robot needs --- a way to notice that it is ca
 
 An `if` [[STATEMENT|statement]] asks a question and only runs its [[BLOCK|block]] when the answer is true.
 
-```text
+```c
 if (digital(bump) == 1)
 {
     printf("I am touching something!\n");
@@ -139,7 +139,7 @@ The [[CONDITION|condition]] in the parentheses is written exactly the same way a
 
 **while --- keeps asking**
 
-```text
+```c
 while (digital(bump) == 0)
 {
     motor(left, 50);
@@ -157,7 +157,7 @@ The robot stays here.
 
 **if --- asks once**
 
-```text
+```c
 if (digital(bump) == 0)
 {
     motor(left, 50);
@@ -255,10 +255,12 @@ In an `else if` chain the robot stops at the first true condition. So put the mo
 
 You can put an `if` inside another `if`. That is called [[NESTED|nested]].
 
-```text
-if (digital(claw_switch) == 1)     // did I grab something?
+```c
+// Did I grab something?
+if (digital(claw_switch) == 1)
 {
-    if (gmpc(left) > 3000)          // am I far enough along?
+    // Am I far enough along?
+    if (gmpc(left) > 3000)
     {
         release();
     }
@@ -290,7 +292,7 @@ Same rule as `while`, and it is just as hard to spot.
 
 New project called `Choices`. Write a program that checks the touch [[SENSOR|sensor]] once and prints a different message either way.
 
-```text
+```c
 if (digital(bump) == 1)
 {
     printf("Something is there\n");
@@ -320,12 +322,13 @@ Change it back. You have just seen the difference from the inside.
 
 Real teams run one program from either starting box. The driver presses a button to say which side.
 
-```text
+```c
 printf("Press A for left box, B for right\n");
 
 while (a_button() == 0 && b_button() == 0)
 {
-    msleep(10);              // wait for either button
+    // Wait for either button
+    msleep(10);
 }
 
 if (a_button() == 1)
@@ -353,7 +356,7 @@ The `&&` means "and" --- keep waiting while *neither* button is pressed. You do 
 
 This is the fix for what you saw in Try It. Put a touch sensor where a held cube presses it, or check whether the claw closed further than it should have.
 
-```text
+```c
 grab();
 
 if (digital(claw_switch) == 1)
@@ -381,7 +384,7 @@ Now sabotage it again --- move the pom aside like you did in Try It.
 
 Use `else if` to pick between three actions based on how far along the robot is.
 
-```text
+```c
 if (gmpc(left) < 1000)
 {
     printf("Barely started\n");

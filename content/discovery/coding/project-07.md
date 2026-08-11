@@ -152,12 +152,12 @@ If your arm was down when you last ran a program, it will slam down again the in
 Call `set_servo_position()` *before* `enable_servos()`. The servo then wakes up already knowing where to go, and moves there instead of to its old position.
 {{< /callout >}}
 
-```text
-// Risky --- arm snaps to wherever it was last
+```c
+// Risky: arm snaps to last position
 enable_servos();
 set_servo_position(0, 524);
 
-// Better --- arm wakes up already aimed at 524
+// Better: arm starts at 524
 set_servo_position(0, 524);
 enable_servos();
 ```
@@ -266,19 +266,22 @@ int main ()
     // horizontal = 1566
     // down       = 1746
 
-    set_servo_position(0, 1746);   // preset to down
-   enable_servos();
-   msleep(1000);
+    // Preset to down
+    set_servo_position(0, 1746);
+    enable_servos();
+    msleep(1000);
 
-   set_servo_position(0, 1566);   // horizontal
-   msleep(1000);
+    // Horizontal
+    set_servo_position(0, 1566);
+    msleep(1000);
 
-   set_servo_position(0, 524);    // up
-   msleep(1000);
+    // Up
+    set_servo_position(0, 524);
+    msleep(1000);
 
-   disable_servos();
-   return 0;
- }
+    disable_servos();
+    return 0;
+}
 ```
 
 Use *your* numbers, not these. [[COMPILE|Compile]] and run.

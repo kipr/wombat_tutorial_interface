@@ -134,7 +134,7 @@ The usual starting point is halfway between your two readings:
 ```text
 threshold = (white + black) / 2
 
-// for example: (100 + 2500) / 2 = 1300
+// For example: (100 + 2500) / 2 = 1300
 ```
 
 That is a starting guess, not a final answer. You will adjust it.
@@ -199,8 +199,9 @@ Also check the obvious: is the sensor pointed straight down, about a quarter inc
 
 The light sensor does one job, and it is the job every Botball robot needs: it waits for the lights to come on, then starts the match.
 
-```text
-wait_for_light(3);   // wait for light on port 3, then continue
+```c
+// Wait for light on port 3, then continue
+wait_for_light(3);
 ```
 
 - You do not have to mount it on the robot.

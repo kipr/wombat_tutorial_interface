@@ -134,17 +134,22 @@ From a distance it looks like the robot is following the line. Up close it is co
 
 This is a `while` loop with an `if` inside it. You have had both since Projects 10 and 13 --- this is the first time they work together.
 
-```text
-while (a_button() == 0)          // keep going until someone stops me
+```c
+// Keep going until someone stops me
+while (a_button() == 0)
 {
-    if (analog(line) > threshold)   // I see black --- I drifted onto the line
+    // I see black: I drifted onto the line
+    if (analog(line) > threshold)
     {
-        motor(left,  20);           // arc away from it
+        // Arc away from it
+        motor(left,  20);
         motor(right, 60);
     }
-    else                            // I see white --- I drifted off it
+    // I see white: I drifted off the line
+    else
     {
-        motor(left,  60);           // arc back toward it
+        // Arc back toward it
+        motor(left,  60);
         motor(right, 20);
     }
 }
@@ -181,13 +186,20 @@ That is the same rule you found in Project 5 --- the further apart the two power
 
 Line following on its own goes forever. To be useful it has to *stop* for a reason --- a [[TICK|tick]] count, a bump, or a second line crossing the first.
 
-```text
+```c
 cmpc(left);
 
-while (gmpc(left) < 5000)      // follow for this far, then move on
+// Follow for this far, then move on
+while (gmpc(left) < 5000)
 {
-    if (analog(line) > threshold) { /* arc away */ }
-    else                         { /* arc back  */ }
+    if (analog(line) > threshold)
+    {
+        // Arc away
+    }
+    else
+    {
+        // Arc back
+    }
 }
 motor(0, 0);
 motor(3, 0);

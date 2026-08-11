@@ -444,7 +444,7 @@ Setting a motor's power to **zero** is not the same as switching it off. Zero po
 
 So from Project 7 onwards, every stop looks like this:
 
-```text
+```c
 motor(0, 0);
 motor(3, 0);
 msleep(30);

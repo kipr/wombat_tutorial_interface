@@ -123,7 +123,7 @@ A [[VARIABLE|variable]] is a name that holds a value. You set it once at the top
 
 Here is the whole idea in one line:
 
-```text
+```c
 int arm = 0;
 ```
 
@@ -176,7 +176,7 @@ int main ()
 
 **Before**
 
-```text
+```c
 set_servo_position(0, 230);
 msleep(500);
 set_servo_position(0, 1234);
@@ -187,7 +187,7 @@ motor(3, 50);
 
 **After**
 
-```text
+```c
 set_servo_position(arm, down);
 msleep(500);
 set_servo_position(arm, up);
@@ -211,9 +211,11 @@ Read both versions out loud. One is a list of numbers. The other tells you what 
 
 Short names are fine if they are obvious. If they are not obvious, explain them:
 
-```text
-int L = 0;   // L is my left wheel
-int R = 3;   // R is my right wheel
+```c
+// L is my left wheel
+int L = 0;
+// R is my right wheel
+int R = 3;
 ```
 
 A name nobody can decode is barely better than a bare number.
@@ -229,11 +231,13 @@ But warnings exist for a reason. A variable you declared and never used usually 
 
 Most of your variables hold one value forever --- a port is always the same port. But a variable is called a *variable* because it can vary.
 
-```text
+```c
 int position = 250;
 
-position = position + 10;   // now 260
-position = position - 10;   // back to 250
+// Now 260
+position = position + 10;
+// Back to 250
+position = position - 10;
 ```
 
 Adding or subtracting one is so common it has its own shorthand:
@@ -265,7 +269,7 @@ If it behaves differently, you swapped two values. That is the most common mista
 
 Add a variable you do not use anywhere:
 
-```text
+```c
 int notused = 999;
 ```
 
@@ -375,7 +379,7 @@ rows:
 
 Small experiment. Add this to a test program and watch the arm.
 
-```text
+```c
 int arm = 0;
 int position = 250;
 
@@ -383,11 +387,13 @@ set_servo_position(arm, position);
 enable_servos();
 msleep(500);
 
-position = position + 300;      // change the variable
+// Change the variable
+position = position + 300;
 set_servo_position(arm, position);
 msleep(500);
 
-position = position + 300;      // and again
+// Change it again
+position = position + 300;
 set_servo_position(arm, position);
 msleep(500);
 
