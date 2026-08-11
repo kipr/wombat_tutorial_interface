@@ -62,19 +62,19 @@ Back in Project 9 you moved a [[SERVO|servo]] in three big jumps and were asked 
 
 int main ()
 {
-    int arm = 0;
-    int position = 200;
+	int arm = 0;
+	int position = 200;
 
-    enable_servos();
-    while (position < 1800)
-   {
-       position = position + 10;
-       set_servo_position(arm, position);
-       msleep(5);
-   }
-   disable_servos();
-   return 0;
- }
+	enable_servos();
+	while (position < 1800)
+	{
+		position = position + 10;
+		set_servo_position(arm, position);
+		msleep(5);
+	}
+	disable_servos();
+	return 0;
+}
 ```
 
 Read it with a partner before you run it, and answer these from the code alone.
@@ -152,9 +152,9 @@ int position = 200;
 
 while (position < 1800)
 {
-    set_servo_position(arm, position);
-    msleep(5);
-    position++;
+	set_servo_position(arm, position);
+	msleep(5);
+	position++;
 }
 ```
 
@@ -167,8 +167,8 @@ int position;
 
 for (position = 200; position < 1800; position++)
 {
-    set_servo_position(arm, position);
-    msleep(5);
+	set_servo_position(arm, position);
+	msleep(5);
 }
 ```
 
@@ -197,8 +197,8 @@ int count;
 
 for (count = 0; count < 4; count++)
 {
-    drive_forward(4000);
-    turn_right();
+	drive_forward(4000);
+	turn_right();
 }
 ```
 

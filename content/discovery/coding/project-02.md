@@ -64,8 +64,8 @@ In Project 1 you compiled and ran code that somebody else wrote. Here it is agai
 
 int main ()
 {
-    printf("Hello World!\n");
-    return 0;
+	printf("Hello World!\n");
+	return 0;
 }
 ```
 
@@ -133,9 +133,9 @@ A comment starts with two slashes. The computer ignores everything after them on
 
 int main ()
 {
-    // You can put a comment on its own line
-    printf("Hello World!\n"); // You can also put a comment after a statement
-    return 0;
+	// You can put a comment on its own line
+	printf("Hello World!\n"); // You can also put a comment after a statement
+	return 0;
 }
 ```
 
@@ -278,13 +278,13 @@ Good programmers leave the plan in the finished program. Add a comment to the en
 
 int main ()
 {
-    // Print "Hello World"
-    printf("Hello World!\n");
-    // Pause for 2 seconds
-    msleep(2000);
-    // Print my name
-    printf("Hello Sam!\n");
-    return 0;
+	// Print "Hello World"
+	printf("Hello World!\n");
+	// Pause for 2 seconds
+	msleep(2000);
+	// Print my name
+	printf("Hello Sam!\n");
+	return 0;
 }
 ```
 

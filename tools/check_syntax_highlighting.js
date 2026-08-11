@@ -236,9 +236,10 @@ function main() {
       [
         "c",
         "#include <kipr/wombat.h>\n" +
-          "int main() {\n" +
-          "    int speed = 750;  // highlighted value\n" +
-          "    return 0;\n" +
+          "int main()\n" +
+          "{\n" +
+          "\tint speed = 750;  // highlighted value\n" +
+          "\treturn 0;\n" +
           "}",
         new Set(["cp", "kt", "nf", "mi", "c1"])
       ],

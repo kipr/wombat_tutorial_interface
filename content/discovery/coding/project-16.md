@@ -143,21 +143,21 @@ void turn_right();
 
 void drive_forward(int ticks)
 {
-    cmpc(0);
-    while (gmpc(0) < ticks)
-    {
-        motor(0, 50);
-        motor(3, 50);
-    }
-    motor(0, 0);
-    motor(3, 0);
-    msleep(30);
-    msleep(500);
+	cmpc(0);
+	while (gmpc(0) < ticks)
+	{
+		motor(0, 50);
+		motor(3, 50);
+	}
+	motor(0, 0);
+	motor(3, 0);
+	msleep(30);
+	msleep(500);
 }
 
 void turn_right()
 {
-    // Your turn code
+	// Your turn code
 }
 {{< /code >}}
 
@@ -167,11 +167,11 @@ void turn_right()
 
 int main()
 {
-    drive_forward(4000);
-    turn_right();
-    drive_forward(2000);
+	drive_forward(4000);
+	turn_right();
+	drive_forward(2000);
 
-    return 0;
+	return 0;
 }
 {{< /code >}}
 
@@ -360,9 +360,9 @@ Make a brand new project. Do not write a single function in it.
 
 int main()
 {
-    // Write a short run using only functions from your library
+	// Write a short run using only functions from your library
 
-    return 0;
+	return 0;
 }
 ```
 

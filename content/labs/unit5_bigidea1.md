@@ -144,19 +144,25 @@ Turning **left** increases heading (`pose[POSE_R] += degrees`); turning **right*
 {{< /resetbox >}}
 
 {{< code filename="yourname.h" >}}
-int Turn(char dir, double degrees) {
-    if (dir == 'L' || dir == 'l') {
-        @@// ...existing tick-turn logic for a left turn...@@
-        pose[POSE_R] += degrees;    // only on a real, successful turn
-        return 1;
-    } else if (dir == 'R' || dir == 'r') {
-        @@// ...existing tick-turn logic for a right turn...@@
-        pose[POSE_R] -= degrees;
-        return 1;
-    } else {
-        printf("Invalid direction: %c\n", dir);
-        return 0;                   // no movement happened: don't touch pose
-    }
+int Turn(char dir, double degrees)
+{
+	if (dir == 'L' || dir == 'l')
+	{
+		@@// ...existing tick-turn logic for a left turn...@@
+		pose[POSE_R] += degrees;    // only on a real, successful turn
+		return 1;
+	}
+	else if (dir == 'R' || dir == 'r')
+	{
+		@@// ...existing tick-turn logic for a right turn...@@
+		pose[POSE_R] -= degrees;
+		return 1;
+	}
+	else
+	{
+		printf("Invalid direction: %c\n", dir);
+		return 0;                   // no movement happened: don't touch pose
+	}
 }
 {{< /code >}}
 
@@ -198,22 +204,26 @@ const int POSE_R = 2;
 
 double pose[3];   // pose[POSE_X], pose[POSE_Y], pose[POSE_R]: believed x, y, heading
 
-void initPose(double startX, double startY, double startR) {
-    pose[POSE_X] = startX;
-    pose[POSE_Y] = startY;
-    pose[POSE_R] = startR;
+void initPose(double startX, double startY, double startR)
+{
+	pose[POSE_X] = startX;
+	pose[POSE_Y] = startY;
+	pose[POSE_R] = startR;
 }
 
-void setX(double knownX) {
-    pose[POSE_X] = knownX;
+void setX(double knownX)
+{
+	pose[POSE_X] = knownX;
 }
 
-void setY(double knownY) {
-    pose[POSE_Y] = knownY;
+void setY(double knownY)
+{
+	pose[POSE_Y] = knownY;
 }
 
-void printPose() {
-    printf("Pose: x=%.2f y=%.2f R=%.2f\n", pose[POSE_X], pose[POSE_Y], pose[POSE_R]);
+void printPose()
+{
+	printf("Pose: x=%.2f y=%.2f R=%.2f\n", pose[POSE_X], pose[POSE_Y], pose[POSE_R]);
 }
 {{< /code >}}
 
@@ -225,43 +235,44 @@ void printPose() {
 
 #include <@@yourname@@.h>     // your full library
 
-int main() {
-    enable_servo(0);
-    enable_servo(1);
+int main()
+{
+	enable_servo(0);
+	enable_servo(1);
 
-    // ===== INITIALIZE BELIEF =====
-    initPose(@@START_X@@, @@START_Y@@, 0.0);   // measured wheel-centerpoint, facing out
-    printPose();                             // PRINT 1: starting belief
+	// ===== INITIALIZE BELIEF =====
+	initPose(@@START_X@@, @@START_Y@@, 0.0);   // measured wheel-centerpoint, facing out
+	printPose();                             // PRINT 1: starting belief
 
-    // ===== VERIFY START =====
-    back_until_pressed();       // backward touch against the wall
-    setY(@@0.0@@);                  // RESET #1: known truth, y = 0 at this wall
+	// ===== VERIFY START =====
+	back_until_pressed();       // backward touch against the wall
+	setY(@@0.0@@);                  // RESET #1: known truth, y = 0 at this wall
 
-    // ===== LEG 1: pom 1 (orange) to Enclosure A =====
-    @@// Drive(...) / Turn(...) to pom 1, pick it up@@
-    @@// Drive(...) / Turn(...) to Enclosure A, drop it@@
-    printPose();                 // PRINT 2: after drop-off 1
+	// ===== LEG 1: pom 1 (orange) to Enclosure A =====
+	@@// Drive(...) / Turn(...) to pom 1, pick it up@@
+	@@// Drive(...) / Turn(...) to Enclosure A, drop it@@
+	printPose();                 // PRINT 2: after drop-off 1
 
-    // ===== LEG 2: pom 2 (blue) to Enclosure A, Base Mission complete =====
-    @@// Drive(...) / Turn(...) to pom 2, pick it up@@
-    @@// Drive(...) / Turn(...) to Enclosure A, drop it@@
-    printPose();                 // PRINT 3: after drop-off 2
+	// ===== LEG 2: pom 2 (blue) to Enclosure A, Base Mission complete =====
+	@@// Drive(...) / Turn(...) to pom 2, pick it up@@
+	@@// Drive(...) / Turn(...) to Enclosure A, drop it@@
+	printPose();                 // PRINT 3: after drop-off 2
 
-    // ===== RESET before crossing to the second enclosure =====
-    square_up();                 // known heading/position against a line
-    setX(@@KNOWN_X@@);              // RESET #2: known truth from this square-up
+	// ===== RESET before crossing to the second enclosure =====
+	square_up();                 // known heading/position against a line
+	setX(@@KNOWN_X@@);              // RESET #2: known truth from this square-up
 
-    // ===== LEG 3: pom 3 (orange) to Enclosure B =====
-    @@// Drive(...) / Turn(...) to pom 3, pick it up@@
-    @@// Drive(...) / Turn(...) to Enclosure B, drop it@@
-    printPose();                 // PRINT 4: after drop-off 3
+	// ===== LEG 3: pom 3 (orange) to Enclosure B =====
+	@@// Drive(...) / Turn(...) to pom 3, pick it up@@
+	@@// Drive(...) / Turn(...) to Enclosure B, drop it@@
+	printPose();                 // PRINT 4: after drop-off 3
 
-    // ===== LEG 4: pom 4 (blue) to Enclosure B, Bonus Mission complete =====
-    @@// Drive(...) / Turn(...) to pom 4, pick it up@@
-    @@// Drive(...) / Turn(...) to Enclosure B, drop it@@
-    printPose();                 // PRINT 5: final belief
+	// ===== LEG 4: pom 4 (blue) to Enclosure B, Bonus Mission complete =====
+	@@// Drive(...) / Turn(...) to pom 4, pick it up@@
+	@@// Drive(...) / Turn(...) to Enclosure B, drop it@@
+	printPose();                 // PRINT 5: final belief
 
-    return 0;
+	return 0;
 }
 {{< /code >}}
 

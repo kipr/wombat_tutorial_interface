@@ -108,22 +108,25 @@ double ticks_per_inch;       // the MODEL: calibration will set this
 
 void calibrate_ticks_per_inch(double inches);   // PROTOTYPE
 
-int main() {
-    // robot starts against the back wall of the right starting box
-    calibrate_ticks_per_inch(@@____@@);   // pass in YOUR measured inches to the line
-    printf("ticks_per_inch = %f\n", ticks_per_inch);  // see your model
-    return 0;
+int main()
+{
+	// robot starts against the back wall of the right starting box
+	calibrate_ticks_per_inch(@@____@@);   // pass in YOUR measured inches to the line
+	printf("ticks_per_inch = %f\n", ticks_per_inch);  // see your model
+	return 0;
 }
 
-void calibrate_ticks_per_inch(double inches) {
-    cmpc(0);                          // clear the tick counter
-    while (analog(0) < MIDPOINT) {     // drive while sensor sees WHITE (low)...
-        motor(0, 50);                 // ...straight forward...
-        motor(3, 50);
-    }                                 // ...stops when it hits BLACK (high)
-    motor(0, 0); motor(3, 0); msleep(50);   // brake
+void calibrate_ticks_per_inch(double inches)
+{
+	cmpc(0);                           // clear the tick counter
+	while (analog(0) < MIDPOINT)       // drive while sensor sees WHITE (low)...
+	{
+		motor(0, 50);                 // ...straight forward...
+		motor(3, 50);
+	}                                  // ...stops when it hits BLACK (high)
+	motor(0, 0); motor(3, 0); msleep(50);   // brake
 
-    ticks_per_inch = gmpc(0) / inches;      // MODEL = ticks measured / inches known
+	ticks_per_inch = gmpc(0) / inches;      // MODEL = ticks measured / inches known
 }
 {{< /code >}}
 
@@ -163,14 +166,16 @@ Now the payoff. With `ticks_per_inch` known, `Drive` takes a distance in **inche
 {{< code >}}
 void Drive(double inches);   // PROTOTYPE (add near your others)
 
-void Drive(double inches) {
-    int ticks = inches * ticks_per_inch;   // PREDICT ticks from the model
-    cmpc(0);                               // clear the counter
-    while (gmpc(0) < ticks) {               // drive until we reach the predicted ticks
-        motor(0, 50);
-        motor(3, 50);
-    }
-    motor(0, 0); motor(3, 0); msleep(50);  // brake
+void Drive(double inches)
+{
+	int ticks = inches * ticks_per_inch;   // PREDICT ticks from the model
+	cmpc(0);                               // clear the counter
+	while (gmpc(0) < ticks)                // drive until we reach the predicted ticks
+	{
+		motor(0, 50);
+		motor(3, 50);
+	}
+	motor(0, 0); motor(3, 0); msleep(50);  // brake
 }
 {{< /code >}}
 

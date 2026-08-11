@@ -71,9 +71,10 @@ This is where your robot's movement data lives. When your code reads `gmpc(0)`, 
     The pattern is: clear the counter to zero, start driving, and keep checking the counter until it reaches the distance you want.
 - code: |
     cmpc(0);                  // start counting from 0
-    while (gmpc(0) < 2000) {   // while we haven't gone 2000 ticks yet...
-        motor(0, 50);          // ...keep driving
-        motor(3, 50);
+    while (gmpc(0) < 2000)     // while we haven't gone 2000 ticks yet...
+    {
+    	motor(0, 50);          // ...keep driving
+    	motor(3, 50);
     }
 - text: |
     We're reading just port 0 for now. Later, we may come back and read *both* wheels at once to help the robot drive straighter.
@@ -183,23 +184,26 @@ Type this program. Notice `Tick_Drive` now takes an argument --- `int ticks` ---
 
 void Tick_Drive(int @@ticks@@);   // PROTOTYPE: takes a number (the distance)
 
-int main() {
-    Tick_Drive(@@2000@@);   // CALL: drive this many ticks toward Botguy
-                          // (use YOUR target number from Phase 3)
-    return 0;
+int main()
+{
+	Tick_Drive(@@2000@@);   // CALL: drive this many ticks toward Botguy
+	                         // (use YOUR target number from Phase 3)
+	return 0;
 }
 
-void Tick_Drive(int @@ticks@@) {     // DEFINITION: 'ticks' is whatever you passed in
-    cmpc(0);                     // clear port 0's counter to 0
+void Tick_Drive(int @@ticks@@)       // DEFINITION: 'ticks' is whatever you passed in
+{
+	cmpc(0);                     // clear port 0's counter to 0
 
-    while (gmpc(0) < @@ticks@@) {   // while we haven't reached the target...
-        motor(0, 50);            // ...keep driving
-        motor(3, 50);
-    }
+	while (gmpc(0) < @@ticks@@)       // while we haven't reached the target...
+	{
+		motor(0, 50);            // ...keep driving
+		motor(3, 50);
+	}
 
-    motor(0, 0);                 // BRAKE (from last lab)
-    motor(3, 0);
-    msleep(50);                  // let the brake settle
+	motor(0, 0);                 // BRAKE (from last lab)
+	motor(3, 0);
+	msleep(50);                  // let the brake settle
 }
 {{< /code >}}
 

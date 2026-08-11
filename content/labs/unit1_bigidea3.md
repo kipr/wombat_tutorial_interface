@@ -60,10 +60,13 @@ You already know `int`, [[FUNCTION|functions]], and the commands `motor()`, `msl
 - code: |
     int freight_type = 1;       // a number YOU set
 
-    if (freight_type == 1) {    // IF freight_type is 1...
-        drive_forward();         // ...do this
-    } else {                    // OTHERWISE...
-        turn_right();            // ...do this instead
+    if (freight_type == 1)      // IF freight_type is 1...
+    {
+    	drive_forward();         // ...do this
+    }
+    else                        // OTHERWISE...
+    {
+    	turn_right();            // ...do this instead
     }
 - text: |
     Change `freight_type` to a different number, and the robot makes a different choice --- without you rewriting the rule.
@@ -226,29 +229,35 @@ int DRIVE_SPEED = 50;
 // Change this value and the robot makes a different decision.
 int freight_type = @@1@@;     // try 1, then try 2
 
-void drive_forward() {
-    motor(0, DRIVE_SPEED);
-    motor(3, DRIVE_SPEED);
-    msleep(1000);
-    ao();
+void drive_forward()
+{
+	motor(0, DRIVE_SPEED);
+	motor(3, DRIVE_SPEED);
+	msleep(1000);
+	ao();
 }
 
-void turn_right() {
-    motor(0, DRIVE_SPEED);
-    motor(3, -DRIVE_SPEED);
-    msleep(600);
-    ao();
+void turn_right()
+{
+	motor(0, DRIVE_SPEED);
+	motor(3, -DRIVE_SPEED);
+	msleep(600);
+	ao();
 }
 
-int main() {
+int main()
+{
 
-    if (freight_type == 1) {   // IF the freight is type 1...
-        drive_forward();        // ...send it straight ahead
-    } else {                    // OTHERWISE (it's not type 1)...
-        turn_right();           // ...send it to the right instead
-    }
+	if (freight_type == 1)       // IF the freight is type 1...
+	{
+		drive_forward();        // ...send it straight ahead
+	}
+	else                         // OTHERWISE (it's not type 1)...
+	{
+		turn_right();           // ...send it to the right instead
+	}
 
-    return 0;
+	return 0;
 }
 {{< /code >}}
 

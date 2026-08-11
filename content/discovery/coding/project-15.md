@@ -119,20 +119,20 @@ This is a `while` loop with an `if` inside it. You have had both since Projects 
 // Keep going until someone stops me
 while (a_button() == 0)
 {
-    // I see black: I drifted onto the line
-    if (analog(line) > threshold)
-    {
-        // Arc away from it
-        motor(left,  20);
-        motor(right, 60);
-    }
-    // I see white: I drifted off the line
-    else
-    {
-        // Arc back toward it
-        motor(left,  60);
-        motor(right, 20);
-    }
+	// I see black: I drifted onto the line
+	if (analog(line) > threshold)
+	{
+		// Arc away from it
+		motor(left,  20);
+		motor(right, 60);
+	}
+	// I see white: I drifted off the line
+	else
+	{
+		// Arc back toward it
+		motor(left,  60);
+		motor(right, 20);
+	}
 }
 motor(0, 0);
 motor(3, 0);
@@ -173,14 +173,14 @@ cmpc(left);
 // Follow for this far, then move on
 while (gmpc(left) < 5000)
 {
-    if (analog(line) > threshold)
-    {
-        // Arc away
-    }
-    else
-    {
-        // Arc back
-    }
+	if (analog(line) > threshold)
+	{
+		// Arc away
+	}
+	else
+	{
+		// Arc back
+	}
 }
 motor(0, 0);
 motor(3, 0);

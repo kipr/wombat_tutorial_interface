@@ -148,40 +148,41 @@ Now write it. Start `score` at 0. Follow the **do → score → report** rhythm:
 
 #include <@@yourname@@.h>     // your full library
 
-int main() {
-    enable_servo(0);
-    enable_servo(1);
+int main()
+{
+	enable_servo(0);
+	enable_servo(1);
 
-    int score = 0;                          // running total starts at zero
-    printf("Run started. Score: %d\n", score);
+	int score = 0;                          // running total starts at zero
+	printf("Run started. Score: %d\n", score);
 
-    // --- Reset to a known position ---
-    back_until_pressed();                   // back into the wall to reset
-    square_up();                            // straighten against the line
+	// --- Reset to a known position ---
+	back_until_pressed();                   // back into the wall to reset
+	square_up();                            // straighten against the line
 
-    // --- Drive/turn to the cubes (your plan) ---
-    @@// Drive(...)  Turn(...)  as needed@@
+	// --- Drive/turn to the cubes (your plan) ---
+	@@// Drive(...)  Turn(...)  as needed@@
 
-    // --- SCORE: first small red cube on the large cube ---
-    @@// move_arm(...) / move_claw(...) to make the stack@@
-    score = score + 9;                      // difficulty 5 = 9 points
-    printf("Stacked first red cube. Score: %d\n", score);
+	// --- SCORE: first small red cube on the large cube ---
+	@@// move_arm(...) / move_claw(...) to make the stack@@
+	score = score + 9;                      // difficulty 5 = 9 points
+	printf("Stacked first red cube. Score: %d\n", score);
 
-    // --- SCORE: second small red cube ---
-    @@// reposition + move_arm / move_claw@@
-    score = score + 11;                     // difficulty 6 = 11 points
-    printf("Stacked second red cube. Score: %d\n", score);
+	// --- SCORE: second small red cube ---
+	@@// reposition + move_arm / move_claw@@
+	score = score + 11;                     // difficulty 6 = 11 points
+	printf("Stacked second red cube. Score: %d\n", score);
 
-    // --- SCORE: dock the pallet ---
-    @@// Drive / Turn the pallet onto the dock@@
-    score = score + 11;                     // difficulty 6 = 11 points
-    printf("Pallet on the dock. Score: %d\n", score);
+	// --- SCORE: dock the pallet ---
+	@@// Drive / Turn the pallet onto the dock@@
+	score = score + 11;                     // difficulty 6 = 11 points
+	printf("Pallet on the dock. Score: %d\n", score);
 
-    // --- SCORE: cube still on top when docked ---
-    score = score + 9;                      // difficulty 5 = 9 points
-    printf("Cube held on top. Final score: %d\n", score);
+	// --- SCORE: cube still on top when docked ---
+	score = score + 9;                      // difficulty 5 = 9 points
+	printf("Cube held on top. Final score: %d\n", score);
 
-    return 0;
+	return 0;
 }
 {{< /code >}}
 

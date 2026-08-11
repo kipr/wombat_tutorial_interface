@@ -129,7 +129,7 @@ An `if` [[STATEMENT|statement]] asks a question and only runs its [[BLOCK|block]
 ```c
 if (digital(bump) == 1)
 {
-    printf("I am touching something!\n");
+	printf("I am touching something!\n");
 }
 ```
 
@@ -142,8 +142,8 @@ The [[CONDITION|condition]] in the parentheses is written exactly the same way a
 ```c
 while (digital(bump) == 0)
 {
-    motor(left, 50);
-    motor(right, 50);
+	motor(left, 50);
+	motor(right, 50);
 }
 ```
 
@@ -154,8 +154,8 @@ Checks, runs the block, checks again, runs again... until the answer changes.
 ```c
 if (digital(bump) == 0)
 {
-    motor(left, 50);
-    motor(right, 50);
+	motor(left, 50);
+	motor(right, 50);
 }
 ```
 
@@ -232,21 +232,21 @@ You can put an `if` inside another `if`. This is called [[NESTED|nesting]].
 // Did I grab something?
 if (digital(claw_switch) == 1)
 {
-    // Am I far enough along?
-    if (gmpc(left) > 3000)
-    {
-        release();
-    }
-    else
-    {
-        drive_forward(1000);
-        release();
-    }
+	// Am I far enough along?
+	if (gmpc(left) > 3000)
+	{
+		release();
+	}
+	else
+	{
+		drive_forward(1000);
+		release();
+	}
 }
 else
 {
-    printf("Grab failed - trying again\n");
-    grab();
+	printf("Grab failed - trying again\n");
+	grab();
 }
 ```
 
@@ -268,11 +268,11 @@ Create a new project called `Choices`. Write a program that checks the touch [[S
 ```c
 if (digital(bump) == 1)
 {
-    printf("Something is there\n");
+	printf("Something is there\n");
 }
 else
 {
-    printf("Nothing there\n");
+	printf("Nothing there\n");
 }
 msleep(3000);
 ```
@@ -301,17 +301,17 @@ printf("Press A for left box, B for right\n");
 
 while (a_button() == 0 && b_button() == 0)
 {
-    // Wait for either button
-    msleep(10);
+	// Wait for either button
+	msleep(10);
 }
 
 if (a_button() == 1)
 {
-    run_left_plan();
+	run_left_plan();
 }
 else
 {
-    run_right_plan();
+	run_right_plan();
 }
 ```
 
@@ -336,14 +336,14 @@ grab();
 
 if (digital(claw_switch) == 1)
 {
-    printf("Got it\n");
-    carry_to_basket();
+	printf("Got it\n");
+	carry_to_basket();
 }
 else
 {
-    printf("Missed - backing up to retry\n");
-    drive_backward(300);
-    grab();
+	printf("Missed - backing up to retry\n");
+	drive_backward(300);
+	grab();
 }
 ```
 
@@ -363,15 +363,15 @@ Use `else if` to pick between three actions based on how far along the robot is.
 ```c
 if (gmpc(left) < 1000)
 {
-    printf("Barely started\n");
+	printf("Barely started\n");
 }
 else if (gmpc(left) < 3000)
 {
-    printf("About halfway\n");
+	printf("About halfway\n");
 }
 else
 {
-    printf("Nearly there\n");
+	printf("Nearly there\n");
 }
 ```
 

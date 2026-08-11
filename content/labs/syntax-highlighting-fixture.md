@@ -15,9 +15,10 @@ credit: "KIPR · Botball Explorer · Syntax highlighting test fixture"
 {{< code lang="c" >}}
 
 #include <kipr/wombat.h>
-int main() {
-    int speed = @@750@@;  // highlighted value
-    return 0;
+int main()
+{
+	int speed = @@750@@;  // highlighted value
+	return 0;
 }
 {{< /code >}}
 

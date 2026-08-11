@@ -111,23 +111,24 @@ This single stacking action scores three things at once: Mission 12's Base Missi
 Wrap your Restack & Shelve routine in the timing pattern from Phase 2, using your own library calls.
 
 {{< code filename="main.c" >}}
-int main() {
-    enable_servo(0);
-    enable_servo(1);
+int main()
+{
+	enable_servo(0);
+	enable_servo(1);
 
-    unsigned long init_time = systime();
+	unsigned long init_time = systime();
 
-    // ===== the mission itself, using your own library =====
-    @@// Drive(...) / Turn(...) to spilled cube 1, pick it up@@
-    @@// Drive(...) / Turn(...) to the Large Green Cube, place it@@
-    @@// Drive(...) / Turn(...) to spilled cube 2, pick it up@@
-    @@// Drive(...) / Turn(...) back to the Large Green Cube, stack it@@
+	// ===== the mission itself, using your own library =====
+	@@// Drive(...) / Turn(...) to spilled cube 1, pick it up@@
+	@@// Drive(...) / Turn(...) to the Large Green Cube, place it@@
+	@@// Drive(...) / Turn(...) to spilled cube 2, pick it up@@
+	@@// Drive(...) / Turn(...) back to the Large Green Cube, stack it@@
 
-    unsigned long elapsed = systime() - init_time;
-    unsigned long total_sec = elapsed / @@1000@@;   // use what Phase 2 taught you about the unit
-    printf("Elapsed: %lu:%02lu\n", total_sec / 60, total_sec % 60);
+	unsigned long elapsed = systime() - init_time;
+	unsigned long total_sec = elapsed / @@1000@@;   // use what Phase 2 taught you about the unit
+	printf("Elapsed: %lu:%02lu\n", total_sec / 60, total_sec % 60);
 
-    return 0;
+	return 0;
 }
 {{< /code >}}
 
@@ -156,15 +157,22 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
 - text: |
     Back in Big Idea 1, `pose[3]` grouped three related values under one name. Today's array groups four results from the *same* measurement, repeated:
 - code: |
-    double times[4] = { @@t1@@, @@t2@@, @@t3@@, @@t4@@ };  // your 4 recorded seconds from Phase 4
+    double times[4] =
+    {
+    	@@t1@@,
+    	@@t2@@,
+    	@@t3@@,
+    	@@t4@@
+    };  // your 4 recorded seconds from Phase 4
 {{< /concept >}}
 
 {{< concept "[[FOR LOOP|For loops]]: walking through an array by number" >}}
 - text: |
     A `for` loop has three parts, always in the same order, separated by [[SEMICOLON|semicolons]]:
 - code: |
-    for (int i = 0; i < 4; i++) {
-        // this block runs once for i=0, once for i=1, once for i=2, once for i=3
+    for (int i = 0; i < 4; i++)
+    {
+    	// this block runs once for i=0, once for i=1, once for i=2, once for i=3
     }
 - text: |
     - `int i = 0` --- runs once, right at the start: create a counter and set where it begins.
@@ -180,9 +188,10 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
 - code: |
     double fastest = times[0];
     double slowest = times[0];
-    for (int i = 1; i < 4; i++) {
-        if (times[i] < fastest) fastest = times[i];
-        if (times[i] > slowest) slowest = times[i];
+    for (int i = 1; i < 4; i++)
+    {
+    	if (times[i] < fastest) fastest = times[i];
+    	if (times[i] > slowest) slowest = times[i];
     }
 - text: |
     This checks every element exactly once --- that's why it's called *linear*: the work grows in a straight line with the size of the array.
@@ -201,14 +210,17 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
 - text: |
     Picture 4 people standing in a line, out of height order. Walk down the line one time: compare each pair of neighbors, and swap them if the left person is taller than the right person. After one full walk, the tallest person has "bubbled" to the top like bubbles rising through water. Do that same walk a few more times, and eventually everyone's in order. That "bubbling" to the top gives this [[ALGORITHM|algorithm]] its name: bubble sort.
 - code: |
-    for (int pass = 0; pass < 3; pass++) {          // walk down the line a few times
-        for (int i = 0; i < 3; i++) {                // one full walk, comparing neighbors
-            if (times[i] > times[i + 1]) {           // out of order?
-                double temp = times[i];               // swap them (see above)
-                times[i] = times[i + 1];
-                times[i + 1] = temp;
-            }
-        }
+    for (int pass = 0; pass < 3; pass++)          // walk down the line a few times
+    {
+    	for (int i = 0; i < 3; i++)                // one full walk, comparing neighbors
+    	{
+    		if (times[i] > times[i + 1])           // out of order?
+    		{
+    			double temp = times[i];               // swap them (see above)
+    			times[i] = times[i + 1];
+    			times[i + 1] = temp;
+    		}
+    	}
     }
 - text: |
     Walk through it by hand with 4 index cards showing your own 4 times, out of order. Do the swaps yourself, pass by pass, until they're sorted. For only 4 values, 3 passes is always enough to guarantee a full sort --- that's why the outer loop stops at `pass < 3`.
@@ -222,16 +234,19 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
     The version above always does all 3 passes, even if the line was already sorted after pass 1. You've used booleans *inline* before, inside an `if` [[CONDITION|condition]] with `&&` or `||`. Here's a new use: store a boolean's answer **in a variable** that carries a true/false memory from one pass into the next.
 - code: |
     int swapped = 1;                 // start true, just to make sure the loop runs at least once
-    while (swapped) {
-        swapped = 0;                 // assume this pass finds nothing to fix...
-        for (int i = 0; i < 3; i++) {
-            if (times[i] > times[i + 1]) {
-                double temp = times[i];
-                times[i] = times[i + 1];
-                times[i + 1] = temp;
-                swapped = 1;          // ...unless a swap actually happened
-            }
-        }
+    while (swapped)
+    {
+    	swapped = 0;                 // assume this pass finds nothing to fix...
+    	for (int i = 0; i < 3; i++)
+    	{
+    		if (times[i] > times[i + 1])
+    		{
+    			double temp = times[i];
+    			times[i] = times[i + 1];
+    			times[i + 1] = temp;
+    			swapped = 1;          // ...unless a swap actually happened
+    		}
+    	}
     }
 - text: |
     If an entire pass finds nothing out of order, `swapped` never gets reset to 1, the `while` loop's condition goes false, and the sort stops --- without wasting a pass it didn't need.
@@ -251,29 +266,36 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
 Using your 4 recorded values from Phase 4, write the full analysis: hardcode the array, search for fastest/slowest, sort it, and report all of it.
 
 {{< code filename="main.c" >}}
-double times[4] = { @@/* your 4 recorded seconds */@@ };
+double times[4] =
+{
+	@@/* your 4 recorded seconds */@@
+};
 
 // ===== SEARCH =====
 double fastest = times[0];
 double slowest = times[0];
-for (int i = 1; i < 4; i++) {
-    if (times[i] < fastest) fastest = times[i];
-    if (times[i] > slowest) slowest = times[i];
+for (int i = 1; i < 4; i++)
+{
+	if (times[i] < fastest) fastest = times[i];
+	if (times[i] > slowest) slowest = times[i];
 }
 printf("Fastest: %.2f  Slowest: %.2f\n", fastest, slowest);
 
 // ===== SORT =====
 int swapped = 1;
-while (swapped) {
-    swapped = 0;
-    for (int i = 0; i < 3; i++) {
-        if (times[i] > times[i + 1]) {
-            double temp = times[i];
-            times[i] = times[i + 1];
-            times[i + 1] = temp;
-            swapped = 1;
-        }
-    }
+while (swapped)
+{
+	swapped = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		if (times[i] > times[i + 1])
+		{
+			double temp = times[i];
+			times[i] = times[i + 1];
+			times[i + 1] = temp;
+			swapped = 1;
+		}
+	}
 }
 printf("Sorted: %.2f, %.2f, %.2f, %.2f\n", times[0], times[1], times[2], times[3]);
 {{< /code >}}

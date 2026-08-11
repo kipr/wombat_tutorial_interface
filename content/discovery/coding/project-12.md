@@ -170,29 +170,29 @@ You have seen the other kind too. `digital(0)` and `gmpc(0)` hand you a number. 
 ```c
 int main()
 {
-    cmpc(left);
-    while (gmpc(left) < 4000)
-    {
-        motor(left, 50);
-        motor(right, 50);
-    }
-    motor(0, 0);
-    motor(3, 0);
-    msleep(30);
-    msleep(500);
+	cmpc(left);
+	while (gmpc(left) < 4000)
+	{
+		motor(left, 50);
+		motor(right, 50);
+	}
+	motor(0, 0);
+	motor(3, 0);
+	msleep(30);
+	msleep(500);
 
-    cmpc(left);
-    while (gmpc(left) < 4000)
-    {
-        motor(left, 50);
-        motor(right, 50);
-    }
-    motor(0, 0);
-    motor(3, 0);
-    msleep(30);
-    msleep(500);
+	cmpc(left);
+	while (gmpc(left) < 4000)
+	{
+		motor(left, 50);
+		motor(right, 50);
+	}
+	motor(0, 0);
+	motor(3, 0);
+	msleep(30);
+	msleep(500);
 
-    return 0;
+	return 0;
 }
 ```
 
@@ -206,26 +206,26 @@ void drive_forward();
 
 int main()
 {
-    // 3. Call
-    drive_forward();
-    drive_forward();
+	// 3. Call
+	drive_forward();
+	drive_forward();
 
-    return 0;
+	return 0;
 }
 
 // 2. Definition
 void drive_forward()
 {
-    cmpc(left);
-    while (gmpc(left) < 4000)
-    {
-        motor(left, 50);
-        motor(right, 50);
-    }
-    motor(0, 0);
-    motor(3, 0);
-    msleep(30);
-    msleep(500);
+	cmpc(left);
+	while (gmpc(left) < 4000)
+	{
+		motor(left, 50);
+		motor(right, 50);
+	}
+	motor(0, 0);
+	motor(3, 0);
+	msleep(30);
+	msleep(500);
 }
 ```
 
@@ -259,16 +259,16 @@ drive_forward(1200);
 // Definition uses the name
 void drive_forward(int ticks)
 {
-    cmpc(left);
-    while (gmpc(left) < ticks)
-    {
-        motor(left, 50);
-        motor(right, 50);
-    }
-    motor(0, 0);
-    motor(3, 0);
-    msleep(30);
-    msleep(500);
+	cmpc(left);
+	while (gmpc(left) < ticks)
+	{
+		motor(left, 50);
+		motor(right, 50);
+	}
+	motor(0, 0);
+	motor(3, 0);
+	msleep(30);
+	msleep(500);
 }
 ```
 
@@ -282,14 +282,14 @@ Once `drive_forward()` and `turn_right()` exist, a bigger function can just use 
 ```c
 void drive_square()
 {
-    drive_forward(4000);
-    turn_right();
-    drive_forward(4000);
-    turn_right();
-    drive_forward(4000);
-    turn_right();
-    drive_forward(4000);
-    turn_right();
+	drive_forward(4000);
+	turn_right();
+	drive_forward(4000);
+	turn_right();
+	drive_forward(4000);
+	turn_right();
+	drive_forward(4000);
+	turn_right();
 }
 ```
 
@@ -395,12 +395,12 @@ The six-step grab sequence from Project 8 is your best candidate. Turn it into `
 ```c
 void grab()
 {
-    set_servo_position(arm, down);
-    msleep(700);
-    set_servo_position(claw, closed);
-    msleep(700);
-    set_servo_position(arm, up);
-    msleep(700);
+	set_servo_position(arm, down);
+	msleep(700);
+	set_servo_position(claw, closed);
+	msleep(700);
+	set_servo_position(arm, up);
+	msleep(700);
 }
 ```
 
@@ -409,11 +409,11 @@ Now write a bigger function that uses them:
 ```c
 void fetch_pom()
 {
-    drive_forward(2000);
-    grab();
-    turn_right();
-    drive_forward(1500);
-    release();
+	drive_forward(2000);
+	grab();
+	turn_right();
+	drive_forward(1500);
+	release();
 }
 ```
 

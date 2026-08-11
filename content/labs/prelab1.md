@@ -103,8 +103,8 @@ Make a new project called **hello_c** and type this in. Do not paste it --- type
 
 int main()
 {
-    printf("ready\n");
-    return 0;
+	printf("ready\n");
+	return 0;
 }
 {{< /code >}}
 

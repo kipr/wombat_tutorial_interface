@@ -152,11 +152,11 @@ You have been writing your positions as [[COMMENT|comments]] since Project 7, in
 ```c
 int main ()
 {
-    // arm  = 0
-    // up   = 1234
-    // down = 230
+	// arm  = 0
+	// up   = 1234
+	// down = 230
 
-    ...
+	...
 }
 ```
 
@@ -165,11 +165,11 @@ int main ()
 ```c
 int main ()
 {
-    int arm  = 0;
-    int up   = 1234;
-    int down = 230;
+	int arm  = 0;
+	int up   = 1234;
+	int down = 230;
 
-    ...
+	...
 }
 ```
 

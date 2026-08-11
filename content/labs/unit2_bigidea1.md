@@ -63,9 +63,10 @@ In your program, `digital(0)` reads this sensor: it is **0 when the button is op
 - text: |
     Until now your code ran top to bottom, once. A `while` loop lets a [[BLOCK|block]] run **over and over**, checking a condition each time before it repeats.
 - code: |
-    while (condition) {
-        // this runs again and again,
-        // as long as the condition is true
+    while (condition)
+    {
+    	// this runs again and again,
+    	// as long as the condition is true
     }
 - text: |
     How it works, step by step:
@@ -76,8 +77,9 @@ In your program, `digital(0)` reads this sensor: it is **0 when the button is op
 
     The loop keeps checking. That is what lets a robot *wait for* something to happen instead of guessing how long it will take. To drive until the button is pressed, we loop **while the button is NOT pressed**:
 - code: |
-    while (digital(0) == 0) {   // while the button is NOT pressed...
-        // keep driving and keep checking
+    while (digital(0) == 0)     // while the button is NOT pressed...
+    {
+    	// keep driving and keep checking
     }
 - text: |
     The moment the button reads 1, the condition `digital(0) == 0` becomes false, the loop stops, and the program moves on.
@@ -87,10 +89,11 @@ In your program, `digital(0)` reads this sensor: it is **0 when the button is op
 - text: |
     You've used `msleep()` to drive for a set time. Inside a loop it does something different --- and much smaller.
 - code: |
-    while (digital(0) == 0) {
-        motor(0, -50);   // drive backward
-        motor(3, -50);
-        msleep(10);      // tiny pause, just 10 ms
+    while (digital(0) == 0)
+    {
+    	motor(0, -50);   // drive backward
+    	motor(3, -50);
+    	msleep(10);      // tiny pause, just 10 ms
     }
 - text: |
     That `msleep(10)` is **not** how long you drive. The loop checks the button hundreds of times a second. Without a small pause, it would check *as fast as the computer possibly can* --- and that **bogs down the [[CONTROLLER|controller]]** for no benefit. A 10 ms pause slows the checking to a sensible rate so the computer isn't overwhelmed, while still feeling instant to us.
@@ -190,20 +193,22 @@ Type this program. The position [[VARIABLE|variables]] are back from before --- 
 int x_position = 0;
 int y_position = 0;
 
-int main() {
+int main()
+{
 
-    // Drive BACKWARD and keep checking the button.
-    // digital(0) is 0 when open, 1 when pressed.
-    while (digital(0) == 0) {   // while the button is NOT pressed...
-        motor(0, -50);          // ...drive backward
-        motor(3, -50);
-        msleep(10);             // tiny pause so we don't overwork the computer
-    }
+	// Drive BACKWARD and keep checking the button.
+	// digital(0) is 0 when open, 1 when pressed.
+	while (digital(0) == 0)       // while the button is NOT pressed...
+	{
+		motor(0, -50);          // ...drive backward
+		motor(3, -50);
+		msleep(10);             // tiny pause so we don't overwork the computer
+	}
 
-    ao();              // button was pressed: stop the motors
-    y_position = 0;    // we're home against the wall: reset our origin
+	ao();              // button was pressed: stop the motors
+	y_position = 0;    // we're home against the wall: reset our origin
 
-    return 0;
+	return 0;
 }
 {{< /code >}}
 
@@ -251,19 +256,22 @@ int y_position = 0;
 
 void back_until_pressed();   // PROTOTYPE: the promise, above main()
 
-int main() {
-    back_until_pressed();    // CALL: drive home using the sensor, then reset zero
-    return 0;
+int main()
+{
+	back_until_pressed();    // CALL: drive home using the sensor, then reset zero
+	return 0;
 }
 
-void back_until_pressed() {  // DEFINITION: the recipe, below main()
-    while (digital(0) == 0) { // while the button is NOT pressed...
-        motor(0, -50);
-        motor(3, -50);
-        msleep(10);
-    }
-    ao();              // stop
-    y_position = 0;    // home: reset origin
+void back_until_pressed()    // DEFINITION: the recipe, below main()
+{
+	while (digital(0) == 0)   // while the button is NOT pressed...
+	{
+		motor(0, -50);
+		motor(3, -50);
+		msleep(10);
+	}
+	ao();              // stop
+	y_position = 0;    // home: reset origin
 }
 {{< /code >}}
 

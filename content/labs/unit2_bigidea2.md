@@ -166,36 +166,40 @@ int y_position = 0;
 void back_until_pressed();   // from last lab: backs into wall, resets origin
 void drive_forward();        // drives forward ~6 inches (you set the time)
 
-int main() {
-    back_until_pressed();    // reset to a known zero at the wall
-    drive_forward();         // move forward about 6 inches
+int main()
+{
+	back_until_pressed();    // reset to a known zero at the wall
+	drive_forward();         // move forward about 6 inches
 
-    // ---- VERSION A: COAST (neutral) ----
-    ao();                    // cut power: motors coast to a stop
+	// ---- VERSION A: COAST (neutral) ----
+	ao();                    // cut power: motors coast to a stop
 
-    // ---- VERSION B: BRAKE (active hold) ----
-    // Comment out the ao() above and use these three lines instead:
-    // motor(0, 0);
-    // motor(3, 0);
-    // msleep(50);            // let the brake settle and hold
+	// ---- VERSION B: BRAKE (active hold) ----
+	// Comment out the ao() above and use these three lines instead:
+	// motor(0, 0);
+	// motor(3, 0);
+	// msleep(50);            // let the brake settle and hold
 
-    return 0;
+	return 0;
 }
 
-void drive_forward() {
-    motor(0, 50);
-    motor(3, 50);
-    msleep(____);            // your ~6-inch time from Phase 3
+void drive_forward()
+{
+	motor(0, 50);
+	motor(3, 50);
+	msleep(____);            // your ~6-inch time from Phase 3
 }
 
-void back_until_pressed() {
-    while (digital(0) == 0) {
-        motor(0, -50);
-        motor(3, -50);
-        msleep(10);
-    }
-    ao();
-    y_position = 0;          // home: reset origin
+void back_until_pressed()
+{
+	while (digital(0) == 0)
+	{
+		motor(0, -50);
+		motor(3, -50);
+		msleep(10);
+	}
+	ao();
+	y_position = 0;          // home: reset origin
 }
 {{< /code >}}
 

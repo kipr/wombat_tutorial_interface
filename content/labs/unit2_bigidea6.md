@@ -174,13 +174,17 @@ If you set your stop value too high (too close), the robot would have to drive i
 - text: |
     The `while` [[CONDITION|Condition]] watches the ET: keep going while the object is still far (the value is still *below* your stop value). Inside the loop, the same `if/else` steering you tuned before keeps the robot on the line.
 - code: |
-    while (analog(1) < STOP_VALUE) {   // ET: still far? keep going
-        if (analog(0) > MIDPOINT) {     // Tophat: steer on the line
-            ...
-        } else {
-            ...
-        }
-        msleep(10);                     // tiny pause (like the touch-sensor lab)
+    while (analog(1) < STOP_VALUE)     // ET: still far? keep going
+    {
+    	if (analog(0) > MIDPOINT)    // Tophat: steer on the line
+    	{
+    		...
+    	}
+    	else
+    	{
+    		...
+    	}
+    	msleep(10);                     // tiny pause (like the touch-sensor lab)
     }
 - text: |
     That `msleep(10)` is the same idea you used with the touch sensor: the loop checks the sensors hundreds of times a second, and a small pause keeps it from overworking the controller.
@@ -208,26 +212,32 @@ int SLOW       = @@____@@;   // your best mav slow speed (from BI5)
 
 void line_follow_until_object();   // PROTOTYPE
 
-int main() {
-    line_follow_until_object();    // follow the line, stop at the object
-    return 0;
+int main()
+{
+	line_follow_until_object();    // follow the line, stop at the object
+	return 0;
 }
 
-void line_follow_until_object() {
-    while (analog(1) < STOP_VALUE) {   // ET: object still far? keep going
-        if (analog(0) > MIDPOINT) {    // Tophat: on black, steer right
-            mav(0, FAST);
-            mav(1, SLOW);
-        } else {                       // on white, steer left
-            mav(0, SLOW);
-            mav(1, FAST);
-        }
-        msleep(10);                    // tiny pause so we don't overwork the controller
-    }
+void line_follow_until_object()
+{
+	while (analog(1) < STOP_VALUE)       // ET: object still far? keep going
+	{
+		if (analog(0) > MIDPOINT)      // Tophat: on black, steer right
+		{
+			mav(0, FAST);
+			mav(1, SLOW);
+		}
+		else                           // on white, steer left
+		{
+			mav(0, SLOW);
+			mav(1, FAST);
+		}
+		msleep(10);                    // tiny pause so we don't overwork the controller
+	}
 
-    motor(0, 0);                       // object is close: brake
-    motor(3, 0);
-    msleep(50);                        // let the brake settle
+	motor(0, 0);                       // object is close: brake
+	motor(3, 0);
+	msleep(50);                        // let the brake settle
 }
 {{< /code >}}
 

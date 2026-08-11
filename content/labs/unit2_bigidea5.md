@@ -75,12 +75,15 @@ There's no single "right" speed. The best line-follow is found by testing --- ch
 - text: |
     Your steering logic doesn't change at all --- only the command and the numbers do:
 - code: |
-    if (analog(0) > MIDPOINT) {   // on black, steer right
-        mav(0, @@750@@);            // was motor(0, 50)
-        mav(1, @@300@@);            // was motor(3, 20)
-    } else {                       // on white, steer left
-        mav(0, @@300@@);
-        mav(1, @@750@@);
+    if (analog(0) > MIDPOINT)     // on black, steer right
+    {
+    	mav(0, @@750@@);            // was motor(0, 50)
+    	mav(1, @@300@@);            // was motor(3, 20)
+    }
+    else                           // on white, steer left
+    {
+    	mav(0, @@300@@);
+    	mav(1, @@750@@);
     }
 {{< /concept >}}
 

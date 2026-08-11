@@ -70,11 +70,12 @@ Two new tools you'll use today. You already know `motor()`, `msleep()`, and `ao(
 - text: |
     A function lets you take several commands and give them **one name**. After you build it once, you can run all of those commands by just writing its name. `void` means the function does a job but doesn't hand a number back.
 - code: |
-    void drive_forward() {     // make a new command called drive_forward
-        motor(0, DRIVE_SPEED);  // these lines are the job it does
-        motor(3, DRIVE_SPEED);
-        msleep(1000);
-        ao();                   // stop at the end
+    void drive_forward()       // make a new command called drive_forward
+    {
+    	motor(0, DRIVE_SPEED);  // these lines are the job it does
+    	motor(3, DRIVE_SPEED);
+    	msleep(1000);
+    	ao();                   // stop at the end
     }
 - text: |
     Now, anywhere in your program, writing `drive_forward();` runs all of those lines. You built your own command.
@@ -222,18 +223,20 @@ int DRIVE_SPEED = @@50@@;
 int TURN_SPEED  = @@40@@;
 
 // Movement commands you can reuse (no parameters yet).
-void drive_forward() {
-    motor(0, DRIVE_SPEED);
-    motor(3, DRIVE_SPEED);
-    msleep(1000);
-    ao();
+void drive_forward()
+{
+	motor(0, DRIVE_SPEED);
+	motor(3, DRIVE_SPEED);
+	msleep(1000);
+	ao();
 }
 
-void turn_right() {
-    motor(0, TURN_SPEED);
-    motor(3, -TURN_SPEED);
-    msleep(600);
-    ao();
+void turn_right()
+{
+	motor(0, TURN_SPEED);
+	motor(3, -TURN_SPEED);
+	msleep(600);
+	ao();
 }
 
 // Your sub-task functions. Write ONE, test it, then write the next.
@@ -244,12 +247,13 @@ void turn_right() {
 
 
 // Integration: only add a call here after that function passes 3 runs.
-int main() {
-    // Add each call only after that function works:
-    // your_first_function();
-    // your_second_function();
-    // your_third_function();
-    return 0;
+int main()
+{
+	// Add each call only after that function works:
+	// your_first_function();
+	// your_second_function();
+	// your_third_function();
+	return 0;
 }
 {{< /code >}}
 

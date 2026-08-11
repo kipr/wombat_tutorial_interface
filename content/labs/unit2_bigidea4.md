@@ -210,10 +210,13 @@ Your midpoint is the line between "I see black" and "I see white." Write it down
 - text: |
     A **threshold** is a cutoff. Once you have your midpoint, every reading becomes a yes-or-no again:
 - code: |
-    if (analog(0) > MIDPOINT) {   // reading is HIGH: that's BLACK
-        // ...we're on the line
-    } else {                       // reading is LOW: that's WHITE
-        // ...we're on the floor
+    if (analog(0) > MIDPOINT)     // reading is HIGH: that's BLACK
+    {
+    	// ...we're on the line
+    }
+    else                           // reading is LOW: that's WHITE
+    {
+    	// ...we're on the floor
     }
 - text: |
     This is the same `if/else` you learned in Unit 1 --- but now the [[CONDITION|condition]] reads a **live sensor**, not a number you typed. The robot is interpreting the real world.
@@ -247,27 +250,33 @@ int MIDPOINT = @@____@@;   // YOUR midpoint from Phase 3 (black + white) / 2
 
 void line_follow(int ticks);   // PROTOTYPE: drive this far while steering on the line
 
-int main() {
-    line_follow(3000);         // follow the line for this many ticks
-    return 0;
+int main()
+{
+	line_follow(3000);         // follow the line for this many ticks
+	return 0;
 }
 
-void line_follow(int ticks) {
-    cmpc(0);                       // clear the wheel counter
+void line_follow(int ticks)
+{
+	cmpc(0);                       // clear the wheel counter
 
-    while (gmpc(0) < ticks) {       // keep going until we've driven far enough
-        if (analog(0) > MIDPOINT) { // HIGH reading means BLACK, so steer right
-            motor(0, 50);          // left motor faster
-            motor(3, 20);          // right motor slower
-        } else {                   // LOW reading means WHITE, so steer left
-            motor(0, 20);          // left motor slower
-            motor(3, 50);          // right motor faster
-        }
-    }
+	while (gmpc(0) < ticks)           // keep going until we've driven far enough
+	{
+		if (analog(0) > MIDPOINT)   // HIGH reading means BLACK, so steer right
+		{
+			motor(0, 50);          // left motor faster
+			motor(3, 20);          // right motor slower
+		}
+		else                       // LOW reading means WHITE, so steer left
+		{
+			motor(0, 20);          // left motor slower
+			motor(3, 50);          // right motor faster
+		}
+	}
 
-    motor(0, 0);                   // brake (from Big Idea 2)
-    motor(3, 0);
-    msleep(50);
+	motor(0, 0);                   // brake (from Big Idea 2)
+	motor(3, 0);
+	msleep(50);
 }
 {{< /code >}}
 

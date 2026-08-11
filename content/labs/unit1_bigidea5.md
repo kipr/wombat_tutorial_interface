@@ -67,14 +67,16 @@ You already build `void` functions. Today you learn the professional way to orga
 - code: |
     void push_off_line();        // 1. PROTOTYPE (promise, at the top)
 
-    int main() {
-        push_off_line();          // 2. CALL (use it here)
-        return 0;
+    int main()
+    {
+    	push_off_line();          // 2. CALL (use it here)
+    	return 0;
     }
 
-    void push_off_line() {        // 3. DEFINITION (the recipe, at the bottom)
-        drive_forward();
-        drive_forward();
+    void push_off_line()          // 3. DEFINITION (the recipe, at the bottom)
+    {
+    	drive_forward();
+    	drive_forward();
     }
 - text: |
     This keeps `main()` short and easy to read --- it reads like a plan, while the details live out of the way below.
@@ -213,39 +215,43 @@ void push_off_line();
 // MAIN: your plan. The poms are NOT in a line, so the path
 // between them is different every time. You decide how to reuse
 // your building blocks to get from one pom to the next.
-int main() {
+int main()
+{
 
-    push_off_line();   // first pom
+	push_off_line();   // first pom
 
-    turn_right();      // next pom is not straight ahead
-    drive_forward();   // reuse the building blocks to reach it
-    push_off_line();   // second pom
+	turn_right();      // next pom is not straight ahead
+	drive_forward();   // reuse the building blocks to reach it
+	push_off_line();   // second pom
 
-    drive_forward();   // a different path again to the third
-    push_off_line();   // third pom
+	drive_forward();   // a different path again to the third
+	push_off_line();   // third pom
 
-    return 0;
+	return 0;
 }
 
 // Definitions: the full recipe for each promise above
-void drive_forward() {
-    motor(0, DRIVE_SPEED);
-    motor(3, DRIVE_SPEED);
-    msleep(1000);
-    ao();
+void drive_forward()
+{
+	motor(0, DRIVE_SPEED);
+	motor(3, DRIVE_SPEED);
+	msleep(1000);
+	ao();
 }
 
-void turn_right() {
-    motor(0, DRIVE_SPEED);
-    motor(3, -DRIVE_SPEED);
-    msleep(600);
-    ao();
+void turn_right()
+{
+	motor(0, DRIVE_SPEED);
+	motor(3, -DRIVE_SPEED);
+	msleep(600);
+	ao();
 }
 
 // push_off_line is a BIGGER behavior built from a SMALLER one:
-void push_off_line() {
-    drive_forward();   // drive into the pom, pushing it off the line
-    drive_forward();   // keep going to clear it fully
+void push_off_line()
+{
+	drive_forward();   // drive into the pom, pushing it off the line
+	drive_forward();   // keep going to clear it fully
 }
 {{< /code >}}
 

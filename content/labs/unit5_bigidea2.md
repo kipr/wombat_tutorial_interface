@@ -63,12 +63,17 @@ Here's why this mission is a perfect fit for today: Botguy isn't fixed to the fl
 - text: |
     You already know `if` and `else`. An **else if** chain adds one or more extra checks in between, for when there are more than two possible situations:
 - code: |
-    if (condition_1) {
-        // runs only if condition_1 is true
-    } else if (condition_2) {
-        // runs only if condition_1 was false AND condition_2 is true
-    } else {
-        // runs only if BOTH conditions above were false
+    if (condition_1)
+    {
+    	// runs only if condition_1 is true
+    }
+    else if (condition_2)
+    {
+    	// runs only if condition_1 was false AND condition_2 is true
+    }
+    else
+    {
+    	// runs only if BOTH conditions above were false
     }
 - text: |
     The chain is checked **top to bottom**, and the instant one [[CONDITION|condition]] is true, its [[BLOCK|block]] runs and **every condition below it is skipped** --- even if one of them would also have been true. Only one block in the whole chain ever runs.
@@ -109,33 +114,40 @@ Exactly one of these zones applies at any instant while the robot is driving ---
 Replace your single fixed-speed loop with the three-zone `if` / `else if` / `else` chain. This checks the zone **every trip through the loop**, so speed updates continuously as ticks change.
 
 {{< code filename="yourname.h" >}}
-void Drive(double inches) {
-    int desired_ticks = inches * ticks_per_inch;
-    int current_ticks;
-    int motor_speed;
+void Drive(double inches)
+{
+	int desired_ticks = inches * ticks_per_inch;
+	int current_ticks;
+	int motor_speed;
 
-    cmpc(0);
-    current_ticks = gmpc(0);
+	cmpc(0);
+	current_ticks = gmpc(0);
 
-    while (current_ticks < desired_ticks) {
-        current_ticks = gmpc(0);
+	while (current_ticks < desired_ticks)
+	{
+		current_ticks = gmpc(0);
 
-        if (current_ticks < 50) {
-            // ACCELERATION ZONE: ramp speed UP from a slow start
-            motor_speed = current_ticks * @@12@@ + @@150@@;
-        } else if ((desired_ticks - current_ticks) < 500) {
-            // DECELERATION ZONE: ramp speed DOWN as ticks remaining shrinks
-            motor_speed = (desired_ticks - current_ticks) * @@2@@ + @@150@@;
-        } else {
-            // CRUISE ZONE: full speed, neither ramp applies
-            motor_speed = @@750@@;
-        }
+		if (current_ticks < 50)
+		{
+			// ACCELERATION ZONE: ramp speed UP from a slow start
+			motor_speed = current_ticks * @@12@@ + @@150@@;
+		}
+		else if ((desired_ticks - current_ticks) < 500)
+		{
+			// DECELERATION ZONE: ramp speed DOWN as ticks remaining shrinks
+			motor_speed = (desired_ticks - current_ticks) * @@2@@ + @@150@@;
+		}
+		else
+		{
+			// CRUISE ZONE: full speed, neither ramp applies
+			motor_speed = @@750@@;
+		}
 
-        mav(0, motor_speed);
-        mav(1, motor_speed);
-    }
+		mav(0, motor_speed);
+		mav(1, motor_speed);
+	}
 
-    mav(0, 0); mav(1, 0); msleep(50);   // brake
+	mav(0, 0); mav(1, 0); msleep(50);   // brake
 }
 {{< /code >}}
 

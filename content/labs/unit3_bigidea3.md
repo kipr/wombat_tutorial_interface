@@ -144,81 +144,107 @@ void line_follow(int ticks);
 //     forced past a hard stop and burned out.
 //   - Steps two ticks at a time for smooth motion.
 //   Pass in the arm position you want (e.g. ARM_MAX to raise).
-void move_arm(int target_position) {
-    if (target_position > ARM_MAX) target_position = ARM_MAX;
-    if (target_position < ARM_MIN) target_position = ARM_MIN;
-    int current_position = get_servo_position(0);
-    while (current_position != target_position) {
-        // A 2-tick step could skip a target that is only 1 tick away.
-        if (abs(current_position - target_position) == 1) {
-            set_servo_position(0, target_position);
-        } else if (current_position < target_position) {
-            set_servo_position(0, current_position + 2);
-        } else {
-            set_servo_position(0, current_position - 2);
-        }
-        msleep(1);
-        current_position = get_servo_position(0);
-    }
+void move_arm(int target_position)
+{
+	if (target_position > ARM_MAX) target_position = ARM_MAX;
+	if (target_position < ARM_MIN) target_position = ARM_MIN;
+	int current_position = get_servo_position(0);
+	while (current_position != target_position)
+	{
+		// A 2-tick step could skip a target that is only 1 tick away.
+		if (abs(current_position - target_position) == 1)
+		{
+			set_servo_position(0, target_position);
+		}
+		else if (current_position < target_position)
+		{
+			set_servo_position(0, current_position + 2);
+		}
+		else
+		{
+			set_servo_position(0, current_position - 2);
+		}
+		msleep(1);
+		current_position = get_servo_position(0);
+	}
 }
 
 // move_claw: Smoothly moves the claw servo (port 3) to a position.
 //   Works just like move_arm, but for the claw. Clamps between
 //   CLAW_SHUT and CLAW_OPEN so the claw never strains.
 //   Pass in CLAW_OPEN to open, CLAW_SHUT to close on a cube.
-void move_claw(int target_position) {
-    if (target_position > CLAW_OPEN) target_position = CLAW_OPEN;
-    if (target_position < CLAW_SHUT) target_position = CLAW_SHUT;
-    int current_position = get_servo_position(1);
-    while (current_position != target_position) {
-        // A 2-tick step could skip a target that is only 1 tick away.
-        if (abs(current_position - target_position) == 1) {
-            set_servo_position(3, target_position);
-        } else if (current_position < target_position) {
-            set_servo_position(3, current_position + 2);
-        } else {
-            set_servo_position(3, current_position - 2);
-        }
-        msleep(1);
-        current_position = get_servo_position(1);
-    }
+void move_claw(int target_position)
+{
+	if (target_position > CLAW_OPEN) target_position = CLAW_OPEN;
+	if (target_position < CLAW_SHUT) target_position = CLAW_SHUT;
+	int current_position = get_servo_position(1);
+	while (current_position != target_position)
+	{
+		// A 2-tick step could skip a target that is only 1 tick away.
+		if (abs(current_position - target_position) == 1)
+		{
+			set_servo_position(3, target_position);
+		}
+		else if (current_position < target_position)
+		{
+			set_servo_position(3, current_position + 2);
+		}
+		else
+		{
+			set_servo_position(3, current_position - 2);
+		}
+		msleep(1);
+		current_position = get_servo_position(1);
+	}
 }
 
 // back_until_pressed: Drives the robot straight backward until the
 //   touch sensor on digital(0) is pressed against a wall, then stops.
 //   Use it to return to a wall and reset to a known position.
-void back_until_pressed() {
-    while (digital(0) == 0) {
-        motor(0, -50);
-        motor(3, -50);
-        msleep(10);
-    }
-    motor(0, 0); motor(3, 0); msleep(50);
+void back_until_pressed()
+{
+	while (digital(0) == 0)
+	{
+		motor(0, -50);
+		motor(3, -50);
+		msleep(10);
+	}
+	motor(0, 0); motor(3, 0); msleep(50);
 }
 
 // Tick_Drive: Drives the robot straight forward a measured distance.
 //   Pass in the number of encoder ticks to travel. Clears the
 //   counter, drives until it reaches 'ticks', then brakes.
-void Tick_Drive(int ticks) {
-    cmpc(0);
-    while (gmpc(0) < ticks) {
-        motor(0, 50);
-        motor(3, 50);
-    }
-    motor(0, 0); motor(3, 0); msleep(50);
+void Tick_Drive(int ticks)
+{
+	cmpc(0);
+	while (gmpc(0) < ticks)
+	{
+		motor(0, 50);
+		motor(3, 50);
+	}
+	motor(0, 0); motor(3, 0); msleep(50);
 }
 
 // line_follow: Follows a line for a measured distance using the
 //   Tophat sensor on analog(0). Steers with mav based on whether
 //   the reading is above MIDPOINT (black) or below (white).
 //   Pass in the number of ticks to follow before stopping.
-void line_follow(int ticks) {
-    cmpc(0);
-    while (gmpc(0) < ticks) {
-        if (analog(0) > MIDPOINT) { mav(0, FAST); mav(1, SLOW); }
-        else                      { mav(0, SLOW); mav(1, FAST); }
-    }
-    motor(0, 0); motor(3, 0); msleep(50);
+void line_follow(int ticks)
+{
+	cmpc(0);
+	while (gmpc(0) < ticks)
+	{
+		if (analog(0) > MIDPOINT)
+		{
+			mav(0, FAST); mav(1, SLOW);
+		}
+		else
+		{
+			mav(0, SLOW); mav(1, FAST);
+		}
+	}
+	motor(0, 0); motor(3, 0); msleep(50);
 }
 {{< /code >}}
 
@@ -238,20 +264,21 @@ Now the payoff. In your main program, add your library with an `#include` line a
 
 #include <@@yourname@@.h>     // YOUR library: all your tools, in one line
 
-int main() {
-    enable_servo(0);
-    enable_servo(1);
+int main()
+{
+	enable_servo(0);
+	enable_servo(1);
 
-    // Call each library function once to test it:
-    Tick_Drive(2000);        // drive forward a measured distance
-    back_until_pressed();    // back into the wall
-    line_follow(1500);       // follow the line a while
-    move_claw(CLAW_OPEN);    // open the claw
-    move_arm(ARM_MIN);       // lower the arm
-    move_claw(CLAW_SHUT);    // close on a cube
-    move_arm(ARM_MAX);       // raise it up
+	// Call each library function once to test it:
+	Tick_Drive(2000);        // drive forward a measured distance
+	back_until_pressed();    // back into the wall
+	line_follow(1500);       // follow the line a while
+	move_claw(CLAW_OPEN);    // open the claw
+	move_arm(ARM_MIN);       // lower the arm
+	move_claw(CLAW_SHUT);    // close on a cube
+	move_arm(ARM_MAX);       // raise it up
 
-    return 0;
+	return 0;
 }
 {{< /code >}}
 

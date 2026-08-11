@@ -88,13 +88,15 @@ Your library can drive *forward* a measured distance with `Tick_Drive` --- but a
 - text: |
     Picture the number line. You start at 0 and slide left toward −1000. The whole time, your count is *greater than* −1000 --- until you arrive. So the loop runs **while `gmpc(0) > -ticks`**:
 - code: |
-    void Back_Drive(int ticks) {
-        cmpc(0);                       // clear the counter to 0
-        while (gmpc(0) > -ticks) {      // count DOWN until we reach -ticks
-            motor(0, -50);             // both wheels backward
-            motor(3, -50);
-        }
-        motor(0, 0); motor(3, 0); msleep(50);   // brake
+    void Back_Drive(int ticks)
+    {
+    	cmpc(0);                         // clear the counter to 0
+    	while (gmpc(0) > -ticks)         // count DOWN until we reach -ticks
+    	{
+    		motor(0, -50);             // both wheels backward
+    		motor(3, -50);
+    	}
+    	motor(0, 0); motor(3, 0); msleep(50);   // brake
     }
 - text: |
     You still pass in a *positive* number --- `Back_Drive(1000)` --- and the function flips the sign for you. The `-ticks` turns your 1000 into the −1000 target.
@@ -180,23 +182,24 @@ Now write it for real. Here is the **frame** --- nothing more. Include your libr
 
 #include <@@yourname@@.h>     // all your tuned tools
 
-int main() {
-    enable_servo(0);          // arm
-    enable_servo(1);          // claw
+int main()
+{
+	enable_servo(0);          // arm
+	enable_servo(1);          // claw
 
-    // ===== STACK 1 =====
-    // (write your calls from your Phase 4 plan)
-
-
-    // ===== REPOSITION to stack 2 =====
-    // (your turn / drive / turn-back from Phase 5)
+	// ===== STACK 1 =====
+	// (write your calls from your Phase 4 plan)
 
 
-    // ===== STACK 2 =====
-    // (your calls)
+	// ===== REPOSITION to stack 2 =====
+	// (your turn / drive / turn-back from Phase 5)
 
 
-    return 0;
+	// ===== STACK 2 =====
+	// (your calls)
+
+
+	return 0;
 }
 {{< /code >}}
 

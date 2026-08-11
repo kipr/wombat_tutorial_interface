@@ -109,6 +109,10 @@ Prefer ordinary Markdown for prose, lists, static tables, and code fences that
 need neither a filename nor teaching emphasis. Use fenced blocks with an
 explicit Chroma language; use `text {.console}` for console output.
 
+Displayed C examples use Allman-style curly braces, with each brace on its own
+line, and literal tabs for indentation. The syntax stylesheet displays tabs at
+four columns.
+
 Block attributes go on their own line after the paragraph or list:
 
 ```markdown

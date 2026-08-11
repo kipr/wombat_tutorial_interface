@@ -197,25 +197,27 @@ int DRIVE_SPEED = 50;
 int x_position = 0;
 int y_position = 0;
 
-void drive_forward() {
-    motor(0, DRIVE_SPEED);
-    motor(3, DRIVE_SPEED);
-    msleep(1000);
-    ao();
+void drive_forward()
+{
+	motor(0, DRIVE_SPEED);
+	motor(3, DRIVE_SPEED);
+	msleep(1000);
+	ao();
 }
 
-int main() {
+int main()
+{
 
-    drive_forward();              // move the robot one step forward
-    y_position = y_position + 1;  // update memory: we moved +1 in y
+	drive_forward();              // move the robot one step forward
+	y_position = y_position + 1;  // update memory: we moved +1 in y
 
-    drive_forward();              // move again
-    y_position = y_position + 1;  // update memory again
+	drive_forward();              // move again
+	y_position = y_position + 1;  // update memory again
 
-    // Show what the robot has stored about where it is now
-    printf("x = %d, y = %d\n", x_position, y_position);
+	// Show what the robot has stored about where it is now
+	printf("x = %d, y = %d\n", x_position, y_position);
 
-    return 0;
+	return 0;
 }
 {{< /code >}}
 

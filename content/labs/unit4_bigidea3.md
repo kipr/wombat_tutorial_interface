@@ -70,8 +70,9 @@ A model like "[[TICK|ticks]] per degree" lets one function turn *any* angle. But
 - text: |
     You've used `while` loops that run until something changes. A `for` loop is for when you know *exactly how many times* to repeat. It counts for you:
 - code: |
-    for (int i = 0; i < 4; i++) {   // run 4 times: i = 0, 1, 2, 3
-        // ...do this each time...
+    for (int i = 0; i < 4; i++)  // run 4 times: i = 0, 1, 2, 3
+    {
+    	// ...do this each time...
     }
 - text: |
     Three parts in the parentheses: **start** (`int i = 0`), **keep going while** (`i < 4`), and **each time, do this** (`i++`, which adds 1 to `i`). When `i` reaches 4, it stops --- so the body ran exactly 4 times.
@@ -113,12 +114,14 @@ rows:
     This example pivots in chunks using a `for` loop. Notice it uses **`mav`**, not `motor` --- [[VELOCITY|velocity]] control is smoother for turning. Use a **slow** speed so the robot doesn't [[OVERSHOOT|overshoot]] from its own momentum.
 - code: |
     cmpc(0);                          // clear the counter once, before the spin
-    for (int i = 0; i < 4; i++) {     // four chunks = one full 360 degree spin
-        long target = (i + 1) * CHUNK_TICKS;   // how far we should be after this chunk
-        while (gmpc(0) < target) {
-            mav(0, 300);              // SLOW velocity: left wheel forward
-            mav(1, -300);             // right wheel backward (pivot right)
-        }
+    for (int i = 0; i < 4; i++)       // four chunks = one full 360 degree spin
+    {
+    	long target = (i + 1) * CHUNK_TICKS;   // how far we should be after this chunk
+    	while (gmpc(0) < target)
+    	{
+    		mav(0, 300);              // SLOW velocity: left wheel forward
+    		mav(1, -300);             // right wheel backward (pivot right)
+    	}
     }
     motor(0,0); motor(3,0); msleep(50);   // brake-settle
     printf("total ticks = %d\n", gmpc(0));
@@ -176,7 +179,9 @@ Now build `Turn` --- and it introduces two more new ideas at once: it takes **tw
 - text: |
     A good function is easy to use and hard to break. Instead of demanding a capital `'R'`, accept either case with the **OR** operator `||` --- true if *either* side is true. That way a user who types `'r'` still succeeds --- one less thing to remember.
 - code: |
-    if (direction == 'R' || direction == 'r') { // either capital or lowercase }
+    if (direction == 'R' || direction == 'r') // either capital or lowercase
+    {
+    }
 {{< /concept >}}
 
 {{< code >}}
@@ -191,34 +196,43 @@ double ticks_per_degree = @@____@@;   // YOUR best value from Phase 3
 
 int Turn(char direction, double angle);   // PROTOTYPE (note: returns an int)
 
-int main() {
-    Turn('R', 90.0);      // right 90
-    Turn('l', 45.0);      // left 45: lowercase works too!
-    return 0;
+int main()
+{
+	Turn('R', 90.0);      // right 90
+	Turn('l', 45.0);      // left 45: lowercase works too!
+	return 0;
 }
 
-int Turn(char direction, double angle) {
-    int ticks = angle * ticks_per_degree;   // PREDICT ticks from the model
+int Turn(char direction, double angle)
+{
+	int ticks = angle * ticks_per_degree;   // PREDICT ticks from the model
 
-    if (direction == 'R' || direction == 'r') {     // RIGHT (either case)
-        cmpc(0);                                    // right pivot watches left wheel
-        while (gmpc(0) < ticks) {
-            mav(0, 300);                            // slow velocity, left forward
-            mav(1, -300);                           // right backward
-        }
-    } else if (direction == 'L' || direction == 'l') {  // LEFT (either case)
-        cmpc(1);                                    // left pivot watches right wheel
-        while (gmpc(1) < ticks) {
-            mav(0, -300);
-            mav(1, 300);
-        }
-    } else {                                        // not R/r or L/l: bad input!
-        printf("Invalid direction! Use 'R' or 'L'.\n");
-        return 0;                                   // report FAILURE and stop here
-    }
+	if (direction == 'R' || direction == 'r')     // RIGHT (either case)
+	{
+		cmpc(0);                                    // right pivot watches left wheel
+		while (gmpc(0) < ticks)
+		{
+			mav(0, 300);                            // slow velocity, left forward
+			mav(1, -300);                           // right backward
+		}
+	}
+	else if (direction == 'L' || direction == 'l')  // LEFT (either case)
+	{
+		cmpc(1);                                    // left pivot watches right wheel
+		while (gmpc(1) < ticks)
+		{
+			mav(0, -300);
+			mav(1, 300);
+		}
+	}
+	else                                             // not R/r or L/l: bad input!
+	{
+		printf("Invalid direction! Use 'R' or 'L'.\n");
+		return 0;                                   // report FAILURE and stop here
+	}
 
-    motor(0, 0); motor(3, 0); msleep(50);           // brake-settle (your usual stop)
-    return 1;                                       // report SUCCESS
+	motor(0, 0); motor(3, 0); msleep(50);           // brake-settle (your usual stop)
+	return 1;                                       // report SUCCESS
 }
 {{< /code >}}
 

@@ -311,16 +311,16 @@ Make a new project called `Motors`. Do not forget your [[ATTRIBUTION|attribution
 
 int main ()
 {
-    // Turn motor 0 on at 50% power
-    motor(0, 50);
-    // Turn motor 3 on at 50% power
-    motor(3, 50);
-    // Keep both motors running for 2 seconds
-    msleep(2000);
-    // Turn all motors off
-    ao();
-    msleep(30);
-    return 0;
+	// Turn motor 0 on at 50% power
+	motor(0, 50);
+	// Turn motor 3 on at 50% power
+	motor(3, 50);
+	// Keep both motors running for 2 seconds
+	msleep(2000);
+	// Turn all motors off
+	ao();
+	msleep(30);
+	return 0;
 }
 ```
 

@@ -120,36 +120,37 @@ Write your run in `main()`, translating your plan into library calls. Start with
 
 #include <@@yourname@@.h>     // your full library
 
-int main() {
-    enable_servo(0);
-    enable_servo(1);
+int main()
+{
+	enable_servo(0);
+	enable_servo(1);
 
-    // ===== VERIFY START =====
-    back_until_pressed();       // backward touch: confirm we're in the box, reset origin
-    square_up();                // RESET #1: known heading before we move
+	// ===== VERIFY START =====
+	back_until_pressed();       // backward touch: confirm we're in the box, reset origin
+	square_up();                // RESET #1: known heading before we move
 
-    // ===== LEG 1: to Botguy (avoid the large cube!) =====
-    @@// Drive(...) / Turn(...) around the large cube to Botguy@@
-    square_up();                // RESET #2: square up before the precise touch
-    @@// ...touch Botguy...@@
+	// ===== LEG 1: to Botguy (avoid the large cube!) =====
+	@@// Drive(...) / Turn(...) around the large cube to Botguy@@
+	square_up();                // RESET #2: square up before the precise touch
+	@@// ...touch Botguy...@@
 
-    // ===== LEG 2: to the first cone =====
-    @@// Drive(...) / Turn(...) to cone 1@@
-    square_up();                // RESET #3
-    @@// ...collect / push cone 1...@@
+	// ===== LEG 2: to the first cone =====
+	@@// Drive(...) / Turn(...) to cone 1@@
+	square_up();                // RESET #3
+	@@// ...collect / push cone 1...@@
 
-    // ===== LEG 3: to the second cone =====
-    @@// Drive(...) / Turn(...) to cone 2@@
-    square_up();                // RESET #4
-    @@// ...collect / push cone 2...@@
+	// ===== LEG 3: to the second cone =====
+	@@// Drive(...) / Turn(...) to cone 2@@
+	square_up();                // RESET #4
+	@@// ...collect / push cone 2...@@
 
-    // ===== LEG 4: back to the starting box =====
-    @@// Drive(...) / Turn(...) toward the box@@
-    square_up();                // RESET #5
-    @@// ...bring the cones into the box...@@
-    square_up();                // RESET #6: final alignment in the box
+	// ===== LEG 4: back to the starting box =====
+	@@// Drive(...) / Turn(...) toward the box@@
+	square_up();                // RESET #5
+	@@// ...bring the cones into the box...@@
+	square_up();                // RESET #6: final alignment in the box
 
-    return 0;
+	return 0;
 }
 {{< /code >}}
 

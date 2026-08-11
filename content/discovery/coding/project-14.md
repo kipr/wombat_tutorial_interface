@@ -161,7 +161,7 @@ In project 10, you watched a switch with two possible values.
 ```c
 while (digital(bump) == 0)
 {
-    drive();
+	drive();
 }
 ```
 
@@ -173,7 +173,7 @@ In project 11, you watched a motor position counter that climbed steadily.
 ```c
 while (gmpc(left) < 4000)
 {
-    drive();
+	drive();
 }
 ```
 
@@ -184,7 +184,7 @@ Now, you are watching a brightness number that jumps around.
 ```c
 while (analog(line) < threshold)
 {
-    drive();
+	drive();
 }
 ```
 

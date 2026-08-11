@@ -94,27 +94,30 @@ int CLAW_SHUT = @@____@@;
 void move_arm(int position);    // PROTOTYPES
 void move_claw(int position);
 
-int main() {
-    enable_servo(0);            // arm
-    enable_servo(1);            // claw
+int main()
+{
+	enable_servo(0);            // arm
+	enable_servo(1);            // claw
 
-    move_arm(ARM_MAX);          // safe: moves to the top
-    move_arm(3000);             // UNSAFE number, but the clamp saves us:
-                                // the arm only goes to ARM_MAX, not 3000
-    return 0;
+	move_arm(ARM_MAX);          // safe: moves to the top
+	move_arm(3000);             // UNSAFE number, but the clamp saves us:
+	                            // the arm only goes to ARM_MAX, not 3000
+	return 0;
 }
 
-void move_arm(int position) {
-    if (position > ARM_MAX) position = ARM_MAX;   // clamp high
-    if (position < ARM_MIN) position = ARM_MIN;   // clamp low
-    set_servo_position(0, position);              // now it's guaranteed safe
+void move_arm(int position)
+{
+	if (position > ARM_MAX) position = ARM_MAX;   // clamp high
+	if (position < ARM_MIN) position = ARM_MIN;   // clamp low
+	set_servo_position(0, position);              // now it's guaranteed safe
 }
 
-void move_claw(int position) {
-    // the claw's safe ends are CLAW_OPEN and CLAW_SHUT: clamp between them
-    if (position < CLAW_OPEN) position = CLAW_OPEN;
-    if (position > CLAW_SHUT) position = CLAW_SHUT;
-    set_servo_position(3, position);
+void move_claw(int position)
+{
+	// the claw's safe ends are CLAW_OPEN and CLAW_SHUT: clamp between them
+	if (position < CLAW_OPEN) position = CLAW_OPEN;
+	if (position > CLAW_SHUT) position = CLAW_SHUT;
+	set_servo_position(3, position);
 }
 {{< /code >}}
 
@@ -140,16 +143,22 @@ A one-tick command is too small to make the servo actually move, so these functi
     With that, a loop can walk the servo to its target one step at a time --- usually moving **+2** if it's below the target or **−2** if it's above. When the target is only one tick away, it moves that final tick directly so it cannot skip over the target:
 - code: |
     int current_position = get_servo_position(0);
-    while (current_position != target_position) {  // until we arrive...
-        if (abs(current_position - target_position) == 1) {
-            set_servo_position(0, target_position);   // move the final tick
-        } else if (current_position < target_position) {
-            set_servo_position(0, current_position + 2);   // step up
-        } else {
-            set_servo_position(0, current_position - 2);   // step down
-        }
-        msleep(1);   // tiny pause: this is what makes it smooth
-        current_position = get_servo_position(0);
+    while (current_position != target_position)  // until we arrive...
+    {
+    	if (abs(current_position - target_position) == 1)
+    	{
+    		set_servo_position(0, target_position);   // move the final tick
+    	}
+    	else if (current_position < target_position)
+    	{
+    		set_servo_position(0, current_position + 2);   // step up
+    	}
+    	else
+    	{
+    		set_servo_position(0, current_position - 2);   // step down
+    	}
+    	msleep(1);   // tiny pause: this is what makes it smooth
+    	current_position = get_servo_position(0);
     }
 - text: |
     Because the loop updates `current_position` after each step, it figures out which way to go on its own. You never tell it where it started --- only where to end.
@@ -166,42 +175,56 @@ The smooth version still clamps first. Clamp the target into the safe range, *th
 Rewrite both functions to clamp, then step smoothly to the target. Start with `msleep(1)` in the loop.
 
 {{< code >}}
-void move_arm(int target_position) {
-    if (target_position > ARM_MAX) target_position = ARM_MAX;   // clamp first
-    if (target_position < ARM_MIN) target_position = ARM_MIN;
+void move_arm(int target_position)
+{
+	if (target_position > ARM_MAX) target_position = ARM_MAX;   // clamp first
+	if (target_position < ARM_MIN) target_position = ARM_MIN;
 
-    int current_position = get_servo_position(0);   // read once to avoid overloading the controller
-    while (current_position != target_position) {   // step until we arrive
-        // A 2-tick step could skip a target that is only 1 tick away.
-        if (abs(current_position - target_position) == 1) {
-            set_servo_position(0, target_position);
-        } else if (current_position < target_position) {
-            set_servo_position(0, current_position + 2);
-        } else {
-            set_servo_position(0, current_position - 2);
-        }
-        msleep(@@1@@);   // 1 ms per step = smooth motion
-        current_position = get_servo_position(0);
-    }
+	int current_position = get_servo_position(0);   // read once to avoid overloading the controller
+	while (current_position != target_position)     // step until we arrive
+	{
+		// A 2-tick step could skip a target that is only 1 tick away.
+		if (abs(current_position - target_position) == 1)
+		{
+			set_servo_position(0, target_position);
+		}
+		else if (current_position < target_position)
+		{
+			set_servo_position(0, current_position + 2);
+		}
+		else
+		{
+			set_servo_position(0, current_position - 2);
+		}
+		msleep(@@1@@);   // 1 ms per step = smooth motion
+		current_position = get_servo_position(0);
+	}
 }
 
-void move_claw(int target_position) {
-    if (target_position < CLAW_OPEN) target_position = CLAW_OPEN;   // clamp first
-    if (target_position > CLAW_SHUT) target_position = CLAW_SHUT;
+void move_claw(int target_position)
+{
+	if (target_position < CLAW_OPEN) target_position = CLAW_OPEN;   // clamp first
+	if (target_position > CLAW_SHUT) target_position = CLAW_SHUT;
 
-    int current_position = get_servo_position(1);   // read once to avoid overloading the controller
-    while (current_position != target_position) {   // step until we arrive
-        // A 2-tick step could skip a target that is only 1 tick away.
-        if (abs(current_position - target_position) == 1) {
-            set_servo_position(3, target_position);
-        } else if (current_position < target_position) {
-            set_servo_position(3, current_position + 2);
-        } else {
-            set_servo_position(3, current_position - 2);
-        }
-        msleep(@@1@@);
-        current_position = get_servo_position(1);
-    }
+	int current_position = get_servo_position(1);   // read once to avoid overloading the controller
+	while (current_position != target_position)     // step until we arrive
+	{
+		// A 2-tick step could skip a target that is only 1 tick away.
+		if (abs(current_position - target_position) == 1)
+		{
+			set_servo_position(3, target_position);
+		}
+		else if (current_position < target_position)
+		{
+			set_servo_position(3, current_position + 2);
+		}
+		else
+		{
+			set_servo_position(3, current_position - 2);
+		}
+		msleep(@@1@@);
+		current_position = get_servo_position(1);
+	}
 }
 {{< /code >}}
 

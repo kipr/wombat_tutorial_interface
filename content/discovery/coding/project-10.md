@@ -185,11 +185,11 @@ The umbrella stays up *the whole time* the [[CONDITION|condition]] is true. The 
 // While not touched
 while (digital(0) == 0)
 {
-    // Keep driving
-    motor(0, 100);
-    motor(3, 100);
-    // Tiny pause to avoid overworking the controller
-    msleep(10);
+	// Keep driving
+	motor(0, 100);
+	motor(3, 100);
+	// Tiny pause to avoid overworking the controller
+	msleep(10);
 }
 
 motor(0, 0);
@@ -283,9 +283,9 @@ int bump  = 0;
 
 while (digital(bump) == 0)
 {
-    motor(left, 100);
-    motor(right, 100);
-    msleep(10);
+	motor(left, 100);
+	motor(right, 100);
+	msleep(10);
 }
 motor(0, 0);
 motor(3, 0);
@@ -364,8 +364,8 @@ printf("Press A to start\n");
 
 while (a_button() == 0)
 {
-    // Wait: do nothing at all
-    msleep(10);
+	// Wait: do nothing at all
+	msleep(10);
 }
 
 // Run the mission

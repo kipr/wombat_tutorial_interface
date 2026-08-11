@@ -262,25 +262,25 @@ Create a new project called `Wave`. Move the arm to all three positions with a o
 
 int main ()
 {
-    // up         = 524
-    // horizontal = 1566
-    // down       = 1746
+	// up         = 524
+	// horizontal = 1566
+	// down       = 1746
 
-    // Preset to down
-    set_servo_position(0, 1746);
-    enable_servos();
-    msleep(1000);
+	// Preset to down
+	set_servo_position(0, 1746);
+	enable_servos();
+	msleep(1000);
 
-    // Horizontal
-    set_servo_position(0, 1566);
-    msleep(1000);
+	// Horizontal
+	set_servo_position(0, 1566);
+	msleep(1000);
 
-    // Up
-    set_servo_position(0, 524);
-    msleep(1000);
+	// Up
+	set_servo_position(0, 524);
+	msleep(1000);
 
-    disable_servos();
-    return 0;
+	disable_servos();
+	return 0;
 }
 ```
 

@@ -163,8 +163,8 @@ Look at these two side by side. Only the [[CONDITION|condition]] changed.
 ```c
 while (digital(bump) == 0)
 {
-    motor(left, 50);
-    motor(right, 50);
+	motor(left, 50);
+	motor(right, 50);
 }
 motor(0, 0);
 motor(3, 0);
@@ -176,8 +176,8 @@ msleep(30);
 ```c
 while (gmpc(left) < 4000)
 {
-    motor(left, 50);
-    motor(right, 50);
+	motor(left, 50);
+	motor(right, 50);
 }
 motor(0, 0);
 motor(3, 0);
@@ -198,8 +198,8 @@ cmpc(left);
 
 while (gmpc(left) < 4000)
 {
-    motor(left, 50);
-    motor(right, 50);
+	motor(left, 50);
+	motor(right, 50);
 }
 
 motor(0, 0);
@@ -232,14 +232,16 @@ Driving in reverse decreases the counter, and it will go negative. That gives yo
 ```c
 cmpc(left);
 // Drive Out
-while (gmpc(left) < 4000) {
+while (gmpc(left) < 4000)
+{
 	motor(0, 0);
 	motor(3, 0);
 	msleep(500);
 }
 
 // Drive Home
-while (gmpc(left) > 0) {
+while (gmpc(left) > 0)
+{
 	motor(0, 0);
 	motor(3, 0);
 	msleep(30);
@@ -251,7 +253,8 @@ while (gmpc(left) > 0) {
 ```c
 cmpc(left);
 // Drive Out
-while (gmpc(left) < 4000) {
+while (gmpc(left) < 4000)
+{
 	motor(0, 0);
 	motor(3, 0);
 	msleep(500);
@@ -259,7 +262,8 @@ while (gmpc(left) < 4000) {
 
 cmpc(left);
 // Drive Home
-while (gmpc(left) > -4000) {
+while (gmpc(left) > -4000)
+{
 	motor(0, 0);
 	motor(3, 0);
 	msleep(30);
@@ -407,8 +411,8 @@ cmpc(left);
 
 while (gmpc(left) < turnTicks)
 {
-    motor(left, 50);
-    motor(right, -50);
+	motor(left, 50);
+	motor(right, -50);
 }
 motor(0, 0);
 motor(3, 0);

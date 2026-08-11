@@ -116,8 +116,9 @@ Black reads *higher* than white. So "still on white" means `analog(...) < MIDPOI
 - text: |
     You want the loop to *keep going* while it's NOT yet done. The `!` (NOT) operator flips true and false, so "keep going while we are not yet both-on-black" looks like:
 - code: |
-    while ( !(analog(TOPHAT_LEFT) > MIDPOINT && analog(TOPHAT_RIGHT) > MIDPOINT) ) {
-        // ... keep squaring up ...
+    while ( !(analog(TOPHAT_LEFT) > MIDPOINT && analog(TOPHAT_RIGHT) > MIDPOINT) )
+    {
+    	// ... keep squaring up ...
     }
 - text: |
     When both sensors finally read black, the inside becomes true, the `!` flips it to false, and the loop stops.
@@ -139,32 +140,41 @@ Put it together. The loop runs until both sensors are on black. Inside, each whe
 
 void square_up();   // PROTOTYPE
 
-int main() {
-    square_up();    // straighten up against the line
-    return 0;
+int main()
+{
+	square_up();    // straighten up against the line
+	return 0;
 }
 
-void square_up() {
-    // keep going until BOTH sensors are on black
-    while ( !(analog(TOPHAT_LEFT) > MIDPOINT && analog(TOPHAT_RIGHT) > MIDPOINT) ) {
+void square_up()
+{
+	// keep going until BOTH sensors are on black
+	while ( !(analog(TOPHAT_LEFT) > MIDPOINT && analog(TOPHAT_RIGHT) > MIDPOINT) )
+	{
 
-        // LEFT wheel watches the LEFT sensor
-        if (analog(TOPHAT_LEFT) < MIDPOINT) {   // still on white?
-            motor(0, 30);                   // drive the left wheel forward
-        } else {                            // reached black
-            motor(0, 0);                    // freeze the left wheel
-        }
+		// LEFT wheel watches the LEFT sensor
+		if (analog(TOPHAT_LEFT) < MIDPOINT)   // still on white?
+		{
+			motor(0, 30);                   // drive the left wheel forward
+		}
+		else                              // reached black
+		{
+			motor(0, 0);                    // freeze the left wheel
+		}
 
-        // RIGHT wheel watches the RIGHT sensor
-        if (analog(TOPHAT_RIGHT) < MIDPOINT) {  // still on white?
-            motor(3, 30);                   // drive the right wheel forward
-        } else {                            // reached black
-            motor(3, 0);                    // freeze the right wheel
-        }
+		// RIGHT wheel watches the RIGHT sensor
+		if (analog(TOPHAT_RIGHT) < MIDPOINT)  // still on white?
+		{
+			motor(3, 30);                   // drive the right wheel forward
+		}
+		else                                  // reached black
+		{
+			motor(3, 0);                    // freeze the right wheel
+		}
 
-        msleep(10);   // small pause so we don't overwork the controller
-    }
-    motor(0, 0); motor(3, 0);   // both on black: full stop, squared up
+		msleep(10);   // small pause so we don't overwork the controller
+	}
+	motor(0, 0); motor(3, 0);   // both on black: full stop, squared up
 }
 {{< /code >}}
 
@@ -183,11 +193,12 @@ To skip over the first line, drive a few inches with the `Drive` function you bu
 {{< /callout >}}
 
 {{< code >}}
-int main() {
-    square_up();      // straighten up on the FIRST line
-    Drive(3.0);       // skip forward over the line (about 3 inches)
-    square_up();      // straighten up on the SECOND line
-    return 0;
+int main()
+{
+	square_up();      // straighten up on the FIRST line
+	Drive(3.0);       // skip forward over the line (about 3 inches)
+	square_up();      // straighten up on the SECOND line
+	return 0;
 }
 {{< /code >}}
 

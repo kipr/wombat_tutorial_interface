@@ -180,13 +180,14 @@ Type this program into your robot controller exactly as shown. Each line has a [
 
 #include <kipr/wombat.h>
 
-int main() {
-    motor(0,100);  //this turns one of the motors on
-    motor(3,100);  //this turns the other motor on
-    msleep(1000);  // hold still so the stop is visible
-    ao();          // turns the motors off after the msleep has completed
-    // Add your Bonus Mission call here when ready.
-    return 0;
+int main()
+{
+	motor(0,100);  //this turns one of the motors on
+	motor(3,100);  //this turns the other motor on
+	msleep(1000);  // hold still so the stop is visible
+	ao();          // turns the motors off after the msleep has completed
+	// Add your Bonus Mission call here when ready.
+	return 0;
 }
 {{< /code >}}
 
