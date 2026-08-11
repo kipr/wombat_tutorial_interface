@@ -16,7 +16,7 @@
 
   jobs:
     build:
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-slim
       env:
         HUGO_VERSION: 0.164.0
 
@@ -62,7 +62,7 @@
 
     deploy:
       needs: build
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-slim
       environment:
         name: github-pages
         url: ${{ steps.deployment.outputs.page_url }}
