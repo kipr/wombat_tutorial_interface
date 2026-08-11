@@ -179,8 +179,11 @@ Before you ever put this on the board, **hold the robot up off the ground** and 
 Type this program. The position [[VARIABLE|variables]] are back from before --- you'll reset `y_position` to zero the moment the robot reaches the wall.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 2, Big Idea 1: The Touch Sensor
+
 # Name: _______________________   Date: ___________
 
 import os, sys
@@ -243,6 +246,7 @@ rows:
 Once your program works, wrap the whole back-until-pressed behavior into a [[FUNCTION|function]] so you can reuse it. Remember, in Python you don't write a separate [[PROTOTYPE|prototype]] --- you just **define** the function above `main()`, then call it inside `main()`.
 
 {{< code >}}
+
 #!/usr/bin/python3
 import os, sys
 sys.path.append("/usr/lib")

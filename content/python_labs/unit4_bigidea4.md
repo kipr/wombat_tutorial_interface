@@ -142,8 +142,11 @@ You don't need to score on every line --- driving and turning set up the scoring
 Now write it. Start `score` at 0. Follow the **do → score → report** rhythm: run the maneuver with your library functions, add the points, then `print` the report. The skeleton below shows the structure and the scoring/reporting lines --- **you fill in the driving, turning, and stacking** from your Phase 4 plan.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 4, Big Idea 4: Keeping Score
+
 # Name: _______________________   Date: ___________
 
 import os, sys

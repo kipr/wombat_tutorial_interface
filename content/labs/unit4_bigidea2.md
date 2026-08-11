@@ -134,6 +134,7 @@ Put it together. The loop runs until both sensors are on black. Inside, each whe
 // Name: _______________________   Date: ___________
 
 #include <kipr/wombat.h>
+
 #include <@@yourname@@.h>     // has TOPHAT_LEFT, TOPHAT_RIGHT, MIDPOINT
 
 void square_up();   // PROTOTYPE

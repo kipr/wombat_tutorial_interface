@@ -238,8 +238,11 @@ Hold the robot up and pass the line under the sensor by hand. Watch the wheels c
 You'll reuse the [[ENCODER|encoder]] skeleton from `Tick_Drive` --- clear the counter, loop to a [[TICK|tick]] target, brake at the end --- but inside the loop you'll put the `if/else` that steers. Type your own `MIDPOINT` from Phase 3 at the top. Define `line_follow` above `main()`, as always.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 2, Big Idea 4: Reading the Line
+
 # Name: _______________________   Date: ___________
 
 import os, sys

@@ -61,6 +61,7 @@ You'll add these names to your [[LIBRARY|library]] as [[VARIABLE|variables]], so
 {{< /callout >}}
 
 {{< code >}}
+
 # add these to your library, with your other variables
 TOPHAT_LEFT  = 0    # front-left tophat sensor on analog port 0
 TOPHAT_RIGHT = 1    # front-right tophat sensor on analog port 1
@@ -130,8 +131,11 @@ Black reads *higher* than white. So "still on white" means `k.analog(...) < MIDP
 Put it together. The loop runs until both sensors are on black. Inside, each wheel has its **own** `if` [[STATEMENT|statement]], checking its own sensor and either driving or freezing. Use a slow speed so it has time to react.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 4, Big Idea 2: Squaring Up
+
 # Name: _______________________   Date: ___________
 
 import os, sys

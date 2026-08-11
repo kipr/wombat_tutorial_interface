@@ -18,7 +18,7 @@ heading: "Deciding What to Do"
 subheading: "Until now your robot has followed orders. Today it starts choosing."
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Deciding What to Do"
-mission_label: "Mission 3 advanced — 22 pts"
+mission_label: "Mission 3 advanced — 22 points"
 sidebar:
   title: "Activity Sections"
   start_level: 2
@@ -137,7 +137,7 @@ The [[CONDITION|condition]] in the parentheses is written exactly the same way a
 
 ### The one difference that matters
 
-**while --- keeps asking**
+#### `while` --- Keeps asking
 
 ```c
 while (digital(bump) == 0)
@@ -147,15 +147,9 @@ while (digital(bump) == 0)
 }
 ```
 
-Checks, runs the
+Checks, runs the block, checks again, runs again... until the answer changes.
 
-block
-
-, checks again, runs again... until the answer changes.
-
-The robot stays here.
-
-**if --- asks once**
+#### `if` --- Asks once
 
 ```c
 if (digital(bump) == 0)
@@ -165,21 +159,18 @@ if (digital(bump) == 0)
 }
 ```
 
-Checks once. Runs the block once if true, skips it if false. Either way
+Checks once. Runs the block once if true, skips it if false. Either way the robot moves on immediately.
 
-the robot moves on immediately.
-
-{{< callout title="Same Words, Completely Different Job" variant="gold" >}}
-**while** = "keep doing this until something changes."
-
-         **if** = "look at this once, then decide what happens next."
+{{< callout title="Similar Words, Completely Different Job" variant="gold" >}}
+- **while** means "keep doing this until something changes."
+- **if** means "look at this once, then decide what happens next."
 
 Swap one for the other by accident and your robot either freezes in place or blows straight past a check it needed to make.
 {{< /callout >}}
 
-### Three shapes
+### Multiple checks
 
-Two separate ifs
+#### Two separate `if` [[STATEMENT|statements]]
 
 ```text
 if (shoes are on)
@@ -193,13 +184,9 @@ if (I am hungry)
 }
 ```
 
-Two questions about
+Two questions about different things. Both can be true. Both can be false. They do not affect each other.
 
-different things
-
-. Both can be true. Both can be false. They do not affect each other.
-
-if / else
+#### `if` / `else`
 
 ```text
 if (shoes are on)
@@ -212,19 +199,9 @@ else
 }
 ```
 
-Exactly one
+Exactly one of these always runs. `else` has no condition --- it means "every other possibility."
 
-of these runs, always.
-
-else
-
-has no
-
-condition
-
---- it means "every other possibility."
-
-if / else if / else
+#### `if` / `else if` / `else`
 
 ```text
 if (shoes are on)
@@ -241,11 +218,7 @@ else
 }
 ```
 
-Checked top to bottom. The
-
-first
-
-true one runs and the rest are skipped, even if they are also true.
+Checked top to bottom. The first true one runs and the rest are skipped, even if they are also true.
 
 {{< callout title="Order Changes the Answer" variant="navy" >}}
 In an `else if` chain the robot stops at the first true condition. So put the most specific check first and the catch-all last --- or your specific case will never get a look in.
@@ -253,7 +226,7 @@ In an `else if` chain the robot stops at the first true condition. So put the mo
 
 ### A decision inside a decision
 
-You can put an `if` inside another `if`. That is called [[NESTED|nested]].
+You can put an `if` inside another `if`. This is called [[NESTED|nesting]].
 
 ```c
 // Did I grab something?
@@ -290,7 +263,7 @@ Same rule as `while`, and it is just as hard to spot.
 
 ### Step 1 --- Your first decision
 
-New project called `Choices`. Write a program that checks the touch [[SENSOR|sensor]] once and prints a different message either way.
+Create a new project called `Choices`. Write a program that checks the touch [[SENSOR|sensor]] once and prints a different message either way.
 
 ```c
 if (digital(bump) == 1)
@@ -310,6 +283,7 @@ Run it twice --- once holding the sensor pressed, once not.
 - key: p3_first_if
   label: "I get a different message depending on the sensor"
 {{< /checklist >}}
+
 ### Step 2 --- Swap if for while and watch what breaks
 
 Change your `if` to a `while`. Leave everything else alone. Run it without [[TOUCHING]] the sensor.
@@ -352,6 +326,7 @@ The `&&` means "and" --- keep waiting while *neither* button is pressed. You do 
 - key: p3_side_select
   label: "One program runs from either starting box"
 {{< /checklist >}}
+
 ### Step 4 --- Did I actually grab it?
 
 This is the fix for what you saw in Try It. Put a touch sensor where a held cube presses it, or check whether the claw closed further than it should have.
@@ -380,6 +355,7 @@ Now sabotage it again --- move the pom aside like you did in Try It.
 - key: p3_verify_grab
   label: "My robot notices a failed grab and does something about it"
 {{< /checklist >}}
+
 ### Step 5 --- A three-way choice
 
 Use `else if` to pick between three actions based on how far along the robot is.
@@ -401,7 +377,7 @@ else
 
 {{< ask key="p3_order_matters" label="Order matters" >}}Swap the first two conditions around and run it again. What goes wrong, and why?{{< /ask >}}
 
-### Step 6 --- Mission 3 Advanced --- two opposite stacks13 pts
+### Step 6 --- Mission 3 Advanced --- two opposite stacks for 13 points
 
 {{< mission-summary mission="3" video=true >}}
 {{< /mission-summary >}}
@@ -476,6 +452,7 @@ rows:
 - key: p3_m3_nocheck
   label: "No cube is shared between the two stacks"
 {{< /checklist >}}
+
 ### Step 7 --- Run it five times
 
 {{< gridtable >}}
@@ -541,6 +518,7 @@ rows:
       - key: p3_r5_pts
         aria: "R5 points"
 {{< /gridtable >}}
+
 ## Score It --- Checkpoint
 
 ### My score
@@ -568,6 +546,7 @@ rows:
         aria: Total
       - text: 22
 {{< /gridtable >}}
+
 ### if or while?
 
 For each one, say which you would use and why.
@@ -605,6 +584,7 @@ rows:
       - key: p4_iw4_why
         aria: "IW 4 why"
 {{< /gridtable >}}
+
 ### Spot the bug
 
 {{< gridtable >}}
@@ -630,6 +610,7 @@ rows:
       - key: p4_bug_order
         aria: "Bug order"
 {{< /gridtable >}}
+
 ### Can you do it again?
 
 {{< checklist >}}
@@ -648,6 +629,7 @@ rows:
 - key: p4_can_sides
   label: "I can write one program that runs from either starting box"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_whose_mistake" label="Whose mistake" >}}In Try It your robot carried nothing across the field and placed it carefully in a basket. Would you call that a mistake by the robot, or a mistake by the programmer?{{< /ask >}}

@@ -108,11 +108,17 @@ Plug one motor into **port 0** and the other into **port 3**.
 - key: p1_on_block
   label: "My robot is on a block with the wheels in the air"
 {{< /checklist >}}
+
 ### The plug goes in two ways --- and it matters
 
 There is no mark on the motor plug telling you which way is right. You can put it in either way around, and the two ways do opposite things.
 
 A motor spins in whichever direction the electricity flows through it. Flip the plug, and the wheel spins the other way.
+
+{{< figrow >}}
+- src: kit/wambat_motor_leds.jpg
+  alt: "The Wombat motor LEDs turning green"
+{{< /figrow >}}
 
 {{< callout title="The Wheel-Spin Trick" variant="gold" >}}
 You do not need a program to find out which way a motor is wired. **Turn the wheel with your hand** and watch the little light next to that [[PORT NUMBER|port number]] on the board.
@@ -197,6 +203,7 @@ A minus sign in front of the power number reverses that motor. This is how you b
   alt: "Motors plugged in --- ports 0 and 3."
   caption: "A motor plugged in --- ports 0 and 3."
 {{< /figrow >}}
+
 ### Which end is the front?
 
 Your robot has two driven wheels and one small free-rolling wheel called a [[CASTER|caster]].
@@ -337,6 +344,7 @@ Now put it back.
 - key: p3_step_msleep_back
   label: "msleep is back and the program works again"
 {{< /checklist >}}
+
 ### Step 4 --- Prove that ao() matters
 
 Now delete the `ao();` line instead. Compile. Run. Watch carefully.
@@ -349,6 +357,7 @@ Put it back. Leaving motors running with no `ao()` is one of the most common bug
 - key: p3_step_ao_back
   label: "ao() is back"
 {{< /checklist >}}
+
 ### Step 5 --- Explore power
 
 Change both power numbers, run, and record what you notice. Keep `msleep(2000)` the same every time so it is a fair test.
@@ -395,6 +404,7 @@ Run it and watch the LEDs by the ports as well as the wheels.
 - key: p3_step_reverse
   label: "Both wheels spun backward"
 {{< /checklist >}}
+
 ### Step 7 --- Make it disagree with itself
 
 Now give the two motors opposite powers:
@@ -448,6 +458,7 @@ Now pick one and actually run it, to check you were right.
 - key: p3_step_own_command
   label: "I tested one of my own commands and it did what I expected"
 {{< /checklist >}}
+
 ## Score It --- Checkpoint
 
 No field mission yet --- that starts in Project 4. This checkpoint is about whether your motors are set up correctly and whether you can control them on purpose.
@@ -480,6 +491,7 @@ rows:
       - key: p4_good_power
         aria: "Good steady power"
 {{< /gridtable >}}
+
 ### Read the code
 
 What will this program do? Write it out before you run it.
@@ -517,6 +529,7 @@ msleep(30);
 - key: p4_can_ao
   label: "I always finish a motor program with `ao()`"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_troubleshoot" label="Two things to check" >}}A teammate says their robot "just doesn't work" --- they run the program and nothing moves. Name two things you would check first, and why.{{< /ask >}}

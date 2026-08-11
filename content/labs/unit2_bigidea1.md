@@ -243,6 +243,7 @@ rows:
 Once your program works, wrap the whole back-until-pressed behavior into a [[FUNCTION|function]] so you can reuse it. Build it the way you've been doing it: write the **[[PROTOTYPE|prototype]]** above `main()`, call it inside `main()`, and put the full **definition** below.
 
 {{< code >}}
+
 #include <kipr/wombat.h>
 
 int x_position = 0;

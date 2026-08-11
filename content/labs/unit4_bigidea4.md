@@ -145,6 +145,7 @@ Now write it. Start `score` at 0. Follow the **do → score → report** rhythm:
 // Name: _______________________   Date: ___________
 
 #include <kipr/wombat.h>
+
 #include <@@yourname@@.h>     // your full library
 
 int main() {

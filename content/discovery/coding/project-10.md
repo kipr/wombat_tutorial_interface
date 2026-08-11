@@ -18,7 +18,7 @@ heading: "Feeling for Things"
 subheading: ""
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Feeling for Things"
-mission_label: "Mission 13 advanced — 13 pts"
+mission_label: "Mission 13 advanced — 13 points"
 sidebar:
   title: "Activity Sections"
   start_level: 2
@@ -106,27 +106,25 @@ If that is how you sorted them, you found the split that programmers care about.
 {{< /figrow >}}
 A [[SENSOR|sensor]] turns something physical --- a touch, a brightness, a distance --- into a number your program can read.
 
-**Digital --- what you have today**
+### Digital --- What you have today
 
-A [[DIGITAL|digital]] sensor is a light switch. Two readings, nothing between:
+A [[DIGITAL|digital]] sensor is like a light switch. Two readings, nothing between:
 
-`0` --- not touched
-`1` --- touched
+- `0`: not touched
+- `1`: touched
 
 A touch sensor is a mechanical switch. Pressing it pushes two contacts together and completes a circuit.
 {.muted}
 
-**Analog --- Project 14**
+### Analog --- Introduced in project 14
 
-An [[ANALOG|analog]] sensor gives a whole range of numbers, from `0` to `4095`.
-
-Light sensors and rangefinders work this way --- "how bright," not "bright or dark."
+An [[ANALOG|analog]] sensor gives a whole range of numbers, from `0` to `4095`. Light sensors and rangefinders work this way --- "how bright," not "bright or dark."
 
 You will meet these later. Today, everything is 0 or 1.
 {.muted}
 
 {{< callout title="0 and 1 Mean More Than Numbers" variant="navy" >}}
-In programming, **1 means true, yes, on** and **0 means false, no, off**. That is why a sensor reading of 1 can be read as "yes, I am [[TOUCHING]] something."
+In programming, **1 means true, yes, on** and **0 means false, no, off**. That is why a sensor reading of 1 can be read as "yes, I am touching something."
 {{< /callout >}}
 
 ### Why msleep cannot help you here
@@ -155,7 +153,7 @@ One `=` means *make this equal to that* --- it is what you used to set a [[VARIA
 
 Two `==` means *is this equal to that?* --- it is a question.
 
-Use one where you meant two and your program may still [[COMPILE|compile]] and run. It will just do the wrong thing, quietly. This is one of the hardest bugs to find, so check it every time.
+Use one where you meant two and your program may still [[COMPILE|compile]] and run, then do something wrong. This is one of the hardest bugs to find, so check it every time.
 {{< /safety >}}
 
 ### The while loop
@@ -203,7 +201,7 @@ msleep(30);
 {{< callout title="Read It Out Loud" variant="gold" >}}
 *"While the sensor in port 0 reads zero --- while nothing is [[TOUCHING]] it --- keep both motors running. As soon as it reads one, stop."*
 
-Notice the loop condition is checking for **0**, not 1. You keep going while it is *not* pressed. Students get this backwards constantly.
+Notice the loop condition is checking for **0**, not 1. You keep going while it is *not* pressed. Students often mix this up.
 {{< /callout >}}
 
 {{< safety title="⚠ No msleep, No ao Inside the Loop" >}}
@@ -248,6 +246,7 @@ rows:
 - key: p3_sensor_works
   label: "My sensor changes between 0 and 1 when I press it"
 {{< /checklist >}}
+
 ### Step 2 --- Drive Until Bump --- in your hands first
 
 {{< safety title="⚠ Hold the Robot in the Air for the First Run" >}}
@@ -256,9 +255,9 @@ Do not put this on a table or the field yet. **Hold the robot up** so the wheels
 A loop that never sees its sensor never stops. Find that out in your hands, not off the edge of a table.
 {{< /safety >}}
 
-New project called `Drive Until Bump`. Plan it as [[PSEUDOCODE|pseudocode]] first, then write it.
+Create a new project called `Drive Until Bump`. Plan it as [[PSEUDOCODE|pseudocode]] first, then write it.
 
-```text
+```c
 // 1. Print a message so I know it started
 // 2. While the sensor is NOT pressed, drive forward
 // 3. When it is pressed, fall out of the loop
@@ -271,6 +270,7 @@ New project called `Drive Until Bump`. Plan it as [[PSEUDOCODE|pseudocode]] firs
 - key: p3_floor_test
   label: "It works on the floor against a wall or a book"
 {{< /checklist >}}
+
 ### Step 3 --- Put your variables back in
 
 You spent Project 9 learning why bare numbers are a bad idea. Do not abandon that now.
@@ -299,6 +299,7 @@ Note that `bump` and `left` both hold 0 --- but they mean completely different t
 - key: p3_variables_in
   label: "My program uses variables and still works"
 {{< /checklist >}}
+
 ### Step 4 --- Flip the condition and predict
 
 Change `== 0` to `== 1`. **Before you run it,** write down what you think will happen.
@@ -319,7 +320,7 @@ Here is what makes a touch sensor genuinely useful: **a wall is a place your rob
 
 New project. Drive *backward* until the sensor presses against the starting box wall, then drive forward a set distance into the box and stop.
 
-```text
+```c
 // 1. Drive backward while the sensor is not pressed
 // 2. Exit the loop when it touches the wall
 // 3. Stop and settle
@@ -335,6 +336,7 @@ No matter where the robot wandered off to, it can come back and touch a wall ---
 - key: p3_go_home
   label: "My robot finds the wall and ends up in the same place every time"
 {{< /checklist >}}
+
 ### Step 6 --- Add a stop and settle
 
 A robot that has been driving is still moving when the loop ends. Momentum does not care about your program.
@@ -377,7 +379,7 @@ Add this to the top of a program. Now your robot waits for you instead of drivin
 {{< /checklist >}}
 {{< ask key="p3_empty_loop" label="Empty loop" >}}This loop has nothing inside it but a tiny pause. Is it still doing something? What?{{< /ask >}}
 
-### Step 8 --- Mission 13 Advanced --- all three cubes13 pts
+### Step 8 --- Mission 13 Advanced --- all three cubes for 13 points
 
 {{< mission-summary mission="13" video=true >}}
 {{< /mission-summary >}}
@@ -405,6 +407,7 @@ Use the touch sensor to make your approach repeatable. If your robot can find a 
 - key: p3_m13_stands
   label: "It is still standing after the robot backs away"
 {{< /checklist >}}
+
 ### Step 9 --- Run it five times
 
 {{< gridtable >}}
@@ -508,6 +511,7 @@ rows:
       - key: p4_cond_button
         aria: "Condition button"
 {{< /gridtable >}}
+
 ### Spot the bug
 
 Each of these is wrong. Say what happens when you run it.
@@ -535,6 +539,7 @@ rows:
       - key: p4_bug_long_sleep
         aria: "Bug long sleep"
 {{< /gridtable >}}
+
 ### Can you do it again?
 
 {{< checklist >}}
@@ -553,6 +558,7 @@ rows:
 - key: p4_can_known_spot
   label: "I can use contact with a wall to give my robot a position it can trust"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_time_vs_touch" label="Time vs touch" >}}Since Project 3, every distance your robot has driven was really a length of *time*. What does a touch sensor give you that a stopwatch never could?{{< /ask >}}

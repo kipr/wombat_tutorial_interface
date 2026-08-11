@@ -78,8 +78,11 @@ Keep your `ARM_MIN`, `ARM_MAX`, `CLAW_OPEN`, and `CLAW_SHUT` from Big Idea 1 han
 Build both functions with clamping. They take the position you *want*, fix it if it's unsafe, then move. Define them above `main()` --- your usual structure.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 3, Big Idea 2: Smooth Operator
+
 # Name: _______________________   Date: ___________
 
 import os, sys

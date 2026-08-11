@@ -156,8 +156,11 @@ As always, hold the robot off the ground and run the program once to confirm it 
 Both versions are identical except for how they stop. Build Version A first, run your five trials, then change only the stop to make Version B and run five more. Define both helper functions above `main()`, as always.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 2, Big Idea 2: Brake vs. Coast
+
 # Name: _______________________   Date: ___________
 
 import os, sys

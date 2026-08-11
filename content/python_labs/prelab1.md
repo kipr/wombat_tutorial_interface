@@ -99,6 +99,7 @@ Python is read line by line rather than compiled ahead of time, but the same rul
 Make a new project called **hello** and type this in. Do not paste it --- type it.
 
 {{< code >}}
+
 #!/usr/bin/python3
 import os, sys
 sys.path.append("/usr/lib")

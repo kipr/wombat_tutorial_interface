@@ -84,6 +84,7 @@ rows:
       - key: p1_count_closed
         aria: "Count closed"
 {{< /gridtable >}}
+
 ### Now break it
 
 {{< safety title="⚠ Your Teammate Rebuilt the Claw Last Night" >}}
@@ -130,7 +131,7 @@ int arm = 0;
 | Code / part | What it means |
 | --- | --- |
 | `int` | Short for [[INTEGER\|integer]] --- a whole number. Ports and servo positions are always whole numbers. |
-| `arm` | The name. Pick something you and your team will understand next month. |
+| `arm` | The name. Pick something simple and descriptive. |
 | `= 0` | The value it holds. |
 | `;` | A [[SEMICOLON\|semicolon]], same as any other [[STATEMENT\|statement]]. |
 
@@ -201,11 +202,11 @@ Read both versions out loud. One is a list of numbers. The other tells you what 
 
 ### Five reasons this is worth the trouble
 
-- You do not have to remember which port is the arm and which is the claw --- the computer remembers for you.
-- You do not have to remember which number is up, down, open, or closed.
-- Your program is easier to read.
-- Your program is easier to debug.
-- If a port or a position changes, **you change one line.**
+1. You do not have to remember which port is the arm and which is the claw --- the computer remembers for you.
+1. You do not have to remember which number is up, down, open, or closed.
+1. Your program is easier to read.
+1. Your program is easier to debug.
+1. If a port or a position changes, **you change one line.**
 
 ### Name things properly
 
@@ -221,7 +222,7 @@ int R = 3;
 A name nobody can decode is barely better than a bare number.
 {.muted}
 
-{{< callout title="A Yellow Banner Is Not an Error" >}}
+{{< callout title="A Yellow Banner Is Not an Error" variant="gold" >}}
 If you declare a variable and never use it, you will get *Compilation Succeeded with Warnings* --- a yellow banner instead of a green one. The program still runs.
 
 But warnings exist for a reason. A variable you declared and never used usually means you forgot to swap out one of the bare numbers.
@@ -354,6 +355,7 @@ Same rule as building it in the first place. Convert one section, compile, run i
 - key: p3_big_converted
   label: "My whole Project 8 program uses variables and still scores the same"
 {{< /checklist >}}
+
 ### Step 4 --- Now do the claw change again
 
 Same problem as Try It. Your claw's closed position drops by 200. Change it.
@@ -405,7 +407,7 @@ disable_servos();
 Hold that thought. Project 10 gives you the tool that makes it one line instead of thirty.
 {.muted}
 
-### Step 6 --- Mission 5 --- Top Shelf Delivery20 pts
+### Step 6 --- Mission 5 --- Top Shelf Delivery for 20 points
 
 {{< mission-summary mission="5" video=true >}}
 {{< /mission-summary >}}
@@ -493,6 +495,7 @@ rows:
       - key: p3_r5_pts
         aria: "R5 points"
 {{< /gridtable >}}
+
 ## Score It --- Checkpoint
 
 ### My score
@@ -520,6 +523,7 @@ rows:
         aria: Total
       - text: 20
 {{< /gridtable >}}
+
 ### Write the variable
 
 Turn each comment into a proper variable declaration.
@@ -543,6 +547,7 @@ rows:
       - key: p4_write_left
         aria: "Write left variable"
 {{< /gridtable >}}
+
 ### Read the code
 
 Given `int arm = 0;` and `int down = 230;` --- what does each line do?
@@ -587,6 +592,7 @@ That last one is legal code that does something you almost certainly do not want
 - key: p4_can_change
   label: "I can change a variable's value part-way through a program"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_what_improved" label="What improved" >}}Nothing your robot does changed in this project --- it drives, grabs, and stacks exactly as it did before. So what actually got better?{{< /ask >}}

@@ -95,7 +95,7 @@ On each servo cord, the **orange wire must be closest to the screen**. Plugging 
 - src: servo/plugged-port-0.jpg
   alt: A servo in port 0.
 - src: servo/centering-horn.jpg
-  alt: Centre the horn before you trust any position number.
+  alt: center the horn before you trust any position number.
 {{< /figrow >}}
 
 {{< safety title="⚠ This step protects your servo --- do it carefully" noprint=true >}}
@@ -165,8 +165,11 @@ Every `set_servo_position` in your code must use a number between the safe value
 Type your four safe values at the top, then build the grab sequence: open the claw, lower the arm, close on the cube, and lift. Each move gets a pause so the servo has time to arrive.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 3, Big Idea 1: Meet the Servos
+
 # Name: _______________________   Date: ___________
 
 import os, sys
@@ -174,6 +177,7 @@ sys.path.append("/usr/lib")
 import _kipr as k
 
 # Use YOUR safe values from the widget. Never command past these values,
+
 # or you can BURN OUT the servo by forcing it into a hard stop.
 ARM_MIN   = @@____@@   # lowest safe arm position (down)
 ARM_MAX   = @@____@@   # highest safe arm position (up)

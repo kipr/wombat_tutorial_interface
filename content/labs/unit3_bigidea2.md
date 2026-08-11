@@ -83,6 +83,7 @@ Build both functions with clamping. They take the position you *want*, fix it if
 // Name: _______________________   Date: ___________
 
 #include <kipr/wombat.h>
+
 #include <stdlib.h>            // provides abs() for the smooth-movement loop
 
 int ARM_MIN   = @@____@@;   // your safe values from Big Idea 1

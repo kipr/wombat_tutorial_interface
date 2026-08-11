@@ -98,6 +98,7 @@ The IDE turns your C into numbers the Wombat can follow. That step is called com
 Make a new project called **hello_c** and type this in. Do not paste it --- type it.
 
 {{< code >}}
+
 #include <kipr/wombat.h>
 
 int main()

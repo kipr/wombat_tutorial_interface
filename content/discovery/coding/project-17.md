@@ -18,7 +18,7 @@ heading: "Repeating Without Retyping"
 subheading: "The last loop — and the last thirty-eight points on the field."
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Repeating Without Retyping"
-mission_label: "Missions 7 · 11 · 16 · 17 — 38 pts"
+mission_label: "Missions 7 · 11 · 16 · 17 — 38 points"
 sidebar:
   title: "Activity Sections"
   start_level: 2
@@ -257,7 +257,8 @@ rows:
 - key: p3_square
   label: "My robot drives a square from a four-iteration loop"
 {{< /checklist >}}
-### Step 3 --- Mission 11 Bonus --- two orange poms7 pts
+
+### Step 3 --- Mission 11 Bonus --- two orange poms for 7 points
 
 {{< mission-summary mission="11" video=true >}}
 {{< /mission-summary >}}
@@ -276,7 +277,8 @@ The second pom is somewhere different, so your function needs an [[ARGUMENT|argu
 - key: p3_m11
   label: "Two orange poms are in the same basket at the end"
 {{< /checklist >}}
-### Step 4 --- Missions 16 and 17 Bonuses --- stack them higher22 pts
+
+### Step 4 --- Missions 16 and 17 Bonuses --- stack them higher for 22 points
 
 <!-- unresolved mission card: Missions 16 & 17 --- Shelving and Racking -->
 
@@ -314,6 +316,7 @@ This is the same delivery as the base, aimed somewhere else --- which is exactly
 - key: p3_m7
   label: "Two enclosures each hold a blue and an orange pom"
 {{< /checklist >}}
+
 ### Step 6 --- Put the loops in your library
 
 Anything you wrapped in a loop that worked --- `deliver_poms(int howMany)`, `smooth_arm(int from, int to)` --- belongs in your library file. Add it, save, and note it in your [[COMMENT|comment]] block.
@@ -322,6 +325,7 @@ Anything you wrapped in a loop that worked --- `deliver_poms(int howMany)`, `smo
 - key: p3_library
   label: "My new loop functions are in my library and documented"
 {{< /checklist >}}
+
 ### Step 7 --- Run it five times
 
 {{< gridtable >}}
@@ -399,6 +403,7 @@ rows:
       - key: p3_r5_pts
         aria: "R5 points"
 {{< /gridtable >}}
+
 ## Score It --- Checkpoint
 
 ### My score
@@ -436,6 +441,7 @@ rows:
         aria: Total
       - text: 38
 {{< /gridtable >}}
+
 ### Which loop?
 
 {{< gridtable >}}
@@ -465,6 +471,7 @@ rows:
       - key: p4_l5
         aria: "Loop 5"
 {{< /gridtable >}}
+
 ### How many times?
 
 {{< gridtable >}}
@@ -490,6 +497,7 @@ rows:
       - key: p4_c4
         aria: "Count 4"
 {{< /gridtable >}}
+
 ### Can you do it again?
 
 {{< checklist >}}
@@ -508,6 +516,7 @@ rows:
 - key: p4_can_smooth
   label: "I can move a servo smoothly instead of snapping it"
 {{< /checklist >}}
+
 ### Every point on the field
 
 Add up what you scored across the whole strand. The right-hand column is what was available.

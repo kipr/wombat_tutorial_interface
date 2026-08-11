@@ -13,6 +13,7 @@ credit: "KIPR · Botball Explorer · Syntax highlighting test fixture"
 ## Shortcode C override
 
 {{< code lang="c" >}}
+
 #include <kipr/wombat.h>
 int main() {
     int speed = @@750@@;  // highlighted value
@@ -23,6 +24,7 @@ int main() {
 ## Page-default Python shortcode
 
 {{< code >}}
+
 #!/usr/bin/python3
 import _kipr as k
 

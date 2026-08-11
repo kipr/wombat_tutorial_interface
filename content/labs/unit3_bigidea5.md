@@ -175,7 +175,9 @@ With stack 1 done, your robot has to move over and line up with the second pair 
 Now write it for real. Here is the **frame** --- nothing more. Include your library, enable your [[SERVO|servos]], and you'll fill each section with the calls **from your own planning tables** in Phases 4 and 5. There are no answers to copy here on purpose: the sequence lives in your plan, and only you have it.
 
 {{< code >}}
+
 #include <kipr/wombat.h>
+
 #include <@@yourname@@.h>     // all your tuned tools
 
 int main() {

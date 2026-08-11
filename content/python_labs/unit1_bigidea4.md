@@ -186,8 +186,11 @@ rows:
 Type this program into your robot [[CONTROLLER|controller]]. Notice the two position variables set to zero at the top, and how each move updates `y_position` right after it happens. The `print()` line shows you what the robot has stored.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 1, Big Idea 4: Position Keeper
+
 # Name: _______________________   Date: ___________
 
 import os, sys
@@ -197,6 +200,7 @@ import _kipr as k
 DRIVE_SPEED = 50
 
 # The robot's stored position. We set BOTH to zero before we start.
+
 # This is our "origin." Every move is measured from here.
 x_position = 0
 y_position = 0

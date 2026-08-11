@@ -212,8 +212,11 @@ A function has to be defined *before* the code that uses it. Since `main()` is w
 Your program structure should look like this. Notice the movement commands are now **functions you name**, and each uses the named speed variables set at the top. Fill in each function body from your Phase 3 decomposition. Only add a function call in `main()` once that function is tested and working.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 1, Big Idea 2: Red Cube Breakdown
+
 # Name: _______________________   Date: ___________
 
 import os, sys
@@ -246,9 +249,13 @@ def turn_right():
     k.ao()
 
 # Write and test ONE sub-task function before moving to the next.
+
 # Build each function using drive_forward() and turn_right().
+
 # Use the names from your Phase 3 list. For example, write a function that
+
 # drives the robot to the cube, pushes it off the line,
+
 # or returns the robot to the starting box.
 
 # Main is called here, so all functions it uses must be defined above it.

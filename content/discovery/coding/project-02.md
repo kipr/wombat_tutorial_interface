@@ -134,8 +134,7 @@ A comment starts with two slashes. The computer ignores everything after them on
 int main ()
 {
     // You can put a comment on its own line
-    printf("Hello World!\n");
-    // You can also put a comment after a statement
+    printf("Hello World!\n"); // You can also put a comment after a statement
     return 0;
 }
 ```
@@ -190,7 +189,7 @@ Compile. Then run it on the Wombat: from the Home Screen tap **Programs**, pick 
 
 Add three comment lines at the very top, above the `#include`:
 
-```text
+```c
 // Author: your name here
 // Program purpose: prints text to the screen
 // Created: today's date
@@ -212,7 +211,7 @@ Write a program that prints `Hello World!` and then prints your own name on the 
 
 Plan it as pseudocode first:
 
-```text
+```c
 // 1. Display "Hello World!" on the screen
 // 2. Display my name on the screen
 ```
@@ -269,6 +268,7 @@ Now put a two-second pause between your two `printf` lines. Compile and run.
 - key: p3_step_msleep
   label: "My name appeared two seconds after Hello World"
 {{< /checklist >}}
+
 ### Step 5 --- Turn your pseudocode into real comments
 
 Good programmers leave the plan in the finished program. Add a comment to the end of each line describing what it does, so your program reads like this:

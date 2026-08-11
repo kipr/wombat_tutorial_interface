@@ -18,7 +18,7 @@ heading: "Arm and Claw Together"
 subheading: "Two servos, one system. This is the biggest scoring project in the whole strand."
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Arm and Claw Together"
-mission_label: "Missions 12 · 3 · 11 · 13 bonus — 37 pts"
+mission_label: "Missions 12 · 3 · 11 · 13 bonus — 37 points"
 sidebar:
   title: "Activity Sections"
   start_level: 2
@@ -131,7 +131,7 @@ You already know every command you need. Nothing new gets introduced here --- yo
 
 Put them at the top of every program, in the **name = number** format:
 
-```text
+```c
 // Your positions will be different --- do not copy these!
 // arm        = 0
 // up         = 1234
@@ -165,12 +165,12 @@ Arm up, claw open, *then* enable. The robot wakes up in a known, safe shape ever
 
 | Code / part | What it means |
 | --- | --- |
-| `1. Arm up, claw open` | Preset, then enable. Safe starting shape. |
-| `2. Drive to the object` | Arm stays up and out of the way while driving. |
-| `3. Stop --- ao()` | Do not grab while still rolling. |
-| `4. Arm down` | Claw comes down around the object. Wait for it. |
-| `5. Close claw` | Now, and only now, grip. |
-| `6. Arm up` | Lift. The object comes with it. |
+| 1. Arm up, claw open | Preset, then enable. Safe starting shape. |
+| 2. Drive to the object | Arm stays up and out of the way while driving. |
+| 3. Stop --- ao() | Do not grab while still rolling. |
+| 4. Arm down | Claw comes down around the object. Wait for it. |
+| 5. Close claw | Now, and only now, grip. |
+| 6. Arm up | Lift. The object comes with it. |
 
 Every single grab in this project is that sequence. You will type it four times today. Remember how that feels --- Project 12 is about fixing it.
 
@@ -180,8 +180,8 @@ Look at how a mission is scored, not just what it asks for. Two missions can wan
 
 | Code / part | What it means |
 | --- | --- |
-| `⚡ Live Judged` | A judge watches it happen during the match. It counts the moment it is true --- even if it falls apart afterwards. **Your robot may be holding it.** |
-| `📋 Final Position` | Scored after the match ends, from whatever is left on the field. Your robot has to let go and the result has to survive on its own. |
+| **Live Judged** | A judge watches it happen during the match. It counts the moment it is true --- even if it falls apart afterwards. **Your robot may be holding it.** |
+| **Final Position** | Scored after the match ends, from whatever is left on the field. Your robot has to let go and the result has to survive on its own. |
 
 {{< callout title="Robot Support Is Allowed --- Sometimes" variant="gold" >}}
 The [[ON TOP OF]] definition says support from a robot is permitted. So for a live-judged stack, your claw can still be holding the cube in place when the judge sees it.
@@ -243,11 +243,11 @@ A pom squashes, a cube does not. That is why they get different numbers.
 
 ### Step 2 --- Grab it
 
-New project called `Grab`. No driving at all --- place a cube inside the open claw by hand.
+Create a new project called `Grab`. No driving at all --- place a cube inside the open claw by hand.
 
 Write the [[PSEUDOCODE|pseudocode]] first. Two rules: the arm **starts up** and the claw **starts open**.
 
-```text
+```c
 // 1. Preset arm up and claw open, then enable
 // 2. Move the arm down
 // 3. Close the claw
@@ -263,9 +263,9 @@ Write the [[PSEUDOCODE|pseudocode]] first. Two rules: the arm **starts up** and 
 
 ### Step 3 --- Go grab
 
-New project called `Go Grab`. Now add driving --- the cube sits a short distance away.
+Create a new project called `Go Grab`. Now add driving --- the cube sits a short distance away.
 
-```text
+```c
 // 1. Preset arm up, claw open, enable
 // 2. Drive forward to the cube
 // 3. Stop --- ao()
@@ -295,7 +295,7 @@ Add to the end of your program: carry the cube somewhere, set it down, and back 
 {{< /checklist >}}
 {{< ask key="p3_drag_fix" label="Drag fix" >}}What did you have to change to stop dragging the cube when you backed off?{{< /ask >}}
 
-### Step 5 --- Mission 13 Bonus --- your first stack7 pts
+### Step 5 --- Mission 13 Bonus --- Your First Stack for 7 points
 
 {{< mission-summary mission="13" video=true >}}
 {{< /mission-summary >}}
@@ -309,7 +309,8 @@ Both cubes have to originate from the Unstraight Cube area. Stacking an unstraig
 - key: p3_m13_stack
   label: "One Unstraight Cube is [[ON TOP OF]] another"
 {{< /checklist >}}
-### Step 6 --- Mission 12 --- complete it16 pts
+
+### Step 6 --- Mission 12 --- Stack and Grab for 16 points
 
 {{< mission-summary mission="12" video=true >}}
 {{< /mission-summary >}}
@@ -340,7 +341,7 @@ does_not_score:
 {{< /checklist >}}
 {{< ask key="p3_lower_cube" label="Why lower cube" >}}Read the "does not score" list again. Why does the *lower* cube have to be the one touching the line?{{< /ask >}}
 
-### Step 7 --- Mission 3 --- Mixed Freight7 pts
+### Step 7 --- Mission 3 --- Mixed Freight for 7 points
 
 {{< mission-summary mission="3" video=true >}}
 {{< /mission-summary >}}
@@ -350,7 +351,8 @@ Either order works for the base. Green on yellow, yellow on green --- both score
 - key: p3_m3_base
   label: "I have one mixed-colour stack"
 {{< /checklist >}}
-### Step 8 --- Mission 11 --- Hazard Disposal7 pts
+
+### Step 8 --- Mission 11 --- Hazard Disposal for 7 points
 
 {{< mission-summary mission="11" video=true >}}
 {{< /mission-summary >}}
@@ -366,6 +368,7 @@ A pom only has to *partially extend into* the interior of the basket. It does no
 - key: p3_m11_base
   label: "An orange pom is [[IN]] a basket and stays there"
 {{< /checklist >}}
+
 ### Step 9 --- Run the whole thing five times
 
 Chain all four missions into one program, same as Project 6 --- [[COMMENT|comment]] banners, one section at a time.
@@ -501,6 +504,7 @@ rows:
         aria: Total
       - text: 37
 {{< /gridtable >}}
+
 ### My full servo card
 
 Seven numbers now. Copy them somewhere you will not lose them.
@@ -549,6 +553,7 @@ rows:
       - key: p4_basket
         aria: "Basket used"
 {{< /gridtable >}}
+
 ### Live or final?
 
 Say how each one is judged, and what that means for whether your claw can still be holding it.
@@ -580,6 +585,7 @@ rows:
       - key: p4_h_m11
         aria: "M11 holding"
 {{< /gridtable >}}
+
 ### Can you do it again?
 
 {{< checklist >}}
@@ -598,6 +604,7 @@ rows:
 - key: p4_can_nostrain
   label: "I never close the claw past the point where the object stops it"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_edit_count" label="Edit count" >}}Count how many times the six-step grab sequence appears in your program. Now imagine your claw's closed position changes by 30. How many separate places would you have to edit?{{< /ask >}}

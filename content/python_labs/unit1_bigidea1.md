@@ -176,8 +176,11 @@ Write your plan as a numbered list. Do not write code yet. Be specific enough th
 Type this program into your robot controller exactly as shown. Each line has a [[COMMENT|comment]] (after the `#`) that explains what it does. The comments are notes for you --- the robot ignores them.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 1, Big Idea 1: Waypoint Navigator
+
 # Name: _______________________   Date: ___________
 
 import os, sys

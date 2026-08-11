@@ -215,8 +215,11 @@ rows:
 Type this program into your robot [[CONTROLLER|controller]]. The rule lives inside `main()`. Change `freight_type` at the top to test both paths. Fill in the actions to match your Phase 3 plan.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 1, Big Idea 3: Freight Sorter
+
 # Name: _______________________   Date: ___________
 
 import os, sys
@@ -226,6 +229,7 @@ import _kipr as k
 DRIVE_SPEED = 50
 
 # A number YOU set. Think of it as the freight you're sorting.
+
 # Change this value and the robot makes a different decision.
 freight_type = @@1@@     # try 1, then try 2
 

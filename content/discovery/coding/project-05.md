@@ -110,6 +110,7 @@ rows:
       - key: p1_path_neg100
         aria: "Path at negative 100"
 {{< /gridtable >}}
+
 ### What did your data tell you?
 
 {{< gridtable >}}
@@ -156,44 +157,30 @@ Everything else in this project is those two sentences applied on purpose.
 
 ### The three shapes
 
-**Radius turn**
-
-[[RADIUS TURN|radius turn]]
-
-Both wheels go the same direction at different speeds. The robot sweeps a wide arc, like a car going around a bend.
-
+[[RADIUS TURN|Radius turn]], where both wheels go the same direction at different speeds.
+The robot sweeps a wide arc, like a car going around a bend.
 Sharpness comes from how different the two numbers are.
-{.muted}
 
+```c
 motor(0, 50);
-
 motor(3, 25);
+```
 
-**One-wheel turn**
-
-[[ONE-WHEEL TURN|one-wheel turn]]
-
-One wheel drives, the other sits still. The robot swings around the stopped wheel --- like ring around the rosie.
-
+[[ONE-WHEEL TURN|One-wheel turn]], where one wheel drives, the other sits still. The robot swings around the stopped wheel --- like ring around the rosie.
 More power on the moving wheel means a faster swing, not a tighter one.
-{.muted}
 
+```c
 motor(0, 50);
-
 motor(3, 0);
+```
 
-**Zero radius turn**
-
-[[ZERO RADIUS TURN|zero radius turn]]
-
-The wheels go opposite directions. The robot spins in place without moving forward or backward at all.
-
+[[ZERO RADIUS TURN|Zero radius turn]], where the wheels go opposite directions. The robot spins in place without moving forward or backward at all.
 Also called a pivot or spin turn. This is what you use for precise angles.
-{.muted}
 
+```c
 motor(0, 50);
-
 motor(3, -50);
+```
 
 {{< callout title="Which One Should You Use?" variant="navy" >}}
 **Zero radius** when you need to point a different direction without giving up your position --- the usual choice on a crowded field.
@@ -211,11 +198,12 @@ Two moving wheels fight friction better than one moving wheel does. A one-wheel 
 
 {{< mission-summary mission="12" video=true >}}
 {{< /mission-summary >}}
+
 ## Do It --- Learn to Aim
 
 ### Step 1 --- Drive a big circle
 
-New project called `Circles`. Put a chair in the middle of an open floor.
+Create a new project called `Circles`. Put a chair in the middle of an open floor.
 
 Write a program that drives your robot in one big circle all the way around the chair, without [[TOUCHING]] it. Use **only one set** of `motor()`, `msleep()`, and `ao()` --- no stopping and restarting.
 
@@ -240,6 +228,7 @@ rows:
 - key: p3_step_big_circle
   label: "One full circle around the chair, no contact"
 {{< /checklist >}}
+
 ### Step 2 --- Drive a tight circle
 
 Swap the chair for something small --- a tissue box works. Circle that instead, same rule: one set of commands.
@@ -298,7 +287,7 @@ rows:
 
 ### Step 4 --- Build a 90° turn
 
-New project called `Right Angle`. Use a **zero radius** turn and find the `msleep()` that gives you a 90° turn.
+Create a new project called `Right Angle`. Use a **zero radius** turn and find the `msleep()` that gives you a 90° turn.
 
 Keep both powers the same the whole time. Change only the time.
 
@@ -370,7 +359,7 @@ Start in your starting box, exactly the way you decided in Project 4. Drive out,
 
 Write your plan as [[PSEUDOCODE|pseudocode]] first:
 
-```text
+```c
 // 1. Drive forward out of the starting box
 // 2. Turn toward the spilled cubes
 // 3. Drive up to them
@@ -420,6 +409,7 @@ rows:
 - key: p3_step_no_knock
   label: "It did not knock any cubes out of the area on the way in"
 {{< /checklist >}}
+
 ### Step 7 --- Run it five times
 
 Same rule as Project 4. One good approach is luck.
@@ -516,6 +506,7 @@ rows:
       - key: p4_match_correct
         aria: "Match small correction"
 {{< /gridtable >}}
+
 ### Can you do it again?
 
 {{< checklist >}}
@@ -532,6 +523,7 @@ rows:
 - key: p4_can_approach
   label: "My robot reaches the spilled cubes in a workable position five times running"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_error_source" label="Where the error came from" >}}Your square test almost certainly did not close perfectly. Where did the error come from --- was the robot doing the wrong thing, or was your program asking for something it cannot deliver?{{< /ask >}}

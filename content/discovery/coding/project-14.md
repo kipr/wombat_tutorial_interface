@@ -18,7 +18,7 @@ heading: "Seeing Light and Dark"
 subheading: "A sensor that answers with a number, not a yes."
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Seeing Light and Dark"
-mission_label: "Missions 14 · 18 — 35 pts"
+mission_label: "Missions 14 · 18 — 35 points"
 sidebar:
   title: "Activity Sections"
   start_level: 2
@@ -59,7 +59,12 @@ meta:
 
 Your touch sensor answers one question: *am I [[TOUCHING]] something?* Yes or no. Nothing else.
 
-This one is different. Plug the [[REFLECTANCE|reflectance]] sensor --- the little round one, sometimes called a tophat --- into an **[[ANALOG|analog]]** [[PORT|port]]. Then open the Sensor List on the Wombat and watch the number while you hold it over things.
+This one is different. Plug the [[REFLECTANCE|reflectance]] sensor --- the little one, sometimes called a tophat --- into an **[[ANALOG|analog]]** [[PORT|port]]. Then open the Sensor List on the Wombat and watch the number while you hold it over things.
+
+{{< figrow >}}
+- src: kit/2smalltophat.jpg
+  alt: "The reflectance (tophat) sensor."
+{{< /figrow >}}
 
 {{< safety title="⚠ Hold It About a Quarter Inch Up" >}}
 Pointed straight down, roughly 1/4 inch off the surface. [[TOUCHING]] the surface or held way up both give you useless numbers.
@@ -114,16 +119,10 @@ So *you* have to decide where black starts. The sensor will not do it for you.
 {{< /figrow >}}
 An analog sensor reports a value across a wide range instead of just 0 or 1.
 
-~100
+- Values around 1000: white, lots of light bounced back.
+- Values around 3000: black, most light absorbed
 
---- white, lots of light bounced back
-
-~2500
-
---- black, most light absorbed
-
-Your numbers will not match anyone else's. Different sensor, different mounting height, different room lighting.
-{.muted}
+Your numbers may not match anyone else's. Different sensor, different mounting height, different room lighting.
 
 ### Your threshold
 
@@ -131,7 +130,7 @@ A [[THRESHOLD|threshold]] is the number you pick as the dividing line. Below it,
 
 The usual starting point is halfway between your two readings:
 
-```text
+```c
 threshold = (white + black) / 2
 
 // For example: (100 + 2500) / 2 = 1300
@@ -149,41 +148,39 @@ That is a starting guess, not a final answer. You will adjust it.
 
 The loop has not changed at all. Only the [[CONDITION|condition]] it watches.
 
-**Project 10 --- a switch**
+**Switch**
 
-```text
-while (digital(bump)
-       == 0)
+In project 10, you watched a switch with two possible values.
+
+```c
+while (digital(bump) == 0)
 {
-    drive;
+    drive();
 }
 ```
 
-Two possible values.
 
-**Project 11 --- a count**
+**Count**
 
-```text
-while (gmpc(left)
-       < 4000)
+In project 11, you watched a motor position counter that climbed steadily.
+
+```c
+while (gmpc(left) < 4000)
 {
-    drive;
+    drive();
 }
 ```
 
-A number that climbs steadily.
+**Now, watch a brightness**
 
-**Now --- a brightness**
+Now, you are watching a brightness number that jumps around.
 
-```text
-while (analog(line)
-       < threshold)
+```c
+while (analog(line) < threshold)
 {
-    drive;
+    drive();
 }
 ```
-
-A number that jumps around a bit.
 
 Read the new one out loud: *"While the sensor is seeing something lighter than my threshold, keep driving. The moment it sees something darker, stop."*
 
@@ -192,7 +189,7 @@ Read the new one out loud: *"While the sensor is seeing something lighter than m
 
 **Drives straight over the line and keeps going?** Your threshold is too high. Move it down, toward your white value.
 
-Also check the obvious: is the sensor pointed straight down, about a quarter inch off the surface?
+Also check the position of the sensor: is the sensor pointed straight down, about a quarter inch off the surface?
 {{< /callout >}}
 
 ### Starting on a light
@@ -239,11 +236,12 @@ rows:
       - key: p3_threshold
         aria: Threshold
 {{< /gridtable >}}
+
 ### Step 2 --- Find the Line
 
-New project called `Find the Line`. Drive forward until the sensor sees black, then stop.
+Create a new project called `Find the Line`. Drive forward until the sensor sees black, then stop.
 
-```text
+```c
 // 1. Print "Looking for the black line"
 // 2. While the sensor reads less than my threshold, drive forward
 // 3. Fall out of the loop when it reads more than the threshold
@@ -283,6 +281,7 @@ rows:
 - key: p3_finds_line
   label: "My robot stops on the black line"
 {{< /checklist >}}
+
 ### Step 3 --- Three lines, three distances
 
 The real test of a threshold is whether it works when you did not tune it for that exact spot.
@@ -330,6 +329,7 @@ When the robot stops, it is *sitting on black*. If you immediately start a loop 
 - key: p3_two_lines
   label: "My robot finds a line going forward and another going backward"
 {{< /checklist >}}
+
 ### Step 5 --- Start on a light
 
 Add `wait_for_light()` to the top of a program and follow the calibration routine on the Wombat's screen.
@@ -342,7 +342,7 @@ Now your robot sits still until someone shines a light at it.
 {{< /checklist >}}
 {{< ask key="p3_why_light" label="Why light start" >}}Why would every robot at a tournament need to start this way, rather than someone pressing a button on each one?{{< /ask >}}
 
-### Step 6 --- Mission 14 Bonus --- a cone [[IN THE ZONE]] · 7 pts
+### Step 6 --- Mission 14 Bonus --- A cone [[IN THE ZONE]] · 7 pts
 
 {{< mission-summary mission="14" video=true >}}
 {{< /mission-summary >}}
@@ -356,7 +356,8 @@ Use your line-finding program to drive to the Loading Zone [[BOUNDARY|boundary]]
 - key: p3_m14_bonus
   label: "A cone is [[IN]] the Loading Zone and the other is still [[OFF]] the line"
 {{< /checklist >}}
-### Step 7 --- Mission 18 --- Botguy and both cones28 pts
+
+### Step 7 --- Mission 18 --- Botguy and both cones for 28 points
 
 {{< mission-summary mission="18" video=true >}}
 {{< /mission-summary >}}
@@ -396,6 +397,7 @@ Every part of this is final position, so nothing may drift out before the match 
 - key: p3_m18_nothing_moved
   label: "Nothing got knocked out while placing the last one"
 {{< /checklist >}}
+
 ### Step 8 --- Run it five times
 
 {{< gridtable >}}
@@ -495,6 +497,7 @@ rows:
         aria: Total
       - text: 35
 {{< /gridtable >}}
+
 ### My sensor card
 
 {{< gridtable >}}
@@ -524,6 +527,7 @@ rows:
       - key: p4_light_port
         aria: "Light port"
 {{< /gridtable >}}
+
 ### [[IN]] or [[FULLY WITHIN]]?
 
 Say whether each one satisfies [[IN]], [[FULLY WITHIN]], both, or neither.
@@ -551,6 +555,7 @@ rows:
       - key: p4_def4
         aria: "Definition 4"
 {{< /gridtable >}}
+
 ### Fix the threshold
 
 {{< gridtable >}}
@@ -572,6 +577,7 @@ rows:
       - key: p4_fix3
         aria: "Fix 3"
 {{< /gridtable >}}
+
 ### Can you do it again?
 
 {{< checklist >}}
@@ -590,6 +596,7 @@ rows:
 - key: p4_can_defs
   label: "I can tell [[IN]] from [[FULLY WITHIN]] and place an object to satisfy the stricter one"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_bright_room" label="Bright room" >}}Your threshold works perfectly in your classroom. The tournament room has huge windows and much brighter light. What might happen, and what would you do about it on the day?{{< /ask >}}

@@ -113,9 +113,13 @@ Once your library exists, you can take it anywhere. Select it and use the **File
 Now fill your library with every reusable function you've built. Organize it in two clear sections, in this order: **[[VARIABLE|variables]] at the top**, then **function definitions**. This is the same structure you've used all along --- now it lives in your library. Python doesn't use separate [[PROTOTYPE|prototypes]] like you may have used before; a function just needs to be defined above the point where it's called.
 
 {{< code filename="yourname.py" >}}
+
 # ============================================================
+
 # yourname.py: My Botball function library
+
 #  Every reusable tool I've built, in one place.
+
 # ============================================================
 
 import os, sys
@@ -123,7 +127,9 @@ sys.path.append("/usr/lib")
 import _kipr as k
 
 # ---- VARIABLES (my robot's tuned values) ----
+
 # These live here so the whole library can use them. You can also
+
 # move them into main() if you'd rather set them per program.
 ARM_MIN   = @@____@@
 ARM_MAX   = @@____@@
@@ -136,14 +142,21 @@ SLOW = @@____@@
 # ---- FUNCTION DEFINITIONS (the recipes) ----
 
 # Servo movement notes:
+
 #   - A one-tick command does not actually move the servo, so step by two.
+
 #   - Repeated get_servo_position calls can overload the controller. Store
+
 #     each reading in current_position and refresh it once per loop.
 
 # move_arm: Smoothly moves the arm servo (port 0) to a position.
+
 #   - Clamps the value into the safe range so the servo can't be
+
 #     forced past a hard stop and burned out.
+
 #   - Steps two ticks at a time for smooth motion.
+
 #   Pass in the arm position you want (e.g. ARM_MAX to raise).
 def move_arm(target_position):
     if target_position > ARM_MAX: target_position = ARM_MAX
@@ -161,8 +174,11 @@ def move_arm(target_position):
         current_position = k.get_servo_position(0)
 
 # move_claw: Smoothly moves the claw servo (port 3) to a position.
+
 #   Works just like move_arm, but for the claw. Clamps between
+
 #   CLAW_SHUT and CLAW_OPEN so the claw never strains.
+
 #   Pass in CLAW_OPEN to open, CLAW_SHUT to close on a cube.
 def move_claw(target_position):
     if target_position < CLAW_OPEN: target_position = CLAW_OPEN
@@ -180,7 +196,9 @@ def move_claw(target_position):
         current_position = k.get_servo_position(1)
 
 # back_until_pressed: Drives the robot straight backward until the
+
 #   touch sensor on k.digital(0) is pressed against a wall, then stops.
+
 #   Use it to return to a wall and reset to a known position.
 def back_until_pressed():
     while k.digital(0) == 0:
@@ -190,7 +208,9 @@ def back_until_pressed():
     k.motor(0, 0); k.motor(3, 0); k.msleep(50)
 
 # Tick_Drive: Drives the robot straight forward a measured distance.
+
 #   Pass in the number of encoder ticks to travel. Clears the
+
 #   counter, drives until it reaches 'ticks', then brakes.
 def Tick_Drive(ticks):
     k.cmpc(0)
@@ -200,8 +220,11 @@ def Tick_Drive(ticks):
     k.motor(0, 0); k.motor(3, 0); k.msleep(50)
 
 # line_follow: Follows a line for a measured distance using the
+
 #   Tophat sensor on k.analog(0). Steers with k.mav based on whether
+
 #   the reading is above MIDPOINT (black) or below (white).
+
 #   Pass in the number of ticks to follow before stopping.
 def line_follow(ticks):
     k.cmpc(0)
@@ -224,6 +247,7 @@ Notice every function has a comment explaining what it does, written for someone
 Now the payoff. In your main program, add your library with a `from yourname import *` line at the top --- right under the KIPR one. Then your `main` can call any function in your library. Test **every** function once to prove the library works.
 
 {{< code filename="main.py" >}}
+
 #!/usr/bin/python3
 import os, sys
 sys.path.append("/usr/lib")

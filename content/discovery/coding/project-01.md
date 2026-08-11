@@ -134,6 +134,7 @@ Flip the black power switch on the side of the Wombat. Wait for the home screen 
 - key: p3_step_power
   label: "Home screen is showing"
 {{< /checklist >}}
+
 ### Step 2 --- Find your network information
 
 On the Wombat's screen, tap **About**. Look for the rows labeled **SSID**, **Password**, and **Wi-Fi**. Write them on your card below --- you will need them every time.
@@ -179,6 +180,7 @@ You will probably see something like *"no internet connection"* or *"connected w
 - key: p3_step_joined
   label: "My computer is connected to the Wombat's network"
 {{< /checklist >}}
+
 ### Step 5 --- Open the programming tools
 
 {{< figrow >}}
@@ -193,6 +195,7 @@ You should land on the KIPR Software Suite. Click **KISS IDE**.
 - key: p3_step_ide
   label: "I can see the KISS IDE"
 {{< /checklist >}}
+
 ### Step 6 --- Make your own folder
 
 {{< figrow >}}
@@ -203,12 +206,19 @@ You should land on the KIPR Software Suite. Click **KISS IDE**.
 {{< /figrow >}}
 In **Project Explorer**, click the **+** to add a user. Type your name. Click **Create**.
 
-{{< safety title="⚠ Naming rules --- these matter" >}}
+{{< safety title="⚠ Naming rules — these matter" >}}
 No periods. No apostrophes. No exclamation points. No emojis. No symbols of any kind. Letters, numbers, and plain spaces only.
 
-**Good:** `sarah folder` · `Botguy folder` · `First Project`
+*Good:*
+- `sarah folder`
+- `Botguy folder`
+- `First Project`
 
-             **Bad:** `m.j.c.` · `my amazing project!` · `Mrs Davis's project` · `:)`
+*Bad:* 
+- `m.j.c.`
+- `my amazing project!`
+- `Mrs Davis's project`
+- `:)`
 
 A bad name will not fail right away. It will break something later, and it will be hard to find.
 {{< /safety >}}
@@ -271,6 +281,7 @@ There is already code in the editor. You did not write it and you do not need to
 - key: p3_step_compiled
   label: "It compiled with no errors"
 {{< /checklist >}}
+
 ### Step 10 --- Run it --- on the robot
 
 {{< figrow >}}
@@ -304,6 +315,7 @@ The one in the editor is for checking your code quickly from your computer. The 
 - key: p3_step_run_bot
   label: "I ran it from the robot's Programs list and saw it on the Wombat's screen"
 {{< /checklist >}}
+
 ### Step 11 --- Shut down properly
 
 {{< figrow >}}
@@ -363,6 +375,7 @@ There is no field mission yet. Your score for this project is whether you can do
 - key: p4_can_backup
   label: "I know at least one way to back up my code"
 {{< /checklist >}}
+
 ### Trouble log
 
 Something almost certainly went wrong. That is normal and it is worth writing down --- you will hit the same thing again.
@@ -391,6 +404,7 @@ rows:
       - key: p4_trouble_3b
         aria: "Fix 3"
 {{< /gridtable >}}
+
 ### Think about it
 
 {{< ask key="p4_who_decided" label="Who decided what the robot did" >}}You pressed Run and the robot did something. Who decided what it would do --- you, or the person who wrote the code that was already there?{{< /ask >}}

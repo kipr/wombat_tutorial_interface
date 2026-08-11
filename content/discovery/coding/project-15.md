@@ -18,7 +18,7 @@ heading: "Following the Line"
 subheading: "The sensor stops being a stop sign and becomes a steering wheel."
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Following the Line"
-mission_label: "Missions 6 · 7 · 16 · 17 — 51 pts"
+mission_label: "Missions 6 · 7 · 16 · 17 — 51 points"
 sidebar:
   title: "Activity Sections"
   start_level: 2
@@ -72,7 +72,7 @@ rows:
       - key: p1_v_edge
         aria: Edge
   - cells:
-      - text: "Dead centre of the line"
+      - text: "Dead center of the line"
       - key: p1_v_center
         aria: Center
   - cells:
@@ -84,6 +84,7 @@ rows:
       - key: p1_v_white2
         aria: "Other white"
 {{< /gridtable >}}
+
 ### Now the question that matters
 
 {{< short-answer key="p1_tell_apart" label="Can it tell apart" prompt="Look at your first reading and your last reading --- both on white, one either side of the line. Can the sensor tell them apart?" >}}
@@ -91,40 +92,20 @@ rows:
 {{< ask key="p1_which_way" label="Which way drifted" >}}Your robot drifts off the line. Just from the number, can it work out *which way* it drifted?{{< /ask >}}
 
 {{< safety title="⚠ One Sensor Cannot Stay on the Middle" >}}
-Sitting on the centre of the line, everything looks the same in both directions. Drift left, the reading goes up. Drift right, the reading goes up. The robot has no idea which happened, so it cannot know how to correct.
+Sitting on the center of the line, everything looks the same in both directions. Drift left, the reading goes up. Drift right, the reading goes up. The robot has no idea which happened, so it cannot know how to correct.
 
 Following the middle of a line with one sensor is impossible. So you do not.
 {{< /safety >}}
 
 ## Learn It --- Follow the Edge, Not the Line
 
-Put the sensor on **one edge** of the line and everything becomes answerable. Now dark and light mean two different directions.
+Put the sensor on **one edge** of the line and everything becomes answerable. Now dark and light mean two different directions, which you can write using two conditions.
 
-On the edge
 
-Exactly where you want to be. Reading sits near your
+- Reading is high: Drifted onto black, so steer away from the line.
+- Reading is low: Drifted onto white so teer back toward the line.
 
-threshold
-
-.
-
-Drifted onto black
-
-Reading is high. Steer
-
-away
-
-from the line.
-
-Drifted onto white
-
-Reading is low. Steer
-
-back toward
-
-the line.
-
-{{< callout title="The Robot Never Drives Straight" variant="gold" >}}
+{{< callout title="The Robot Won't Straight" variant="gold" >}}
 It zigzags. Too dark, arc one way. Too light, arc back. Over and over, several times a second.
 
 From a distance it looks like the robot is following the line. Up close it is constantly overcorrecting --- and that is exactly what makes it work.
@@ -162,7 +143,7 @@ msleep(30);
 | --- | --- |
 | `while (...)` | Keeps the whole thing repeating. Without it the robot checks once and gives up. |
 | `if / else` | Picks one of two steering actions, every single time through. |
-| `no ao() inside` | Never stop the motors inside a line-follow loop. The robot should steer continuously, not stutter. |
+| no `ao()` inside | Never stop the motors inside a line-follow loop. The robot should steer continuously, not stutter. |
 
 {{< safety title="⚠ Never One Motor Forward and One Backward" >}}
 It is tempting to make the turns sharper by reversing a wheel. **Do not.** In a loop that switches direction several times a second, reversing a motor over and over will burn it out.
@@ -212,7 +193,7 @@ Now the line keeps you straight and the counter tells you when you have arrived.
 
 ### Step 1 --- Build the follower
 
-New project called `Line Follow`. Start with the two-choice loop. Put the sensor on the **left** edge of a line and let it run until you press a button.
+Create a new project called `Line Follow`. Start with the two-choice loop. Put the sensor on the **left** edge of a line and let it run until you press a button.
 
 {{< gridtable >}}
 columns:
@@ -261,6 +242,7 @@ rows:
 - key: p3_follows
   label: "My robot follows a straight line without losing it"
 {{< /checklist >}}
+
 ### Step 2 --- Switch edges
 
 Move the robot to the **other** edge of the same line and run the identical program.
@@ -291,7 +273,8 @@ Turn it into a [[FUNCTION|function]] while you are at it --- `follow_line(int ti
 - key: p3_follow_fn
   label: "I have a `follow_line()` function that stops after a set distance"
 {{< /checklist >}}
-### Step 5 --- Mission 16 --- Freight Shelving9 pts
+
+### Step 5 --- Mission 16 --- Freight Shelving for 9 points
 
 {{< mission-summary mission="16" video=true >}}
 {{< /mission-summary >}}
@@ -306,7 +289,8 @@ Robot support is permitted, but this is final position scored --- so the cube ha
 - key: p3_m16
   label: "A spilled cube is [[ON TOP OF]] the Large Green Cube and stays there"
 {{< /checklist >}}
-### Step 6 --- Mission 17 --- Freight Racking9 pts
+
+### Step 6 --- Mission 17 --- Freight Racking for 9 points
 
 {{< mission-summary mission="17" video=true >}}
 {{< /mission-summary >}}
@@ -322,7 +306,8 @@ The Unstraight Cubes are the same three you stacked for Mission 13 back in Proje
 - key: p3_m17
   label: "An unstraight cube is [[ON TOP OF]] the Large Brown Cube and stays there"
 {{< /checklist >}}
-### Step 7 --- Mission 7 --- Hazard Containment11 pts
+
+### Step 7 --- Mission 7 --- Hazard Containment for 11 points
 
 {{< mission-summary mission="7" video=true >}}
 {{< /mission-summary >}}
@@ -341,6 +326,7 @@ Two colours, one enclosure. Poms roll, so the second delivery is the one that kn
 - key: p3_m7
   label: "One blue and one orange pom are both [[FULLY WITHIN]] the same enclosure"
 {{< /checklist >}}
+
 ### Step 8 --- Mission 6 --- Pallet Builder · 22 pts
 
 {{< mission-summary mission="6" video=true >}}
@@ -363,6 +349,7 @@ The bonus is stricter than it looks. The pallet must be [[FULLY WITHIN]] the sta
 - key: p3_m6_bonus
   label: "The pallet ends [[FULLY WITHIN]] a starting box, off every line"
 {{< /checklist >}}
+
 ### Step 9 --- Run it five times
 
 {{< gridtable >}}
@@ -452,6 +439,7 @@ rows:
       - key: p3_r5_pts
         aria: "R5 points"
 {{< /gridtable >}}
+
 ## Score It --- Checkpoint
 
 ### My score
@@ -494,6 +482,7 @@ rows:
         aria: Total
       - text: 51
 {{< /gridtable >}}
+
 ### My line-following settings
 
 {{< gridtable >}}
@@ -519,6 +508,7 @@ rows:
       - key: p4_edge
         aria: Edge
 {{< /gridtable >}}
+
 ### Can you do it again?
 
 {{< checklist >}}
@@ -537,6 +527,7 @@ rows:
 - key: p4_can_budget
   label: "I can work out which missions compete for the same cubes"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_person_analogy" label="Person analogy" >}}Your line follower checks and steers several times a second and never drives perfectly straight. Would a person following a line with their eyes shut, feeling for the edge with a foot, do anything different?{{< /ask >}}

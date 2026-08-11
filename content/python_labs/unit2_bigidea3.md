@@ -177,8 +177,11 @@ Hold the robot off the ground and run the program once. Watch the wheels spin an
 Type this program. Notice `Tick_Drive` now takes an argument --- `ticks` --- so you can call it with any distance. Define it above `main()`, as always.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 2, Big Idea 3: Drive by the Numbers
+
 # Name: _______________________   Date: ___________
 
 import os, sys

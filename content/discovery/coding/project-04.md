@@ -139,10 +139,9 @@ You cannot make the motors identical. You *can* give them different numbers so t
 If your robot drifts **left**, the left wheel is going too slow --- or the right one too fast. Speed up the left, or slow down the right.
 
 If it drifts **right**, do the opposite.
-{{< /callout >}}
 
-Change one wheel at a time, by 2 or 3 at a time. Big jumps [[OVERSHOOT|overshoot]] and you end up chasing it.
-{.muted}
+Change one wheel at a time, by 2 or 3 at a time. Big jumps [[OVERSHOOT|overshoot]] and you'll struggle to align the wheels.
+{{< /callout >}}
 
 {{< callout title="It Will Drift Again Later" >}}
 The correction that works on a cold robot may not work after twenty runs --- motors change as they warm up. The more power you use, the bigger the correction you need. Expect to re-check this on competition day.
@@ -215,7 +214,7 @@ Your robot must start in the same spot every single run, or nothing you measure 
 
 ### Step 2 --- Get out to the zone
 
-New project called `Waypoint`. [[ATTRIBUTION|Attribution]] [[COMMENT|comments]] at the top. Drive forward and stop --- that is all for now.
+Create a new project called `Waypoint`. Put [[ATTRIBUTION|attribution]] [[COMMENT|comments]] at the top. Drive forward and stop --- that is all for now.
 
 Start with power 50 and guess a time. Run it. If you stopped short, add time. If you overshot, take time away.
 
@@ -256,6 +255,7 @@ rows:
 - key: p3_step_in_zone
   label: "My robot stops [[IN THE ZONE]]"
 {{< /checklist >}}
+
 ### Step 3 --- Fix the drift
 
 Watch which way your robot pulls as it drives out. Then adjust one wheel's power --- small changes only.
@@ -316,6 +316,7 @@ rows:
       - key: p3_final_right
         aria: "Final right power"
 {{< /gridtable >}}
+
 ### Step 4 --- Make the stop obvious
 
 Add `ao();` then `msleep()` so the robot sits still in the zone. The mission says stop --- the judge needs to see it.
@@ -402,6 +403,9 @@ rows:
 
 ### Step 7 --- Do the other side
 
+{{< mission-summary mission="10" video=true >}}
+{{< /mission-summary >}}
+
 Copy your program into a new project called `Waypoint Bravo` and run Mission 10 from the **right** starting box.
 
 Remember the rule: each mission needs its own out-and-back. You cannot score both bonuses with one trip home.
@@ -449,6 +453,7 @@ rows:
         aria: "Total points"
       - text: "**4**"
 {{< /gridtable >}}
+
 ### My numbers
 
 Keep these. Project 5 starts from your straight-driving powers.
@@ -481,6 +486,7 @@ rows:
       - key: p4_num_hold_ms
         aria: "Hold time"
 {{< /gridtable >}}
+
 ### Can you do it again?
 
 {{< checklist >}}
@@ -499,6 +505,7 @@ rows:
 - key: p4_can_repeat
   label: "My program scored on five runs in a row"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_timing_risk" label="Risks of timing-based driving" >}}Your robot scored, but nothing in your program knows where the robot actually is. It only knows how long to push. What could go wrong on competition day that would make your timing wrong?{{< /ask >}}

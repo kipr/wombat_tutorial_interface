@@ -81,8 +81,11 @@ Here's the catch: in a pivot, one wheel rolls forward (its tick count climbs) an
 Build `turn_right` with a tick value you'll tune. Start with a guess, run it, measure the actual angle with a protractor, and adjust `RIGHT_TICKS` until it's a true 90°.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 3, Big Idea 4: Perfect Turns
+
 # Name: _______________________   Date: ___________
 
 import os, sys
@@ -229,8 +232,11 @@ If the robot turned too far (over), your tick value is a little too big --- lowe
 Your tuned turns are tools you'll use in every mission --- so they belong in your library. Add `turn_left` and `turn_right` (and your `LEFT_TICKS`/`RIGHT_TICKS` values) to your library file from Big Idea 3, fully commented.
 
 {{< code >}}
+
 # turn_right: Pivots the robot 90 degrees to the right in place.
+
 #   Watches the left wheel's encoder (gmpc 0). Tuned with
+
 #   RIGHT_TICKS for a true 90-degree turn. Takes no input.
 def turn_right():
     k.cmpc(0)
@@ -239,7 +245,9 @@ def turn_right():
     k.motor(0, 0); k.motor(3, 0); k.msleep(50)
 
 # turn_left: Pivots the robot 90 degrees to the left in place.
+
 #   Watches the right wheel's encoder (gmpc 1). Tuned with
+
 #   LEFT_TICKS for a true 90-degree turn. Takes no input.
 def turn_left():
     k.cmpc(1)

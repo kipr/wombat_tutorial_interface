@@ -145,11 +145,9 @@ rows:
 
 Writing your own function is like adding a word to a dictionary. You need the word listed, you need its meaning written down, and then you can use it in a sentence.
 
-| Code / part | What it means |
-| --- | --- |
-| 1 --- [[PROTOTYPE\|prototype]] | The prototype goes on the line after `#include`, before `int main()`. It is the **word in the vocabulary list** --- it tells the [[COMPILER\|compiler]] this name exists. |
-| `2 --- Definition` | Goes **after the last closing brace** of your program. This is the **definition of the word** --- what the robot actually does. |
-| `3 --- Call` | Inside `main`, where you would have typed all those lines. This is **using the word in a sentence**. |
+1. [[PROTOTYPE\|Prototype]]: The prototype goes on the line after `#include`, before `int main()`. It is the **word in the vocabulary list** --- it tells the [[COMPILER\|compiler]] this name exists.
+2. Definition: Goes **after the last closing brace** of your program. This is the **definition of the word** --- what the robot actually does.
+3. Call: Inside `main`, where you would have typed all those lines. This is **using the word in a sentence**.
 
 ### What void means
 
@@ -301,7 +299,7 @@ Now `drive_square();` is one line. This is how a whole match run eventually beco
 
 ### Step 1 --- My first function
 
-New project called `Functions`. Take your working drive-forward code from Project 11 and turn it into a function with all three parts.
+Create a new project called `Functions`. Take your working drive-forward code from Project 11 and turn it into a function with all three parts.
 
 Call it twice in `main`. The robot should drive the distance, then drive it again.
 
@@ -333,6 +331,7 @@ Same three parts, using your 90° turn from Project 11.
 - key: p3_turn_fn
   label: "My turn function works"
 {{< /checklist >}}
+
 ### Step 4 --- The square --- one more time
 
 You have now driven this square three times. Do it once more, using only function calls.
@@ -422,7 +421,8 @@ void fetch_pom()
 - key: p3_grab_fn
   label: "I have a function that calls my other functions"
 {{< /checklist >}}
-### Step 7 --- Mission 15 --- one blue pom9 pts
+
+### Step 7 --- Mission 15 --- one blue pom for 9 points
 
 {{< mission-summary mission="15" video=true >}}
 {{< /mission-summary >}}
@@ -436,7 +436,8 @@ Build the run out of the functions you just wrote. Your whole `main` should read
 - key: p3_m15_base
   label: "One blue pom is [[IN]] a basket and stays there"
 {{< /checklist >}}
-### Step 8 --- Mission 15 Bonus --- do it again9 pts
+
+### Step 8 --- Mission 15 Bonus --- do it again for 9 points
 
 Here is the payoff for the whole project. To score the bonus you need a second blue pom in the **same** basket.
 
@@ -462,6 +463,7 @@ The second pom is somewhere different from the first, so your function will need
 - key: p3_m15_bonus
   label: "Two blue poms are in the same basket at the end"
 {{< /checklist >}}
+
 ### Step 9 --- Run it five times
 
 {{< gridtable >}}
@@ -515,6 +517,7 @@ rows:
       - key: p3_r5_pts
         aria: "R5 points"
 {{< /gridtable >}}
+
 ## Score It --- Checkpoint
 
 ### My score
@@ -542,6 +545,7 @@ rows:
         aria: Total
       - text: 18
 {{< /gridtable >}}
+
 ### My function list
 
 Write down every function you built. This list is the start of something you will finish in Project 16.
@@ -592,6 +596,7 @@ rows:
       - key: p4_fn5_does
         aria: "Function 5 does"
 {{< /gridtable >}}
+
 ### Where does each part go?
 
 {{< gridtable >}}
@@ -613,6 +618,7 @@ rows:
       - key: p4_where_call
         aria: "Where call"
 {{< /gridtable >}}
+
 ### Can you do it again?
 
 {{< checklist >}}
@@ -631,6 +637,7 @@ rows:
 - key: p4_can_read_main
   label: "My `main` reads like a list of what the robot does"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_fix_one_place" label="Fix in one place" >}}Your robot's turn is 15 ticks off. With functions, how many places do you edit? Without them, how many?{{< /ask >}}

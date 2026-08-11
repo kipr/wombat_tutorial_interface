@@ -233,7 +233,9 @@ Notice every function has a comment explaining what it does, written for someone
 Now the payoff. In your main program, add your library with an `#include` line at the top --- right under the KIPR one. Then your `main` can call any function in your library. Test **every** function once to prove the library works.
 
 {{< code filename="main.c" >}}
+
 #include <kipr/wombat.h>   // KIPR's library
+
 #include <@@yourname@@.h>     // YOUR library: all your tools, in one line
 
 int main() {

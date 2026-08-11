@@ -82,9 +82,9 @@ There are four servo [[PORT|ports]], numbered **0 to 3**. Each one has three pin
 
 | Code / part | What it means |
 | --- | --- |
-| `S --- orange wire` | Signal. This is the wire that carries the position you asked for. |
-| `+ --- red wire` | Power. |
-| `− --- brown wire` | Ground. Remember it as: *the ground is down, and down is negative.* |
+| S --- orange wire | Signal. This is the wire that carries the position you asked for. |
+| + --- red wire | Power. |
+| − --- brown wire | Ground. Remember it as: *the ground is down, and down is negative.* |
 
 Plug your servo into **port 0**, brown wire toward the minus side.
 
@@ -94,6 +94,7 @@ Plug your servo into **port 0**, brown wire toward the minus side.
 - key: p1_horn
   label: "A servo horn is attached --- washer first, then horn, then the small screw"
 {{< /checklist >}}
+
 ### Try the widget before you write anything
 
 On the Wombat's Home Screen, tap **Servos**. Enable port 0 and drag the slider slowly.
@@ -114,8 +115,7 @@ A servo does not just move to a position --- it *holds* that position and fights
 {{< /figrow >}}
 A servo turns about 180°, and that half circle is divided into **2048 positions**, numbered 0 to 2047.
 
-Counting from zero again --- same as the motor ports.
-{.muted}
+Notice that we are counting from zero again --- same as the motor ports.
 
 Position **1024** is the middle. That is where a servo goes by default.
 
@@ -125,8 +125,8 @@ The numbers go to 2047, but your servo physically cannot reach the ends. Sending
 **Stay between 150 and 1900. Always.**
 {{< /safety >}}
 
-{{< safety title="⚠ API range vs classroom safe limits" >}}
-The servo API accepts positions **0 to 2047** (about 180°). Classroom hardware must stay in the conservative safe band **150--1900**, with centre near **1024**. Sending commands into the burn zones (below 150 or above 1900) can destroy the servo.
+{{< safety title="⚠ Servo command range vs classroom safe limits" >}}
+The `set_servo_position()` command accepts positions **0 to 2047** (about 180°). Classroom hardware must stay in the safe band **150--1900**, with center near **1024**. Sending commands into the burn zones (below 150 or above 1900) can destroy the servo.
 {{< /safety >}}
 
 ### The four commands
@@ -138,7 +138,7 @@ The servo API accepts positions **0 to 2047** (about 180°). Classroom hardware 
 | `msleep(500);` | Gives the servo time to actually get there. Not optional. |
 | `disable_servos();` | Turns the servo ports off at the end of your program. |
 
-{{< callout title="Why msleep Again?" >}}
+{{< callout title="Why msleep Again?" variant="gold" >}}
 Same reason as the wheel motors. `set_servo_position()` tells the servo to *start* moving --- it does not wait for it to arrive. Without an `msleep()`, the next line runs while the arm is still halfway there.
 {{< /callout >}}
 
@@ -166,14 +166,13 @@ enable_servos();
 
 Position numbers mean nothing on their own. `set_servo_position(0, 1746);` tells you nothing about what the arm is doing. [[COMMENT|Comment]] every one:
 
-```text
+```c
 // up         = 524
 // horizontal = 1566
 // down       = 1746
 ```
 
 Use the format **name = number**. There is a reason for that --- in Project 9 those names stop being comments and become part of the program.
-{.muted}
 
 ### Where you are headed
 
@@ -196,7 +195,8 @@ Seven points for one touch. It is the best points-per-effort deal on the field -
 - src: servo/plugged-port-0.jpg
   alt: "A servo plugged into port 0."
 {{< /figrow >}}
-### Step 1 --- Centre the horn first
+
+### Step 1 --- Center the horn first
 
 {{< figrow >}}
 - src: servo/widget.jpg
@@ -213,7 +213,7 @@ Your servo can only reach half a circle --- but looking at it, you cannot tell *
 
 {{< checklist >}}
 - key: p3_centered
-  label: "My horn is centred and screwed down"
+  label: "My horn is centered and screwed down"
 {{< /checklist >}}
 Skip this and you will spend the rest of the project fighting an arm that runs out of travel halfway through a move.
 {.muted}
@@ -255,7 +255,7 @@ Do not find a "down" that presses the arm into the floor. The servo will keep st
 
 ### Step 3 --- The Wave
 
-New project called `Wave`. Move the arm to all three positions with a one-second pause between each. Put your position comments at the top.
+Create a new project called `Wave`. Move the arm to all three positions with a one-second pause between each. Put your position comments at the top.
 
 ```c
 #include <kipr/wombat.h>
@@ -290,6 +290,7 @@ Use *your* numbers, not these. [[COMPILE|Compile]] and run.
 - key: p3_wave_works
   label: "My arm moves to all three positions with a pause between each"
 {{< /checklist >}}
+
 ### Step 4 --- Prove the msleep matters
 
 Delete all three `msleep()` lines. Compile. Run. Watch closely.
@@ -310,14 +311,14 @@ Put it back the safe way round.
 
 ### Step 6 --- Drive and touch
 
-New project called `Reach`. Practice away from the field first: put any object a short drive away, then drive to it and touch it with the arm.
+Create a new project called `Reach`. Practice away from the field first: put any object a short drive away, then drive to it and touch it with the arm.
 
 Two rules, borrowed from how the mission works:
 
 - The arm must **start up** and move down to touch. No driving around with the arm already out front.
 - Touch it with the arm only --- not with the robot's body.
 
-```text
+```c
 // 1. Arm starts up
 // 2. Drive to the object
 // 3. Stop
@@ -329,13 +330,14 @@ Two rules, borrowed from how the mission works:
 - key: p3_reach_works
   label: "I can drive to an object and touch it with the arm"
 {{< /checklist >}}
-### Step 7 --- Mission 9 --- touch Botguy7 pts
 
-Onto the field. New project called `Botguy`.
+### Step 7 --- Mission 9 --- touch Botguy for 7 points
+
+Onto the field. Create a new project called `Botguy`.
 
 Botguy is inside the enclosure. Your robot has to reach in and make contact --- direct contact, arm to Botguy.
 
-{{< callout title="[[TOUCHING]] Means Direct Contact" variant="navy" >}}
+{{< callout title="[[TOUCHING]] means direct contact" variant="navy" >}}
 Two objects are [[TOUCHING]] when they are in direct physical contact. Contact through something else --- a cube, a wall, another field element --- does not count. Your arm has to reach Botguy himself.
 {{< /callout >}}
 
@@ -409,6 +411,7 @@ rows:
       - key: p3_r5
         aria: "Run 5"
 {{< /gridtable >}}
+
 ## Score It --- Checkpoint
 
 ### My score
@@ -431,6 +434,7 @@ rows:
         aria: Total
       - text: 7
 {{< /gridtable >}}
+
 ### My servo card
 
 Keep these next to your driving numbers. Everything from here uses them.
@@ -467,6 +471,7 @@ rows:
       - key: p4_arm_ms
         aria: "Arm move time"
 {{< /gridtable >}}
+
 ### Can you do it again?
 
 {{< checklist >}}
@@ -481,10 +486,11 @@ rows:
 - key: p4_can_preset
   label: "I set a position before enabling, so the arm never snaps somewhere unexpected"
 - key: p4_can_center
-  label: "I can centre a servo horn using the widget"
+  label: "I can center a servo horn using the widget"
 - key: p4_can_combine
   label: "I can combine driving and arm movement in one run"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_why_position" label="Why position vs power" >}}A wheel motor takes a power. A servo takes a position. Why does an arm need a position and a wheel does not?{{< /ask >}}

@@ -202,8 +202,11 @@ The program below shows the *pattern*: a readable `main()` at the top calling fu
 {{< /callout >}}
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 1, Big Idea 5: Pom Pusher (EXAMPLE; yours will differ)
+
 # Name: _______________________   Date: ___________
 
 import os, sys
@@ -213,7 +216,9 @@ import _kipr as k
 DRIVE_SPEED = 50
 
 # MAIN: This is your plan. The poms are NOT in a line, so the path
+
 #    between them is different every time. You decide how to reuse
+
 #    your building blocks to get from one pom to the next.
 def main():
 

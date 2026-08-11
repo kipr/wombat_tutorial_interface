@@ -94,7 +94,7 @@ On each servo cord, the **orange wire must be closest to the screen**. Plugging 
 - src: servo/plugged-port-0.jpg
   alt: A servo in port 0.
 - src: servo/centering-horn.jpg
-  alt: Centre the horn before you trust any position number.
+  alt: center the horn before you trust any position number.
 {{< /figrow >}}
 
 {{< safety title="⚠ This step protects your servo --- do it carefully" noprint=true >}}

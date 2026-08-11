@@ -135,12 +135,12 @@ Pushing looks like the easy version of picking something up. It is not --- it is
 
 ### Where you hit it decides where it goes
 
-| Code / part | What it means |
+| Point of contact | What it means |
 | --- | --- |
-| `Dead center` | The object slides forward in a straight line, roughly where you aimed. This is what you want. |
-| `Off to one side` | The object spins away at an angle. It may end up somewhere you cannot reach again. |
-| `Too high` | Tall objects tip over instead of sliding. A tipped cone still counts as [[OFF]] --- but only if the whole thing cleared the line. |
-| `At an angle` | The object skids sideways. Hard to predict, hard to repeat. |
+| Dead center | The object slides forward in a straight line, roughly where you aimed. This is what you want. |
+| Off to one side | The object spins away at an angle. It may end up somewhere you cannot reach again. |
+| Too high | Tall objects tip over instead of sliding. A tipped cone still counts as [[OFF]] --- but only if the whole thing cleared the line. |
+| At an angle | The object skids sideways. Hard to predict, hard to repeat. |
 
 {{< callout title="Square Up Before You Push" variant="navy" >}}
 This is why Project 5 spent so long on turns. Arriving *pointed the right way* matters more than arriving in exactly the right spot. A robot that is square to the object and an inch off center will still push it straight. A robot in the perfect spot but angled 20° will send it sideways.
@@ -158,6 +158,10 @@ Do not push an object into a wall, off the field, or [[ON TOP OF]] something you
 
 ### [[SIMULTANEOUSLY]] --- the trap in Mission 4
 
+{{< mission-summary mission="4" video=true >}}
+{{< /mission-summary >}}
+
+
 Mission 4's bonus does not just ask for an orange pom [[OFF]] and a blue pom [[OFF]]. It asks for both [[SIMULTANEOUSLY]] --- true at the same moment.
 
 {{< score-examples >}}
@@ -171,7 +175,6 @@ does_not_score:
 That last one is the whole problem. Clear one pom, come back, clear the other, and if the first one rolled back onto the line in between, you get the base and not the bonus.
 
 The reliable answer is one push that takes both. That is a positioning problem, not a programming problem.
-{.muted}
 
 ### One run, four missions
 
@@ -179,7 +182,7 @@ Build each mission on its own first. Get it working. *Then* join them together.
 
 The order matters --- after every push, your robot is somewhere new, facing a new direction, and the next section has to start from there.
 
-```text
+```c
 // ---- Mission 13: unstraight cubes ----
 // drive, push, back off
 
@@ -196,7 +199,7 @@ Use [[COMMENT|comment]] banners like these to mark each section. When one missio
 
 One mission at a time. New project for each, then a combined one at the end.
 
-### Step 1 --- Mission 13 --- Unstraight Cubes1 pt
+### Step 1 --- Mission 13 --- Unstraight Cubes for 1 point
 
 {{< mission-summary mission="13" video=true >}}
 {{< /mission-summary >}}
@@ -233,7 +236,8 @@ rows:
 - key: p3_m13_done
   label: "All three Unstraight Cubes are [[OFF]] the black line"
 {{< /checklist >}}
-### Step 2 --- Mission 14 --- Traffic Cones3 pts
+
+### Step 2 --- Mission 14 --- Traffic Cones for3 points
 
 {{< mission-summary mission="14" video=true >}}
 {{< /mission-summary >}}
@@ -249,7 +253,7 @@ Cones tip easily. That is fine --- a cone on its side can still be [[OFF]]. But 
 {{< /checklist >}}
 {{< ask key="p3_m14_method" label="Cone method" >}}Did one push clear both cones, or did you need two moves? Describe what you did.{{< /ask >}}
 
-### Step 3 --- Mission 2 --- Red Cubes4 pts
+### Step 3 --- Mission 2 --- Red Cubes for 4 points
 
 {{< mission-summary mission="2" video=true >}}
 {{< /mission-summary >}}
@@ -258,7 +262,6 @@ The cube and the pallet are checked independently. Both must be [[OFF]]. Shoving
 {{< /callout >}}
 
 Good news on the bonus: the small red cubes do not have to stay stacked. Knocking them apart is fine as long as both end up [[OFF]].
-{.muted}
 
 {{< checklist >}}
 - key: p3_m2_cube
@@ -268,7 +271,8 @@ Good news on the bonus: the small red cubes do not have to stay stacked. Knockin
 - key: p3_m2_small
   label: "Both Small Red Cubes are [[OFF]]"
 {{< /checklist >}}
-### Step 4 --- Mission 4 --- The Poms8 pts
+
+### Step 4 --- Mission 4 --- The Poms for 8 points
 
 {{< mission-summary mission="4" video=true >}}
 {{< /mission-summary >}}
@@ -315,9 +319,10 @@ rows:
 - key: p3_m4_bonus
   label: "Orange and Blue are [[OFF]] at the same moment"
 {{< /checklist >}}
+
 ### Step 5 --- Chain them into one run
 
-New project called `Bulldoze`. Copy your four working programs into it, one after another, with a comment banner above each section.
+Create a new project called `Bulldoze`. Copy your four working programs into it, one after another, with a comment banner above each section.
 
 Now the hard part: the end of one section is the start of the next. After a push, your robot is not where it began --- you need to drive it from wherever it ended up to wherever the next mission starts.
 
@@ -331,6 +336,7 @@ Get mission one working from the starting box. Then add mission two and test the
 - key: p3_chained
   label: "All four missions run from one program, one start"
 {{< /checklist >}}
+
 ### Step 6 --- Run it five times and time it
 
 Same standard as always. Reset the field between runs. Time each one with a stopwatch.
@@ -493,6 +499,7 @@ Every project after this one uses the freeze. If you go back and reuse code you 
 - key: p3_freeze_get
   label: "I can explain why zero power is not the same as no power"
 {{< /checklist >}}
+
 ## Score It --- Checkpoint
 
 ### My best run
@@ -540,6 +547,7 @@ rows:
         aria: "Total points"
       - text: 16
 {{< /gridtable >}}
+
 ### Fastest clean run
 
 {{< gridtable >}}
@@ -561,6 +569,7 @@ rows:
       - key: p4_slowest_section
         aria: "Slowest section"
 {{< /gridtable >}}
+
 ### Can you do it again?
 
 {{< checklist >}}
@@ -579,6 +588,7 @@ rows:
 - key: p4_can_add_one
   label: "I add one section at a time and test before adding the next"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_repetition" label="Repetition problem" >}}Your program is getting long, and big chunks of it are nearly identical --- drive, turn, drive, push, back off, over and over. What is annoying about that?{{< /ask >}}

@@ -135,7 +135,7 @@ Leave it out and every function inside your library breaks, even though the code
 
 myLibrary.h
 
-```c
+{{< code lang="c" filename="myLibrary.h" >}}
 #include <kipr/wombat.h>
 
 void drive_forward(int ticks);
@@ -159,11 +159,9 @@ void turn_right()
 {
     // Your turn code
 }
-```
+{{< /code >}}
 
-main.c
-
-```c
+{{< code lang="c" filename="main.c" >}}
 #include <kipr/wombat.h>
 #include "myLibrary.h"
 
@@ -175,11 +173,11 @@ int main()
 
     return 0;
 }
-```
+{{< /code >}}
 
 Look at what `main.c` became. Two includes and a list of what the robot does. Nothing else.
 
-### Making one
+### Making a header file
 
 - On the KIPR Software Suite home screen, click **User Preferences** and switch on the advanced interface. Without this you will not see the file options.
 - In the KISS [[IDE|IDE]], select your user folder.
@@ -388,9 +386,9 @@ One edit, in one place, and every program that includes your library got better 
 
 ### Step 8 --- Write the instructions
 
-A library nobody can use is not much good. Put a [[COMMENT|comment]] [[BLOCK|block]] at the top of your `.h` file listing what is in it.
+A library nobody can use is not much good. Put a [[COMMENT|comment]] block at the top of your `.h` file listing what is in it.
 
-```text
+```c
 // ============================================
 // Team Bulldogs robot library
 // Last updated: 12 March

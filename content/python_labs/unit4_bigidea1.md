@@ -111,8 +111,11 @@ Before running, use your ruler to measure the distance from where the **Tophat s
 {{< /callout >}}
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 4, Big Idea 1: The Model
+
 # Name: _______________________   Date: ___________
 
 import os, sys

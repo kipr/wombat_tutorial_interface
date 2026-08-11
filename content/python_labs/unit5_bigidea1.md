@@ -207,8 +207,11 @@ def printPose():
 {{< /code >}}
 
 {{< code filename="main.py" >}}
+
 #!/usr/bin/python3
+
 # Unit 5, Big Idea 1: The Second Attempt
+
 # Name: _______________________   Date: ___________
 
 import os, sys

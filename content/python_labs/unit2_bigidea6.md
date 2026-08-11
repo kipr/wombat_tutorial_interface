@@ -195,8 +195,11 @@ Hold the robot up. Pass the line under the Tophat and watch it steer. Then move 
 Start from your tuned line-follow. Add an ET check to the loop condition and your stop value at the top. Use **your own** `MIDPOINT`, `STOP_VALUE`, and the `mav` speeds you found best. Define `line_follow_until_object` above `main()`, as always.
 
 {{< code >}}
+
 #!/usr/bin/python3
+
 # Unit 2, Big Idea 6: Two Sensors, One Decision
+
 # Name: _______________________   Date: ___________
 
 import os, sys

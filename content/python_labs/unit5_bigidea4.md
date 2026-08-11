@@ -103,8 +103,11 @@ This single stacking action scores three things at once: Mission 12's Base Missi
 Wrap your Restack & Shelve routine in the timing pattern from Phase 2, using your own library calls.
 
 {{< code filename="main.py" >}}
+
 #!/usr/bin/python3
+
 # Unit 5, Big Idea 4: Restack & Shelve, Timed
+
 # Name: _______________________   Date: ___________
 
 import os, sys

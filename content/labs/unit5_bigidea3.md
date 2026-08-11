@@ -149,6 +149,7 @@ Most school Chromebooks don't give you a terminal or let you install `git`. That
 Here's the sequence a developer runs from a terminal to get a local change onto GitHub:
 
 {{< code filename="terminal" lang="bash" >}}
+
 # one-time setup: copy the remote repo down to your computer
 git clone https://github.com/yourusername/your-repo.git
 cd your-repo

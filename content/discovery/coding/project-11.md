@@ -18,7 +18,7 @@ heading: "Counting Wheel Ticks"
 subheading: "Same loop as last time — but now it watches a number instead of a switch."
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Counting Wheel Ticks"
-mission_label: "Missions 9 · 8 · 18 — 40 pts"
+mission_label: "Missions 9 · 8 · 18 — 40 points"
 sidebar:
   title: "Activity Sections"
   start_level: 2
@@ -86,7 +86,7 @@ rows:
         aria: "Past zero"
 {{< /gridtable >}}
 {{< callout title="Every Motor Has Been Counting This Whole Time" variant="gold" >}}
-Since Project 3, your motors have been keeping track of exactly how far they turned. You just had no way to ask them.
+Since Project 3, your motors have been keeping track of exactly how far they turned. You just didn't know how to ask them.
 {{< /callout >}}
 
 ### Find your ticks per inch
@@ -279,7 +279,7 @@ Going forward, count **up** with `<`. Going backward, count **down** with `>`. C
 
 ### Step 1 --- Measure your overshoot
 
-New project called `Ticks`. Clear, drive to 4000 ticks, stop. Then check the Motors screen for what you actually got.
+Create a new project called `Ticks`. Clear, drive to 4000 ticks, stop. Then check the Motors screen for what you actually got.
 
 {{< gridtable >}}
 columns:
@@ -351,6 +351,7 @@ rows:
 - key: p3_corrected
   label: "My robot lands within about 50 ticks of where I asked"
 {{< /checklist >}}
+
 ### Step 3 --- Drive a real distance
 
 Use your ticks-per-inch from Try It. Work out the ticks for each distance, then test it with a ruler.
@@ -399,7 +400,7 @@ Compare this to Project 4, where you did the same thing with a stopwatch. Notice
 
 ### Step 5 --- Turn by ticks
 
-New project called `Right Turn`. [[ZERO RADIUS TURN|Zero radius turn]] --- one wheel forward, one back, same speed --- but this time stop it by counting ticks instead of by time.
+Create a new project called `Right Turn`. [[ZERO RADIUS TURN|Zero radius turn]] --- one wheel forward, one back, same speed --- but this time stop it by counting ticks instead of by time.
 
 ```c
 cmpc(left);
@@ -447,6 +448,7 @@ rows:
       - key: p3_t4_res
         aria: "Turn result 4"
 {{< /gridtable >}}
+
 ### Step 6 --- The square, again
 
 In Project 5 you drove a square with four timed turns and it did not close. Do it again --- same square, but every distance and every turn counted in ticks.
@@ -478,7 +480,7 @@ Same robot. Same square. The only thing that changed is *what the robot was meas
 
 {{< ask key="p3_no_drift" label="Why no drift" >}}Your timed square drifted a little more with every corner. Why does a tick-counted square not do that?{{< /ask >}}
 
-### Step 7 --- Mission 9 Bonus --- get Botguy out9 pts
+### Step 7 --- Mission 9 Bonus --- get Botguy out for 9 points
 
 {{< mission-summary mission="9" video=true >}}
 {{< /mission-summary >}}
@@ -497,7 +499,8 @@ Your claw can still be holding him. He just has to be clear of the enclosure and
 - key: p3_m9_bonus
   label: "Botguy is out of the enclosure and touching the floor"
 {{< /checklist >}}
-### Step 8 --- Mission 18 Base --- take him to the loading zone11 pts
+
+### Step 8 --- Mission 18 Base --- take him to the loading zone for 11 points
 
 {{< mission-summary mission="18" video=true >}}
 {{< /mission-summary >}}
@@ -516,7 +519,8 @@ Mission 18 is final position, so Botguy has to still be [[IN THE ZONE]] when the
 - key: p3_m18_base
   label: "Botguy is [[IN]] the Loading Zone and stays there"
 {{< /checklist >}}
-### Step 9 --- Mission 8 --- deliver the red cube20 pts
+
+### Step 9 --- Mission 8 --- deliver the red cube for 20 points
 
 {{< mission-summary mission="8" video=true >}}
 {{< /mission-summary >}}
@@ -617,6 +621,7 @@ rows:
       - key: p3_r5_pts
         aria: "R5 points"
 {{< /gridtable >}}
+
 ## Score It --- Checkpoint
 
 ### My score
@@ -654,6 +659,7 @@ rows:
         aria: Total
       - text: 40
 {{< /gridtable >}}
+
 ### My tick card
 
 These replace every timing number you have been carrying since Project 4.
@@ -690,6 +696,7 @@ rows:
       - key: p4_ticks_dock
         aria: "Ticks to dock"
 {{< /gridtable >}}
+
 ### Write the condition
 
 {{< gridtable >}}
@@ -711,6 +718,7 @@ rows:
       - key: p4_cond_inches
         aria: "Condition inches"
 {{< /gridtable >}}
+
 ### Can you do it again?
 
 {{< checklist >}}
@@ -729,6 +737,7 @@ rows:
 - key: p4_can_close
   label: "My square closes"
 {{< /checklist >}}
+
 ### Think about it
 
 {{< ask key="p4_low_battery" label="Low battery" >}}Your battery is half flat, so the robot drives slower. What happens to a run built on `msleep()`? What happens to a run built on ticks?{{< /ask >}}
