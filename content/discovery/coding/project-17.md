@@ -302,14 +302,6 @@ Delivering the second cube is where the first one gets knocked off. Approach the
 
 {{< mission-summary mission="7" video=true >}}
 {{< /mission-summary >}}
-{{< score-examples >}}
-scores:
-  - "Two different [[ENCLOSURE|enclosures]], each with at least one Blue and one Orange Pom."
-does_not_score:
-  - "A Blue Pom in one enclosure and an Orange Pom in a different one."
-  - "Only one pom colour in any enclosure."
-  - "**The same enclosure used for both Base and Bonus.**"
-{{< /score-examples >}}
 This is the same delivery as the base, aimed somewhere else --- which is exactly the case for a function with an argument called twice, or a loop over two destinations.
 
 {{< checklist >}}

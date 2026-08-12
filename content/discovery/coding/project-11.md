@@ -488,14 +488,6 @@ Same robot. Same square. The only thing that changed is *what the robot was meas
 
 {{< mission-summary mission="9" video=true >}}
 {{< /mission-summary >}}
-{{< score-examples >}}
-scores:
-  - "Botguy is completely outside the [[ENCLOSURE|enclosure]] and [[TOUCHING]] the warehouse floor."
-  - "Botguy is touching the floor **while being held by a robot**."
-does_not_score:
-  - "Botguy touches the floor but is still touching the enclosure."
-  - "Botguy is out of the enclosure but not touching the floor."
-{{< /score-examples >}}
 Your claw can still be holding him. He just has to be clear of the enclosure and down on the floor at the same instant.
 {.muted}
 

@@ -375,16 +375,6 @@ Mission 18 needs the cones **[[FULLY WITHIN]]** --- every single part inside, no
 A cone half over the line scores Mission 14 and *nothing* from Mission 18. This is exactly why you need the sensor: it tells you where the boundary actually is.
 {{< /safety >}}
 
-{{< score-examples >}}
-scores:
-  - "Botguy and one cone [[FULLY WITHIN]] the zone."
-  - "Botguy and both cones [[FULLY WITHIN]] the zone."
-  - "Botguy and the cones do not have to touch each other."
-does_not_score:
-  - "A cone is [[IN THE ZONE]] but Botguy is not."
-  - "Botguy touching only the outside boundary of the zone."
-  - "Botguy and only one cone, for the Advanced Bonus."
-{{< /score-examples >}}
 {{< callout title="One Delivery, Three Scores" variant="gold" >}}
 Put Botguy and **both** cones fully inside the Loading Zone and you collect Mission 14's bonus, Mission 18's bonus, and Mission 18's advanced --- 35 points from one trip pattern.
 

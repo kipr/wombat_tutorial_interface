@@ -383,14 +383,6 @@ Add this to the top of a program. Now your robot waits for you instead of drivin
 
 {{< mission-summary mission="13" video=true >}}
 {{< /mission-summary >}}
-{{< score-examples >}}
-scores:
-  - "All three cubes participate in valid [[ON TOP OF]] relationships --- **a traditional stack or a pyramid.**"
-does_not_score:
-  - "Only two Unstraight Cubes participate in the stack."
-  - "Two cubes touching side-by-side without [[ON TOP OF]]."
-  - "An Unstraight Cube stacked with a cube from another mission area."
-{{< /score-examples >}}
 {{< callout title="A Pyramid Counts --- and It Is Easier" variant="gold" >}}
 Read the scoring examples again. **A pyramid scores exactly the same as a three-high tower.** Two cubes on the bottom, one on top.
 

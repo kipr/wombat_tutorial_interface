@@ -44,4 +44,8 @@
     </article>
   {{- end }}
   </div>
+  {{- partial "score-comparison.html" (dict
+    "page" $page
+    "scores" .scoreExamples.scores
+    "does_not_score" .scoreExamples.does_not_score) }}
 </section>

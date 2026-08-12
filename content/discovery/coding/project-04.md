@@ -69,17 +69,6 @@ Mission 1 and Mission 10 must be completed **independently**. One drive back int
 
 ### What scores and what does not
 
-{{< score-examples >}}
-scores:
-  - "Robot enters the zone and visibly stops."
-  - "Robot enters, stops, later returns [[FULLY WITHIN]] a starting box, and visibly stops."
-  - "Robot enters, pauses, moves a [[SERVO|servo]] while staying still, then leaves."
-does_not_score:
-  - "Robot drives through the zone without stopping."
-  - "Robot slows down a lot but never clearly stops."
-  - "Robot enters, instantly reverses, and leaves without stopping."
-  - "One robot does the base, a different robot does the bonus."
-{{< /score-examples >}}
 {{< callout title="The Judge Has to See It" variant="navy" >}}
 If a judge cannot clearly tell that your robot stopped, the mission does not score --- even if you know it stopped. A stop that is too short to see is worth zero.
 

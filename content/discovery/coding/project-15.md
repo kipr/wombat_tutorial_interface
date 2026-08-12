@@ -311,14 +311,6 @@ The Unstraight Cubes are the same three you stacked for Mission 13 back in Proje
 
 {{< mission-summary mission="7" video=true >}}
 {{< /mission-summary >}}
-{{< score-examples >}}
-scores:
-  - "One Blue and one Orange Pom [[FULLY WITHIN]] the same enclosure."
-  - "Several Blue Poms and one Orange Pom in the same enclosure."
-does_not_score:
-  - "A Blue Pom in one enclosure and an Orange Pom in a different one."
-  - "Only one colour in any enclosure."
-{{< /score-examples >}}
 Two colours, one enclosure. Poms roll, so the second delivery is the one that knocks the first one out --- go slowly and back straight away.
 {.muted}
 

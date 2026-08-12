@@ -413,17 +413,6 @@ Hold that thought. Project 10 gives you the tool that makes it one line instead 
 {{< /mission-summary >}}
 This one asks your arm to reach higher than anything so far. The large red cube is the platform; the small ones go [[ON TOP OF]] it.
 
-{{< score-examples >}}
-scores:
-  - "One Small Red Cube is [[ON TOP OF]] the Large Red Cube."
-  - "A Small Red Cube touches the upper surface while supported by a robot."
-  - "A Small Red Cube is [[ON TOP OF]], and later falls off."
-  - "Both Small Red Cubes are [[ON TOP OF]] at the same time."
-does_not_score:
-  - "A Small Red Cube [[TOUCHING]] only the *side* of the Large Red Cube."
-  - "A Small Red Cube hovering above without [[TOUCHING]]."
-  - "Only one Small Red Cube up there, for the Bonus."
-{{< /score-examples >}}
 {{< callout title="Live Judged Is On Your Side Here" variant="gold" >}}
 Robot support is permitted, and the cubes do not have to stay up there. Once the judge has seen it, it counts --- even if it falls a second later.
 {{< /callout >}}

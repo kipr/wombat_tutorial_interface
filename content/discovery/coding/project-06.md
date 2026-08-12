@@ -164,14 +164,6 @@ Do not push an object into a wall, off the field, or [[ON TOP OF]] something you
 
 Mission 4's bonus does not just ask for an orange pom [[OFF]] and a blue pom [[OFF]]. It asks for both [[SIMULTANEOUSLY]] --- true at the same moment.
 
-{{< score-examples >}}
-scores:
-  - "An orange pom and a blue pom are both [[OFF]] the line at the same moment."
-  - "An orange pom is lifted completely clear of the line."
-does_not_score:
-  - "Any portion of the orange pom is [[TOUCHING]] the line."
-  - "The orange pom is [[OFF]], then later the blue pom is [[OFF]] --- they are never [[OFF]] at the same time."
-{{< /score-examples >}}
 That last one is the whole problem. Clear one pom, come back, clear the other, and if the first one rolled back onto the line in between, you get the base and not the bonus.
 
 The reliable answer is one push that takes both. That is a positioning problem, not a programming problem.

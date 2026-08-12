@@ -106,15 +106,10 @@ Every algorithm takes *inputs* (information it needs) and produces *outputs* (th
 
 ## Phase 3 --- Plan
 
-### Mission 1 --- Waypoint Alpha: What Must Happen?
+### Mission 1 --- Waypoint Alpha [[REQUIREMENT|Requirement]]
 
-{{< callout title="Mission [[REQUIREMENT|Requirement]]" >}}
-**Base Mission:** A robot enters the Waypoint Alpha zone and comes to a clear, complete stop while [[IN THE ZONE]].
-
-**Bonus Mission:** The same robot subsequently returns [[FULLY WITHIN]] a starting box and stops.
-
-**Judging note:** If you cannot clearly see that the robot stopped, the mission does not score.
-{{< /callout >}}
+{{< mission-summary mission="1" video=true >}}
+{{< /mission-summary >}}
 
 ### Step 1 --- Field Orientation
 

@@ -178,12 +178,6 @@ Use the format **name = number**. There is a reason for that --- in Project 9 th
 
 {{< mission-summary mission="9" video=true >}}
 {{< /mission-summary >}}
-{{< score-examples >}}
-scores:
-  - "A robot is [[TOUCHING]] Botguy."
-does_not_score:
-  - "A robot is near Botguy but not touching him."
-{{< /score-examples >}}
 Seven points for one touch. It is the best points-per-effort deal on the field --- as long as you actually make contact.
 {.muted}
 

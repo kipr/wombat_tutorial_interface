@@ -18,8 +18,14 @@
 {{- else -}}
   {{- $mission = partial "resolve-page.html" (dict "reference" $reference "position" .Position) -}}
 {{- end -}}
+{{- $scoreExamplePattern := `(?s)\{\{<\s*score-examples\s*>\}\}\s*(.*?)\s*\{\{<\s*/score-examples\s*>\}\}` -}}
+{{- $scoreExampleMatches := findRESubmatch $scoreExamplePattern $mission.RawContent -}}
+{{- if ne (len $scoreExampleMatches) 1 -}}
+  {{- errorf "%s: Mission %d must contain exactly one score-examples block" .Position $mission.Params.mission_number -}}
+{{- end -}}
+{{- $scoreExamples := transform.Unmarshal (index (index $scoreExampleMatches 0) 1) -}}
 {{- $annotations := dict -}}
 {{- with strings.TrimSpace .Inner }}{{ $annotations = transform.Unmarshal . }}{{ end -}}
 {{- $ordinal := .Page.Store.Get "missionSummaryOrdinal" | default 0 | add 1 -}}
 {{- .Page.Store.Set "missionSummaryOrdinal" $ordinal -}}
-{{- partial "mission-summary.html" (dict "page" .Page "mission" $mission "annotations" $annotations "position" .Position "ordinal" $ordinal "showVideo" $showVideo) -}}
+{{- partial "mission-summary.html" (dict "page" .Page "mission" $mission "annotations" $annotations "position" .Position "ordinal" $ordinal "showVideo" $showVideo "scoreExamples" $scoreExamples) -}}

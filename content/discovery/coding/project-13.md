@@ -385,16 +385,6 @@ else
 Two opposite stacks *are* two stacks. Score the Advanced Bonus and the 9-point Bonus comes with it --- 22 points from this one run.
 {{< /callout >}}
 
-{{< score-examples >}}
-scores:
-  - "Two stacks with opposite colour arrangements."
-  - "The stacks do not need to be next to each other."
-  - "The shape of the stack does not matter --- only the [[ON TOP OF]] relationships."
-does_not_score:
-  - "Green on Green, or Yellow on Yellow."
-  - "A single three-cube stack counted as two stacks."
-  - "**Reusing a cube from the first stack in the second.**"
-{{< /score-examples >}}
 {{< safety title="⚠ Four Cubes, Four Jobs" >}}
 Each cube may contribute to **only one** scoring stack. You need two greens and two yellows, and every one of them has a specific place to be. Get the second stack's colours the wrong way round and you drop from 22 points to 9.
 {{< /safety >}}

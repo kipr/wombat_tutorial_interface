@@ -322,17 +322,6 @@ The **base** is live judged, so your claw may still be holding the top cube. The
 Get the base first. Then work on letting go cleanly.
 {{< /callout >}}
 
-{{< score-examples >}}
-scores:
-  - "One spilled cube is [[ON TOP OF]] another spilled cube."
-  - "A robot is supporting one or both cubes while the [[ON TOP OF]] relationship exists."
-  - "The stack exists and the lower cube is [[TOUCHING]] the black line."
-does_not_score:
-  - "Two spilled cubes touching side-by-side."
-  - "A spilled cube stacked on a cube from a different area."
-  - "The stack no longer exists at final scoring."
-  - "The upper cube touches black line but the lower one does not."
-{{< /score-examples >}}
 {{< checklist >}}
 - key: p3_m12_base
   label: "Two spilled cubes are stacked"
