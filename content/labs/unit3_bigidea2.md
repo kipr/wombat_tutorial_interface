@@ -64,8 +64,8 @@ Keep your `ARM_MIN`, `ARM_MAX`, `CLAW_OPEN`, and `CLAW_SHUT` from Big Idea 1 han
 - text: |
     Right now, you have to remember not to type a dangerous servo number. That's risky --- one typo could burn out a servo. A better idea: build a function that **fixes** any out-of-range value before it ever reaches the servo. This is called *clamping*.
 - code: |
-    if (position > ARM_MAX) position = ARM_MAX;   // too high? pull it back to the max
-    if (position < ARM_MIN) position = ARM_MIN;   // too low? pull it up to the min
+    if (position > ARM_MAX) position = ARM_MAX;   // above the maximum? use the maximum
+    if (position < ARM_MIN) position = ARM_MIN;   // below the minimum? use the minimum
 - text: |
     **Note:** The single line if statement is a shorthand way to write an if statement; that's why you don't see any curly brackets after "if". This *only* works when the instructions inside the curly brackets is a single line, not multiple.
 
@@ -99,7 +99,7 @@ int main()
 	enable_servo(0);            // arm
 	enable_servo(1);            // claw
 
-	move_arm(ARM_MAX);          // safe: moves to the top
+	move_arm(ARM_MIN);          // safe: moves to the top
 	move_arm(3000);             // UNSAFE number, but the clamp saves us:
 	                            // the arm only goes to ARM_MAX, not 3000
 	return 0;

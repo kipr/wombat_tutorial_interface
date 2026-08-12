@@ -82,7 +82,7 @@ On each servo cord, the **orange wire must be closest to the screen**. Plugging 
 
 {{< concept "Position is a measurement" >}}
 - text: |
-    Here's the powerful part: a servo's position number *is* a measurement. A bigger arm number means the arm is raised higher. A bigger claw number means the claw is open a different amount. Instead of measuring how far the robot drove, today you measure **how high the arm lifts** and **how far the claw opens** --- all by position value.
+    Here's the powerful part: a servo's position number *is* a measurement. A bigger arm number lowers the arm, and a smaller arm number raises it. A bigger claw number means the claw is open a different amount. Instead of measuring how far the robot drove, today you measure **how high the arm lifts** and **how far the claw opens** --- all by position value.
 {{< /concept >}}
 
 ## Phase 2 --- Find the Arm's Safe Range
@@ -105,7 +105,7 @@ A servo can only turn so far before it hits a hard mechanical stop. If you comma
 {{< widgetstep title="Use the servo widget" >}}
 Open the **Motors and [[SENSOR|Sensors]]** widget and find the **servo** page. Select **port 0** (the arm). Slowly move the position up and down. **Watch and listen:** stop the moment the arm reaches its physical limit --- do not push it into a strain or buzzing sound.
 
-Record the lowest safe position (arm all the way down) and the highest safe position (arm all the way up).
+Record the minimum safe value (arm all the way up) and the maximum safe value (arm all the way down). On this robot, lower servo values raise the arm and higher values lower it.
 {{< /widgetstep >}}
 
 {{< figrow >}}
@@ -121,10 +121,10 @@ columns:
     width: 55%
   - head: Value (0--2047)
 rows:
-  - - text: Lowest safe position (arm down) --- your ARM_MIN
+  - - text: Minimum safe value (arm up) --- your ARM_MIN
     - key: arm_min
       aria: Arm min
-  - - text: Highest safe position (arm up) --- your ARM_MAX
+  - - text: Maximum safe value (arm down) --- your ARM_MAX
     - key: arm_max
       aria: Arm max
   - - text: Resting / centered position
@@ -179,8 +179,8 @@ import _kipr as k
 # Use YOUR safe values from the widget. Never command past these values,
 
 # or you can BURN OUT the servo by forcing it into a hard stop.
-ARM_MIN   = @@____@@   # lowest safe arm position (down)
-ARM_MAX   = @@____@@   # highest safe arm position (up)
+ARM_MIN   = @@____@@   # minimum safe value (arm up)
+ARM_MAX   = @@____@@   # maximum safe value (arm down)
 CLAW_OPEN = @@____@@   # safe open claw position
 CLAW_SHUT = @@____@@   # safe closed-on-cube claw position
 
@@ -192,13 +192,13 @@ def main():
     k.set_servo_position(3, CLAW_OPEN)   # 1. open the claw
     k.msleep(1000)                       # give the servo time to get there
 
-    k.set_servo_position(0, ARM_MIN)     # 2. lower the arm to the cube
+    k.set_servo_position(0, ARM_MAX)     # 2. lower the arm to the cube
     k.msleep(1000)
 
     k.set_servo_position(3, CLAW_SHUT)   # 3. close on the cube
     k.msleep(1000)
 
-    k.set_servo_position(0, ARM_MAX)     # 4. raise the cube up
+    k.set_servo_position(0, ARM_MIN)     # 4. raise the cube up
     k.msleep(1000)
 
 main()

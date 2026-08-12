@@ -134,9 +134,9 @@ Put them at the top of every program, in the **name = number** format:
 ```c
 // Your positions will be different --- do not copy these!
 // arm        = 0
-// up         = 1234
+// up         = 230
 // horizontal = 1000
-// down       = 230
+// down       = 1234
 //
 // claw       = 3
 // open       = 1246
@@ -152,7 +152,7 @@ Project 7 taught you the preset trick for one servo. With two, it matters twice 
 
 ```c
 // Arm up
-set_servo_position(0, 1234);
+set_servo_position(0, 230);
 // Claw open
 set_servo_position(3, 1246);
 enable_servos();

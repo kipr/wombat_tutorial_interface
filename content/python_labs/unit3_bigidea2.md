@@ -65,8 +65,8 @@ Keep your `ARM_MIN`, `ARM_MAX`, `CLAW_OPEN`, and `CLAW_SHUT` from Big Idea 1 han
 - text: |
     Right now, you have to remember not to type a dangerous servo number. That's risky --- one typo could burn out a servo. A better idea: build a function that **fixes** any out-of-range value before it ever reaches the servo. This is called *clamping*.
 - code: |
-    if position > ARM_MAX: position = ARM_MAX   # too high? pull it back to the max
-    if position < ARM_MIN: position = ARM_MIN   # too low? pull it up to the min
+    if position > ARM_MAX: position = ARM_MAX   # above the maximum? use the maximum
+    if position < ARM_MIN: position = ARM_MIN   # below the minimum? use the minimum
 - text: |
     After these two lines, `position` is *guaranteed* to be inside your safe range --- no matter what number came in. Even if someone asks for 3000, the servo only ever sees `ARM_MAX`.
 {{< /concept >}}
@@ -98,7 +98,7 @@ def main():
     k.enable_servo(0)            # arm
     k.enable_servo(1)            # claw
 
-    move_arm(ARM_MAX)          # This safely moves the arm to the top.
+    move_arm(ARM_MIN)          # This safely moves the arm to the top.
     move_arm(3000)             # UNSAFE number, but the clamp saves us:
                                # the arm only goes to ARM_MAX, not 3000
 

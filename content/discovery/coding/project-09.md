@@ -153,8 +153,8 @@ You have been writing your positions as [[COMMENT|comments]] since Project 7, in
 int main ()
 {
 	// arm  = 0
-	// up   = 1234
-	// down = 230
+	// up   = 230
+	// down = 1234
 
 	...
 }
@@ -166,8 +166,8 @@ int main ()
 int main ()
 {
 	int arm  = 0;
-	int up   = 1234;
-	int down = 230;
+	int up   = 230;
+	int down = 1234;
 
 	...
 }
@@ -178,9 +178,9 @@ int main ()
 **Before**
 
 ```c
-set_servo_position(0, 230);
-msleep(500);
 set_servo_position(0, 1234);
+msleep(500);
+set_servo_position(0, 230);
 
 motor(0, 50);
 motor(3, 50);
@@ -550,7 +550,7 @@ rows:
 
 ### Read the code
 
-Given `int arm = 0;` and `int down = 230;` --- what does each line do?
+Given `int arm = 0;` and `int down = 1234;` --- what does each line do?
 
 {{< gridtable >}}
 columns:

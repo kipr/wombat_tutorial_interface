@@ -157,7 +157,7 @@ SLOW = @@____@@
 
 #   - Steps two ticks at a time for smooth motion.
 
-#   Pass in the arm position you want (e.g. ARM_MAX to raise).
+#   Pass in the arm position you want (e.g. ARM_MIN to raise).
 def move_arm(target_position):
     if target_position > ARM_MAX: target_position = ARM_MAX
     if target_position < ARM_MIN: target_position = ARM_MIN
@@ -263,9 +263,9 @@ def main():
     back_until_pressed()    # back into the wall
     line_follow(1500)       # follow the line a while
     move_claw(CLAW_OPEN)    # open the claw
-    move_arm(ARM_MIN)       # lower the arm
+    move_arm(ARM_MAX)       # lower the arm
     move_claw(CLAW_SHUT)    # close on a cube
-    move_arm(ARM_MAX)       # raise it up
+    move_arm(ARM_MIN)       # raise it up
 
 main()
 {{< /code >}}

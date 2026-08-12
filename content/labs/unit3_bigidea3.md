@@ -143,7 +143,7 @@ void line_follow(int ticks);
 //   - Clamps the value into the safe range so the servo can't be
 //     forced past a hard stop and burned out.
 //   - Steps two ticks at a time for smooth motion.
-//   Pass in the arm position you want (e.g. ARM_MAX to raise).
+//   Pass in the arm position you want (e.g. ARM_MIN to raise).
 void move_arm(int target_position)
 {
 	if (target_position > ARM_MAX) target_position = ARM_MAX;
@@ -274,9 +274,9 @@ int main()
 	back_until_pressed();    // back into the wall
 	line_follow(1500);       // follow the line a while
 	move_claw(CLAW_OPEN);    // open the claw
-	move_arm(ARM_MIN);       // lower the arm
+	move_arm(ARM_MAX);       // lower the arm
 	move_claw(CLAW_SHUT);    // close on a cube
-	move_arm(ARM_MAX);       // raise it up
+	move_arm(ARM_MIN);       // raise it up
 
 	return 0;
 }

@@ -463,7 +463,7 @@ rows:
       - key: p4_l3
         aria: "Loop 3"
   - cells:
-      - text: "Raise the arm in small steps from 200 to 1800"
+      - text: "Lower the arm in small steps from 200 to 1800"
       - key: p4_l4
         aria: "Loop 4"
   - cells:
