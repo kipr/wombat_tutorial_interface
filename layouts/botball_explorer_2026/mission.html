@@ -56,11 +56,11 @@
     </section>
 
     <nav class="explorer-mission-nav" aria-label="Mission navigation">
-      {{- if gt $number 1 }}{{ $previous := site.GetPage (printf "/botball_explorer_2026/missions/mission-%d" (sub $number 1)) }}<a href="{{ $previous.RelPermalink }}">← Mission {{ sub $number 1 }}</a>{{ else }}<span></span>{{ end }}
-      <a href="{{ (site.GetPage "/botball_explorer_2026").RelPermalink }}">All Missions</a>
-      <a href="{{ (site.GetPage "/botball_explorer_2026/rules").RelPermalink }}">Rules</a>
-      <a href="{{ (site.GetPage "/glossary").RelPermalink }}">Glossary</a>
-      {{- if lt $number 18 }}{{ $next := site.GetPage (printf "/botball_explorer_2026/missions/mission-%d" (add $number 1)) }}<a href="{{ $next.RelPermalink }}">Mission {{ add $number 1 }} →</a>{{ else }}<span></span>{{ end }}
+      {{- if gt $number 1 }}{{ $previous := site.GetPage (printf "/botball_explorer_2026/missions/mission-%d" (sub $number 1)) }}<a href="{{ partial "relative-url.html" (dict "source" $ "target" $previous) }}">← Mission {{ sub $number 1 }}</a>{{ else }}<span></span>{{ end }}
+      <a href="{{ partial "relative-url.html" (dict "source" . "target" (site.GetPage "/botball_explorer_2026")) }}">All Missions</a>
+      <a href="{{ partial "relative-url.html" (dict "source" . "target" (site.GetPage "/botball_explorer_2026/rules")) }}">Rules</a>
+      <a href="{{ partial "relative-url.html" (dict "source" . "target" (site.GetPage "/glossary")) }}">Glossary</a>
+      {{- if lt $number 18 }}{{ $next := site.GetPage (printf "/botball_explorer_2026/missions/mission-%d" (add $number 1)) }}<a href="{{ partial "relative-url.html" (dict "source" $ "target" $next) }}">Mission {{ add $number 1 }} →</a>{{ else }}<span></span>{{ end }}
     </nav>
   </div>
 </main>

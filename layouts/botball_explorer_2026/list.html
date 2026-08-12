@@ -22,7 +22,7 @@
   </header>
   <div class="explorer-index-body">
     {{- $rules := site.GetPage "/botball_explorer_2026/rules" -}}
-    <a class="explorer-rules-card" href="{{ $rules.RelPermalink }}">
+    <a class="explorer-rules-card" href="{{ partial "relative-url.html" (dict "source" . "target" $rules) }}">
       <span class="explorer-rules-symbol" aria-hidden="true">§</span>
       <span><strong>Competition Rules</strong><small>Divisions, match structure, robot requirements, scoring, and official definitions.</small></span>
       <span class="explorer-card-action">Read Rules →</span>
@@ -37,7 +37,7 @@
         {{- $maximum = add $maximum .points -}}
         {{- $judging = $judging | append .judging -}}
       {{- end -}}
-      <a class="explorer-mission-card" href="{{ .RelPermalink }}">
+      <a class="explorer-mission-card" href="{{ partial "relative-url.html" (dict "source" $ "target" .) }}">
         <span class="explorer-card-top">
           <span class="explorer-card-number">{{ printf "%02d" .Params.mission_number }}</span>
           <span class="explorer-card-heading">
