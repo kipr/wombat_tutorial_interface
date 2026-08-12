@@ -294,7 +294,7 @@ rows:
 
 {{< ask key="p6_smooth_helped" label="Smooth helped" >}}Did smooth motion help the cube stay on the pallet compared to a sudden move? Why would a jerky arm knock it off?{{< /ask >}}
 
-## Phase 7 --- Connect &amp; Reflect
+## Phase 7 --- Connect  & Reflect
 
 {{< callout title="AI Literacy Thread" >}}
 Intelligent systems control their actions smoothly and safely, not just quickly.

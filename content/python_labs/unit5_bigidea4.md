@@ -57,6 +57,12 @@ Pick up **2 spilled cubes** and stack one [[ON TOP OF]] the other, placed on top
 
 This single stacking action scores three things at once: Mission 12's Base Mission (two spilled cubes forming a valid stack), and Mission 16's Base *and* Bonus Mission (one, then a second, spilled cube ON TOP OF the Large Green Cube) --- confirmed directly by the rules' own scoring examples. One clean action, most of the points on the board for these two missions.
 
+{{< mission-summary mission="12" video=true >}}
+{{< /mission-summary >}}
+{{< mission-summary mission="16" video=true >}}
+{{< /mission-summary >}}
+
+
 {{< ask key="p1_restate" label="Restate mission" >}}Say the mission back in your own words. Why does stacking the cubes *on the Large Green Cube*, instead of just on each other, matter for how many points you earn?{{< /ask >}}
 
 ## Phase 2 --- Concept: Measuring and Reading Elapsed Time

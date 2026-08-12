@@ -137,13 +137,12 @@ To touch Botguy you need one exact distance. But a whole mission needs many diff
 
 ### The Mission
 
-{{< callout title="Mission 9 --- Touch Botguy" >}}
-**Start:** your robot begins in the **right starting box**.
+{{< mission-summary mission="9" video=true >}}
+{{< /mission-summary >}}
 
-**Base:** drive out and touch Botguy.
-
-**Later (bonus):** removing Botguy from his [[ENCLOSURE|enclosure]] and getting him to the warehouse floor needs an arm --- that's a manipulation task for a future lesson. Today is just: drive a measured distance and touch him.
-{{< /callout >}}
+Your goal today is simply to touch Botguy.
+The bonus mission requires removing Botguy from his [[ENCLOSURE|enclosure]] and getting him to the warehouse floor.
+That needs an arm, which is a manipulation task for a future lesson.
 
 ### Step 1 --- Find Your Target Number
 
@@ -166,7 +165,7 @@ Describe your program in order --- including clearing the counter, the loop, and
 
 {{< steps key="p3_plan" label="Plan step" count=4 >}}
 
-## Phase 4 --- Build &amp; Run
+## Phase 4 --- Build  & Run
 
 {{< safety title="⚠ Test in your hands first" noprint=true >}}
 Hold the robot off the ground and run the program once. Watch the wheels spin and then brake to a stop on their own when the count is reached --- before you put it on the field toward Botguy.
@@ -240,7 +239,7 @@ rows:
 - The robot brakes with `k.motor(0,0); k.motor(3,0); k.msleep(50)` after the loop
 - You changed only the number passed in to tune the distance --- not the function itself
 
-## Phase 5 --- Debug &amp; Extend
+## Phase 5 --- Debug  & Extend
 
 {{< callout title="Common encoder bugs" variant="gold" >}}
 **Forgot `k.cmpc(0)`:** the counter still holds ticks from a previous run, so the robot stops early (or doesn't move). Always clear before the loop.

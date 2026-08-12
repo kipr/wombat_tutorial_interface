@@ -49,9 +49,8 @@ A system can't recognize failure it isn't tracking. Before a robot can debug its
 
 ## Phase 1 --- The Mission: Hazard Containment
 
-{{< callout title="The run" >}}
-Collect **2 orange poms and 2 blue poms**. Deliver **1 orange + 1 blue** into one PVC enclosure (Base Mission), and **1 orange + 1 blue** into a *different* PVC enclosure (Bonus Mission). The two enclosures must not be the same one.
-{{< /callout >}}
+{{< mission-summary mission="7" video=true >}}
+{{< /mission-summary >}}
 
 ### What counts
 
@@ -300,7 +299,7 @@ Run the mission. Each time it prints a pose, pause and physically measure where 
 
 {{< ask key="p7_drift" label="Drift analysis" >}}Where was the gap biggest? Was it right after a reset, or right before the next one? What does that tell you about where error was actually coming from --- a bad turn, a drive distance being off, or something else?{{< /ask >}}
 
-## Phase 8 --- Connect &amp; Reflect
+## Phase 8 --- Connect  & Reflect
 
 {{< callout title="AI Literacy Thread" >}}
 A system can't catch its own failures unless it keeps track of what it believes about itself.

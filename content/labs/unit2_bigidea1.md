@@ -173,7 +173,7 @@ Before any code, describe your program in order --- including what happens the m
 
 {{< steps key="p3_plan" label="Plan step" count=4 >}}
 
-## Phase 4 --- Build &amp; Run
+## Phase 4 --- Build  & Run
 
 {{< safety title="⚠ Test in your hands FIRST" noprint="true" >}}
 Before you ever put this on the board, **hold the robot up off the ground** and run the program. The wheels will spin backward. Press the button with your finger and watch the wheels stop. Only once that works should you set it on the field. This keeps the robot from driving off a table while you test.

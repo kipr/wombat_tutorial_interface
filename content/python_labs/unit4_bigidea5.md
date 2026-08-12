@@ -48,7 +48,7 @@ You cannot stop errors from happening. But you *can* keep resetting them. A reli
 - Explain how re-referencing known features keeps a long run accurate.
 {.obj}
 
-## Phase 1 --- The Mission &amp; Its Rules
+## Phase 1 --- The Mission  & Its Rules
 
 {{< callout title="The run" >}}
 **Start** in the **right starting box**. In one continuous run: **touch Botguy**, then **move both cones back into the starting box**, and finish.
@@ -186,7 +186,7 @@ A run that works once might be luck. A run that works 4 times out of 4 is *relia
 
 {{< ask key="p6_reliability" label="Reliability finding" >}}How many of your runs fully succeeded? If a run failed, was it because a square-up was missing where you needed one? Where would adding a reset help?{{< /ask >}}
 
-## Phase 7 --- Connect &amp; Reflect
+## Phase 7 --- Connect  & Reflect
 
 {{< callout title="AI Literacy Thread" >}}
 Reliable systems constantly re-check reality and reset their accumulated error.

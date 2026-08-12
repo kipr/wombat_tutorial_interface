@@ -217,7 +217,7 @@ Run your program and watch the console. A perfect run prints a growing score, en
 
 {{< ask key="p6_final_score" label="Final score" >}}What final score did your run reach? If it was below 40, which maneuver fell short, and how did the printed report help you find it?{{< /ask >}}
 
-## Phase 7 --- Connect &amp; Reflect
+## Phase 7 --- Connect  & Reflect
 
 {{< callout title="AI Literacy Thread" >}}
 Intelligent systems track their own state and report what they have done.

@@ -50,9 +50,8 @@ A system can't recognize failure it isn't tracking. Before a robot can debug its
 
 ## Phase 1 --- The Mission: Hazard Containment
 
-{{< callout title="The run" >}}
-Collect **2 orange poms and 2 blue poms**. Deliver **1 orange + 1 blue** into one PVC enclosure (Base Mission), and **1 orange + 1 blue** into a *different* PVC enclosure (Bonus Mission). The two enclosures must not be the same one.
-{{< /callout >}}
+{{< mission-summary mission="7" video=true >}}
+{{< /mission-summary >}}
 
 ### What counts
 

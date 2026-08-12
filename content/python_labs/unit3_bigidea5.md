@@ -105,6 +105,9 @@ Your library can drive *forward* a measured distance with `Tick_Drive` --- but a
 
 ## Phase 3 --- Plan: Map the Field
 
+{{< mission-summary mission="3" video=true >}}
+{{< /mission-summary >}}
+
 Before a single line of code, draw your plan. Mark your starting box (drawn for you), both cube pairs (the cube to lift and the cube to stack on), and the path your robot will travel. This map is what your whole program will be built from.
 
 {{< sketch aria="Field mapping sketch area" startbox="left"
@@ -250,7 +253,7 @@ rows:
 
 {{< ask key="p6_hardest" label="Hardest part" >}}Which part of the mission was hardest to get right --- a stack, or the reposition? Why?{{< /ask >}}
 
-## Phase 8 --- Connect &amp; Reflect
+## Phase 8 --- Connect  & Reflect
 
 {{< callout title="AI Literacy Thread" >}}
 Complex tasks are accomplished by sequencing reliable, reusable behaviors.

@@ -47,7 +47,7 @@ A servo doesn't spin like a wheel --- it goes to a *position* and holds. That pr
 - Write a sequence that opens, lowers, closes, and lifts --- a first cube pick-up.
 {.obj}
 
-### Build &amp; Plug In the Servos
+### Build  & Plug In the Servos
 
 {{< callout title="Wiring --- get this right before powering on" variant="navy" >}}
 Plug the **arm** servo into **servo [[PORT|port]] 0** and the **claw** servo into **servo port 3**.

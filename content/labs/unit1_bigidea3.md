@@ -211,7 +211,7 @@ rows:
       aria: Trace 3 action
 {{< /gridtable >}}
 
-## Phase 4 --- Build &amp; Run
+## Phase 4 --- Build  & Run
 
 ### Starting Code Template
 

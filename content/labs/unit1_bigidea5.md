@@ -120,12 +120,11 @@ A music app's "play" button is composed of smaller behaviors: find the file, rea
 
 ### The Mission
 
-{{< callout title="Mission 4 --- Push the Pom Off the Line" >}}
-**Start:** your robot begins in the **right starting box**.
+{{< mission-summary mission="4" video=true >}}
+{{< /mission-summary >}}
 
-**Base:** push the orange pom off the line.
-
-**Watch out:** the poms are scattered --- not in a straight line --- and there are other objects on the field you must drive around. The path from one pom to the next is different each time.
+{{< callout title="Watch out!" >}}
+The poms are scattered --- not in a straight line --- and there are other objects on the field you must drive around. The path from one pom to the next is different each time.
 {{< /callout >}}
 
 ### Step 1 --- Map the Field
@@ -191,7 +190,7 @@ rows:
     - key: p3_fn3_from
 {{< /gridtable >}}
 
-## Phase 4 --- Build &amp; Run
+## Phase 4 --- Build  & Run
 
 ### Example Program --- A Pattern to Learn From
 
@@ -293,7 +292,7 @@ rows:
 - At least one building block is reused in more than one place
 - Your `main()` matches the path you mapped in Phase 3 (it is not a copy of the example)
 
-## Phase 5 --- Debug &amp; Integrate
+## Phase 5 --- Debug  & Integrate
 
 When you reuse one building block everywhere, a single weak block causes failures all over the run. The flip side: fix that one block, and every place that uses it improves at once. That is the power --- and the risk --- of reuse.
 

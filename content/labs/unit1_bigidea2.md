@@ -100,7 +100,7 @@ Break "Make dinner" into the smallest steps you can. How many steps do you end u
 
 {{< ask key="p1_similar_to_mission" label="Similarity to a robot mission" >}}How is "Make dinner" similar to a robot mission on the Foundations field?{{< /ask >}}
 
-## Phase 2 --- Concept: Decomposition &amp; Abstraction
+## Phase 2 --- Concept: Decomposition  & Abstraction
 
 ### Decomposition
 
@@ -132,23 +132,17 @@ You cannot push the palletized cube off the line until the robot has driven to i
 
 ### Mission 2 --- What Must Happen?
 
-{{< callout title="Mission 2 --- Relocate the Red Cube" >}}
-**Starting state:** The Large Red Cube begins ON TOP OF its pallet.
+{{< mission-summary mission="2" video=true >}}
+{{< /mission-summary >}}
 
-**Base:** The Large Red Cube AND its pallet are both OFF the black line.
-
-**Bonus:** Both Small Red Cubes are also OFF the black line.
-
-**Key rule:** Both the cube AND the pallet must independently satisfy the OFF definition. The cube rides on the pallet, so pushing the assembly together is what scores --- no lifting required.
+{{< callout title="Mission 2 Key Rule" >}}
+Both the cube AND the pallet must independently satisfy the OFF definition. The cube rides on the pallet, so pushing the assembly together is what scores --- no lifting required.
 {{< /callout >}}
 
-{{< callout title="Your target today: drive, push, return" variant="navy" >}}
+Your target today: drive, push, return.
 Your robot will use only the driving and turning commands you already have. It drives to the palletized cube, pushes the whole assembly off the black line, and returns to its starting box. No arm, no lifting --- that comes in a later lesson.
-{{< /callout >}}
 
-{{< callout title="Looking ahead --- Mission 8" variant="gold" >}}
-Later in the game, Mission 8 --- Deliver the Red Cube asks the robot to lift that same palletized cube up onto the Loading Dock. That takes an arm, which means [[SERVO|servos]] --- a tool you haven't met yet. We'll worry about that lifting motion in a later lesson. For now, notice that the very first part of Mission 8 is the same as Mission 2: drive to the cube. The work you do today is a piece you'll reuse.
-{{< /callout >}}
+Later in the game, **Mission 8 --- Deliver the Red Cube** asks the robot to lift that same palletized cube up onto the **Loading Dock**. That takes an arm, which means [[SERVO|servos]] --- a tool you haven't met yet. We'll worry about that lifting motion in a later lesson. For now, notice that the very first part of Mission 8 is the same as Mission 2: drive to the cube. The work you do today is a piece you'll reuse.
 
 ### Step 1 --- Identify the Sub-Problems
 

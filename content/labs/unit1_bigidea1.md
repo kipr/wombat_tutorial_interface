@@ -156,7 +156,7 @@ Write your plan as a numbered list. Do not write code yet. Be specific enough th
 
 {{< ask key="p3_predict" label="Prediction" >}}Before you run anything: what do you predict will go wrong on the first try, and why?{{< /ask >}}
 
-## Phase 4 --- Build &amp; Run
+## Phase 4 --- Build  & Run
 
 {{< figrow >}}
 - src: ide/code-template.png

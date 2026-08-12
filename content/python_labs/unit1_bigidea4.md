@@ -179,7 +179,7 @@ rows:
 
 {{< ask key="p3_final_coord" label="Final stored coordinate" >}}What is the robot's final stored coordinate after both moves? Write it as (x, y).{{< /ask >}}
 
-## Phase 4 --- Build &amp; Run
+## Phase 4 --- Build  & Run
 
 ### Starting Code Template
 

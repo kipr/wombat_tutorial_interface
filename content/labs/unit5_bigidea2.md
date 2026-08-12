@@ -50,8 +50,11 @@ A robust system doesn't treat "far from the goal" and "about to arrive" the same
 ## Phase 1 --- The Mission: Move Botguy
 
 {{< callout title="The run" variant="navy" >}}
-Move **Botguy** into the **loading zone**. This mission is scored by Botguy's **final position** --- it doesn't matter how he got there, only where he ends up.
+Today's goal is just the base mission: moving Botguy into the loading zone.
 {{< /callout >}}
+
+{{< mission-summary mission="18" video=true >}}
+{{< /mission-summary >}}
 
 Here's why this mission is a perfect fit for today: Botguy isn't fixed to the floor. If your robot arrives at full speed and slams to a stop, the impact can shove Botguy off target in the last instant --- the exact moment accuracy matters most. A robot that eases off its speed as it approaches is far less likely to [[OVERSHOOT|overshoot]] the zone or knock Botguy out of position on contact.
 
@@ -214,7 +217,7 @@ Using your tuned `Drive()`, drive to Botguy and move him into the loading zone. 
 
 {{< ask key="p6_consistency" label="Mission consistency" >}}Compare this to a flat-speed `Drive()` from Unit 4. Was Botguy's final position more consistent with easing on/off? Why would a reliability engineer care about that consistency more than raw speed?{{< /ask >}}
 
-## Phase 7 --- Connect &amp; Reflect
+## Phase 7 --- Connect  & Reflect
 
 {{< callout title="AI Literacy Thread" >}}
 Reliable systems respond proportionally to how close they are to a goal, instead of acting the same way right up until they suddenly stop.

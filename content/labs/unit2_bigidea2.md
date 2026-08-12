@@ -144,7 +144,7 @@ rows:
       aria: Forward time
 {{< /gridtable >}}
 
-## Phase 4 --- Build &amp; Run the Experiment
+## Phase 4 --- Build  & Run the Experiment
 
 {{< safety title="⚠ Test in your hands first" noprint="true" >}}
 As always, hold the robot off the ground and run the program once to confirm it backs up, presses, then drives forward --- before you set it on the field.

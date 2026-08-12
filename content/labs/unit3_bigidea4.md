@@ -77,7 +77,7 @@ A turn is never perfect on the first try. You build a good turn by testing it, m
 Here's the catch: in a pivot, one wheel rolls forward (its tick count climbs) and one rolls backward (its count goes negative). Always count the wheel that's going **forward**. So a right pivot watches the left wheel --- `gmpc(0)` --- and a left pivot watches the right wheel --- `gmpc(1)`.
 {{< /callout >}}
 
-## Phase 2 --- Build &amp; Tune the Right Turn
+## Phase 2 --- Build  & Tune the Right Turn
 
 Build `turn_right` with a tick value you'll tune. Start with a guess, run it, measure the actual angle with a protractor, and adjust `RIGHT_TICKS` until it's a true 90°.
 
@@ -132,7 +132,7 @@ rows:
 
 {{< ask key="p2_right_best" label="Best right ticks" >}}What `RIGHT_TICKS` value gave you the closest to a true 90°? How did you decide which way to adjust when it was off?{{< /ask >}}
 
-## Phase 3 --- Build &amp; Tune the Left Turn
+## Phase 3 --- Build  & Tune the Left Turn
 
 Now the left turn. It's the mirror image --- wheels swapped --- and it watches the **right** wheel (`gmpc(1)`), because that's the one rolling forward this time. Tune `LEFT_TICKS` the same way.
 
