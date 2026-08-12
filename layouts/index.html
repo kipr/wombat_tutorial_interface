@@ -8,9 +8,9 @@
   <section class="home-hero">
     <div class="home-hero-inner">
       <div class="home-hero-text">
-        <img src="{{ partial "relative-url.html" (dict "source" . "path" "botguy.png") }}" alt="" class="home-hero-botguy">
+        <img src="{{ partial "relative-url.html" (dict "source" . "path" "botguy.webp") }}" alt="" class="home-hero-botguy">
         <p class="home-hero-eyebrow">{{ .Params.eyebrow }}</p>
-        <img src="{{ partial "relative-url.html" (dict "source" . "path" "kipr-logo.png") }}" alt="KIPR Logo" class="home-hero-logo">
+        <img src="{{ partial "relative-url.html" (dict "source" . "path" "kipr-logo.webp") }}" alt="KIPR Logo" class="home-hero-logo">
         <h1>{{ .Params.heading }}{{ with .Params.heading_accent }} <span>{{ . }}</span>{{ end }}</h1>
         <p class="home-hero-sub">{{ .Description }}</p>
       </div>
