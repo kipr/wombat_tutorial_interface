@@ -3,9 +3,74 @@
  * is intentionally project-owned so C and Python share the worksheet theme
  * without inline styles or a browser-side highlighter.
  *
- * Screen and print both use a light cream listing with dark ink. Token hues
- * stay saturated enough to remain distinct on white paper and on-screen.
+ * Screen colors follow the selected theme. Print keeps a deliberately fixed
+ * light palette so code remains readable when screen dark mode is active.
  */
+
+:root {
+  --syntax-line-number: #6E7781;
+  --syntax-highlight-background: rgba(192,57,43,.1);
+  --syntax-keyword: #0566D6;
+  --syntax-type: #9A5200;
+  --syntax-declaration: #8250DF;
+  --syntax-function: #000000;
+  --syntax-name: #0878B0;
+  --syntax-tag: #D1246B;
+  --syntax-string: #C62828;
+  --syntax-number: #00cc99;
+  --syntax-operator: #006B83;
+  --syntax-comment: #008000;
+  --syntax-preprocessor: #D1246B;
+  --syntax-error: #CF222E;
+  --syntax-error-background: rgba(207,34,46,.1);
+  --syntax-emphasis: #7A5B00;
+  --syntax-inserted: #14752A;
+  --syntax-generic: #6E7781;
+}
+
+:root[data-theme="dark"] {
+  --syntax-line-number: #9CA3AF;
+  --syntax-highlight-background: rgba(255,138,125,.16);
+  --syntax-keyword: #79C0FF;
+  --syntax-type: #FFA657;
+  --syntax-declaration: #D2A8FF;
+  --syntax-function: #F2F2F2;
+  --syntax-name: #76D4F0;
+  --syntax-tag: #FF7AB2;
+  --syntax-string: #FF9B90;
+  --syntax-number: #7EE787;
+  --syntax-operator: #79D4E8;
+  --syntax-comment: #8ACB88;
+  --syntax-preprocessor: #FF7AB2;
+  --syntax-error: #FF7B72;
+  --syntax-error-background: rgba(255,123,114,.15);
+  --syntax-emphasis: #F2CC68;
+  --syntax-inserted: #7EE787;
+  --syntax-generic: #B8B8B8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --syntax-line-number: #9CA3AF;
+    --syntax-highlight-background: rgba(255,138,125,.16);
+    --syntax-keyword: #79C0FF;
+    --syntax-type: #FFA657;
+    --syntax-declaration: #D2A8FF;
+    --syntax-function: #F2F2F2;
+    --syntax-name: #76D4F0;
+    --syntax-tag: #FF7AB2;
+    --syntax-string: #FF9B90;
+    --syntax-number: #7EE787;
+    --syntax-operator: #79D4E8;
+    --syntax-comment: #8ACB88;
+    --syntax-preprocessor: #FF7AB2;
+    --syntax-error: #FF7B72;
+    --syntax-error-background: rgba(255,123,114,.15);
+    --syntax-emphasis: #F2CC68;
+    --syntax-inserted: #7EE787;
+    --syntax-generic: #B8B8B8;
+  }
+}
 
 .code .chroma {
   margin: 0;
@@ -38,61 +103,83 @@
 .code .ln {
   margin-right: .4em;
   padding: 0 .4em;
-  color: #8a93a3;
+  color: var(--syntax-line-number);
   white-space: pre;
   user-select: none;
 }
 
 /* Chroma's optional whole-line emphasis. */
-.code .chroma .hl { background: rgba(192, 57, 43, .1); }
+.code .chroma .hl { background: var(--syntax-highlight-background); }
 
 /* Keywords, declarations, namespaces, and Python decorator names. */
-.code :is(.k, .kc, .kd, .kn, .kp, .kr) { color: #0566d6; }
-.code .kt { color: #c46a00; }
-.code :is(.nd, .nc, .ne) { color: #8250df; }
+.code :is(.k, .kc, .kd, .kn, .kp, .kr) { color: var(--syntax-keyword); }
+.code .kt { color: var(--syntax-type); }
+.code :is(.nd, .nc, .ne) { color: var(--syntax-declaration); }
 
 /* Functions, attributes, constants, and other named program elements. */
-.code :is(.nf, .fm) { color: #000000; }
-.code :is(.na, .no, .nx) { color: #0878b0; }
-.code .nt { color: #d1246b; }
+.code :is(.nf, .fm) { color: var(--syntax-function); }
+.code :is(.na, .no, .nx) { color: var(--syntax-name); }
+.code .nt { color: var(--syntax-tag); }
 
 /* Strings and interpolation. */
 .code :is(.l, .ld, .s, .sa, .sb, .sc, .dl, .sd, .s2, .sh, .si, .sx, .sr, .s1, .ss) {
-  color: #ff0606;
+  color: var(--syntax-string);
 }
-.code .se { color: #d1246b; }
+.code .se { color: var(--syntax-tag); }
 
 /* Numbers, operators, and punctuation. */
-.code :is(.m, .mb, .mf, .mh, .mi, .il, .mo) { color: #00cc99; }
-.code :is(.o, .ow, .or) { color: #0a8aa8; }
+.code :is(.m, .mb, .mf, .mh, .mi, .il, .mo) { color: var(--syntax-number); }
+.code :is(.o, .ow, .or) { color: var(--syntax-operator); }
 .code .p { color: var(--code-ink); }
 
 /* Comments and C preprocessor tokens. */
-.code :is(.c, .ch, .cm, .c1, .cs) { color: var(--code-green); font-style: italic; }
-.code :is(.cp, .cpf) { color: #d1246b; }
+.code :is(.c, .ch, .cm, .c1, .cs) { color: var(--syntax-comment); font-style: italic; }
+.code :is(.cp, .cpf) { color: var(--syntax-preprocessor); }
 
 /* Lexer errors should be conspicuous during authoring and review. */
 .code .err {
-  color: #cf222e;
-  background: rgba(207, 34, 46, .1);
-  text-decoration: underline wavy #cf222e;
+  color: var(--syntax-error);
+  background: var(--syntax-error-background);
+  text-decoration: underline wavy var(--syntax-error);
 }
 
 /* Tutorial-specific token emphasis, restored after Chroma runs. */
 .code .code-emphasis {
-  color: hsl(50, 100%, 40%) !important;
-  /* background: #ffe9a8; */
+  color: var(--syntax-emphasis) !important;
   border-radius: 3px;
   font-weight: 700;
 }
 
-.code :is(.gd, .gr) { color: #cf222e; }
-.code .gi { color: #1a8f32; }
+.code :is(.gd, .gr) { color: var(--syntax-error); }
+.code .gi { color: var(--syntax-inserted); }
 .code .ge { font-style: italic; }
 .code .gs { font-weight: 700; }
-.code .gu { color: #6e7781; }
+.code .gu { color: var(--syntax-generic); }
 
 @media print {
+  :root,
+  :root[data-theme="dark"],
+  :root:not([data-theme]) {
+    --syntax-line-number: #6E7781;
+    --syntax-highlight-background: rgba(192,57,43,.1);
+    --syntax-keyword: #0566D6;
+    --syntax-type: #9A5200;
+    --syntax-declaration: #8250DF;
+    --syntax-function: #000000;
+    --syntax-name: #0878B0;
+    --syntax-tag: #D1246B;
+    --syntax-string: #C62828;
+    --syntax-number: #00cc99;
+    --syntax-operator: #006B83;
+    --syntax-comment: #008000;
+    --syntax-preprocessor: #D1246B;
+    --syntax-error: #CF222E;
+    --syntax-error-background: rgba(207,34,46,.1);
+    --syntax-emphasis: #7A5B00;
+    --syntax-inserted: #14752A;
+    --syntax-generic: #6E7781;
+  }
+
   .code .chroma {
     color: #1a1a1a !important;
     background: transparent !important;

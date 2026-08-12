@@ -1,4 +1,4 @@
-<nav class="nav" aria-label="Main">
+<nav class="nav no-print" aria-label="Main">
   <a class="nav-brand" href="{{ partial "relative-url.html" (dict "source" . "path" "index.html") }}">
     <img src="{{ partial "relative-url.html" (dict "source" . "path" "kipr-logo.png") }}" alt="KIPR" />
     <span>Botball 2026</span>
@@ -8,4 +8,5 @@
     {{ partial "navigation-link.html" (dict "source" $ "item" . "activeClass" "active") }}
   {{- end }}
   </div>
+  {{ partial "theme-toggle.html" . }}
 </nav>
