@@ -107,7 +107,7 @@ This single stacking action scores three things at once: Mission 12's Base Missi
 - text: |
     `%` is new --- you've used `/` plenty, but division only gives you how many whole groups fit. Modulo gives you what's left over after those whole groups are removed.
 
-    Careful: you're about to see **two completely different jobs** for the `%` symbol in the same few lines. In `total_sec % 60`, it's **math** --- the modulo operator, computing a remainder. In `"%lu"` inside a `printf` [[STRING|string]], it's not math at all --- it's a placeholder telling `printf` "put a number here." Same symbol, two unrelated meanings, depending on whether it's sitting inside quotes or out in your code doing arithmetic.
+    Careful: you're about to see **two completely different jobs** for the `%` symbol in the same few lines. In `total_sec % 60`, it's **math** --- the modulo operator, computing a remainder. In `"%lu"` inside a [[PRINTF|printf]] [[STRING|string]], it's not math at all --- it's a placeholder telling `printf` "put a number here." Same symbol, two unrelated meanings, depending on whether it's sitting inside quotes or out in your code doing arithmetic.
 {{< /concept >}}
 
 {{< ask key="p2_modulo" label="Modulo reasoning" >}}If `total_sec` is 197, what do `197 / 60` and `197 % 60` each give you, and what do those two numbers mean together?{{< /ask >}}

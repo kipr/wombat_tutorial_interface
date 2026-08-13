@@ -55,7 +55,7 @@ You already build functions with `def`. Today you learn what a name *actually* i
 
 {{< concept "A name points at something --- it doesn't hold it" >}}
 - text: |
-    Until now, we've been referring to [[VARIABLE|variables]] as a labeled box with a value inside. Python doesn't work that way. A name is more like a **sticky note pointing at** something that lives somewhere else. You can prove it with `id()`, which returns the number of wherever that "somewhere else" is, in the Python you're using on the Wombat:
+    Until now, we've been referring to [[VARIABLE|variables]] as a labeled box with a value inside. Python doesn't work that way. A name is more like a **sticky note pointing at** something that lives somewhere else. You can prove it with `id()`, which returns the number of wherever that "somewhere else" is in the Python you're using on the Wombat. Use [[PRINT|print]] to see that number:
 - code: |
     x = 5
     print(id(x))       # This number identifies where the value 5 lives.

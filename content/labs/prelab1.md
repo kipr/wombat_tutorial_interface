@@ -116,7 +116,7 @@ For now, treat the first and last lines as **boilerplate** --- standard pieces y
 - `int main()` and its curly braces mark the part of the program that runs.
 - `return 0;` tells the controller the program finished normally.
 
-The line to understand today is `printf("ready\n");`. `printf` prints a message in the IDE's output area. The text between the quotation marks is what appears, and `\n` means **start a new line** after it.
+The [[PRINTF|printf]] line to understand today is `printf("ready\n");`. `printf` prints a message in the IDE's output area. The text between the quotation marks is what appears, and `\n` means **start a new line** after it.
 
 You can also leave a *placeholder* inside the message and supply its value after the quotation marks:
 

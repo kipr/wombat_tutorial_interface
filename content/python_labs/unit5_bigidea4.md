@@ -313,7 +313,7 @@ Finished early? Try one or more of these.
 
 ### Extension B --- Watch the Early Exit
 
-- Add a `print()` inside the `while swapped:` loop that prints the value of `swapped` at the end of each pass. Run your sort on data that's already close to sorted --- how many passes does it actually take before `swapped` stays `False`?
+- Add a [[PRINT|print]] inside the `while swapped:` loop that prints the value of `swapped` at the end of each pass. Run your sort on data that's already close to sorted --- how many passes does it actually take before `swapped` stays `False`?
 
 {{< answer key="ext_b" label="Extension B" >}}
 

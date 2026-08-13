@@ -114,7 +114,7 @@ main()
 
 ### Anatomy of This Program
 
-For now, treat every line except the two `print` lines as **boilerplate** --- standard pieces you copy into every program. Those lines connect Python to the Wombat's robot commands, mark the part of the program that runs, and start it. You will learn how they work later.
+For now, treat every line except the two [[PRINT|print]] lines as **boilerplate** --- standard pieces you copy into every program. Those lines connect Python to the Wombat's robot commands, mark the part of the program that runs, and start it. You will learn how they work later.
 
 The lines to understand today are `print("Ready?")` and `print("Go!")`. `print` displays the text between the quotation marks in the IDE's output area. Each `print` starts a new line after its message, which is why `Ready?` and `Go!` appear on separate lines.
 

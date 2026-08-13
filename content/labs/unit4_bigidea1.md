@@ -298,7 +298,7 @@ Finished early? Try one or more of these.
 
 ### Extension G --- Type In a Test Value
 
-- This extension requires running the program manually via SSH or the terminal. While testing (not during a competition run), use `scanf` to read a number typed by a teammate instead of hard-coding it --- the same way `printf` already sends output to the console, `scanf` reads input from it.
+- This extension requires running the program manually via SSH or the terminal. While testing (not during a competition run), use `scanf` to read a number typed by a teammate instead of hard-coding it --- the same way [[PRINTF|printf]] already sends output to the console, `scanf` reads input from it.
 
 {{< code >}}
 double distance;

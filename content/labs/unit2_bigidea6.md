@@ -311,7 +311,7 @@ Finished early? Try one or more of these.
 
 ### Extension B --- Report the Distance
 
-- Use your Phase 2 table to turn the stopping ET value back into an approximate distance, and `printf` it. Roughly how far away did the robot actually stop?
+- Use your Phase 2 table to turn the stopping ET value back into an approximate distance, and [[PRINTF|printf]] it. Roughly how far away did the robot actually stop?
 
 {{< answer key="ext_b" label="Extension B" >}}
 

@@ -156,7 +156,7 @@ def Turn(direction, angle):
 
 ## Phase 5 --- Plan: Legs, Resets, and Prints
 
-Walk your path from the starting box to both enclosures. Mark every leg, whether a real reset (`back_until_pressed` or `square_up`) happens there, and whether you print the pose. You need **at least 2 resets** tied to a `setX`/`setY` call, and **5 total prints**: one right after `initPose`, then one after each of your 4 pom drop-offs.
+Walk your path from the starting box to both enclosures. Mark every leg, whether a real reset (`back_until_pressed` or `square_up`) happens there, and whether you [[PRINT|print]] the pose. You need **at least 2 resets** tied to a `setX`/`setY` call, and **5 total prints**: one right after `initPose`, then one after each of your 4 pom drop-offs.
 
 {{< repeattable count=8 prefix="plan" caption="Plan each leg of the run" >}}
 - kind: number

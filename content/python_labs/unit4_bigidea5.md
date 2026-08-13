@@ -111,7 +111,7 @@ Now walk your path and decide *where* each square-up goes. Good reset points are
 
 ## Phase 5 --- Build: The Run in main()
 
-Write your run in `main()`, translating your plan into library calls. Start with the backward touch, then follow your path --- and put a `square_up()` at each reset checkpoint you planned. Scoring is optional here; you can `print()` milestones if you like, but the real goal is a **reliable, accurate run**.
+Write your run in `main()`, translating your plan into library calls. Start with the backward touch, then follow your path --- and put a `square_up()` at each reset checkpoint you planned. Scoring is optional here; you can [[PRINT|print]] milestones if you like, but the real goal is a **reliable, accurate run**.
 
 {{< code >}}
 

@@ -318,7 +318,7 @@ Finished early? Try one or more of these.
 
 ### Extension C --- Read Both Wheels (a peek ahead)
 
-- Print `k.gmpc(0)` and the other drive motor's counter side by side as the robot drives. Do they climb at exactly the same rate?
+- [[PRINT|Print]] `k.gmpc(0)` and the other drive motor's counter side by side as the robot drives. Do they climb at exactly the same rate?
 - If they don't, what might that tell you about why the robot drifts? (We'll use this idea later.)
 
 {{< answer key="ext_c" label="Extension C" >}}

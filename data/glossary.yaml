@@ -269,6 +269,12 @@
     design:
       title: "Prototype"
       body: "A first version built to be tested rather than kept. It is supposed to reveal problems, so a prototype that fails has done its job."
+"PRINT":
+  title: "print"
+  body: 'A Python function that displays text or values and ends with a new line. \n starts another new line inside the text. An f-string starts with f and uses curly-brace placeholders, such as {score}, to insert values into a message.'
+"PRINTF":
+  title: "printf"
+  body: 'A C function that prints formatted text. \n starts a new line, and placeholders such as %d mark where supplied values appear. Values fill the placeholders from left to right.'
 "PSEUDOCODE":
   title: "Pseudocode"
   body: "Literally \"false code.\" Your plan written in plain language as comments, before you write any real code. It keeps you from getting lost in the middle of a program."

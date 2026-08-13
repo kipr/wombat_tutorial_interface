@@ -25,7 +25,7 @@ meta:
   - term: "AI Literacy Thread"
     definition: "Intelligent systems track their own [[STATE|state]] and report what they have done."
   - term: "CS1 Concepts"
-    definition: "Accumulating [[VARIABLE|Variables]] · State · Console Output (f-strings) · Integration"
+    definition: "Accumulating [[VARIABLE|Variables]] · State · [[PRINT|print]] (f-strings) · Integration"
   - term: "Game Context"
     definition: "Stack the red cubes, then dock the [[PALLET|pallet]] — scoring as you go"
   - term: "What You Need"

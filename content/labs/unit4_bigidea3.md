@@ -319,7 +319,7 @@ Finished early? Try one or more of these.
 
 ### Extension C --- Check the Return Value
 
-- Store the return: `int ok = Turn('X', 90.0);` then `printf` whether it succeeded. How could a mission use that to react to a failed turn?
+- Store the return: `int ok = Turn('X', 90.0);` then [[PRINTF|printf]] whether it succeeded. How could a mission use that to react to a failed turn?
 
 {{< answer key="ext_c" label="Extension C" >}}
 

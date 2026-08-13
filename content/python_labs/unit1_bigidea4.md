@@ -183,7 +183,7 @@ rows:
 
 ### Starting Code Template
 
-Type this program into your robot [[CONTROLLER|controller]]. Notice the two position variables set to zero at the top, and how each move updates `y_position` right after it happens. The `print()` line shows you what the robot has stored.
+Type this program into your robot [[CONTROLLER|controller]]. Notice the two position variables set to zero at the top, and how each move updates `y_position` right after it happens. The [[PRINT|print]] line shows you what the robot has stored.
 
 {{< code >}}
 
