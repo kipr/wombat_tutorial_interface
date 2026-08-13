@@ -125,7 +125,7 @@ Reuse these author-facing APIs from Markdown:
 | `score-examples` | Required `scores` and `does_not_score` YAML lists rendered as a responsive comparison. |
 | `short-answer` | One-line response using the shared labelled text-input renderer; requires `key` and `label`, with optional `placeholder` or Markdown `prompt`. |
 | `signoff` | PreLab completion check plus labelled team/date-style fields. |
-| `sketch` | Printable field-sketch area with a derived start-box label. |
+| `sketch` | Printable field-sketch area using the field SVG for the chosen start-box side. |
 | `steps` | Generated numbered single-line response fields. |
 | `warn` | Semantic red caution panel for drift or values that may change. |
 | `widgetstep` | Semantic navy walkthrough panel that is always screen-only. |
@@ -414,7 +414,7 @@ The acceleration/cruise/deceleration bar has fixed shared content:
 {{< zonebar >}}
 ```
 
-`sketch` requires `aria`, `tag`, and `startbox="left"` or `startbox="right"`; `note` is optional. The start-box label is derived from its side.
+`sketch` requires `aria`, `tag`, and `startbox="left"` or `startbox="right"`; `note` is optional. The start-box side selects `b3x_lsb.svg` or `b3x_rsb.svg` from `static/img/field`.
 
 ## Structured concept blocks
 

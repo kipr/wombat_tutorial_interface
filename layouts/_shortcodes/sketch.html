@@ -1,15 +1,15 @@
 {{- /*
-  A printable field-sketch area with a marked start box.
+  A printable field-sketch area using the Botball field diagram.
 
     {{< sketch aria="Field mapping sketch area" startbox="right"
                tag="Sketch your field here - poms = ◯, obstacles = ✕"
                note="Draw on the printed copy, or describe the layout in the box below." >}}
 
   Parameters
-    aria       aria-label on the sketch div (required)
+    aria       alt text on the field image (required)
     tag        instruction text shown in the corner (required)
     note       italic note under the sketch; omit to skip
-    startbox   "left" or "right" (required)
+    startbox   "left" or "right" (required); selects b3x_lsb.svg or b3x_rsb.svg
 */ -}}
 {{- $aria := partial "require.html" (dict "sc" . "name" "aria") -}}
 {{- $tag := partial "require.html" (dict "sc" . "name" "tag") -}}
@@ -17,10 +17,11 @@
 {{- if and (ne $side "left") (ne $side "right") -}}
   {{- errorf `%s: sketch startbox must be "left" or "right", got %q` .Position $side -}}
 {{- end -}}
-{{- $label := cond (eq $side "right") "RIGHT<br>START BOX" "START<br>BOX" -}}
-<div class="sketch" aria-label="{{ $aria }}">
+{{- $file := cond (eq $side "right") "b3x_rsb.svg" "b3x_lsb.svg" -}}
+{{- $src := partial "relative-url.html" (dict "source" .Page "path" (printf "img/field/%s" $file)) -}}
+<div class="sketch">
+<img src="{{ $src }}" alt="{{ $aria }}">
 <span class="tag">{{ $tag }}</span>
-<div class="startbox {{ $side }}">{{ $label | safeHTML }}</div>
 </div>
 {{- with .Get "note" }}
 <p class="sketch-note no-print">{{ . }}</p>

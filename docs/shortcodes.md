@@ -140,8 +140,9 @@ return are shared.
 {{< /figrow >}}
 ```
 
-`sketch` creates a printable field area. It requires `aria`, `tag`, and
-`startbox=left|right`; `note` adds a screen-only instruction.
+`sketch` creates a printable field area from `static/img/field`. It requires
+`aria`, `tag`, and `startbox=left|right` (`b3x_lsb.svg` or `b3x_rsb.svg`);
+`note` adds a screen-only instruction.
 
 `zonebar` is parameterless fixed content for the shared acceleration, cruise,
 and deceleration diagram.

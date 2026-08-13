@@ -114,7 +114,8 @@ worksheet set is `site-base`, `worksheet`, `syntax`, and `print`.
 Files under `static/` keep their site-relative paths. For `figrow`, paths with
 a slash are resolved below `static/img/`. Shared kit and controller images stay
 under their shared `static/img/...` directories, including assembly sequences
-under `static/img/kit/assembly/`. A bare filename resolves to a page resource
+under `static/img/kit/assembly/`. The `sketch` shortcode uses the Botball field
+diagrams in `static/img/field/`. A bare filename resolves to a page resource
 colocated in the current content section. Mission videos are page resources in
 their mission leaf bundles.
 

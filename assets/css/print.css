@@ -43,7 +43,7 @@
   }
 
   .meta, .panel, .concept, .sheet table:not([class]), .grid, .bottom-submit,
-  .calc, .console, .truth, ul.tick li, .zonebar {
+  .calc, .console, .truth, ul.tick li, .zonebar, .sketch {
     break-inside: avoid;
   }
 
@@ -143,7 +143,7 @@
     print-color-adjust: exact;
   }
 
-  .zonebar div {
+  .zonebar div, .sketch {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
