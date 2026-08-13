@@ -120,7 +120,7 @@ rows:
     	while (gmpc(0) < target)
     	{
     		mav(0, 300);              // SLOW velocity: left wheel forward
-    		mav(1, -300);             // right wheel backward (pivot right)
+    		mav(3, -300);             // right wheel backward (pivot right)
     	}
     }
     motor(0,0); motor(3,0); msleep(50);   // brake-settle
@@ -213,7 +213,7 @@ int Turn(char direction, double angle)
 		while (gmpc(0) < ticks)
 		{
 			mav(0, 300);                            // slow velocity, left forward
-			mav(1, -300);                           // right backward
+			mav(3, -300);                           // right backward
 		}
 	}
 	else if (direction == 'L' || direction == 'l')  // LEFT (either case)
@@ -222,7 +222,7 @@ int Turn(char direction, double angle)
 		while (gmpc(1) < ticks)
 		{
 			mav(0, -300);
-			mav(1, 300);
+			mav(3, 300);
 		}
 	}
 	else                                             // not R/r or L/l: bad input!

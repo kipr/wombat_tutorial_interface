@@ -175,7 +175,7 @@ def move_claw(target_position):
     if target_position < CLAW_OPEN: target_position = CLAW_OPEN   # clamp first
     if target_position > CLAW_SHUT: target_position = CLAW_SHUT
 
-    current_position = k.get_servo_position(1)   # read once to avoid overloading the controller
+    current_position = k.get_servo_position(3)   # read once to avoid overloading the controller
     while current_position != target_position:   # step until we arrive
         # A 2-tick step could skip a target that is only 1 tick away.
         if abs(current_position - target_position) == 1:
@@ -185,7 +185,7 @@ def move_claw(target_position):
         else:
             k.set_servo_position(3, current_position - 2)
         k.msleep(@@1@@)
-        current_position = k.get_servo_position(1)
+        current_position = k.get_servo_position(3)
 {{< /code >}}
 
 {{< ask key="p4_smooth_observe" label="Smooth observation" >}}Run it and watch the arm. How is the motion different from last lab's instant `set_servo_position`? Describe what you see.{{< /ask >}}

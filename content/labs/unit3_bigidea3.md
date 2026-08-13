@@ -177,7 +177,7 @@ void move_claw(int target_position)
 {
 	if (target_position > CLAW_OPEN) target_position = CLAW_OPEN;
 	if (target_position < CLAW_SHUT) target_position = CLAW_SHUT;
-	int current_position = get_servo_position(1);
+	int current_position = get_servo_position(3);
 	while (current_position != target_position)
 	{
 		// A 2-tick step could skip a target that is only 1 tick away.
@@ -194,7 +194,7 @@ void move_claw(int target_position)
 			set_servo_position(3, current_position - 2);
 		}
 		msleep(1);
-		current_position = get_servo_position(1);
+		current_position = get_servo_position(3);
 	}
 }
 
@@ -237,11 +237,11 @@ void line_follow(int ticks)
 	{
 		if (analog(0) > MIDPOINT)
 		{
-			mav(0, FAST); mav(1, SLOW);
+			mav(0, FAST); mav(3, SLOW);
 		}
 		else
 		{
-			mav(0, SLOW); mav(1, FAST);
+			mav(0, SLOW); mav(3, FAST);
 		}
 	}
 	motor(0, 0); motor(3, 0); msleep(50);

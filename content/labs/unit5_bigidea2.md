@@ -147,10 +147,10 @@ void Drive(double inches)
 		}
 
 		mav(0, motor_speed);
-		mav(1, motor_speed);
+		mav(3, motor_speed);
 	}
 
-	mav(0, 0); mav(1, 0); msleep(50);   // brake
+	mav(0, 0); mav(3, 0); msleep(50);   // brake
 }
 {{< /code >}}
 

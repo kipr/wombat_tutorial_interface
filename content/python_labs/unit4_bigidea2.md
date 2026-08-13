@@ -68,7 +68,7 @@ TOPHAT_RIGHT = 1    # front-right tophat sensor on analog port 1
 {{< /code >}}
 
 {{< callout title="The key pairing" >}}
-Each sensor controls the wheel on *its own side*: `TOPHAT_LEFT` drives the **left** wheel `k.motor(0)`, and `TOPHAT_RIGHT` drives the **right** wheel `k.motor(1)`. If these get crossed, the robot will chase the line the wrong way --- so double-check.
+Each sensor controls the wheel on *its own side*: `TOPHAT_LEFT` drives the **left** wheel `k.motor(0)`, and `TOPHAT_RIGHT` drives the **right** wheel `k.motor(3)`. If these get crossed, the robot will chase the line the wrong way --- so double-check.
 {{< /callout >}}
 
 {{< ask key="p1_two_sensors" label="Why two sensors" >}}Why does squaring up need two sensors instead of one? What can two sensors tell the robot that one cannot?{{< /ask >}}

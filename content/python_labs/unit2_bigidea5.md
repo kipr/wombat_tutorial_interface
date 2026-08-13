@@ -78,10 +78,10 @@ There's no single "right" speed. The best line-follow is found by testing --- ch
 - code: |
     if k.analog(0) > MIDPOINT:    # on black, steer right
         k.mav(0, @@750@@)            # was k.motor(0, 50)
-        k.mav(1, @@300@@)            # was k.motor(3, 20)
+        k.mav(3, @@300@@)            # was k.motor(3, 20)
     else:                          # on white, steer left
         k.mav(0, @@300@@)
-        k.mav(1, @@750@@)
+        k.mav(3, @@750@@)
 {{< /concept >}}
 
 ## Phase 1 --- Activate: Coarse vs. Fine Control

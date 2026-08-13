@@ -218,10 +218,10 @@ def line_follow_until_object():
     while k.analog(1) < STOP_VALUE:    # ET: object still far? keep going
         if k.analog(0) > MIDPOINT:     # Tophat: on black, steer right
             k.mav(0, FAST)
-            k.mav(1, SLOW)
+            k.mav(3, SLOW)
         else:                          # on white, steer left
             k.mav(0, SLOW)
-            k.mav(1, FAST)
+            k.mav(3, FAST)
         k.msleep(10)                   # tiny pause so we don't overwork the controller
 
     k.motor(0, 0)                      # The object is close, so brake.

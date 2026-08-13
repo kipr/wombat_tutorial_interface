@@ -225,12 +225,12 @@ void line_follow_until_object()
 		if (analog(0) > MIDPOINT)      // Tophat: on black, steer right
 		{
 			mav(0, FAST);
-			mav(1, SLOW);
+			mav(3, SLOW);
 		}
 		else                           // on white, steer left
 		{
 			mav(0, SLOW);
-			mav(1, FAST);
+			mav(3, FAST);
 		}
 		msleep(10);                    // tiny pause so we don't overwork the controller
 	}

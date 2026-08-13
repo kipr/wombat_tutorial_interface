@@ -199,7 +199,7 @@ void move_claw(int target_position)
 	if (target_position < CLAW_OPEN) target_position = CLAW_OPEN;   // clamp first
 	if (target_position > CLAW_SHUT) target_position = CLAW_SHUT;
 
-	int current_position = get_servo_position(1);   // read once to avoid overloading the controller
+	int current_position = get_servo_position(3);   // read once to avoid overloading the controller
 	while (current_position != target_position)     // step until we arrive
 	{
 		// A 2-tick step could skip a target that is only 1 tick away.
@@ -216,7 +216,7 @@ void move_claw(int target_position)
 			set_servo_position(3, current_position - 2);
 		}
 		msleep(@@1@@);
-		current_position = get_servo_position(1);
+		current_position = get_servo_position(3);
 	}
 }
 {{< /code >}}

@@ -183,7 +183,7 @@ def move_arm(target_position):
 def move_claw(target_position):
     if target_position < CLAW_OPEN: target_position = CLAW_OPEN
     if target_position > CLAW_SHUT: target_position = CLAW_SHUT
-    current_position = k.get_servo_position(1)
+    current_position = k.get_servo_position(3)
     while current_position != target_position:
         # A 2-tick step could skip a target that is only 1 tick away.
         if abs(current_position - target_position) == 1:
@@ -193,7 +193,7 @@ def move_claw(target_position):
         else:
             k.set_servo_position(3, current_position - 2)
         k.msleep(1)
-        current_position = k.get_servo_position(1)
+        current_position = k.get_servo_position(3)
 
 # back_until_pressed: Drives the robot straight backward until the
 
@@ -230,9 +230,9 @@ def line_follow(ticks):
     k.cmpc(0)
     while k.gmpc(0) < ticks:
         if k.analog(0) > MIDPOINT:
-            k.mav(0, FAST); k.mav(1, SLOW)
+            k.mav(0, FAST); k.mav(3, SLOW)
         else:
-            k.mav(0, SLOW); k.mav(1, FAST)
+            k.mav(0, SLOW); k.mav(3, FAST)
     k.motor(0, 0); k.motor(3, 0); k.msleep(50)
 {{< /code >}}
 

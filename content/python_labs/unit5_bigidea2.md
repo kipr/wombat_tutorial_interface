@@ -134,9 +134,9 @@ def Drive(inches):
             motor_speed = @@750@@
 
         k.mav(0, motor_speed)
-        k.mav(1, motor_speed)
+        k.mav(3, motor_speed)
 
-    k.mav(0, 0); k.mav(1, 0); k.msleep(50)   # brake
+    k.mav(0, 0); k.mav(3, 0); k.msleep(50)   # brake
 {{< /code >}}
 
 {{< ask key="p4_walkthrough" label="Drive walkthrough" >}}Walk through the three branches in your own words: what triggers each one, and what does each one do to `motor_speed`?{{< /ask >}}
