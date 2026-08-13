@@ -164,7 +164,7 @@ Now build `Turn` --- and it introduces two more new ideas at once: it takes **tw
 
 {{< concept "Two parameters, two different types" >}}
 - text: |
-    Until now your functions took one input (or none). `Turn` takes two, separated by a comma --- a direction *and* an angle:
+    Until now your functions took one input (or none). In the definition of `Turn`, `direction` and `angle` are the two named parameters. In each call below, values such as `'R'` and `90.0` are the arguments supplied to those parameters:
 - code: |
     Turn('R', 90.0);    // turn right 90 degrees
     Turn('L', 45.0);    // turn left 45 degrees

@@ -2,7 +2,7 @@
 title: "Unit 2 · Big Idea 3 — Drive by the Numbers"
 short_title: "Python 2.3"
 hub_unit: 2
-description: "Encoders and arguments — use gmpc/cmpc and a function that takes a distance to drive out and touch Botguy."
+description: "Encoders, parameters, and arguments — use gmpc/cmpc and a function that takes a distance to drive out and touch Botguy."
 weight: 100
 nav: python
 track: python
@@ -25,7 +25,7 @@ meta:
   - term: "AI Literacy Thread"
     definition: "Intelligent systems sense their own actions and use that feedback to act precisely."
   - term: "CS1 Concepts"
-    definition: "Function [[ARGUMENT|Arguments]] · Encoders (gmpc / cmpc) · Numeric Loop [[CONDITION|Conditions]]"
+    definition: "Function [[PARAMETER|Parameters]] and [[ARGUMENT|Arguments]] · Encoders (gmpc / cmpc) · Numeric Loop [[CONDITION|Conditions]]"
   - term: "Game Context"
     definition: "[[@9|Mission 9]] — drive from the right starting box and touch Botguy"
   - term: "What You Need"
@@ -44,7 +44,7 @@ A robot that can measure its own movement can act precisely. Instead of "drive f
 
 - Read a motor's encoder with `k.gmpc()` and reset it with `k.cmpc()`.
 - Write a `while` loop that exits on a number you choose, not just a button.
-- Build a function that takes an *argument* so one function can drive any distance.
+- Distinguish a function's *parameter* from the *argument* supplied when you call it.
 - Drive a measured distance from the starting box to touch Botguy.
 {.obj}
 
@@ -87,17 +87,17 @@ This is where your robot's movement data lives. When your code reads `k.gmpc(0)`
     The condition `k.gmpc(0) < 2000` stays true while the count is below 2000, and flips false the instant it reaches it. The loop isn't waiting for an on/off --- it's waiting for a number to grow big enough.
 {{< /concept >}}
 
-{{< concept "A function that takes an argument" >}}
+{{< concept "A parameter receives an argument" >}}
 - text: |
-    So far your functions ran the same way every time. An **argument** lets you hand a function a number, so it can do its job *differently* depending on what you pass in.
+    So far your functions ran the same way every time. A **parameter** is the named input in a function definition. An **argument** is the value you supply when you call the function.
 - code: |
-    def Tick_Drive(@@ticks@@):   # The ticks argument is a number you pass in.
+    def Tick_Drive(@@ticks@@):   # PARAMETER: the named input is ticks
         ...
 
-    Tick_Drive(@@2000@@)   # drive 2000 ticks
-    Tick_Drive(@@1000@@)   # Call the SAME function with only 1000 ticks this time.
+    Tick_Drive(@@2000@@)   # ARGUMENT: pass in the value 2000
+    Tick_Drive(@@1000@@)   # ARGUMENT: pass in 1000 instead
 - text: |
-    Inside the function, `ticks` stands for whatever number you passed. One function, any distance --- no copying and pasting.
+    Inside the function, the parameter `ticks` receives whichever argument you supplied. One function, any distance --- no copying and pasting.
 {{< /concept >}}
 
 ## Phase 1 --- Activate: Counting Your Own Steps
@@ -117,21 +117,21 @@ The robot's wheel counter is its version of counting steps. What is one "step" f
 
 {{< ask key="p1_counting_steps" label="Counting steps analogy" >}}How is counting your steps to a target like the robot counting encoder ticks to a target? Why does measuring movement beat guessing at time?{{< /ask >}}
 
-## Phase 2 --- Concept: Feedback and Arguments
+## Phase 2 --- Concept: Feedback, Parameters, and Arguments
 
 ### An Encoder Is the Robot Sensing Itself
 
 Earlier sensors told the robot about the *outside* world --- a wall, a button. An encoder is different: it tells the robot about **itself** --- how far its own wheels have turned. This is called *feedback*: the robot watches the result of its own action and uses it to decide when to stop.
 
-### An Argument Makes One Function Flexible
+### A Parameter and Its Arguments Make One Function Flexible
 
-You've built functions that always did exactly the same thing. An *argument* is a value you pass into a function to change what it does. `Tick_Drive(2000)` and `Tick_Drive(1000)` are the same function doing two different distances. The function is written once; the number makes it flexible.
+You've built functions that always did exactly the same thing. In `def Tick_Drive(ticks):`, `ticks` is the *parameter*: the named input in the function definition. In `Tick_Drive(2000)`, `2000` is the *argument*: the value supplied at that call. `Tick_Drive(2000)` and `Tick_Drive(1000)` call the same function with different arguments, so it drives two different distances.
 
 {{< callout title="Why this matters for a real run" variant="gold" >}}
 To touch Botguy you need one exact distance. But a whole mission needs many different distances. With an argument, you write `Tick_Drive()` once and call it with whatever number each leg of the trip needs --- instead of writing a new function for every distance.
 {{< /callout >}}
 
-{{< ask key="p2_argument_meaning" label="What an argument is" >}}In your own words: what is an argument, and how does `Tick_Drive(2000)` differ from `Tick_Drive(1000)` even though it's the same function?{{< /ask >}}
+{{< ask key="p2_argument_meaning" label="Parameters and arguments" >}}In your own words: what is the parameter in `def Tick_Drive(ticks):`, and what is the argument in `Tick_Drive(2000)`? How does changing the argument change what the function does?{{< /ask >}}
 
 ## Phase 3 --- Plan
 
@@ -173,7 +173,7 @@ Hold the robot off the ground and run the program once. Watch the wheels spin an
 
 ### Starting Code Template
 
-Type this program. Notice `Tick_Drive` now takes an argument --- `ticks` --- so you can call it with any distance. Define it above `main()`, as always.
+Type this program. Notice that `ticks` is the parameter in the `Tick_Drive` definition. The value in a call such as `Tick_Drive(2000)` is the argument. Define the function above `main()`, as always.
 
 {{< code >}}
 
@@ -188,10 +188,10 @@ sys.path.append("/usr/lib")
 import _kipr as k
 
 def main():
-    Tick_Drive(@@2000@@)   # Call this to drive this many ticks toward Botguy.
+    Tick_Drive(@@2000@@)   # CALL: 2000 is the argument.
                        # (use YOUR target number from Phase 3)
 
-def Tick_Drive(@@ticks@@):     # The 'ticks' parameter receives the value you passed in.
+def Tick_Drive(@@ticks@@):     # DEFINITION: ticks is the parameter.
     k.cmpc(0)                     # clear port 0's counter to 0
 
     while k.gmpc(0) < @@ticks@@:   # while we haven't reached the target...
@@ -233,7 +233,8 @@ rows:
 
 ### [[CHECKLIST|Checklist]]
 
-- `Tick_Drive` takes `ticks` as its argument, in both its definition and its call
+- `ticks` is the parameter in the `Tick_Drive` definition
+- The number in a call such as `Tick_Drive(2000)` is the argument
 - `k.cmpc(0)` clears the counter *before* the loop
 - The loop condition is `k.gmpc(0) < ticks`
 - The robot brakes with `k.motor(0,0); k.motor(3,0); k.msleep(50)` after the loop
@@ -291,7 +292,7 @@ Complete this section on your own.
 
 {{< ask key="p7_q1_encoders" label="Reflection 1" n=1 >}}What do `k.cmpc(0)` and `k.gmpc(0)` each do? Why must you clear before you read in a loop?{{< /ask >}}
 
-{{< ask key="p7_q2_argument" label="Reflection 2" n=2 >}}What is an *argument*? Explain how one `Tick_Drive()` function can drive many different distances.{{< /ask >}}
+{{< ask key="p7_q2_argument" label="Reflection 2" n=2 >}}What is the difference between a *parameter* and an *argument*? Identify each one in `def Tick_Drive(ticks):` and `Tick_Drive(2000)`, then explain how one function can drive many distances.{{< /ask >}}
 
 {{< ask key="p7_q3_numeric_loop" label="Reflection 3" n=3 >}}This loop exits on a number climbing to a target, not an on/off button. How is that different from the touch-sensor loop you wrote before?{{< /ask >}}
 
