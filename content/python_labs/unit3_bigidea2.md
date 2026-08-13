@@ -54,13 +54,6 @@ Keep your `ARM_MIN`, `ARM_MAX`, `CLAW_OPEN`, and `CLAW_SHUT` from Big Idea 1 han
 
 ## Phase 1 --- Concept: A Function That Protects Itself
 
-{{< figrow >}}
-- src: servo/servo-positions.jpg
-  alt: Up, down, horizontal, open, close --- the positions worth recording.
-- src: servo/attach-horn.jpg
-  alt: Washer on the spline first, then the horn.
-{{< /figrow >}}
-
 {{< concept "Clamping --- forcing a value inside a safe range" >}}
 - text: |
     Right now, you have to remember not to type a dangerous servo number. That's risky --- one typo could burn out a servo. A better idea: build a function that **fixes** any out-of-range value before it ever reaches the servo. This is called *clamping*.

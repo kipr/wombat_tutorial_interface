@@ -2,7 +2,7 @@
   "build": { "dockerfile": "../Dockerfile" },
   "forwardPorts": [1313],
   "features": {
-      "ghcr.io/cirolosapio/devcontainers-features/alpine-gpg:0": {},
+      "ghcr.io/cirolosapio/devcontainers-features/alpine-gpg:0": {}
   },
   "mounts": [
     "source=${localEnv:HOME}/.config/codex,target=/var/hugo/.codex,type=bind,consistency=cached"

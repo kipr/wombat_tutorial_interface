@@ -55,17 +55,18 @@ A complex mission isn't built from new code --- it's built by sequencing reliabl
 ## Phase 1 --- Understand the Mission
 
 {{< figrow >}}
-- src: servo/what-is-a-claw.jpg
-  alt: What a claw actually has to do to hold something.
+- src: kit/assembly/finished.jpg
+  alt: The robot needs a claw to move objects around.
 {{< /figrow >}}
 
-{{< callout title="Mission 3 --- Stack a Cube, Then Stack Another" >}}
-**Base:** stack a green or yellow cube [[ON TOP OF]] a cube of the *opposite* color.
-
-**Bonus (your goal today):** do it *twice* --- build two stacks.
+{{< callout title="Today's goal" variant="gold" >}}
+Complete the bonus by building two stacks.
 
 The two stacks are in different spots, so after finishing the first, your robot has to move over and line up with the second. That repositioning is the new challenge.
 {{< /callout >}}
+
+{{< mission-summary mission="3" video=true >}}
+{{< /mission-summary >}}
 
 {{< ask key="p1_restate" label="Restate mission" >}}Say the mission back in your own words. What makes the *second* stack harder than the first?{{< /ask >}}
 

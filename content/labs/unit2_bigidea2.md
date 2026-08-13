@@ -79,7 +79,7 @@ Telling a motor to stop and a motor actually holding still are two different thi
 ## Phase 1 --- Activate: Two Ways to Stop a Bike
 
 {{< figrow >}}
-- src: drive/motor-plugged-in.jpg
+- src: kit/zoommotorports.jpg
   alt: Motors in ports 0 and 3 --- the pair every experiment here assumes.
 {{< /figrow >}}
 

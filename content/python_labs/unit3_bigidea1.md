@@ -61,8 +61,6 @@ On each servo cord, the **orange wire must be closest to the screen**. Plugging 
 {{< figrow >}}
 - src: servo/range-of-motion.jpg
   alt: "A servo's travel is a protractor --- 180° as positions 0 to 2047."
-- src: servo/servo-functions.jpg
-  alt: What has to be in place before a servo will move.
 {{< /figrow >}}
 
 {{< concept "A servo goes to a position, like a protractor" >}}
@@ -95,7 +93,7 @@ On each servo cord, the **orange wire must be closest to the screen**. Plugging 
 - src: servo/plugged-port-0.jpg
   alt: A servo in port 0.
 - src: servo/centering-horn.jpg
-  alt: center the horn before you trust any position number.
+  alt: Center the horn before you trust any position number.
 {{< /figrow >}}
 
 {{< safety title="⚠ This step protects your servo --- do it carefully" noprint=true >}}
