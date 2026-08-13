@@ -290,7 +290,7 @@ function main() {
       errors.push("fixture should contain exactly three token-emphasis spans");
     }
 
-    if (!fs.readFileSync(fixture, "utf8").includes("css/syntax.css")) {
+    if (!/css\/syntax(?:\.min)?\.[a-f0-9]+\.css/.test(fs.readFileSync(fixture, "utf8"))) {
       errors.push("fixture page does not link the syntax stylesheet");
     }
   }

@@ -6,8 +6,13 @@
   result is then rewritten relative to the current page so the site keeps
   working wherever it is mounted.
 
+  CSS is minified and fingerprinted so browsers cache a content-hashed file.
+
   Called with: (dict "page" . "path" "css/print.css")
 */ -}}
 {{- $res := resources.Get .path -}}
 {{- if not $res }}{{ errorf "assets/%s does not exist" .path }}{{ end -}}
+{{- if strings.HasSuffix .path ".css" -}}
+  {{- $res = $res | minify | fingerprint -}}
+{{- end -}}
 {{- return partial "relative-url.html" (dict "source" .page "path" $res.RelPermalink) -}}

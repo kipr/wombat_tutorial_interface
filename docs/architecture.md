@@ -25,7 +25,7 @@ under a project mount, and when opened from a local directory.
 | --- | --- |
 | `content/` | Markdown, front matter, Explorer mission leaf bundles, and the Standards Correlations hub. |
 | `layouts/` | Base template, page-family layouts, render hooks, shortcodes, and internal partials. |
-| `assets/css/` | CSS published through Hugo Pipes when referenced by a page's `styles` list. |
+| `assets/css/` | CSS minified and fingerprinted through Hugo Pipes when referenced by a page's `styles` list. |
 | `static/` | Files copied as-is: images, JavaScript, PDF, SVG, and the legacy scoring app. |
 | `data/nav.yaml` | Canonical top-level navigation. |
 | `data/glossary.yaml` | Canonical curriculum and competition definitions. |
@@ -115,7 +115,8 @@ section overrides it to preserve explicitly authored heading attributes.
 ## CSS and static assets
 
 A page's `styles` front-matter list names files under `assets/css/` without the
-extension. `head.html` resolves and publishes each resource. The default
+extension. `head.html` asks `asset.html` to publish each file through Hugo
+Pipes (`minify | fingerprint`) and return a page-relative URL. The default
 worksheet set is `site-base`, `worksheet`, `syntax`, and `print`.
 
 Files under `static/` keep their site-relative paths. For `figrow`, paths with
