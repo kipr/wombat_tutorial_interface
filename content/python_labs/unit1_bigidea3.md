@@ -44,7 +44,7 @@ The robot doesn't "know" anything. It checks a value against a rule you wrote --
 
 ### By the end of this activity you will be able to:
 
-- Explain what a *[[CONDITION|Condition]]* is and how an `if` statement uses one to make a decision.
+- Explain what a *[[CONDITION|Condition]]* is and how an [[IF STATEMENT|if statement]] uses one to make a decision.
 - Use `if` / `else` to make a robot take different actions for different values.
 - Predict what a program will do by reading its rule before you run it.
 - Connect rule-based decisions to how intelligent systems classify and respond to the world.

@@ -173,7 +173,7 @@ If you set your stop value too high (too close), the robot would have to drive i
 
 {{< concept "The loop checks the ET; the body steers with the Tophat" >}}
 - text: |
-    The `while` [[CONDITION|Condition]] watches the ET: keep going while the object is still far (the value is still *below* your stop value). Inside the loop, the same `if/else` steering you tuned before keeps the robot on the line.
+    The [[WHILE LOOP|while loop's]] [[CONDITION|condition]] watches the ET: keep going while the object is still far (the value is still *below* your stop value). Inside the loop, the same `if/else` steering you tuned before keeps the robot on the line.
 - code: |
     while k.analog(1) < STOP_VALUE:     # ET: still far? keep going
         if k.analog(0) > MIDPOINT:       # Tophat: steer on the line

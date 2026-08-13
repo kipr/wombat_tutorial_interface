@@ -42,7 +42,7 @@ A robust system doesn't treat "far from the goal" and "about to arrive" the same
 
 ### By the end of this activity you will be able to:
 
-- Explain what an `elif` chain does and when it's the right tool versus separate `if` [[STATEMENT|statements]].
+- Explain what an `elif` chain does and when it's the right tool versus separate [[IF STATEMENT|if statements]].
 - Describe motor speed as a linear function of position, in the form y = mx + b.
 - Rebuild `Drive()` so it accelerates, cruises, and decelerates instead of running at one fixed speed.
 - Tune the constants in that linear function by testing, not by guessing.

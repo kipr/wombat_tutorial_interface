@@ -177,6 +177,9 @@
 "INERTIA":
   title: "Inertia"
   body: "A moving object keeps moving until something stops it. When your loop shuts the motors off, the robot is still rolling, so it coasts past the tick count you asked for. More speed means more coasting."
+"IF STATEMENT":
+  title: "If Statement"
+  body: "A decision structure that checks a condition and runs its block only when that condition is true. An optional else block gives the program something different to do when the condition is false. The if statement is the whole structure; the condition is the true-or-false question it checks."
 "INPUT":
   title: "Input"
   body: "Information coming into a system from outside - a sensor reading, a button press, a light coming on. Without input a machine has no idea what is going on around it."
@@ -371,6 +374,9 @@
 "VOID":
   title: "Void"
   body: "A function marked void does a job but hands nothing back. ao() is void - it stops the motors but gives you no answer. Functions like digital() and gmpc() are not void, because they hand you a number."
+"WHILE LOOP":
+  title: "While Loop"
+  body: "A loop that checks a condition before each pass and repeats a block while that condition is true. When the condition reads a sensor, the robot can keep acting and checking the world until the sensor tells it to stop or change what it is doing."
 "ZERO RADIUS TURN":
   title: "Zero Radius Turn"
   body: "The two wheels turn in opposite directions, so the robot spins in place without traveling forward or backward. Also called a pivot turn or spin turn. This is the turn you use when you need an exact angle."

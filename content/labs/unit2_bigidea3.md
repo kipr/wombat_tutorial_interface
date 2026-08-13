@@ -42,7 +42,7 @@ A robot that can measure its own movement can act precisely. Instead of "drive f
 ### By the end of this activity you will be able to:
 
 - Read a motor's encoder with `gmpc()` and reset it with `cmpc()`.
-- Write a `while` loop that exits on a number you choose, not just a button.
+- Write a [[WHILE LOOP|while loop]] that exits on a number you choose, not just a button.
 - Distinguish a function's *parameter* from the *argument* supplied when you call it.
 - Drive a measured distance from the starting box to touch Botguy.
 {.obj}

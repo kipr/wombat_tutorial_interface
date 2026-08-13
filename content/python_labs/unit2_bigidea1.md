@@ -25,7 +25,7 @@ meta:
   - term: "AI Literacy Thread"
     definition: "Intelligent systems rely on [[SENSOR|sensors]] to gather information about the world around them."
   - term: "CS1 Concepts"
-    definition: "Inputs · Sensors · [[DIGITAL|Digital]] Sensors · while Loops · Observation"
+    definition: "Inputs · Sensors · [[DIGITAL|Digital]] Sensors · [[WHILE LOOP|while Loops]] · Observation"
   - term: "Game Context"
     definition: "Back into the starting box using touch · reset the origin"
   - term: "What You Need"
@@ -60,7 +60,7 @@ In your program, `k.digital(0)` reads this sensor: it is **0 when the button is 
 
 ### New This Time: The while Loop
 
-{{< concept "A while loop repeats code as long as something is true" >}}
+{{< concept "A [[WHILE LOOP|while loop]] repeats code as long as something is true" >}}
 - text: |
     Until now your code ran top to bottom, once. A `while` loop lets a [[BLOCK|block]] run **over and over**, checking a condition each time before it repeats.
 - code: |
@@ -122,7 +122,7 @@ An *input* is information coming *into* the program from the outside world. A se
 
 ### Digital Means Two States
 
-A *digital* sensor has only two possible readings: **0 or 1**. Your touch sensor is digital --- the button is either open (0) or pressed (1). There is no "halfway." This is the same true/false, [[BOOLEAN|Boolean]] thinking you used with `if` [[STATEMENT|statements]], now coming from the real world.
+A *digital* sensor has only two possible readings: **0 or 1**. Your touch sensor is digital --- the button is either open (0) or pressed (1). There is no "halfway." This is the same true/false, [[BOOLEAN|Boolean]] thinking you used with [[IF STATEMENT|if statements]], now coming from the real world.
 
 {{< callout title="Digital vs. [[ANALOG|Analog]] (a look ahead)" variant="gold" >}}
 Some sensors are *analog* --- they return a whole range of numbers, not just 0 or 1 (like a distance sensor reading "how far"). You'll meet those soon. Today's touch sensor is the simplest kind: just 0 or 1.

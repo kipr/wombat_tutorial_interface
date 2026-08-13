@@ -128,7 +128,7 @@ Black reads *higher* than white. So "still on white" means `analog(...) < MIDPOI
 
 ## Phase 4 --- Build: The square_up [[FUNCTION|Function]]
 
-Put it together. The loop runs until both sensors are on black. Inside, each wheel has its **own** `if` [[STATEMENT|statement]], checking its own sensor and either driving or freezing. Use a slow speed so it has time to react.
+Put it together. The loop runs until both sensors are on black. Inside, each wheel has its **own** [[IF STATEMENT|if statement]], checking its own sensor and either driving or freezing. Use a slow speed so it has time to react.
 
 {{< code >}}
 // Unit 4, Big Idea 2: Squaring Up

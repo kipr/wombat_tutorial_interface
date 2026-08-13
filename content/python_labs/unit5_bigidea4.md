@@ -233,7 +233,7 @@ Reset the 2 spilled cubes to their starting positions between attempts, and run 
                 times[i + 1] = temp
                 swapped = True        # ...unless a swap actually happened
 - text: |
-    If an entire pass finds nothing out of order, `swapped` never gets reset to `True`, the `while` loop's condition goes false, and the sort stops --- without wasting a pass it didn't need.
+    If an entire pass finds nothing out of order, `swapped` never gets reset to `True`, the [[WHILE LOOP|while loop's]] condition goes false, and the sort stops --- without wasting a pass it didn't need.
 {{< /concept >}}
 
 {{< ask key="p5_flag" label="Boolean flag reasoning" >}}Walk through the simple version by hand on paper first, with your own 4 numbers. Then answer: why does checking `swapped` let the improved version stop early on data that's already close to sorted? What's stored in the variable at the moment it does?{{< /ask >}}

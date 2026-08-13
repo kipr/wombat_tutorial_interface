@@ -68,7 +68,7 @@ A model like "[[TICK|ticks]] per degree" lets one function turn *any* angle. But
 
 {{< concept "A for loop repeats a set number of times" >}}
 - text: |
-    You've used `while` loops that run until something changes. A `for` loop is for when you know *exactly how many times* to repeat. It counts for you:
+    You've used [[WHILE LOOP|while loops]] that run until something changes. A `for` loop is for when you know *exactly how many times* to repeat. It counts for you:
 - code: |
     for (int i = 0; i < 4; i++)  // run 4 times: i = 0, 1, 2, 3
     {

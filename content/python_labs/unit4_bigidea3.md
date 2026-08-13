@@ -76,7 +76,7 @@ A model like "[[TICK|ticks]] per degree" lets one function turn *any* angle. But
 
 {{< concept "A for loop repeats a set number of times" >}}
 - text: |
-    You've used `while` loops that run until something changes. A `for` loop with `range()` is for when you know *exactly how many times* to repeat. It counts for you:
+    You've used [[WHILE LOOP|while loops]] that run until something changes. A `for` loop with `range()` is for when you know *exactly how many times* to repeat. It counts for you:
 - code: |
     for i in range(4):   # run 4 times: i = 0, 1, 2, 3
         # ...do this each time...
