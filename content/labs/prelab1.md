@@ -108,6 +108,24 @@ int main()
 }
 {{< /code >}}
 
+### Anatomy of This Program
+
+For now, treat the first and last lines as **boilerplate** --- standard pieces you copy into every program:
+
+- `#include <kipr/wombat.h>` makes the Wombat's robot commands available.
+- `int main()` and its curly braces mark the part of the program that runs.
+- `return 0;` tells the controller the program finished normally.
+
+The line to understand today is `printf("ready\n");`. `printf` prints a message in the IDE's output area. The text between the quotation marks is what appears, and `\n` means **start a new line** after it.
+
+You can also leave a *placeholder* inside the message and supply its value after the quotation marks:
+
+```c
+printf("Trial: %d\n", 1);
+```
+
+Here `%d` is a placeholder for a whole number, so the output is `Trial: 1`. When a message has more than one placeholder, the values after the quotation marks fill them from left to right.
+
 {{< checklist >}}
 - key: t_typed
   label: "I typed it myself and it compiled with no errors."

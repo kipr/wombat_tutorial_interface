@@ -128,23 +128,23 @@ A one-tick command is too small to make the servo actually move, so these functi
 - code: |
     k.get_servo_position(0)   # returns the servo's current position on port 0
 - text: |
-    With that, a loop can walk the servo to its target one step at a time --- usually moving **+2** if it's below the target or **−2** if it's above. When the target is only one tick away, it moves that final tick directly so it cannot skip over the target:
+    With that, two loops can cover both directions. The first loop steps **+2** while the servo is below the target. The second steps **−2** while it is above. Each loop stops when the servo is within one tick of the target, and then one final command moves it directly to the target so it cannot skip past it:
 - code: |
     current_position = k.get_servo_position(0)
-    while current_position != target_position:   # until we arrive...
-        if abs(current_position - target_position) == 1:
-            k.set_servo_position(0, target_position)   # move the final tick
-        elif current_position < target_position:
-            k.set_servo_position(0, current_position + 2)   # step up
-        else:
-            k.set_servo_position(0, current_position - 2)   # step down
-        k.msleep(1)   # This tiny pause makes the motion smooth.
+    while current_position < target_position - 1:   # below the target?
+        k.set_servo_position(0, current_position + 2)   # step up
+        k.msleep(1)
         current_position = k.get_servo_position(0)
+    while current_position > target_position + 1:   # above the target?
+        k.set_servo_position(0, current_position - 2)   # step down
+        k.msleep(1)
+        current_position = k.get_servo_position(0)
+    k.set_servo_position(0, target_position)   # move the final tick if needed
 - text: |
-    Because the loop updates `current_position` after each step, it figures out which way to go on its own. You never tell it where it started --- only where to end.
+    The servo's starting position decides which loop runs. Because that loop updates `current_position` after each step, it knows when it is close enough to stop. You never tell the function where the servo started --- only where to end.
 {{< /concept >}}
 
-{{< ask key="p3_no_start" label="Why no start needed" >}}The loop decides to step up or down by reading `get_servo_position`. Why does this mean you don't need to tell the function the servo's starting position?{{< /ask >}}
+{{< ask key="p3_no_start" label="Why no start needed" >}}The two loops decide whether to step up or down by reading `get_servo_position`. Why does this mean you don't need to tell the function the servo's starting position?{{< /ask >}}
 
 ## Phase 4 --- Build: Smooth move_arm and move_claw
 
@@ -160,32 +160,30 @@ def move_arm(target_position):
     if target_position < ARM_MIN: target_position = ARM_MIN
 
     current_position = k.get_servo_position(0)   # read once to avoid overloading the controller
-    while current_position != target_position:   # step until we arrive
-        # A 2-tick step could skip a target that is only 1 tick away.
-        if abs(current_position - target_position) == 1:
-            k.set_servo_position(0, target_position)
-        elif current_position < target_position:
-            k.set_servo_position(0, current_position + 2)
-        else:
-            k.set_servo_position(0, current_position - 2)
+    while current_position < target_position - 1:   # below target: step up
+        k.set_servo_position(0, current_position + 2)
         k.msleep(@@1@@)   # 1 ms per step = smooth motion
         current_position = k.get_servo_position(0)
+    while current_position > target_position + 1:   # above target: step down
+        k.set_servo_position(0, current_position - 2)
+        k.msleep(@@1@@)
+        current_position = k.get_servo_position(0)
+    k.set_servo_position(0, target_position)   # finish at the exact target
 
 def move_claw(target_position):
     if target_position < CLAW_OPEN: target_position = CLAW_OPEN   # clamp first
     if target_position > CLAW_SHUT: target_position = CLAW_SHUT
 
     current_position = k.get_servo_position(3)   # read once to avoid overloading the controller
-    while current_position != target_position:   # step until we arrive
-        # A 2-tick step could skip a target that is only 1 tick away.
-        if abs(current_position - target_position) == 1:
-            k.set_servo_position(3, target_position)
-        elif current_position < target_position:
-            k.set_servo_position(3, current_position + 2)
-        else:
-            k.set_servo_position(3, current_position - 2)
+    while current_position < target_position - 1:   # below target: step up
+        k.set_servo_position(3, current_position + 2)
         k.msleep(@@1@@)
         current_position = k.get_servo_position(3)
+    while current_position > target_position + 1:   # above target: step down
+        k.set_servo_position(3, current_position - 2)
+        k.msleep(@@1@@)
+        current_position = k.get_servo_position(3)
+    k.set_servo_position(3, target_position)   # finish at the exact target
 {{< /code >}}
 
 {{< ask key="p4_smooth_observe" label="Smooth observation" >}}Run it and watch the arm. How is the motion different from last lab's instant `set_servo_position`? Describe what you see.{{< /ask >}}

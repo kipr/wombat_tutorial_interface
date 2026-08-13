@@ -162,16 +162,15 @@ def move_arm(target_position):
     if target_position > ARM_MAX: target_position = ARM_MAX
     if target_position < ARM_MIN: target_position = ARM_MIN
     current_position = k.get_servo_position(0)
-    while current_position != target_position:
-        # A 2-tick step could skip a target that is only 1 tick away.
-        if abs(current_position - target_position) == 1:
-            k.set_servo_position(0, target_position)
-        elif current_position < target_position:
-            k.set_servo_position(0, current_position + 2)
-        else:
-            k.set_servo_position(0, current_position - 2)
+    while current_position < target_position - 1:
+        k.set_servo_position(0, current_position + 2)
         k.msleep(1)
         current_position = k.get_servo_position(0)
+    while current_position > target_position + 1:
+        k.set_servo_position(0, current_position - 2)
+        k.msleep(1)
+        current_position = k.get_servo_position(0)
+    k.set_servo_position(0, target_position)
 
 # move_claw: Smoothly moves the claw servo (port 3) to a position.
 
@@ -184,16 +183,15 @@ def move_claw(target_position):
     if target_position < CLAW_OPEN: target_position = CLAW_OPEN
     if target_position > CLAW_SHUT: target_position = CLAW_SHUT
     current_position = k.get_servo_position(3)
-    while current_position != target_position:
-        # A 2-tick step could skip a target that is only 1 tick away.
-        if abs(current_position - target_position) == 1:
-            k.set_servo_position(3, target_position)
-        elif current_position < target_position:
-            k.set_servo_position(3, current_position + 2)
-        else:
-            k.set_servo_position(3, current_position - 2)
+    while current_position < target_position - 1:
+        k.set_servo_position(3, current_position + 2)
         k.msleep(1)
         current_position = k.get_servo_position(3)
+    while current_position > target_position + 1:
+        k.set_servo_position(3, current_position - 2)
+        k.msleep(1)
+        current_position = k.get_servo_position(3)
+    k.set_servo_position(3, target_position)
 
 # back_until_pressed: Drives the robot straight backward until the
 

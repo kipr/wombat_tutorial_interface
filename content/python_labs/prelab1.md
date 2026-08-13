@@ -112,6 +112,20 @@ def main():
 main()
 {{< /code >}}
 
+### Anatomy of This Program
+
+For now, treat every line except the two `print` lines as **boilerplate** --- standard pieces you copy into every program. Those lines connect Python to the Wombat's robot commands, mark the part of the program that runs, and start it. You will learn how they work later.
+
+The lines to understand today are `print("Ready?")` and `print("Go!")`. `print` displays the text between the quotation marks in the IDE's output area. Each `print` starts a new line after its message, which is why `Ready?` and `Go!` appear on separate lines.
+
+An **f-string** lets you put a value inside a message. Put `f` before the opening quotation mark and put the value inside curly braces:
+
+```python
+print(f"Trial: {1}")
+```
+
+The curly braces are a placeholder for the value inside them, so the output is `Trial: 1`. An f-string can contain more than one pair of curly braces when you need to insert more than one value.
+
 {{< checklist >}}
 - key: t_typed
   label: "I typed it myself and it ran with no errors."

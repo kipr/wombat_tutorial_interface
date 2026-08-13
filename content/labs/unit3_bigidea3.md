@@ -112,8 +112,6 @@ Now fill your header with every reusable function you've built. Organize it in t
 // Every reusable tool I've built, in one place.
 // ============================================================
 
-#include <stdlib.h>  // provides abs() for the smooth-movement functions
-
 // ---- VARIABLES (my robot's tuned values) ----
 // These live here so the whole library can use them. You can also
 // move them into main() if you'd rather set them per program.
@@ -149,24 +147,19 @@ void move_arm(int target_position)
 	if (target_position > ARM_MAX) target_position = ARM_MAX;
 	if (target_position < ARM_MIN) target_position = ARM_MIN;
 	int current_position = get_servo_position(0);
-	while (current_position != target_position)
+	while (current_position < target_position - 1)
 	{
-		// A 2-tick step could skip a target that is only 1 tick away.
-		if (abs(current_position - target_position) == 1)
-		{
-			set_servo_position(0, target_position);
-		}
-		else if (current_position < target_position)
-		{
-			set_servo_position(0, current_position + 2);
-		}
-		else
-		{
-			set_servo_position(0, current_position - 2);
-		}
+		set_servo_position(0, current_position + 2);
 		msleep(1);
 		current_position = get_servo_position(0);
 	}
+	while (current_position > target_position + 1)
+	{
+		set_servo_position(0, current_position - 2);
+		msleep(1);
+		current_position = get_servo_position(0);
+	}
+	set_servo_position(0, target_position);
 }
 
 // move_claw: Smoothly moves the claw servo (port 3) to a position.
@@ -178,24 +171,19 @@ void move_claw(int target_position)
 	if (target_position > CLAW_OPEN) target_position = CLAW_OPEN;
 	if (target_position < CLAW_SHUT) target_position = CLAW_SHUT;
 	int current_position = get_servo_position(3);
-	while (current_position != target_position)
+	while (current_position < target_position - 1)
 	{
-		// A 2-tick step could skip a target that is only 1 tick away.
-		if (abs(current_position - target_position) == 1)
-		{
-			set_servo_position(3, target_position);
-		}
-		else if (current_position < target_position)
-		{
-			set_servo_position(3, current_position + 2);
-		}
-		else
-		{
-			set_servo_position(3, current_position - 2);
-		}
+		set_servo_position(3, current_position + 2);
 		msleep(1);
 		current_position = get_servo_position(3);
 	}
+	while (current_position > target_position + 1)
+	{
+		set_servo_position(3, current_position - 2);
+		msleep(1);
+		current_position = get_servo_position(3);
+	}
+	set_servo_position(3, target_position);
 }
 
 // back_until_pressed: Drives the robot straight backward until the
