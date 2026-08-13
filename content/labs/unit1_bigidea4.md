@@ -116,7 +116,7 @@ To describe where something is on a flat field, we use two numbers: `x` (how far
 
 ### Representation
 
-The robot's real position is out there on the field. The two numbers in memory are a *representation* of it --- a model. If the model is updated correctly, it matches reality. If the robot slips or you forget to update, the model and reality drift apart, and the robot "believes" something false about where it is.
+The robot's real position is out there on the field. The two numbers in memory are a *representation* of it --- a [[MODEL|model]]. If the model is updated correctly, it matches reality. If the robot slips or you forget to update, the model and reality drift apart, and the robot "believes" something false about where it is.
 
 {{< callout title="Example" variant="gold" >}}
 A phone's map shows a blue dot for "you are here." That dot is a *representation* stored in the phone. When it's updated well, it tracks you. When the signal drops, the dot keeps showing the last stored spot --- the model, not reality.

@@ -96,6 +96,9 @@
 "CYBERBULLYING":
   title: "Cyberbullying"
   body: "Using messages, posts, photos, or group chats to hurt, frighten, or humiliate somebody. It is different from a disagreement - it usually keeps going, and it usually has an audience."
+"DATA SET":
+  title: "Data Set"
+  body: "A group of related values collected for one purpose and considered together. A table of sensor readings, several calibration results, or an array of run times is a data set you can analyze for patterns and use to make decisions."
 "DEBUGGING":
   title: "Debugging"
   body: "Finding out why a program does not do what you meant, and fixing it. The skill is not writing perfect code; it is narrowing down where the trouble actually is."
@@ -202,6 +205,9 @@
 "MILESTONE":
   title: "Milestone"
   body: "A point in a plan where something has to be finished before the next thing can start. Milestones are how you find out you are behind while there is still time to do something about it."
+"MODEL":
+  title: "Model"
+  body: "A simplified representation of something real that helps a system describe it, predict what will happen, or decide what to do. A ticks-per-inch relationship is a mathematical movement model; stored x, y, and heading values are a pose model of where a robot believes it is."
 "MODULARITY":
   title: "Modularity"
   body: "Building a program out of separate pieces that each do one job. Modular code is easier to test, easier to fix, and easier to reuse somewhere else."

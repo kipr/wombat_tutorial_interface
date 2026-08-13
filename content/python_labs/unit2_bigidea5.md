@@ -220,7 +220,7 @@ Now you're the engineer. Using what your two series showed, pick your own fast a
 Intelligent systems are tuned and optimized using evidence, not guesses.
 {{< /callout >}}
 
-You didn't find your best settings by guessing --- you ran an organized experiment, changed one thing at a time, and let the data guide you. This is exactly how real intelligent systems get good. Engineers tuning a self-driving car, or researchers training an AI model, adjust settings (called *[[PARAMETER|parameters]]*), measure the result, and adjust again --- thousands of times. The "intelligence" of a system is often the result of careful tuning, not a single lucky setting.
+You didn't find your best settings by guessing --- you ran an organized experiment, changed one thing at a time, and let the [[DATA SET|data set]] guide you. This is exactly how real intelligent systems get good. Engineers tuning a self-driving car, or researchers training an AI model, adjust settings (called *[[PARAMETER|parameters]]*), measure the result, and adjust again --- thousands of times. The "intelligence" of a system is often the result of careful tuning, not a single lucky setting.
 
 Read each scenario. Think it through, then write your answer.
 {.muted}

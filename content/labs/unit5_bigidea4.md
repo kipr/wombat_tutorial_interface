@@ -44,7 +44,7 @@ A system that never measures its own performance can't tell whether a change act
 - Use `systime()` to measure how long a routine actually took.
 - Use the modulo operator (`%`) to turn a raw time value into something readable.
 - Store repeated measurements in an array, and use a boolean [[VARIABLE|variable]] to track a running yes/no answer inside a loop.
-- Write a linear search to find the best and worst value in a data set.
+- Write a linear search to find the best and worst value in a [[DATA SET|data set]].
 - Write a simple sort, and reason about how its cost changes as the data set grows.
 {.obj}
 

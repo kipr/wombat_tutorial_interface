@@ -153,7 +153,7 @@ rows:
 
 ## Phase 3 --- Calibrate & Find the Midpoint
 
-Now mount the sensor firmly at your best height (around 1/4 inch). With it mounted exactly where it will drive, take your real readings --- these are the numbers your code will trust.
+Now mount the sensor firmly at your best height (around 1/4 inch). With it mounted exactly where it will drive, take your real readings --- this small [[DATA SET|data set]] contains the numbers your code will trust.
 
 ### Step 1 --- Mounted Readings
 

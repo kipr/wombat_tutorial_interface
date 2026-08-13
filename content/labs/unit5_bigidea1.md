@@ -281,7 +281,7 @@ int main()
 
 ## Phase 7 --- Run It and Check the Belief Against Reality
 
-Run the mission. Each time it prints a pose, pause and physically measure where the robot actually is. Compare the printed number to your measurement --- that gap is your robot's **drift**, and it's the first real evidence you've collected about where your model breaks down.
+Run the mission. Each time it prints a pose, pause and physically measure where the robot actually is. Compare the printed number to your measurement --- that gap is your robot's **drift**, and it's the first real evidence you've collected about where your [[MODEL|model]] breaks down.
 
 {{< repeattable count=5 prefix="drift" caption="Compare believed pose to measured pose, at each print" >}}
 - kind: number

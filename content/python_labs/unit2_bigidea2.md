@@ -260,7 +260,7 @@ rows:
 
 ## Phase 5 --- Analyze Your Data
 
-Now look at your two sets of five. Don't guess --- read what your numbers actually say.
+Now look at your two [[DATA SET|data sets]] of five measurements. Don't guess --- read what your numbers actually say.
 
 {{< gridtable >}}
 columns:

@@ -33,7 +33,7 @@ meta:
 
 ## Overview
 
-Your turns right now are stuck at 90°. But missions need all kinds of angles --- 45°, 180°, whatever the field demands. Today you'll build one flexible function, `Turn`, that takes a **direction** and an **angle** and handles them all. Along the way you'll meet four new tools: a new [[VARIABLE|variable]] type for letters, a new kind of loop, functions that take more than one input, and functions that hand a value back. And you'll discover something real engineers live with every day: a model is never perfect --- it's the best fit you can find.
+Your turns right now are stuck at 90°. But missions need all kinds of angles --- 45°, 180°, whatever the field demands. Today you'll build one flexible function, `Turn`, that takes a **direction** and an **angle** and handles them all. Along the way you'll meet four new tools: a new [[VARIABLE|variable]] type for letters, a new kind of loop, functions that take more than one input, and functions that hand a value back. And you'll discover something real engineers live with every day: a [[MODEL|model]] is never perfect --- it's the best fit you can find.
 
 {{< callout title="Core Insight" >}}
 A model like "[[TICK|ticks]] per degree" lets one function turn *any* angle. But the real world fights back --- [[INERTIA|inertia]] and friction mean no single number is perfect. You find the one that fits *best*.

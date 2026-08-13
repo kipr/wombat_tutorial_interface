@@ -33,7 +33,7 @@ meta:
 
 ## Overview
 
-Up to now, when you wanted the robot to drive somewhere, you guessed at a [[TICK|tick]] count and tested until it looked right. That works, but it's slow --- and the ticks mean nothing to a human. Today you'll teach your robot something powerful: the **relationship** between ticks and inches. Once it knows that, you can tell it to drive "12 inches" and it will *predict* the right number of ticks on its own. You're building a **model** --- and that's one of the most important ideas in all of robotics and AI.
+Up to now, when you wanted the robot to drive somewhere, you guessed at a [[TICK|tick]] count and tested until it looked right. That works, but it's slow --- and the ticks mean nothing to a human. Today you'll teach your robot something powerful: the **relationship** between ticks and inches. Once it knows that, you can tell it to drive "12 inches" and it will *predict* the right number of ticks on its own. You're building a [[MODEL|model]] --- and that's one of the most important ideas in all of robotics and AI.
 
 {{< callout title="Core Insight" >}}
 A model is a relationship the robot can use to predict. If it knows how many ticks make one inch, it can predict the ticks for *any* distance --- without guessing.
