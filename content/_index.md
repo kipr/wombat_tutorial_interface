@@ -37,8 +37,8 @@ cards:
     arrow: "Open Scoring App →"
     url: score.html
   - kicker: "Classroom · Teachers"
-    title: "Educator Resources"
-    desc: "Standards correlations and other teacher-facing materials that map Botball Explorer to classroom and state requirements."
-    arrow: "Open Educator Resources →"
-    page: /resources
+    title: "Standards Correlations"
+    desc: "Excel workbooks that map Botball Explorer CS1 learning to ISTE and state computer science standards."
+    arrow: "View Downloads →"
+    page: /standards-correlations
 ---

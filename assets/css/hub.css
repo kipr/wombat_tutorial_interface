@@ -274,19 +274,6 @@ body.hub .page-sub {
   gap: 1.5rem;
 }
 
-.hub-back {
-  margin: 0 0 1.25rem;
-  font-size: 0.85rem;
-}
-
-.hub-back a {
-  color: var(--text-accent);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.hub-back a:hover { text-decoration: underline; }
-
 .choice-title span { color: var(--text-accent); }
 
 .download-featured { margin-bottom: 2.5rem; }

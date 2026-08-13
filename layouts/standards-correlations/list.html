@@ -30,13 +30,7 @@
 {{- if eq (len $states) 0 }}{{ errorf "%s: no state workbooks (*%s) in %s" .File.Path $stateSuffix $staticDir }}{{ end -}}
 {{- $states = sort $states "label" -}}
 
-{{- $parent := .Parent -}}
 <main class="wrap">
-  {{- with $parent }}
-  {{- $backLabel := .Params.heading | default .Title -}}
-  {{- with .Params.heading_accent }}{{ $backLabel = printf "%s %s" $backLabel . }}{{ end -}}
-  <p class="hub-back"><a href="{{ partial "relative-url.html" (dict "source" $ "target" .) }}">&larr; {{ $backLabel }}</a></p>
-  {{- end }}
   <p class="page-eyebrow">{{ .Params.eyebrow }}</p>
   <h1 class="page-title">{{ .Params.heading }}{{ with .Params.heading_accent }} <span>{{ . }}</span>{{ end }}</h1>
   <p class="page-sub">{{ with .Params.subheading }}{{ . }}{{ else }}{{ .Description }}{{ end }}</p>

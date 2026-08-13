@@ -1,8 +1,0 @@
-{{- $section := .section -}}
-{{- $page := .page -}}
-<a class="choice-card" href="{{ partial "relative-url.html" (dict "source" $page "target" $section) }}">
-  <span class="choice-kicker">{{ $section.Params.kicker }}</span>
-  <span class="choice-title">{{ $section.Params.heading }}{{ with $section.Params.heading_accent }} <span>{{ . }}</span>{{ end }}</span>
-  <span class="choice-desc">{{ $section.Description }}</span>
-  <span class="choice-arrow">{{ $section.Params.arrow | default (printf "Open %s →" $section.Params.heading) }}</span>
-</a>
