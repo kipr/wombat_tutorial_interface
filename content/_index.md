@@ -36,4 +36,9 @@ cards:
     desc: "Score a Botball Explorer run mission by mission and see your total update live."
     arrow: "Open Scoring App →"
     url: score.html
+  - kicker: "Classroom · Teachers"
+    title: "Educator Resources"
+    desc: "Standards correlations and other teacher-facing materials that map Botball Explorer to classroom and state requirements."
+    arrow: "Open Educator Resources →"
+    page: /resources
 ---

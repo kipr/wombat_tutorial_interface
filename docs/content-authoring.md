@@ -75,6 +75,23 @@ Optional `python` wording overrides the C/default definition. True homonyms use
 named `senses`; unresolved editorial conflicts belong in
 `data/glossary-conflicts.yaml` until a human chooses the canonical wording.
 
+### Educator resources
+
+Teacher-facing collections live under `content/resources/`. The parent hub
+cards come from child sections; do not maintain a parallel card list.
+
+To add a new collection, create a child bundle with front matter that supplies
+`kicker`, `heading`, optional `heading_accent`, `description`, `weight`,
+`arrow`, `hub: true`, and `styles: ["site-base", "hub"]`. Keep `nav: home`
+unless the collection is later added to top-level navigation.
+
+Standards Correlations uses `layout: downloads` and
+`download_directory: standards-correlations`. To publish a new state workbook,
+drop `{State_Name}_CS1_State_Standards.xlsx` into
+`static/standards-correlations/` (underscores in the filename become spaces in
+the label). Keep the single `ISTE_Standards.xlsx` file. Do not add a YAML
+catalog or a Markdown page per state; unexpected filenames fail the build.
+
 ## Structure and voice
 
 The site addresses students directly in plain, concrete language. Match these

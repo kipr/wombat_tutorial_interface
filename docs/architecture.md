@@ -23,7 +23,7 @@ under a project mount, and when opened from a local directory.
 
 | Path | Responsibility |
 | --- | --- |
-| `content/` | Markdown, front matter, and Explorer mission leaf bundles. |
+| `content/` | Markdown, front matter, Explorer mission leaf bundles, and Educator Resources hubs. |
 | `layouts/` | Base template, page-family layouts, render hooks, shortcodes, and internal partials. |
 | `assets/css/` | CSS published through Hugo Pipes when referenced by a page's `styles` list. |
 | `static/` | Files copied as-is: images, JavaScript, PDF, SVG, and the legacy scoring app. |
@@ -43,6 +43,14 @@ under a project mount, and when opened from a local directory.
 their regular pages by `hub_unit`; Discovery hubs derive strand, phase, count,
 pace, and gate cards from their child pages. Do not maintain a second list of
 Discovery projects.
+
+Educator Resources (`content/resources/`) is a teacher-facing hub. Its list
+layout builds collection cards from child sections. The Standards Correlations
+child uses `layout: downloads` and globs
+`static/standards-correlations/` at build time: exactly one
+`ISTE_Standards.xlsx` plus any `{Name}_CS1_State_Standards.xlsx` files
+(`New_York` → `New York`). Unexpected files or subdirectories fail the build.
+There is no separate YAML catalog for those downloads.
 
 Pages with `hub: true` use hub navigation and the hub footer. Other pages use
 the worksheet top bar. A card or navigation entry must define exactly one of a
@@ -117,7 +125,9 @@ under their shared `static/img/...` directories, including assembly sequences
 under `static/img/kit/assembly/`. The `sketch` shortcode uses the Botball field
 diagrams in `static/img/field/`. A bare filename resolves to a page resource
 colocated in the current content section. Mission videos are page resources in
-their mission leaf bundles.
+their mission leaf bundles. Standards correlation workbooks live in
+`static/standards-correlations/` and are listed by the downloads layout, not by
+hand-written page links.
 
 `static/score.html` is still a standalone legacy application. Link to it with a
 literal URL rather than a Hugo page reference.

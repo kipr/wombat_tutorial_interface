@@ -1,0 +1,14 @@
+{{ define "main" }}
+<main class="wrap">
+  <p class="page-eyebrow">{{ .Params.eyebrow }}</p>
+  <h1 class="page-title">{{ .Params.heading }}{{ with .Params.heading_accent }} <span>{{ . }}</span>{{ end }}</h1>
+  <p class="page-sub">{{ with .Params.subheading }}{{ . }}{{ else }}{{ .Description }}{{ end }}</p>
+
+  <div class="choice-grid">
+  {{- range .Sections.ByWeight }}
+    {{- partial "resource-collection-card.html" (dict "page" $ "section" .) -}}
+  {{- end }}
+  </div>
+  {{- with .Content }}<div class="note">{{ . }}</div>{{ end }}
+</main>
+{{ end }}

@@ -1,0 +1,71 @@
+{{ define "main" }}
+{{- $dir := .Params.download_directory -}}
+{{- if not $dir }}{{ errorf "%s: download_directory is required" .File.Path }}{{ end -}}
+{{- $staticDir := printf "static/%s" $dir -}}
+{{- $entries := os.ReadDir $staticDir -}}
+{{- if not $entries }}{{ errorf "%s: %s is missing or empty" .File.Path $staticDir }}{{ end -}}
+
+{{- $isteName := "ISTE_Standards.xlsx" -}}
+{{- $stateSuffix := "_CS1_State_Standards.xlsx" -}}
+{{- $iste := false -}}
+{{- $states := slice -}}
+
+{{- range $entries }}
+  {{- if .IsDir }}{{ errorf "%s: unexpected subdirectory %q in %s" $.File.Path .Name $staticDir }}{{ end -}}
+  {{- $name := .Name -}}
+  {{- if eq $name $isteName -}}
+    {{- if $iste }}{{ errorf "%s: more than one %s in %s" $.File.Path $isteName $staticDir }}{{ end -}}
+    {{- $iste = true -}}
+  {{- else if strings.HasSuffix $name $stateSuffix -}}
+    {{- $stem := strings.TrimSuffix $stateSuffix $name -}}
+    {{- if or (eq $stem "") (strings.Contains $stem "/") }}{{ errorf "%s: invalid state filename %q in %s" $.File.Path $name $staticDir }}{{ end -}}
+    {{- $label := replace $stem "_" " " -}}
+    {{- $states = $states | append (dict "name" $name "label" $label) -}}
+  {{- else -}}
+    {{- errorf "%s: unexpected file %q in %s (expected %s or *%s)" $.File.Path $name $staticDir $isteName $stateSuffix -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not $iste }}{{ errorf "%s: missing %s in %s" .File.Path $isteName $staticDir }}{{ end -}}
+{{- if eq (len $states) 0 }}{{ errorf "%s: no state workbooks (*%s) in %s" .File.Path $stateSuffix $staticDir }}{{ end -}}
+{{- $states = sort $states "label" -}}
+
+{{- $parent := .Parent -}}
+<main class="wrap">
+  {{- with $parent }}
+  {{- $backLabel := .Params.heading | default .Title -}}
+  {{- with .Params.heading_accent }}{{ $backLabel = printf "%s %s" $backLabel . }}{{ end -}}
+  <p class="hub-back"><a href="{{ partial "relative-url.html" (dict "source" $ "target" .) }}">&larr; {{ $backLabel }}</a></p>
+  {{- end }}
+  <p class="page-eyebrow">{{ .Params.eyebrow }}</p>
+  <h1 class="page-title">{{ .Params.heading }}{{ with .Params.heading_accent }} <span>{{ . }}</span>{{ end }}</h1>
+  <p class="page-sub">{{ with .Params.subheading }}{{ . }}{{ else }}{{ .Description }}{{ end }}</p>
+
+  {{- with .Content }}<div class="note">{{ . }}</div>{{ end }}
+
+  <section class="download-featured" aria-labelledby="iste-heading">
+    <h2 id="iste-heading" class="unit-label">ISTE</h2>
+    <div class="card-grid">
+      {{- $istePath := printf "%s/%s" $dir $isteName -}}
+      <a class="doc-card" href="{{ partial "relative-url.html" (dict "source" $ "path" $istePath) }}" download>
+        <span class="card-num">National</span>
+        <span class="card-title">ISTE Standards</span>
+        <span class="card-desc">Workbook mapping Botball Explorer CS1 learning to the ISTE Standards for Students.</span>
+        <span class="card-arrow">Download ISTE standards (Excel)</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="download-states" aria-labelledby="states-heading">
+    <h2 id="states-heading" class="unit-label">State CS1 standards</h2>
+    <ul class="download-list">
+    {{- range $states }}
+      {{- $path := printf "%s/%s" $dir .name -}}
+      <li>
+        <a href="{{ partial "relative-url.html" (dict "source" $ "path" $path) }}" download>Download {{ .label }} CS1 standards (Excel)</a>
+      </li>
+    {{- end }}
+    </ul>
+  </section>
+</main>
+{{ end }}
