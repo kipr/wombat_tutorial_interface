@@ -37,6 +37,41 @@ under a project mount, and when opened from a local directory.
 
 ## Page families
 
+### Content paths, page kinds, and template lookup
+
+Hugo uses a content file's location for more than its URL. The location can
+also determine the page kind, section, and inferred content `type`, which in
+turn control template lookup.
+
+- `content/example.md` is a regular page at `/example/`.
+- `content/example/index.md` is a leaf bundle at the same `/example/` URL; the
+  directory may also contain page-owned resources.
+- `content/example/_index.md` is a branch bundle (usually a section or hub),
+  not an interchangeable spelling of `index.md`.
+
+The front-matter `layout` value is a template name, not a global template path.
+Hugo considers it together with the page's `type`. For example,
+`content/botball_explorer_2026/rules.md` inherits the
+`botball_explorer_2026` type and `layout: rules` selects
+`layouts/botball_explorer_2026/rules.html`. Copying that file to a top-level
+leaf bundle such as `content/example/index.md` does not carry the inferred
+type with it. To intentionally reuse that renderer, declare both values:
+
+```yaml
+type: botball_explorer_2026
+layout: rules
+```
+
+Otherwise, provide a layout for the new page family. Do not set an unrelated
+type merely to make a page render; the type is the page's renderer contract,
+not just a build workaround.
+
+One especially confusing failure mode is that Hugo may discover such a page,
+allow `site.GetPage` (and therefore a validated card or navigation reference)
+to resolve it, and still emit no HTML when no matching layout exists. The build
+can finish successfully while the link leads to a 404. See the missing-page
+checks in [Development and verification](development.md#page-exists-but-the-browser-shows-404).
+
 ### Home and section hubs
 
 `content/_index.md` drives the home cards. The C and Python lab indexes group

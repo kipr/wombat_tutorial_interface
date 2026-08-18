@@ -12,7 +12,7 @@ FROM hugo_base AS hugo_dev
 
 USER 0
 
-RUN apk add fish
+RUN apk add fish just
 
 RUN npm install -g @openai/codex
 

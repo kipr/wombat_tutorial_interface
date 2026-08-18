@@ -7,6 +7,30 @@ and track, then change its content. `archetypes/discovery.md` is a useful
 starting point for a Discovery project; the default Hugo archetype creates only
 a title, date, and draft flag.
 
+Copying front matter alone does not necessarily preserve rendering. Hugo
+normally infers a page's `type` from its content section, while `layout` only
+names a template within that type. If a page is moved outside its original
+section, either give it the same explicit `type` because it truly belongs to
+that page family, or add a renderer for its new family. For example, a
+top-level leaf bundle that intentionally uses the Explorer rules renderer
+needs:
+
+```yaml
+type: botball_explorer_2026
+layout: rules
+```
+
+Choose the filename according to the page being authored:
+
+- use `name.md` for an ordinary page;
+- use `name/index.md` for a leaf bundle when the page owns colocated resources;
+- use `name/_index.md` for a section or other branch bundle with child pages.
+
+Both `name.md` and `name/index.md` normally publish at `/name/`; `_index.md`
+changes the page kind and is not a substitute for `index.md`. See
+[Content paths, page kinds, and template lookup](architecture.md#content-paths-page-kinds-and-template-lookup)
+for the complete lookup caveat.
+
 ### C and Python labs
 
 Lab pages live in `content/labs/` and `content/python_labs/`. Python's section
@@ -190,6 +214,8 @@ field.
 ## Author checklist
 
 - Copy the nearest same-family page and preserve stable identity/key fields.
+- When copying across content sections, verify the inferred or explicit `type`
+  still selects an existing layout.
 - Use the established heading sequence and student-facing voice.
 - Reuse a shortcode from the catalog; do not add authored raw HTML.
 - Resolve glossary, mission, image, page, and stylesheet references.

@@ -47,6 +47,53 @@ build_dir="$(mktemp -d)"
 hugo --buildDrafts --destination "$build_dir" --printPathWarnings --logLevel error
 ```
 
+## Page exists but the browser shows 404
+
+A successful build does not prove that every discovered content page produced
+an output file. Hugo can know about a page (so `site.GetPage` and a validated
+card link resolve) but omit its HTML when it cannot find a matching layout.
+
+Start by asking Hugo what it inferred for the page:
+
+```sh
+hugo list all | rg 'content/path/to/page|expected-url'
+```
+
+Check the row's `kind`, permalink, and especially `type`, then build into a
+fresh directory and inspect the expected output rather than an older `public/`
+tree:
+
+```sh
+build_dir="$(mktemp -d)"
+hugo --buildDrafts --destination "$build_dir" --printPathWarnings --logLevel error
+find "$build_dir" -path '*expected-url*' -print
+```
+
+If the page is listed but its `index.html` is absent, compare its front matter
+and location with the available files under `layouts/`. Remember:
+
+- `layout: rules` does not mean “use any `rules.html` in the repository”; Hugo
+  combines it with the page type;
+- moving a copied page to another top-level section can change or remove its
+  inferred type;
+- a top-level `name/index.md` leaf bundle can therefore need an explicit
+  `type`, even when the original `section/name.md` did not; and
+- `index.md` creates a leaf page while `_index.md` creates a branch/section.
+
+For an intentional cross-section reuse, set the original page-family type
+explicitly, for example:
+
+```yaml
+type: botball_explorer_2026
+layout: rules
+```
+
+If the page is absent from `hugo list all`, check spelling, front-matter syntax,
+and `draft`, `date`, `publishDate`, and `expiryDate` instead. If the output file
+exists but the browser still returns 404, verify the requested URL includes the
+configured project mount (`/wombat-tutorial-interface/` for the published
+site) and restart `hugo server` if it was not watching the new directory.
+
 ## Verification commands
 
 Run these from the repository root against that fresh build:

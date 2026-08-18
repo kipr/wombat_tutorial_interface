@@ -640,15 +640,21 @@ li { margin: 4px 0; }
 .figure-grid{display:grid;gap:14px;margin:16px 0}
 .figure-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .figure-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.figure-card{margin:0;border:1px solid var(--border-default);border-radius:6px;overflow:hidden;background:var(--surface-panel)}
-.figure-image-wrap{position:relative}
-.figure-zoom{display:block;width:100%;padding:0;border:0;background:var(--surface-image-canvas);cursor:zoom-in}
-.figure-zoom img{display:block;width:100%;height:auto;max-height:75vh;object-fit:contain;background:var(--surface-image-canvas)}
+.figure-card{margin:0;border:1px solid var(--border-default);border-radius:6px;overflow:hidden;background:var(--surface-panel);
+  display:flex;flex-direction:column}
+.figure-image-wrap{position:relative;flex:1 1 auto;display:flex}
+.figure-zoom{display:flex;align-items:center;justify-content:center;width:100%;flex:1;padding:0;border:0;
+  background:var(--surface-image-canvas);cursor:zoom-in}
+.figure-zoom img{display:block;width:100%;height:auto;object-fit:contain;background:var(--surface-image-canvas)}
+.figure-grid-cols-1 .figure-zoom img{max-height:min(42vh,360px)}
+.figure-grid-cols-2 .figure-zoom img{height:min(28vh,240px)}
+.figure-grid-cols-3 .figure-zoom img{height:min(22vh,180px)}
 .figure-zoom:focus-visible{outline:4px solid var(--focus-ring);outline-offset:-4px}
-.figure-card figcaption{padding:9px 13px;font-size:15px;color:var(--text-muted);background:var(--surface-input);
+.figure-card figcaption{margin-top:auto;padding:9px 13px;font-size:15px;color:var(--text-muted);background:var(--surface-input);
   border-top:1px solid var(--border-default)}
 @media (max-width:700px){
   .figure-grid-cols-2,.figure-grid-cols-3{grid-template-columns:1fr}
+  .figure-grid-cols-2 .figure-zoom img,.figure-grid-cols-3 .figure-zoom img{height:auto;max-height:min(42vh,360px)}
 }
 
 .zoom{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9998;
@@ -708,7 +714,7 @@ input[type="checkbox"]:focus-visible {
   .zoom{display:none!important}
   .figure-card{break-inside:avoid}
   .figure-zoom{display:block}
-  .figure-zoom img{max-height:7cm;width:auto;margin:0 auto}
+  .figure-zoom img{height:auto;max-height:7cm;width:auto;margin:0 auto}
 }
 
 /* ---------- Document sidebars ---------- */
