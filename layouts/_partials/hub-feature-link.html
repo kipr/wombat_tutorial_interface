@@ -1,0 +1,6 @@
+{{- $feature := .feature -}}
+{{- if or (not $feature.text) (not $feature.page) (not $feature.label) -}}
+  {{- errorf "%s: hub_feature needs text, page, and label" .position -}}
+{{- end -}}
+{{- $target := partial "resolve-page.html" (dict "reference" $feature.page "position" (printf "%s hub_feature" .position)) -}}
+<p class="toggle-line">{{ $feature.text }} <a href="{{ partial "relative-url.html" (dict "source" .page "target" $target) }}">{{ $feature.label }}</a></p>

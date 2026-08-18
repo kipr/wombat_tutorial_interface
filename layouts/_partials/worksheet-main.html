@@ -27,7 +27,9 @@
     <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
   </div>
 {{- end }}
+{{- if not .Params.hide_botnav }}
 {{ partial "botnav.html" . }}
+{{- end }}
 
   <p class="credit">{{ .Params.credit }}</p>
 </main>

@@ -13,6 +13,10 @@ subheading: "The same Botball Explorer curriculum, written in Python. Enter your
 toggle_text: "Prefer C?"
 toggle_link_text: "View the original labs →"
 toggle_page: "/labs"
+hub_feature:
+  text: "Build your robot before starting the labs."
+  page: /full-demobot-build
+  label: "Open the full Demobot build guide →"
 units:
   - number: 0
     label: "Start Here · Before Unit 1"

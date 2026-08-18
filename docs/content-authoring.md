@@ -44,6 +44,10 @@ matter contains:
 - `meta`, usually including purpose/concepts/context and "What You Need"; and
 - an optional `sidebar` heading range.
 
+Set `hide_botnav: true` only on a standalone worksheet shared across sections.
+This prevents the previous/next renderer from treating unrelated root pages as
+siblings; the main site navigation remains available.
+
 The two tracks mirror the same curriculum and interaction keys. Preserve the
 teaching sequence and `data-key` contract when adapting C prose/code to Python.
 

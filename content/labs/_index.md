@@ -11,6 +11,10 @@ subheading: "Interactive lab sheets you fill in on screen. Enter your PIN, work 
 toggle_text: "Prefer Python?"
 toggle_link_text: "View the Python labs →"
 toggle_page: "/python_labs"
+hub_feature:
+  text: "Build your robot before starting the labs."
+  page: /full-demobot-build
+  label: "Open the full Demobot build guide →"
 units:
   - number: 0
     label: "Start Here · Before Unit 1"

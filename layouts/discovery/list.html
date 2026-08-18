@@ -3,6 +3,9 @@
   <p class="page-eyebrow">{{ .Params.eyebrow }}</p>
   <h1 class="page-title">{{ .Params.heading }}{{ with .Params.heading_accent }} <span>{{ . }}</span>{{ end }}</h1>
   <p class="page-sub">{{ with .Params.subheading }}{{ . }}{{ else }}{{ .Description }}{{ end }}</p>
+  {{- with .Params.hub_feature }}
+  {{- partial "hub-feature-link.html" (dict "page" $ "feature" . "position" $.File.Path) }}
+  {{- end }}
 
 {{- if not .Params.strand }}
   <div class="choice-grid">
