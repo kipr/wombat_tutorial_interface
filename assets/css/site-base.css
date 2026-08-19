@@ -132,6 +132,7 @@
     --green: #1E8449;
 
     --document-sticky-offset: 144px;
+    --site-content-max-width: 1298px;
     --font-display: 'Barlow Condensed', sans-serif;
     --font-body: 'Barlow', sans-serif;
   }
@@ -400,7 +401,7 @@ body {
 
 /* ---------- Page shell ---------- */
 .sheet {
-    max-width: 920px;
+    max-width: var(--site-content-max-width);
     margin: 22px auto 80px;
     padding: 0 22px;
   }
@@ -722,7 +723,7 @@ input[type="checkbox"]:focus-visible {
 }
 
 /* ---------- Document sidebars ---------- */
-.document-shell{width:min(1180px,100%);margin:0 auto;display:grid;
+.document-shell{width:min(var(--site-content-max-width),100%);margin:0 auto;display:grid;
   grid-template-columns:minmax(180px,230px) minmax(0,1fr);gap:2rem;align-items:start}
 .document-shell > .sheet{width:100%;min-width:0;margin-left:0;margin-right:0}
 .document-shell-worksheet{padding:0 22px}
