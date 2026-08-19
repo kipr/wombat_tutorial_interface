@@ -447,6 +447,60 @@ body.hub .page-sub {
 
 .home-hero .card-grid { text-align: left; }
 
+.educator-resources {
+  margin: 2rem auto 0;
+  max-width: 620px;
+  border-top: 1px solid var(--border-default);
+  color: var(--text-muted);
+  text-align: left;
+}
+
+.educator-resources summary {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.75rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.educator-resources summary:hover { color: var(--text-accent); }
+
+.educator-resources summary:focus-visible,
+.educator-resource:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.educator-resource-list { padding: 0.25rem 0.75rem 0; }
+
+.educator-resource {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.9rem 1rem;
+  border-radius: 6px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.educator-resource:hover { background: var(--surface-panel); }
+.educator-resource strong { display: block; color: var(--text-primary); }
+.educator-resource span span { display: block; margin-top: 0.2rem; font-size: 0.82rem; line-height: 1.4; }
+
+.educator-resource-action {
+  flex: none;
+  color: var(--text-accent);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .cheat-banner {
   display: flex;
   align-items: center;
@@ -472,4 +526,5 @@ body.hub .page-sub {
   .home-hero-botguy { display: none; }
   .home-hero .card-grid { grid-template-columns: 1fr; gap: 1rem; }
   .home-hero .doc-card { padding: 1.5rem; }
+  .educator-resource { align-items: flex-start; flex-direction: column; gap: 0.5rem; }
 }

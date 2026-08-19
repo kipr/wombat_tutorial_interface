@@ -36,8 +36,8 @@ cards:
     desc: "Score a Botball Explorer run mission by mission and see your total update live."
     arrow: "Open Scoring App →"
     url: score.html
-  - kicker: "Classroom · Teachers"
-    title: "Standards Correlations"
+educator_resources:
+  - title: "Standards Correlations"
     desc: "Excel workbooks that map Botball Explorer CS1 learning to ISTE and state computer science standards."
     arrow: "View Downloads →"
     page: /standards-correlations

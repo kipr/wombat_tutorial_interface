@@ -216,7 +216,7 @@ Same idea as knowing where your hand is without looking at it.
 
 Copy your one-sentence definition from Try It onto scrap paper. No name on it.
 
-Screw it into a ball. On the count of three, everyone throws. Pick up whichever one lands near you.
+Crumple it into a ball. On the count of three, everyone throws. Pick up whichever one lands near you.
 
 Read it. Now improve it --- add something it missed, or cut something that is not really needed.
 {{< short-answer key="p3_snowball_got" label="Definition picked up" prompt="The definition I picked up said:" >}}

@@ -3,11 +3,11 @@ title: "Systems Projects — Discovery · KIPR Botball 2026"
 index_label: "All Systems Projects"
 nav: discovery
 hub: true
-weight: 2
+weight: 1
 strand: systems
-kicker: "Strand Two"
+kicker: "Strand One"
 styles: ["site-base", "hub", "discovery"]
-eyebrow: "Discovery Projects · Strand Two"
+eyebrow: "Discovery Projects · Strand One"
 heading: "Systems"
 heading_accent: "Projects"
 description: "How things get designed, how machines and people pass information back and forth, how to stay safe online, and how to work as a team that finishes what it starts."

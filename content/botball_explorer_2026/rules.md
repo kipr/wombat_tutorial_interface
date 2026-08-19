@@ -69,8 +69,8 @@ This competition promotes creativity, engineering, teamwork, problem solving, an
 
 **Teams may not** intentionally damage the field, game objects, or another team's equipment; interfere with another team's match; use abusive or inappropriate behavior; or gain an unfair advantage through deception.
 
-{{< warn title="Violations" >}}
-may result in a verbal warning, score adjustment, match forfeiture, or disqualification, as determined by tournament officials based on severity.
+{{< warn title="Penalties" >}}
+Violations may result in a verbal warning, score adjustment, match forfeiture, or disqualification, as determined by tournament officials based on severity.
 {{< /warn >}}
 
 ## Game Format & Match Structure {#format}

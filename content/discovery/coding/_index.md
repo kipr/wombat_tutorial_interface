@@ -3,11 +3,11 @@ title: "Coding Projects — Discovery · KIPR Botball 2026"
 index_label: "All Coding Projects"
 nav: discovery
 hub: true
-weight: 1
+weight: 2
 strand: coding
-kicker: "Strand One"
+kicker: "Strand Two"
 styles: ["site-base", "hub", "discovery"]
-eyebrow: "Discovery Projects · Strand One"
+eyebrow: "Discovery Projects · Strand Two"
 heading: "Coding"
 heading_accent: "Projects"
 description: "Connect to your Wombat, make it move, make it grab, make it sense. Written in KISS-C, one project at a time, each one anchored to a mission you can actually score."
