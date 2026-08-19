@@ -15,6 +15,15 @@ sidebar:
   numbered: true
 ---
 
+{{< callout title="New to Botball Explorer?" >}}
+Read the [Rules Quick Start](../rules-quick-start/) for the essentials you need to choose missions, prepare your robot, and play your first match.
+{{< /callout >}}
+
+{{< figrow tall=true >}}
+- src: field/mat.webp
+  alt: "The full 2026 game board"
+{{< /figrow >}}
+
 ## Competition Overview {#overview}
 
 ### Competition Divisions
