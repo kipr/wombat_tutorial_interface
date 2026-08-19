@@ -4,6 +4,9 @@
     <p class="eyebrow">{{ .Params.eyebrow }}</p>
     <h1>{{ .Params.heading }}</h1>
     <p class="sub">{{ .Params.subheading }}</p>
+    {{- if eq .Params.strand "coding" }}
+      {{- partial "discovery-project-order-links.html" (dict "page" . "project" . "location" "header") -}}
+    {{- end }}
   </div>
 
 {{- if .Params.mission_id }}

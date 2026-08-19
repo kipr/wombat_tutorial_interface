@@ -13,9 +13,6 @@ strand: systems
 phase: "Phase B · Think Like an Engineer"
 phase_order: 2
 time: "One class period"
-pace:
-  kind: suggested
-  label: "Before Coding 6"
 eyebrow: "Discovery · Systems Project 4"
 heading: "Draw the Plan"
 subheading: "A picture of your program, before you write a line of it."

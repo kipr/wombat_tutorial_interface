@@ -13,9 +13,6 @@ strand: systems
 phase: "Phase A · Know Your Machine"
 phase_order: 1
 time: "One class period"
-pace:
-  kind: suggested
-  label: "Before Coding 3"
 eyebrow: "Discovery · Systems Project 2"
 heading: "What Makes a Robot a Robot?"
 subheading: "Harder to answer than it sounds — and the answer is a list of six things."

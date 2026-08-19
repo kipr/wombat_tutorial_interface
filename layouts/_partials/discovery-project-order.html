@@ -1,0 +1,35 @@
+{{- $discovery := site.GetPage "/discovery" -}}
+{{- if not $discovery -}}
+  {{- errorf "Discovery project order: /discovery does not resolve" -}}
+{{- end -}}
+{{- $order := $discovery.Params.project_order -}}
+{{- if or (not $order) (not (reflect.IsSlice $order)) -}}
+  {{- errorf "%s: project_order must be a list" $discovery.File.Path -}}
+{{- end -}}
+{{- $relations := slice -}}
+{{- range $index, $entry := $order -}}
+  {{- $position := printf "%s project_order entry %d" $discovery.File.Path (add $index 1) -}}
+  {{- $systemsNumber := $entry.systems_project -}}
+  {{- $codingNumber := $entry.coding_project -}}
+  {{- $throughNumber := $entry.through_coding_project | default $codingNumber -}}
+  {{- if not (in (slice "required" "suggested") $entry.kind) -}}
+    {{- errorf "%s: kind must be required or suggested" $position -}}
+  {{- end -}}
+  {{- if not (in (seq 1 14) $systemsNumber) -}}
+    {{- errorf "%s: systems_project must be from 1 through 14" $position -}}
+  {{- end -}}
+  {{- if or (not (in (seq 1 17) $codingNumber)) (not (in (seq 1 17) $throughNumber)) (lt $throughNumber $codingNumber) -}}
+    {{- errorf "%s: coding project range must be ordered from 1 through 17" $position -}}
+  {{- end -}}
+  {{- $systemsPage := partial "resolve-page.html" (dict "reference" (printf "/discovery/systems/project-%02d" $systemsNumber) "position" $position) -}}
+  {{- $codingPage := partial "resolve-page.html" (dict "reference" (printf "/discovery/coding/project-%02d" $codingNumber) "position" $position) -}}
+  {{- $relations = $relations | append (dict
+    "systems_number" $systemsNumber
+    "systems_page" $systemsPage
+    "coding_number" $codingNumber
+    "coding_page" $codingPage
+    "through_coding_number" $throughNumber
+    "kind" $entry.kind
+  ) -}}
+{{- end -}}
+{{- return $relations -}}

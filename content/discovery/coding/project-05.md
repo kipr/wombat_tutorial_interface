@@ -19,6 +19,11 @@ subheading: "Two knobs, three shapes — and your first drive to somewhere that 
 credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Learning to Turn"
 mission_label: "Mission 12 — approach only"
+build_gate:
+  title: "Build required first — the bulldozer blade"
+  description: "Project 6 pushes cubes, poms and cones off the black line. Build the blade in Systems before you reach it."
+  page: /discovery/systems/project-06
+  label: "Go build the blade"
 sidebar:
   title: "Activity Sections"
   start_level: 2

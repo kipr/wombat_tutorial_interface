@@ -1,0 +1,41 @@
+{{- $page := .page -}}
+{{- $project := .project -}}
+{{- $location := .location | default "card" -}}
+{{- $matches := slice -}}
+{{- range partial "discovery-project-order.html" . -}}
+  {{- if and (eq $project.Params.strand "systems") (eq $project.Params.project_number .systems_number) -}}
+    {{- $matches = $matches | append (dict
+      "kind" .kind
+      "number" .coding_number
+      "page" .coding_page
+      "strand" "Coding"
+    ) -}}
+  {{- else if and
+    (eq $project.Params.strand "coding")
+    (ge $project.Params.project_number .coding_number)
+    (le $project.Params.project_number .through_coding_number) -}}
+    {{- $matches = $matches | append (dict
+      "kind" .kind
+      "number" .systems_number
+      "page" .systems_page
+      "strand" "Systems"
+    ) -}}
+  {{- end -}}
+{{- end -}}
+{{- with $matches -}}
+<nav class="project-order-links {{ $location }}" aria-label="Recommended project order">
+  {{- if eq $location "header" }}<span class="project-order-label">Systems projects to do first</span>{{ end -}}
+  {{- range . -}}
+    {{- $priority := cond (eq .kind "required") "Required" "Suggested" -}}
+    {{- $label := cond
+      (eq $project.Params.strand "systems")
+      (printf "%s before Coding %d" $priority .number)
+      (printf "%s: %s %d first" $priority .strand .number)
+    -}}
+    {{- if eq $location "header" -}}
+      {{- $label = printf "%s: %s" $priority .page.Title -}}
+    {{- end -}}
+  <a class="pace {{ .kind }}" href="{{ partial "relative-url.html" (dict "source" $page "target" .page) }}">{{ $label }}</a>
+  {{- end -}}
+</nav>
+{{- end -}}

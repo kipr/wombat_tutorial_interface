@@ -13,9 +13,6 @@ strand: systems
 phase: "Phase B · Think Like an Engineer"
 phase_order: 2
 time: "One class period"
-pace:
-  kind: required
-  label: "Required before Coding 6"
 eyebrow: "Discovery · Systems Project 6"
 heading: "Structure and Function"
 subheading: "Decide what it has to do. Then build the shape that does it."

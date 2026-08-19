@@ -13,9 +13,6 @@ strand: systems
 phase: "Phase B · Think Like an Engineer"
 phase_order: 2
 time: "One class period"
-pace:
-  kind: suggested
-  label: "Before Coding 4"
 eyebrow: "Discovery · Systems Project 3"
 heading: "Who's Driving?"
 subheading: "Some machines wait for you. Some don't need you at all."

@@ -13,9 +13,6 @@ strand: systems
 phase: "Phase A · Know Your Machine"
 phase_order: 1
 time: "One class period"
-pace:
-  kind: suggested
-  label: "Before Coding 1"
 eyebrow: "Discovery · Systems Project 1"
 heading: "Meet Your Kit"
 subheading: "Everything you will build this year is in one box. Find out what is in it."

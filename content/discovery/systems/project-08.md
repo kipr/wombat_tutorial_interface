@@ -13,9 +13,6 @@ strand: systems
 phase: "Phase C · How Machines Talk"
 phase_order: 3
 time: "One class period"
-pace:
-  kind: suggested
-  label: "Before Coding 10"
 eyebrow: "Discovery · Systems Project 8"
 heading: "Hardware and Software"
 subheading: "One of you is the body. One of you is the instructions. Neither works alone."

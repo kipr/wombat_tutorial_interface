@@ -20,11 +20,6 @@ credit: "KIPR · Botball Explorer · Discovery"
 hub_title: "Your First Program"
 mission_label: "No field mission"
 no_mission: true
-build_gate:
-  title: "Build required first — the bulldozer blade"
-  description: "Project 6 pushes cubes, poms and cones off the black line. Build the blade in Systems before you reach it."
-  page: /discovery/systems/project-06
-  label: "Go build the blade →"
 sidebar:
   title: "Activity Sections"
   start_level: 2
