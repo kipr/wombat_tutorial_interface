@@ -18,7 +18,8 @@
   Optional `caption` overrides the visible figcaption when it should differ
   from `alt` (Discovery build sequences). A bare filename resolves from the
   current section bundle; paths with a slash use the shared img root. Column
-  layout is inferred from the figure count.
+  layout is inferred from the figure count. Set tall=true on the shortcode to
+  use taller screen-height limits for images that need more visible detail.
 */ -}}
 {{- $figures := .Inner | transform.Unmarshal -}}
 {{- if or (not (reflect.IsSlice $figures)) (eq (len $figures) 0) -}}
@@ -42,4 +43,5 @@
     "src" $src
     "alt" .alt "caption" $caption "check_id" (index . "check_id")) -}}
 {{- end -}}
-{{- partial "figure-grid.html" (dict "page" .Page "figures" $normalized) -}}
+{{- $tall := eq (printf "%v" (.Get "tall")) "true" -}}
+{{- partial "figure-grid.html" (dict "page" .Page "figures" $normalized "tall" $tall) -}}

@@ -83,6 +83,16 @@ The battery can be ruined permanently if it is treated badly. These rules are no
 If you leave the battery plugged in and the Wombat switched on, the battery will drain so far that it can never be charged again.
 {{< /safety >}}
 
+{{< figrow >}}
+- src: kit/batterycharger.jpg
+  alt: "Use only the power supply that came with your controller."
+- src: kit/battery.jpg
+  alt: "Use only the battery that came with your controller."
+- src: kit/battery_charging_demo.webp
+  alt: "How to connect the battery to the charger."
+{{< /figrow >}}
+
+
 {{< ask key="p1_battery_why" label="Why leaving the battery plugged in is bad" >}}Why do you think leaving the battery plugged in overnight would be worse than leaving a phone plugged in overnight?{{< /ask >}}
 
 ## Learn It --- How You Talk to a Robot
@@ -124,11 +134,15 @@ Work through these in order. Check each one off as you finish it.
 
 ### Step 1 --- Power on
 
+Plug the battery into the wombat as shown, then flip the black power switch on the side of the Wombat and wait for the home screen to appear.
+
 {{< figrow >}}
-- src: kit/batterycharger.jpg
-  alt: "Use only the power supply that came with your controller."
+- src: kit/wambatmotors.jpg
+  alt: "Plug the yellow battery connector into the yellow connector on the Wombat."
+- src: kit/wambatside-batterycable.jpg
+  alt: "Flip the power switch."
 {{< /figrow >}}
-Flip the black power switch on the side of the Wombat. Wait for the home screen to appear.
+
 
 {{< checklist >}}
 - key: p3_step_power
@@ -139,6 +153,14 @@ Flip the black power switch on the side of the Wombat. Wait for the home screen 
 
 On the Wombat's screen, tap **About**. Look for the rows labeled **SSID**, **Password**, and **Wi-Fi**. Write them on your card below --- you will need them every time.
 
+{{< figrow >}}
+- src: botui/home_page_about.webp
+  alt: "About button"
+- src: botui/about_page_network_info.webp
+  alt: "Network info"
+{{< /figrow >}}
+
+
 {{< callout title="If the Wi-Fi line is blank" variant="gold" >}}
 This is a known problem on older Wombat software. The real fix is to update the Wombat (instructions are at kipr.org). The quick fix:
 
@@ -148,11 +170,14 @@ This is a known problem on older Wombat software. The real fix is to update the 
 - Go Home again, wait 5 seconds, return to **About**. Numbers should now appear.
 {{< /callout >}}
 
+{{< figrow >}}
+- src: botui/about_page_event.webp
+  alt: "The event mode toggle"
+{{< /figrow >}}
+
 ### Step 3 --- Write down your Wombat's information
 
 Record these values:
-
-- Wi-Fi IP address
 
 {{< rec >}}
 - key: p3_ssid
@@ -175,6 +200,16 @@ Open the Wi-Fi settings on your computer. Find the network name from your card, 
 {{< callout title="This warning is normal" >}}
 You will probably see something like *"no internet connection"* or *"connected with limited access."* Nothing is wrong. The Wombat is not the internet --- it is just a robot. Keep going.
 {{< /callout >}}
+
+{{< callout title="Warning for Windows Users" >}}
+Windows may try to get you to connect using a PIN. Click **Connect using a security key instead**, then enter the password as normal.
+{{< /callout >}}
+
+{{< figrow >}}
+- src: ide/windows_connection_guide.webp
+  alt: "Connecting on Windows when it tries to use a PIN."
+{{< /figrow >}}
+
 
 {{< checklist >}}
 - key: p3_step_joined
@@ -285,10 +320,10 @@ There is already code in the editor. You did not write it and you do not need to
 ### Step 10 --- Run it --- on the robot
 
 {{< figrow >}}
-- src: botui/home_page.png
+- src: botui/home_page_programs.webp
   alt: "The Wombat's Home page --- where you find Programs."
-- src: botui/wombat-screen-lan.jpg
-  alt: "The Wombat's About page."
+- src: botui/programs_page.webp
+  alt: "The Wombat's Pograms page with a program selected on the list on the left."
 {{< /figrow >}}
 Pressing **Run** in the editor sends your program across and runs it, but the output comes back to
         *your computer*, in the console at the bottom of the browser. The Wombat's own screen stays where it was.
@@ -318,13 +353,11 @@ The one in the editor is for checking your code quickly from your computer. The 
 
 ### Step 11 --- Shut down properly
 
-{{< figrow >}}
-- src: botui/home_page.png
+{{< figrow tall=true >}}
+- src: botui/home_page_shutdown.webp
   alt: "Select Shutdown."
-- src: botui/shut-down-confirm.png
+- src: botui/shut-down-confirm.webp
   alt: "Confirm when it asks."
-{{< /figrow >}}
-{{< figrow >}}
 - src: kit/wambatside-batterycable.jpg
   alt: "Wait for it to finish before the switch."
 {{< /figrow >}}
@@ -342,9 +375,9 @@ Do not just flip the switch. Do it in this order:
 {{< callout title="Back Up Your Work" variant="navy" >}}
 Code that only exists on the robot can disappear. Three ways to keep a copy:
 
-- Copy the code out of the editor and paste it into a document.
 - Download it from the **File Menu** or **Project Menu**.
 - Plug a USB drive into the Wombat, then **Settings → Backup → Backup**.
+- Copy the code out of the editor and paste it into a document.
 
 To bring code back from a USB drive, use **Settings → Backup → Restore**.
 {{< /callout >}}

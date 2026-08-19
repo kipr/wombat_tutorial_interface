@@ -5,7 +5,7 @@
 {{- $count := len $figures -}}
 {{- $columns := 1 -}}
 {{- if eq $count 3 }}{{ $columns = 3 }}{{ else if ge $count 2 }}{{ $columns = 2 }}{{ end -}}
-<div class="figure-grid figure-grid-{{ $count }} figure-grid-cols-{{ $columns }}">
+<div class="figure-grid figure-grid-{{ $count }} figure-grid-cols-{{ $columns }}{{ if .tall }} figure-grid-tall{{ end }}">
 {{- range $figures }}
   {{- if not .src }}{{ errorf "%s: figure requires src" $page.File.Path }}{{ end -}}
   {{- if not .alt }}{{ errorf "%s: figure %q requires alt text" $page.File.Path .src }}{{ end -}}

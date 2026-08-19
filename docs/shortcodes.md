@@ -128,8 +128,9 @@ requires `src` and may set `alt`.
 path containing a slash resolves below `static/img/`; a bare filename resolves
 to a resource colocated in the page's content section. Optional `caption`
 overrides the visible caption; `check_id` adds a PreLab inventory checkbox with
-key `part_<check_id>`. Columns, zoom controls, keyboard behavior, and focus
-return are shared.
+key `part_<check_id>`. Set `tall=true` on the shortcode when images need more
+screen height than the default row. Columns, zoom controls, keyboard behavior,
+and focus return are shared.
 
 ```markdown
 {{< figrow >}}
@@ -139,6 +140,10 @@ return are shared.
   alt: Motor and cable
 {{< /figrow >}}
 ```
+
+For a taller row, use `{{</* figrow tall=true */>}}`. The taller limit only
+affects the inline screen display; zoom and print sizing retain their shared
+behavior.
 
 `sketch` creates a printable field area from `static/img/field`. It requires
 `aria`, `tag`, and `startbox=left|right` (`b3x_lsb.svg` or `b3x_rsb.svg`);
