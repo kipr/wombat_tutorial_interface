@@ -1,6 +1,13 @@
 {{- $feature := .feature -}}
-{{- if or (not $feature.text) (not $feature.page) (not $feature.label) -}}
-  {{- errorf "%s: hub_feature needs text, page, and label" .position -}}
+{{- if or (not $feature.title) (not $feature.text) (not $feature.page) (not $feature.label) -}}
+  {{- errorf "%s: hub_feature needs title, text, page, and label" .position -}}
 {{- end -}}
 {{- $target := partial "resolve-page.html" (dict "reference" $feature.page "position" (printf "%s hub_feature" .position)) -}}
-<p class="toggle-line">{{ $feature.text }} <a href="{{ partial "relative-url.html" (dict "source" .page "target" $target) }}">{{ $feature.label }}</a></p>
+<aside class="hub-feature" aria-labelledby="hub-feature-title">
+  <div class="hub-feature-copy">
+    <p class="hub-feature-kicker">Before you begin</p>
+    <h2 class="hub-feature-title" id="hub-feature-title">{{ $feature.title }}</h2>
+    <p class="hub-feature-text">{{ $feature.text }}</p>
+  </div>
+  <a class="hub-feature-link" href="{{ partial "relative-url.html" (dict "source" .page "target" $target) }}">{{ $feature.label }}</a>
+</aside>

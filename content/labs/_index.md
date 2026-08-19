@@ -12,9 +12,10 @@ toggle_text: "Prefer Python?"
 toggle_link_text: "View the Python labs →"
 toggle_page: "/python_labs"
 hub_feature:
+  title: "Build Your Demobot"
   text: "Build your robot before starting the labs."
   page: /full-demobot-build
-  label: "Open the full Demobot build guide →"
+  label: "Open the full build guide →"
 units:
   - number: 0
     label: "Start Here · Before Unit 1"
