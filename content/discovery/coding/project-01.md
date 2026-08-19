@@ -83,7 +83,7 @@ The battery can be ruined permanently if it is treated badly. These rules are no
 If you leave the battery plugged in and the Wombat switched on, the battery will drain so far that it can never be charged again.
 {{< /safety >}}
 
-{{< figrow >}}
+{{< figrow tall=true >}}
 - src: kit/batterycharger.jpg
   alt: "Use only the power supply that came with your controller."
 - src: kit/battery.jpg
@@ -218,7 +218,7 @@ Windows may try to get you to connect using a PIN. Click **Connect using a secur
 
 ### Step 5 --- Open the programming tools
 
-{{< figrow >}}
+{{< figrow tall=true >}}
 - src: ide/software-suite.jpg
   alt: "The KIPR Software Suite. Click KISS IDE."
 {{< /figrow >}}
@@ -284,7 +284,7 @@ You will need both of these in a moment, when you go to the robot to run your pr
 
 ### Step 8 --- Look around the editor
 
-{{< figrow >}}
+{{< figrow tall=true >}}
 - src: ide/code-template.png
   alt: "This is how every new project looks when you open it."
 {{< /figrow >}}
@@ -303,7 +303,7 @@ Find each button before you use it.
 
 ### Step 9 --- Compile it
 
-{{< figrow >}}
+{{< figrow tall=true >}}
 - src: ide/compile-succeeded.png
   alt: "Compilation succeeded --- your project is now on the Wombat."
   caption: "\"Compilation succeeded\" --- your project is now on the Wombat."
