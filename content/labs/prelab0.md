@@ -101,7 +101,7 @@ Check each item off the list below. If anything is missing, report it to your te
 - src: kit/4metalservohorns.png
   alt: "4 × metal servo horns, screws, and washers."
   check_id: metal-servo-horns
-- src: "kit/4 bag lego pieces.jpg"
+- src: "kit/4_bag_lego_pieces.jpg"
   alt: "A collection of LEGO pieces."
   check_id: lego-pieces
 {{< /figrow >}}
@@ -143,6 +143,15 @@ Every robot is built from the same six kinds of part. Point at each one on your 
 {{< endplsec >}}
 
 {{< plsec n="Part 4" title="Safety and looking after the kit" >}}
+
+### Stop a Running Program
+
+If a program is going to damage your equipment, you can stop it immediately by hitting the **Stop** button.
+
+{{< figrow >}}
+- src: botui/programs_stop.webp
+  alt: Stop button
+{{< /figrow >}}
 
 {{< checklist >}}
 - key: sf_hands
