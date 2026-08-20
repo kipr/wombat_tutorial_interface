@@ -8,8 +8,8 @@ heading: "Botball Explorer"
 heading_accent: "2026"
 description: "Official competition resources, mission guides, and scoring references for the 2026 season."
 cheat_sheet:
-  path: Explorer_2026_CheatSheet.pdf
-  label: "Botball Explorer CheatSheet — Click here to download the 2026 one-pager"
+  path: 2026_Botball_Explorer_Quick_Reference.pdf
+  label: "Botball Explorer Quick Reference — Click here to download the 2026 one-pager"
 cards:
   - kicker: "Season Document"
     title: "2026 Fall Missions"
