@@ -137,6 +137,7 @@
 }
 
 body.hub {
+  --site-content-max-width: 1038.4px;
   background: var(--surface-page);
   min-height: 100vh;
   display: flex;
@@ -440,8 +441,7 @@ body.hub .page-sub {
   right: -4%;
   top: 10%;
   height: min(220px, 40vw);
-  opacity: 0.1;
-  filter: var(--logo-filter);
+  opacity: 1;
   pointer-events: none;
 }
 
