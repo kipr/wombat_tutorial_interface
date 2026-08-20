@@ -119,6 +119,7 @@ Black reads *higher* than white. So "still on white" means `analog(...) < MIDPOI
     while ( !(analog(TOPHAT_LEFT) > MIDPOINT && analog(TOPHAT_RIGHT) > MIDPOINT) )
     {
     	// ... keep squaring up ...
+        msleep(10);
     }
 - text: |
     When both sensors finally read black, the inside becomes true, the `!` flips it to false, and the loop stops.

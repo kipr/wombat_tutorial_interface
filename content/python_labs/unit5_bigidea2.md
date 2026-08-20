@@ -135,6 +135,7 @@ def Drive(inches):
 
         k.mav(0, motor_speed)
         k.mav(3, motor_speed)
+        k.msleep(10)
 
     k.mav(0, 0); k.mav(3, 0); k.msleep(50)   # brake
 {{< /code >}}

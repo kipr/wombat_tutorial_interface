@@ -137,6 +137,7 @@ def calibrate_ticks_per_inch(inches):
     while k.analog(0) < MIDPOINT:         # drive while sensor sees WHITE (low)...
         k.motor(0, 50)                   # ...straight forward...
         k.motor(3, 50)
+        k.msleep(10)
                                           # ...stops when it hits BLACK (high)
     k.motor(0, 0); k.motor(3, 0); k.msleep(50)   # brake
 
@@ -185,6 +186,7 @@ def Drive(inches):
     while k.gmpc(0) < ticks:                  # drive until we reach the predicted ticks
         k.motor(0, 50)
         k.motor(3, 50)
+        k.msleep(10)
     k.motor(0, 0); k.motor(3, 0); k.msleep(50)   # brake
 {{< /code >}}
 

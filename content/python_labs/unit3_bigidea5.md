@@ -95,6 +95,7 @@ Your library can drive *forward* a measured distance with `Tick_Drive` --- but a
         while k.gmpc(0) > -ticks:        # count DOWN until we reach -ticks
             k.motor(0, -50)             # both wheels backward
             k.motor(3, -50)
+            k.msleep(10)
         k.motor(0, 0); k.motor(3, 0); k.msleep(50)   # brake
 - text: |
     You still pass in a *positive* number --- `Back_Drive(1000)` --- and the function flips the sign for you. The `-ticks` turns your 1000 into the −1000 target.

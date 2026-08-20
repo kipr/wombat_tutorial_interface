@@ -121,6 +121,7 @@ rows:
     	{
     		mav(0, 300);              // SLOW velocity: left wheel forward
     		mav(3, -300);             // right wheel backward (pivot right)
+            msleep(10);
     	}
     }
     motor(0,0); motor(3,0); msleep(50);   // brake-settle
@@ -214,6 +215,7 @@ int Turn(char direction, double angle)
 		{
 			mav(0, 300);                            // slow velocity, left forward
 			mav(3, -300);                           // right backward
+			msleep(10);
 		}
 	}
 	else if (direction == 'L' || direction == 'l')  // LEFT (either case)
@@ -223,6 +225,7 @@ int Turn(char direction, double angle)
 		{
 			mav(0, -300);
 			mav(3, 300);
+			msleep(10);
 		}
 	}
 	else                                             // not R/r or L/l: bad input!

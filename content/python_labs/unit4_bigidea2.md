@@ -120,6 +120,7 @@ Black reads *higher* than white. So "still on white" means `k.analog(...) < MIDP
 - code: |
     while not (k.analog(TOPHAT_LEFT) > MIDPOINT and k.analog(TOPHAT_RIGHT) > MIDPOINT):
         # ... keep squaring up ...
+        k.msleep(10)
 - text: |
     When both sensors finally read black, the inside becomes true, `not` flips it to false, and the loop stops.
 {{< /concept >}}

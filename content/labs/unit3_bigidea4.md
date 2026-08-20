@@ -68,6 +68,7 @@ A turn is never perfect on the first try. You build a good turn by testing it, m
     {
     	motor(0, 50);
     	motor(3, -50);
+        msleep(10);
     }
 - text: |
     The number of ticks that makes exactly 90° is something you'll have to **find by testing** --- it depends on your robot's wheels and width.
@@ -101,6 +102,7 @@ void turn_right()
 	{
 		motor(0,  50);                // left wheel forward
 		motor(3, -50);                // right wheel backward
+		msleep(10);
 	}
 	motor(0, 0); motor(3, 0); msleep(50);   // brake
 }
@@ -144,6 +146,7 @@ void turn_left()
 	{
 		motor(0, -50);               // left wheel backward
 		motor(3,  50);               // right wheel forward
+		msleep(10);
 	}
 	motor(0, 0); motor(3, 0); msleep(50);   // brake
 }
@@ -245,6 +248,7 @@ void turn_right()
 	while (gmpc(0) < RIGHT_TICKS)
 	{
 		motor(0, 50); motor(3, -50);
+		msleep(10);
 	}
 	motor(0, 0); motor(3, 0); msleep(50);
 }
@@ -258,6 +262,7 @@ void turn_left()
 	while (gmpc(1) < LEFT_TICKS)
 	{
 		motor(0, -50); motor(3, 50);
+		msleep(10);
 	}
 	motor(0, 0); motor(3, 0); msleep(50);
 }

@@ -272,6 +272,7 @@ void line_follow(int ticks)
 			motor(0, 20);          // left motor slower
 			motor(3, 50);          // right motor faster
 		}
+		msleep(10);
 	}
 
 	motor(0, 0);                   // brake (from Big Idea 2)

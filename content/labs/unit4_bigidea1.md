@@ -123,6 +123,7 @@ void calibrate_ticks_per_inch(double inches)
 	{
 		motor(0, 50);                 // ...straight forward...
 		motor(3, 50);
+		msleep(10);
 	}                                  // ...stops when it hits BLACK (high)
 	motor(0, 0); motor(3, 0); msleep(50);   // brake
 
@@ -174,6 +175,7 @@ void Drive(double inches)
 	{
 		motor(0, 50);
 		motor(3, 50);
+		msleep(10);
 	}
 	motor(0, 0); motor(3, 0); msleep(50);  // brake
 }

@@ -68,6 +68,7 @@ A turn is never perfect on the first try. You build a good turn by testing it, m
     while k.gmpc(0) < TURN_TICKS:     # pivot until we've turned far enough
         k.motor(0, 50)
         k.motor(3, -50)
+        k.msleep(10)
 - text: |
     The number of ticks that makes exactly 90° is something you'll have to **find by testing** --- it depends on your robot's wheels and width.
 {{< /concept >}}
@@ -103,6 +104,7 @@ def turn_right():
     while k.gmpc(0) < RIGHT_TICKS:        # left wheel rolls forward as we pivot right
         k.motor(0,  50)                  # left wheel forward
         k.motor(3, -50)                  # right wheel backward
+        k.msleep(10)
     k.motor(0, 0); k.motor(3, 0); k.msleep(50)   # brake
 
 main()
@@ -144,6 +146,7 @@ def turn_left():
     while k.gmpc(1) < LEFT_TICKS:       # right wheel rolls forward as we pivot left
         k.motor(0, -50)                # left wheel backward
         k.motor(3,  50)                # right wheel forward
+        k.msleep(10)
     k.motor(0, 0); k.motor(3, 0); k.msleep(50)   # brake
 {{< /code >}}
 
@@ -242,6 +245,7 @@ def turn_right():
     k.cmpc(0)
     while k.gmpc(0) < RIGHT_TICKS:
         k.motor(0, 50); k.motor(3, -50)
+        k.msleep(10)
     k.motor(0, 0); k.motor(3, 0); k.msleep(50)
 
 # turn_left: Pivots the robot 90 degrees to the left in place.
@@ -253,6 +257,7 @@ def turn_left():
     k.cmpc(1)
     while k.gmpc(1) < LEFT_TICKS:
         k.motor(0, -50); k.motor(3, 50)
+        k.msleep(10)
     k.motor(0, 0); k.motor(3, 0); k.msleep(50)
 {{< /code >}}
 

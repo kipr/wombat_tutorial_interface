@@ -210,6 +210,7 @@ void Tick_Drive(int ticks)
 	{
 		motor(0, 50);
 		motor(3, 50);
+		msleep(10);
 	}
 	motor(0, 0); motor(3, 0); msleep(50);
 }
@@ -231,6 +232,7 @@ void line_follow(int ticks)
 		{
 			mav(0, SLOW); mav(3, FAST);
 		}
+		msleep(10);
 	}
 	motor(0, 0); motor(3, 0); msleep(50);
 }

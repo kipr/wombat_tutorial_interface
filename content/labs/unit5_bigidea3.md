@@ -143,13 +143,15 @@ You don't need any special software to get a file onto GitHub. This path works o
 ## Phase 6 --- How Push Actually Works on the Command Line
 
 {{< warn title="⚠ You probably can't run this at school" >}}
-Most school Chromebooks don't give you a terminal or let you install `git`. That's completely normal --- this phase is for understanding what's happening under the hood, not something you need to complete hands-on today. If you have a laptop at home with git installed, feel free to actually try it.
+Most school Chromebooks don't give you a terminal or let you install `git`. That's completely normal --- this phase is for understanding what's happening under the hood, not something you need to complete hands-on today. If you have a computer at home with git installed, feel free to actually try it.
 {{< /warn >}}
 
-Here's the sequence a developer runs from a terminal to get a local change onto GitHub:
+Here's the sequence a developer runs from a terminal to get a local change onto GitHub.
+Lines beginning with `#` are comments.
+Other lines are commands for you to enter.
+Type one command at a time, then press the return (enter) key to execute it.
 
 {{< code filename="terminal" lang="bash" >}}
-
 # one-time setup: copy the remote repo down to your computer
 git clone https://github.com/yourusername/your-repo.git
 cd your-repo

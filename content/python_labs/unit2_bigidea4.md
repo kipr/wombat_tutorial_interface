@@ -264,7 +264,7 @@ def line_follow(ticks):
         else:                       # LOW reading = on WHITE = steer left
             k.motor(0, 20)          # left motor slower
             k.motor(3, 50)          # right motor faster
-        msleep(10);                 # Small pause to avoid overloading computer
+        k.msleep(10)                # small pause so we don't overwork the controller
 
     k.motor(0, 0)                   # brake (from Big Idea 2)
     k.motor(3, 0)

@@ -215,6 +215,7 @@ def Tick_Drive(ticks):
     while k.gmpc(0) < ticks:
         k.motor(0, 50)
         k.motor(3, 50)
+        k.msleep(10)
     k.motor(0, 0); k.motor(3, 0); k.msleep(50)
 
 # line_follow: Follows a line for a measured distance using the
@@ -231,6 +232,7 @@ def line_follow(ticks):
             k.mav(0, FAST); k.mav(3, SLOW)
         else:
             k.mav(0, SLOW); k.mav(3, FAST)
+        k.msleep(10)
     k.motor(0, 0); k.motor(3, 0); k.msleep(50)
 {{< /code >}}
 

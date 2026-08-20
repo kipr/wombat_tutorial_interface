@@ -67,6 +67,7 @@ In your program, `digital(0)` reads this sensor: it is **0 when the button is op
     {
     	// this runs again and again,
     	// as long as the condition is true
+        msleep(10);   // keep a fast loop from overworking the controller
     }
 - text: |
     How it works, step by step:
@@ -80,6 +81,7 @@ In your program, `digital(0)` reads this sensor: it is **0 when the button is op
     while (digital(0) == 0)     // while the button is NOT pressed...
     {
     	// keep driving and keep checking
+        msleep(10);
     }
 - text: |
     The moment the button reads 1, the condition `digital(0) == 0` becomes false, the loop stops, and the program moves on.

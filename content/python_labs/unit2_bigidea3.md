@@ -75,6 +75,7 @@ This is where your robot's movement data lives. When your code reads `k.gmpc(0)`
     while k.gmpc(0) < 2000:      # while we haven't gone 2000 ticks yet...
         k.motor(0, 50)            # ...keep driving
         k.motor(3, 50)
+        k.msleep(10)
 - text: |
     We're reading just port 0 for now. Later, we may come back and read *both* wheels at once to help the robot drive straighter.
     {.muted}
@@ -197,6 +198,7 @@ def Tick_Drive(@@ticks@@):     # DEFINITION: ticks is the parameter.
     while k.gmpc(0) < @@ticks@@:   # while we haven't reached the target...
         k.motor(0, 50)            # ...keep driving
         k.motor(3, 50)
+        k.msleep(10)
 
     k.motor(0, 0)                 # BRAKE (from last lab)
     k.motor(3, 0)

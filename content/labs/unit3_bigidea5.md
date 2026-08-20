@@ -96,6 +96,7 @@ Your library can drive *forward* a measured distance with `Tick_Drive` --- but a
     	{
     		motor(0, -50);             // both wheels backward
     		motor(3, -50);
+            msleep(10);
     	}
     	motor(0, 0); motor(3, 0); msleep(50);   // brake
     }

@@ -75,6 +75,7 @@ This is where your robot's movement data lives. When your code reads `gmpc(0)`, 
     {
     	motor(0, 50);          // ...keep driving
     	motor(3, 50);
+        msleep(10);
     }
 - text: |
     We're reading just port 0 for now. Later, we may come back and read *both* wheels at once to help the robot drive straighter.
@@ -198,6 +199,7 @@ void Tick_Drive(int @@ticks@@)       // DEFINITION: ticks receives the argument
 	{
 		motor(0, 50);            // ...keep driving
 		motor(3, 50);
+		msleep(10);
 	}
 
 	motor(0, 0);                 // BRAKE (from last lab)

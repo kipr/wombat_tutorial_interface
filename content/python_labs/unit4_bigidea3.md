@@ -125,6 +125,7 @@ rows:
         while k.gmpc(0) < target:
             k.mav(0, 300)              # Use a SLOW velocity while the left wheel moves forward.
             k.mav(3, -300)             # right wheel backward (pivot right)
+            k.msleep(10)
     k.motor(0,0); k.motor(3,0); k.msleep(50)   # brake-settle
     print(f"total ticks = {k.gmpc(0)}")
 - text: |
@@ -215,11 +216,13 @@ def Turn(direction, angle):
         while k.gmpc(0) < ticks:
             k.mav(0, 300)                          # slow velocity, left forward
             k.mav(3, -300)                         # right backward
+            k.msleep(10)
     elif direction == 'L' or direction == 'l':    # LEFT (either case)
         k.cmpc(1)                                 # left pivot watches right wheel
         while k.gmpc(1) < ticks:
             k.mav(0, -300)
             k.mav(3, 300)
+            k.msleep(10)
     else:                                          # Any value other than R/r or L/l is invalid input.
         print("Invalid direction! Use 'R' or 'L'.")
         return False                                # report FAILURE and stop here

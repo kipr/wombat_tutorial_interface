@@ -67,6 +67,7 @@ In your program, `k.digital(0)` reads this sensor: it is **0 when the button is 
     while condition:
         # this runs again and again,
         # as long as the condition is true
+        k.msleep(10)   # keep a fast loop from overworking the controller
 - text: |
     How it works, step by step:
 
@@ -78,6 +79,7 @@ In your program, `k.digital(0)` reads this sensor: it is **0 when the button is 
 - code: |
     while k.digital(0) == 0:   # while the button is NOT pressed...
         # keep driving and keep checking
+        k.msleep(10)
 - text: |
     The moment the button reads 1, the condition `k.digital(0) == 0` becomes false, the loop stops, and the program moves on.
 {{< /concept >}}
