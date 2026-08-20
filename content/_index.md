@@ -37,6 +37,10 @@ cards:
     arrow: "Open Scoring App →"
     url: score.html
 educator_resources:
+  - title: "Game Board Build Guide"
+    desc: "Set up the Botball Explorer game board for mission practice with your team."
+    arrow: "Open Build Guide →"
+    page: /game-board-build
   - title: "Standards Correlations"
     desc: "Excel workbooks that map Botball Explorer CS1 learning to ISTE and state computer science standards."
     arrow: "View Downloads →"
