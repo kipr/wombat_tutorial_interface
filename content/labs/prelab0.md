@@ -98,7 +98,7 @@ Check each item off the list below. If anything is missing, report it to your te
 - src: kit/screwdriver.jpg
   alt: "A screwdriver."
   check_id: screwdriver
-- src: kit/4metalservohorns.png
+- src: kit/4metalservohorns.webp
   alt: "4 × metal servo horns, screws, and washers."
   check_id: metal-servo-horns
 - src: "kit/4_bag_lego_pieces.jpg"

@@ -62,7 +62,7 @@ Back in Project 3 you dragged the slider on the Motors screen and noticed a numb
 Open the **Motors** screen on the Wombat. Do not run anything --- just turn a wheel with your hand and watch.
 
 {{< figrow >}}
-- src: botui/motor_widget_counter.png
+- src: botui/motor_widget_counter.webp
   alt: "The motor widget on the Wombat showing the motor counter"
   caption: "The motor widget on the Wombat showing the motor counter."
 {{< /figrow >}}

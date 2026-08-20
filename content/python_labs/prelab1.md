@@ -139,10 +139,23 @@ The curly braces are a placeholder for the value inside them, so the output is `
 
 {{< plsec n="Part 4" title="Know where your work lives" >}}
 
-{{< figrow >}}
-- src: botui/shutdown_guide.png
-  alt: "Shut down from the menu --- never straight off the switch."
+### Shutdown Guide
+
+{{< figrow tall=true >}}
+- src: botui/home_page_shutdown.webp
+  alt: "Select Shutdown."
+- src: botui/shut-down-confirm.webp
+  alt: "Confirm when it asks."
+- src: kit/wambatside-batterycable.jpg
+  alt: "Wait for it to finish before the switch."
 {{< /figrow >}}
+
+Do not just flip the switch. Do it in this order:
+
+- On the Home Screen, press **Shutdown**.
+- Press **Yes** to confirm.
+- Wait for it to finish, then flip the power switch off.
+- Unplug the battery --- **hold the yellow connectors, never the wires.**
 
 {{< checklist >}}
 - key: w_find

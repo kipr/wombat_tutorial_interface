@@ -332,7 +332,7 @@ Attach a claw liftarm to a 1×5 servo horn using two long bolts and nuts.
   label: "Done and it matches the photo"
 {{< /checklist >}}
 {{< figrow >}}
-- src: kit/claw_onto_servo.png
+- src: kit/claw_onto_servo.webp
   alt: "The claw attached to the servo with a washer beneath it and the small silver bolt"
   caption: "Step 10 --- washer, then claw"
 {{< /figrow >}}

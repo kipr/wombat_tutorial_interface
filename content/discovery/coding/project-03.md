@@ -285,7 +285,7 @@ The [[CONTROLLER|controller]] turns both motors on, and then --- faster than you
 ## Do It --- Make It Turn
 
 {{< figrow >}}
-- src: botui/motor_widget.png
+- src: botui/motor_widget.webp
   alt: "The motor widget on the Wombat"
   caption: "The motor widget on the Wombat."
 {{< /figrow >}}

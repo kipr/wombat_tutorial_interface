@@ -12,7 +12,7 @@ FROM hugo_base AS hugo_dev
 
 USER 0
 
-RUN apk add fish just imagemagick imagemagick-webp
+RUN apk add fish just imagemagick imagemagick-webp imagemagick-jpeg
 
 RUN npm install -g @openai/codex
 

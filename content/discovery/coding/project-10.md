@@ -219,7 +219,7 @@ Mount your touch sensor on the front of the robot so it hits things before anyth
 On the Wombat, open the **sensor list**. Press the sensor with your finger and watch the number.
 
 {{< figrow >}}
-- src: botui/sensor_list.png
+- src: botui/sensor_list.webp
   alt: "The sensor list on the Wombat"
   caption: "The sensor list on the Wombat."
 {{< /figrow >}}
