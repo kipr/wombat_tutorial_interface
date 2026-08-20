@@ -2,7 +2,7 @@
 title: "Unit 5 · Big Idea 1 — The Second Attempt"
 short_title: "Lab 5.1"
 hub_unit: 5
-description: "Arrays and indexed state — track a believed pose (x, y, heading) and update it only at real reset checkpoints."
+description: "Arrays and indexed state — predict a believed pose (x, y, heading) during movement and correct it at real reset checkpoints."
 weight: 240
 nav: labs
 track: c
@@ -33,7 +33,7 @@ meta:
 
 ## Overview
 
-The Long Run taught you that error piles up over a mission, and that square-ups and backward touches reset it back to zero. But here's a question those labs never asked: **how would the robot know it had drifted, if nobody ever wrote the number down?** A reset only helps if something is keeping track of what the robot currently believes about its own position. Today you build that something: a small array that holds your robot's **believed pose** --- its x, y, and heading --- and you update it honestly every time you get a real chance to check it against the truth.
+The Long Run taught you that error piles up over a mission, and that square-ups and backward touches reset it back to zero. But here's a question those labs never asked: **how would the robot know it had drifted, if nobody ever wrote the number down?** A reset only helps if something is keeping track of what the robot currently believes about its own position. Today you build that something: a small array that holds your robot's **believed pose** --- its x, y, and heading. Each movement advances that belief by the distance the robot intended to travel, and each real reset corrects the belief with evidence from the field.
 
 {{< callout title="The Big Idea of This Unit" >}}
 A system can't recognize failure it isn't tracking. Before a robot can debug itself, recover from a bad turn, or know its plan has gone wrong, it needs some internal record of where it thinks it is --- a record it can compare against reality.
@@ -43,7 +43,7 @@ A system can't recognize failure it isn't tracking. Before a robot can debug its
 
 - Declare and use a small array to hold related values as one structure.
 - Write helper functions that read and write specific elements of that array.
-- Update believed position only at real, verified reset checkpoints.
+- Update believed position after movement and correct it at real, verified reset checkpoints.
 - Explain why an untracked system can't tell the difference between success and failure.
 {.obj}
 
@@ -108,7 +108,9 @@ A system can't recognize failure it isn't tracking. Before a robot can debug its
 
     `initPose(x, y, r)` runs once, at the very top of `main()` --- before the robot moves. It sets your robot's **starting belief**. You'll determine this starting (x, y) by measuring where the **centerpoint between your two wheels** sits --- that's the exact point the robot pivots around during a zero-point turn, so it's the natural place to call "the robot's position."
 
-    `setX(knownX)` and `setY(knownY)` are for later --- for the moments *during* the run when you get real evidence of where you are, not a guess.
+    `movePose(deltaX, deltaY)` is a **belief update**. After a drive, it adds the change in x and y that the robot intended to make. It records a prediction, not proof that the robot actually traveled that far.
+
+    `setX(knownX)` and `setY(knownY)` are **corrections** for later --- for the moments *during* the run when you get real evidence of where you are, not a guess. Unlike `movePose`, they replace one coordinate with a value you know is true.
 
     `printPose()` prints the current believed pose so you (and later, the robot) can inspect it.
 {{< /concept >}}
@@ -167,9 +169,27 @@ int Turn(char dir, double degrees)
 
 {{< ask key="p4_turn" label="Turn and pose" >}}Why should a *failed* `Turn()` call leave `pose[POSE_R]` unchanged? What would happen to your believed heading if it updated R even on failure?{{< /ask >}}
 
+{{< concept "Movement advances the belief" >}}
+- text: |
+    A completed `Drive()` call changes where the robot believes it is. Pair each drive with `movePose(deltaX, deltaY)`, using the distance that the robot was *commanded* to move along each axis. A positive delta moves in the positive direction of that axis; a negative delta moves in the opposite direction.
+
+    For example, if your path says to drive 12 inches in the positive y direction, call `Drive(12.0)` and then `movePose(0.0, 12.0)`. The robot may really travel only 11.5 inches, but its belief still advances by the commanded 12 inches. That difference is the drift you will measure later.
+- code: |
+    void movePose(double deltaX, double deltaY)
+    {
+        pose[POSE_X] += deltaX;
+        pose[POSE_Y] += deltaY;
+    }
+
+    Drive(12.0);
+    movePose(0.0, 12.0);   // prediction: intended motion in +y
+- text: |
+    `movePose()` does not call `setX()` or `setY()`, because movement is not new evidence. Use those setters only after a wall touch, square-up, or other checkpoint gives you a coordinate you know is true.
+{{< /concept >}}
+
 ## Phase 5 --- Plan: Legs, Resets, and Prints
 
-Walk your path from the starting box to both enclosures. Mark every leg, whether a real reset (`back_until_pressed` or `square_up`) happens there, and whether you print the pose. You need **at least 2 resets** tied to a `setX`/`setY` call, and **5 total prints**: one right after `initPose`, then one after each of your 4 pom drop-offs.
+Walk your path from the starting box to both enclosures. For every drive, record the predicted `(deltaX, deltaY)` you will pass to `movePose()`. Also mark whether a real reset (`back_until_pressed` or `square_up`) happens there and whether you print the pose. You need **at least 2 resets** tied to a `setX`/`setY` call, and **5 total prints**: one right after `initPose`, then one after each of your 4 pom drop-offs.
 
 {{< repeattable count=8 prefix="plan" caption="Plan each leg of the run" >}}
 - kind: number
@@ -181,7 +201,7 @@ Walk your path from the starting box to both enclosures. Mark every leg, whether
 - head: Library call(s)
   key: call
   width: 20%
-- head: Pose update
+- head: Belief update / correction
   key: reset
   width: 16%
   align: center
@@ -208,6 +228,12 @@ void initPose(double startX, double startY, double startR)
 	pose[POSE_X] = startX;
 	pose[POSE_Y] = startY;
 	pose[POSE_R] = startR;
+}
+
+void movePose(double deltaX, double deltaY)
+{
+	pose[POSE_X] += deltaX;
+	pose[POSE_Y] += deltaY;
 }
 
 void setX(double knownX)
@@ -248,13 +274,13 @@ int main()
 	setY(@@0.0@@);                  // RESET #1: known truth, y = 0 at this wall
 
 	// ===== LEG 1: pom 1 (orange) to Enclosure A =====
-	@@// Drive(...) / Turn(...) to pom 1, pick it up@@
-	@@// Drive(...) / Turn(...) to Enclosure A, drop it@@
+	@@// Drive(...) / movePose(deltaX, deltaY) / Turn(...) to pom 1, pick it up@@
+	@@// Drive(...) / movePose(deltaX, deltaY) / Turn(...) to Enclosure A, drop it@@
 	printPose();                 // PRINT 2: after drop-off 1
 
 	// ===== LEG 2: pom 2 (blue) to Enclosure A, Base Mission complete =====
-	@@// Drive(...) / Turn(...) to pom 2, pick it up@@
-	@@// Drive(...) / Turn(...) to Enclosure A, drop it@@
+	@@// Drive(...) / movePose(deltaX, deltaY) / Turn(...) to pom 2, pick it up@@
+	@@// Drive(...) / movePose(deltaX, deltaY) / Turn(...) to Enclosure A, drop it@@
 	printPose();                 // PRINT 3: after drop-off 2
 
 	// ===== RESET before crossing to the second enclosure =====
@@ -262,13 +288,13 @@ int main()
 	setX(@@KNOWN_X@@);              // RESET #2: known truth from this square-up
 
 	// ===== LEG 3: pom 3 (orange) to Enclosure B =====
-	@@// Drive(...) / Turn(...) to pom 3, pick it up@@
-	@@// Drive(...) / Turn(...) to Enclosure B, drop it@@
+	@@// Drive(...) / movePose(deltaX, deltaY) / Turn(...) to pom 3, pick it up@@
+	@@// Drive(...) / movePose(deltaX, deltaY) / Turn(...) to Enclosure B, drop it@@
 	printPose();                 // PRINT 4: after drop-off 3
 
 	// ===== LEG 4: pom 4 (blue) to Enclosure B, Bonus Mission complete =====
-	@@// Drive(...) / Turn(...) to pom 4, pick it up@@
-	@@// Drive(...) / Turn(...) to Enclosure B, drop it@@
+	@@// Drive(...) / movePose(deltaX, deltaY) / Turn(...) to pom 4, pick it up@@
+	@@// Drive(...) / movePose(deltaX, deltaY) / Turn(...) to Enclosure B, drop it@@
 	printPose();                 // PRINT 5: final belief
 
 	return 0;
@@ -276,12 +302,12 @@ int main()
 {{< /code >}}
 
 {{< callout title="[[REQUIREMENT|Requirement]] check" variant="gold" >}}
-2 orange + 2 blue poms delivered, split across **two different** PVC enclosures. `initPose` called once. At least **2 real resets** each paired with a `setX`/`setY` call. **5 total** `printPose()` calls. `Turn()` only updates `pose[POSE_R]` on success.
+2 orange + 2 blue poms delivered, split across **two different** PVC enclosures. `initPose` called once. Every completed `Drive()` paired with a `movePose()` prediction. At least **2 real resets** each paired with a `setX`/`setY` correction. **5 total** `printPose()` calls. `Turn()` only updates `pose[POSE_R]` on success.
 {{< /callout >}}
 
 ## Phase 7 --- Run It and Check the Belief Against Reality
 
-Run the mission. Each time it prints a pose, pause and physically measure where the robot actually is. Compare the printed number to your measurement --- that gap is your robot's **drift**, and it's the first real evidence you've collected about where your [[MODEL|model]] breaks down.
+Run the mission. Each time it prints a pose, pause and physically measure where the robot actually is. The printed pose contains the movement your robot predicted with `movePose()` plus any corrections from real resets. Compare that belief to your measurement --- the gap is your robot's **drift**, and it's the first real evidence you've collected about where your [[MODEL|model]] breaks down.
 
 {{< repeattable count=5 prefix="drift" caption="Compare believed pose to measured pose, at each print" >}}
 - kind: number
@@ -305,7 +331,7 @@ Run the mission. Each time it prints a pose, pause and physically measure where 
 A system can't catch its own failures unless it keeps track of what it believes about itself.
 {{< /callout >}}
 
-Every intelligent system that operates reliably keeps some version of what you built today: a running record of its own believed state, updated honestly at moments of real evidence and left alone otherwise. A GPS-guided drone tracks believed position between satellite fixes. A robot vacuum tracks believed position between wall bumps. None of them are ever perfectly right --- but because they keep the number written down, they can catch the moment it drifts too far, and that is the very first requirement for [[DEBUGGING|debugging]] a failure at all: you have to know what you expected before you can recognize that something went wrong.
+Every intelligent system that operates reliably keeps some version of what you built today: a running record of its own believed state. It predicts how movement changes that state, then corrects the prediction when it gets real evidence. A GPS-guided drone tracks believed position between satellite fixes. A robot vacuum tracks believed position between wall bumps. None of them are ever perfectly right --- but because they keep the number written down, they can catch the moment it drifts too far, and that is the very first requirement for [[DEBUGGING|debugging]] a failure at all: you have to know what you expected before you can recognize that something went wrong.
 
 Complete the reflection on your own.
 {.muted}
@@ -314,7 +340,7 @@ Complete the reflection on your own.
 
 {{< ask key="p8_q1_array" label="Reflection 1" n=1 >}}What is an array, and why did grouping x, y, and R into `pose[3]` make more sense than three separate variables?{{< /ask >}}
 
-{{< ask key="p8_q2_setters" label="Reflection 2" n=2 >}}Why should `setX`/`setY` only ever be called right after a real reset (a square-up or backward touch), never as a guess?{{< /ask >}}
+{{< ask key="p8_q2_setters" label="Reflection 2" n=2 >}}How is the prediction made by `movePose()` different from a correction made by `setX()` or `setY()`? Why should the setters only ever be called right after a real reset, never as a guess?{{< /ask >}}
 
 {{< ask key="p8_q3_return" label="Reflection 3" n=3 >}}How did making `Turn()`'s return value actually matter (updating R only on success) connect back to what you learned about return values in Unit 4?{{< /ask >}}
 
@@ -352,7 +378,7 @@ Finished early? Try one or more of these.
 
 ### Extension E --- Bundled Like an Object
 
-- In a language with objects (like Java or Python), your pose array plus its helper functions (`initPose`, `setX`, `setY`, `printPose`) would likely be bundled together into one "Pose" object --- the data and the functions that use it, packaged as a single unit. This idea is called **encapsulation**.
+- In a language with objects (like Java or Python), your pose array plus its helper functions (`initPose`, `movePose`, `setX`, `setY`, `printPose`) would likely be bundled together into one "Pose" object --- the data and the functions that use it, packaged as a single unit. This idea is called **encapsulation**.
 - What's one advantage of bundling `pose[3]` with its own functions into one object, instead of keeping the array and the functions separate the way we did?
 
 {{< answer key="ext_e" label="Extension E" >}}
