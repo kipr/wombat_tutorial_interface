@@ -1,0 +1,31 @@
+{{ define "main" }}
+<main class="wrap">
+  <p class="page-eyebrow">{{ .Params.eyebrow }}</p>
+  <h1 class="page-title">{{ .Params.heading }}{{ with .Params.heading_accent }} <span>{{ . }}</span>{{ end }}</h1>
+  <p class="page-sub">{{ with .Params.subheading }}{{ . }}{{ else }}{{ .Description }}{{ end }}</p>
+
+  <div class="card-grid">
+  {{- range $i, $card := .Params.cards }}
+    {{- $hasPage := isset $card "page" -}}
+    {{- $hasURL := isset $card "url" -}}
+    {{- if eq $hasPage $hasURL -}}
+      {{- errorf "%s cards[%d]: define exactly one of page or url" $.File.Path $i -}}
+    {{- end -}}
+    {{- $href := "" -}}
+    {{- if $hasPage -}}
+      {{- $target := partial "resolve-page.html" (dict "reference" $card.page "position" (printf "%s cards[%d].page" $.File.Path $i)) -}}
+      {{- $href = partial "relative-url.html" (dict "source" $ "target" $target) -}}
+    {{- else -}}
+      {{- $href = partial "relative-url.html" (dict "source" $ "path" $card.url) -}}
+    {{- end -}}
+    <a class="doc-card" href="{{ $href }}"{{ if $card.download }} download{{ end }}>
+      <span class="card-num">{{ $card.kicker }}</span>
+      <span class="card-title">{{ $card.title }}</span>
+      <span class="card-desc">{{ $card.desc }}</span>
+      <span class="card-arrow">{{ $card.arrow }}</span>
+    </a>
+  {{- end }}
+  </div>
+  {{- with .Content }}<div class="note">{{ . }}</div>{{ end }}
+</main>
+{{ end }}

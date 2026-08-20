@@ -103,9 +103,13 @@ Optional `python` wording overrides the C/default definition. True homonyms use
 named `senses`; unresolved editorial conflicts belong in
 `data/glossary-conflicts.yaml` until a human chooses the canonical wording.
 
-### Standards correlations
+### Educator resources and standards correlations
 
-The Standards Correlations hub lives at `content/standards-correlations/` and
+The Educator Resources hub lives at `content/resources/`. Its front-matter
+cards define exactly one lowercase Hugo `page` reference or literal static
+`url`; set `download: true` for downloadable files.
+
+The Standards Correlations page lives at `content/standards-correlations/` and
 uses `download_directory: standards-correlations`. To publish a new state
 workbook, drop `{State_Name}_CS1_State_Standards.xlsx` into
 `static/standards-correlations/` (underscores in the filename become spaces in

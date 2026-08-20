@@ -36,13 +36,9 @@ cards:
     desc: "Score a Botball Explorer run mission by mission and see your total update live."
     arrow: "Open Scoring App →"
     url: score.html
-educator_resources:
-  - title: "Game Board Build Guide"
-    desc: "Set up the Botball Explorer game board for mission practice with your team."
-    arrow: "Open Build Guide →"
-    page: /game-board-build
-  - title: "Standards Correlations"
-    desc: "Excel workbooks that map Botball Explorer CS1 learning to ISTE and state computer science standards."
-    arrow: "View Downloads →"
-    page: /standards-correlations
+  - kicker: "Classroom · Teachers"
+    title: "Educator Resources"
+    desc: "Guides, research, and standards materials for using Botball Explorer in the classroom."
+    arrow: "Open Educator Resources →"
+    page: /resources
 ---

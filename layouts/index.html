@@ -36,23 +36,6 @@
         </a>
       {{- end }}
       </div>
-      {{- with .Params.educator_resources }}
-      <details class="educator-resources">
-        <summary>Educator resources</summary>
-        <div class="educator-resource-list">
-        {{- range $i, $resource := . }}
-          {{- $target := partial "resolve-page.html" (dict "reference" $resource.page "position" (printf "%s educator_resources[%d].page" $.File.Path $i)) -}}
-          <a class="educator-resource" href="{{ partial "relative-url.html" (dict "source" $ "target" $target) }}">
-            <span>
-              <strong>{{ $resource.title }}</strong>
-              <span>{{ $resource.desc }}</span>
-            </span>
-            <span class="educator-resource-action">{{ $resource.arrow }}</span>
-          </a>
-        {{- end }}
-        </div>
-      </details>
-      {{- end }}
     </div>
   </section>
 {{ end }}

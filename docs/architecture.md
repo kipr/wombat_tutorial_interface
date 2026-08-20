@@ -23,7 +23,7 @@ under a project mount, and when opened from a local directory.
 
 | Path | Responsibility |
 | --- | --- |
-| `content/` | Markdown, front matter, Explorer mission leaf bundles, and the Standards Correlations hub. |
+| `content/` | Markdown, front matter, Explorer mission leaf bundles, and educator-facing hubs. |
 | `layouts/` | Base template, page-family layouts, render hooks, shortcodes, and internal partials. |
 | `assets/css/` | CSS minified and fingerprinted through Hugo Pipes when referenced by a page's `styles` list. |
 | `static/` | Files copied as-is: images, JavaScript, PDF, SVG, and the legacy scoring app. |
@@ -79,9 +79,12 @@ their regular pages by `hub_unit`; Discovery hubs derive strand, phase, count,
 pace, and gate cards from their child pages. Do not maintain a second list of
 Discovery projects.
 
-Standards Correlations (`content/standards-correlations/`) is a teacher-facing
-downloads hub. Its list layout globs `static/standards-correlations/` at build
-time: exactly one `ISTE_Standards.xlsx` plus any
+Educator Resources (`content/resources/`) is the teacher-facing hub for guides,
+research, and standards materials. Its cards can resolve Hugo pages or literal
+static-file targets. The Standards Correlations page remains at
+`content/standards-correlations/`; its list layout globs
+`static/standards-correlations/` at build time: exactly one
+`ISTE_Standards.xlsx` plus any
 `{Name}_CS1_State_Standards.xlsx` files (`New_York` → `New York`). Unexpected
 files or subdirectories fail the build. There is no separate YAML catalog for
 those downloads.
