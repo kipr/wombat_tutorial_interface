@@ -116,7 +116,7 @@ rows:
     cmpc(0);                          // clear the counter once, before the spin
     for (int i = 0; i < 4; i++)       // four chunks = one full 360 degree spin
     {
-    	long target = (i + 1) * CHUNK_TICKS;   // how far we should be after this chunk
+    	int target = (i + 1) * CHUNK_TICKS;   // how far we should be after this chunk
     	while (gmpc(0) < target)
     	{
     		mav(0, 300);              // SLOW velocity: left wheel forward

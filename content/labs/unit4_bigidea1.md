@@ -59,6 +59,16 @@ A model is a relationship the robot can use to predict. If it knows how many tic
     A `double` is just a number that can have a decimal point. You use it exactly like an `int`, but it remembers the fractional part. For measurements and math, that precision matters.
 {{< /concept >}}
 
+{{< concept "Returning to whole numbers" >}}
+- text: |
+    As mentioned above, trying to store a decimal number in an `int` will chop off the decimal portion. There is another way to convert back to an `int`:
+- code: |
+    int x = 41.7;          // This stores 41 by removing everything after the decimal point.
+    int y = round(41.7);   // This stores 42 by rounding to the NEAREST whole number.
+- text: |
+    Simply shoving a decimal into an `int` always rounds *down* toward zero, no matter how close the decimal is to the next whole number --- even `int z = 41.99` is still `41`. `round()` looks at the decimal and picks whichever whole number is actually closer. For something like a predicted tick count, that difference is a real, measurable amount of driving distance --- so which one you pick actually matters.
+{{< /concept >}}
+
 {{< ask key="p1_why_double" label="Why double" >}}Why would using an `int` for `ticks_per_inch` make your robot's driving less accurate? Use the 41.7 example.{{< /ask >}}
 
 ## Phase 2 --- Concept: A Model Is a Relationship
@@ -164,12 +174,13 @@ rows:
 
 Now the payoff. With `ticks_per_inch` known, `Drive` takes a distance in **inches** (a `double`), predicts the ticks, and drives. You command in human units; the model handles the rest.
 
-{{< code >}}
+```c
 void Drive(double inches);   // PROTOTYPE (add near your others)
 
 void Drive(double inches)
 {
-	int ticks = inches * ticks_per_inch;   // PREDICT ticks from the model
+	// Remember to round the result instead of simply dropping the decimal.
+	int ticks = round(inches * ticks_per_inch);   // PREDICT ticks from the model
 	cmpc(0);                               // clear the counter
 	while (gmpc(0) < ticks)                // drive until we reach the predicted ticks
 	{
@@ -179,7 +190,7 @@ void Drive(double inches)
 	}
 	motor(0, 0); motor(3, 0); msleep(50);  // brake
 }
-{{< /code >}}
+```
 
 Test it: after calibrating, call `Drive(12.0);` and measure how far the robot actually went. Then try a few more distances.
 
