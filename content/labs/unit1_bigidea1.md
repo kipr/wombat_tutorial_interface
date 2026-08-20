@@ -179,8 +179,9 @@ int main()
 {
 	motor(0,100);  //this turns one of the motors on
 	motor(3,100);  //this turns the other motor on
-	msleep(1000);  // hold still so the stop is visible
+	msleep(1000);  // drive forward for one second
 	ao();          // turns the motors off after the msleep has completed
+	msleep(1000);  // hold still so the stop is visible
 	// Add your Bonus Mission call here when ready.
 	return 0;
 }

@@ -185,8 +185,9 @@ import _kipr as k
 def main():
     k.motor(0, 100)  # this turns one of the motors on
     k.motor(3, 100)  # this turns the other motor on
-    k.msleep(1000)   # hold still so the stop is visible
+    k.msleep(1000)   # drive forward for one second
     k.ao()           # turns the motors off after the msleep has completed
+    k.msleep(1000)   # hold still so the stop is visible
     # Add your Bonus Mission call here when ready.
 
 main()
