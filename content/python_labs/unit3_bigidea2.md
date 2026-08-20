@@ -89,7 +89,7 @@ CLAW_SHUT = @@____@@
 
 def main():
     k.enable_servo(0)            # arm
-    k.enable_servo(1)            # claw
+    k.enable_servo(3)            # claw
 
     move_arm(ARM_MIN)          # This safely moves the arm to the top.
     move_arm(3000)             # UNSAFE number, but the clamp saves us:

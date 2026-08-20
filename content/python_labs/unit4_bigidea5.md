@@ -128,7 +128,7 @@ from @@yourname@@ import *     # your full library
 
 def main():
     k.enable_servo(0)
-    k.enable_servo(1)
+    k.enable_servo(3)
 
     # ===== VERIFY START =====
     back_until_pressed()       # backward touch: confirm we're in the box, reset origin

@@ -156,7 +156,7 @@ from @@yourname@@ import *     # your full library
 
 def main():
     k.enable_servo(0)
-    k.enable_servo(1)
+    k.enable_servo(3)
 
     score = 0                          # running total starts at zero
     print(f"Run started. Score: {score}")

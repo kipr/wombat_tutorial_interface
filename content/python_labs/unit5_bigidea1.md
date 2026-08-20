@@ -242,7 +242,7 @@ from @@yourname@@ import *     # your full library
 
 def main():
     k.enable_servo(0)
-    k.enable_servo(1)
+    k.enable_servo(3)
 
     # ===== INITIALIZE BELIEF =====
     initPose(@@START_X@@, @@START_Y@@, 0.0)   # measured wheel-centerpoint, facing out

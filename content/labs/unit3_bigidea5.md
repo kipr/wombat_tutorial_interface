@@ -190,7 +190,7 @@ Now write it for real. Here is the **frame** --- nothing more. Include your libr
 int main()
 {
 	enable_servo(0);          // arm
-	enable_servo(1);          // claw
+	enable_servo(3);          // claw
 
 	// ===== STACK 1 =====
 	// (write your calls from your Phase 4 plan)

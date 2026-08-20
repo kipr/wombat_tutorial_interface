@@ -151,7 +151,7 @@ Now write it. Start `score` at 0. Follow the **do → score → report** rhythm:
 int main()
 {
 	enable_servo(0);
-	enable_servo(1);
+	enable_servo(3);
 
 	int score = 0;                          // running total starts at zero
 	printf("Run started. Score: %d\n", score);

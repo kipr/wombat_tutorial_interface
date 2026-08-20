@@ -263,7 +263,7 @@ void printPose()
 int main()
 {
 	enable_servo(0);
-	enable_servo(1);
+	enable_servo(3);
 
 	// ===== INITIALIZE BELIEF =====
 	initPose(@@START_X@@, @@START_Y@@, 0.0);   // measured wheel-centerpoint, facing out

@@ -184,7 +184,7 @@ CLAW_SHUT = @@____@@   # safe closed-on-cube claw position
 
 def main():
     k.enable_servo(0)    # arm servo on port 0
-    k.enable_servo(1)    # claw servo on port 3
+    k.enable_servo(3)    # claw servo on port 3
     # (enabling sends each servo to 1024 unless told otherwise)
 
     k.set_servo_position(3, CLAW_OPEN)   # 1. open the claw

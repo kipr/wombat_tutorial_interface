@@ -177,7 +177,7 @@ int CLAW_SHUT = @@____@@;   // safe closed-on-cube claw position
 int main()
 {
 	enable_servo(0);    // arm servo on port 0
-	enable_servo(1);    // claw servo on port 3
+	enable_servo(3);    // claw servo on port 3
 	// (enabling sends each servo to 1024 unless told otherwise)
 
 	set_servo_position(3, CLAW_OPEN);   // 1. open the claw

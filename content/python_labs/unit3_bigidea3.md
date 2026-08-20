@@ -256,7 +256,7 @@ from @@yourname@@ import *   # Import YOUR library to get all your tools in one 
 
 def main():
     k.enable_servo(0)
-    k.enable_servo(1)
+    k.enable_servo(3)
 
     # Call each library function once to test it:
     Tick_Drive(2000)        # drive forward a measured distance

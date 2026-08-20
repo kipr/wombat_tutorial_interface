@@ -193,7 +193,7 @@ from @@yourname@@ import *     # all your tuned tools
 
 def main():
     k.enable_servo(0)          # arm
-    k.enable_servo(1)          # claw
+    k.enable_servo(3)          # claw
 
     # ===== STACK 1 =====
     # (write your calls from your Phase 4 plan)

@@ -123,7 +123,7 @@ from @@yourname@@ import *
 
 def main():
     k.enable_servo(0)
-    k.enable_servo(1)
+    k.enable_servo(3)
 
     init_time = k.systime()
 

@@ -88,7 +88,7 @@ void move_claw(int position);
 int main()
 {
 	enable_servo(0);            // arm
-	enable_servo(1);            // claw
+	enable_servo(3);            // claw
 
 	move_arm(ARM_MIN);          // safe: moves to the top
 	move_arm(3000);             // UNSAFE number, but the clamp saves us:

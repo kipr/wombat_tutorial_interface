@@ -123,7 +123,7 @@ Write your run in `main()`, translating your plan into library calls. Start with
 int main()
 {
 	enable_servo(0);
-	enable_servo(1);
+	enable_servo(3);
 
 	// ===== VERIFY START =====
 	back_until_pressed();       // backward touch: confirm we're in the box, reset origin

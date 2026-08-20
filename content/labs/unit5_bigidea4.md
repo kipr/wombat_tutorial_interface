@@ -120,7 +120,7 @@ Wrap your Restack & Shelve routine in the timing pattern from Phase 2, using you
 int main()
 {
 	enable_servo(0);
-	enable_servo(1);
+	enable_servo(3);
 
 	unsigned long init_time = systime();
 

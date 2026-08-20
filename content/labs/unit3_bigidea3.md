@@ -257,7 +257,7 @@ Now the payoff. In your main program, add your library with an `#include` line a
 int main()
 {
 	enable_servo(0);
-	enable_servo(1);
+	enable_servo(3);
 
 	// Call each library function once to test it:
 	Tick_Drive(2000);        // drive forward a measured distance
