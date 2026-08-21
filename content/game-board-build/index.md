@@ -15,7 +15,7 @@ sidebar:
   numbered: false
 meta:
   - term: "You Need"
-    definition: "Game board mat · 4'x8' (1.2192 m x 2.4384m) plywood board · 3 8' (2.4384 m) two-by-fours"
+    definition: "Game board mat · 4'x8' (1.2192 m x 2.4384m) plywood board · 3 8' (2.4384 m) two-by-fours · PVC Kit"
   - term: "Finish Line"
     definition: "A level, labeled board ready for mission practice"
 ---
@@ -41,7 +41,21 @@ KIPR boards will be made with two-by-fours, as in the following table, but anyth
 | -    | **Wood screws** | 2.5" (6.4 cm) | - | ~24 |
 | -    | **Matte black paint** | - | - | 1 qt (1 L) |
 
+The following parts should be included in your Botball Explorer kit.
+
+| Part | Description | Dimensions | Quantity |
+| ---- | ----------- | ---------- | -------- |
+| D    | **Long PVC** | ??" (?? cm) | 1 |
+| E    | **Medium PVC** | ??" (?? cm) | 1 |
+| F    | **Short PVC** | ??" (?? cm) | 1 |
+| G    | **Small PVC Spacers** | ??" (?? cm) | 4 |
+| H    | **PVC T Connector** | ??" (?? cm) | 2 |
+| I    | **PVC Elbow Connector** | ??" (?? cm) | 2 |
+| J    | **Mat** | ??" (?? cm) | 1 |
+
 ## Build guide
+
+### Wooden Frame
 
 First, screw the walls together on top of the base board.
 
@@ -69,7 +83,7 @@ Next, secure the base board to the walls.
 {{< /figrow >}}
 
 With this, the board is complete!
-Now, simply add the KIPR Botball Explorer mat.
+Now, simply add the KIPR Botball Explorer mat and the box (loading dock).
 
 {{< figrow tall=true >}}
 - src: field/build_guide/wood_assembled_overview.webp
@@ -79,3 +93,5 @@ Now, simply add the KIPR Botball Explorer mat.
 - src: field/build_guide/completed_overview.webp
   alt: Explorer mat
 {{< /figrow >}}
+
+### PVC (Coming soon)
