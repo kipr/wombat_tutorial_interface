@@ -45,17 +45,14 @@ The following parts should be included in your Botball Explorer kit.
 
 | Part | Description | Dimensions | Quantity |
 | ---- | ----------- | ---------- | -------- |
-| D    | **Long PVC** | ??" (?? cm) | 1 |
-| E    | **Medium PVC** | ??" (?? cm) | 1 |
-| F    | **Short PVC** | ??" (?? cm) | 1 |
-| G    | **Small PVC Spacers** | ??" (?? cm) | 4 |
-| H    | **PVC T Connector** | ??" (?? cm) | 2 |
-| I    | **PVC Elbow Connector** | ??" (?? cm) | 2 |
-| J    | **Mat** | ??" (?? cm) | 1 |
+| D    | **Long PVC** | 29.5" (74.93 cm) | 1 |
+| E    | **Medium PVC** | 26" (66.04 cm) | 2 |
+| F    | **Short PVC** | 3" (7.62 cm) | 4 |
+| G    | **PVC T Connector** | - | 2 |
+| H    | **PVC Elbow Connector** | - | 2 |
+| I    | **Mat** | 45" x 93" (1.143 m x 2.3622 m) | 1 |
 
-## Build guide
-
-### Wooden Frame
+## Wooden Frame
 
 First, screw the walls together on top of the base board.
 
@@ -82,8 +79,8 @@ Next, secure the base board to the walls.
   alt: Bottom screws in
 {{< /figrow >}}
 
-With this, the board is complete!
-Now, simply add the KIPR Botball Explorer mat and the box (loading dock).
+With this, the wooden frame is complete!
+Now you can add the KIPR Botball Explorer mat and the loading dock (box).
 
 {{< figrow tall=true >}}
 - src: field/build_guide/wood_assembled_overview.webp
@@ -94,4 +91,23 @@ Now, simply add the KIPR Botball Explorer mat and the box (loading dock).
   alt: Explorer mat
 {{< /figrow >}}
 
-### PVC (Coming soon)
+## PVC Assembly
+
+Assemble the PVC as shown, with the longer piece on the right and the two medium ones in the center and left.
+Gluing the PVC connectors is not required for practice tables.
+You will probably need a hammer and cushioning cloth or soft mallet of some kind to make sure the PVC goes fully into the connectors.
+Be careful, especially if using a metal hammer, to use something to cushion the PVC.
+
+{{< figrow tall=true >}}
+- src: field/build_guide/pvc_exploded.webp
+  alt: PVC arrangement
+{{< /figrow >}}
+
+As long as all of the PVC pieces were pushed all the way in, the PVC assembly should now line up perfectly with the outline on the top of the game mat.
+
+{{< figrow tall=true >}}
+- src: field/build_guide/final_completed_overview.webp
+  alt: PVC placement
+{{< /figrow >}}
+
+Now, refer to [the rulebook](../botball_explorer_2026/rules/) to arrange the pieces, and you are ready to play!
