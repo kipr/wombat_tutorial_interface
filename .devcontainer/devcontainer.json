@@ -7,7 +7,12 @@
   "features": {
       "ghcr.io/cirolosapio/devcontainers-features/alpine-gpg:0": {}
   },
+  "initializeCommand": {
+    "codex": "mkdir -p \"${localEnv:HOME}/.config/codex\"",
+    "fish": "mkdir -p \"${localEnv:HOME}/.config/fish\""
+  },
   "mounts": [
-    "source=${localEnv:HOME}/.config/codex,target=/var/hugo/.codex,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.config/codex,target=/var/hugo/.codex,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/fish,target=/var/hugo/.config/fish,type=bind,consistency=cached",
   ]
 }
