@@ -33,9 +33,17 @@
       (printf "%s: %s %d first" $priority .strand .number)
     -}}
     {{- if eq $location "header" -}}
-      {{- $label = printf "%s: %s" $priority .page.Title -}}
+      {{- if .page -}}
+        {{- $label = printf "%s: %s" $priority .page.Title -}}
+      {{- else -}}
+        {{- $label = printf "%s: %s Project %d" $priority .strand .number -}}
+      {{- end -}}
     {{- end -}}
+  {{- if .page -}}
   <a class="pace {{ .kind }}" href="{{ partial "relative-url.html" (dict "source" $page "target" .page) }}">{{ $label }}</a>
+  {{- else -}}
+  <span class="pace {{ .kind }}">{{ $label }}</span>
+  {{- end -}}
   {{- end -}}
 </nav>
 {{- end -}}

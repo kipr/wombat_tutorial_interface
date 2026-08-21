@@ -47,6 +47,32 @@ build_dir="$(mktemp -d)"
 hugo --buildDrafts --destination "$build_dir" --printPathWarnings --logLevel error
 ```
 
+### Pilot build target
+
+The optional `pilot` target publishes a curated set of missions, educator
+resources, labs, and Discovery projects. It does not change the default build
+or filter files below `static/`.
+
+Preview the target with:
+
+```sh
+hugo server --config hugo.toml,build-targets/pilot.toml
+```
+
+Build it into a fresh destination with:
+
+```sh
+pilot_dir="$(mktemp -d)"
+hugo --config hugo.toml,build-targets/pilot.toml \
+  --destination "$pilot_dir" --printPathWarnings --logLevel error
+node tools/check_internal_links.js "$pilot_dir"
+```
+
+Each target configuration is a complete allow-list for the content mount.
+Include branch `_index.md` files needed for hubs and every referenced Hugo page
+that should remain linked. The full build remains the authoritative content
+and syntax validation pass.
+
 ## Page exists but the browser shows 404
 
 A successful build does not prove that every discovered content page produced
@@ -100,6 +126,7 @@ Run these from the repository root against that fresh build:
 
 ```sh
 node tools/check_syntax_highlighting.js "$build_dir"
+node tools/check_internal_links.js "$build_dir"
 node tests/test_lab_persistence.js
 node tests/test_glossary_dialog.js
 ```
@@ -110,6 +137,7 @@ What they cover:
 | --- | --- |
 | Hugo build | Template evaluation, required content, references, resources, and shortcode validation. |
 | `check_syntax_highlighting.js` | Languages, Chroma output, copied code, `@@...@@` emphasis, and stylesheet publication. |
+| `check_internal_links.js` | Generated relative `href`, `src`, and `poster` targets and HTML fragments. |
 | `test_lab_persistence.js` | Checkbox/text restore, autosave, export payload, and print submission flow. |
 | `test_glossary_dialog.js` | Semantic activation, close behavior, Escape, and focus return. |
 

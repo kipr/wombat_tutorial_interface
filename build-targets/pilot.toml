@@ -1,0 +1,37 @@
+[params]
+  buildTarget = 'pilot'
+
+[[module.mounts]]
+  source = 'content'
+  target = 'content'
+  files = [
+    '_index.md',
+    'botball_explorer_2026/**',
+    'discovery/_index.md',
+    'discovery/coding/_index.md',
+    'discovery/coding/project-01.md',
+    'discovery/coding/project-02.md',
+    'discovery/coding/project-15.md',
+    'discovery/systems/_index.md',
+    'discovery/systems/project-01.md',
+    'discovery/systems/project-02.md',
+    'discovery/systems/project-06.md',
+    'discovery/systems/bulldozer-blade-shapes.svg',
+    'full-demobot-build/**',
+    'game-board-build/**',
+    'glossary.md',
+    'labs/_index.md',
+    'labs/prelab0.md',
+    'labs/prelab1.md',
+    'labs/unit1_bigidea1.md',
+    'labs/unit1_bigidea2.md',
+    'labs/unit5_bigidea1.md',
+    'python_labs/_index.md',
+    'python_labs/prelab0.md',
+    'python_labs/prelab1.md',
+    'python_labs/unit1_bigidea1.md',
+    'python_labs/unit1_bigidea2.md',
+    'python_labs/unit5_bigidea1.md',
+    'resources/_index.md',
+    'standards-correlations/_index.md',
+  ]

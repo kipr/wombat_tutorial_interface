@@ -27,6 +27,7 @@ under a project mount, and when opened from a local directory.
 | `layouts/` | Base template, page-family layouts, render hooks, shortcodes, and internal partials. |
 | `assets/css/` | CSS minified and fingerprinted through Hugo Pipes when referenced by a page's `styles` list. |
 | `static/` | Files copied as-is: images, JavaScript, PDF, SVG, and the legacy scoring app. |
+| `build-targets/` | Optional Hugo configuration overlays that publish curated content selections. |
 | `data/nav.yaml` | Canonical top-level navigation. |
 | `data/glossary.yaml` | Canonical curriculum and competition definitions. |
 | `data/discovery-*.json` | Frozen legacy contract and narrowly approved migration exceptions. |

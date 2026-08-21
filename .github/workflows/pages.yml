@@ -41,6 +41,7 @@
               --printPathWarnings \
               --logLevel error
             node tools/check_syntax_highlighting.js "${RUNNER_TEMP}/verify"
+            node tools/check_internal_links.js "${RUNNER_TEMP}/verify"
             node tests/test_lab_persistence.js
             node tests/test_glossary_dialog.js
 
