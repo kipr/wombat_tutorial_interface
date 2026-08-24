@@ -1,12 +1,12 @@
 ---
-title: "KIPR Botball 2026"
+title: "KIPR Botball 2026 Preview"
 nav: home
 hub: true
 styles: ["site-base", "hub"]
-eyebrow: "KIPR — Kiss Institute for Practical Robotics"
+eyebrow: "Preview Release · KIPR — Kiss Institute for Practical Robotics"
 heading: "Botball Explorer"
-heading_accent: "2026"
-description: "Official competition resources, mission guides, and scoring references for the 2026 season."
+heading_accent: "2026 Preview"
+description: "Preview materials for review and testing prior to purchase."
 cheat_sheet:
   path: 2026_Botball_Explorer_Quick_Reference.pdf
   label: "Botball Explorer Quick Reference — Click here to download the 2026 one-pager"

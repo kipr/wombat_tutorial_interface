@@ -63,62 +63,133 @@ These are the small parts you will use over and over. Learn their names now --- 
 Parts video coming soon.
 {.muted .no-print}
 
+### Advised parts
+
+This is everything required by the full build.
+Quantities for bolts and nuts are generous so that when you drop pieces, you can grab a spare and keep moving.
+
+#### Pins & Standoffs
+
+{{< checklist >}}
+- key: a
+  label: Axle pin **× 1**
+- key: a
+  label: Pin **× 6**
+- key: a
+  label: 1.5 Pin **× 1**
+- key: a
+  label: ¾ Pin **× 2**
+- key: a
+  label: H Pin **× 1**
+- key: a
+  label: 0.5′ Standoff **× 2**
+- key: a
+  label: 1′ Standoff **× 1**
+- key: a
+  label: 2′ Standoff **× 1**
+- key: a
+  label: 3′ Standoff **× 1**
+{{< /checklist >}}
+
+#### Nuts, Bolts, and Motor/Servo Hardware
+
+{{< checklist >}}
+- key: a
+  label: 0.25′ Bolts (Short) **× 12 or so**
+- key: a
+  label: 0.5′ Bolts (Medium) **× 12 or so**
+- key: a
+  label: 0.75′ Bolts (Long) **× 12 or so**
+- key: a
+  label: Spike Nuts **× 12**
+- key: a
+  label: Small black motor bolts (Motor Bag) **× 2**
+- key: a
+  label: Small silver servo horn screws (5-Hole Servo Horn Bag) **× 2**
+- key: a
+  label: Washers (5-Hole Servo Horn Bag) **× 2**
+{{< /checklist >}}
+
+#### Lego & Servo Pieces
+
+{{< checklist >}}
+- key: a
+  label: 1×9 Liftarm **× 2**
+- key: a
+  label: 1×11 Liftarm **× 1**
+- key: a
+  label: Thin 1×3 Liftarm **× 1**
+- key: a
+  label: 1×7 Liftarm **× 1**
+- key: a
+  label: 1×5 Liftarm **× 1**
+- key: a
+  label: 3×7 Bent Liftarm **× 1**
+- key: a
+  label: Claw Liftarm **× 2**
+- key: a
+  label: H LEGO Piece **× 1**
+- key: a
+  label: 1×5 Servo Horn **× 2**
+
+{{< /checklist >}}
+
 ### LEGO Pins
+
+{{< callout title="Heads up" variant="gold" >}}
+The color of a LEGO piece in your kit may be different from the pictures in this guide. Match the *shape and size*, not the color.
+{{< /callout >}}
 
 {{< figrow >}}
 - src: kit/full_demobot_build/part_axle_pin.webp
-  alt: "Blue axle pin."
-  caption: "Axle Pin · blue"
+  alt: "Axle pin, 1 required"
 - src: kit/full_demobot_build/part_pin.webp
-  alt: "Black or gray LEGO pin."
-  caption: "Pin · black/gray"
+  alt: "LEGO pin, 6 required"
 - src: kit/full_demobot_build/part_pin_15.webp
-  alt: "Long 1.5 LEGO pin."
-  caption: "1.5 Pin · long"
+  alt: "Long 1.5 LEGO pin, 1 required"
 - src: kit/full_demobot_build/part_pin_34.webp
-  alt: "Short, light gray three-quarter LEGO pin."
-  caption: "¾ Pin · short, light gray"
+  alt: "Short, three-quarter LEGO pin, 2 required"
 - src: kit/full_demobot_build/part_pin_h.webp
-  alt: "H pin with four posts."
-  caption: "H Pin · four posts"
+  alt: "H pin with four posts, 1 required"
 {{< /figrow >}}
 
 ### Standoffs
 
 {{< figrow >}}
 - src: kit/full_demobot_build/part_standoff_05.webp
-  alt: "Half-inch standoff."
-  caption: "0.5-inch Standoff"
+  alt: "Half-inch standoff, 2 required"
 - src: kit/full_demobot_build/part_standoff_1.webp
-  alt: "One-inch standoff."
-  caption: "1-inch Standoff"
+  alt: "One-inch standoff, 1 required"
 - src: kit/full_demobot_build/part_standoff_2.webp
-  alt: "Two-inch standoff."
-  caption: "2-inch Standoff"
+  alt: "Two-inch standoff, 1 required"
 - src: kit/full_demobot_build/part_standoff_3.webp
-  alt: "Three-inch standoff."
-  caption: "3-inch Standoff"
+  alt: "Three-inch standoff, 1 required"
 {{< /figrow >}}
 
-### Bolts and Nuts
+### Nuts & Bolts
 
 {{< figrow >}}
 - src: kit/full_demobot_build/part_nut.webp
-  alt: "Nut."
+  alt: "Spike nut, at least 12 required"
 - src: kit/full_demobot_build/part_bolt_short.webp
-  alt: "Short quarter-inch bolt."
-  caption: "0.25-inch Bolt · short"
+  alt: "Short quarter-inch bolt, 12 required"
 - src: kit/full_demobot_build/part_bolt_med.webp
-  alt: "Medium half-inch bolt."
-  caption: "0.5-inch Bolt · medium"
+  alt: "Medium half-inch bolt, 12 required"
 - src: kit/full_demobot_build/part_bolt_long.webp
-  alt: "Long three-quarter-inch bolt."
-  caption: "0.75-inch Bolt · long"
+  alt: "Long three-quarter-inch bolt, 12 required"
 {{< /figrow >}}
 
-{{< callout title="Heads up" variant="gold" >}}
-The color of a LEGO piece in your kit may be different from the pictures in this guide. Match the *shape and size*, not the color.
-{{< /callout >}}
+### Motor & Servo Hardware
+
+These screws are in the motor and servo bags, not the screw bags.
+There are no extras, so be careful not to lose these.
+
+{{< figrow >}}
+- src: kit/4metalservohorns.webp
+  alt: "Small silver servo screws and washers. 3 pictured, 2 required"
+- src: kit/motor_screw.webp
+  alt: "Small black motor bolt"
+{{< /figrow >}}
 
 ## Phase 2 --- Build the Basic Demobot
 
