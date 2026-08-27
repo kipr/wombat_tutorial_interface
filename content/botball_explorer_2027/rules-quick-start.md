@@ -6,7 +6,7 @@ nav: missions
 hub: true
 body_class: explorer
 styles: ["site-base", "hub", "explorer"]
-eyebrow: "KIPR Botball Explorer — 2027 Missions · Stack Attack"
+eyebrow: "KIPR Botball Explorer — 2026-2027 Missions · Stack Attack"
 subtitle: "The essentials for preparing your robot and playing your first match."
 sidebar:
   title: "Quick Start Sections"

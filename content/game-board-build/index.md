@@ -1,5 +1,5 @@
 ---
-title: "Game Board Build Guide — Botball Explorer 2027"
+title: "Game Board Build Guide — Botball Explorer 2026-2027"
 short_title: "Build the Game Board"
 type: labs
 styles: ["site-base", "worksheet", "syntax", "print"]
@@ -7,7 +7,7 @@ hide_botnav: true
 eyebrow: "Educator Resource · Build Guide"
 heading: "Build the Game Board"
 subheading: "Set up the Botball Explorer game board so your team can begin testing missions."
-credit: "KIPR · Botball Explorer 2027 · © KISS Institute for Practical Robotics 1997–2027"
+credit: "KIPR · Botball Explorer 2026-2027 · © KISS Institute for Practical Robotics 1997–2027"
 sidebar:
   title: "Build Phases"
   start_level: 2

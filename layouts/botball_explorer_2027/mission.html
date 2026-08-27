@@ -6,7 +6,7 @@
 {{- $videoURL := partial "relative-url.html" (dict "source" . "path" $video.RelPermalink) -}}
 <main class="explorer-mission">
   <header class="explorer-mission-header">
-    <p class="explorer-eyebrow">2027 Fall Game - Mission {{ $number }} of 18</p>
+    <p class="explorer-eyebrow">2026-2027 Fall Game - Mission {{ $number }} of 18</p>
     <div class="explorer-mission-title"><span>{{ printf "%02d" $number }}</span><h1>{{ partial "render-inline.html" (dict "page" . "text" .LinkTitle) | safeHTML }}</h1></div>
     <p class="explorer-mission-skill"><strong>Skill</strong> {{ .Params.skill }}</p>
   </header>

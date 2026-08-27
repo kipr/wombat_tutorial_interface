@@ -1,5 +1,5 @@
 ---
-title: "Systems Projects — Discovery · KIPR Botball 2027"
+title: "Systems Projects — Discovery · KIPR Botball 2026-2027"
 index_label: "All Systems Projects"
 nav: discovery
 hub: true

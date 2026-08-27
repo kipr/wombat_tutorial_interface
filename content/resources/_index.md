@@ -1,5 +1,5 @@
 ---
-title: "Educator Resources — KIPR Botball 2027"
+title: "Educator Resources — KIPR Botball 2026-2027"
 nav: home
 hub: true
 styles: ["site-base", "hub"]
