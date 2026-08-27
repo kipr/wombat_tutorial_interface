@@ -534,4 +534,4 @@ You have written every skill this game needs. What you have not done is tidy up 
 
 In **Project 16 --- Building Your Toolbox**, your functions move into a [[LIBRARY|library]] you can carry between projects.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

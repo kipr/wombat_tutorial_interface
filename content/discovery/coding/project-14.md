@@ -605,4 +605,4 @@ rows:
 
 That last question is the whole of the next project. In **Project 15 --- Following the Line**, the sensor stops being a stop sign and becomes a steering wheel.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

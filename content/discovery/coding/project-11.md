@@ -748,4 +748,4 @@ You have a robot that can measure. You also have a program that says the same tw
 
 In **Project 12 --- Teaching Your Robot New Moves**, you give those twenty lines a name --- and then you just say the name.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

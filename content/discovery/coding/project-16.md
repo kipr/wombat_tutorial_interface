@@ -512,4 +512,4 @@ One project left. Several missions still have a bonus that means nothing more th
 
 In **Project 17 --- Repeating Without Retyping**, you meet the last loop.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

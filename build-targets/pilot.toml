@@ -6,7 +6,7 @@
   target = 'content'
   files = [
     '_index.md',
-    'botball_explorer_2026/**',
+    'botball_explorer_2027/**',
     'discovery/_index.md',
     'discovery/coding/_index.md',
     'discovery/coding/project-01.md',

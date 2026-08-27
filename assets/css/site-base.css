@@ -1,4 +1,4 @@
-/* KIPR Botball 2026 - Shared site base
+/* KIPR Botball 2027 - Shared site base
  * Tokens, navigation, page shell, callouts/meta, glossary/figure viewers, figures.
  * Family sheets: hub.css · worksheet.css · explorer.css · discovery.css
  * Page-specific overrides (navy heroes, print rules, unique widgets) stay in HTML <style>.
@@ -74,7 +74,7 @@
     --surface-input-focus: #332326;
     --surface-code: #171717;
     --surface-accent-subtle: #2D1A1C;
-    --surface-neutral-subtle: #202632;
+    --surface-neutral-subtle: #202732;
     --surface-warm-subtle: #2A2418;
     --surface-success-subtle: #1C3021;
     --surface-highlight: #4A3D10;
@@ -111,7 +111,7 @@
     --surface-input-focus: #332326;
     --surface-code: #171717;
     --surface-accent-subtle: #2D1A1C;
-    --surface-neutral-subtle: #202632;
+    --surface-neutral-subtle: #202732;
     --surface-warm-subtle: #2A2418;
     --surface-success-subtle: #1C3021;
     --surface-highlight: #4A3D10;

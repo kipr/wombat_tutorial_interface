@@ -595,4 +595,4 @@ You have taken pushing about as far as it goes. Everything left on the field has
 
 Before **Project 7 --- Your Robot's Arm**, go build one. The claw build lives in the **Systems** strand, and this is the one place where the two strands have to meet.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

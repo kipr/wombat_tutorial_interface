@@ -7,7 +7,7 @@ hide_botnav: true
 eyebrow: "Pre-Lab · Build Guide"
 heading: "Build Your Demobot"
 subheading: "Complete this before Lab 1 of any path. Every C lab, Python lab, and Discovery project runs on the robot you are about to build."
-credit: "KIPR · Botball Explorer Pre-Lab Exercise · Special thanks to Infosys Foundation USA · © KISS Institute for Practical Robotics 1997–2026"
+credit: "KIPR · Botball Explorer Pre-Lab Exercise · Special thanks to Infosys Foundation USA · © KISS Institute for Practical Robotics 1997–2027"
 sidebar:
   title: "Build Phases"
   start_level: 2

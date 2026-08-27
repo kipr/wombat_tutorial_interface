@@ -596,4 +596,4 @@ Your robot still cannot tell when it has arrived anywhere. It drives for a lengt
 
 In **Project 10 --- Feeling for Things**, it gets its first sense: a switch that knows when it has touched something --- and the loop that keeps checking.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

@@ -1,6 +1,6 @@
 ---
-title: "2026 Fall Missions"
-linkTitle: "2026 Missions"
+title: "2027 Fall Missions"
+linkTitle: "2027 Missions"
 nav: missions
 hub: true
 body_class: explorer

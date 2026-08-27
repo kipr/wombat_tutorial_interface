@@ -609,4 +609,4 @@ All of it built from about a dozen commands and four ideas: **do this, do it if,
 
 Take your library with you. Next season the field will be different and most of what is in that file will still work.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

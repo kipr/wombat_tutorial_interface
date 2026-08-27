@@ -1,5 +1,5 @@
 ---
-title: "Standards Correlations — KIPR Botball 2026"
+title: "Standards Correlations — KIPR Botball 2027"
 nav: home
 hub: true
 styles: ["site-base", "hub"]

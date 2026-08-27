@@ -445,12 +445,12 @@ The shared reference parser accepts:
 
 Unknown terms, senses, missions, and tiers fail the build. Mission references resolve from the mission page collection-not a parallel data file-and link to the stable `#base`, `#bonus`, or `#advanced` tier anchor. Page data contains only glossary references actually used on that page, with Python wording selected when `track: python` is set.
 
-## 2026 Explorer missions and rules
+## 2027 Explorer missions and rules
 
-The 2026 Explorer is ordinary Hugo content with no URL overrides or aliases:
+The 2027 Explorer is ordinary Hugo content with no URL overrides or aliases:
 
 ```text
-content/botball_explorer_2026/
+content/botball_explorer_2027/
 ├── _index.md
 ├── rules.md
 └── missions/
@@ -558,8 +558,8 @@ Navigation entries define exactly one destination: `page` for Hugo content or `u
   name: C Labs
   page: /labs
 - id: missions
-  name: 2026 Missions
-  page: /botball_explorer_2026
+  name: 2027 Missions
+  page: /botball_explorer_2027
 ```
 
 Section edition toggles follow the same rule through the `toggle_page` front matter field. Do not write `.html` paths for Hugo content; page-object links emit the configured canonical URL automatically.

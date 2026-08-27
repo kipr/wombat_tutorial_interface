@@ -652,4 +652,4 @@ Your robot follows the same plan every time, no matter what it finds. If a cube 
 
 In **Project 13 --- Deciding What to Do**, it stops following orders blindly and starts choosing.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

@@ -171,7 +171,7 @@ Markdown.
 ## Missions and rules
 
 `mission-summary` renders canonical tier data and scoring examples. Supply exactly one of
-`mission="2"` or `page="/botball_explorer_2026/missions/mission-2"`. Set
+`mission="2"` or `page="/botball_explorer_2027/missions/mission-2"`. Set
 `video=true` to add a collapsed native disclosure containing the mission's
 canonical video. Its optional YAML body maps tier IDs to short status
 annotations.

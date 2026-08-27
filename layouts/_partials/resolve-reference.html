@@ -13,7 +13,7 @@
   {{- if or (lt $missionNumber 1) (gt $missionNumber 18) -}}
     {{- errorf "%s: [[%s]] refers to mission %d; expected 1 through 18" .position $ref.target $missionNumber -}}
   {{- end -}}
-  {{- $mission := site.GetPage (printf "/botball_explorer_2026/missions/mission-%d" $missionNumber) -}}
+  {{- $mission := site.GetPage (printf "/botball_explorer_2027/missions/mission-%d" $missionNumber) -}}
   {{- if not $mission -}}
     {{- errorf "%s: [[%s]] does not resolve to a mission page" .position $ref.target -}}
   {{- end -}}
