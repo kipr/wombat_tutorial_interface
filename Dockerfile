@@ -14,6 +14,6 @@ USER 0
 
 RUN apk add fish fzf fd ripgrep just imagemagick imagemagick-webp imagemagick-jpeg
 
-RUN npm install -g @openai/codex
+RUN npm install -g @openai/codex svgo
 
 USER hugo:hugo
