@@ -36,15 +36,48 @@ a program that you typed, and you have written down the numbers you will need ev
 
 {{< plsec n="Part 1" title="Power up and connect" >}}
 
+The Wombat broadcasts a WiFi network to which your computer can connect.
+First, note the **SSID** and **Password**.
+From your devices WiFi settings, look for a network that matches the **SSID**, then use the password.
+If you aren't sure if something is the letter "O" or the number "0", it is the **number "0."**
+
 {{< figrow >}}
-- src: botui/wombat-screen-lan.jpg
+- src: botui/home_page_about.webp
+  alt: How to access the Wombat's About page.
+- src: botui/about_page_network_info.webp
   alt: "The Wombat's About page."
+{{< /figrow >}}
+{{< figrow >}}
 - src: ide/chromebook-connection-guide.png
   alt: "Connect to Wombat through computer's Wi-Fi settings."
+{{< /figrow >}}
+
+Once your computer is connected, open a browser and type the the address you see on the **WiFi** line in on the Wombat about page, followed by ":8888."
+For example:
+
+{{< figrow >}}
+- src: ide/ip_format_guide.svg
+  alt: IDE address format
+{{< /figrow >}}
+
+{{< callout title="This warning is normal" >}}
+You will probably see something like *"no internet connection"* or *"connected with limited access."* Nothing is wrong. The Wombat is not the internet --- it is just a robot. Keep going.
+{{< /callout >}}
+
+{{< callout title="Warning for Windows Users" >}}
+Windows may try to get you to connect using a PIN. Click **Connect using a security key instead**, then enter the password as normal.
+{{< /callout >}}
+
+{{< figrow >}}
+- src: ide/windows_connection_guide.webp
+  alt: "Connecting on Windows when it tries to use a PIN."
+{{< /figrow >}}
+
+{{< figrow tall=true >}}
 - src: ide/software-suite.jpg
   alt: "The KIPR Software Suite --- click KISS IDE."
 - src: ide/new-folder-a.jpg
-  alt: "Project Explorer --- add a user folder."
+  alt: Project Explorer -- Click the + button to the right of "Default User" to create your user folder.
 {{< /figrow >}}
 
 {{< checklist >}}
@@ -56,6 +89,10 @@ a program that you typed, and you have written down the numbers you will need ev
   label: "I found the [[IP ADDRESS|IP address]] on the Wombat's screen and typed it into a browser."
 - key: c_port
   label: "I added the [[PORT NUMBER|port number]] **8888** after the address, and the [[IDE|IDE]] loaded."
+- key: c_user
+  label: "I created a user folder for my projects."
+- key: c_proj
+  label: "I created my first project."
 {{< /checklist >}}
 
 {{< rec >}}
@@ -88,7 +125,7 @@ The IDE turns your C into numbers the Wombat can follow. That step is called com
 
 {{< plsec n="Part 3" title="Write, compile, run" >}}
 
-{{< figrow >}}
+{{< figrow tall=true >}}
 - src: ide/code-template.png
   alt: "Every new project starts like this."
 - src: ide/compile-succeeded.png
