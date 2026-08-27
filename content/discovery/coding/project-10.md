@@ -565,4 +565,4 @@ A wall tells you where you are, but only if there is a wall. Most of the field h
 
 In **Project 11 --- Counting Wheel [[TICK|ticks]]**, you point the same loop at a number instead of a switch --- and your robot can finally measure how far it has actually gone.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

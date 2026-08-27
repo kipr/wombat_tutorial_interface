@@ -1,21 +1,21 @@
 ---
-title: "KIPR Botball 2026 Preview"
+title: "KIPR Botball 2026-2027 Preview"
 nav: home
 hub: true
 styles: ["site-base", "hub"]
 eyebrow: "Preview Release · KIPR — Kiss Institute for Practical Robotics"
 heading: "Botball Explorer"
-heading_accent: "2026 Preview"
+heading_accent: "2026-2027 Preview"
 description: "Preview materials for review and testing prior to purchase."
 cheat_sheet:
-  path: 2026_Botball_Explorer_Quick_Reference.pdf
-  label: "Botball Explorer Quick Reference — Click here to download the 2026 one-pager"
+  path: 2027_Botball_Explorer_Quick_Reference.pdf
+  label: "Botball Explorer Quick Reference — Click here to download the 2026-2027 one-pager"
 cards:
   - kicker: "Season Document"
-    title: "2026 Fall Missions"
+    title: "2026-2027 Fall Missions"
     desc: "Complete mission guide with scoring, judging style, and difficulty ratings for all 18 missions."
     arrow: "View Missions →"
-    page: /botball_explorer_2026
+    page: /botball_explorer_2027
   - kicker: "Classroom · Entry Tier"
     title: "Discovery Projects"
     desc: "The starting point for younger teams — two strands, Coding and Systems, with every project anchored to a real mission."

@@ -1,5 +1,5 @@
 ---
-title: "Coding Projects — Discovery · KIPR Botball 2026"
+title: "Coding Projects — Discovery · KIPR Botball 2026-2027"
 index_label: "All Coding Projects"
 nav: discovery
 hub: true
@@ -19,4 +19,4 @@ hub_feature:
   label: "Open the full build guide →"
 ---
 
-**Strand complete.** All 17 projects are here. Together they cover every base, bonus, and advanced bonus in the 2026 Fall Game --- all 301 points.
+**Strand complete.** All 17 projects are here. Together they cover every base, bonus, and advanced bonus in the 2026-2027 Fall Game --- all 301 points.

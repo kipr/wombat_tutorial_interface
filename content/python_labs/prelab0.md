@@ -12,7 +12,7 @@ mission_id: prelab0_python_labs
 eyebrow: "PreLab 0 · Before Unit 1"
 heading: "The Machine"
 subheading: "PreLab · Python track — completion checklist"
-credit: "KIPR · Botball Explorer — CS1 + AI Literacy · © KISS Institute for Practical Robotics 1997–2026"
+credit: "KIPR · Botball Explorer — CS1 + AI Literacy · © KISS Institute for Practical Robotics 1997–2027"
 sidebar:
   title: "Activity Sections"
   start_level: 2

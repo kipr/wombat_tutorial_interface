@@ -541,4 +541,4 @@ rows:
 
 In **Project 6 --- Bulldoze Run**, you put driving and turning together to score four missions at once --- and you do it all without a claw, by pushing.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

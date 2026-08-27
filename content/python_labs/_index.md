@@ -1,5 +1,5 @@
 ---
-title: "Student Labs · Python Edition — KIPR Botball 2026"
+title: "Student Labs · Python Edition — KIPR Botball 2026-2027"
 index_label: "All Python Labs"
 nav: python
 track: python

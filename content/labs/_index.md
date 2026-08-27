@@ -1,5 +1,5 @@
 ---
-title: "Student Labs · C Edition — KIPR Botball 2026"
+title: "Student Labs · C Edition — KIPR Botball 2026-2027"
 index_label: "All C Labs"
 nav: labs
 hub: true

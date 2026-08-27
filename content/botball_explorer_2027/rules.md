@@ -6,8 +6,8 @@ nav: missions
 hub: true
 body_class: explorer
 styles: ["site-base", "hub", "explorer"]
-eyebrow: "KIPR Botball Explorer — 2026 Missions · Stack Attack"
-subtitle: "The complete rulebook for the 2026-2027 Botball Explorer season — divisions, match structure, robot requirements, scoring framework, and judging definitions."
+eyebrow: "KIPR Botball Explorer — 2026-2027 Missions · Stack Attack"
+subtitle: "The complete rulebook for the 2027-2027 Botball Explorer season — divisions, match structure, robot requirements, scoring framework, and judging definitions."
 sidebar:
   title: "Rule Sections"
   start_level: 2
@@ -21,7 +21,7 @@ Read the [Rules Quick Start](../rules-quick-start/) for the essentials you need 
 
 {{< figrow tall=true >}}
 - src: field/mat.webp
-  alt: "The full 2026 game board"
+  alt: "The full 2026-2027 game board"
 {{< /figrow >}}
 
 ## Competition Overview {#overview}

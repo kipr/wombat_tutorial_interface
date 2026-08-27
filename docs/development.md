@@ -110,7 +110,7 @@ For an intentional cross-section reuse, set the original page-family type
 explicitly, for example:
 
 ```yaml
-type: botball_explorer_2026
+type: botball_explorer_2027
 layout: rules
 ```
 

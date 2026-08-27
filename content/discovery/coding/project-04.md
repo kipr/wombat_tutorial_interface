@@ -507,4 +507,4 @@ rows:
 
 In **Project 5 --- Learning to Turn**, the robot stops going in straight lines. You will use your straight-driving numbers as the starting point and learn the two ways to make a turn --- and the three shapes a turn can have.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

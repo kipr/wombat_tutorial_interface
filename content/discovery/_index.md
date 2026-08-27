@@ -1,5 +1,5 @@
 ---
-title: "Discovery Projects — KIPR Botball 2026"
+title: "Discovery Projects — KIPR Botball 2026-2027"
 nav: discovery
 hub: true
 styles: ["site-base", "hub", "discovery"]

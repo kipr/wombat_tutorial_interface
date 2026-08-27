@@ -52,14 +52,14 @@ turn control template lookup.
 
 The front-matter `layout` value is a template name, not a global template path.
 Hugo considers it together with the page's `type`. For example,
-`content/botball_explorer_2026/rules.md` inherits the
-`botball_explorer_2026` type and `layout: rules` selects
-`layouts/botball_explorer_2026/rules.html`. Copying that file to a top-level
+`content/botball_explorer_2027/rules.md` inherits the
+`botball_explorer_2027` type and `layout: rules` selects
+`layouts/botball_explorer_2027/rules.html`. Copying that file to a top-level
 leaf bundle such as `content/example/index.md` does not carry the inferred
 type with it. To intentionally reuse that renderer, declare both values:
 
 ```yaml
-type: botball_explorer_2026
+type: botball_explorer_2027
 layout: rules
 ```
 
@@ -116,7 +116,7 @@ JSON, and restored on reload by `static/js/lab.js`.
 
 The Explorer root is the only mission index. Its layout requires exactly 18
 mission pages numbered 1 through 18. Each mission is a leaf bundle under
-`content/botball_explorer_2026/missions/mission-N/`; front matter supplies the
+`content/botball_explorer_2027/missions/mission-N/`; front matter supplies the
 tier cards, and one explanatory video is a page resource in the same bundle.
 
 The rules page uses its own layout plus the shared document sidebar. Official

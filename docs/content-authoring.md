@@ -16,7 +16,7 @@ top-level leaf bundle that intentionally uses the Explorer rules renderer
 needs:
 
 ```yaml
-type: botball_explorer_2026
+type: botball_explorer_2027
 layout: rules
 ```
 
@@ -94,7 +94,7 @@ The mission front matter is canonical for mission cards and any
 
 ### Rules and glossary
 
-Rules prose lives in `content/botball_explorer_2026/rules.md`. Keep official
+Rules prose lives in `content/botball_explorer_2027/rules.md`. Keep official
 definition bodies in `data/glossary.yaml` with `source: rules`, and insert them
 with `rule-definition`.
 

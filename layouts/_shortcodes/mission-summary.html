@@ -14,7 +14,7 @@
 {{- $mission := false -}}
 {{- with $number -}}
   {{- if not (findRE `^[0-9]+$` .) }}{{ errorf "%s: mission-summary mission must be a number" $.Position }}{{ end -}}
-  {{- $mission = partial "resolve-page.html" (dict "reference" (printf "/botball_explorer_2026/missions/mission-%d" (int .)) "position" $.Position) -}}
+  {{- $mission = partial "resolve-page.html" (dict "reference" (printf "/botball_explorer_2027/missions/mission-%d" (int .)) "position" $.Position) -}}
 {{- else -}}
   {{- $mission = partial "resolve-page.html" (dict "reference" $reference "position" .Position) -}}
 {{- end -}}

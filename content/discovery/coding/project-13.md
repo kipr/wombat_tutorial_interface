@@ -634,4 +634,4 @@ Everything your robot senses right now is on or off. The field is not like that 
 
 In **Project 14 --- Seeing Light and Dark**, your robot gets a sensor that answers with a number instead of a yes.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

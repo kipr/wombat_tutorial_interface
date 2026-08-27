@@ -341,4 +341,4 @@ rows:
 
 You can now make the robot say things and wait. In **Project 3 --- Motors and Ports**, it stops talking and starts moving.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

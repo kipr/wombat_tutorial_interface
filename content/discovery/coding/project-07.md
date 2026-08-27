@@ -497,4 +497,4 @@ rows:
 
 In **Project 8 --- Arm and Claw Together**, a second servo joins the first. Two servos working as one system means you can finally grab, carry, and release --- and a whole set of missions opens up at once.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

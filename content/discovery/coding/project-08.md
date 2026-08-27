@@ -608,4 +608,4 @@ You are carrying seven numbers around in comments, retyping them everywhere, and
 
 In **Project 9 --- Names for Your Numbers**, those comments become real. You give each number a name once, and the whole program starts using it.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027

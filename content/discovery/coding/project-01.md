@@ -448,4 +448,4 @@ rows:
 
 In **Project 2 --- Your First Program**, you will open that same code and find out what every line of it actually means. Then you will change it and make it yours.
 
-KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2026
+KIPR · Botball Explorer --- Discovery Projects · © KISS Institute for Practical Robotics 1997--2027
