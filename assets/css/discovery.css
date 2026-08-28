@@ -70,7 +70,7 @@ a.pace:hover{border-color:var(--text-accent);background:var(--surface-accent-sub
 .wb{position:relative;display:inline-flex;align-items:center;flex-wrap:wrap;gap:7px;color:#fff;
   font-family:var(--font-body, inherit);font-weight:600;font-size:15.5px;line-height:1.2;
   padding:9px 15px 10px;border-radius:5px;white-space:nowrap;flex-shrink:0;
-  text-shadow:0 1px 1px rgba(0,0,0,.22);box-shadow:inset 0 -2px 0 rgba(0,0,0,.16)}
+  text-shadow:0 1px 1px rgba(0,0,0,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.28)}
 .wb::before,.wb::after{content:"";position:absolute;left:var(--wb-notch-x);width:var(--wb-notch-w);
   height:var(--wb-notch-d);pointer-events:none}
 .wb::before{top:0;background:var(--surface-neutral-subtle);border-radius:0 0 4px 4px}
@@ -115,8 +115,9 @@ a.pace:hover{border-color:var(--text-accent);background:var(--surface-accent-sub
 .wb.cb-top::after{left:calc(var(--wb-spine) + var(--wb-notch-x))}
 .wb.cb-end{min-height:10px;padding:6px 15px;border-radius:0 0 5px 5px;width:72px}
 .wb.cb-end::before{left:calc(var(--wb-spine) + var(--wb-notch-x))}
-.wb.cb-branch{border-radius:0}
+.wb.cb-branch{border-radius:0;width:100%;box-sizing:border-box}
 .wb.cb-branch::before,.wb.cb-branch::after{left:calc(var(--wb-spine) + var(--wb-notch-x))}
+.wb-cwrap > .wb-row:has(.cb-branch){align-self:stretch;width:100%}
 @media (max-width:700px){
   .wb{font-size:14px;padding:8px 12px 9px;white-space:normal}
   .wb-note{font-size:12.5px;white-space:normal}
