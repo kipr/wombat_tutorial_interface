@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 11 (EV3) — Counting and Turning by Feel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #C0392B;
+    --red-dark: #922B21;
+    --navy: #1C1C1C;
+    --gold: #C0392B;
+    --ink: #1C1C1C;
+    --grey: #666666;
+    --line: #CCCCCC;
+    --bg: #F2F2F2;
+    --panel: #ffffff;
+    --field: #F8F8F8;
+    --field-focus: #FDF2F2;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #666666;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #ffffff; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d8483a; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+  .meta dd.anchor { font-weight: 600; color: var(--red); }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #FDF2F2;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #FDF2F2; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+  .callout.danger { border-left-color: #922B21; background: #fdf0ef; }
+  .callout.danger .ctitle { color: #922B21; }
+
+  /* Mission card */
+  .mission { border: 2px solid var(--red); border-radius: 6px; overflow: hidden; margin: 18px 0; }
+  .mission-head {
+    background: var(--red); color: #fff; padding: 11px 18px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .mission-head .mtitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 20px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .mission-head .mpts {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 15px; letter-spacing: .08em; color: rgba(255,255,255,.85);
+  }
+  .mission-body { padding: 4px 18px 14px; }
+  .mpart { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .mpart:last-child { border-bottom: none; }
+  .mpart .mlabel {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--navy); display: block; margin-bottom: 3px;
+  }
+  .mpart .jtag {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 1px 7px; border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+  .jtag.live { background: #d8ecdd; color: #145a32; }
+  .jtag.final { background: #e3e7f5; color: #23336b; }
+  .mpart.later { background: #f6f7f9; margin: 0 -18px; padding-left: 18px; padding-right: 18px; color: var(--grey); }
+  .mpart.later .mlabel { color: var(--grey); }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+  ol.dosteps .spts {
+    display: inline-block; background: var(--gold); color: #ffffff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px;
+    border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+  table.grid tr.total td { background: #f2f4fa; font-weight: 700; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 292px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  /* side-by-side code compare */
+  .codepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .codepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .codepair .chead {
+    padding: 8px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--navy);
+  }
+  .codepair .col.after .chead { background: var(--red); }
+  .codepair pre.code { margin: 0; border-radius: 0; font-size: 14px; }
+
+  .scorepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .scorepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .scorepair .chead {
+    padding: 9px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #fff;
+  }
+  .scorepair .yes .chead { background: #1E8449; }
+  .scorepair .no .chead { background: #922B21; }
+  .scorepair ul { margin: 10px 0 12px; padding-left: 22px; font-size: 16px; }
+  .scorepair li { margin: 6px 0; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .codepair, .scorepair { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .mission-head, .scorepair .chead, .codepair .chead, ol.dosteps .spts, .mpart .jtag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .botnav{display:flex;align-items:center;justify-content:flex-start;gap:20px 24px;flex-wrap:wrap;margin:46px 40px 0;padding:26px 0 8px;border-top:1px solid var(--line)}
+  .botnav a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+            font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+            letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
+            border:1px solid var(--line);border-radius:5px;padding:12px 20px;background:#fff}
+  .botnav a:hover{border-color:var(--gold);background:#FDF2F2;color:var(--red)}
+  .botnav a.next{margin-left:auto}
+  .botnav a.gloss{color:#8a6d2f;border-color:rgba(192,57,43,.55);background:#FDF2F2}
+  .botnav a.gloss:hover{background:rgba(192,57,43,.16)}
+  .botnav .spacer{flex:1}
+  @media (max-width:700px){
+    .botnav{margin-left:20px;margin-right:20px;gap:10px;padding-top:18px}
+    .botnav a{font-size:13.5px;padding:11px 14px;flex:1 1 46%;justify-content:center}
+    .botnav a.next{margin-left:0}
+  }
+  @media print{ .botnav{display:none} }
+
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(192,57,43,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(192,57,43,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+  /* --- field diagram trigger + viewer --- */
+  /* inline trigger, used in running text and meta rows */
+  .fieldref{cursor:pointer;border-bottom:2px dotted #C0392B;font-weight:700;color:#C0392B;white-space:nowrap}
+  .fieldref:hover{color:#8f2b20;border-bottom-color:#8f2b20}
+  .fieldref::after{content:"\00a0\25A6";font-size:.82em;opacity:.7}
+  /* button trigger, used on the mission score cards */
+  .fieldref.btn{display:inline-flex;align-items:center;gap:5px;border:none;border-radius:3px;
+    background:#C0392B;color:#fff;padding:4px 10px;margin-left:8px;
+    font-family:'Barlow Condensed','Barlow Condensed',sans-serif;font-weight:800;font-size:.72rem;
+    letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;vertical-align:middle;
+    box-shadow:0 1px 0 rgba(0,0,0,.25)}
+  .fieldref.btn:hover{background:#d8483a;color:#fff}
+  .fieldref.btn::after{content:"\25A6";font-size:.95em;opacity:.9;margin-left:1px}
+  .fld-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:10000;
+               padding:14px;align-items:center;justify-content:center}
+  .fld-overlay.open{display:flex}
+  .fld-box{background:#fff;border-radius:7px;width:100%;max-width:820px;overflow:hidden;
+           box-shadow:0 16px 60px rgba(0,0,0,.5);display:flex;flex-direction:column;max-height:94vh}
+  .fld-head{background:#1C1C1C;color:#fff;padding:.8rem 1rem;display:flex;align-items:center;
+            justify-content:space-between;gap:.6rem;flex-shrink:0}
+  .fld-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.02rem;
+             letter-spacing:.05em;text-transform:uppercase;line-height:1.2}
+  .fld-x{background:none;border:none;color:rgba(255,255,255,.75);font-size:1.35rem;cursor:pointer;
+         min-width:38px;min-height:38px;border-radius:4px;flex-shrink:0}
+  .fld-x:hover{background:rgba(255,255,255,.15);color:#fff}
+  .fld-tabs{display:flex;gap:6px;padding:9px 12px;background:#F8F8F8;border-bottom:1px solid #CCCCCC;flex-shrink:0}
+  .fld-tabs button{border:1px solid #CCCCCC;background:#fff;border-radius:4px;padding:6px 13px;cursor:pointer;
+                   font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;
+                   letter-spacing:.07em;text-transform:uppercase;color:#1C1C1C}
+  .fld-tabs button.on{background:#1C1C1C;color:#fff;border-color:#1C1C1C}
+  .fld-pic{overflow:auto;background:#F2F2F2}
+  .fld-pic img{display:block;width:100%;height:auto}
+  .fld-cap{padding:10px 14px;font-size:.9rem;color:#666666;background:#fff;border-top:1px solid #CCCCCC;flex-shrink:0}
+  @media print{ .fieldref::after{content:""} .fld-overlay{display:none!important} }
+  .mainnav{display:flex;align-items:center;gap:4px 18px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+           font-size:14px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;line-height:1}
+  .mainnav a{color:rgba(255,255,255,.66);text-decoration:none;padding:5px 2px;border-bottom:2px solid transparent}
+  .mainnav a:hover{color:#fff}
+  .mainnav a.here{color:var(--gold);border-bottom-color:var(--gold)}
+  @media (max-width:820px){ .mainnav{font-size:12.5px;gap:3px 13px} }
+  @media print{ .mainnav{display:none} }
+
+
+
+  /* ===== EV3 Classroom word-block rendering ===== */
+  .wb-prog{margin:14px 0 6px;padding:16px 18px 20px;background:#eef1f6;border:1px solid var(--line);
+           border-radius:8px;overflow-x:auto}
+  .wb-row{display:flex;align-items:center;gap:14px}
+  .wb-row + .wb-row{margin-top:3px}
+  .wb{position:relative;display:inline-flex;align-items:center;gap:7px;color:#fff;
+      font-family:'Barlow',sans-serif;font-weight:600;font-size:15.5px;line-height:1;
+      padding:9px 15px 10px;border-radius:5px;white-space:nowrap;flex-shrink:0;
+      text-shadow:0 1px 1px rgba(0,0,0,.22);box-shadow:inset 0 -2px 0 rgba(0,0,0,.16)}
+  .wb::before{content:"";position:absolute;top:0;left:14px;width:24px;height:4px;
+              background:#eef1f6;border-radius:0 0 4px 4px}
+  .wb::after{content:"";position:absolute;bottom:-4px;left:14px;width:24px;height:4px;
+             background:inherit;border-radius:0 0 4px 4px}
+  .wb.hat{border-radius:16px 16px 5px 5px;padding-top:11px}
+  .wb.hat::before{display:none}
+  .wb.ev{background:#F5B912}
+  .wb.mv{background:#FF4FA0}
+  .wb.ct{background:#FFA119}
+  .wb .pill{display:inline-flex;align-items:center;gap:5px;background:#fff;color:#333;
+            text-shadow:none;border-radius:999px;padding:4px 10px;font-size:14px;font-weight:600;
+            box-shadow:inset 0 1px 2px rgba(0,0,0,.14)}
+  .wb .pill.dd{background:rgba(0,0,0,.22);color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.2);
+               box-shadow:none}
+  .wb .pill.dd b{font-weight:400;font-size:11px}
+  .wb .pill.steer{padding-left:6px}
+  .wb .dial{position:relative;width:18px;height:18px;border-radius:50%;
+            border:2px solid #555;background:#fff;flex-shrink:0}
+  .wb .dial i{position:absolute;left:50%;top:1px;width:2px;height:7px;background:#555;
+              transform:translateX(-50%);border-radius:2px}
+  .wb-note{font-size:14px;color:var(--grey);font-style:italic;white-space:nowrap}
+  @media (max-width:700px){ .wb{font-size:14px;padding:8px 12px 9px} .wb-note{font-size:12.5px} }
+  @media print{
+    .wb-prog{background:#f4f4f4 !important;border-color:#999}
+    .wb, .wb .pill, .wb .pill.dd{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+
+
+  /* batch-1 additions: Light + Motors categories, matrix pill */
+  .wb.lt{background:#A45FE0}
+  .wb.mo{background:#F8618E}
+  .wb .pill.mx{display:inline-grid;grid-template-columns:repeat(5,5px);gap:1.5px;
+               padding:5px 6px;background:#26262b;border-radius:4px;box-shadow:none}
+  .wb .pill.mx s{display:block;width:5px;height:5px;border-radius:1px;background:#44444c;text-decoration:none}
+  .wb .pill.mx s.on{background:#FFD84D}
+
+
+  /* batch-3 additions: Variables, Sensors, Operators, C-blocks, My Blocks */
+  .wb.vr{background:#FF8C1A}
+  .wb.sn{background:#2FA8CE}
+  .wb.my{background:#FF6680}
+  .wb .pill.var{background:#FF8C1A;color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.2);box-shadow:none}
+  .wb .hex{display:inline-flex;align-items:center;gap:5px;color:#fff;font-size:14px;font-weight:600;
+           padding:5px 16px;background:#59C059;text-shadow:0 1px 1px rgba(0,0,0,.2);
+           clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,9px 100%,0 50%)}
+  .wb .hex.sn2{background:#2FA8CE}
+  .wb.sn{background:#2FA8CE}
+  .wb .hex .pill{padding:2px 8px;font-size:13px}
+  .wb-cwrap{display:inline-block}
+  .wb.cb-top{border-radius:5px 5px 0 0}
+  .wb-cbody{position:relative;padding:4px 0 4px 20px;margin:0}
+  .wb-cbody::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:#FFA119;border-radius:0 0 0 3px}
+  .wb.cb-end{display:block;width:120px;height:14px;padding:0;border-radius:0 0 5px 5px;background:#FFA119}
+  .wb.cb-end::before,.wb.cb-end::after{display:none}
+  .wb.hat.my{border-radius:16px 16px 5px 5px}
+
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>EV3 Track</span></div>
+      <nav class="mainnav" aria-label="Main"><a href="../../index.html">Home</a><a href="../../2026-missions.html">2026 Missions</a><a href="../../discovery/index.html" class="here">Discovery</a><a href="../../labs/index.html">C Labs</a><a href="../../Python_Labs/index.html">Python Labs</a><a href="../../glossary.html">Glossary</a></nav>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · EV3 Track · Coding · Project 11</p>
+    <h1>Counting and Turning by Feel</h1>
+    <p class="sub">Same checking as last time — but now it watches a number instead of a switch. Two numbers, actually.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Reading the counter built into every motor, meeting the sense that feels the whole robot turn, and delivering freight to the loading dock.</dd></div>
+        <div class="row"><dt>Mission Anchor</dt><dd class="anchor"><span class="fieldref" data-m="9" data-tier="bonus">Mission 9</span> bonus · <span class="fieldref" data-m="8" data-tier="base">Mission 8</span> · <span class="fieldref" data-m="18" data-tier="base">Mission 18</span> base — 40 points</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod111" data-key="need_1"><label for="ndcod111">Your robot with arm and claw</label></li>
+          <li><input type="checkbox" id="ndcod112" data-key="need_2"><label for="ndcod112">Tablet or Chromebook with the EV3 Classroom app</label></li>
+          <li><input type="checkbox" id="ndcod113" data-key="need_3"><label for="ndcod113">Charged brick</label></li>
+          <li><input type="checkbox" id="ndcod114" data-key="need_4"><label for="ndcod114">The game field</label></li>
+          <li><input type="checkbox" id="ndcod115" data-key="need_5"><label for="ndcod115">A ruler or tape measure</label></li>
+          <li><input type="checkbox" id="ndcod116" data-key="need_6"><label for="ndcod116">Your Project 5 turn numbers</label></li>
+        </ul>
+      </dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 10 — you must be comfortable with <em>wait until</em>, hexagons, and where the stop goes.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> The Counter Was Always There</h2>
+
+    <p>Back in Project 3 you turned a wheel with your hand and watched a number change in Port View. You were told to remember it. Here it is.</p>
+
+    <p>Open <strong>Port View</strong> on a wheel motor’s port. Do not run anything — just roll that wheel with your hand and watch its number.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:56%">Question</th><th>What I saw</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>What happens to the number when I roll the wheel forward?</td><td><input type="text" data-key="p1_roll_fwd" aria-label="Roll forward"></td></tr>
+        <tr class="trial"><td>What happens when I roll it backward?</td><td><input type="text" data-key="p1_roll_back" aria-label="Roll backward"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold">
+      <p class="ctitle">Every Motor Has Been Counting This Whole Time</p>
+      <p>Since Project 3, your motors have been keeping track of exactly how far they turned — in <strong>degrees</strong>. Every <em>move for rotations</em> block you have ever run was secretly this count — one rotation is just 360 of these degrees. And degrees are about to earn their keep.</p>
+    </div>
+
+    <h3 class="sub">Find your degrees per inch</h3>
+
+    <p>Degrees are the motor’s own unit. To connect them to the real world you need to know how many make an inch on <em>your</em> robot.</p>
+
+    <ol style="margin:6px 0 12px 20px">
+      <li>Put the robot on the floor and mark where the front edge sits.</li>
+      <li>Note the wheel’s number in Port View (or roll it to a nice round number).</li>
+      <li>Push the robot straight forward exactly <strong>24 inches</strong>. Slowly, and in a straight line.</li>
+      <li>Read the number again. The difference is your degrees for 24 inches.</li>
+    </ol>
+
+    <table class="grid">
+      <thead><tr><th style="width:14%">Try</th><th style="width:40%">Degrees for 24 inches</th><th>Degrees per inch (divide by 24)</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p1_deg24_1" aria-label="Degrees try 1"></td><td><input type="text" data-key="p1_dpi_1" aria-label="DPI try 1"></td></tr>
+        <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p1_deg24_2" aria-label="Degrees try 2"></td><td><input type="text" data-key="p1_dpi_2" aria-label="DPI try 2"></td></tr>
+        <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p1_deg24_3" aria-label="Degrees try 3"></td><td><input type="text" data-key="p1_dpi_3" aria-label="DPI try 3"></td></tr>
+        <tr class="trial"><td class="ctr">Average</td><td class="ctr">—</td><td><input type="text" data-key="p1_dpi_avg" aria-label="DPI average"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">
+      <p class="ctitle">&#9888; Measure Long, Not Short</p>
+      <p>Use 24 inches, not 3. A small error in a short push turns into a big error per inch. Anything under about a foot is not worth measuring.</p>
+    </div>
+
+    <p class="q">Your three numbers are not identical. Why not — and which one should you use?</p>
+    <textarea class="answer" data-key="p1_why_differ" aria-label="Why numbers differ"></textarea>
+
+    <div class="callout">
+      <p class="ctitle">Wheel Size Decides the Number</p>
+      <p>One full wheel turn is 360 degrees no matter what wheel is bolted on. But a bigger wheel travels further in that turn — which is exactly why your degrees-per-inch is <em>yours</em> and not somebody else’s. Change your wheels, and this number changes with them.</p>
+    </div>
+
+    <p class="q">Check the curtain: multiply your degrees-per-inch by 24. Is that close to what a <em>move for 24 in.</em> block must be counting to? What does that tell you about how the move block works?</p>
+    <textarea class="answer" data-key="p1_curtain" aria-label="Behind the curtain"></textarea>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> A Number Instead of a Switch</h2>
+
+    <p>Project 10’s checking watched a switch. The exact same checking can watch a <strong>number</strong> — and the brick hands you two of them as round reporter ovals that fit into any hexagon.</p>
+
+    <div class="anat">
+      <div class="arow"><div class="acode">A degrees counted</div><div class="adesc">How far that wheel has rolled since its count was reset. This is the counter from Try It.</div></div>
+      <div class="arow"><div class="acode">angle</div><div class="adesc">How far the <em>whole robot</em> has turned. Not the wheels — the robot. It comes from the <strong>gyro sensor</strong>, a small sensor that feels rotation the way your inner ear does when you spin with your eyes shut. Ours plugs into sensor port <strong>2</strong>.</div></div>
+    </div>
+
+    <p class="muted">Both reporters are on the regular shelf: <em>degrees counted</em> in the Motors category, <em>angle</em> in the light-blue Sensors category.</p>
+
+    <div class="callout warn">
+      <p class="ctitle">&#9888; The Gyro’s One Demand: Hold Still</p>
+      <p>Mount the gyro sensor flat on the robot and plug it into port <strong>2</strong> — <em>while the robot is sitting perfectly still</em>. The gyro learns what "not turning" feels like at the moment it wakes up. Plug it in, or power the brick on, while the robot is moving and the angle will slowly drift all by itself for the rest of the session. If your angle wanders while the robot sits still: unplug the gyro, hold the robot still, and plug it back in.</p>
+    </div>
+
+    <h3 class="sub">The same checking you already know</h3>
+
+    <p>Look at these two side by side. Only the <strong>question</strong> changed.</p>
+
+    <div class="wb-prog" role="img" aria-label="Project 10: wait until pressed. Project 11: wait until angle greater than 89">
+      <div class="wb-row"><div class="wb ct">wait until <span class="hex sn2"><span class="pill">1&nbsp;&#9662;</span> is pressed?</span></div><span class="wb-note">Project 10 — a switch</span></div>
+      <div class="wb-row"><div class="wb ct">wait until <span class="hex"><span class="pill var">angle</span> &gt; <span class="pill">89</span></span></div><span class="wb-note">Project 11 — a number</span></div>
+    </div>
+
+    <p>Read the new one out loud: "keep checking the robot’s heading — the moment it has turned past 89 degrees, move on." The green <strong>&gt;</strong> hexagon from Project 10 finally gets its job.</p>
+
+    <h3 class="sub">Turning by feel</h3>
+
+    <p>In Project 5 you tuned a 90° turn by trial and error, because wheel degrees are not robot degrees. The angle <em>is</em> robot degrees. Here is the turn, rebuilt:</p>
+
+    <div class="wb-prog" role="img" aria-label="reset angle, start moving steering 100, wait until angle greater than 89, stop moving">
+      <div class="wb-row"><div class="wb hat ev">when program starts</div></div>
+      <div class="wb-row"><div class="wb sn">reset angle</div><span class="wb-note">always reset before you count</span></div>
+      <div class="wb-row"><div class="wb mv">start moving <span class="pill steer"><span class="dial"><i></i></span>100</span></div></div>
+      <div class="wb-row"><div class="wb ct">wait until <span class="hex"><span class="pill var">angle</span> &gt; <span class="pill">89</span></span></div></div>
+      <div class="wb-row"><div class="wb mv">stop moving</div></div>
+    </div>
+
+    <div class="callout gold">
+      <p class="ctitle">Why This Beats a Wall</p>
+      <p>A touch sensor only helps where there is something to touch. The angle works <strong>anywhere on the field</strong> — open floor, mid-run, anywhere. And unlike wheel counting, it does not care if a wheel slipped. It feels the robot itself.</p>
+    </div>
+
+    <h3 class="sub">It will go too far. Every time.</h3>
+
+    <p>Run that turn and then read the angle in Port View on port 2. You asked to stop past 89. You will see something like <strong>96</strong>.</p>
+
+    <p>Nothing is broken. Your robot has <strong>inertia</strong> — it is spinning, and when the checking succeeds and the motors stop, it keeps swinging a little further.</p>
+
+    <div class="callout navy">
+      <p class="ctitle">The Fix Is Subtraction</p>
+      <p>Ask for 89. Land on 96. The <span class="def-term" data-term="OVERSHOOT">overshoot</span> is 96 − 90 = 6.</p>
+      <p>So ask for <strong>89 − 6 = 83</strong> instead, and you will land on 90. Every robot has its own overshoot, and faster speed means more of it.</p>
+    </div>
+
+    <h3 class="sub">Left turns count down</h3>
+
+    <p>Turning right, the angle climbs. Turning <strong>left</strong>, it falls — through zero and into negative numbers. That flips your hexagon:</p>
+
+    <div class="anat">
+      <div class="arow"><div class="acode">right turn</div><div class="adesc">steering 100 &nbsp;·&nbsp; wait until angle <strong>&gt;</strong> 83</div></div>
+      <div class="arow"><div class="acode">left turn</div><div class="adesc">steering −100 &nbsp;·&nbsp; wait until angle <strong>&lt;</strong> −83</div></div>
+    </div>
+
+    <div class="callout warn">
+      <p class="ctitle">&#9888; Get the Direction Right or the Checking Never Ends</p>
+      <p>Spin left while waiting for the angle to pass <strong>&gt;</strong> 83 and you have a check that can never succeed — the number is falling, away from 83, forever, while the robot spins on the spot like a figure skater who forgot the rest of the routine.</p>
+      <p>Turning right, count <strong>up</strong> with &gt;. Turning left, count <strong>down</strong> with &lt;. Check this before every run.</p>
+    </div>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Turn by the Numbers</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Measure your overshoot</span>
+        <p>New project called <code>Gyro Turn</code>. Build the Learn It turn — reset angle, spin at steering 100, wait until past 89, stop. Run it, then read the final angle in Port View on port 2.</p>
+        <table class="grid">
+          <thead><tr><th style="width:22%">Speed (%)</th><th style="width:26%">Asked to pass</th><th style="width:26%">Actually landed on</th><th>Overshoot</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">30</td><td class="ctr">89</td><td><input type="text" data-key="p3_ov_30" aria-label="Overshoot at 30"></td><td><input type="text" data-key="p3_ov_30_o" aria-label="Overshoot value 30"></td></tr>
+            <tr class="trial"><td class="ctr">50</td><td class="ctr">89</td><td><input type="text" data-key="p3_ov_50" aria-label="Overshoot at 50"></td><td><input type="text" data-key="p3_ov_50_o" aria-label="Overshoot value 50"></td></tr>
+            <tr class="trial"><td class="ctr">100</td><td class="ctr">89</td><td><input type="text" data-key="p3_ov_100" aria-label="Overshoot at 100"></td><td><input type="text" data-key="p3_ov_100_o" aria-label="Overshoot value 100"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">What is the relationship between speed and overshoot? Which speed will you use for turns, and why?</p>
+        <textarea class="answer" data-key="p3_ov_pattern" aria-label="Overshoot pattern"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Correct for it</span>
+        <p>Subtract your overshoot from the target and run again. Keep adjusting until the robot lands on 90.</p>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Try</th><th style="width:36%">Number in my hexagon</th><th>Where the angle actually landed</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_c1_t" aria-label="Correct try 1 target"></td><td><input type="text" data-key="p3_c1_r" aria-label="Correct try 1 result"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_c2_t" aria-label="Correct try 2 target"></td><td><input type="text" data-key="p3_c2_r" aria-label="Correct try 2 result"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_c3_t" aria-label="Correct try 3 target"></td><td><input type="text" data-key="p3_c3_r" aria-label="Correct try 3 result"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_lands_90"><label for="d1">My robot lands within a couple of degrees of 90</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">A left turn too</span>
+        <p>Copy the turn, flip the steering to −100, flip the hexagon to <strong>&lt; −83</strong> (your corrected number, negative). Run it.</p>
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_left_works"><label for="d2">My robot turns 90° to the left as reliably as to the right</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">The square, again — and this time it closes</span>
+        <p>In Project 5 you drove a square with four wheel-counted turns and it did not close. Do it again — same square, distances with <em>move for rotations</em>, but every corner turned by the gyro.</p>
+        <table class="grid">
+          <thead><tr><th style="width:56%">Question</th><th style="width:22%">Project 5</th><th>Now</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>How close to the starting spot?</td><td><input type="text" data-key="p3_sq_then" aria-label="Square then"></td><td><input type="text" data-key="p3_sq_now" aria-label="Square now"></td></tr>
+            <tr class="trial"><td>Facing the same way?</td><td><input type="text" data-key="p3_sq_then_f" aria-label="Facing then"></td><td><input type="text" data-key="p3_sq_now_f" aria-label="Facing now"></td></tr>
+          </tbody>
+        </table>
+        <div class="callout gold">
+          <p class="ctitle">This Is the Whole Point of the Project</p>
+          <p>Same robot. Same square. The only thing that changed is <strong>what the robot was measuring</strong> — and suddenly it can come back to where it started.</p>
+        </div>
+        <p class="q">Your wheel-counted square drifted a little more with every corner. Why does a gyro-turned square not do that?</p>
+        <textarea class="answer" data-key="p3_why_closes" aria-label="Why it closes"></textarea>
+        <ul class="check"><li><input type="checkbox" id="dsq" data-key="p3_square_closes"><label for="dsq">My square closes</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Drive a checked distance</span>
+        <p>One more trick with the wheel counter, so you have it when you need it. Reset the count, start moving, wait until <em>A degrees counted</em> passes your degrees-per-inch times 12, stop. That is a 12-inch drive built out of raw checking — the thing <em>move for inches</em> does for you.</p>
+        <table class="grid">
+          <thead><tr><th style="width:30%">I want</th><th style="width:36%">Degrees (inches × DPI)</th><th>How far it really went</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">6 inches</td><td><input type="text" data-key="p3_d6" aria-label="Degrees for 6"></td><td><input type="text" data-key="p3_d6_r" aria-label="Result 6"></td></tr>
+            <tr class="trial"><td class="ctr">12 inches</td><td><input type="text" data-key="p3_d12" aria-label="Degrees for 12"></td><td><input type="text" data-key="p3_d12_r" aria-label="Result 12"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">When would you build a drive this way instead of using a plain <em>move for inches</em> block? (Hint: what if you wanted to check <em>two</em> things at once while driving?)</p>
+        <textarea class="answer" data-key="p3_when_raw" aria-label="When to use raw counting"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 9 Bonus — get Botguy out<span class="spts">9 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 9 — Recover Botguy</span>
+            <span class="mpts">Bonus 9 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Bonus Mission — 9 pts<span class="jtag live">⚡ Live</span></span>
+              Botguy is <strong>completely outside</strong> the <span class="def-term" data-term="ENCLOSURE">enclosure</span> <strong>and</strong> <span class="def-term" data-term="TOUCHING">TOUCHING</span> the warehouse floor — both true at the same moment.
+            </div>
+            <div class="mpart later">
+              <span class="mlabel">Already done</span>
+              You touched Botguy for the 7-point Base in Project 7.
+            </div>
+          </div>
+        </div>
+        <div class="scorepair">
+          <div class="col yes">
+            <div class="chead">✓ Scores</div>
+            <ul>
+              <li>Botguy is completely outside the <span class="def-term" data-term="ENCLOSURE">enclosure</span> and <span class="def-term" data-term="TOUCHING">TOUCHING</span> the warehouse floor.</li>
+              <li>Botguy is touching the floor <strong>while being held by a robot</strong>.</li>
+            </ul>
+          </div>
+          <div class="col no">
+            <div class="chead">✗ Does Not Score</div>
+            <ul>
+              <li>Botguy touches the floor but is still touching the enclosure.</li>
+              <li>Botguy is out of the enclosure but not touching the floor.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted">Your claw can still be holding him. He just has to be clear of the enclosure and down on the floor at the same instant.</p>
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_m9_bonus"><label for="d3">Botguy is out of the enclosure and touching the floor</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 18 Base — take him to the loading zone<span class="spts">11 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 18 — Safety First, All Hands on Deck</span>
+            <span class="mpts">Base 11 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Base Mission — 11 pts<span class="jtag final">📋 Final</span></span>
+              Botguy is <span class="def-term" data-term="IN">IN</span> the Loading Zone.
+            </div>
+            <div class="mpart later">
+              <span class="mlabel">Not yet</span>
+              The 13-point Bonus adds one traffic cone, and the 15-point Advanced Bonus adds both. Those come back in Project 14.
+            </div>
+          </div>
+        </div>
+        <div class="callout gold">
+          <p class="ctitle">One Trip, Two Missions, Twenty Points</p>
+          <p>You just lifted Botguy out of the enclosure for Mission 9. Do not put him down — <strong>carry him to the Loading Zone</strong> and Mission 18's base scores too.</p>
+          <p>This is exactly the kind of thing to look for when you plan a full match: one action, more than one mission.</p>
+        </div>
+        <p class="muted">Mission 18 is final position, so Botguy has to still be <span class="def-term" data-term="IN THE ZONE">IN THE ZONE</span> when the match ends. Set him down properly and back straight away.</p>
+        <p class="q">Roughly how many inches is it from the enclosure to the loading zone?</p>
+        <input type="text" data-key="p3_inches_to_zone" aria-label="Inches to loading zone">
+        <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_m18_base"><label for="d4">Botguy is IN the Loading Zone and stays there</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 8 — deliver the red cube<span class="spts">20 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 8 — Deliver the Red Cube</span>
+            <span class="mpts">20 points possible</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Base Mission — 11 pts<span class="jtag final">📋 Final</span></span>
+              The <span class="def-term" data-term="PALLET">pallet</span> <strong>with the Large Red Cube</strong> is <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the Loading Dock.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Bonus Mission — 9 pts<span class="jtag final">📋 Final</span></span>
+              One or more Small Red Cubes are <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the Large Red Cube while the <span class="def-term" data-term="PALLET">pallet</span> is on the Loading Dock.
+            </div>
+          </div>
+        </div>
+        <div class="callout danger">
+          <p class="ctitle">⚠ The Pallet and the Cube Travel Together</p>
+          <p>Read the failures carefully. <strong>The Large Red Cube on the Loading Dock without the pallet does not score.</strong> Neither does a pallet on the dock with the cube fallen off.</p>
+          <p>They both have to end up there, cube on pallet, pallet on dock.</p>
+        </div>
+        <div class="callout navy">
+          <p class="ctitle">Look at What You Already Did to These Cubes</p>
+          <p>In Project 6 you shoved the Large Red Cube and its pallet off the black line. In Project 9 you stacked Small Red Cubes on top of it for Mission 5.</p>
+          <p>Mission 8's bonus asks for a Small Red Cube on the Large Red Cube <em>again</em> — this time with the pallet on the dock. Plan Missions 2, 5, and 8 as one sequence rather than three separate problems, and check with your judges how the scoring overlaps.</p>
+        </div>
+        <ul class="check">
+          <li><input type="checkbox" id="d5" data-key="p3_m8_base"><label for="d5">Pallet and Large Red Cube are both on the Loading Dock</label></li>
+          <li><input type="checkbox" id="d6" data-key="p3_m8_bonus"><label for="d6">A Small Red Cube is on top of the Large Red Cube up there</label></li>
+        </ul>
+        <p class="q">Which was harder — driving to the dock, or getting the pallet onto it?</p>
+        <input type="text" data-key="p3_m8_harder" aria-label="M8 harder part">
+      </li>
+
+      <li>
+        <span class="stitle">Run it five times</span>
+        <table class="grid">
+          <thead><tr><th style="width:12%">Run</th><th style="width:18%">M9 bonus</th><th style="width:18%">M18 base</th><th style="width:18%">M8 base</th><th style="width:18%">M8 bonus</th><th>Points</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_r1_m9" aria-label="R1 M9"></td><td><input type="text" data-key="p3_r1_m18" aria-label="R1 M18"></td><td><input type="text" data-key="p3_r1_m8b" aria-label="R1 M8 base"></td><td><input type="text" data-key="p3_r1_m8bo" aria-label="R1 M8 bonus"></td><td><input type="text" data-key="p3_r1_pts" aria-label="R1 points"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_r2_m9" aria-label="R2 M9"></td><td><input type="text" data-key="p3_r2_m18" aria-label="R2 M18"></td><td><input type="text" data-key="p3_r2_m8b" aria-label="R2 M8 base"></td><td><input type="text" data-key="p3_r2_m8bo" aria-label="R2 M8 bonus"></td><td><input type="text" data-key="p3_r2_pts" aria-label="R2 points"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_r3_m9" aria-label="R3 M9"></td><td><input type="text" data-key="p3_r3_m18" aria-label="R3 M18"></td><td><input type="text" data-key="p3_r3_m8b" aria-label="R3 M8 base"></td><td><input type="text" data-key="p3_r3_m8bo" aria-label="R3 M8 bonus"></td><td><input type="text" data-key="p3_r3_pts" aria-label="R3 points"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_r4_m9" aria-label="R4 M9"></td><td><input type="text" data-key="p3_r4_m18" aria-label="R4 M18"></td><td><input type="text" data-key="p3_r4_m8b" aria-label="R4 M8 base"></td><td><input type="text" data-key="p3_r4_m8bo" aria-label="R4 M8 bonus"></td><td><input type="text" data-key="p3_r4_pts" aria-label="R4 points"></td></tr>
+            <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p3_r5_m9" aria-label="R5 M9"></td><td><input type="text" data-key="p3_r5_m18" aria-label="R5 M18"></td><td><input type="text" data-key="p3_r5_m8b" aria-label="R5 M8 base"></td><td><input type="text" data-key="p3_r5_m8bo" aria-label="R5 M8 bonus"></td><td><input type="text" data-key="p3_r5_pts" aria-label="R5 points"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">My score</h3>
+    <table class="grid">
+      <thead><tr><th style="width:52%">Mission part</th><th style="width:24%">Scored?</th><th>Points</th></tr></thead>
+      <tbody>
+        <tr><td>Mission 9 — Bonus (Botguy out and on the floor)</td><td><input type="text" data-key="p4_s_m9" aria-label="Score M9"></td><td class="ctr">9</td></tr>
+        <tr><td>Mission 18 — Base (Botguy in the Loading Zone)</td><td><input type="text" data-key="p4_s_m18" aria-label="Score M18"></td><td class="ctr">11</td></tr>
+        <tr><td>Mission 8 — Base (pallet + cube on the dock)</td><td><input type="text" data-key="p4_s_m8b" aria-label="Score M8 base"></td><td class="ctr">11</td></tr>
+        <tr><td>Mission 8 — Bonus (small red cube on top up there)</td><td><input type="text" data-key="p4_s_m8bo" aria-label="Score M8 bonus"></td><td class="ctr">9</td></tr>
+        <tr class="total"><td>My total</td><td><input type="text" data-key="p4_total" aria-label="Total"></td><td class="ctr">40</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">My measuring card</h3>
+    <p class="muted">These join your motor card. Every precise move from here on uses them.</p>
+    <table class="grid">
+      <thead><tr><th style="width:56%">Measurement</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Degrees per inch</td><td><input type="text" data-key="p4_dpi" aria-label="Degrees per inch"></td></tr>
+        <tr><td>Turning speed I use</td><td><input type="text" data-key="p4_turn_speed" aria-label="Turn speed"></td></tr>
+        <tr><td>My turn overshoot at that speed</td><td><input type="text" data-key="p4_yaw_ov" aria-label="Turn overshoot"></td></tr>
+        <tr><td>Hexagon number for a 90° right turn</td><td><input type="text" data-key="p4_hex_90" aria-label="Hex for 90"></td></tr>
+        <tr><td>Hexagon number for a 90° left turn</td><td><input type="text" data-key="p4_hex_90l" aria-label="Hex for left 90"></td></tr>
+        <tr><td>Inches from my starting box to the loading dock</td><td><input type="text" data-key="p4_in_dock" aria-label="Inches to dock"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Write the check</h3>
+    <table class="grid">
+      <thead><tr><th style="width:52%">I want the robot to...</th><th>The wait-until hexagon says</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>Spin right until it has turned past 45°</td><td><input type="text" data-key="p4_wc_1" aria-label="Check one"></td></tr>
+        <tr class="trial"><td>Spin left until it has turned past 90° the other way</td><td><input type="text" data-key="p4_wc_2" aria-label="Check two"></td></tr>
+        <tr class="trial"><td>Drive until the left wheel has rolled 8 inches, using my DPI</td><td><input type="text" data-key="p4_wc_3" aria-label="Check three"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_read"><label for="s1">I can read a wheel’s degree count and the angle live in the app</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_dpi"><label for="s2">I can work out my robot’s degrees per inch and convert a distance</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_reset"><label for="s3">I always reset the angle before I start counting a turn</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_ov"><label for="s4">I measure my overshoot and subtract it from my target</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_dir"><label for="s5">I use &gt; turning right and &lt; turning left, and I check it before running</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_90"><label for="s6">I can make a repeatable 90° turn by feel instead of by wheel count</label></li>
+      <li><input type="checkbox" id="s7" data-key="p4_can_square"><label for="s7">My square closes</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">Your battery is half flat, so the robot turns slower. What happens to a turn tuned by wheel degrees in Project 5? What happens to a turn that waits for the angle?</p>
+    <textarea class="answer" data-key="p4_battery" aria-label="Battery question"></textarea>
+
+    <p class="q">Wheel degrees tell you how far the <em>wheels turned</em> — not how far the robot moved. Name a situation where those two are different.</p>
+    <textarea class="answer" data-key="p4_wheels_vs_robot" aria-label="Wheels versus robot"></textarea>
+
+    <p class="q">You have now built the reset-spin-wait-stop turn several times, in several projects. What would you rather do than keep rebuilding it?</p>
+    <textarea class="answer" data-key="p4_rather" aria-label="What you would rather do"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>You have a robot that can measure. You also have a program that says the same twenty lines over and over.</p>
+    <p>In <strong>Project 12 — Teaching Your Robot New Moves</strong>, you give that whole stack a name — and then you just say the name.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+  <nav class="botnav no-print" aria-label="Page navigation">
+    <a href="index.html">&larr; Coding Projects</a>
+    <a href="project-10.html">&larr; Project 10</a>
+    <a class="gloss" href="../../glossary.html">Glossary</a>
+    <a class="next" href="project-12.html">Project 12 &rarr;</a>
+  </nav>
+
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'OVERSHOOT': ['Overshoot', 'How far past your target the robot keeps going after the motors switch off. It happens because a moving robot cannot stop instantly. The faster you go, the bigger the overshoot.'],
+    'ENCLOSURE': ['Enclosure', 'A PVC frame on the game field that objects can be placed inside. Missions that ask for something to be IN an enclosure are asking you to get it past those walls.'],
+    'TOUCHING': ['Touching', 'Two objects are TOUCHING when they are in direct physical contact with one another. Contact through a third object (robot, field element, or game piece) does not count as TOUCHING.'],
+    'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.'],
+    'PALLET': ['Pallet', 'A flat platform on the game field that a load sits on. Several missions ask you to move a pallet and whatever is stacked on it, together.'],
+    'IN': ['In', 'An object is IN a container, enclosure, basket, or zone when any portion of the object extends into the interior space of that container, enclosure, basket, or zone \u2014 unless otherwise specified by a mission.'],
+    'IN THE ZONE': ['In The Zone', 'A robot or object is IN THE ZONE when it is touching the interior of the specified zone and no part is touching the zone\u2019s boundary line.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_ev3_coding_11";
+  var MISSION_TITLE = "Discovery Project 11 (EV3) — Counting and Turning by Feel";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+<div class="fld-overlay" id="fldOverlay" role="dialog" aria-modal="true" aria-labelledby="fldTitle">
+  <div class="fld-box">
+    <div class="fld-head">
+      <span class="fld-title" id="fldTitle"></span>
+      <button class="fld-x" id="fldX" aria-label="Close field diagram">&#10005;</button>
+    </div>
+    <div class="fld-tabs" id="fldTabs"></div>
+    <div class="fld-pic"><img id="fldImg" src="" alt=""></div>
+    <p class="fld-cap" id="fldCap"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var UP = '../../';
+  var M = {
+    8: {"title": "Mission 8 \u2014 Deliver the Red Cube", "tiers": ["base", "bonus"]},
+    9: {"title": "Mission 9 \u2014 Recover Botguy", "tiers": ["base", "bonus"]},
+    18: {"title": "Mission 18 \u2014 Safety First, All Hands on Deck", "tiers": ["base", "bonus", "advanced"]}
+  };
+  var ov=document.getElementById('fldOverlay'), im=document.getElementById('fldImg'),
+      tt=document.getElementById('fldTitle'), tb=document.getElementById('fldTabs'),
+      cp=document.getElementById('fldCap');
+  function show(n, tier){
+    var m=M[n]; if(!m) return;
+    im.src = UP + 'img/missions/mission-' + (n<10?'0':'') + n + '-' + tier + '.jpg';
+    im.alt = m.title + ' \u2014 ' + tier + ' scoring, shown on the field';
+    tt.textContent = m.title;
+    cp.textContent = tier.charAt(0).toUpperCase() + tier.slice(1) + ' scoring \u2014 arrows show where each piece has to end up.';
+    tb.innerHTML='';
+    if (m.tiers.length > 1) {
+      m.tiers.forEach(function(t){
+        var b=document.createElement('button');
+        b.textContent=t; b.className = (t===tier?'on':'');
+        b.addEventListener('click', function(){ show(n, t); });
+        tb.appendChild(b);
+      });
+      tb.style.display='flex';
+    } else { tb.style.display='none'; }
+    ov.classList.add('open'); document.body.style.overflow='hidden';
+    document.getElementById('fldX').focus();
+  }
+  function hide(){ ov.classList.remove('open'); im.src=''; document.body.style.overflow=''; }
+  document.getElementById('fldX').addEventListener('click', hide);
+  ov.addEventListener('click', function(e){ if(e.target===this) hide(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') hide(); });
+  document.addEventListener('click', function(e){
+    var el=e.target.closest('.fieldref');
+    if(el){ e.preventDefault(); show(parseInt(el.dataset.m,10), el.dataset.tier||'base'); }
+  });
+})();
+</script>
+
+
+</body>
+</html>

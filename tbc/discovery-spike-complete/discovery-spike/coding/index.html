@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Projects — Discovery SPIKE Track · KIPR Botball 2026</title>
+  <link rel="stylesheet" href="../../shared.css">
+  <style>
+    body { background: var(--dark); min-height: 100vh; display: flex; flex-direction: column; }
+    .wrap { flex: 1; max-width: 960px; margin: 0 auto; width: 100%; padding: 3rem 2rem 4rem; }
+    .page-eyebrow {
+      font-family: var(--font-display); font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem;
+    }
+    .page-title {
+      font-family: var(--font-display); font-weight: 800; font-size: clamp(2.25rem, 6vw, 3.5rem);
+      line-height: 1; color: var(--white); letter-spacing: -0.01em; margin-bottom: 0.75rem;
+    }
+    .page-title span { color: var(--red); }
+    .page-sub { color: rgba(255,255,255,0.55); max-width: 620px; margin-bottom: 2.75rem; }
+
+
+    /* build gate banner */
+    .buildgate {
+      display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap;
+      background: rgba(192,57,43,0.13); border: 1px solid rgba(192,57,43,0.45);
+      border-left: 5px solid #C0392B; border-radius: 6px;
+      padding: 1rem 1.2rem; margin: 0 0 1.15rem;
+    }
+    .buildgate .bg-txt { flex: 1 1 300px; min-width: 0; }
+    .buildgate .bg-t {
+      font-family: var(--font-display); font-weight: 800; font-size: 0.78rem;
+      letter-spacing: 0.13em; text-transform: uppercase; color: #ff9f96; margin: 0 0 0.3rem;
+    }
+    .buildgate .bg-d { color: rgba(255,255,255,0.72); font-size: 0.95rem; margin: 0; line-height: 1.5; }
+    .buildgate .bg-btn {
+      flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #C0392B; color: #fff; text-decoration: none;
+      font-family: var(--font-display); font-weight: 700; font-size: 0.82rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.68rem 1.1rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15);
+    }
+    .buildgate .bg-btn:hover { background: #d8483a; }
+    @media (max-width: 640px) { .buildgate .bg-btn { width: 100%; justify-content: center; } }
+
+    .phase-label {
+      font-family: var(--font-display); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45); margin: 2.5rem 0 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.6rem;
+      display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+    }
+    .phase-label:first-of-type { margin-top: 0; }
+    .phase-label .pcount { color: rgba(255,255,255,0.28); letter-spacing: 0.06em; font-size: 0.72rem; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    .proj-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px;
+      padding: 1.75rem; text-decoration: none; display: flex; flex-direction: column; gap: 0.6rem;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s; position: relative; overflow: hidden;
+    }
+    .proj-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .proj-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(192,57,43,0.4); transform: translateY(-3px); }
+    .proj-card:hover::before { transform: scaleX(1); }
+    .proj-num {
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em;
+      color: var(--red); text-transform: uppercase;
+    }
+    .proj-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--white); line-height: 1.1; }
+    .proj-desc { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.55; }
+    .proj-anchor {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; color: var(--red);
+      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.7rem; margin-top: 0.3rem;
+    }
+    .proj-anchor.none { color: rgba(255,255,255,0.3); font-weight: 400; }
+    .pace {
+      display: inline-flex; align-items: center; gap: 0.4rem; align-self: flex-start;
+      font-family: var(--font-display); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.28rem 0.6rem; border-radius: 3px; margin-top: 0.2rem;
+      background: rgba(192,57,43,0.22); color: #ff9f96; border: 1px solid rgba(192,57,43,0.5);
+    }
+    .proj-arrow {
+      margin-top: auto; padding-top: 0.75rem; font-family: var(--font-display); font-size: 0.78rem;
+      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red);
+    }
+
+    .upcoming {
+      margin-top: 3rem; padding: 1.25rem 1.4rem; background: rgba(255,255,255,0.03);
+      border-left: 3px solid rgba(255,255,255,0.15); border-radius: 0 4px 4px 0;
+    }
+    .upcoming h2 {
+      font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45); margin: 0 0 0.75rem;
+    }
+    .upcoming ol { margin: 0; padding-left: 1.3rem; color: rgba(255,255,255,0.4); font-size: 0.88rem; line-height: 1.85; }
+    .upcoming ol li::marker { color: rgba(255,255,255,0.25); }
+
+    .footer-strip {
+      background: rgba(0,0,0,0.4); text-align: center; padding: 1rem; font-size: 0.75rem;
+      color: rgba(255,255,255,0.25); letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 640px) {
+      .nav { height: auto; flex-wrap: wrap; row-gap: 0.5rem; padding: 0.6rem 1rem; }
+      .nav-brand { flex: 0 0 100%; }
+      .nav-links { flex: 0 0 100%; flex-wrap: wrap; gap: 0.75rem 1.1rem; }
+      .wrap { padding: 2rem 1.25rem 3rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      .proj-card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-brand" href="../../index.html">
+      <img src="../../kipr-logo.png" alt="KIPR">
+      <span>Botball 2026</span>
+    </a>
+    <div class="nav-links">
+      <a href="../../index.html">Home</a>
+      <a href="../../2026-missions.html">2026 Missions</a>
+      <a href="../../discovery/index.html" class="active">Discovery</a>
+      <a href="../../labs/index.html">C Labs</a>
+      <a href="../../Python_Labs/index.html">Python Labs</a>
+      <a href="../../glossary.html">Glossary</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <p class="page-eyebrow">Discovery Projects · SPIKE Track · Strand One</p>
+    <h1 class="page-title">Coding <span>Projects</span> — SPIKE</h1>
+    <p class="page-sub">The Discovery Coding strand for teams building with LEGO&reg; SPIKE&trade; Prime and word blocks. Work through these in order. Fill each sheet in on screen, then press Submit &amp; Download to turn in your work and keep a copy. Starting at Project 4, everything you build is tested against a real Stack Attack mission. All seventeen together cover every point on the field.</p>
+
+    <p class="phase-label"><span>Phase 1 · Get Connected</span><span class="pcount">2 projects</span></p>
+    <div class="card-grid">
+      <a class="proj-card" href="project-01.html">
+        <span class="proj-num">Project 1</span>
+        <span class="proj-title">Wake Up Your Robot</span>
+        <span class="proj-desc">The hub, charging, Bluetooth, naming your hub, your Robot Card, and running your first program from the SPIKE App.</span>
+        <span class="proj-anchor none">No field mission</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+      <a class="proj-card" href="project-02.html">
+        <span class="proj-num">Project 2</span>
+        <span class="proj-title">Your First Program</span>
+        <span class="proj-desc">Hats, stacks, and the block shelf. Timing with wait blocks, lighting the hub display, and five deliberate bugs to find and fix.</span>
+        <span class="proj-anchor none">No field mission</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+    </div>
+
+    <p class="phase-label"><span>Phase 2 · Make It Move</span><span class="pcount">4 projects</span></p>
+    <div class="card-grid">
+      <a class="proj-card" href="project-03.html">
+        <span class="proj-num">Project 3</span>
+        <span class="proj-title">Motors and Ports</span>
+        <span class="proj-desc">Lettered ports, checking direction with the mirror rule, the wheel-spin trick, and the number the hub is always counting.</span>
+        <span class="proj-anchor none">No field mission — robot on blocks</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+      <a class="proj-card" href="project-04.html">
+        <span class="proj-num">Project 4</span>
+        <span class="proj-title">Out and Back</span>
+        <span class="proj-desc">Drive out of the starting box in real inches, stop where a judge can see it, and return fully within the box. Fixing drift with the steering dial.</span>
+        <span class="proj-anchor">Mission 1 · Mission 10 — base + bonus</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+      <a class="proj-card" href="project-05.html">
+        <span class="proj-num">Project 5</span>
+        <span class="proj-title">Learning to Turn</span>
+        <span class="proj-desc">One dial, three turn shapes &mdash; radius, one-wheel, and zero radius. Wheel degrees are not robot degrees; build a repeatable 90&deg; turn anyway.</span>
+        <span class="proj-anchor">Mission 12 — approach only</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+      <a class="proj-card" href="project-06.html">
+        <span class="proj-num">Project 6</span>
+        <span class="proj-title">Bulldoze Run</span>
+        <span class="proj-desc">Four missions and sixteen points using nothing but driving. The OFF definition, pushing technique, and the two kinds of stop.</span>
+        <span class="proj-anchor">Missions 2 · 4 · 13 · 14</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+    </div>
+
+    <div class="buildgate">
+      <div class="bg-txt">
+        <p class="bg-t">Build required first &mdash; the arm and the claw</p>
+        <p class="bg-d">Everything from Project 7 onward needs a motorized arm with a claw on the end &mdash; arm motor in port C, claw motor in port D. The SPIKE build guides are on their way; ask your teacher if the links are not live yet.</p>
+      </div>
+      <a class="bg-btn" href="../builds/arm.html">Arm build guide &rarr;</a>
+      <a class="bg-btn" href="../builds/claw.html">Claw build guide &rarr;</a>
+    </div>
+    <p class="phase-label"><span>Phase 3 · Make It Grab</span><span class="pcount">2 projects</span></p>
+    <div class="card-grid">
+      <a class="proj-card" href="project-07.html">
+        <span class="proj-num">Project 7</span>
+        <span class="proj-title">Your Robot&rsquo;s Arm</span>
+        <span class="proj-desc">A motor that goes to a place instead of just going. Positions on a circle, gentle speeds, chosen directions, and a touch on Botguy.</span>
+        <span class="proj-anchor">Mission 9 — base</span>
+        <span class="pace">Needs the arm build</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+      <a class="proj-card" href="project-08.html">
+        <span class="proj-num">Project 8</span>
+        <span class="proj-title">Arm and Claw Together</span>
+        <span class="proj-desc">Two motors as one system &mdash; grab, carry, stack, release. Live-judged versus final-position scoring, and the safe starting shape.</span>
+        <span class="proj-anchor">Missions 12 · 3 · 11 · 13 bonus — 37 pts</span>
+        <span class="pace">Needs the arm + claw build</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+    </div>
+
+    <p class="phase-label"><span>Phase 4 · Make It Reliable</span><span class="pcount">4 projects</span></p>
+    <div class="card-grid">
+      <a class="proj-card" href="project-09.html">
+        <span class="proj-num">Project 9</span>
+        <span class="proj-title">Names for Your Numbers</span>
+        <span class="proj-desc">Make variables, set them at the top, and drop the orange ovals into your blocks. Change a number once instead of everywhere &mdash; then stack for twenty points.</span>
+        <span class="proj-anchor">Mission 5 — base + bonus · 20 pts</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+      <a class="proj-card" href="project-10.html">
+        <span class="proj-num">Project 10</span>
+        <span class="proj-title">Feeling for Things</span>
+        <span class="proj-desc">The force sensor, hexagons, and the checking that never sleeps. Drive until bump, find a wall you can trust, and stack the pyramid.</span>
+        <span class="proj-anchor">Mission 13 advanced — 13 pts</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+      <a class="proj-card" href="project-11.html">
+        <span class="proj-num">Project 11</span>
+        <span class="proj-title">Counting and Turning by Feel</span>
+        <span class="proj-desc">Degrees per inch behind the move block &mdash; and the yaw angle that feels the whole robot turn. Correct the overshoot, and the square finally closes.</span>
+        <span class="proj-anchor">Missions 9 · 8 · 18 — 40 pts</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+      <a class="proj-card" href="project-12.html">
+        <span class="proj-num">Project 12</span>
+        <span class="proj-title">Teaching Your Robot New Moves</span>
+        <span class="proj-desc">Make your own blocks. The shelf, the define hat, and the call &mdash; plus inputs, and blocks that call your other blocks.</span>
+        <span class="proj-anchor">Mission 15 — base + bonus · 18 pts</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+    </div>
+
+    <p class="phase-label"><span>Phase 5 · Make It Smart</span><span class="pcount">3 projects</span></p>
+    <div class="card-grid">
+      <a class="proj-card" href="project-13.html">
+        <span class="proj-num">Project 13</span>
+        <span class="proj-title">Deciding What to Do</span>
+        <span class="proj-desc">if, if/else, and chains. Asking once versus asking forever &mdash; and a claw that notices when it grabbed nothing.</span>
+        <span class="proj-anchor">Mission 3 advanced — 22 pts</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+      <a class="proj-card" href="project-14.html">
+        <span class="proj-num">Project 14</span>
+        <span class="proj-title">Seeing Light and Dark</span>
+        <span class="proj-desc">Reflected light answers with a number, and black is the low one. Pick your own threshold, find the line from anywhere, start on a signal.</span>
+        <span class="proj-anchor">Missions 14 · 18 — 35 pts</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+      <a class="proj-card" href="project-15.html">
+        <span class="proj-num">Project 15</span>
+        <span class="proj-title">Following the Line</span>
+        <span class="proj-desc">Steer from a sensor reading. Follow the edge, not the middle, keep the dial under 50 &mdash; then reach four of the hardest targets on the field.</span>
+        <span class="proj-anchor">Missions 6 · 7 · 16 · 17 — 51 pts</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+    </div>
+
+    <p class="phase-label"><span>Phase 6 · Clean It Up</span><span class="pcount">2 projects</span></p>
+    <div class="card-grid">
+      <a class="proj-card" href="project-16.html">
+        <span class="proj-num">Project 16</span>
+        <span class="proj-title">Building Your Toolbox</span>
+        <span class="proj-desc">One master Toolbox project every mission starts from. Best blocks in, improvements to the master first, and a backup nobody touches.</span>
+        <span class="proj-anchor none">No field mission — refactor</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+      <a class="proj-card" href="project-17.html">
+        <span class="proj-num">Project 17</span>
+        <span class="proj-title">Repeating Without Rebuilding</span>
+        <span class="proj-desc">The loop that counts for you. Smooth the arm, repeat the base for the bonus &mdash; and collect the last thirty-eight points.</span>
+        <span class="proj-anchor">Missions 7 · 11 · 16 · 17 — 38 pts</span>
+        <span class="proj-arrow">Open Project →</span>
+      </a>
+    </div>
+
+    <div class="upcoming">
+      <h2>Strand complete</h2>
+      <ol style="list-style:none;padding-left:0">
+        <li>All 17 SPIKE-track projects are here. Together they cover every base, bonus, and advanced bonus in the 2026 Fall Game &mdash; all 301 points &mdash; on LEGO&reg; SPIKE&trade; Prime.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer-strip">KIPR Botball © 2026 — All rights reserved</div>
+</body>
+</html>

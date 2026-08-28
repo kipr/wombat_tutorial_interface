@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 17 (SPIKE) — Repeating Without Retyping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #C0392B;
+    --red-dark: #922B21;
+    --navy: #1C1C1C;
+    --gold: #C0392B;
+    --ink: #1C1C1C;
+    --grey: #666666;
+    --line: #CCCCCC;
+    --bg: #F2F2F2;
+    --panel: #ffffff;
+    --field: #F8F8F8;
+    --field-focus: #FDF2F2;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #666666;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #ffffff; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d8483a; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+  .meta dd.anchor { font-weight: 600; color: var(--red); }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #FDF2F2;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #FDF2F2; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+  .callout.danger { border-left-color: #922B21; background: #fdf0ef; }
+  .callout.danger .ctitle { color: #922B21; }
+
+  /* Mission card */
+  .mission { border: 2px solid var(--red); border-radius: 6px; overflow: hidden; margin: 18px 0; }
+  .mission-head {
+    background: var(--red); color: #fff; padding: 11px 18px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .mission-head .mtitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 20px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .mission-head .mpts {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 15px; letter-spacing: .08em; color: rgba(255,255,255,.85);
+  }
+  .mission-body { padding: 4px 18px 14px; }
+  .mpart { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .mpart:last-child { border-bottom: none; }
+  .mpart .mlabel {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--navy); display: block; margin-bottom: 3px;
+  }
+  .mpart .jtag {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 1px 7px; border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+  .jtag.live { background: #d8ecdd; color: #145a32; }
+  .jtag.final { background: #e3e7f5; color: #23336b; }
+  .mpart.later { background: #f6f7f9; margin: 0 -18px; padding-left: 18px; padding-right: 18px; color: var(--grey); }
+  .mpart.later .mlabel { color: var(--grey); }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+  ol.dosteps .spts {
+    display: inline-block; background: var(--gold); color: #ffffff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px;
+    border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+  table.grid tr.total td { background: #f2f4fa; font-weight: 700; }
+  table.grid tr.grand td { background: var(--navy); color: #fff; font-weight: 700; }
+  table.grid tr.grand td input[type="text"] { color: #fff; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+  pre.code .hi { background: rgba(192,57,43,.25); border-radius: 2px; }
+
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 230px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  .codepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .codepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+  .codepair .chead {
+    padding: 8px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--navy);
+  }
+  .codepair .col.after .chead { background: var(--red); }
+  .codepair pre.code { margin: 0; border-radius: 0; font-size: 13.5px; flex: 1; }
+  .codepair .cnote { padding: 9px 12px; font-size: 15px; background: var(--field); border-top: 1px solid var(--line); }
+
+  .scorepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .scorepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .scorepair .chead {
+    padding: 9px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #fff;
+  }
+  .scorepair .yes .chead { background: #1E8449; }
+  .scorepair .no .chead { background: #922B21; }
+  .scorepair ul { margin: 10px 0 12px; padding-left: 22px; font-size: 16px; }
+  .scorepair li { margin: 6px 0; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* closing panel */
+  .finale {
+    margin: 26px 0 0; background: var(--navy); color: #fff;
+    border-radius: 6px; padding: 24px 26px; border-left: 6px solid var(--gold);
+  }
+  .finale h3 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 24px;
+    margin: 0 0 8px; color: var(--gold); letter-spacing: .02em;
+  }
+  .finale p { color: rgba(255,255,255,.82); }
+  .finale strong { color: #fff; }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .codepair, .scorepair { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+    .finale { padding: 18px 18px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .finale { background: #f4f4f4 !important; color: #000 !important; border-left: 4px solid #333; }
+    .finale h3, .finale p, .finale strong { color: #000 !important; }
+    .mission-head, .scorepair .chead, .codepair .chead, ol.dosteps .spts, .mpart .jtag, table.grid tr.grand td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .botnav{display:flex;align-items:center;justify-content:flex-start;gap:20px 24px;flex-wrap:wrap;margin:46px 40px 0;padding:26px 0 8px;border-top:1px solid var(--line)}
+  .botnav a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+            font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+            letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
+            border:1px solid var(--line);border-radius:5px;padding:12px 20px;background:#fff}
+  .botnav a:hover{border-color:var(--gold);background:#FDF2F2;color:var(--red)}
+  .botnav a.next{margin-left:auto}
+  .botnav a.gloss{color:#8a6d2f;border-color:rgba(192,57,43,.55);background:#FDF2F2}
+  .botnav a.gloss:hover{background:rgba(192,57,43,.16)}
+  .botnav .spacer{flex:1}
+  @media (max-width:700px){
+    .botnav{margin-left:20px;margin-right:20px;gap:10px;padding-top:18px}
+    .botnav a{font-size:13.5px;padding:11px 14px;flex:1 1 46%;justify-content:center}
+    .botnav a.next{margin-left:0}
+  }
+  @media print{ .botnav{display:none} }
+
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(192,57,43,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(192,57,43,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+  /* --- field diagram trigger + viewer --- */
+  /* inline trigger, used in running text and meta rows */
+  .fieldref{cursor:pointer;border-bottom:2px dotted #C0392B;font-weight:700;color:#C0392B;white-space:nowrap}
+  .fieldref:hover{color:#8f2b20;border-bottom-color:#8f2b20}
+  .fieldref::after{content:"\00a0\25A6";font-size:.82em;opacity:.7}
+  /* button trigger, used on the mission score cards */
+  .fieldref.btn{display:inline-flex;align-items:center;gap:5px;border:none;border-radius:3px;
+    background:#C0392B;color:#fff;padding:4px 10px;margin-left:8px;
+    font-family:'Barlow Condensed','Barlow Condensed',sans-serif;font-weight:800;font-size:.72rem;
+    letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;vertical-align:middle;
+    box-shadow:0 1px 0 rgba(0,0,0,.25)}
+  .fieldref.btn:hover{background:#d8483a;color:#fff}
+  .fieldref.btn::after{content:"\25A6";font-size:.95em;opacity:.9;margin-left:1px}
+  .fld-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:10000;
+               padding:14px;align-items:center;justify-content:center}
+  .fld-overlay.open{display:flex}
+  .fld-box{background:#fff;border-radius:7px;width:100%;max-width:820px;overflow:hidden;
+           box-shadow:0 16px 60px rgba(0,0,0,.5);display:flex;flex-direction:column;max-height:94vh}
+  .fld-head{background:#1C1C1C;color:#fff;padding:.8rem 1rem;display:flex;align-items:center;
+            justify-content:space-between;gap:.6rem;flex-shrink:0}
+  .fld-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.02rem;
+             letter-spacing:.05em;text-transform:uppercase;line-height:1.2}
+  .fld-x{background:none;border:none;color:rgba(255,255,255,.75);font-size:1.35rem;cursor:pointer;
+         min-width:38px;min-height:38px;border-radius:4px;flex-shrink:0}
+  .fld-x:hover{background:rgba(255,255,255,.15);color:#fff}
+  .fld-tabs{display:flex;gap:6px;padding:9px 12px;background:#F8F8F8;border-bottom:1px solid #CCCCCC;flex-shrink:0}
+  .fld-tabs button{border:1px solid #CCCCCC;background:#fff;border-radius:4px;padding:6px 13px;cursor:pointer;
+                   font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;
+                   letter-spacing:.07em;text-transform:uppercase;color:#1C1C1C}
+  .fld-tabs button.on{background:#1C1C1C;color:#fff;border-color:#1C1C1C}
+  .fld-pic{overflow:auto;background:#F2F2F2}
+  .fld-pic img{display:block;width:100%;height:auto}
+  .fld-cap{padding:10px 14px;font-size:.9rem;color:#666666;background:#fff;border-top:1px solid #CCCCCC;flex-shrink:0}
+  @media print{ .fieldref::after{content:""} .fld-overlay{display:none!important} }
+  .mainnav{display:flex;align-items:center;gap:4px 18px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+           font-size:14px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;line-height:1}
+  .mainnav a{color:rgba(255,255,255,.66);text-decoration:none;padding:5px 2px;border-bottom:2px solid transparent}
+  .mainnav a:hover{color:#fff}
+  .mainnav a.here{color:var(--gold);border-bottom-color:var(--gold)}
+  @media (max-width:820px){ .mainnav{font-size:12.5px;gap:3px 13px} }
+  @media print{ .mainnav{display:none} }
+
+
+
+  /* ===== SPIKE word-block rendering ===== */
+  .wb-prog{margin:14px 0 6px;padding:16px 18px 20px;background:#eef1f6;border:1px solid var(--line);
+           border-radius:8px;overflow-x:auto}
+  .wb-row{display:flex;align-items:center;gap:14px}
+  .wb-row + .wb-row{margin-top:3px}
+  .wb{position:relative;display:inline-flex;align-items:center;gap:7px;color:#fff;
+      font-family:'Barlow',sans-serif;font-weight:600;font-size:15.5px;line-height:1;
+      padding:9px 15px 10px;border-radius:5px;white-space:nowrap;flex-shrink:0;
+      text-shadow:0 1px 1px rgba(0,0,0,.22);box-shadow:inset 0 -2px 0 rgba(0,0,0,.16)}
+  .wb::before{content:"";position:absolute;top:0;left:14px;width:24px;height:4px;
+              background:#eef1f6;border-radius:0 0 4px 4px}
+  .wb::after{content:"";position:absolute;bottom:-4px;left:14px;width:24px;height:4px;
+             background:inherit;border-radius:0 0 4px 4px}
+  .wb.hat{border-radius:16px 16px 5px 5px;padding-top:11px}
+  .wb.hat::before{display:none}
+  .wb.ev{background:#F5B912}
+  .wb.mv{background:#FF4FA0}
+  .wb.ct{background:#FFA119}
+  .wb .pill{display:inline-flex;align-items:center;gap:5px;background:#fff;color:#333;
+            text-shadow:none;border-radius:999px;padding:4px 10px;font-size:14px;font-weight:600;
+            box-shadow:inset 0 1px 2px rgba(0,0,0,.14)}
+  .wb .pill.dd{background:rgba(0,0,0,.22);color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.2);
+               box-shadow:none}
+  .wb .pill.dd b{font-weight:400;font-size:11px}
+  .wb .pill.steer{padding-left:6px}
+  .wb .dial{position:relative;width:18px;height:18px;border-radius:50%;
+            border:2px solid #555;background:#fff;flex-shrink:0}
+  .wb .dial i{position:absolute;left:50%;top:1px;width:2px;height:7px;background:#555;
+              transform:translateX(-50%);border-radius:2px}
+  .wb-note{font-size:14px;color:var(--grey);font-style:italic;white-space:nowrap}
+  @media (max-width:700px){ .wb{font-size:14px;padding:8px 12px 9px} .wb-note{font-size:12.5px} }
+  @media print{
+    .wb-prog{background:#f4f4f4 !important;border-color:#999}
+    .wb, .wb .pill, .wb .pill.dd{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+
+
+  /* batch-1 additions: Light + Motors categories, matrix pill */
+  .wb.lt{background:#A45FE0}
+  .wb.mo{background:#F8618E}
+  .wb .pill.mx{display:inline-grid;grid-template-columns:repeat(5,5px);gap:1.5px;
+               padding:5px 6px;background:#26262b;border-radius:4px;box-shadow:none}
+  .wb .pill.mx s{display:block;width:5px;height:5px;border-radius:1px;background:#44444c;text-decoration:none}
+  .wb .pill.mx s.on{background:#FFD84D}
+
+
+  /* batch-3 additions: Variables, Sensors, Operators, C-blocks, My Blocks */
+  .wb.vr{background:#FF8C1A}
+  .wb.sn{background:#2FA8CE}
+  .wb.my{background:#FF6680}
+  .wb .pill.var{background:#FF8C1A;color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.2);box-shadow:none}
+  .wb .hex{display:inline-flex;align-items:center;gap:5px;color:#fff;font-size:14px;font-weight:600;
+           padding:5px 16px;background:#59C059;text-shadow:0 1px 1px rgba(0,0,0,.2);
+           clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,9px 100%,0 50%)}
+  .wb .hex.sn2{background:#2FA8CE}
+  .wb .hex .pill{padding:2px 8px;font-size:13px}
+  .wb-cwrap{display:inline-block}
+  .wb.cb-top{border-radius:5px 5px 0 0}
+  .wb-cbody{position:relative;padding:4px 0 4px 20px;margin:0}
+  .wb-cbody::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:#FFA119;border-radius:0 0 0 3px}
+  .wb.cb-end{display:block;width:120px;height:14px;padding:0;border-radius:0 0 5px 5px;background:#FFA119}
+  .wb.cb-end::before,.wb.cb-end::after{display:none}
+  .wb.hat.my{border-radius:16px 16px 5px 5px}
+
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>SPIKE Track</span></div>
+      <nav class="mainnav" aria-label="Main"><a href="../../index.html">Home</a><a href="../../2026-missions.html">2026 Missions</a><a href="../../discovery/index.html" class="here">Discovery</a><a href="../../labs/index.html">C Labs</a><a href="../../Python_Labs/index.html">Python Labs</a><a href="../../glossary.html">Glossary</a></nav>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · SPIKE Track · Coding · Project 17</p>
+    <h1>Repeating Without Rebuilding</h1>
+    <p class="sub">The last loop — and the last thirty-eight points on the field.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Learning the loop that counts, then using it to collect every bonus that just means "now do that again."</dd></div>
+        <div class="row"><dt>Mission Anchor</dt><dd class="anchor"><span class="fieldref" data-m="7" data-tier="base">Mission 7</span> · 11 · 16 · 17 bonuses — 38 points</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod171" data-key="need_1"><label for="ndcod171">Your robot with arm, claw, and sensors</label></li>
+          <li><input type="checkbox" id="ndcod172" data-key="need_2"><label for="ndcod172">Tablet or Chromebook with the SPIKE App</label></li>
+          <li><input type="checkbox" id="ndcod173" data-key="need_3"><label for="ndcod173">Charged hub</label></li>
+          <li><input type="checkbox" id="ndcod174" data-key="need_4"><label for="ndcod174">The game field</label></li>
+          <li><input type="checkbox" id="ndcod175" data-key="need_5"><label for="ndcod175">Your Toolbox from Project 16</label></li>
+        </ul>
+      </dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 16 — your blocks should live in your Toolbox by now, and this project starts as a duplicate of it.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Thirty Small Hops</h2>
+
+    <p>Back in Project 9 you moved the arm in three big jumps and were asked what it would take to move it in thirty small ones. Here is the answer you were promised.</p>
+
+    <div class="wb-prog" role="img" aria-label="Counter loop: set position to arm down, repeat until position past arm up, change by 5, run to position">
+      <div class="wb-row"><div class="wb hat ev">when program starts</div></div>
+      <div class="wb-row"><div class="wb vr">set <span class="pill dd">position&nbsp;<b>&#9662;</b></span> to <span class="pill var">arm down</span></div></div>
+      <div class="wb-row"><div class="wb-cwrap">
+        <div class="wb-row"><div class="wb ct cb-top">repeat until <span class="hex"><span class="pill var">position</span> &gt; <span class="pill var">arm up</span></span></div></div>
+        <div class="wb-cbody">
+          <div class="wb-row"><div class="wb vr">change <span class="pill dd">position&nbsp;<b>&#9662;</b></span> by <span class="pill">5</span></div></div>
+          <div class="wb-row"><div class="wb mo">run <span class="pill dd">C&nbsp;<b>&#9662;</b></span> <span class="pill dd">shortest path&nbsp;<b>&#9662;</b></span> to position <span class="pill var">position</span> degrees</div></div>
+        </div>
+        <div class="wb-row"><div class="wb ct cb-end"></div></div>
+      </div></div>
+    </div>
+
+    <p>Read it with a partner before you run it, and answer these from the blocks alone.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:56%">Question</th><th>My answer</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>Where does <em>position</em> start?</td><td><input type="text" data-key="p1_q_start" aria-label="Where it starts"></td></tr>
+        <tr class="trial"><td>What makes the loop stop?</td><td><input type="text" data-key="p1_q_stop" aria-label="What stops it"></td></tr>
+        <tr class="trial"><td>How much does it change each trip round?</td><td><input type="text" data-key="p1_q_step" aria-label="The step"></td></tr>
+        <tr class="trial"><td>So how many times does the loop run?</td><td><input type="text" data-key="p1_q_count" aria-label="How many times"></td></tr>
+      </tbody>
+    </table>
+
+    <p>Now run it with your own arm numbers and watch.</p>
+
+    <p class="q">How is this different from a single <em>run C to position (arm up)</em> block on its own?</p>
+    <textarea class="answer" data-key="p1_vs_single" aria-label="Versus single block"></textarea>
+
+    <div class="callout gold">
+      <p class="ctitle">A Smooth Arm Is a Careful Arm</p>
+      <p>An arm that snaps to a position throws whatever it is holding. An arm that creeps there sets things down gently — which matters for every final-position mission you have.</p>
+    </div>
+
+    <h3 class="sub">Where the counting lives</h3>
+
+    <p>Look at that loop again. The three things that control the counting are in three different places: the <strong>start</strong> is in the set block above the jaws, the <strong>stopping point</strong> is in the hexagon, and the <strong>step</strong> is buried inside.</p>
+
+    <p class="q">If a teammate asked you "how many times does that run?", how long would it take to work out — and where would your eyes have to jump?</p>
+    <textarea class="answer" data-key="p1_eyes_jump" aria-label="Where eyes jump"></textarea>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> The Loop That Counts For You</h2>
+
+    <p>When what you really mean is <em>"do this N times,"</em> there is a block that says exactly that — and the count sits right on its face where anyone can read it:</p>
+
+    <div class="wb-prog" role="img" aria-label="repeat 2 fetch pom">
+      <div class="wb-cwrap">
+        <div class="wb-row"><div class="wb ct cb-top">repeat <span class="pill">2</span></div></div>
+        <div class="wb-cbody"><div class="wb-row"><div class="wb my">fetch pom</div></div></div>
+        <div class="wb-row"><div class="wb ct cb-end"></div></div>
+      </div>
+    </div>
+
+    <p>No variable to set, no hexagon to aim, no step to hide. <strong>The loop does the counting for you.</strong> You have already used it once — the repeat 4 in your drive square, back in Project 12. Now you know what family it belongs to.</p>
+
+    <h3 class="sub">Three loops, three jobs</h3>
+
+    <div class="anat">
+      <div class="arow"><div class="acode">repeat N</div><div class="adesc">You know <em>how many</em>. Two poms, four sides, three cubes. The count is the point.</div></div>
+      <div class="arow"><div class="acode">repeat until / wait until</div><div class="adesc">You are waiting for the <em>world</em> — a press, a line, an angle. You have no idea how many trips it will take, and you do not care.</div></div>
+      <div class="arow"><div class="acode">a counter in the jaws</div><div class="adesc">The number itself is doing work — like <em>position</em> creeping upward in the smoother. The variable is not just counting trips; every value it passes through matters.</div></div>
+    </div>
+
+    <div class="callout gold">
+      <p class="ctitle">The Bonus Pattern</p>
+      <p>Go back and read the missions you have already scored. Over and over, the bonus is just the base <em>again</em>: a second pom, a second cone, one cube higher.</p>
+      <p>You built the base as a block. The bonus is that block in a <strong>repeat</strong>. That is the whole project.</p>
+    </div>
+
+    <h3 class="sub">Repeats hold anything</h3>
+
+    <p>Jaws are jaws. A repeat can hold your My Blocks, an if-then-else, even another repeat. The square is a repeat holding two of your blocks; a two-tier pom run is a repeat holding fetch-and-drop; the smoother is a repeat holding a change and a move. Same block, every time.</p>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Do It Again — Automatically</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Build the smoother</span>
+        <p>Duplicate your Toolbox for this project. Build the Try It smoother with your own numbers, then wrap it in a My Block called <code>arm up gently</code>, and make <code>arm down gently</code> to match — same loop, counting the other way.</p>
+        <p class="q">What did you change to make it count down?</p>
+        <input type="text" data-key="p3_count_down" aria-label="Counting down">
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_smoother"><label for="d1">My arm creeps up and down gently, each as one block</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">The square, one last time</span>
+        <p>Rebuild the square as <em>repeat 4 { drive forward 24 · turn right 90 }</em> — three visible blocks in the main stack.</p>
+        <p class="q">A teammate reads it. How long does it take them to answer "how many sides?" — and where do their eyes go?</p>
+        <input type="text" data-key="p3_sq_eyes" aria-label="Square eyes">
+        <ul class="check"><li><input type="checkbox" id="d2" data-key="p3_sq_repeat"><label for="d2">My square is a repeat 4 and still closes</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 11 Bonus — two orange poms<span class="spts">7 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 11 — Hazard Disposal</span>
+            <span class="mpts">Bonus 7 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart later">
+              <span class="mlabel">Base — 7 pts — done in Project 8</span>
+              One Orange Pom is IN a basket.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Bonus Mission — 7 pts<span class="jtag final">📋 Final</span></span>
+              <strong>Two or more</strong> Orange Poms are IN the <strong>same</strong> basket.
+            </div>
+          </div>
+        </div>
+        <p>Start here — it is the simplest "do it twice" on the field, and you already own the block.</p>
+        <div class="callout gold">
+          <p class="ctitle">Two Ways, Both Fine</p>
+          <p>Call your block twice, or wrap one call in a <em>repeat 2</em>. Try both and see which reads better to you.</p>
+          <p>The loop wins the moment the number might change — and at a tournament it always might.</p>
+        </div>
+        <p class="muted">The second pom is somewhere different, so your block needs an input or a short drive between trips. Same problem you solved for Mission 15 in Project 12.</p>
+        <ul class="check"><li><input type="checkbox" id="d3" data-key="p3_m11"><label for="d3">Two orange poms are in the same basket at the end</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Missions 16 and 17 Bonuses — stack them higher<span class="spts">22 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Missions 16 &amp; 17 — Shelving and Racking</span>
+            <span class="mpts">Bonuses 11 pts each</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Mission 16 Bonus — 11 pts<span class="jtag final">📋 Final</span></span>
+              <strong>Two or more</strong> cubes from the Spilled Cube area are <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the Large Green Cube.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Mission 17 Bonus — 11 pts<span class="jtag final">📋 Final</span></span>
+              <strong>Two or more</strong> cubes from the Unstraight Cube area are <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> the Large Brown Cube.
+            </div>
+          </div>
+        </div>
+        <div class="callout navy">
+          <p class="ctitle">A Cube On a Cube Still Counts</p>
+          <p>Read the scoring examples: <em>one cube ON TOP OF another cube that is ON TOP OF the Large Green Cube</em> scores. So the second cube can go on the pile rather than beside it — whichever your claw does more reliably.</p>
+        </div>
+        <div class="callout danger">
+          <p class="ctitle">⚠ Final Position — Both Have to Survive</p>
+          <p>Delivering the second cube is where the first one gets knocked off. Approach the same way each trip, and back straight away rather than turning while you are still close.</p>
+        </div>
+        <ul class="check">
+          <li><input type="checkbox" id="d4" data-key="p3_m16"><label for="d4">Two spilled cubes are on the Large Green Cube at the end</label></li>
+          <li><input type="checkbox" id="d5" data-key="p3_m17"><label for="d5">Two unstraight cubes are on the Large Brown Cube at the end</label></li>
+        </ul>
+        <p class="q">Did the second delivery ever knock the first one off? What fixed it?</p>
+        <textarea class="answer" data-key="p3_knocked_off" aria-label="Knocked off"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 7 Bonus — a second <span class="def-term" data-term="ENCLOSURE">enclosure</span><span class="spts">9 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 7 — Hazard Containment</span>
+            <span class="mpts">Bonus 9 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart later">
+              <span class="mlabel">Base — 11 pts — done in Project 15</span>
+              One Blue and one Orange Pom <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> the same <span class="def-term" data-term="ENCLOSURE">enclosure</span>.
+            </div>
+            <div class="mpart">
+              <span class="mlabel">Bonus Mission — 9 pts<span class="jtag final">📋 Final</span></span>
+              A <strong>second</strong> enclosure holds at least one Blue Pom and at least one Orange Pom, each <span class="def-term" data-term="FULLY WITHIN">FULLY WITHIN</span> it.
+            </div>
+          </div>
+        </div>
+        <div class="scorepair">
+          <div class="col yes">
+            <div class="chead">✓ Scores</div>
+            <ul>
+              <li>Two different enclosures, each with at least one Blue and one Orange Pom.</li>
+            </ul>
+          </div>
+          <div class="col no">
+            <div class="chead">✗ Does Not Score</div>
+            <ul>
+              <li>A Blue Pom in one enclosure and an Orange Pom in a different one.</li>
+              <li>Only one pom colour in any enclosure.</li>
+              <li><strong>The same enclosure used for both Base and Bonus.</strong></li>
+            </ul>
+          </div>
+        </div>
+        <p>This is the same delivery as the base, aimed somewhere else — which is exactly the case for a block with an input called twice, or a repeat over two destinations.</p>
+        <ul class="check"><li><input type="checkbox" id="d6" data-key="p3_m7"><label for="d6">Two enclosures each hold a blue and an orange pom</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Put the loops in your Toolbox</span>
+        <p>Anything you wrapped in a loop that worked — <code>deliver poms (how many)</code>, <code>arm up gently</code> — belongs in the master Toolbox. Add it there first, and note it in your team instructions.</p>
+        <ul class="check"><li><input type="checkbox" id="d7" data-key="p3_toolbox"><label for="d7">My new loop blocks are in the master Toolbox and written in the team notes</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Run it five times</span>
+        <table class="grid">
+          <thead><tr><th style="width:12%">Run</th><th style="width:18%">M11</th><th style="width:18%">M16</th><th style="width:18%">M17</th><th style="width:18%">M7</th><th>Points</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_r1_m11" aria-label="R1 M11"></td><td><input type="text" data-key="p3_r1_m16" aria-label="R1 M16"></td><td><input type="text" data-key="p3_r1_m17" aria-label="R1 M17"></td><td><input type="text" data-key="p3_r1_m7" aria-label="R1 M7"></td><td><input type="text" data-key="p3_r1_pts" aria-label="R1 points"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_r2_m11" aria-label="R2 M11"></td><td><input type="text" data-key="p3_r2_m16" aria-label="R2 M16"></td><td><input type="text" data-key="p3_r2_m17" aria-label="R2 M17"></td><td><input type="text" data-key="p3_r2_m7" aria-label="R2 M7"></td><td><input type="text" data-key="p3_r2_pts" aria-label="R2 points"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_r3_m11" aria-label="R3 M11"></td><td><input type="text" data-key="p3_r3_m16" aria-label="R3 M16"></td><td><input type="text" data-key="p3_r3_m17" aria-label="R3 M17"></td><td><input type="text" data-key="p3_r3_m7" aria-label="R3 M7"></td><td><input type="text" data-key="p3_r3_pts" aria-label="R3 points"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_r4_m11" aria-label="R4 M11"></td><td><input type="text" data-key="p3_r4_m16" aria-label="R4 M16"></td><td><input type="text" data-key="p3_r4_m17" aria-label="R4 M17"></td><td><input type="text" data-key="p3_r4_m7" aria-label="R4 M7"></td><td><input type="text" data-key="p3_r4_pts" aria-label="R4 points"></td></tr>
+            <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p3_r5_m11" aria-label="R5 M11"></td><td><input type="text" data-key="p3_r5_m16" aria-label="R5 M16"></td><td><input type="text" data-key="p3_r5_m17" aria-label="R5 M17"></td><td><input type="text" data-key="p3_r5_m7" aria-label="R5 M7"></td><td><input type="text" data-key="p3_r5_pts" aria-label="R5 points"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">My score</h3>
+    <table class="grid">
+      <thead><tr><th style="width:52%">Mission part</th><th style="width:24%">Scored?</th><th>Points</th></tr></thead>
+      <tbody>
+        <tr><td>Mission 11 — Bonus (two orange poms, same basket)</td><td><input type="text" data-key="p4_s_m11" aria-label="Score M11"></td><td class="ctr">7</td></tr>
+        <tr><td>Mission 16 — Bonus (two spilled cubes on the green)</td><td><input type="text" data-key="p4_s_m16" aria-label="Score M16"></td><td class="ctr">11</td></tr>
+        <tr><td>Mission 17 — Bonus (two unstraight cubes on the brown)</td><td><input type="text" data-key="p4_s_m17" aria-label="Score M17"></td><td class="ctr">11</td></tr>
+        <tr><td>Mission 7 — Bonus (a second enclosure)</td><td><input type="text" data-key="p4_s_m7" aria-label="Score M7"></td><td class="ctr">9</td></tr>
+        <tr class="total"><td>My total this project</td><td><input type="text" data-key="p4_total" aria-label="Total"></td><td class="ctr">38</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Which loop?</h3>
+    <p>Pick the right tool: <em>repeat N</em>, <em>repeat until</em> / <em>wait until</em>, or a counter in the jaws.</p>
+    <table class="grid">
+      <thead><tr><th style="width:60%">The robot should...</th><th>Loop</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>Fetch exactly three cubes</td><td><input type="text" data-key="p4_wl_1" aria-label="WL 1"></td></tr>
+        <tr class="trial"><td>Drive until it sees the black line</td><td><input type="text" data-key="p4_wl_2" aria-label="WL 2"></td></tr>
+        <tr class="trial"><td>Sweep the arm through every position from down to up, slowly</td><td><input type="text" data-key="p4_wl_3" aria-label="WL 3"></td></tr>
+        <tr class="trial"><td>Beep five times</td><td><input type="text" data-key="p4_wl_4" aria-label="WL 4"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">How many times?</h3>
+    <p>From the blocks alone, how many trips through the jaws?</p>
+    <table class="grid">
+      <thead><tr><th style="width:64%">The loop</th><th>Trips</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td class="thing">repeat 6 { beep }</td><td><input type="text" data-key="p4_hm_1" aria-label="HM 1"></td></tr>
+        <tr class="trial"><td class="thing">set n to 0 · repeat until (n &gt; 3) { change n by 1 · beep }</td><td><input type="text" data-key="p4_hm_2" aria-label="HM 2"></td></tr>
+        <tr class="trial"><td class="thing">set n to 10 · repeat until (n &gt; 3) { change n by 1 · beep }</td><td><input type="text" data-key="p4_hm_3" aria-label="HM 3"></td></tr>
+      </tbody>
+    </table>
+    <p class="q">That last one is legal and runs. What does it actually do, and why is it a trap?</p>
+    <textarea class="answer" data-key="p4_hm_trap" aria-label="HM trap"></textarea>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_pick"><label for="s1">I can pick between repeat N, repeat until, and a counter — and say why</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_readcount"><label for="s2">I can read a counter loop and work out how many times it runs</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_smooth"><label for="s3">My arm can creep to a position instead of snapping there</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_bonus"><label for="s4">I can turn a "do it again" bonus into a repeat around a block I already own</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_nest"><label for="s5">I can put my own blocks, ifs, and repeats inside a repeat</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_toolbox"><label for="s6">My smoothers live in the Toolbox now, master first</label></li>
+    </ul>
+
+    <h3 class="sub">Every point on the field</h3>
+    <p class="muted">Add up what you scored across the whole strand. The right-hand column is what was available.</p>
+    <table class="grid">
+      <thead><tr><th style="width:44%">Project</th><th style="width:28%">I scored</th><th>Available</th></tr></thead>
+      <tbody>
+        <tr><td>4 — Out and Back</td><td><input type="text" data-key="p4_t04" aria-label="P4 total"></td><td class="ctr">4</td></tr>
+        <tr><td>6 — Bulldoze Run</td><td><input type="text" data-key="p4_t06" aria-label="P6 total"></td><td class="ctr">16</td></tr>
+        <tr><td>7 — Your Robot's Arm</td><td><input type="text" data-key="p4_t07" aria-label="P7 total"></td><td class="ctr">7</td></tr>
+        <tr><td>8 — Arm and Claw Together</td><td><input type="text" data-key="p4_t08" aria-label="P8 total"></td><td class="ctr">37</td></tr>
+        <tr><td>9 — Names for Your Numbers</td><td><input type="text" data-key="p4_t09" aria-label="P9 total"></td><td class="ctr">20</td></tr>
+        <tr><td>10 — Feeling for Things</td><td><input type="text" data-key="p4_t10" aria-label="P10 total"></td><td class="ctr">13</td></tr>
+        <tr><td>11 — Counting Wheel Ticks</td><td><input type="text" data-key="p4_t11" aria-label="P11 total"></td><td class="ctr">40</td></tr>
+        <tr><td>12 — Teaching Your Robot New Moves</td><td><input type="text" data-key="p4_t12" aria-label="P12 total"></td><td class="ctr">18</td></tr>
+        <tr><td>13 — Deciding What to Do</td><td><input type="text" data-key="p4_t13" aria-label="P13 total"></td><td class="ctr">22</td></tr>
+        <tr><td>14 — Seeing Light and Dark</td><td><input type="text" data-key="p4_t14" aria-label="P14 total"></td><td class="ctr">35</td></tr>
+        <tr><td>15 — Following the Line</td><td><input type="text" data-key="p4_t15" aria-label="P15 total"></td><td class="ctr">51</td></tr>
+        <tr><td>17 — Repeating Without Retyping</td><td><input type="text" data-key="p4_t17" aria-label="P17 total"></td><td class="ctr">38</td></tr>
+        <tr class="grand"><td>Total</td><td><input type="text" data-key="p4_grand" aria-label="Grand total"></td><td class="ctr">301</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold">
+      <p class="ctitle">301 Is the Whole Game</p>
+      <p>Add up every base, bonus, and advanced bonus across all eighteen Stack Attack missions and the number is 301.</p>
+      <p>There is nothing on that field you have not been taught how to reach.</p>
+    </div>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">You have built four kinds of loop question now — a switch, a wheel count, a brightness, and a plain count. Which was hardest to get right, and why that one?</p>
+    <textarea class="answer" data-key="p4_hardest_loop" aria-label="Hardest loop"></textarea>
+
+    <p class="q">In Project 1 you ran a program somebody else wrote and did not understand a line of it. Go back and read that program now. What does it say to you?</p>
+    <textarea class="answer" data-key="p4_first_program" aria-label="First program"></textarea>
+
+    <p class="q">Your robot does exactly what it is told, every time, and has no idea what any of it means. After seventeen projects, does it seem intelligent to you? Say what makes you answer that way.</p>
+    <textarea class="answer" data-key="p4_intelligent" aria-label="Is it intelligent"></textarea>
+
+    <div class="finale">
+      <h3>That Is the Coding Strand</h3>
+      <p>Seventeen projects ago your robot could not be switched on. It now drives measured distances, turns to an angle, grabs and stacks and places, feels for walls, counts its own wheels, reads light and dark, follows a line, checks its own work, and decides what to do when something goes wrong.</p>
+      <p>All of it built from about a dozen commands and four ideas: <strong>do this, do it if, do it while, do it again.</strong></p>
+      <p>Take your Toolbox with you. Next season the field will be different and most of what is in that project will still work.</p>
+    </div>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+  <nav class="botnav no-print" aria-label="Page navigation">
+    <a href="index.html">&larr; Coding Projects</a>
+    <a href="project-16.html">&larr; Project 16</a>
+    <a class="gloss" href="../../glossary.html">Glossary</a>
+    <span class="spacer"></span>
+  </nav>
+
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'ENCLOSURE': ['Enclosure', 'A PVC frame on the game field that objects can be placed inside. Missions that ask for something to be IN an enclosure are asking you to get it past those walls.'],
+    'FULLY WITHIN': ['Fully Within', 'An object or robot is FULLY WITHIN an area when every part of the object or robot lies inside the boundary of that area \u2014 no portion may touch or cross the boundary line.'],
+    'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_spike_coding_17";
+  var MISSION_TITLE = "Discovery Project 17 (SPIKE) — Repeating Without Retyping";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+<div class="fld-overlay" id="fldOverlay" role="dialog" aria-modal="true" aria-labelledby="fldTitle">
+  <div class="fld-box">
+    <div class="fld-head">
+      <span class="fld-title" id="fldTitle"></span>
+      <button class="fld-x" id="fldX" aria-label="Close field diagram">&#10005;</button>
+    </div>
+    <div class="fld-tabs" id="fldTabs"></div>
+    <div class="fld-pic"><img id="fldImg" src="" alt=""></div>
+    <p class="fld-cap" id="fldCap"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var UP = '../../';
+  var M = {
+    7: {"title": "Mission 7 \u2014 Hazard Containment", "tiers": ["base", "bonus"]}
+  };
+  var ov=document.getElementById('fldOverlay'), im=document.getElementById('fldImg'),
+      tt=document.getElementById('fldTitle'), tb=document.getElementById('fldTabs'),
+      cp=document.getElementById('fldCap');
+  function show(n, tier){
+    var m=M[n]; if(!m) return;
+    im.src = UP + 'img/missions/mission-' + (n<10?'0':'') + n + '-' + tier + '.jpg';
+    im.alt = m.title + ' \u2014 ' + tier + ' scoring, shown on the field';
+    tt.textContent = m.title;
+    cp.textContent = tier.charAt(0).toUpperCase() + tier.slice(1) + ' scoring \u2014 arrows show where each piece has to end up.';
+    tb.innerHTML='';
+    if (m.tiers.length > 1) {
+      m.tiers.forEach(function(t){
+        var b=document.createElement('button');
+        b.textContent=t; b.className = (t===tier?'on':'');
+        b.addEventListener('click', function(){ show(n, t); });
+        tb.appendChild(b);
+      });
+      tb.style.display='flex';
+    } else { tb.style.display='none'; }
+    ov.classList.add('open'); document.body.style.overflow='hidden';
+    document.getElementById('fldX').focus();
+  }
+  function hide(){ ov.classList.remove('open'); im.src=''; document.body.style.overflow=''; }
+  document.getElementById('fldX').addEventListener('click', hide);
+  ov.addEventListener('click', function(e){ if(e.target===this) hide(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') hide(); });
+  document.addEventListener('click', function(e){
+    var el=e.target.closest('.fieldref');
+    if(el){ e.preventDefault(); show(parseInt(el.dataset.m,10), el.dataset.tier||'base'); }
+  });
+})();
+</script>
+
+
+</body>
+</html>

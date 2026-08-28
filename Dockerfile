@@ -12,7 +12,7 @@ FROM hugo_base AS hugo_dev
 
 USER 0
 
-RUN apk add fish fzf fd ripgrep just imagemagick imagemagick-webp imagemagick-jpeg
+RUN apk add fish fzf fd ripgrep just imagemagick imagemagick-webp imagemagick-jpeg pandoc-cli
 
 RUN npm install -g @openai/codex svgo
 
