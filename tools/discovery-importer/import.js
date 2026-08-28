@@ -104,8 +104,25 @@ function stripTags(html) {
   return decodeEntities(html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
 }
 
-function innerTextKeepRefs(html) {
-  let text = html.replace(
+function rewriteBuildLink(html, platform) {
+  return html.replace(
+    /<a class="build-link" href="([^"]+)">([\s\S]*?)<\/a>/g,
+    (_, href, inner) => {
+      const build = href.match(/builds\/(arm|claw)/);
+      if (!build) throw new Error(`unsupported build-link href: ${href}`);
+      if (!platform) throw new Error("build-link needs a platform");
+      const small = inner.match(/<small>([\s\S]*?)<\/small>/);
+      const label = stripTags(inner.replace(/<small>[\s\S]*?<\/small>/g, "")).trim();
+      const dest = `/discovery/${platform}/builds/${build[1]}`;
+      const note = small ? ` — *${stripTags(small[1])}*` : "";
+      return `[${label}](${dest})${note}`;
+    }
+  );
+}
+
+function innerTextKeepRefs(html, platform) {
+  let text = rewriteBuildLink(html, platform);
+  text = text.replace(
     /<span class="def-term"[^>]*data-term="([^"]+)"[^>]*>([\s\S]*?)<\/span>/g,
     (_, term, label) => `[[${term}|${stripTags(label)}]]`
   );
@@ -179,7 +196,7 @@ function extractHero(html) {
   };
 }
 
-function extractMeta(html) {
+function extractMeta(html, platform) {
   const inner = extractInner(html, "div", "meta");
   if (!inner) return [];
   const rows = [];
@@ -192,11 +209,11 @@ function extractMeta(html) {
       const itemRe = /<li>[\s\S]*?data-key="([^"]+)"[\s\S]*?<label[^>]*>([\s\S]*?)<\/label>/g;
       let item;
       while ((item = itemRe.exec(match[2])) !== null) {
-        items.push({key: item[1], label: innerTextKeepRefs(item[2])});
+        items.push({key: item[1], label: innerTextKeepRefs(item[2], platform)});
       }
       rows.push({term, checklist: items});
     } else {
-      rows.push({term, definition: innerTextKeepRefs(match[2])});
+      rows.push({term, definition: innerTextKeepRefs(match[2], platform)});
     }
   }
   return rows;
@@ -436,7 +453,7 @@ function convertProject(job, index, options) {
     throw new Error(`${job.source}: persistence ID ${missionId || "(missing)"} does not match ${expectedId}`);
   }
   const hero = extractHero(html);
-  const metaRows = extractMeta(html);
+  const metaRows = extractMeta(html, job.platform);
   const card = index.cards[job.number];
   if (!card) throw new Error(`${job.source}: missing index card`);
   const phase = phaseFor(job.number);
@@ -537,7 +554,7 @@ function convertPlaceholder(job) {
     const re = /<p([^>]*)>([\s\S]*?)<\/p>/g;
     let match;
     while ((match = re.exec(card[1])) !== null) {
-      const text = innerTextKeepRefs(match[2]);
+      const text = innerTextKeepRefs(match[2], job.platform);
       if (match[1].includes("big")) paras.push(`**${text}**`);
       else paras.push(text);
     }

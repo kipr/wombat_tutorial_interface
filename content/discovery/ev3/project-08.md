@@ -54,7 +54,7 @@ meta:
       - key: need_5
         label: "Your Project 5 and 7 numbers"
   - term: "Before You Start"
-    definition: "Project 7 — and your claw must be built, with the claw motor plugged into port D . Open the Claw Build Guide Build guide coming soon — ask your teacher if this link is not live yet"
+    definition: "Project 7 — and your claw must be built, with the claw motor plugged into port D . [Open the Claw Build Guide](/discovery/ev3/builds/claw) — *Build guide coming soon — ask your teacher if this link is not live yet*"
 ---
 ## Try It --- Be the Robot
 

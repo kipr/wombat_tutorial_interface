@@ -106,6 +106,32 @@ for (const platform of ["ev3", "spike"]) {
   assert.match(hub, /heading_accent: "Coding"/);
   assert.ok(fs.existsSync(path.join(temp, "discovery", platform, "builds", "arm.md")));
   assert.ok(fs.existsSync(path.join(temp, "discovery", platform, "builds", "claw.md")));
+
+  const project06 = fs.readFileSync(
+    path.join(temp, "discovery", platform, "project-06.md"),
+    "utf8"
+  );
+  assert.match(
+    project06,
+    new RegExp(`\\[Open the Arm Build Guide\\]\\(/discovery/${platform}/builds/arm\\) — \\*Build guide coming soon`)
+  );
+  assert.match(project06, new RegExp(`page: "/discovery/${platform}/builds/arm"`));
+  const project07 = fs.readFileSync(
+    path.join(temp, "discovery", platform, "project-07.md"),
+    "utf8"
+  );
+  assert.match(
+    project07,
+    new RegExp(`\\[Open the Arm Build Guide\\]\\(/discovery/${platform}/builds/arm\\)`)
+  );
+  const project08 = fs.readFileSync(
+    path.join(temp, "discovery", platform, "project-08.md"),
+    "utf8"
+  );
+  assert.match(
+    project08,
+    new RegExp(`\\[Open the Claw Build Guide\\]\\(/discovery/${platform}/builds/claw\\)`)
+  );
 }
 
 assertFails(
@@ -120,5 +146,17 @@ assertFails(
   '<textarea class="answer" data-key="dup" aria-label="One"></textarea><textarea class="answer" data-key="dup" aria-label="Two"></textarea>',
   /duplicate key dup/
 );
+
+{
+  const result = convertFragment(
+    '<p><a class="build-link" href="../builds/arm.html">Open the Arm Build Guide<small>Build guide coming soon</small></a></p>'
+  );
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(
+    result.stdout,
+    /\[Open the Arm Build Guide\]\(\/discovery\/ev3\/builds\/arm\) — \*Build guide coming soon\*/
+  );
+  assert.doesNotMatch(result.stdout, /GuideBuild/);
+}
 
 process.stdout.write("test_discovery_import.js: ok\n");

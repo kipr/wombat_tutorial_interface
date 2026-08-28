@@ -141,7 +141,20 @@ convert_inlines = function(inlines)
       parts[#parts + 1] = '"' .. convert_inlines(el.content) .. '"'
     elseif t == "Link" then
       local href = el.target or ""
-      local label = convert_inlines(el.content)
+      local label_inlines = pandoc.List{}
+      local note = ""
+      for _, inline in ipairs(el.content) do
+        if inline.t == "Span" and has_class(inline, "small") then
+          local text = convert_inlines(inline.content)
+          if text ~= "" then
+            if note ~= "" then note = note .. " " end
+            note = note .. text
+          end
+        else
+          label_inlines:insert(inline)
+        end
+      end
+      local label = convert_inlines(label_inlines):gsub("%s+$", "")
       if href:match("glossary") or href == "" then
         parts[#parts + 1] = label
       else
@@ -149,7 +162,11 @@ convert_inlines = function(inlines)
         if build then
           local platform = PLATFORM
           if platform == "" then fail("build link needs a platform") end
-          parts[#parts + 1] = string.format("[%s](/discovery/%s/builds/%s)", label, platform, build)
+          local md = string.format("[%s](/discovery/%s/builds/%s)", label, platform, build)
+          if note ~= "" then
+            md = md .. " — *" .. note .. "*"
+          end
+          parts[#parts + 1] = md
         else
           fail("unsupported link: " .. href)
         end

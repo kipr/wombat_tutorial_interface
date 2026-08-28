@@ -56,7 +56,7 @@ meta:
       - key: need_6
         label: "Your Project 4 and 5 numbers"
   - term: "Before You Start"
-    definition: "Project 6 — and your arm must be built, with the arm motor plugged into port C . Open the Arm Build Guide Build guide coming soon — ask your teacher if this link is not live yet"
+    definition: "Project 6 — and your arm must be built, with the arm motor plugged into port C . [Open the Arm Build Guide](/discovery/ev3/builds/arm) — *Build guide coming soon — ask your teacher if this link is not live yet*"
 ---
 ## Try It --- A Different Kind of Job
 

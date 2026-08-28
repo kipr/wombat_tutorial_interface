@@ -599,4 +599,4 @@ You have taken pushing about as far as it goes. Everything left on the field has
 
 Before **Project 7 --- Your Robot's Arm**, go build one.
 
-[Open the Arm Build GuideBuild guide coming soon --- ask your teacher if this link is not live yet](/discovery/ev3/builds/arm)
+[Open the Arm Build Guide](/discovery/ev3/builds/arm) — *Build guide coming soon --- ask your teacher if this link is not live yet*
