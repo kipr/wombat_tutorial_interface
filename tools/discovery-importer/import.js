@@ -608,7 +608,7 @@ function convertAll(options) {
       fs.mkdirSync(path.dirname(dest), {recursive: true});
       fs.writeFileSync(dest, `---
 title: "Build guides"
-_build:
+build:
   render: never
   list: never
 ---
