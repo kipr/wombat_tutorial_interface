@@ -61,3 +61,29 @@ source or template change should receive a fresh Hugo build. JavaScript
 behavior changes should run the relevant dependency-free Node test.
 
 In the final handoff, report which checks ran and any failures.
+
+## Cursor Cloud specific instructions
+
+The cloud VM does not use the repo `Dockerfile`/`.devcontainer/`. Hugo
+`v0.164.0` extended is installed to `/usr/local/bin/hugo` by the startup update
+script; `node` is preinstalled. There is no `package.json`, no `npm install`
+step, and the `tools/` and `tests/` scripts use only Node built-ins, so the
+build, lint, and test commands documented under `docs/` run as-is.
+
+Non-obvious gotchas when serving the dev server here:
+
+- The configured `baseURL` includes the project mount, so a default
+  `hugo server` serves pages under `/wombat-tutorial-interface/`. To browse at
+  the localhost root instead, override the base URL:
+  `hugo server --buildDrafts --bind 0.0.0.0 --port 1313 --baseURL http://localhost:1313/`.
+  Pages are then at e.g. `http://localhost:1313/labs/prelab0/` (the root path
+  `/` returns 200; the un-overridden `/wombat-tutorial-interface/` path returns
+  404 in this mode).
+- Worksheet auto-save/restore (`static/js/lab.js`) is keyed by page
+  `mission_id` and persists every `[data-key]` control to
+  `localStorage["kipr_<mission_id>_draft"]`. Verify it deterministically in the
+  browser console (read `document.getElementById(...).value` after a reload)
+  rather than by eye — small form text is easy to misread in screenshots/video.
+- `node tools/check_theme_output.js <build_dir>` reports a pre-existing failure
+  on the static `ISTE_Standards.html` download page; it is not part of the
+  documented verification command set under `docs/`.
