@@ -12,7 +12,11 @@ FROM hugo_base AS hugo_dev
 
 USER 0
 
-RUN apk add fish fzf fd ripgrep just imagemagick imagemagick-webp imagemagick-jpeg pandoc-cli
+RUN apk add fish fzf fd ripgrep just imagemagick imagemagick-webp imagemagick-jpeg pandoc-cli curl \
+    && mkdir -p /usr/local/share/doc/pandoc \
+    && curl -fsSL -o /usr/local/share/doc/pandoc/custom-writers.html https://pandoc.org/custom-writers.html \
+    && curl -fsSL -o /usr/local/share/doc/pandoc/lua-filters.html https://pandoc.org/lua-filters.html \
+    && curl -fsSL -o /usr/local/share/doc/pandoc/MANUAL.html https://pandoc.org/MANUAL.html
 
 RUN npm install -g @openai/codex svgo
 
