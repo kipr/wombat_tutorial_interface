@@ -10,6 +10,7 @@ mission_title: "Coding Project 12 — Teaching Your Robot New Moves"
 styles: ["site-base", "worksheet", "syntax", "discovery", "print"]
 project_number: 12
 strand: coding
+platform: wombat
 phase: "Phase 4 · Make It Reliable"
 phase_order: 4
 time: "One class period"

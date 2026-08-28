@@ -10,6 +10,7 @@ mission_title: "Coding Project 1 — Wake Up Your Wombat"
 styles: ["site-base", "worksheet", "syntax", "discovery", "print"]
 project_number: 1
 strand: coding
+platform: wombat
 phase: "Phase 1 · Get Connected"
 phase_order: 1
 time: "One class period"

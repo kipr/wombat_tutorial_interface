@@ -10,6 +10,7 @@ mission_title: "Coding Project 11 — Counting Wheel Ticks"
 styles: ["site-base", "worksheet", "syntax", "discovery", "print"]
 project_number: 11
 strand: coding
+platform: wombat
 phase: "Phase 4 · Make It Reliable"
 phase_order: 4
 time: "One class period"

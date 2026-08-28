@@ -10,6 +10,7 @@ mission_title: "Coding Project 3 — Motors and Ports"
 styles: ["site-base", "worksheet", "syntax", "discovery", "print"]
 project_number: 3
 strand: coding
+platform: wombat
 phase: "Phase 2 · Make It Move"
 phase_order: 2
 time: "One class period"
