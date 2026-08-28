@@ -64,16 +64,20 @@ are:
 - `meta` with exactly one non-empty, structured `What You Need` checklist.
 
 `weight` must equal the project number. Coding has 17 projects, Systems has 14,
-filenames are zero-padded, persistence IDs use
-`discovery_<strand>_<two-digit-number>`, and project styles must be exactly:
+filenames are zero-padded, and project styles must be exactly:
 
 ```yaml
 styles: ["site-base", "worksheet", "syntax", "discovery", "print"]
 ```
 
+Coding projects also set `platform: wombat`, `ev3`, or `spike`. Wombat
+persistence IDs stay `discovery_coding_NN`. EV3 and SPIKE IDs are
+`discovery_ev3_coding_NN` and `discovery_spike_coding_NN`.
+
 Optional hub metadata includes `hub_title`, `mission_label`, `no_mission`,
-`build_project`, `pace`, and a between-phase `build_gate`. A gate's `page` is a
-lowercase Hugo page reference and must resolve.
+`build_project`, `pace`, and a between-phase `build_gate`. A gate accepts either
+the existing `page`/`label` pair or a `links` list of page/label pairs. Each
+target is a lowercase Hugo page reference and must resolve.
 
 ### Explorer missions
 

@@ -10,6 +10,7 @@ mission_title: "Coding Project 15 — Following the Line"
 styles: ["site-base", "worksheet", "syntax", "discovery", "print"]
 project_number: 15
 strand: coding
+platform: wombat
 phase: "Phase 5 · Make It Smart"
 phase_order: 5
 time: "One class period"

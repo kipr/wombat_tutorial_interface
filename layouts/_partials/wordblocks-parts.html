@@ -1,0 +1,44 @@
+{{- range $part := .parts -}}
+  {{- if not (reflect.IsMap $part) -}}
+    {{- errorf "%s: wordblocks part must be a mapping" $.position -}}
+  {{- end -}}
+  {{- if isset $part "text" -}}
+    {{- $text := printf "%v" (index $part "text") -}}
+    {{ $text }}
+  {{- else if isset $part "slot" -}}
+    {{- $slot := index $part "slot" -}}
+    {{- if not (reflect.IsMap $slot) -}}
+      {{- errorf "%s: wordblocks slot must be a mapping" $.position -}}
+    {{- end -}}
+    {{- $kind := index $slot "kind" -}}
+    {{- if not (in $.slotKinds $kind) -}}
+      {{- errorf "%s: wordblocks slot kind %q is not allowed" $.position $kind -}}
+    {{- end -}}
+    {{- if eq $kind "steering" -}}
+      {{- if not (isset $slot "value") -}}
+        {{- errorf "%s: steering slot needs value" $.position -}}
+      {{- end -}}
+      <span class="pill steer"><span class="dial"><i></i></span>{{ index $slot "value" }}</span>
+    {{- else if eq $kind "matrix" -}}
+      {{- $pattern := printf "%v" (index $slot "pattern" | default "") -}}
+      {{- if ne (len $pattern) 25 -}}
+        {{- errorf "%s: LED matrix pattern must be 25 characters of 0 or 1" $.position -}}
+      {{- end -}}
+      <span class="pill mx">{{- range $i := seq 0 24 -}}{{- $ch := strings.SliceString $pattern $i (add $i 1) -}}{{- if and (ne $ch "0") (ne $ch "1") -}}{{- errorf "%s: LED matrix pattern must be 25 characters of 0 or 1" $.position -}}{{- end -}}<s{{ if eq $ch "1" }} class="on"{{ end }}></s>{{- end -}}</span>
+    {{- else if eq $kind "condition" -}}
+      {{- $inner := index $slot "parts" -}}
+      {{- if not (reflect.IsSlice $inner) -}}
+        {{- errorf "%s: condition slot needs parts" $.position -}}
+      {{- end -}}
+      <span class="hex{{ if eq (index $slot "style") "sensor" }} sn2{{ end }}">{{ partial "wordblocks-parts.html" (dict "parts" $inner "slotKinds" $.slotKinds "position" $.position) }}</span>
+    {{- else -}}
+      {{- $text := printf "%v" (index $slot "text" | default "") -}}
+      {{- if eq $text "" -}}
+        {{- errorf "%s: %s slot needs text" $.position $kind -}}
+      {{- end -}}
+      <span class="pill{{ if eq $kind "dropdown" }} dd{{ else if eq $kind "variable" }} var{{ else if eq $kind "operator" }} op{{ end }}">{{ $text }}{{ if eq $kind "dropdown" }} <b>▾</b>{{ end }}</span>
+    {{- end -}}
+  {{- else -}}
+    {{- errorf "%s: wordblocks part needs text or slot" $.position -}}
+  {{- end -}}
+{{- end -}}

@@ -181,3 +181,37 @@ It is the shared responsive comparison on mission and rules pages.
 
 `rule-definition` requires `term` and only accepts glossary entries marked
 `source: rules`.
+
+## Word-block programs
+
+`wordblocks` renders an EV3/SPIKE word-block program. Required `aria` is the
+accessible name (`role="img"`). The coloured internals are `aria-hidden`. The
+YAML body is a `rows` list; each row is either `block` or `control`.
+
+A block needs `category` (`events`, `movement`, `control`, `display`, `motors`,
+`variables`, `sensors`, or `myblocks`), `parts`, and optional `shape: hat` and
+`note`. A control needs `category`, `head` parts, `body` rows, and optional
+`branches` with `label` plus `rows`.
+
+Inline parts are `text` or a `slot` whose `kind` is `value`, `dropdown`,
+`variable`, `operator`, `condition`, `steering`, or `matrix`. Condition slots
+may nest `parts` and set `style: sensor`. Steering slots need `value`. Matrix
+slots need a 25-character `0`/`1` `pattern`.
+
+```markdown
+{{< wordblocks aria="when program starts, write Hi!" >}}
+rows:
+  - block:
+      category: events
+      shape: hat
+      parts:
+        - text: "when program starts"
+  - block:
+      category: display
+      parts:
+        - text: "write "
+        - slot:
+            kind: value
+            text: "Hi!"
+{{< /wordblocks >}}
+```

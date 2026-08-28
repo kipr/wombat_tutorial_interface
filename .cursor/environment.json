@@ -1,0 +1,3 @@
+{
+  "install": "sh tools/cloud-install.sh"
+}

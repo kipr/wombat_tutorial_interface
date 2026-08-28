@@ -10,6 +10,7 @@ mission_title: "Coding Project 7 — Your Robot’s Arm"
 styles: ["site-base", "worksheet", "syntax", "discovery", "print"]
 project_number: 7
 strand: coding
+platform: wombat
 phase: "Phase 3 · Make It Grab"
 phase_order: 3
 time: "One class period"

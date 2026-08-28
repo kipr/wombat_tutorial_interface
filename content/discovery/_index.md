@@ -6,7 +6,7 @@ styles: ["site-base", "hub", "discovery"]
 eyebrow: "Botball Explorer · Entry Tier"
 heading: "Discovery"
 heading_accent: "Projects"
-description: "Two strands designed to work together. Everything you build gets tested against a real Stack Attack mission."
+description: "Shared Systems plus Wombat, EV3, and SPIKE Coding. Everything you build gets tested against a real Stack Attack mission."
 project_order:
   - systems_project: 1
     coding_project: 1
@@ -35,4 +35,4 @@ project_order:
     kind: suggested
 ---
 
-**Which one first?** You can start either strand. Follow the linked Suggested and Required badges as you move through Coding. Systems Projects 9--14 can fit anywhere; the teamwork projects are most useful when you do them early.
+**Which one first?** You can start Systems or any Coding track. Follow the linked Suggested and Required badges as you move through Coding. Systems Projects 9--14 can fit anywhere; the teamwork projects are most useful when you do them early.

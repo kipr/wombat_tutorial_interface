@@ -10,6 +10,7 @@ mission_title: "Coding Project 8 — Arm and Claw Together"
 styles: ["site-base", "worksheet", "syntax", "discovery", "print"]
 project_number: 8
 strand: coding
+platform: wombat
 phase: "Phase 3 · Make It Grab"
 phase_order: 3
 time: "One class period"

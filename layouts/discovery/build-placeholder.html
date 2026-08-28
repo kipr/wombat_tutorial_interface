@@ -1,0 +1,13 @@
+{{ define "main" }}
+<main class="wrap discovery-hub build-placeholder">
+  <p class="page-eyebrow">{{ .Params.eyebrow }}</p>
+  <h1 class="page-title">{{ .Params.heading }}</h1>
+  <div class="build-placeholder-card">
+    {{ .Content }}
+  </div>
+  {{- with .Params.back }}
+  {{- $target := partial "resolve-page.html" (dict "reference" .page "position" (printf "%s back" $.File.Path)) -}}
+  <a class="hub-feature-link" href="{{ partial "relative-url.html" (dict "source" $ "target" $target) }}">{{ .label }}</a>
+  {{- end }}
+</main>
+{{ end }}

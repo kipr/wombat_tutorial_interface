@@ -6,6 +6,11 @@
 {{- if or (not $order) (not (reflect.IsSlice $order)) -}}
   {{- errorf "%s: project_order must be a list" $discovery.File.Path -}}
 {{- end -}}
+{{- $codingTracks := slice
+  (dict "platform" "wombat" "label" "Wombat Coding" "pattern" "/discovery/coding/project-%02d")
+  (dict "platform" "ev3" "label" "EV3 Coding" "pattern" "/discovery/ev3/project-%02d")
+  (dict "platform" "spike" "label" "SPIKE Coding" "pattern" "/discovery/spike/project-%02d")
+-}}
 {{- $relations := slice -}}
 {{- $buildTarget := site.Params.buildTarget | default "" -}}
 {{- range $index, $entry := $order -}}
@@ -23,20 +28,29 @@
     {{- errorf "%s: coding project range must be ordered from 1 through 17" $position -}}
   {{- end -}}
   {{- $systemsReference := printf "/discovery/systems/project-%02d" $systemsNumber -}}
-  {{- $codingReference := printf "/discovery/coding/project-%02d" $codingNumber -}}
   {{- $systemsPage := site.GetPage $systemsReference -}}
-  {{- $codingPage := site.GetPage $codingReference -}}
   {{- if and (ne $buildTarget "pilot") (not $systemsPage) -}}
     {{- errorf "%s does not resolve: %q" $position $systemsReference -}}
   {{- end -}}
-  {{- if and (ne $buildTarget "pilot") (not $codingPage) -}}
-    {{- errorf "%s does not resolve: %q" $position $codingReference -}}
+  {{- $codingPages := slice -}}
+  {{- range $codingTracks -}}
+    {{- $codingReference := printf .pattern $codingNumber -}}
+    {{- $codingPage := site.GetPage $codingReference -}}
+    {{- if and (ne $buildTarget "pilot") (not $codingPage) -}}
+      {{- errorf "%s does not resolve: %q" $position $codingReference -}}
+    {{- end -}}
+    {{- $codingPages = $codingPages | append (dict
+      "platform" .platform
+      "label" .label
+      "page" $codingPage
+      "number" $codingNumber
+    ) -}}
   {{- end -}}
   {{- $relations = $relations | append (dict
     "systems_number" $systemsNumber
     "systems_page" $systemsPage
     "coding_number" $codingNumber
-    "coding_page" $codingPage
+    "coding_pages" $codingPages
     "through_coding_number" $throughNumber
     "kind" $entry.kind
   ) -}}

@@ -51,6 +51,14 @@ Discovery uses clean Hugo section URLs and no legacy aliases:
 content/discovery/_index.md
 content/discovery/coding/_index.md
 content/discovery/coding/project-01.md ... project-17.md
+content/discovery/ev3/_index.md
+content/discovery/ev3/project-01.md ... project-17.md
+content/discovery/ev3/builds/arm.md
+content/discovery/ev3/builds/claw.md
+content/discovery/spike/_index.md
+content/discovery/spike/project-01.md ... project-17.md
+content/discovery/spike/builds/arm.md
+content/discovery/spike/builds/claw.md
 content/discovery/systems/_index.md
 content/discovery/systems/project-01.md ... project-14.md
 ```
@@ -61,17 +69,18 @@ validated at build time. The required project front matter is:
 | Field | Contract |
 | --- | --- |
 | `title`, `short_title`, `description`, `weight` | Page, navigation, and hub-card text/order. Weight equals the project number. |
-| `mission_id` | Exact legacy persistence identifier, such as `discovery_coding_14` or `discovery_systems_07`; it is not a game-mission number. |
+| `mission_id` | Exact persistence identifier: `discovery_coding_NN` (Wombat), `discovery_ev3_coding_NN`, `discovery_spike_coding_NN`, or `discovery_systems_NN`. |
 | `styles` | Exactly `site-base`, `worksheet`, `syntax`, `discovery`, `print`, in that order. |
-| `project_number`, `strand` | Numeric project identity and either `coding` or `systems`. |
+| `project_number`, `strand` | Numeric project identity and either `coding` or `systems`. Coding projects also set `platform: wombat`, `ev3`, or `spike`. |
 | `phase`, `phase_order`, `time` | Hub grouping plus worksheet metadata. |
 | `meta` | Labelled definition rows and exactly one `What You Need` row whose `checklist` items each contain stable `key` and accessible `label` values. |
 | `eyebrow`, `heading`, `subheading`, `credit` | Shared worksheet hero and footer content. |
 
 Optional card fields are `hub_title`, `mission_label`, `no_mission`, `build`,
 and a `pace` mapping with `kind` (`required`, `suggested`, or `anytime`) and
-`label`. A Coding page may place a `build_gate` after its phase; `page` is a
-Hugo page reference and therefore fails the build if its target is missing.
+`label`. A Coding page may place a `build_gate` after its phase; supply either
+`page`/`label` or a `links` list of page/label pairs. Each target is a Hugo
+page reference and therefore fails the build if it is missing.
 The root and strand hubs derive cards, phase groups, counts, links, badges, and
 gates from section children rather than maintaining a separate project list.
 

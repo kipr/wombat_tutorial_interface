@@ -1,12 +1,38 @@
 {{- $gate := .gate -}}
-{{- if or (not $gate.title) (not $gate.description) (not $gate.page) (not $gate.label) -}}
-  {{- errorf "%s: build_gate needs title, description, page, and label" .position -}}
+{{- $position := .position -}}
+{{- if or (not $gate.title) (not $gate.description) -}}
+  {{- errorf "%s: build_gate needs title and description" $position -}}
 {{- end -}}
-{{- $target := partial "resolve-page.html" (dict "reference" $gate.page "position" (printf "%s build_gate" .position)) -}}
+{{- $links := slice -}}
+{{- with $gate.links -}}
+  {{- if not (reflect.IsSlice .) -}}
+    {{- errorf "%s: build_gate.links must be a list" $position -}}
+  {{- end -}}
+  {{- $links = . -}}
+{{- else -}}
+  {{- if or (not $gate.page) (not $gate.label) -}}
+    {{- errorf "%s: build_gate needs page and label, or a links list" $position -}}
+  {{- end -}}
+  {{- $links = slice (dict "page" $gate.page "label" $gate.label) -}}
+{{- end -}}
+{{- if eq (len $links) 0 -}}
+  {{- errorf "%s: build_gate needs at least one link" $position -}}
+{{- end -}}
+{{- $resolved := slice -}}
+{{- range $index, $link := $links -}}
+  {{- $linkPosition := printf "%s build_gate link %d" $position (add $index 1) -}}
+  {{- if or (not $link.page) (not $link.label) -}}
+    {{- errorf "%s: needs page and label" $linkPosition -}}
+  {{- end -}}
+  {{- $target := partial "resolve-page.html" (dict "reference" $link.page "position" $linkPosition) -}}
+  {{- $resolved = $resolved | append (dict "target" $target "label" $link.label) -}}
+{{- end -}}
 <aside class="buildgate">
   <div class="bg-txt">
     <p class="bg-t">{{ $gate.title }}</p>
     <p class="bg-d">{{ $gate.description }}</p>
   </div>
-  <a class="bg-btn" href="{{ partial "relative-url.html" (dict "source" .page "target" $target) }}">{{ $gate.label }} →</a>
+  {{- range $resolved }}
+  <a class="bg-btn" href="{{ partial "relative-url.html" (dict "source" $.page "target" .target) }}">{{ .label }} →</a>
+  {{- end }}
 </aside>
