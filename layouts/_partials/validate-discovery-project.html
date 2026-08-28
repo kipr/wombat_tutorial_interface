@@ -4,6 +4,14 @@
 {{- if not (in (slice "coding" "systems") $strand) -}}
   {{- errorf "%s: Discovery project strand must be coding or systems" $position -}}
 {{- end -}}
+{{- $platform := $page.Params.platform | default "" -}}
+{{- if eq $strand "coding" -}}
+  {{- if not (in (slice "wombat" "ev3" "spike") $platform) -}}
+    {{- errorf "%s: coding projects need platform wombat, ev3, or spike" $position -}}
+  {{- end -}}
+{{- else if ne $platform "" -}}
+  {{- errorf "%s: systems projects must not set platform" $position -}}
+{{- end -}}
 {{- $maximum := cond (eq $strand "coding") 17 14 -}}
 {{- $number := $page.Params.project_number -}}
 {{- if not (in (seq 1 $maximum) $number) -}}
@@ -16,6 +24,9 @@
   {{- errorf "%s: project %d must use filename project-%02d.md" $position $number $number -}}
 {{- end -}}
 {{- $expectedID := printf "discovery_%s_%02d" $strand $number -}}
+{{- if and (eq $strand "coding") (ne $platform "wombat") -}}
+  {{- $expectedID = printf "discovery_%s_%s_%02d" $platform $strand $number -}}
+{{- end -}}
 {{- if ne $page.Params.mission_id $expectedID -}}
   {{- errorf "%s: mission_id must preserve %q; got %q" $position $expectedID $page.Params.mission_id -}}
 {{- end -}}

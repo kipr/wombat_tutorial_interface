@@ -1,0 +1,33 @@
+{{- $classes := dict
+  "events" "ev"
+  "movement" "mv"
+  "control" "ct"
+  "display" "lt"
+  "motors" "mo"
+  "variables" "vr"
+  "sensors" "sn"
+  "myblocks" "my"
+-}}
+{{- $block := .block -}}
+{{- if not (reflect.IsMap $block) -}}
+  {{- errorf "%s: wordblocks block must be a mapping" .position -}}
+{{- end -}}
+{{- $category := index $block "category" -}}
+{{- if not (in .categories $category) -}}
+  {{- errorf "%s: wordblocks category %q is not allowed" .position $category -}}
+{{- end -}}
+{{- $class := printf "wb %s" (index $classes $category) -}}
+{{- with index $block "shape" -}}
+  {{- if not (in $.shapes .) -}}
+    {{- errorf "%s: wordblocks shape %q is not allowed" $.position . -}}
+  {{- end -}}
+  {{- $class = printf "%s %s" $class . -}}
+{{- end -}}
+{{- $parts := index $block "parts" -}}
+{{- if or (not (reflect.IsSlice $parts)) (eq (len $parts) 0) -}}
+  {{- errorf "%s: wordblocks block needs a non-empty parts list" .position -}}
+{{- end -}}
+<div class="wb-row">
+  <div class="{{ $class }}">{{ partial "wordblocks-parts.html" (dict "parts" $parts "slotKinds" .slotKinds "position" .position) }}</div>
+  {{- with (index $block "note" | default .note) }}<span class="wb-note">{{ . }}</span>{{ end -}}
+</div>

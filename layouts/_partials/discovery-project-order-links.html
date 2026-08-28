@@ -3,22 +3,29 @@
 {{- $location := .location | default "card" -}}
 {{- $matches := slice -}}
 {{- range partial "discovery-project-order.html" . -}}
+  {{- $kind := .kind -}}
   {{- if and (eq $project.Params.strand "systems") (eq $project.Params.project_number .systems_number) -}}
-    {{- $matches = $matches | append (dict
-      "kind" .kind
-      "number" .coding_number
-      "page" .coding_page
-      "strand" "Coding"
-    ) -}}
+    {{- range .coding_pages -}}
+      {{- if .page -}}
+        {{- $matches = $matches | append (dict
+          "kind" $kind
+          "number" .number
+          "page" .page
+          "strand" .label
+          "from_systems" true
+        ) -}}
+      {{- end -}}
+    {{- end -}}
   {{- else if and
     (eq $project.Params.strand "coding")
     (ge $project.Params.project_number .coding_number)
     (le $project.Params.project_number .through_coding_number) -}}
     {{- $matches = $matches | append (dict
-      "kind" .kind
+      "kind" $kind
       "number" .systems_number
       "page" .systems_page
       "strand" "Systems"
+      "from_systems" false
     ) -}}
   {{- end -}}
 {{- end -}}
@@ -27,11 +34,12 @@
   {{- if eq $location "header" }}<span class="project-order-label">Systems projects to do first</span>{{ end -}}
   {{- range . -}}
     {{- $priority := cond (eq .kind "required") "Required" "Suggested" -}}
-    {{- $label := cond
-      (eq $project.Params.strand "systems")
-      (printf "%s before Coding %d" $priority .number)
-      (printf "%s: %s %d first" $priority .strand .number)
-    -}}
+    {{- $label := "" -}}
+    {{- if .from_systems -}}
+      {{- $label = printf "%s before %s %d" $priority .strand .number -}}
+    {{- else -}}
+      {{- $label = printf "%s: %s %d first" $priority .strand .number -}}
+    {{- end -}}
     {{- if eq $location "header" -}}
       {{- if .page -}}
         {{- $label = printf "%s: %s" $priority .page.Title -}}
