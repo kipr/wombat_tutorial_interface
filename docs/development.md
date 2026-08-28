@@ -6,16 +6,39 @@ The supported container is defined by `Dockerfile` and `.devcontainer/`:
 
 - Hugo `v0.164.0` from the official extended image;
 - Node for the dependency-free build-output validator and browser-behavior
-  tests.
+  tests;
+- Pandoc `3.6.4` (Debian/Ubuntu and CI) or `pandoc-cli` (Alpine image) plus a
+  local copy of the custom-writer documentation under
+  `/usr/local/share/doc/pandoc/`.
 
 There is no package installation step and no task runner. If working outside
 the container, use the pinned Hugo version to avoid template or Goldmark drift.
+Install or refresh Pandoc with:
 
-Check the active version:
+```sh
+sh tools/install-pandoc.sh
+pandoc --version
+```
+
+Check the active Hugo version:
 
 ```sh
 hugo version
 ```
+
+## Discovery HTML importer
+
+Convert the 40 EV3/SPIKE HTML files under `tbc/` with:
+
+```sh
+node tools/discovery-importer/import.js --help
+node tools/discovery-importer/import.js --out /tmp/discovery-preview
+node tools/discovery-importer/import.js --force   # overwrite content/discovery
+```
+
+Pandoc must be invoked as `--from=html+raw_html --to=tools/discovery-importer/writer.lua`.
+The driver refuses to overwrite existing Markdown unless `--force` is passed.
+Leave `tbc/` unchanged; generated Markdown is the authored source after import.
 
 ## Preview and build
 
@@ -129,6 +152,8 @@ node tools/check_syntax_highlighting.js "$build_dir"
 node tools/check_internal_links.js "$build_dir"
 node tests/test_lab_persistence.js
 node tests/test_glossary_dialog.js
+node tests/test_discovery_import.js
+node tests/test_wordblocks_markup.js "$build_dir"
 ```
 
 What they cover:
@@ -140,6 +165,8 @@ What they cover:
 | `check_internal_links.js` | Generated relative `href`, `src`, and `poster` targets and HTML fragments. |
 | `test_lab_persistence.js` | Checkbox/text restore, autosave, export payload, and print submission flow. |
 | `test_glossary_dialog.js` | Semantic activation, close behavior, Escape, and focus return. |
+| `test_discovery_import.js` | Pandoc Lua writer conversion of the 40 EV3/SPIKE HTML sources, inventories, and failure fixtures. |
+| `test_wordblocks_markup.js` | Rendered `wordblocks` shortcode: categories, nested controls, accessible name, and `aria-hidden` internals. |
 
 The Node tests execute `static/js/lab.js` in small mocked DOMs. They do not
 require a browser or npm dependencies.

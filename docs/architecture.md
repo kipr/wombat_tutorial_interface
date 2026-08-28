@@ -76,9 +76,9 @@ checks in [Development and verification](development.md#page-exists-but-the-brow
 ### Home and section hubs
 
 `content/_index.md` drives the home cards. The C and Python lab indexes group
-their regular pages by `hub_unit`; Discovery hubs derive strand, phase, count,
-pace, and gate cards from their child pages. Do not maintain a second list of
-Discovery projects.
+The Discovery root is a four-choice hub: shared Systems plus Wombat, EV3, and
+SPIKE Coding. Coding hubs set `platform` and `heading_accent: Coding`. Systems
+prerequisite badges resolve the matching project on every coding platform.
 
 Educator Resources (`content/resources/`) is the teacher-facing hub for guides,
 research, and standards materials. Its cards can resolve Hugo pages or literal
@@ -98,7 +98,8 @@ Hugo `page` reference or a literal `url` for a static legacy target.
 
 `content/labs/`, `content/python_labs/`, and Discovery project pages ultimately
 use the `labs` or `discovery` single layout. Both delegate the main document to
-`layouts/_partials/worksheet-main.html`.
+`layouts/_partials/worksheet-main.html`. EV3 and SPIKE arm/claw placeholders
+use `layouts/discovery/build-placeholder.html`.
 
 That renderer adds the hero, metadata, PIN/submission controls, authored
 content, previous/next navigation, and credit. It then:
