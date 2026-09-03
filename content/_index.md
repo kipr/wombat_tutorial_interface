@@ -1,5 +1,5 @@
 ---
-title: "KIPR Botball 2026-2027"
+title: "KIPR Botball Explorer 2026-2027"
 nav: home
 hub: true
 styles: ["site-base", "hub"]

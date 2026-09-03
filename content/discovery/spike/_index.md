@@ -1,5 +1,5 @@
 ---
-title: "Coding Projects — Discovery SPIKE Track · KIPR Botball 2026-2027"
+title: "Coding Projects — Discovery SPIKE Track · KIPR Botball Explorer 2026-2027"
 index_label: "All SPIKE Coding Projects"
 nav: "discovery"
 hub: true

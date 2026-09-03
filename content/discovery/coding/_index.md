@@ -1,5 +1,5 @@
 ---
-title: "Coding Projects — Discovery Wombat Track · KIPR Botball 2026-2027"
+title: "Coding Projects — Discovery Wombat Track · KIPR Botball Explorer 2026-2027"
 index_label: "All Wombat Coding Projects"
 nav: discovery
 hub: true
