@@ -20,7 +20,7 @@
 {{- $file := cond (eq $side "right") "b3x_rsb.svg" "b3x_lsb.svg" -}}
 {{- $src := partial "relative-url.html" (dict "source" .Page "path" (printf "img/field/%s" $file)) -}}
 <div class="sketch">
-<img src="{{ $src }}" alt="{{ $aria }}">
+<img src="{{ $src }}" alt="{{ $aria }}" loading="eager">
 <span class="tag">{{ $tag }}</span>
 </div>
 {{- with .Get "note" }}

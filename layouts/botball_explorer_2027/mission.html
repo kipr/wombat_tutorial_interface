@@ -30,7 +30,7 @@
 
     <h2>Mission Video</h2>
     <figure class="explorer-mission-video">
-      <video class="explorer-mission-video-player" controls preload="metadata" playsinline width="1280" height="720" aria-label="Mission {{ $number }} explanatory video">
+      <video class="explorer-mission-video-player" controls preload="auto" playsinline width="1280" height="720" aria-label="Mission {{ $number }} explanatory video">
         <source src="{{ $videoURL }}" type="{{ $video.MediaType.Type }}">
         <a href="{{ $videoURL }}">Download the Mission {{ $number }} video.</a>
       </video>

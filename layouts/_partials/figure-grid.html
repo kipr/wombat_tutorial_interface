@@ -12,7 +12,7 @@
   <figure class="figure-card fig{{ with .check_id }} checklist-item{{ end }}">
     <div class="figure-image-wrap image-wrapper">
       <button class="figure-zoom" type="button" aria-label="Enlarge: {{ .alt }}">
-        <img src="{{ .src }}" alt="{{ .alt }}" loading="lazy">
+        <img src="{{ .src }}" alt="{{ .alt }}" loading="eager">
       </button>
       {{- with .check_id }}
       <label class="image-checkbox" for="{{ . }}"><input type="checkbox" id="{{ . }}" data-key="part_{{ . }}"><span>Have it</span></label>

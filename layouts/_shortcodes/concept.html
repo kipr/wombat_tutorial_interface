@@ -62,7 +62,7 @@
 {{- $src := index . "src" | default "" -}}
 {{- $alt := index . "alt" | default "" -}}
 {{- if not $src }}{{ errorf `%s: concept image part needs "src"` $.Position }}{{ end -}}
-<img src="{{ partial "relative-url.html" (dict "source" $.Page "path" $src) }}"{{ with $alt }} alt="{{ . }}"{{ end }}>
+<img src="{{ partial "relative-url.html" (dict "source" $.Page "path" $src) }}"{{ with $alt }} alt="{{ . }}"{{ end }} loading="eager">
 {{- end }}
 {{- end }}
 </div>
