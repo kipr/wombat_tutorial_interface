@@ -1,5 +1,5 @@
 ---
-title: "KIPR Botball 2026-2027 Preview"
+title: "KIPR Botball Explorer 2026-2027 Preview"
 nav: home
 hub: true
 styles: ["site-base", "hub"]
@@ -17,10 +17,10 @@ cards:
     arrow: "View Missions →"
     page: /botball_explorer_2027
   - kicker: "Classroom · Entry Tier"
-    title: "Discovery Projects"
+    title: "Introductory Projects"
     desc: "The starting point for younger teams — two strands, Coding and Systems, with every project anchored to a real mission."
-    arrow: "Open Discovery →"
-    page: /discovery
+    arrow: "Open Introductory →"
+    page: /introductory
   - kicker: "Classroom · CS1 + AI · C"
     title: "Student Labs — C"
     desc: "Interactive Botball Explorer lab sheets — fill in on screen, then submit for a results file and printable PDF."

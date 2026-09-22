@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 16 (EV3) — Building Your Toolbox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #C0392B;
+    --red-dark: #922B21;
+    --navy: #1C1C1C;
+    --gold: #C0392B;
+    --ink: #1C1C1C;
+    --grey: #666666;
+    --line: #CCCCCC;
+    --bg: #F2F2F2;
+    --panel: #ffffff;
+    --field: #F8F8F8;
+    --field-focus: #FDF2F2;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #666666;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #ffffff; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d8483a; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #FDF2F2;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #FDF2F2; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+  .callout.danger { border-left-color: #922B21; background: #fdf0ef; }
+  .callout.danger .ctitle { color: #922B21; }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 230px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  /* file layout diagram */
+  .files { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .files .f { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .files .fname {
+    background: var(--navy); color: #fff; padding: 9px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; font-weight: bold;
+  }
+  .files .f.main .fname { background: var(--red); }
+  .files pre.code { margin: 0; border-radius: 0; font-size: 13.5px; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .files { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode, .files .fname { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .botnav{display:flex;align-items:center;justify-content:flex-start;gap:20px 24px;flex-wrap:wrap;margin:46px 40px 0;padding:26px 0 8px;border-top:1px solid var(--line)}
+  .botnav a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+            font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+            letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
+            border:1px solid var(--line);border-radius:5px;padding:12px 20px;background:#fff}
+  .botnav a:hover{border-color:var(--gold);background:#FDF2F2;color:var(--red)}
+  .botnav a.next{margin-left:auto}
+  .botnav a.gloss{color:#8a6d2f;border-color:rgba(192,57,43,.55);background:#FDF2F2}
+  .botnav a.gloss:hover{background:rgba(192,57,43,.16)}
+  .botnav .spacer{flex:1}
+  @media (max-width:700px){
+    .botnav{margin-left:20px;margin-right:20px;gap:10px;padding-top:18px}
+    .botnav a{font-size:13.5px;padding:11px 14px;flex:1 1 46%;justify-content:center}
+    .botnav a.next{margin-left:0}
+  }
+  @media print{ .botnav{display:none} }
+
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(192,57,43,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(192,57,43,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+  .mainnav{display:flex;align-items:center;gap:4px 18px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+           font-size:14px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;line-height:1}
+  .mainnav a{color:rgba(255,255,255,.66);text-decoration:none;padding:5px 2px;border-bottom:2px solid transparent}
+  .mainnav a:hover{color:#fff}
+  .mainnav a.here{color:var(--gold);border-bottom-color:var(--gold)}
+  @media (max-width:820px){ .mainnav{font-size:12.5px;gap:3px 13px} }
+  @media print{ .mainnav{display:none} }
+
+
+  /* ===== EV3 Classroom word-block rendering ===== */
+  .wb-prog{margin:14px 0 6px;padding:16px 18px 20px;background:#eef1f6;border:1px solid var(--line);
+           border-radius:8px;overflow-x:auto}
+  .wb-row{display:flex;align-items:center;gap:14px}
+  .wb-row + .wb-row{margin-top:3px}
+  .wb{position:relative;display:inline-flex;align-items:center;gap:7px;color:#fff;
+      font-family:'Barlow',sans-serif;font-weight:600;font-size:15.5px;line-height:1;
+      padding:9px 15px 10px;border-radius:5px;white-space:nowrap;flex-shrink:0;
+      text-shadow:0 1px 1px rgba(0,0,0,.22);box-shadow:inset 0 -2px 0 rgba(0,0,0,.16)}
+  .wb::before{content:"";position:absolute;top:0;left:14px;width:24px;height:4px;
+              background:#eef1f6;border-radius:0 0 4px 4px}
+  .wb::after{content:"";position:absolute;bottom:-4px;left:14px;width:24px;height:4px;
+             background:inherit;border-radius:0 0 4px 4px}
+  .wb.hat{border-radius:16px 16px 5px 5px;padding-top:11px}
+  .wb.hat::before{display:none}
+  .wb.ev{background:#F5B912}
+  .wb.mv{background:#FF4FA0}
+  .wb.ct{background:#FFA119}
+  .wb .pill{display:inline-flex;align-items:center;gap:5px;background:#fff;color:#333;
+            text-shadow:none;border-radius:999px;padding:4px 10px;font-size:14px;font-weight:600;
+            box-shadow:inset 0 1px 2px rgba(0,0,0,.14)}
+  .wb .pill.dd{background:rgba(0,0,0,.22);color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.2);
+               box-shadow:none}
+  .wb .pill.dd b{font-weight:400;font-size:11px}
+  .wb .pill.steer{padding-left:6px}
+  .wb .dial{position:relative;width:18px;height:18px;border-radius:50%;
+            border:2px solid #555;background:#fff;flex-shrink:0}
+  .wb .dial i{position:absolute;left:50%;top:1px;width:2px;height:7px;background:#555;
+              transform:translateX(-50%);border-radius:2px}
+  .wb-note{font-size:14px;color:var(--grey);font-style:italic;white-space:nowrap}
+  @media (max-width:700px){ .wb{font-size:14px;padding:8px 12px 9px} .wb-note{font-size:12.5px} }
+  @media print{
+    .wb-prog{background:#f4f4f4 !important;border-color:#999}
+    .wb, .wb .pill, .wb .pill.dd{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+
+
+  /* batch-1 additions: Light + Motors categories, matrix pill */
+  .wb.lt{background:#A45FE0}
+  .wb.mo{background:#F8618E}
+  .wb .pill.mx{display:inline-grid;grid-template-columns:repeat(5,5px);gap:1.5px;
+               padding:5px 6px;background:#26262b;border-radius:4px;box-shadow:none}
+  .wb .pill.mx s{display:block;width:5px;height:5px;border-radius:1px;background:#44444c;text-decoration:none}
+  .wb .pill.mx s.on{background:#FFD84D}
+
+
+  /* batch-3 additions: Variables, Sensors, Operators, C-blocks, My Blocks */
+  .wb.vr{background:#FF8C1A}
+  .wb.sn{background:#2FA8CE}
+  .wb.my{background:#FF6680}
+  .wb .pill.var{background:#FF8C1A;color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.2);box-shadow:none}
+  .wb .hex{display:inline-flex;align-items:center;gap:5px;color:#fff;font-size:14px;font-weight:600;
+           padding:5px 16px;background:#59C059;text-shadow:0 1px 1px rgba(0,0,0,.2);
+           clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,9px 100%,0 50%)}
+  .wb .hex.sn2{background:#2FA8CE}
+  .wb .hex .pill{padding:2px 8px;font-size:13px}
+  .wb-cwrap{display:inline-block}
+  .wb.cb-top{border-radius:5px 5px 0 0}
+  .wb-cbody{position:relative;padding:4px 0 4px 20px;margin:0}
+  .wb-cbody::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:#FFA119;border-radius:0 0 0 3px}
+  .wb.cb-end{display:block;width:120px;height:14px;padding:0;border-radius:0 0 5px 5px;background:#FFA119}
+  .wb.cb-end::before,.wb.cb-end::after{display:none}
+  .wb.hat.my{border-radius:16px 16px 5px 5px}
+
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>EV3 Track</span></div>
+      <nav class="mainnav" aria-label="Main"><a href="../../index.html">Home</a><a href="../../2026-missions.html">2026 Missions</a><a href="../../discovery/index.html" class="here">Discovery</a><a href="../../labs/index.html">C Labs</a><a href="../../Python_Labs/index.html">Python Labs</a><a href="../../glossary.html">Glossary</a></nav>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · EV3 Track · Coding · Project 16</p>
+    <h1>Building Your Toolbox</h1>
+    <p class="sub">Write it once. Use it in every project you ever make.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Gathering your best blocks and variables into one master Toolbox project that every new mission starts from.</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod161" data-key="need_1"><label for="ndcod161">Tablet or Chromebook with the EV3 Classroom app</label></li>
+          <li><input type="checkbox" id="ndcod162" data-key="need_2"><label for="ndcod162">Your robot, for testing</label></li>
+          <li><input type="checkbox" id="ndcod163" data-key="need_3"><label for="ndcod163">Every project you have built since Project 12</label></li>
+        </ul>
+      </dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 12 onward — you need a set of working My Blocks worth keeping.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> How Many Copies Do You Have?</h2>
+
+    <p>Open your projects from 12 onwards, one at a time, and count.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:44%">Project</th><th style="width:26%">Has a drive block?</th><th>Has a turn block?</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>12 — Teaching Your Robot New Moves</td><td><input type="text" data-key="p1_c12_d" aria-label="P12 drive"></td><td><input type="text" data-key="p1_c12_t" aria-label="P12 turn"></td></tr>
+        <tr class="trial"><td>13 — Deciding What to Do</td><td><input type="text" data-key="p1_c13_d" aria-label="P13 drive"></td><td><input type="text" data-key="p1_c13_t" aria-label="P13 turn"></td></tr>
+        <tr class="trial"><td>14 — Seeing Light and Dark</td><td><input type="text" data-key="p1_c14_d" aria-label="P14 drive"></td><td><input type="text" data-key="p1_c14_t" aria-label="P14 turn"></td></tr>
+        <tr class="trial"><td>15 — Following the Line</td><td><input type="text" data-key="p1_c15_d" aria-label="P15 drive"></td><td><input type="text" data-key="p1_c15_t" aria-label="P15 turn"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Now find out whether they match</h3>
+
+    <p>Open the <em>define turn right 90</em> stacks from two different projects side by side and compare them block for block.</p>
+
+    <p class="q">Are they identical?</p>
+    <input type="text" data-key="p1_identical" aria-label="Identical">
+
+    <p class="q">Somewhere along the way you improved one of these — a better overshoot number, a cleaner stop. Which project has your <strong>best</strong> version, and do the others have it?</p>
+    <textarea class="answer" data-key="p1_best_where" aria-label="Best version where"></textarea>
+
+    <div class="callout warn">
+      <p class="ctitle">&#9888; Your Good Work Is Trapped</p>
+      <p>Project 12 fixed the problem of building the same thing twice <em>inside one program</em>. It did nothing about building it again in the <em>next</em> program.</p>
+      <p>Right now every improvement you make lives in exactly one project, and the others quietly keep the old broken version.</p>
+    </div>
+
+    <p class="q">Your team has four people, each working on a different mission in a different project. One of them finds a much better turn. How does that reach everyone else?</p>
+    <textarea class="answer" data-key="p1_four_people" aria-label="Four people"></textarea>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> One Master Project</h2>
+
+    <p>A <span class="def-term" data-term="LIBRARY">library</span> is a collection of ready-made pieces that any program can use. You have been using one since Project 1: <strong>the block shelf itself</strong>. Every block on it is somebody’s finished, tested, named work, handed to you so you never build it again.</p>
+
+    <h3 class="sub">Two shelves</h3>
+
+    <div class="anat">
+      <div class="arow"><div class="acode">the shelf that came with the app</div><div class="adesc">Movement, Motors, Sensors, Control... You cannot change these — they belong to everyone.</div></div>
+      <div class="arow"><div class="acode">My Blocks</div><div class="adesc">The shelf <em>you</em> fill. Since Project 12, everything you put here is your own library — but it is trapped inside whichever project you built it in.</div></div>
+    </div>
+
+    <h3 class="sub">The Toolbox project</h3>
+
+    <p>Here is the fix, and it is a habit more than a feature. You build <strong>one master project</strong> — call it <code>Team Toolbox v1</code> — that contains:</p>
+
+    <div class="anat">
+      <div class="arow"><div class="acode">under the hat</div><div class="adesc">All your <em>set</em> blocks — every variable on your cards: positions, speeds, threshold, degrees-per-inch — and nothing else.</div></div>
+      <div class="arow"><div class="acode">beside it on the canvas</div><div class="adesc">Every define stack you own: drive forward, turn right 90, turn left 90, grab, drop off, follow the line...</div></div>
+      <div class="arow"><div class="acode">and no mission blocks</div><div class="adesc">The Toolbox never drives a mission. It is the workshop, not the match.</div></div>
+    </div>
+
+    <p>Then the rule that makes it work: <strong>every new mission starts as a copy of the Toolbox.</strong> Duplicate it from the project list if your app offers Duplicate; otherwise open the Toolbox and save a copy under the mission’s name. Either way, open the fresh copy and everything is already there — variables set, blocks on the shelf, waiting.</p>
+
+    <div class="callout gold">
+      <p class="ctitle">Improvements Go to the Master First</p>
+      <p>Find a better overshoot number? A cleaner drop-off? <strong>Fix it in the Toolbox</strong>, then in whatever mission copy you are working in. Every duplicate you make from that day on carries the fix.</p>
+    </div>
+
+    <div class="callout warn">
+      <p class="ctitle">&#9888; Copies Do Not Update Themselves</p>
+      <p>Be honest about the limit: a mission project you duplicated <em>last week</em> still has last week’s blocks. Duplicating spreads your best work <strong>forward</strong>, not backward. Old copies have to be fixed by hand — which is exactly why the master must always hold the best version, and why the team has to know it.</p>
+    </div>
+
+    <h3 class="sub">Name it like you mean it</h3>
+
+    <p>One master, clearly named, and a version number that moves: <code>Team Toolbox v1</code>, <code>v2</code>, <code>v3</code>. Mission copies get mission names: <code>M8 Dock Run</code>, not <code>Team Toolbox v2 copy copy</code>. Five minutes of naming saves an hour of "wait, which one is real?"</p>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Build the Toolbox</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Gather your best</span>
+        <p>For each block, decide which project holds your best version — the one with the corrected numbers and the clean endings. Write it down before you copy anything.</p>
+        <table class="grid">
+          <thead><tr><th style="width:34%">Block</th><th style="width:30%">Best version lives in...</th><th>Why it is the best</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>drive forward (inches)</td><td><input type="text" data-key="p3_b_drive" aria-label="Best drive"></td><td><input type="text" data-key="p3_b_drive_w" aria-label="Best drive why"></td></tr>
+            <tr class="trial"><td>turn right 90 / turn left 90</td><td><input type="text" data-key="p3_b_turn" aria-label="Best turn"></td><td><input type="text" data-key="p3_b_turn_w" aria-label="Best turn why"></td></tr>
+            <tr class="trial"><td>grab / drop off</td><td><input type="text" data-key="p3_b_grab" aria-label="Best grab"></td><td><input type="text" data-key="p3_b_grab_w" aria-label="Best grab why"></td></tr>
+            <tr class="trial"><td>line follow</td><td><input type="text" data-key="p3_b_line" aria-label="Best line"></td><td><input type="text" data-key="p3_b_line_w" aria-label="Best line why"></td></tr>
+          </tbody>
+        </table>
+      </li>
+
+      <li>
+        <span class="stitle">Build Team Toolbox v1</span>
+        <p>New project called <code>Team Toolbox v1</code>. Under <em>when program starts</em>: every set block from your cards — motor card, measuring card, sensor card. Then rebuild each define stack, best version, on the canvas beside it.</p>
+        <p>Finish the hat’s stack with a single beep, so running the Toolbox proves it is alive without moving the robot.</p>
+        <ul class="check">
+          <li><input type="checkbox" id="d1" data-key="p3_tb_vars"><label for="d1">Every variable from my cards is set under the hat</label></li>
+          <li><input type="checkbox" id="d2" data-key="p3_tb_defs"><label for="d2">Every define stack is in, best version, and nothing mission-shaped anywhere</label></li>
+          <li><input type="checkbox" id="d3" data-key="p3_tb_runs"><label for="d3">Running it beeps and does nothing else</label></li>
+        </ul>
+      </li>
+
+      <li>
+        <span class="stitle">Duplicate and build from it</span>
+        <p>Make a copy of the Toolbox — Duplicate in the project list, or save a copy — and name it <code>Toolbox Test</code>. Open it — your whole shelf is waiting. Snap a tiny mission onto the hat: drive forward 12, turn right 90, grab.</p>
+        <p class="q">How long did it take to start this "new project," compared with building those blocks from scratch?</p>
+        <input type="text" data-key="p3_dup_time" aria-label="Duplicate time">
+        <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_dup_works"><label for="d4">A duplicated Toolbox runs a mission using my blocks, with nothing rebuilt</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Fix it once, watch it spread forward</span>
+        <p>Change your turn overshoot number in the <strong>master</strong> Toolbox — even by 1, just to trace it. Duplicate again into <code>Toolbox Test 2</code> and check the number arrived.</p>
+        <p>Now open your old <code>Toolbox Test</code> and look at the same number.</p>
+        <p class="q">Which copies got the fix, and which did not? Say the rule this proves.</p>
+        <textarea class="answer" data-key="p3_spread_rule" aria-label="Spread rule"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Write the instructions</span>
+        <p>On paper or in your team notes, write the three team rules: where new missions come from, where improvements go first, and what the master is never used for. Hand them to a teammate and have them start a new mission using only what you wrote.</p>
+        <ul class="check"><li><input type="checkbox" id="d5" data-key="p3_teammate_test"><label for="d5">A teammate started a mission from the Toolbox using only my instructions</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Back it up</span>
+        <p>Copy the master one more time and name it <code>Toolbox v1 BACKUP</code>. Never open it. If the master ever gets wrecked — a mission built into it by accident, a define deleted — the backup is your way home.</p>
+        <ul class="check"><li><input type="checkbox" id="d6" data-key="p3_backup"><label for="d6">A backup copy exists and the team knows not to touch it</label></li></ul>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <p>No mission points this time. What you built is the thing that makes every future run faster to write.</p>
+
+    <h3 class="sub">My toolbox</h3>
+    <table class="grid">
+      <thead><tr><th style="width:34%">Block in the Toolbox</th><th style="width:26%">Inputs</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td><input type="text" data-key="p4_tb1" aria-label="TB 1"></td><td><input type="text" data-key="p4_tb1_a" aria-label="TB 1 in"></td><td><input type="text" data-key="p4_tb1_d" aria-label="TB 1 does"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p4_tb2" aria-label="TB 2"></td><td><input type="text" data-key="p4_tb2_a" aria-label="TB 2 in"></td><td><input type="text" data-key="p4_tb2_d" aria-label="TB 2 does"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p4_tb3" aria-label="TB 3"></td><td><input type="text" data-key="p4_tb3_a" aria-label="TB 3 in"></td><td><input type="text" data-key="p4_tb3_d" aria-label="TB 3 does"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p4_tb4" aria-label="TB 4"></td><td><input type="text" data-key="p4_tb4_a" aria-label="TB 4 in"></td><td><input type="text" data-key="p4_tb4_d" aria-label="TB 4 does"></td></tr>
+        <tr class="trial"><td><input type="text" data-key="p4_tb5" aria-label="TB 5"></td><td><input type="text" data-key="p4_tb5_a" aria-label="TB 5 in"></td><td><input type="text" data-key="p4_tb5_d" aria-label="TB 5 does"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Which project?</h3>
+    <table class="grid">
+      <thead><tr><th style="width:60%">Where does it happen?</th><th>Project</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>An improvement to the turn block goes here first</td><td><input type="text" data-key="p4_wp_1" aria-label="WP 1"></td></tr>
+        <tr class="trial"><td>Mission blocks get built here</td><td><input type="text" data-key="p4_wp_2" aria-label="WP 2"></td></tr>
+        <tr class="trial"><td>This one is never opened at all</td><td><input type="text" data-key="p4_wp_3" aria-label="WP 3"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_two"><label for="s1">I can explain the two shelves — the one that came with the app, and the one I fill</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_master"><label for="s2">My team has one master Toolbox, clearly named, with a version number</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_dup"><label for="s3">Every new mission starts as a duplicate of the Toolbox</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_first"><label for="s4">Improvements go to the master first, and I know why old copies do not get them</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_backup"><label for="s5">A backup exists and nobody builds missions in the master</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_teach"><label for="s6">A teammate can use the Toolbox from my written instructions alone</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">Nothing your robot does changed today, again. Project 9 was the same. What kind of work is this, if it is not making the robot better — and why does it keep winning you time anyway?</p>
+    <textarea class="answer" data-key="p4_what_kind" aria-label="What kind of work"></textarea>
+
+    <p class="q">The block shelf that came with the app was somebody’s Toolbox once. What do you think their rules were for what got to go on it?</p>
+    <textarea class="answer" data-key="p4_their_rules" aria-label="Their rules"></textarea>
+
+    <p class="q">Your Toolbox rule spreads fixes forward but not backward. Real software teams have the same problem with old versions. What would it take to fix an old mission copy — and when is it not worth doing?</p>
+    <textarea class="answer" data-key="p4_backport" aria-label="Backporting"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>One project left. Several missions still have a bonus that means nothing more than "now do that again" — and you are going to stop doing it by hand.</p>
+    <p>In <strong>Project 17 — Repeating Without Retyping</strong>, you meet the last loop.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+  <nav class="botnav no-print" aria-label="Page navigation">
+    <a href="index.html">&larr; Coding Projects</a>
+    <a href="project-15.html">&larr; Project 15</a>
+    <a class="gloss" href="../../glossary.html">Glossary</a>
+    <a class="next" href="project-17.html">Project 17 &rarr;</a>
+  </nav>
+
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'LIBRARY': ['Library', 'A collection of ready-made, named pieces of program that any project can use. The block shelf is a library someone built for you; your Toolbox project is the one you build for your team.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_ev3_coding_16";
+  var MISSION_TITLE = "Discovery Project 16 (EV3) — Building Your Toolbox";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+</body>
+</html>

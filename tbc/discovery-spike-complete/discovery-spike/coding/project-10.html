@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discovery Project 10 (SPIKE) — Feeling for Things</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #C0392B;
+    --red-dark: #922B21;
+    --navy: #1C1C1C;
+    --gold: #C0392B;
+    --ink: #1C1C1C;
+    --grey: #666666;
+    --line: #CCCCCC;
+    --bg: #F2F2F2;
+    --panel: #ffffff;
+    --field: #F8F8F8;
+    --field-focus: #FDF2F2;
+    --code-bg: #1f2330;
+    --code-ink: #e7e3d8;
+    --code-green: #8fbf7f;
+    --code-blue: #7fb0e0;
+    --code-red: #e59a9a;
+    --code-aqua: #7fd6cf;
+    --code-dim: #666666;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Sticky PIN / submit bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); color: #fff;
+    border-bottom: 3px solid var(--gold);
+  }
+  .topbar-inner {
+    max-width: 920px; margin: 0 auto; padding: 10px 22px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .topbar .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; margin-right: auto;
+  }
+  .topbar .brand span { color: var(--gold); }
+  .pin-field { display: flex; align-items: center; gap: 8px; }
+  .pin-field label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.8);
+  }
+  .pin-field input {
+    width: 92px; padding: 7px 10px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; background: rgba(255,255,255,.1); color: #fff;
+    font-family: 'Barlow', sans-serif; font-size: 17px; letter-spacing: .12em;
+  }
+  .pin-field input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.18); }
+  .submit-btn {
+    background: var(--gold); color: #ffffff; border: none; border-radius: 4px;
+    padding: 9px 18px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  }
+  .submit-btn:hover { background: #d8483a; }
+  .status { font-size: 14px; color: var(--gold); min-height: 1em; }
+  .status.err { color: #ffb4b4; }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    max-width: 920px; margin: 26px auto 60px; background: var(--panel);
+    padding: 0 0 40px; box-shadow: 0 2px 14px rgba(0,0,0,.09);
+  }
+  .hero {
+    background: var(--navy); color: #fff; padding: 30px 40px 26px;
+    border-bottom: 5px solid var(--gold);
+  }
+  .hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.05; margin: 0 0 8px;
+  }
+  .hero .sub { margin: 0; color: rgba(255,255,255,.72); font-size: 18px; }
+
+  section { padding: 0 40px; }
+
+  .meta { margin: 26px 0 0; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .meta dl { margin: 0; }
+  .meta .row { display: grid; grid-template-columns: 210px 1fr; border-bottom: 1px solid var(--line); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta dt {
+    background: #f6f7f9; padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy);
+  }
+  .meta dd { margin: 0; padding: 10px 14px; font-size: 17px; }
+  .meta dd.anchor { font-weight: 600; color: var(--red); }
+
+  .pin-reminder {
+    margin: 20px 0 0; padding: 14px 16px; background: #FDF2F2;
+    border: 1px solid var(--gold); border-radius: 5px; font-size: 17px;
+  }
+  .pin-reminder strong { color: var(--navy); }
+
+  .phase-head {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px;
+    color: var(--navy); margin: 40px 0 4px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--red); display: flex; align-items: baseline; gap: 12px;
+  }
+  .phase-head .pnum {
+    background: var(--red); color: #fff; font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 700;
+  }
+  h3.sub {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--red); margin: 26px 0 6px; letter-spacing: .01em;
+  }
+  p { margin: 10px 0; }
+  .muted { color: var(--grey); font-size: 17px; }
+
+  .callout {
+    background: #f6f7f9; border-left: 5px solid var(--red);
+    padding: 14px 18px; margin: 18px 0; border-radius: 0 5px 5px 0;
+  }
+  .callout.navy { border-left-color: var(--navy); background: #f2f4fa; }
+  .callout.gold { border-left-color: var(--gold); background: #FDF2F2; }
+  .callout .ctitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin: 0 0 6px;
+  }
+  .callout.warn { border-left-color: #b3541e; background: #fff4ec; }
+  .callout.warn .ctitle { color: #8a3d12; }
+  .callout.danger { border-left-color: #922B21; background: #fdf0ef; }
+  .callout.danger .ctitle { color: #922B21; }
+
+  /* Mission card */
+  .mission { border: 2px solid var(--red); border-radius: 6px; overflow: hidden; margin: 18px 0; }
+  .mission-head {
+    background: var(--red); color: #fff; padding: 11px 18px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .mission-head .mtitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 20px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .mission-head .mpts {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 15px; letter-spacing: .08em; color: rgba(255,255,255,.85);
+  }
+  .mission-body { padding: 4px 18px 14px; }
+  .mpart { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .mpart:last-child { border-bottom: none; }
+  .mpart .mlabel {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--navy); display: block; margin-bottom: 3px;
+  }
+  .mpart .jtag {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 1px 7px; border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+  .jtag.live { background: #d8ecdd; color: #145a32; }
+  .jtag.final { background: #e3e7f5; color: #23336b; }
+  .mpart.later { background: #f6f7f9; margin: 0 -18px; padding-left: 18px; padding-right: 18px; color: var(--grey); }
+  .mpart.later .mlabel { color: var(--grey); }
+
+  ul.obj, ul.plain { margin: 10px 0 10px 22px; padding: 0; }
+  ul.obj li, ul.plain li { margin: 6px 0; }
+
+  ul.check { list-style: none; margin: 14px 0; padding: 0; }
+  ul.check li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 5px; margin-bottom: 8px; background: var(--field);
+  }
+  ul.check input[type="checkbox"] {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--red); cursor: pointer;
+  }
+  ul.check label { cursor: pointer; font-size: 18px; }
+
+  ol.dosteps { margin: 14px 0 14px 0; padding-left: 0; list-style: none; counter-reset: ds; }
+  ol.dosteps > li {
+    counter-increment: ds; position: relative;
+    padding: 4px 0 16px 46px; margin-bottom: 4px;
+    border-left: 2px solid var(--line); margin-left: 15px;
+  }
+  ol.dosteps > li:last-child { border-left-color: transparent; }
+  ol.dosteps > li::before {
+    content: counter(ds); position: absolute; left: -16px; top: 2px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.dosteps .stitle {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 21px; color: var(--navy); display: block; margin-bottom: 2px;
+  }
+  ol.dosteps .spts {
+    display: inline-block; background: var(--gold); color: #ffffff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px;
+    border-radius: 3px; margin-left: 8px; vertical-align: middle;
+  }
+
+  .answer {
+    width: 100%; min-height: 76px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 5px; background: var(--field); font-family: 'Barlow', sans-serif;
+    font-size: 18px; line-height: 1.55; resize: vertical;
+  }
+  .answer:focus, input[type="text"]:focus { outline: none; border-color: var(--gold); background: var(--field-focus); }
+  .q { font-weight: 600; margin: 18px 0 6px; }
+  input[type="text"] {
+    padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--field); font-family: 'Barlow', sans-serif; font-size: 18px; width: 100%;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 17px; }
+  table.grid th {
+    background: var(--navy); color: #fff; text-align: left; padding: 9px 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid td { border: 1px solid var(--line); padding: 7px 9px; vertical-align: middle; }
+  table.grid td input[type="text"] { border: none; background: transparent; padding: 4px 2px; }
+  table.grid td code { font-size: 0.88em; }
+  table.grid td.ctr { text-align: center; font-weight: 600; }
+  table.grid tr.trial td.ctr { background: #f6f7f9; }
+  table.grid tr.total td { background: #f2f4fa; font-weight: 700; }
+
+  code {
+    background: #eef0f4; padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.92em; color: var(--red-dark);
+  }
+  pre.code {
+    background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+    border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 16px; line-height: 1.65; margin: 14px 0;
+  }
+  pre.code .ln { color: var(--code-dim); user-select: none; }
+  pre.code .cm { color: var(--code-green); }
+  pre.code .kw { color: var(--code-blue); font-weight: bold; }
+  pre.code .st { color: var(--code-red); }
+  pre.code .nu { color: var(--code-aqua); }
+
+  .anat { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .anat .arow { display: grid; grid-template-columns: 230px 1fr; border-bottom: 1px solid var(--line); }
+  .anat .arow:last-child { border-bottom: none; }
+  .anat .acode {
+    background: #2b3040; color: var(--code-ink); padding: 12px 14px;
+    font-family: 'Courier New', monospace; font-size: 14.5px; display: flex; align-items: center;
+  }
+  .anat .adesc { padding: 12px 14px; font-size: 17px; }
+
+  /* Digital vs analog split */
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .twocol .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--field); }
+  .twocol .chead {
+    padding: 9px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--navy);
+  }
+  .twocol .col.dim .chead { background: #7e8595; }
+  .twocol .cbody { padding: 12px 14px; font-size: 16.5px; }
+  .twocol .col.dim .cbody { color: var(--grey); }
+
+  .scorepair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .scorepair .col { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .scorepair .chead {
+    padding: 9px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #fff;
+  }
+  .scorepair .yes .chead { background: #1E8449; }
+  .scorepair .no .chead { background: #922B21; }
+  .scorepair ul { margin: 10px 0 12px; padding-left: 22px; font-size: 16px; }
+  .scorepair li { margin: 6px 0; }
+
+  .bottom-submit { padding: 30px 40px 0; text-align: center; }
+  .bottom-submit .status { color: var(--navy); margin-top: 8px; }
+  .credit {
+    margin: 34px 40px 0; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--grey); text-align: center;
+  }
+
+  /* ── Definition Modal ── */
+  .def-term { cursor: pointer; border-bottom: 2px dotted var(--red); font-weight: 700; color: inherit; }
+  .def-term:hover { color: var(--red); }
+  .def-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 9999; padding: 1rem; align-items: center; justify-content: center;
+  }
+  .def-overlay.open { display: flex; }
+  .def-box {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 480px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.4); overflow: hidden; animation: def-pop .16s ease;
+  }
+  @keyframes def-pop {
+    from { opacity: 0; transform: scale(.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .def-head {
+    background: var(--red); color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: .85rem 1rem; gap: .5rem;
+  }
+  .def-head-term {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+  }
+  .def-close {
+    flex-shrink: 0; background: none; border: none; color: rgba(255,255,255,.75);
+    font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 .2rem;
+    min-width: 36px; min-height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 4px;
+  }
+  .def-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .def-body { padding: 1rem 1.1rem 1.25rem; font-size: .95rem; color: #444; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .def-overlay { align-items: flex-end; padding: 0; }
+    .def-box { border-radius: 12px 12px 0 0; max-width: 100%; animation: def-slide .2s ease; }
+    @keyframes def-slide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .def-head-term { font-size: 1rem; }
+    .def-body { font-size: .95rem; padding: 1rem 1.1rem 2rem; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px) {
+    body { font-size: 18px; }
+    .sheet { margin: 0; }
+    .hero { padding: 22px 20px 20px; }
+    .hero h1 { font-size: 32px; }
+    section, .bottom-submit { padding-left: 20px; padding-right: 20px; }
+    .credit { margin-left: 20px; margin-right: 20px; }
+    .meta .row { grid-template-columns: 1fr; }
+    .meta dt { border-bottom: 1px solid var(--line); }
+    .anat .arow { grid-template-columns: 1fr; }
+    .anat .acode { border-bottom: 1px solid #3a4050; }
+    .phase-head { font-size: 25px; flex-wrap: wrap; gap: 8px; }
+    .topbar .brand { font-size: 15px; }
+    pre.code { font-size: 14px; padding: 12px 12px; }
+    .twocol, .scorepair { grid-template-columns: 1fr; }
+    table.grid { font-size: 15px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; font-size: 12pt; }
+    .sheet { box-shadow: none; margin: 0; max-width: none; }
+    .hero { background: #fff !important; color: #000; border-bottom: 3px solid #000; }
+    .hero .eyebrow, .hero .sub { color: #333; }
+    .phase-head { break-after: avoid; }
+    .answer, input[type="text"] { border: 1px solid #999; background: #fff; }
+    pre.code { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #999; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre.code .cm, pre.code .kw, pre.code .st, pre.code .nu, pre.code .ln { color: #000 !important; }
+    .anat .acode { background: #f4f4f4 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .mission-head, .scorepair .chead, .twocol .chead, ol.dosteps .spts, .mpart .jtag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .botnav{display:flex;align-items:center;justify-content:flex-start;gap:20px 24px;flex-wrap:wrap;margin:46px 40px 0;padding:26px 0 8px;border-top:1px solid var(--line)}
+  .botnav a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+            font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+            letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
+            border:1px solid var(--line);border-radius:5px;padding:12px 20px;background:#fff}
+  .botnav a:hover{border-color:var(--gold);background:#FDF2F2;color:var(--red)}
+  .botnav a.next{margin-left:auto}
+  .botnav a.gloss{color:#8a6d2f;border-color:rgba(192,57,43,.55);background:#FDF2F2}
+  .botnav a.gloss:hover{background:rgba(192,57,43,.16)}
+  .botnav .spacer{flex:1}
+  @media (max-width:700px){
+    .botnav{margin-left:20px;margin-right:20px;gap:10px;padding-top:18px}
+    .botnav a{font-size:13.5px;padding:11px 14px;flex:1 1 46%;justify-content:center}
+    .botnav a.next{margin-left:0}
+  }
+  @media print{ .botnav{display:none} }
+
+    .print-pin { display: block !important; }
+    ol.dosteps > li::before { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  .crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .crumbs a{color:rgba(255,255,255,.72);text-decoration:none;padding:4px 2px;border-radius:3px}
+  .crumbs a:hover{color:#fff;text-decoration:underline}
+  .crumbs .sep{color:rgba(255,255,255,.35)}
+  .crumbs .here{color:var(--gold);font-weight:700}
+  .crumbs .gloss{margin-left:6px;color:var(--gold);border:1px solid rgba(192,57,43,.5);
+                 padding:4px 9px;border-radius:4px;font-weight:700}
+  .crumbs .gloss:hover{background:rgba(192,57,43,.16);color:var(--gold);text-decoration:none}
+  @media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
+  @media print{ .crumbs{display:none} }
+  .print-pin { display: none; margin: 14px 40px 0; font-size: 16px; }
+  .meta dd ul.needs{list-style:none;margin:1px 0 0;padding:0;display:grid;gap:6px}
+  .meta dd ul.needs li{display:flex;align-items:flex-start;gap:9px;font-size:16.5px;line-height:1.45}
+  .meta dd ul.needs input[type="checkbox"]{flex-shrink:0;width:19px;height:19px;margin-top:2px;
+                                           accent-color:var(--red);cursor:pointer}
+  .meta dd ul.needs label{cursor:pointer}
+  @media (min-width:760px){ .meta dd ul.needs{grid-template-columns:1fr 1fr;gap:6px 20px} }
+  @media print{ .meta dd ul.needs input[type="checkbox"]{-webkit-appearance:none;appearance:none;
+                border:1px solid #666;border-radius:2px;width:14px;height:14px} }
+  /* --- field diagram trigger + viewer --- */
+  /* inline trigger, used in running text and meta rows */
+  .fieldref{cursor:pointer;border-bottom:2px dotted #C0392B;font-weight:700;color:#C0392B;white-space:nowrap}
+  .fieldref:hover{color:#8f2b20;border-bottom-color:#8f2b20}
+  .fieldref::after{content:"\00a0\25A6";font-size:.82em;opacity:.7}
+  /* button trigger, used on the mission score cards */
+  .fieldref.btn{display:inline-flex;align-items:center;gap:5px;border:none;border-radius:3px;
+    background:#C0392B;color:#fff;padding:4px 10px;margin-left:8px;
+    font-family:'Barlow Condensed','Barlow Condensed',sans-serif;font-weight:800;font-size:.72rem;
+    letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;vertical-align:middle;
+    box-shadow:0 1px 0 rgba(0,0,0,.25)}
+  .fieldref.btn:hover{background:#d8483a;color:#fff}
+  .fieldref.btn::after{content:"\25A6";font-size:.95em;opacity:.9;margin-left:1px}
+  .fld-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:10000;
+               padding:14px;align-items:center;justify-content:center}
+  .fld-overlay.open{display:flex}
+  .fld-box{background:#fff;border-radius:7px;width:100%;max-width:820px;overflow:hidden;
+           box-shadow:0 16px 60px rgba(0,0,0,.5);display:flex;flex-direction:column;max-height:94vh}
+  .fld-head{background:#1C1C1C;color:#fff;padding:.8rem 1rem;display:flex;align-items:center;
+            justify-content:space-between;gap:.6rem;flex-shrink:0}
+  .fld-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.02rem;
+             letter-spacing:.05em;text-transform:uppercase;line-height:1.2}
+  .fld-x{background:none;border:none;color:rgba(255,255,255,.75);font-size:1.35rem;cursor:pointer;
+         min-width:38px;min-height:38px;border-radius:4px;flex-shrink:0}
+  .fld-x:hover{background:rgba(255,255,255,.15);color:#fff}
+  .fld-tabs{display:flex;gap:6px;padding:9px 12px;background:#F8F8F8;border-bottom:1px solid #CCCCCC;flex-shrink:0}
+  .fld-tabs button{border:1px solid #CCCCCC;background:#fff;border-radius:4px;padding:6px 13px;cursor:pointer;
+                   font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;
+                   letter-spacing:.07em;text-transform:uppercase;color:#1C1C1C}
+  .fld-tabs button.on{background:#1C1C1C;color:#fff;border-color:#1C1C1C}
+  .fld-pic{overflow:auto;background:#F2F2F2}
+  .fld-pic img{display:block;width:100%;height:auto}
+  .fld-cap{padding:10px 14px;font-size:.9rem;color:#666666;background:#fff;border-top:1px solid #CCCCCC;flex-shrink:0}
+  @media print{ .fieldref::after{content:""} .fld-overlay{display:none!important} }
+  .fig{margin:16px 0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+  .fig img{display:block;width:100%;height:auto;cursor:zoom-in;background:#fff}
+  .fig figcaption{padding:9px 13px;font-size:15px;color:var(--grey);background:var(--field);
+                  border-top:1px solid var(--line)}
+  .figrow{display:grid;gap:14px;margin:16px 0}
+  .figrow.two{grid-template-columns:1fr 1fr}
+  .figrow.three{grid-template-columns:repeat(3,1fr)}
+  .figrow .fig{margin:0}
+  @media (max-width:700px){ .figrow.two,.figrow.three{grid-template-columns:1fr} }
+  .zoom{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9998;
+        align-items:center;justify-content:center;padding:12px;cursor:zoom-out}
+  .zoom.open{display:flex}
+  .zoom img{max-width:100%;max-height:92vh;border-radius:4px}
+  .zoom .zclose{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.15);color:#fff;
+                border:none;width:42px;height:42px;border-radius:6px;font-size:1.4rem;cursor:pointer}
+  .zoom .zcap{position:absolute;bottom:14px;left:0;right:0;text-align:center;
+              color:rgba(255,255,255,.75);font-size:15px}
+  @media print{ .zoom{display:none!important} .fig img{max-height:7cm;width:auto;margin:0 auto} }
+  .mainnav{display:flex;align-items:center;gap:4px 18px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
+           font-size:14px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;line-height:1}
+  .mainnav a{color:rgba(255,255,255,.66);text-decoration:none;padding:5px 2px;border-bottom:2px solid transparent}
+  .mainnav a:hover{color:#fff}
+  .mainnav a.here{color:var(--gold);border-bottom-color:var(--gold)}
+  @media (max-width:820px){ .mainnav{font-size:12.5px;gap:3px 13px} }
+  @media print{ .mainnav{display:none} }
+
+
+
+
+  /* ===== SPIKE word-block rendering ===== */
+  .wb-prog{margin:14px 0 6px;padding:16px 18px 20px;background:#eef1f6;border:1px solid var(--line);
+           border-radius:8px;overflow-x:auto}
+  .wb-row{display:flex;align-items:center;gap:14px}
+  .wb-row + .wb-row{margin-top:3px}
+  .wb{position:relative;display:inline-flex;align-items:center;gap:7px;color:#fff;
+      font-family:'Barlow',sans-serif;font-weight:600;font-size:15.5px;line-height:1;
+      padding:9px 15px 10px;border-radius:5px;white-space:nowrap;flex-shrink:0;
+      text-shadow:0 1px 1px rgba(0,0,0,.22);box-shadow:inset 0 -2px 0 rgba(0,0,0,.16)}
+  .wb::before{content:"";position:absolute;top:0;left:14px;width:24px;height:4px;
+              background:#eef1f6;border-radius:0 0 4px 4px}
+  .wb::after{content:"";position:absolute;bottom:-4px;left:14px;width:24px;height:4px;
+             background:inherit;border-radius:0 0 4px 4px}
+  .wb.hat{border-radius:16px 16px 5px 5px;padding-top:11px}
+  .wb.hat::before{display:none}
+  .wb.ev{background:#F5B912}
+  .wb.mv{background:#FF4FA0}
+  .wb.ct{background:#FFA119}
+  .wb .pill{display:inline-flex;align-items:center;gap:5px;background:#fff;color:#333;
+            text-shadow:none;border-radius:999px;padding:4px 10px;font-size:14px;font-weight:600;
+            box-shadow:inset 0 1px 2px rgba(0,0,0,.14)}
+  .wb .pill.dd{background:rgba(0,0,0,.22);color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.2);
+               box-shadow:none}
+  .wb .pill.dd b{font-weight:400;font-size:11px}
+  .wb .pill.steer{padding-left:6px}
+  .wb .dial{position:relative;width:18px;height:18px;border-radius:50%;
+            border:2px solid #555;background:#fff;flex-shrink:0}
+  .wb .dial i{position:absolute;left:50%;top:1px;width:2px;height:7px;background:#555;
+              transform:translateX(-50%);border-radius:2px}
+  .wb-note{font-size:14px;color:var(--grey);font-style:italic;white-space:nowrap}
+  @media (max-width:700px){ .wb{font-size:14px;padding:8px 12px 9px} .wb-note{font-size:12.5px} }
+  @media print{
+    .wb-prog{background:#f4f4f4 !important;border-color:#999}
+    .wb, .wb .pill, .wb .pill.dd{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+
+
+  /* batch-1 additions: Light + Motors categories, matrix pill */
+  .wb.lt{background:#A45FE0}
+  .wb.mo{background:#F8618E}
+  .wb .pill.mx{display:inline-grid;grid-template-columns:repeat(5,5px);gap:1.5px;
+               padding:5px 6px;background:#26262b;border-radius:4px;box-shadow:none}
+  .wb .pill.mx s{display:block;width:5px;height:5px;border-radius:1px;background:#44444c;text-decoration:none}
+  .wb .pill.mx s.on{background:#FFD84D}
+
+
+  /* batch-3 additions: Variables, Sensors, Operators, C-blocks, My Blocks */
+  .wb.vr{background:#FF8C1A}
+  .wb.sn{background:#2FA8CE}
+  .wb.my{background:#FF6680}
+  .wb .pill.var{background:#FF8C1A;color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.2);box-shadow:none}
+  .wb .hex{display:inline-flex;align-items:center;gap:5px;color:#fff;font-size:14px;font-weight:600;
+           padding:5px 16px;background:#59C059;text-shadow:0 1px 1px rgba(0,0,0,.2);
+           clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,9px 100%,0 50%)}
+  .wb .hex.sn2{background:#2FA8CE}
+  .wb .hex .pill{padding:2px 8px;font-size:13px}
+  .wb-cwrap{display:inline-block}
+  .wb.cb-top{border-radius:5px 5px 0 0}
+  .wb-cbody{position:relative;padding:4px 0 4px 20px;margin:0}
+  .wb-cbody::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:#FFA119;border-radius:0 0 0 3px}
+  .wb.cb-end{display:block;width:120px;height:14px;padding:0;border-radius:0 0 5px 5px;background:#FFA119}
+  .wb.cb-end::before,.wb.cb-end::after{display:none}
+  .wb.hat.my{border-radius:16px 16px 5px 5px}
+
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky top bar: PIN + submit ===== -->
+<div class="topbar no-print">
+  <div class="topbar-inner">
+    <div class="brand">KIPR · Discovery <span>SPIKE Track</span></div>
+      <nav class="mainnav" aria-label="Main"><a href="../../index.html">Home</a><a href="../../2026-missions.html">2026 Missions</a><a href="../../discovery/index.html" class="here">Discovery</a><a href="../../labs/index.html">C Labs</a><a href="../../Python_Labs/index.html">Python Labs</a><a href="../../glossary.html">Glossary</a></nav>
+    <div class="pin-field">
+      <label for="pin">Your PIN</label>
+      <input id="pin" type="text" inputmode="numeric" autocomplete="off"
+             maxlength="8" placeholder="••••" aria-label="Your student PIN" />
+    </div>
+    <button class="submit-btn" id="submitTop">Submit &amp; Download</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <div class="hero">
+    <p class="eyebrow">Discovery Projects · SPIKE Track · Coding · Project 10</p>
+    <h1>Feeling for Things</h1>
+    <p class="sub">Your robot gets its first sense — and its first way of saying <em>keep going until</em>.</p>
+  </div>
+
+  <p class="print-pin"><strong>Student PIN:</strong> <span id="pinEcho"></span></p>
+
+  <section>
+    <div class="meta">
+      <dl>
+        <div class="row"><dt>What You Are Doing</dt><dd>Mounting a touch <span class="def-term" data-term="SENSOR">sensor</span>, learning the loop that keeps checking it, and using contact to find a position your robot can trust.</dd></div>
+        <div class="row"><dt>Mission Anchor</dt><dd class="anchor"><span class="fieldref" data-m="13" data-tier="base">Mission 13</span> — Straighten Up (advanced bonus) — 13 points</dd></div>
+        <div class="row"><dt>What You Need</dt><dd>
+        <ul class="needs">
+          <li><input type="checkbox" id="ndcod101" data-key="need_1"><label for="ndcod101">Your robot with arm and claw</label></li>
+          <li><input type="checkbox" id="ndcod102" data-key="need_2"><label for="ndcod102">Force <span class="def-term" data-term="SENSOR">sensor</span></label></li>
+          <li><input type="checkbox" id="ndcod103" data-key="need_3"><label for="ndcod103">Tablet or Chromebook with the SPIKE App</label></li>
+          <li><input type="checkbox" id="ndcod104" data-key="need_4"><label for="ndcod104">Charged hub</label></li>
+          <li><input type="checkbox" id="ndcod105" data-key="need_5"><label for="ndcod105">The game field</label></li>
+          <li><input type="checkbox" id="ndcod106" data-key="need_6"><label for="ndcod106">Your Project 9 program</label></li>
+        </ul>
+      </dd></div>
+        <div class="row"><dt>Before You Start</dt><dd>Project 9 — you need to be comfortable writing and using <span class="def-term" data-term="VARIABLE">variable</span>s.</dd></div>
+      </dl>
+    </div>
+
+    <div class="pin-reminder no-print">
+      <strong>Before you start:</strong> type your PIN in the box at the top of the page. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and keep a copy.
+    </div>
+  </section>
+
+  <!-- ================= TRY IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Try It</span> Walking in the Dark</h2>
+
+    <p>Imagine the power is out and you are trying to cross a room you know well. Your eyes are useless. So you put a hand out in front of you and start walking.</p>
+
+    <p><strong>Actually do it.</strong> Stand a few steps from a wall, close your eyes, put one hand out, and walk slowly toward it until you touch it.</p>
+
+    <p class="q">How many times did you check whether your hand had reached the wall?</p>
+    <input type="text" data-key="p1_check_count" aria-label="How many checks">
+
+    <p class="q">You did not check once and hope. What were you doing the whole time you were walking?</p>
+    <textarea class="answer" data-key="p1_whole_time" aria-label="What you were doing"></textarea>
+
+    <div class="callout gold">
+      <p class="ctitle">That Is a Loop</p>
+      <p>Check. Step. Check. Step. Check — <em>touched something</em> — stop and do something different.</p>
+      <p>Repeating a check while you wait for something to become true is called <strong>looping</strong>, and it is the whole idea of this project.</p>
+    </div>
+
+    <h3 class="sub">Sort your sensors</h3>
+
+    <p>Get your kit’s three sensors out on the table — force, color, distance. Without looking anything up, sort them into <strong>two piles</strong>. You decide the rule.</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:22%"></th><th>What went in it</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td class="ctr">Pile 1</td><td><input type="text" data-key="p1_pile_1" aria-label="Pile one"></td></tr>
+        <tr class="trial"><td class="ctr">Pile 2</td><td><input type="text" data-key="p1_pile_2" aria-label="Pile two"></td></tr>
+      </tbody>
+    </table>
+    <p class="q">What rule did you use?</p>
+    <input type="text" data-key="p1_pile_rule" aria-label="Sorting rule">
+
+    <div class="callout">
+      <p class="ctitle">One Split Matters More Than the Others</p>
+      <p>Some sensor questions work like a <strong>light switch</strong> — yes or no, and nothing in between. <em>Is the button pressed?</em> Others answer with a whole range — <em>how bright? how far?</em></p>
+      <p>If that is how you sorted them, you found the split programmers care about. Today is a light-switch day: the <strong>force sensor</strong>, asked one yes-or-no question.</p>
+    </div>
+  </section>
+
+  <!-- ================= LEARN IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Learn It</span> Keep Checking Until</h2>
+
+    <p>A <span class="def-term" data-term="SENSOR">sensor</span> turns something physical — a press, a color, a distance — into something your program can read.</p>
+
+    <h3 class="sub">True or false</h3>
+
+    <p>The force sensor’s yes-or-no question comes as a <strong>six-sided block</strong> — a hexagon. Hexagons do not <em>do</em> anything on their own. Each one is a question with exactly two possible answers: <strong>true</strong> or <strong>false</strong>.</p>
+
+    <div class="wb-prog" role="img" aria-label="Hexagon: F is pressed?">
+      <div class="wb-row"><span class="hex sn2" style="display:inline-flex"><span class="pill">F&nbsp;&#9662;</span> is pressed?</span></div>
+    </div>
+
+    <p>Not pressed &rarr; the hexagon answers <strong>false</strong>. Pressed &rarr; it answers <strong>true</strong>. Nothing in between — a light switch, exactly like your sorting rule.</p>
+
+    <h3 class="sub">Why the wait block cannot help you here</h3>
+
+    <p>Every time you needed the robot to wait, you used <em>wait 2 seconds</em>. That will not work now. <strong>A sleeping program cannot notice anything.</strong> If you tell it to wait two seconds and the sensor is pressed after half a second, the robot never knows.</p>
+
+    <p>You need it to keep checking — over and over, as fast as it can. Hexagons snap into two Control blocks built for exactly that:</p>
+
+    <div class="wb-prog" role="img" aria-label="wait until F is pressed">
+      <div class="wb-row"><div class="wb ct">wait until <span class="hex sn2"><span class="pill">F&nbsp;&#9662;</span> is pressed?</span></div></div>
+    </div>
+
+    <p><em>Wait until</em> asks its question as fast as it can, thousands of times a second, and does not let the next block run until the answer is <strong>true</strong>. It is your hand-out-in-the-dark, as a block.</p>
+
+    <div class="wb-prog" role="img" aria-label="repeat until raining stops, umbrella stays up">
+      <div class="wb-cwrap">
+        <div class="wb-row"><div class="wb ct cb-top">repeat until <span class="hex">it stopped raining?</span></div></div>
+        <div class="wb-cbody"><div class="wb-row"><div class="wb lt">keep the umbrella up</div></div></div>
+        <div class="wb-row"><div class="wb ct cb-end"></div></div>
+      </div>
+    </div>
+
+    <p><em>Repeat until</em> is the same idea with a mouth: everything held <strong>inside its jaws</strong> runs over and over, as long as the answer is still false. The moment the answer turns true, the robot falls out of the jaws and moves on to whatever comes after.</p>
+
+    <div class="callout gold">
+      <p class="ctitle">Inside the Jaws, and After Them</p>
+      <p>What goes <strong>inside</strong> is the thing to keep doing. What goes <strong>after</strong> is what happens when the answer finally changes. Deciding which is which is the whole skill.</p>
+    </div>
+
+    <h3 class="sub">Drive until bump</h3>
+
+    <p>Put it together. Read it out loud: "start driving — keep checking until the sensor is pressed — then stop."</p>
+
+    <div class="wb-prog" role="img" aria-label="start moving, wait until pressed, stop moving">
+      <div class="wb-row"><div class="wb hat ev">when program starts</div></div>
+      <div class="wb-row"><div class="wb mv">start moving <span class="pill steer"><span class="dial"><i></i></span>0</span></div></div>
+      <div class="wb-row"><div class="wb ct">wait until <span class="hex sn2"><span class="pill">F&nbsp;&#9662;</span> is pressed?</span></div><span class="wb-note">checking, thousands of times a second</span></div>
+      <div class="wb-row"><div class="wb mv">stop moving</div></div>
+    </div>
+
+    <div class="callout warn">
+      <p class="ctitle">&#9888; The Stop Goes After, Not Inside</p>
+      <p>The <em>wait until</em> is the checking. The <em>stop moving</em> is what happens when the checking succeeds. Put the stop before the wait and the robot never moves; forget the <em>start moving</em> and the robot waits forever at a standstill, checking a sensor nothing will ever press.</p>
+    </div>
+
+    <h3 class="sub">Comparing numbers</h3>
+
+    <p>Hexagons are not only about sensors. The green <strong>Operators</strong> shelf has three comparison hexagons, and they turn any pair of numbers into a true-or-false question:</p>
+
+    <table class="grid">
+      <thead><tr><th style="width:24%">Hexagon</th><th style="width:36%">Asks</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td class="ctr"><strong>&lt;</strong></td><td>is the left smaller?</td><td>5 &lt; 4 is <strong>false</strong></td></tr>
+        <tr><td class="ctr"><strong>=</strong></td><td>are they equal?</td><td>5 = 5 is <strong>true</strong></td></tr>
+        <tr><td class="ctr"><strong>&gt;</strong></td><td>is the left bigger?</td><td>5 &gt; 4 is <strong>true</strong></td></tr>
+      </tbody>
+    </table>
+
+    <p class="muted">Today your question is <em>is pressed?</em> and you will not need these. But hold on to them — in Project 11 the loop stops watching a switch and starts watching a <strong>number</strong>, and these hexagons are how you ask about numbers.</p>
+
+    <p>One more: the green <strong>not</strong> hexagon flips an answer. <em>not (F is pressed?)</em> is true exactly when the sensor is <em>not</em> pressed. You will want it the moment you need "keep going while nothing is touching."</p>
+  </section>
+
+  <!-- ================= DO IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Do It</span> Drive Until Bump</h2>
+
+    <ol class="dosteps">
+
+      <li>
+        <span class="stitle">Mount the sensor and read it live</span>
+        <p>Mount your force sensor on the front of the robot so it hits things before anything else does. Plug it into port <strong>F</strong>.</p>
+        <p>In the app, open the device view. Press the sensor with your finger and watch what it reports.</p>
+        <table class="grid">
+          <thead><tr><th style="width:56%">Question</th><th>My answer</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td>Which port is my force sensor in?</td><td><input type="text" data-key="p3_sensor_port" aria-label="Sensor port"></td></tr>
+            <tr class="trial"><td>What does it show when nothing touches it?</td><td><input type="text" data-key="p3_sensor_idle" aria-label="Sensor idle"></td></tr>
+            <tr class="trial"><td>What does it show when I press it?</td><td><input type="text" data-key="p3_sensor_pressed" aria-label="Sensor pressed"></td></tr>
+          </tbody>
+        </table>
+        <ul class="check"><li><input type="checkbox" id="d1" data-key="p3_sensor_works"><label for="d1">My sensor changes when I press it, and I watched it happen before writing any blocks</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Drive Until Bump — in your hands first</span>
+        <div class="callout warn">
+          <p class="ctitle">&#9888; Hold the Robot in the Air for the First Run</p>
+          <p>Do not put this on a table or the field yet. <strong>Hold the robot up</strong> so the wheels spin freely, run the program, then press the sensor with your finger and watch the wheels stop.</p>
+          <p>A loop that never sees its sensor never stops. Find that out in your hands, not off the edge of a table.</p>
+        </div>
+        <p>New project called <code>Drive Until Bump</code>. Plan it as <span class="def-term" data-term="PSEUDOCODE">pseudocode</span> first, then build the start-moving / wait-until / stop-moving stack from Learn It.</p>
+        <ul class="check">
+          <li><input type="checkbox" id="d2" data-key="p3_bump_hands"><label for="d2">Wheels stop when I press the sensor with my finger</label></li>
+          <li><input type="checkbox" id="d3" data-key="p3_bump_floor"><label for="d3">It works on the floor against a wall or a book</label></li>
+        </ul>
+      </li>
+
+      <li>
+        <span class="stitle">Flip the condition and predict</span>
+        <p>Wrap the hexagon in a green <strong>not</strong>: <em>wait until not (F is pressed?)</em>. Before you run it, <strong>write down what you think will happen.</strong></p>
+        <p class="q">My prediction:</p>
+        <input type="text" data-key="p3_flip_predict" aria-label="Flip prediction">
+        <p>Now run it. Then run it again while holding the sensor pressed the whole time.</p>
+        <p class="q">What actually happened, both times? Explain why, using the words "true" and "false".</p>
+        <textarea class="answer" data-key="p3_flip_result" aria-label="Flip result"></textarea>
+        <p>Take the <em>not</em> back out.</p>
+      </li>
+
+      <li>
+        <span class="stitle">Bump and Go Home</span>
+        <p>Here is what makes a force sensor genuinely useful: <strong>a wall is a place your robot can always find.</strong></p>
+        <p>New project. Mount or turn the sensor so it faces backward — then drive <em>backward</em> until the sensor presses against the starting box wall, and drive forward a set distance into the box and stop.</p>
+        <div class="anat">
+          <div class="arow"><div class="acode">1. Start moving backward</div><div class="adesc">A negative speed, or steering with a backward start — your choice.</div></div>
+          <div class="arow"><div class="acode">2. Wait until pressed</div><div class="adesc">The wall ends the trip, wherever the robot wandered from.</div></div>
+          <div class="arow"><div class="acode">3. Stop and settle</div><div class="adesc"></div></div>
+          <div class="arow"><div class="acode">4. Move forward a set distance</div><div class="adesc">Into the box.</div></div>
+        </div>
+        <div class="callout gold">
+          <p class="ctitle">Why This Matters More Than It Looks</p>
+          <p>No matter where the robot wandered off to, it can come back and touch a wall — and now it knows <em>exactly</em> where it is. Every measurement after that starts from a spot it can trust.</p>
+        </div>
+        <ul class="check"><li><input type="checkbox" id="d4" data-key="p3_home_works"><label for="d4">My robot finds the wall and ends up in the same place every time</label></li></ul>
+      </li>
+
+      <li>
+        <span class="stitle">Add a stop and settle</span>
+        <p>A robot that has been driving is still rocking when the checking ends. Momentum does not care about your program. Put a short <em>wait 0.5 seconds</em> between the stop and whatever comes next, and compare runs with and without it.</p>
+        <p class="q">What difference did the pause make?</p>
+        <input type="text" data-key="p3_settle_diff" aria-label="Settle difference">
+      </li>
+
+      <li>
+        <span class="stitle">Wait for a press before starting</span>
+        <p>One more use for the same idea. Put a <em>wait until (F is pressed?)</em> block at the very top of a mission program, before anything moves.</p>
+        <p>Now your robot waits for a tap on its sensor instead of driving off the second you press Run — which is exactly how you want to start a match.</p>
+        <ul class="check"><li><input type="checkbox" id="d5" data-key="p3_start_press"><label for="d5">My robot waits for a press before it moves</label></li></ul>
+        <p class="q">That wait-until block has no jaws and nothing inside it. Is it still doing something the whole time? What?</p>
+        <textarea class="answer" data-key="p3_empty_loop" aria-label="What the empty loop does"></textarea>
+      </li>
+
+      <li>
+        <span class="stitle">Mission 13 Advanced — all three cubes<span class="spts">13 pts</span></span>
+        <div class="mission">
+          <div class="mission-head">
+            <span class="mtitle">Mission 13 — Straighten Up</span>
+            <span class="mpts">Advanced Bonus 13 pts</span>
+          </div>
+          <div class="mission-body">
+            <div class="mpart">
+              <span class="mlabel">Advanced Bonus — 13 pts<span class="jtag final">📋 Final</span></span>
+              <strong>All three</strong> Unstraight Cubes form a scoring stack. All cubes must originate from the Unstraight Cube area.
+            </div>
+            <div class="mpart later">
+              <span class="mlabel">Already done</span>
+              Base (1 pt) in Project 6 by pushing. Bonus (7 pts) in Project 8 by stacking two.
+            </div>
+          </div>
+        </div>
+        <div class="scorepair">
+          <div class="col yes">
+            <div class="chead">✓ Scores</div>
+            <ul>
+              <li>All three cubes participate in valid <span class="def-term" data-term="ON TOP OF">ON TOP OF</span> relationships — <strong>a traditional stack or a pyramid.</strong></li>
+            </ul>
+          </div>
+          <div class="col no">
+            <div class="chead">✗ Does Not Score</div>
+            <ul>
+              <li>Only two Unstraight Cubes participate in the stack.</li>
+              <li>Two cubes touching side-by-side without <span class="def-term" data-term="ON TOP OF">ON TOP OF</span>.</li>
+              <li>An Unstraight Cube stacked with a cube from another mission area.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout gold">
+          <p class="ctitle">A Pyramid Counts — and It Is Easier</p>
+          <p>Read the scoring examples again. <strong>A pyramid scores exactly the same as a three-high tower.</strong> Two cubes on the bottom, one on top.</p>
+          <p>This is a final-position mission, so whatever you build has to still be standing when the match ends. A pyramid is far harder to knock over than a tower. Take the easy 13 points.</p>
+        </div>
+        <p>Use the force sensor to make your approach repeatable. If your robot can find a wall or a cube by contact instead of by timing, every placement after that starts from a known spot.</p>
+        <p class="q">Where in your run does the force sensor help most — finding the cubes, or finding your way back?</p>
+        <textarea class="answer" data-key="p3_sensor_where" aria-label="Where sensor helps"></textarea>
+        <ul class="check">
+          <li><input type="checkbox" id="d7" data-key="p3_m13_three"><label for="d7">All three Unstraight Cubes are in one stack or pyramid</label></li>
+          <li><input type="checkbox" id="d8" data-key="p3_m13_stands"><label for="d8">It is still standing after the robot backs away</label></li>
+        </ul>
+      </li>
+
+      <li>
+        <span class="stitle">Run it five times</span>
+        <table class="grid">
+          <thead><tr><th style="width:14%">Run</th><th style="width:30%">All three stacked?</th><th style="width:30%">Still standing at the end?</th><th>Points</th></tr></thead>
+          <tbody>
+            <tr class="trial"><td class="ctr">1</td><td><input type="text" data-key="p3_r1_stack" aria-label="R1 stacked"></td><td><input type="text" data-key="p3_r1_stand" aria-label="R1 standing"></td><td><input type="text" data-key="p3_r1_pts" aria-label="R1 points"></td></tr>
+            <tr class="trial"><td class="ctr">2</td><td><input type="text" data-key="p3_r2_stack" aria-label="R2 stacked"></td><td><input type="text" data-key="p3_r2_stand" aria-label="R2 standing"></td><td><input type="text" data-key="p3_r2_pts" aria-label="R2 points"></td></tr>
+            <tr class="trial"><td class="ctr">3</td><td><input type="text" data-key="p3_r3_stack" aria-label="R3 stacked"></td><td><input type="text" data-key="p3_r3_stand" aria-label="R3 standing"></td><td><input type="text" data-key="p3_r3_pts" aria-label="R3 points"></td></tr>
+            <tr class="trial"><td class="ctr">4</td><td><input type="text" data-key="p3_r4_stack" aria-label="R4 stacked"></td><td><input type="text" data-key="p3_r4_stand" aria-label="R4 standing"></td><td><input type="text" data-key="p3_r4_pts" aria-label="R4 points"></td></tr>
+            <tr class="trial"><td class="ctr">5</td><td><input type="text" data-key="p3_r5_stack" aria-label="R5 stacked"></td><td><input type="text" data-key="p3_r5_stand" aria-label="R5 standing"></td><td><input type="text" data-key="p3_r5_pts" aria-label="R5 points"></td></tr>
+          </tbody>
+        </table>
+        <p class="q">Did the stack fall over on any run? What knocked it — the robot leaving, or the stack itself?</p>
+        <textarea class="answer" data-key="p3_fell" aria-label="Why it fell"></textarea>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ================= SCORE IT ================= -->
+  <section>
+    <h2 class="phase-head"><span class="pnum">Score It</span> Checkpoint</h2>
+
+    <h3 class="sub">My score</h3>
+    <table class="grid">
+      <thead><tr><th style="width:52%">Mission part</th><th style="width:24%">Scored?</th><th>Points</th></tr></thead>
+      <tbody>
+        <tr><td>Mission 13 — Advanced Bonus (all three cubes stacked)</td><td><input type="text" data-key="p4_s_m13adv" aria-label="Score M13 advanced"></td><td class="ctr">13</td></tr>
+        <tr class="total"><td>My total</td><td><input type="text" data-key="p4_total" aria-label="Total"></td><td class="ctr">13</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">With Project 6 and Project 8, Mission 13 is now worth 21 points across all three parts — the most any single mission has given you.</p>
+
+    <h3 class="sub">Finish the check</h3>
+    <p>Say which blocks you would use for each.</p>
+    <table class="grid">
+      <thead><tr><th style="width:52%">I want the robot to...</th><th>My blocks</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td>Drive until the sensor is pressed</td><td><input type="text" data-key="p4_fin_1" aria-label="Finish one"></td></tr>
+        <tr class="trial"><td>Drive while the sensor <em>is</em> pressed, stop when released</td><td><input type="text" data-key="p4_fin_2" aria-label="Finish two"></td></tr>
+        <tr class="trial"><td>Do nothing until someone taps the sensor</td><td><input type="text" data-key="p4_fin_3" aria-label="Finish three"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Spot the bug</h3>
+    <p>Each of these is wrong. Say what happens when you run it.</p>
+    <table class="grid">
+      <thead><tr><th style="width:52%">The stack</th><th>What goes wrong</th></tr></thead>
+      <tbody>
+        <tr class="trial"><td class="thing">start moving &middot; <strong>wait 2 seconds</strong> &middot; stop moving — used to "wait for the bump"</td><td><input type="text" data-key="p4_bug_1" aria-label="Bug one"></td></tr>
+        <tr class="trial"><td class="thing">wait until pressed &middot; start moving &middot; stop moving</td><td><input type="text" data-key="p4_bug_2" aria-label="Bug two"></td></tr>
+        <tr class="trial"><td class="thing"><strong>stop moving</strong> inside the jaws of a repeat-until that is supposed to be driving</td><td><input type="text" data-key="p4_bug_3" aria-label="Bug three"></td></tr>
+        <tr class="trial"><td class="thing">wait until pressed, with no <em>start moving</em> anywhere</td><td><input type="text" data-key="p4_bug_4" aria-label="Bug four"></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Can you do it again?</h3>
+    <ul class="check">
+      <li><input type="checkbox" id="s1" data-key="p4_can_hex"><label for="s1">I can explain what a hexagon block is and what its only two answers mean</label></li>
+      <li><input type="checkbox" id="s2" data-key="p4_can_live"><label for="s2">I read a sensor live in the app before I build any blocks with it</label></li>
+      <li><input type="checkbox" id="s3" data-key="p4_can_until"><label for="s3">I know what <em>wait until</em> does the whole time it is waiting</label></li>
+      <li><input type="checkbox" id="s4" data-key="p4_can_jaws"><label for="s4">I know what goes inside a repeat-until’s jaws and what goes after them</label></li>
+      <li><input type="checkbox" id="s5" data-key="p4_can_hands"><label for="s5">I test a new sensor program with the robot in my hands first</label></li>
+      <li><input type="checkbox" id="s6" data-key="p4_can_wall"><label for="s6">I can use contact with a wall to give my robot a position it can trust</label></li>
+    </ul>
+
+    <h3 class="sub">Think about it</h3>
+
+    <p class="q">Since Project 3, every distance your robot has driven was really a length of <em>time</em>. What does a force sensor give you that a stopwatch never could?</p>
+    <textarea class="answer" data-key="p4_time_vs_touch" aria-label="Time vs touch"></textarea>
+
+    <p class="q">A force sensor only tells you something when you are already touching it. Name one thing on the field you would want to stop at, where bumping into it first would be a bad idea.</p>
+    <textarea class="answer" data-key="p4_bad_to_bump" aria-label="Bad to bump"></textarea>
+
+    <p class="q">Your loop asks a question over and over. So far the question has always been about a sensor. What else could a robot count or measure that a loop could watch?</p>
+    <textarea class="answer" data-key="p4_what_else" aria-label="What else to watch"></textarea>
+
+    <h3 class="sub">Next</h3>
+    <p>A wall tells you where you are, but only if there is a wall. Most of the field has nothing to bump into.</p>
+    <p>In <strong>Project 11 — Counting and Turning by Feel</strong>, you point the same checking at a <em>number</em> instead of a switch — the degrees your wheels have rolled, and the angle the whole robot has turned. The hub has been measuring both all along.</p>
+  </section>
+
+  <div class="bottom-submit no-print">
+    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
+  </div>
+  <nav class="botnav no-print" aria-label="Page navigation">
+    <a href="index.html">&larr; Coding Projects</a>
+    <a href="project-09.html">&larr; Project 9</a>
+    <a class="gloss" href="../../glossary.html">Glossary</a>
+    <a class="next" href="project-11.html">Project 11 &rarr;</a>
+  </nav>
+
+
+  <p class="credit">KIPR · Botball Explorer — Discovery Projects · © KISS Institute for Practical Robotics 1997–2026</p>
+</main>
+
+<!-- ===== Definition modal ===== -->
+<div class="def-overlay" id="defOverlay" role="dialog" aria-modal="true" aria-labelledby="defTerm">
+  <div class="def-box">
+    <div class="def-head">
+      <span class="def-head-term" id="defTerm"></span>
+      <button class="def-close" id="defClose" aria-label="Close definition">✕</button>
+    </div>
+    <div class="def-body" id="defBody"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var DEFS = {
+    'SENSOR': ['Sensor', 'A device that lets the robot notice something about the world \u2014 a press, a color, a distance \u2014 and turn it into something a program can read.'],
+    'PSEUDOCODE': ['Pseudocode', 'Literally "false code." Your plan written in plain language before you build it from real blocks. It keeps you from getting lost in the middle of a program.'],
+    'VARIABLE': ['Variable', 'A name that holds a value. You set it once at the top of your program, then use the name everywhere instead of the number.'],
+    'ON TOP OF': ['On Top Of', 'An object is ON TOP OF another object when it is in direct physical contact with the uppermost surface of that object. Support from a robot is permitted unless a mission specifies otherwise.']
+  };
+
+  function openDef(term) {
+    var entry = DEFS[term];
+    if (!entry) return;
+    document.getElementById('defTerm').textContent = entry[0];
+    document.getElementById('defBody').textContent = entry[1];
+    document.getElementById('defOverlay').classList.add('open');
+    document.getElementById('defClose').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDef() {
+    document.getElementById('defOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('defClose').addEventListener('click', closeDef);
+  document.getElementById('defOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDef();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDef(); });
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.def-term');
+    if (el) { e.preventDefault(); openDef(el.dataset.term); }
+  });
+  document.addEventListener('touchend', function(e) {
+    if (e.target.closest('.def-term')) e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+
+<script>
+  var MISSION_ID = "discovery_spike_coding_10";
+  var MISSION_TITLE = "Discovery Project 10 (SPIKE) — Feeling for Things";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var pinInput = $("#pin");
+  var statusEl = $("#status");
+  var statusBottom = $("#statusBottom");
+  var pinEcho = $("#pinEcho");
+
+  function collectAnswers() {
+    var answers = {};
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var k = el.getAttribute("data-key");
+      answers[k] = (el.type === "checkbox") ? (el.checked ? "yes" : "") : el.value;
+    });
+    return answers;
+  }
+
+  var SAVE_KEY = "kipr_" + MISSION_ID + "_draft";
+
+  function restoreDraft() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.pin) { pinInput.value = data.pin; }
+    if (data.answers) {
+      document.querySelectorAll("[data-key]").forEach(function (el) {
+        var k = el.getAttribute("data-key");
+        if (k in data.answers) {
+          if (el.type === "checkbox") { el.checked = data.answers[k] === "yes"; }
+          else { el.value = data.answers[k]; }
+        }
+      });
+    }
+    syncPinEcho();
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(SAVE_KEY, JSON.stringify({
+        pin: pinInput.value.trim(),
+        answers: collectAnswers()
+      }));
+    } catch (e) { /* storage blocked or full — ignore */ }
+  }
+
+  function syncPinEcho() { pinEcho.textContent = pinInput.value.trim(); }
+
+  restoreDraft();
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("[data-key], #pin")) { saveDraft(); syncPinEcho(); }
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("[data-key]")) { saveDraft(); }
+  });
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+    statusBottom.textContent = msg;
+  }
+
+  function buildPayload() {
+    return {
+      mission: MISSION_ID,
+      missionTitle: MISSION_TITLE,
+      pin: pinInput.value.trim(),
+      submittedAt: new Date().toISOString(),
+      answers: collectAnswers()
+    };
+  }
+
+  function downloadJSON(payload) {
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = MISSION_ID + "_pin" + (payload.pin || "none") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function submit() {
+    var pin = pinInput.value.trim();
+    if (!pin) {
+      setStatus("Enter your PIN first.", "err");
+      pinInput.focus();
+      return;
+    }
+    var payload = buildPayload();
+    downloadJSON(payload);
+    saveDraft();
+    setStatus("Saved. Your results file has downloaded.");
+    setTimeout(function () { window.print(); }, 600);
+  }
+
+  $("#submitTop").addEventListener("click", submit);
+  $("#submitBottom").addEventListener("click", submit);
+</script>
+
+<div class="fld-overlay" id="fldOverlay" role="dialog" aria-modal="true" aria-labelledby="fldTitle">
+  <div class="fld-box">
+    <div class="fld-head">
+      <span class="fld-title" id="fldTitle"></span>
+      <button class="fld-x" id="fldX" aria-label="Close field diagram">&#10005;</button>
+    </div>
+    <div class="fld-tabs" id="fldTabs"></div>
+    <div class="fld-pic"><img id="fldImg" src="" alt=""></div>
+    <p class="fld-cap" id="fldCap"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var UP = '../../';
+  var M = {
+    13: {"title": "Mission 13 \u2014 Rebuild the Shipment", "tiers": ["base", "bonus", "advanced"]}
+  };
+  var ov=document.getElementById('fldOverlay'), im=document.getElementById('fldImg'),
+      tt=document.getElementById('fldTitle'), tb=document.getElementById('fldTabs'),
+      cp=document.getElementById('fldCap');
+  function show(n, tier){
+    var m=M[n]; if(!m) return;
+    im.src = UP + 'img/missions/mission-' + (n<10?'0':'') + n + '-' + tier + '.jpg';
+    im.alt = m.title + ' \u2014 ' + tier + ' scoring, shown on the field';
+    tt.textContent = m.title;
+    cp.textContent = tier.charAt(0).toUpperCase() + tier.slice(1) + ' scoring \u2014 arrows show where each piece has to end up.';
+    tb.innerHTML='';
+    if (m.tiers.length > 1) {
+      m.tiers.forEach(function(t){
+        var b=document.createElement('button');
+        b.textContent=t; b.className = (t===tier?'on':'');
+        b.addEventListener('click', function(){ show(n, t); });
+        tb.appendChild(b);
+      });
+      tb.style.display='flex';
+    } else { tb.style.display='none'; }
+    ov.classList.add('open'); document.body.style.overflow='hidden';
+    document.getElementById('fldX').focus();
+  }
+  function hide(){ ov.classList.remove('open'); im.src=''; document.body.style.overflow=''; }
+  document.getElementById('fldX').addEventListener('click', hide);
+  ov.addEventListener('click', function(e){ if(e.target===this) hide(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') hide(); });
+  document.addEventListener('click', function(e){
+    var el=e.target.closest('.fieldref');
+    if(el){ e.preventDefault(); show(parseInt(el.dataset.m,10), el.dataset.tier||'base'); }
+  });
+})();
+</script>
+
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Enlarged picture">
+  <button class="zclose" id="zclose" aria-label="Close picture">&#10005;</button>
+  <img id="zimg" src="" alt="">
+  <p class="zcap" id="zcap"></p>
+</div>
+<script>
+(function(){
+  var z=document.getElementById('zoom'), zi=document.getElementById('zimg'), zc=document.getElementById('zcap');
+  function open(img){
+    zi.src=img.src; zi.alt=img.alt||'';
+    zc.textContent=(img.closest('figure')&&img.closest('figure').querySelector('figcaption'))
+      ? img.closest('figure').querySelector('figcaption').textContent : '';
+    z.classList.add('open'); document.body.style.overflow='hidden';
+  }
+  function close(){ z.classList.remove('open'); zi.src=''; document.body.style.overflow=''; }
+  document.addEventListener('click', function(e){
+    var img=e.target.closest('.fig img');
+    if(img){ open(img); return; }
+    if(e.target.closest('#zoom')) close();
+  });
+  document.getElementById('zclose').addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
+
+
+
+</body>
+</html>

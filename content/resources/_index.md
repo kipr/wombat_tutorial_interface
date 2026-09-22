@@ -1,5 +1,5 @@
 ---
-title: "Educator Resources — KIPR Botball 2026-2027"
+title: "Educator Resources — KIPR Botball Explorer 2026-2027"
 nav: home
 hub: true
 styles: ["site-base", "hub"]
@@ -26,4 +26,4 @@ cards:
     download: true
 ---
 
-These materials are for teachers and coaches. Students can stay on the mission, Discovery, and lab pages.
+These materials are for teachers and coaches. Students can stay on the mission, Introductory, and lab pages.

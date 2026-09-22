@@ -1,0 +1,28 @@
+{{- /*
+  Word-block program. YAML body is a list of rows; each row is a block or a
+  nested control structure. The aria label is the accessible description; the
+  coloured internals are hidden from assistive technology.
+
+    {{< wordblocks aria="when program starts, write Hi!" >}}
+    rows:
+      - block:
+          category: events
+          shape: hat
+          parts:
+            - text: "when program starts"
+    {{< /wordblocks >}}
+*/ -}}
+{{- $aria := partial "require.html" (dict "sc" . "name" "aria") -}}
+{{- $data := .Inner | transform.Unmarshal -}}
+{{- if not (reflect.IsMap $data) -}}
+  {{- errorf "%s: wordblocks body must be a YAML mapping" .Position -}}
+{{- end -}}
+{{- $rows := index $data "rows" -}}
+{{- if or (not (reflect.IsSlice $rows)) (eq (len $rows) 0) -}}
+  {{- errorf "%s: wordblocks needs a non-empty rows list" .Position -}}
+{{- end -}}
+<figure class="wb-prog" role="img" aria-label="{{ $aria }}">
+  <div class="wb-prog-visual" aria-hidden="true">
+    {{- partial "wordblocks-rows.html" (dict "rows" $rows "position" .Position) -}}
+  </div>
+</figure>

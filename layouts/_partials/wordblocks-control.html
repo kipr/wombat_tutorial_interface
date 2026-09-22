@@ -1,0 +1,48 @@
+{{- $classes := dict
+  "events" "ev"
+  "movement" "mv"
+  "control" "ct"
+  "display" "lt"
+  "motors" "mo"
+  "variables" "vr"
+  "sensors" "sn"
+  "myblocks" "my"
+-}}
+{{- $control := .control -}}
+{{- if not (reflect.IsMap $control) -}}
+  {{- errorf "%s: wordblocks control must be a mapping" .position -}}
+{{- end -}}
+{{- $category := index $control "category" | default "control" -}}
+{{- if not (in .categories $category) -}}
+  {{- errorf "%s: wordblocks control category %q is not allowed" .position $category -}}
+{{- end -}}
+{{- $class := printf "wb %s" (index $classes $category) -}}
+{{- $head := index $control "head" -}}
+{{- if or (not (reflect.IsSlice $head)) (eq (len $head) 0) -}}
+  {{- errorf "%s: wordblocks control needs a non-empty head" .position -}}
+{{- end -}}
+{{- $body := index $control "body" | default slice -}}
+{{- if not (reflect.IsSlice $body) -}}
+  {{- errorf "%s: wordblocks control body must be a list" .position -}}
+{{- end -}}
+<div class="wb-cwrap">
+  <div class="wb-row"><div class="{{ $class }} cb-top">{{ partial "wordblocks-parts.html" (dict "parts" $head "slotKinds" .slotKinds "position" .position) }}</div></div>
+  <div class="wb-cbody">
+    {{- partial "wordblocks-rows.html" (dict "rows" $body "position" .position) -}}
+  </div>
+  {{- range $branch := index $control "branches" | default slice -}}
+    {{- if not (reflect.IsMap $branch) -}}
+      {{- errorf "%s: wordblocks control branch must be a mapping" $.position -}}
+    {{- end -}}
+    {{- $label := index $branch "label" -}}
+    {{- if not $label -}}
+      {{- errorf "%s: wordblocks control branch needs a label" $.position -}}
+    {{- end -}}
+    {{- $rows := index $branch "rows" | default slice -}}
+  <div class="wb-row"><div class="{{ $class }} cb-top cb-branch">{{ $label }}</div></div>
+  <div class="wb-cbody">
+    {{- partial "wordblocks-rows.html" (dict "rows" $rows "position" $.position) -}}
+  </div>
+  {{- end }}
+  <div class="wb-row"><div class="{{ $class }} cb-end"></div></div>
+</div>

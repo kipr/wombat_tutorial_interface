@@ -43,46 +43,55 @@ Shortcodes are the public API used by Markdown authors. Partials are internal bu
 
 These are compatibility boundaries, not a demand for identical DOM structure. When one of them intentionally changes, document the migration and update the relevant consumer or test.
 
-## Discovery content model
+## Introductory content model
 
-Discovery uses clean Hugo section URLs and no legacy aliases:
+Introductory uses clean Hugo section URLs and no legacy aliases:
 
 ```text
-content/discovery/_index.md
-content/discovery/coding/_index.md
-content/discovery/coding/project-01.md ... project-17.md
-content/discovery/systems/_index.md
-content/discovery/systems/project-01.md ... project-14.md
+content/introductory/_index.md
+content/introductory/coding/_index.md
+content/introductory/coding/project-01.md ... project-17.md
+content/introductory/ev3/_index.md
+content/introductory/ev3/project-01.md ... project-17.md
+content/introductory/ev3/builds/arm.md
+content/introductory/ev3/builds/claw.md
+content/introductory/spike/_index.md
+content/introductory/spike/project-01.md ... project-17.md
+content/introductory/spike/builds/arm.md
+content/introductory/spike/builds/claw.md
+content/introductory/systems/_index.md
+content/introductory/systems/project-01.md ... project-14.md
 ```
 
-Every project uses `type: discovery` implicitly from its section and is
+Every project uses `type: introductory` implicitly from its section and is
 validated at build time. The required project front matter is:
 
 | Field | Contract |
 | --- | --- |
 | `title`, `short_title`, `description`, `weight` | Page, navigation, and hub-card text/order. Weight equals the project number. |
-| `mission_id` | Exact legacy persistence identifier, such as `discovery_coding_14` or `discovery_systems_07`; it is not a game-mission number. |
-| `styles` | Exactly `site-base`, `worksheet`, `syntax`, `discovery`, `print`, in that order. |
-| `project_number`, `strand` | Numeric project identity and either `coding` or `systems`. |
+| `mission_id` | Exact persistence identifier: `introductory_coding_NN` (Wombat), `introductory_ev3_coding_NN`, `introductory_spike_coding_NN`, or `introductory_systems_NN`. |
+| `styles` | Exactly `site-base`, `worksheet`, `syntax`, `introductory`, `print`, in that order. |
+| `project_number`, `strand` | Numeric project identity and either `coding` or `systems`. Coding projects also set `platform: wombat`, `ev3`, or `spike`. |
 | `phase`, `phase_order`, `time` | Hub grouping plus worksheet metadata. |
 | `meta` | Labelled definition rows and exactly one `What You Need` row whose `checklist` items each contain stable `key` and accessible `label` values. |
 | `eyebrow`, `heading`, `subheading`, `credit` | Shared worksheet hero and footer content. |
 
 Optional card fields are `hub_title`, `mission_label`, `no_mission`, `build`,
 and a `pace` mapping with `kind` (`required`, `suggested`, or `anytime`) and
-`label`. A Coding page may place a `build_gate` after its phase; `page` is a
-Hugo page reference and therefore fails the build if its target is missing.
+`label`. A Coding page may place a `build_gate` after its phase; supply either
+`page`/`label` or a `links` list of page/label pairs. Each target is a Hugo
+page reference and therefore fails the build if it is missing.
 The root and strand hubs derive cards, phase groups, counts, links, badges, and
 gates from section children rather than maintaining a separate project list.
 
-Discovery-owned extracted diagrams are colocated with the Markdown files in
+Introductory-owned extracted diagrams are colocated with the Markdown files in
 their content section and referenced by bare filename. Shared images remain
 below `static/img/`; assembly sequences live in `static/img/kit/assembly/`.
 Figure source paths are resolved through the existing
 `figrow`/`figure-grid.html` path, so project Markdown does not introduce a
-Discovery-only image renderer.
+Introductory-only image renderer.
 
-Discovery phase headings use one Markdown convention:
+Introductory phase headings use one Markdown convention:
 
 ```markdown
 ## Try It - Observe the Wombat
@@ -152,7 +161,7 @@ Partials are internal APIs. Reuse them from layouts or shortcode implementations
 | `head.html` | Shared document metadata, fonts, and stylesheet links. |
 | `hub-nav.html` | Hub-page navigation shell; delegates individual data-driven links to `navigation-link.html`. |
 | `mission-summary.html` | Renders canonical mission tiers for the `mission-summary` shortcode, with optional authored status annotations. |
-| `mission-tier-title.html` / `mission-judging-label.html` | Shared canonical display labels used by both mission pages and Discovery summaries. |
+| `mission-tier-title.html` / `mission-judging-label.html` | Shared canonical display labels used by both mission pages and Introductory summaries. |
 | `navigation-link.html` | Shared navigation anchor with configurable active class and consistent `aria-current`. |
 | `overlays.html` | Emits glossary and figure dialogs only when the rendered page used them. |
 | `page-data.html` | Serializes only the glossary definitions referenced by the current page. |
@@ -169,7 +178,7 @@ Partials are internal APIs. Reuse them from layouts or shortcode implementations
 | `textarea.html` | Validated accessible response textarea used by `answer` and `ask`. |
 | `topbar.html` | Worksheet top bar, main navigation, PIN field, and submission controls. |
 | `truthtable.html` | Core structured truth-table renderer used by concept content. |
-| `validate-discovery-project.html` | Enforces Discovery filenames, numbering, persistence IDs, stylesheet order, phase/time fields, and the structured What You Need checklist. |
+| `validate-introductory-project.html` | Enforces Introductory filenames, numbering, persistence IDs, stylesheet order, phase/time fields, and the structured What You Need checklist. |
 | `worksheet-metadata.html` | Renders definition rows and structured metadata checklists through the shared glossary and checkbox paths. |
 
 When adding a semantic alias around an existing partial, keep the alias thin: collect/validate only its distinct authoring parameters, then delegate rendering.
@@ -445,12 +454,12 @@ The shared reference parser accepts:
 
 Unknown terms, senses, missions, and tiers fail the build. Mission references resolve from the mission page collection-not a parallel data file-and link to the stable `#base`, `#bonus`, or `#advanced` tier anchor. Page data contains only glossary references actually used on that page, with Python wording selected when `track: python` is set.
 
-## 2026 Explorer missions and rules
+## 2027 Explorer missions and rules
 
-The 2026 Explorer is ordinary Hugo content with no URL overrides or aliases:
+The 2027 Explorer is ordinary Hugo content with no URL overrides or aliases:
 
 ```text
-content/botball_explorer_2026/
+content/botball_explorer_2027/
 ├── _index.md
 ├── rules.md
 └── missions/
@@ -558,8 +567,8 @@ Navigation entries define exactly one destination: `page` for Hugo content or `u
   name: C Labs
   page: /labs
 - id: missions
-  name: 2026 Missions
-  page: /botball_explorer_2026
+  name: 2027 Missions
+  page: /botball_explorer_2027
 ```
 
 Section edition toggles follow the same rule through the `toggle_page` front matter field. Do not write `.html` paths for Hugo content; page-object links emit the configured canonical URL automatically.

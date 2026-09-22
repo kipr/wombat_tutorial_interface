@@ -1,7 +1,7 @@
 # Contributor guide for agents
 
 This repository contains the Hugo source for KIPR's student-facing Botball
-worksheets, Discovery projects, and Botball Explorer materials. Treat Markdown,
+worksheets, Introductory projects, and Botball Explorer materials. Treat Markdown,
 YAML, layouts, and static assets as source; do not edit generated `public/` or
 `resources/_gen/` output.
 
@@ -39,7 +39,7 @@ task before making changes:
   domain root, project mount, and from local files.
 - Preserve useful labels, alternative text, keyboard behavior, print meaning,
   and stable links when changing UI or content.
-- Treat `backup/` and `data/discovery-legacy-inventory.json` as reference
+- Treat `backup/` and `data/introductory-legacy-inventory.json` as reference
   evidence. Do not casually regenerate baselines or broaden migration
   exceptions to make a check pass.
 - Review the existing worktree before editing and leave unrelated changes
@@ -61,3 +61,50 @@ source or template change should receive a fresh Hugo build. JavaScript
 behavior changes should run the relevant dependency-free Node test.
 
 In the final handoff, report which checks ran and any failures.
+
+## Cursor Cloud specific instructions
+
+The cloud VM does not use the repo `Dockerfile`/`.devcontainer/`. Hugo
+`v0.164.0` extended is installed to `/usr/local/bin/hugo` by the startup update
+script; `node` is preinstalled. There is no `package.json`, no `npm install`
+step, and the `tools/` and `tests/` scripts use only Node built-ins, so the
+build, lint, and test commands documented under `docs/` run as-is.
+
+Pandoc `3.6.4` and its custom-writer documentation are required for Introductory
+HTML imports. Repository Cloud Agent setup runs `sh tools/cloud-install.sh`
+(see `.cursor/environment.json`). If `pandoc` is missing in an already-running
+VM, run that script once:
+
+```sh
+sh tools/cloud-install.sh
+ls /usr/local/share/doc/pandoc/custom-writers.html
+```
+
+The importer is:
+
+```sh
+node tools/introductory-importer/import.js --help
+```
+
+It reads `html+raw_html` through the Lua writer at
+`tools/introductory-importer/writer.lua` and refuses to overwrite existing
+Markdown unless `--force` is passed. Leave `tbc/` unchanged; generated
+Markdown under `content/introductory/` is the authored source after import.
+
+Non-obvious gotchas when serving the dev server here:
+
+- The configured `baseURL` includes the project mount, so a default
+  `hugo server` serves pages under `/wombat-tutorial-interface/`. To browse at
+  the localhost root instead, override the base URL:
+  `hugo server --buildDrafts --bind 0.0.0.0 --port 1313 --baseURL http://localhost:1313/`.
+  Pages are then at e.g. `http://localhost:1313/labs/prelab0/` (the root path
+  `/` returns 200; the un-overridden `/wombat-tutorial-interface/` path returns
+  404 in this mode).
+- Worksheet auto-save/restore (`static/js/lab.js`) is keyed by page
+  `mission_id` and persists every `[data-key]` control to
+  `localStorage["kipr_<mission_id>_draft"]`. Verify it deterministically in the
+  browser console (read `document.getElementById(...).value` after a reload)
+  rather than by eye — small form text is easy to misread in screenshots/video.
+- `node tools/check_theme_output.js <build_dir>` reports a pre-existing failure
+  on the static `ISTE_Standards.html` download page; it is not part of the
+  documented verification command set under `docs/`.

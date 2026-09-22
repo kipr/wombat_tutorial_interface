@@ -1,0 +1,18 @@
+{{- $categories := slice "events" "movement" "control" "display" "motors" "variables" "sensors" "myblocks" -}}
+{{- $shapes := slice "hat" -}}
+{{- $slotKinds := slice "value" "dropdown" "variable" "operator" "condition" "steering" "matrix" -}}
+{{- range $index, $row := .rows -}}
+  {{- if not (reflect.IsMap $row) -}}
+    {{- errorf "%s: wordblocks row %d must be a mapping" $.position (add $index 1) -}}
+  {{- end -}}
+  {{- if and (isset $row "block") (isset $row "control") -}}
+    {{- errorf "%s: wordblocks row %d cannot be both a block and a control" $.position (add $index 1) -}}
+  {{- end -}}
+  {{- if isset $row "block" -}}
+    {{- partial "wordblocks-block.html" (dict "block" $row.block "note" (index $row "note") "categories" $categories "shapes" $shapes "slotKinds" $slotKinds "position" $.position) -}}
+  {{- else if isset $row "control" -}}
+    {{- partial "wordblocks-control.html" (dict "control" $row.control "categories" $categories "shapes" $shapes "slotKinds" $slotKinds "position" $.position) -}}
+  {{- else -}}
+    {{- errorf "%s: wordblocks row %d needs block or control" $.position (add $index 1) -}}
+  {{- end -}}
+{{- end -}}

@@ -3,8 +3,8 @@
 ## Choose the closest page family
 
 There is no universal worksheet schema. Copy a nearby page of the same family
-and track, then change its content. `archetypes/discovery.md` is a useful
-starting point for a Discovery project; the default Hugo archetype creates only
+and track, then change its content. `archetypes/introductory.md` is a useful
+starting point for a Introductory project; the default Hugo archetype creates only
 a title, date, and draft flag.
 
 Copying front matter alone does not necessarily preserve rendering. Hugo
@@ -51,10 +51,10 @@ siblings; the main site navigation remains available.
 The two tracks mirror the same curriculum and interaction keys. Preserve the
 teaching sequence and `data-key` contract when adapting C prose/code to Python.
 
-### Discovery projects
+### Introductory projects
 
 Projects use clean paths such as
-`content/discovery/coding/project-03.md`. Their build-enforced identity fields
+`content/introductory/coding/project-03.md`. Their build-enforced identity fields
 are:
 
 - `title`, `short_title`, `description`, `weight`;
@@ -64,16 +64,20 @@ are:
 - `meta` with exactly one non-empty, structured `What You Need` checklist.
 
 `weight` must equal the project number. Coding has 17 projects, Systems has 14,
-filenames are zero-padded, persistence IDs use
-`discovery_<strand>_<two-digit-number>`, and project styles must be exactly:
+filenames are zero-padded, and project styles must be exactly:
 
 ```yaml
-styles: ["site-base", "worksheet", "syntax", "discovery", "print"]
+styles: ["site-base", "worksheet", "syntax", "introductory", "print"]
 ```
 
+Coding projects also set `platform: wombat`, `ev3`, or `spike`. Wombat
+persistence IDs stay `introductory_coding_NN`. EV3 and SPIKE IDs are
+`introductory_ev3_coding_NN` and `introductory_spike_coding_NN`.
+
 Optional hub metadata includes `hub_title`, `mission_label`, `no_mission`,
-`build_project`, `pace`, and a between-phase `build_gate`. A gate's `page` is a
-lowercase Hugo page reference and must resolve.
+`build_project`, `pace`, and a between-phase `build_gate`. A gate accepts either
+the existing `page`/`label` pair or a `links` list of page/label pairs. Each
+target is a lowercase Hugo page reference and must resolve.
 
 ### Explorer missions
 
@@ -131,7 +135,7 @@ patterns:
 - distinguish what the machine literally does from what a student intended.
 
 C/Python labs normally use `## Overview`, numbered `## Phase N --- ...`
-sections, and `## Extension Challenges`. Discovery projects use the exact
+sections, and `## Extension Challenges`. Introductory projects use the exact
 level-two family `Try It`, `Learn It`, `Do It`, and, when authored, `Score It`.
 The heading render hook supplies the visual phase badge; do not hand-code it.
 
@@ -197,7 +201,7 @@ Python definition wording when one exists. The page payload includes only the
 glossary entries that page uses.
 
 In front matter and navigation data, use lowercase Hugo page references such
-as `/labs`, `/python_labs`, `/discovery`, and `/glossary`. Use a literal URL
+as `/labs`, `/python_labs`, `/introductory`, and `/glossary`. Use a literal URL
 only for a non-Hugo static target such as `score.html`; do not write legacy
 `.html` URLs for content pages.
 

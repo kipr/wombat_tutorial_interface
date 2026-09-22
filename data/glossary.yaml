@@ -38,12 +38,21 @@
   title: "Block"
   body: "Everything between an opening brace and its matching closing brace. A block groups statements together so the controller knows which ones belong to which function."
   python: "Everything at a given level of indentation. A block groups statements together so the controller knows which ones belong to which function."
+"BLUETOOTH":
+  title: "Bluetooth"
+  body: "A short-range radio that lets two devices talk to each other without a cable. The EV3 Classroom app uses it to send your program across to the brick."
 "BOOLEAN":
   title: "Boolean"
   body: "A value that can only be true or false - nothing in between. Every condition you write comes out as a boolean, which is how the robot decides which way to go."
 "BOUNDARY":
   title: "Boundary"
   body: "The line that marks the edge of a zone or area. Whether an object is inside, outside, or touching the boundary is often the difference between scoring and not scoring."
+"BRICK":
+  title: "Brick"
+  body: "The robot's brain - a small computer with a battery, a screen, buttons, four lettered motor ports on top, four numbered sensor ports on the bottom, and a radio inside. Programs run on the brick, not on your tablet."
+"BRICK_MEMORY":
+  title: "On the Brick"
+  body: "When you download a program, the brick saves its own copy, filed under your project's name. The brick holds many programs at once and can run any of them from its own buttons, with no tablet connected."
 "BYSTANDER":
   title: "Bystander"
   body: "Somebody who sees unkindness happening but is not the one doing it or the one it is aimed at. Bystanders are usually the largest group, which is why what they do matters so much."
@@ -156,9 +165,15 @@
 "HARDWARE":
   title: "Hardware"
   body: "The physical body of a machine - the parts you could drop on your foot. Hardware can do things but cannot decide anything."
+"HAT BLOCK":
+  title: "Hat Block"
+  body: "A block with a curved top that nothing can snap above. It marks where a program starts. When you press Run, the robot begins at the hat and works its way down."
 "HEADER FILE":
   title: "Header File"
   body: "A file ending in .h that holds functions you want other programs to be able to use. You bring it into a program with an #include line at the top."
+"HUB":
+  title: "Hub"
+  body: "The robot's brain - a small computer with a battery, a 5x5 light grid, six lettered ports, and a radio inside. Programs run on the hub, not on your tablet."
 "IDE":
   title: "IDE"
   body: "Short for Integrated Development Environment. It is the place where you write your code, check it for mistakes, and send it to the robot. Yours is called the KISS IDE."
@@ -330,12 +345,18 @@
   title: "SIMULTANEOUSLY"
   body: "Two or more conditions are SIMULTANEOUS if all are true at the same moment. No minimum duration is required unless a mission specifies one."
   source: "rules"
+"SLOT":
+  title: "Program Slot"
+  body: "A numbered parking space on the hub where a program is stored. The hub holds many programs at once and can run any of them from its own buttons, with no tablet connected."
 "SOFTWARE":
   title: "Software"
   body: "The instructions a machine follows. Software can decide things but cannot move anything on its own."
 "SPLINE":
   title: "Spline"
   body: "The toothed shaft on top of a servo - the part that actually turns. The teeth let a horn grip it in a fixed position instead of slipping."
+"STACK":
+  title: "Stack"
+  body: "Blocks snapped together in a column. The robot runs a stack from the top down, one block at a time - each block is one instruction."
 "STATE":
   title: "State"
   body: "What a system is currently doing or holding - where the robot is, what it is carrying, how many cubes it has stacked. State is the information a program keeps track of as it runs."
@@ -343,6 +364,9 @@
   title: "Statement"
   body: "One instruction for the robot to carry out. Statements run in the order they are written, top to bottom, and each one ends with a semicolon."
   python: "A complete instruction that Python can execute. Simple statements are usually written one per line, while statements such as if and loops introduce an indented block of code."
+"STEERING":
+  title: "Steering"
+  body: "The number on a move block that bends the robot's path. 0 is straight. Positive numbers curve the path to the right, negative numbers curve it to the left - and the bigger the number, the sharper the curve."
 "STRING":
   title: "String"
   body: "Text stored as data - letters, digits, and spaces treated as characters rather than as a number you can do arithmetic with."
