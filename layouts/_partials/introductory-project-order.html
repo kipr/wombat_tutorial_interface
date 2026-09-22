@@ -12,7 +12,7 @@
   (dict "platform" "spike" "label" "SPIKE Coding" "pattern" "/introductory/spike/project-%02d")
 -}}
 {{- $relations := slice -}}
-{{- $buildTarget := site.Params.buildTarget | default "" -}}
+{{- $allowIncompleteProjectOrder := site.Params.allowIncompleteProjectOrder | default false -}}
 {{- range $index, $entry := $order -}}
   {{- $position := printf "%s project_order entry %d" $introductory.File.Path (add $index 1) -}}
   {{- $systemsNumber := $entry.systems_project -}}
@@ -29,14 +29,14 @@
   {{- end -}}
   {{- $systemsReference := printf "/introductory/systems/project-%02d" $systemsNumber -}}
   {{- $systemsPage := site.GetPage $systemsReference -}}
-  {{- if and (ne $buildTarget "pilot") (not $systemsPage) -}}
+  {{- if and (not $allowIncompleteProjectOrder) (not $systemsPage) -}}
     {{- errorf "%s does not resolve: %q" $position $systemsReference -}}
   {{- end -}}
   {{- $codingPages := slice -}}
   {{- range $codingTracks -}}
     {{- $codingReference := printf .pattern $codingNumber -}}
     {{- $codingPage := site.GetPage $codingReference -}}
-    {{- if and (ne $buildTarget "pilot") (not $codingPage) -}}
+    {{- if and (not $allowIncompleteProjectOrder) (not $codingPage) -}}
       {{- errorf "%s does not resolve: %q" $position $codingReference -}}
     {{- end -}}
     {{- $codingPages = $codingPages | append (dict

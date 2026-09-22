@@ -1,7 +1,10 @@
 {{- $page := . -}}
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>{{ .Title }}</title>
+<title>{{ .Title }}{{ with site.Params.titleSuffix }} · {{ . }}{{ end }}</title>
+{{- if site.Params.noIndex }}
+<meta name="robots" content="noindex, nofollow" />
+{{- end }}
 <script src="{{ partial "relative-url.html" (dict "source" . "path" "js/theme.js") }}"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

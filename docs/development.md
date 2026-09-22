@@ -70,31 +70,48 @@ build_dir="$(mktemp -d)"
 hugo --buildDrafts --destination "$build_dir" --printPathWarnings --logLevel error
 ```
 
-### Pilot build target
+### Preview build target
 
-The optional `pilot` target publishes a curated set of missions, educator
-resources, labs, and Introductory projects. It does not change the default build
-or filter files below `static/`.
+The optional `preview` target publishes a curated set of missions, educator
+resources, labs, and Introductory projects. It also adds `Preview` to every
+generated page title and to the shared site branding, and asks search engines
+not to index the preview. It does not change the default build or filter files
+below `static/`.
 
 Preview the target with:
 
 ```sh
-hugo server --config hugo.toml,build-targets/pilot.toml
+hugo server --config hugo.toml,build-targets/preview.toml
 ```
 
-Build it into a fresh destination with:
+Build it into a fresh destination and validate its links with:
 
 ```sh
-pilot_dir="$(mktemp -d)"
-hugo --config hugo.toml,build-targets/pilot.toml \
-  --destination "$pilot_dir" --printPathWarnings --logLevel error
-node tools/check_internal_links.js "$pilot_dir"
+preview_dir="$(mktemp -d)"
+hugo --config hugo.toml,build-targets/preview.toml \
+  --destination "$preview_dir" --printPathWarnings --logLevel error
+node tools/check_internal_links.js "$preview_dir"
 ```
 
 Each target configuration is a complete allow-list for the content mount.
 Include branch `_index.md` files needed for hubs and every referenced Hugo page
-that should remain linked. The full build remains the authoritative content
-and syntax validation pass.
+or page-bundle resource that should remain linked. The full build remains the
+authoritative content and syntax validation pass.
+
+The Pages workflow builds the full site first and then builds the preview into
+its `preview/` subdirectory. This publishes the two variants side by side from
+the same commit: the full site at the deployment root and the curated version
+at `/preview/`. Building into a child destination after the full build is
+important; reversing the order would allow the full build's destination cleanup
+to remove the preview.
+
+The `Justfile` provides the same ordering for a local combined artifact:
+
+```sh
+just build-all
+# Full site: public/
+# Preview:   public/preview/
+```
 
 ## Page exists but the browser shows 404
 

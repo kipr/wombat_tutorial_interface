@@ -50,6 +50,12 @@
             node tests/test_introductory_import.js
             node tests/test_wordblocks_markup.js "${RUNNER_TEMP}/verify"
 
+            hugo --config hugo.toml,build-targets/preview.toml \
+              --destination "${RUNNER_TEMP}/preview-verify" \
+              --printPathWarnings \
+              --logLevel error
+            node tools/check_internal_links.js "${RUNNER_TEMP}/preview-verify"
+
         - name: Build production site
           env:
             HUGO_ENVIRONMENT: production
@@ -58,6 +64,12 @@
             hugo --minify \
               --destination "${RUNNER_TEMP}/site" \
               --baseURL "${{ steps.pages.outputs.base_url }}/" \
+              --printPathWarnings \
+              --logLevel error
+            hugo --config hugo.toml,build-targets/preview.toml \
+              --minify \
+              --destination "${RUNNER_TEMP}/site/preview" \
+              --baseURL "${{ steps.pages.outputs.base_url }}/preview/" \
               --printPathWarnings \
               --logLevel error
 

@@ -404,6 +404,9 @@ body.hub .page-sub {
 .home-hero-inner { position: relative; z-index: 1; max-width: var(--site-content-max-width); width: 100%; }
 .home-hero-text { position: relative; margin-bottom: 2.5rem; }
 
+/* Reserve the botguy's space for the longer Preview site name. */
+.home-hero-text--preview { padding-right: min(220px, 26vw); }
+
 .home-hero-eyebrow {
   font-family: var(--font-display);
   font-size: 0.85rem;
@@ -464,6 +467,11 @@ body.hub .page-sub {
 }
 
 .cheat-banner:hover { background: var(--red-dark); }
+
+@media (max-width: 768px) {
+  .home-hero-text--preview { padding-right: 0; }
+  .home-hero-text--preview .home-hero-botguy { display: none; }
+}
 
 @media (max-width: 640px) {
   .home-hero { justify-content: flex-start; padding: 1.75rem 1.25rem 2.5rem; }

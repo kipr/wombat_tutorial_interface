@@ -1,6 +1,14 @@
-[params]
-  buildTarget = 'pilot'
+title = 'KIPR · Botball Explorer Preview'
 
+[params]
+  buildTarget = 'preview'
+  brandSuffix = 'Preview'
+  titleSuffix = 'Preview'
+  noIndex = true
+  allowIncompleteProjectOrder = true
+
+# The preview is a content allow-list. Keep the section _index.md files needed
+# by each hub and every page/resource referenced by an included page.
 [[module.mounts]]
   source = 'content'
   target = 'content'
