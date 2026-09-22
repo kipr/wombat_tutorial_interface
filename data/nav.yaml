@@ -7,9 +7,9 @@
 - id: missions
   name: 2027 Missions
   page: /botball_explorer_2027
-- id: discovery
-  name: Discovery
-  page: /discovery
+- id: introductory
+  name: Introductory
+  page: /introductory
 - id: labs
   name: C Labs
   page: /labs

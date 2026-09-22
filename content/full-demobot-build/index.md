@@ -6,7 +6,7 @@ styles: ["site-base", "worksheet", "syntax", "print"]
 hide_botnav: true
 eyebrow: "Pre-Lab · Build Guide"
 heading: "Build Your Demobot"
-subheading: "Complete this before Lab 1 of any path. Every C lab, Python lab, and Discovery project runs on the robot you are about to build."
+subheading: "Complete this before Lab 1 of any path. Every C lab, Python lab, and Introductory project runs on the robot you are about to build."
 credit: "KIPR · Botball Explorer Pre-Lab Exercise · Special thanks to Infosys Foundation USA · © KISS Institute for Practical Robotics 1997–2027"
 sidebar:
   title: "Build Phases"
@@ -626,5 +626,5 @@ Video coming soon.
 This is the robot you will use for the labs: driving base + arm servo + claw servo.
 
 {{< gate title="You're Ready for Lab 1" >}}
-Put your battery in --- it should be charged by now --- plug the motor and servo wires into the Wombat, and head to the first lab of your path: C, Python, or Discovery. Keep this guide handy; if a piece ever comes loose, come back to the matching step.
+Put your battery in --- it should be charged by now --- plug the motor and servo wires into the Wombat, and head to the first lab of your path: C, Python, or Introductory. Keep this guide handy; if a piece ever comes loose, come back to the matching step.
 {{< /gate >}}

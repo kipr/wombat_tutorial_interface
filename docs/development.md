@@ -26,17 +26,17 @@ Check the active Hugo version:
 hugo version
 ```
 
-## Discovery HTML importer
+## Introductory HTML importer
 
 Convert the 40 EV3/SPIKE HTML files under `tbc/` with:
 
 ```sh
-node tools/discovery-importer/import.js --help
-node tools/discovery-importer/import.js --out /tmp/discovery-preview
-node tools/discovery-importer/import.js --force   # overwrite content/discovery
+node tools/introductory-importer/import.js --help
+node tools/introductory-importer/import.js --out /tmp/introductory-preview
+node tools/introductory-importer/import.js --force   # overwrite content/introductory
 ```
 
-Pandoc must be invoked as `--from=html+raw_html --to=tools/discovery-importer/writer.lua`.
+Pandoc must be invoked as `--from=html+raw_html --to=tools/introductory-importer/writer.lua`.
 The driver refuses to overwrite existing Markdown unless `--force` is passed.
 Leave `tbc/` unchanged; generated Markdown is the authored source after import.
 
@@ -73,7 +73,7 @@ hugo --buildDrafts --destination "$build_dir" --printPathWarnings --logLevel err
 ### Pilot build target
 
 The optional `pilot` target publishes a curated set of missions, educator
-resources, labs, and Discovery projects. It does not change the default build
+resources, labs, and Introductory projects. It does not change the default build
 or filter files below `static/`.
 
 Preview the target with:
@@ -152,7 +152,7 @@ node tools/check_syntax_highlighting.js "$build_dir"
 node tools/check_internal_links.js "$build_dir"
 node tests/test_lab_persistence.js
 node tests/test_glossary_dialog.js
-node tests/test_discovery_import.js
+node tests/test_introductory_import.js
 node tests/test_wordblocks_markup.js "$build_dir"
 ```
 
@@ -165,7 +165,7 @@ What they cover:
 | `check_internal_links.js` | Generated relative `href`, `src`, and `poster` targets and HTML fragments. |
 | `test_lab_persistence.js` | Checkbox/text restore, autosave, export payload, and print submission flow. |
 | `test_glossary_dialog.js` | Semantic activation, close behavior, Escape, and focus return. |
-| `test_discovery_import.js` | Pandoc Lua writer conversion of the 40 EV3/SPIKE HTML sources, inventories, and failure fixtures. |
+| `test_introductory_import.js` | Pandoc Lua writer conversion of the 40 EV3/SPIKE HTML sources, inventories, and failure fixtures. |
 | `test_wordblocks_markup.js` | Rendered `wordblocks` shortcode: categories, nested controls, accessible name, and `aria-hidden` internals. |
 
 The Node tests execute `static/js/lab.js` in small mocked DOMs. They do not

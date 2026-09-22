@@ -26,4 +26,4 @@ cards:
     download: true
 ---
 
-These materials are for teachers and coaches. Students can stay on the mission, Discovery, and lab pages.
+These materials are for teachers and coaches. Students can stay on the mission, Introductory, and lab pages.

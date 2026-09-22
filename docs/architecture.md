@@ -30,10 +30,10 @@ under a project mount, and when opened from a local directory.
 | `build-targets/` | Optional Hugo configuration overlays that publish curated content selections. |
 | `data/nav.yaml` | Canonical top-level navigation. |
 | `data/glossary.yaml` | Canonical curriculum and competition definitions. |
-| `data/discovery-*.json` | Frozen legacy contract and narrowly approved migration exceptions. |
+| `data/introductory-*.json` | Frozen legacy contract and narrowly approved migration exceptions. |
 | `tools/` | The build-output validator. |
 | `tests/` | Dependency-free Node regression tests for worksheet browser behavior. |
-| `archetypes/` | Generic Hugo draft and a Discovery project starting point. |
+| `archetypes/` | Generic Hugo draft and a Introductory project starting point. |
 | `backup/` | Legacy/reference material; it is not published by Hugo. |
 
 ## Page families
@@ -76,7 +76,7 @@ checks in [Development and verification](development.md#page-exists-but-the-brow
 ### Home and section hubs
 
 `content/_index.md` drives the home cards. The C and Python lab indexes group
-The Discovery root is a four-choice hub: shared Systems plus Wombat, EV3, and
+The Introductory root is a four-choice hub: shared Systems plus Wombat, EV3, and
 SPIKE Coding. Coding hubs set `platform` and `heading_accent: Coding`. Systems
 prerequisite badges resolve the matching project on every coding platform.
 
@@ -96,10 +96,10 @@ Hugo `page` reference or a literal `url` for a static legacy target.
 
 ### Worksheets
 
-`content/labs/`, `content/python_labs/`, and Discovery project pages ultimately
-use the `labs` or `discovery` single layout. Both delegate the main document to
+`content/labs/`, `content/python_labs/`, and Introductory project pages ultimately
+use the `labs` or `introductory` single layout. Both delegate the main document to
 `layouts/_partials/worksheet-main.html`. EV3 and SPIKE arm/claw placeholders
-use `layouts/discovery/build-placeholder.html`.
+use `layouts/introductory/build-placeholder.html`.
 
 That renderer adds the hero, metadata, PIN/submission controls, authored
 content, previous/next navigation, and credit. It then:
@@ -146,7 +146,7 @@ Important internal paths include:
 - `relative-url.html` for content, assets, scripts, and static files;
 - `parse-reference.html` and `resolve-reference.html` for glossary and mission
   tokens; and
-- `validate-discovery-project.html` and `validate-mission.html` for build-time
+- `validate-introductory-project.html` and `validate-mission.html` for build-time
   content contracts.
 
 The default heading render hook styles worksheet headings. The Explorer rules

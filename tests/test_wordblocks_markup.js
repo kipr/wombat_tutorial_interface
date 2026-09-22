@@ -38,7 +38,7 @@ function assertProgram(html, ariaSnippet) {
   return block;
 }
 
-const simplePage = findPage(buildDir, "/discovery/ev3/project-01/");
+const simplePage = findPage(buildDir, "/introductory/ev3/project-01/");
 assert.ok(simplePage, "EV3 project 1 is in the build");
 const simple = fs.readFileSync(simplePage, "utf8");
 const hat = assertProgram(simple, "when program starts, write Hi!");
@@ -46,8 +46,8 @@ assert.match(hat, /class="wb ev hat"/);
 assert.match(hat, /class="wb lt"/);
 assert.match(hat, /<span class="pill">Hi!<\/span>/);
 
-const nestedPage = findPage(buildDir, "/discovery/ev3/project-15/")
-  || findPage(buildDir, "/discovery/spike/project-15/");
+const nestedPage = findPage(buildDir, "/introductory/ev3/project-15/")
+  || findPage(buildDir, "/introductory/spike/project-15/");
 assert.ok(nestedPage, "project 15 is in the build");
 const nested = fs.readFileSync(nestedPage, "utf8");
 const loop = assertProgram(nested, "repeat until pressed");
@@ -57,7 +57,7 @@ assert.match(loop, /class="wb-cbody"/);
 assert.match(loop, />else</);
 assert.match(loop, /class="pill steer"/);
 
-const matrixPage = findPage(buildDir, "/discovery/spike/project-02/");
+const matrixPage = findPage(buildDir, "/introductory/spike/project-02/");
 if (matrixPage) {
   const matrixHtml = fs.readFileSync(matrixPage, "utf8");
   if (matrixHtml.includes('class="pill mx"')) {

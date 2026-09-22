@@ -1,6 +1,6 @@
 /* KIPR Botball 2027 - Worksheet styles
  * PIN/submit, answers, code, grids, sketches, lab widgets, bottom nav.
- * Used by C/Python labs and Discovery project sheets.
+ * Used by C/Python labs and Introductory project sheets.
  */
 
 /* PIN / submit row under the main nav */
@@ -567,7 +567,7 @@ ul.tick li.key{background:var(--surface-accent-subtle);border-color:var(--text-a
 .image-checkbox input { width: 18px; height: 18px; cursor: pointer; }
 .image-checkbox:focus-within { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
 
-/* Bottom prev/next used by lab + discovery worksheets */
+/* Bottom prev/next used by lab + introductory worksheets */
 .botnav {
   display: flex; align-items: center; justify-content: flex-start;
   gap: 20px 24px; flex-wrap: wrap; margin: 46px 0 0; padding: 26px 0 8px;

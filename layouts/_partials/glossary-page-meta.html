@@ -5,10 +5,10 @@
 {{- $class := "other" -}}
 {{- $rank := 5 -}}
 
-{{- if hasPrefix $path "discovery/coding/" -}}
+{{- if hasPrefix $path "introductory/coding/" -}}
   {{- $class = "cod" -}}
   {{- $rank = 1 -}}
-{{- else if hasPrefix $path "discovery/systems/" -}}
+{{- else if hasPrefix $path "introductory/systems/" -}}
   {{- $class = "sys" -}}
   {{- $rank = 2 -}}
 {{- else if or (eq $nav "python") (eq $track "python") (hasPrefix $path "python_labs/") -}}

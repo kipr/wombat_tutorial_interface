@@ -1,7 +1,7 @@
 # Contributor guide for agents
 
 This repository contains the Hugo source for KIPR's student-facing Botball
-worksheets, Discovery projects, and Botball Explorer materials. Treat Markdown,
+worksheets, Introductory projects, and Botball Explorer materials. Treat Markdown,
 YAML, layouts, and static assets as source; do not edit generated `public/` or
 `resources/_gen/` output.
 
@@ -39,7 +39,7 @@ task before making changes:
   domain root, project mount, and from local files.
 - Preserve useful labels, alternative text, keyboard behavior, print meaning,
   and stable links when changing UI or content.
-- Treat `backup/` and `data/discovery-legacy-inventory.json` as reference
+- Treat `backup/` and `data/introductory-legacy-inventory.json` as reference
   evidence. Do not casually regenerate baselines or broaden migration
   exceptions to make a check pass.
 - Review the existing worktree before editing and leave unrelated changes
@@ -70,7 +70,7 @@ script; `node` is preinstalled. There is no `package.json`, no `npm install`
 step, and the `tools/` and `tests/` scripts use only Node built-ins, so the
 build, lint, and test commands documented under `docs/` run as-is.
 
-Pandoc `3.6.4` and its custom-writer documentation are required for Discovery
+Pandoc `3.6.4` and its custom-writer documentation are required for Introductory
 HTML imports. Repository Cloud Agent setup runs `sh tools/cloud-install.sh`
 (see `.cursor/environment.json`). If `pandoc` is missing in an already-running
 VM, run that script once:
@@ -83,13 +83,13 @@ ls /usr/local/share/doc/pandoc/custom-writers.html
 The importer is:
 
 ```sh
-node tools/discovery-importer/import.js --help
+node tools/introductory-importer/import.js --help
 ```
 
 It reads `html+raw_html` through the Lua writer at
-`tools/discovery-importer/writer.lua` and refuses to overwrite existing
+`tools/introductory-importer/writer.lua` and refuses to overwrite existing
 Markdown unless `--force` is passed. Leave `tbc/` unchanged; generated
-Markdown under `content/discovery/` is the authored source after import.
+Markdown under `content/introductory/` is the authored source after import.
 
 Non-obvious gotchas when serving the dev server here:
 

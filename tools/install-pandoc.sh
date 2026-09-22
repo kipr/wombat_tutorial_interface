@@ -1,6 +1,6 @@
 #!/bin/sh
 # Install pinned Pandoc 3.6.4 and the custom-writer documentation used by the
-# Discovery HTML importer. Idempotent: safe to re-run.
+# Introductory HTML importer. Idempotent: safe to re-run.
 set -eu
 
 PANDOC_VERSION="3.6.4"
@@ -87,7 +87,7 @@ install_docs() {
 # Pandoc ${PANDOC_VERSION} documentation (local copy)
 
 These files are installed next to the pinned Pandoc used by
-\`tools/discovery-importer\`. Re-run \`tools/install-pandoc.sh\` to refresh them.
+\`tools/introductory-importer\`. Re-run \`tools/install-pandoc.sh\` to refresh them.
 
 | File | What it covers |
 | --- | --- |

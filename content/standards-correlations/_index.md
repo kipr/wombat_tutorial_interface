@@ -11,4 +11,4 @@ description: "Download Excel workbooks that map Botball Explorer CS1 learning to
 subheading: "Start with the ISTE workbook, then download the file for your state. Each workbook is ready to open in Excel or another spreadsheet app."
 ---
 
-These files are for teachers and coaches. Students can stay on the mission, Discovery, and lab pages.
+These files are for teachers and coaches. Students can stay on the mission, Introductory, and lab pages.

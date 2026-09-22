@@ -1,0 +1,38 @@
+---
+title: "Introductory Projects — KIPR Botball Explorer 2026-2027"
+nav: introductory
+hub: true
+styles: ["site-base", "hub", "introductory"]
+eyebrow: "Botball Explorer · Entry Tier"
+heading: "Introductory"
+heading_accent: "Projects"
+description: "Shared Systems plus Wombat, EV3, and SPIKE Coding. Everything you build gets tested against a real Stack Attack mission."
+project_order:
+  - systems_project: 1
+    coding_project: 1
+    kind: suggested
+  - systems_project: 2
+    coding_project: 3
+    kind: suggested
+  - systems_project: 3
+    coding_project: 4
+    kind: suggested
+  - systems_project: 4
+    coding_project: 6
+    kind: suggested
+  - systems_project: 5
+    coding_project: 6
+    kind: suggested
+  - systems_project: 6
+    coding_project: 6
+    kind: required
+  - systems_project: 7
+    coding_project: 7
+    through_coding_project: 17
+    kind: required
+  - systems_project: 8
+    coding_project: 10
+    kind: suggested
+---
+
+**Which one first?** You can start Systems or any Coding track. Follow the linked Suggested and Required badges as you move through Coding. Systems Projects 9--14 can fit anywhere; the teamwork projects are most useful when you do them early.

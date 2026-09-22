@@ -1,7 +1,7 @@
 # Wombat Tutorial Interface
 
 This repository contains the Hugo source for KIPR's student-facing Botball
-worksheets, Discovery projects, and Botball Explorer materials. Content is
+worksheets, Introductory projects, and Botball Explorer materials. Content is
 authored in Markdown and YAML, then rendered through shared layouts and
 shortcodes into an accessible, printable static site.
 

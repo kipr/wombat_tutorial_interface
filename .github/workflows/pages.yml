@@ -47,7 +47,7 @@
             node tools/check_internal_links.js "${RUNNER_TEMP}/verify"
             node tests/test_lab_persistence.js
             node tests/test_glossary_dialog.js
-            node tests/test_discovery_import.js
+            node tests/test_introductory_import.js
             node tests/test_wordblocks_markup.js "${RUNNER_TEMP}/verify"
 
         - name: Build production site

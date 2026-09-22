@@ -151,7 +151,7 @@ body.hub .page-sub {
   margin-bottom: 2.5rem;
 }
 
-/* Shared hub cards (home / discovery choice grids) */
+/* Shared hub cards (home / introductory choice grids) */
 .doc-card,
 .choice-card {
   background: var(--surface-panel);
