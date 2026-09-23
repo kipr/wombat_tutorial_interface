@@ -12,7 +12,7 @@ eyebrow: "Introductory Projects · Wombat Track"
 heading: "Wombat"
 heading_accent: "Coding"
 description: "Connect to your Wombat, make it move, make it grab, make it sense. Written in KISS-C, one project at a time, each one anchored to a mission you can actually score."
-subheading: "Work through these in order. Fill each sheet in on screen, then press Submit & Download to turn in your work and keep a copy. Starting at Project 4, everything you build is tested against a real Stack Attack mission. All seventeen together cover every point on the field."
+subheading: "Work through these in order. Fill each sheet in on screen, then press Download to save a local copy of your answers. It does not turn in your work automatically; give the downloaded file to your teacher. Starting at Project 4, everything you build is tested against a real Stack Attack mission. All seventeen together cover every point on the field."
 hub_feature:
   title: "Build Your Demobot"
   text: "Build your robot before starting the Coding projects."

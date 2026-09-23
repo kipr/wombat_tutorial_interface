@@ -23,12 +23,12 @@ cards:
     page: /introductory
   - kicker: "Classroom · CS1 + AI · C"
     title: "Student Labs — C"
-    desc: "Interactive Botball Explorer lab sheets — fill in on screen, then submit for a results file and printable PDF."
+    desc: "Interactive Botball Explorer lab sheets — fill in on screen, then click Download to save your answers locally. Give the file to your teacher; it is not sent automatically. You can also save a PDF from the print dialog."
     arrow: "Open C Labs →"
     page: /labs
   - kicker: "Classroom · CS1 + AI · Python"
     title: "Student Labs — Python"
-    desc: "The same Botball Explorer curriculum, written in Python — fill in on screen, then submit for a results file and printable PDF."
+    desc: "The same Botball Explorer curriculum, written in Python — fill in on screen, then click Download to save your answers locally. Give the file to your teacher; it is not sent automatically. You can also save a PDF from the print dialog."
     arrow: "Open Python Labs →"
     page: /python_labs
   - kicker: "Competition Tool"

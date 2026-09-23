@@ -17,7 +17,7 @@
 
 {{- if .Params.mission_id }}
   <div class="pin-reminder no-print">
-    <strong>Before you start:</strong> type your PIN in the box at the top of the page. Your teacher gave you this number. When you finish, press <strong>Submit &amp; Download</strong> to turn in your work and save a copy.
+    <strong>Before you start:</strong> type your PIN in the box at the top of the page. Your teacher gave you this number. When you finish, press <strong>Download</strong> to save a local copy of your answers. This does not turn in your work automatically; give the downloaded file to your teacher.
   </div>
 {{- end }}
 
@@ -25,8 +25,8 @@
 
 {{- if .Params.mission_id }}
   <div class="bottom-submit no-print">
-    <p>When you are finished, press the button to turn in your work and save a copy.</p>
-    <button class="submit-btn" id="submitBottom">Submit &amp; Download</button>
+    <p>Download saves a local copy of your answers. It does not turn in your work automatically; give the downloaded file to your teacher.</p>
+    <button class="submit-btn" id="submitBottom">Download</button>
     <div class="status" id="statusBottom" role="status" aria-live="polite"></div>
   </div>
 {{- end }}

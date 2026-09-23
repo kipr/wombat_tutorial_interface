@@ -120,12 +120,12 @@
       if (submitting) return;
       var pin = pinInput.value.trim();
       if (!pin) {
-        setStatus("Enter your PIN at the top before you submit.", "warn");
+        setStatus("Enter your PIN at the top before you download your answers.", "warn");
         pinInput.focus();
         return;
       }
       submitting = true;
-      setStatus("Turning in your work...");
+      setStatus("Preparing your download...");
 
       downloadJSON({
         mission: MISSION_ID,
@@ -138,7 +138,7 @@
       var echo = document.getElementById("pinEcho");
       if (echo) echo.textContent = pin;
       setStatus(
-        "Saved your results file to Downloads. Opening the print dialog so you can save your PDF...",
+        "Saved your answers file to Downloads. This does not send it to your teacher; give them the downloaded file. Opening the print dialog so you can save a PDF...",
         "ok"
       );
 

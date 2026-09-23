@@ -7,7 +7,7 @@ styles: ["site-base", "hub"]
 eyebrow: "Botball Explorer · CS1 + AI Literacy · C Edition"
 heading: "Student Labs"
 edition: "C"
-subheading: "Interactive lab sheets you fill in on screen. Enter your PIN, work through the activity, then press Submit & Download to save your results file and a printable PDF."
+subheading: "Interactive lab sheets you fill in on screen. Enter your PIN, work through the activity, then press Download to save a local copy of your answers to give your teacher. It does not turn in your work automatically. You can also save a printable PDF from the print dialog."
 toggle_text: "Prefer Python?"
 toggle_link_text: "View the Python labs →"
 toggle_page: "/python_labs"

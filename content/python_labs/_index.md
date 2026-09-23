@@ -9,7 +9,7 @@ styles: ["site-base", "hub"]
 eyebrow: "Botball Explorer · CS1 + AI Literacy · Python Edition"
 heading: "Student Labs"
 edition: "Python"
-subheading: "The same Botball Explorer curriculum, written in Python. Enter your PIN, work through the activity, then press Submit & Download to save your results file and a printable PDF."
+subheading: "The same Botball Explorer curriculum, written in Python. Enter your PIN, work through the activity, then press Download to save a local copy of your answers to give your teacher. It does not turn in your work automatically. You can also save a printable PDF from the print dialog."
 toggle_text: "Prefer C?"
 toggle_link_text: "View the original labs →"
 toggle_page: "/labs"
