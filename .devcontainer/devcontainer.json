@@ -18,6 +18,13 @@
       }
     }
   },
+  // The agent sandboxes (Codex, Claude) use bubblewrap, which needs to create
+  // user namespaces and mount /proc. Docker's default seccomp profile and masked
+  // system paths block both, so they are disabled for this container.
+  "runArgs": [
+    "--security-opt=seccomp=unconfined",
+    "--security-opt=systempaths=unconfined"
+  ],
   "mounts": [
     "source=claude-config,target=/home/code/.claude,type=volume",
     "source=codex-config,target=/home/code/.codex,type=volume"
