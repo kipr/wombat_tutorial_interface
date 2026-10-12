@@ -12,7 +12,7 @@ cheat_sheet:
   label: "Botball Explorer Quick Reference — Click here to download the 2026-2027 one-pager"
 cards:
   - kicker: "Season Document"
-    title: "2026-2027 Fall Missions"
+    title: "2026-2027 Missions"
     desc: "Complete mission guide with scoring, judging style, and difficulty ratings for all 18 missions."
     arrow: "View Missions →"
     page: /botball_explorer_2027
