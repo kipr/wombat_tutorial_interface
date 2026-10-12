@@ -3,8 +3,26 @@
     "dockerfile": "../Dockerfile",
     "target": "hugo_dev"
   },
-  "forwardPorts": [1313],
-  "features": {
-      "ghcr.io/cirolosapio/devcontainers-features/alpine-gpg:0": {}
-  }
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "github.vscode-pull-request-github"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "fish",
+        "terminal.integrated.profiles.linux": {
+          "fish": {
+            "path": "/usr/bin/fish"
+          }
+        }
+      }
+    }
+  },
+  "mounts": [
+    "source=claude-config,target=/home/code/.claude,type=volume",
+    "source=codex-config,target=/home/code/.codex,type=volume"
+  ],
+  "forwardPorts": [
+    1313
+  ]
 }

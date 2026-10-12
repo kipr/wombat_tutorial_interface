@@ -12,12 +12,21 @@ FROM hugo_base AS hugo_dev
 
 USER 0
 
-RUN apk add fish fzf fd ripgrep just imagemagick imagemagick-webp imagemagick-jpeg pandoc-cli curl \
+RUN apk add bash fish fzf fd git gnupg ripgrep just jq bubblewrap imagemagick imagemagick-webp imagemagick-jpeg pandoc-cli curl \
     && mkdir -p /usr/local/share/doc/pandoc \
     && curl -fsSL -o /usr/local/share/doc/pandoc/custom-writers.html https://pandoc.org/custom-writers.html \
     && curl -fsSL -o /usr/local/share/doc/pandoc/lua-filters.html https://pandoc.org/lua-filters.html \
     && curl -fsSL -o /usr/local/share/doc/pandoc/MANUAL.html https://pandoc.org/MANUAL.html
 
-RUN npm install -g @openai/codex svgo
+# Agent state lives in named volumes; a new volume inherits this ownership.
+# CLAUDE_CONFIG_DIR also moves ~/.claude.json inside the volume.
+ENV CLAUDE_CONFIG_DIR=/home/hugo/.claude \
+    CODEX_HOME=/home/hugo/.codex \
+    PATH=/home/hugo/.local/bin:$PATH
+RUN mkdir -p "$CLAUDE_CONFIG_DIR" "$CODEX_HOME" \
+  && curl -fsSL https://claude.ai/install.sh | bash
+
+RUN npm install -g @openai/codex svgo \
+  && npm cache clean --force
 
 USER hugo:hugo
