@@ -15,7 +15,7 @@ tiers:
     points: 11
     difficulty: 6
     judging: live
-    description: "Two spilled cubes form a scoring stack — one spilled cube is [[ON TOP OF]] another spilled cube. Both cubes must originate from the spilled cube area."
+    description: "Two spilled cubes form a scoring stack — one spilled cube is [[ON TOP OF]] another spilled cube. Both cubes must originate from the spilled cube area. Edge-to-face or corner-to-face contact does not satisfy this definition for Mission 12."
   - id: bonus
     points: 5
     difficulty: 3
@@ -39,7 +39,8 @@ does_not_score:
 
 - The Base Mission is live scored.
 - The Bonus Mission is final position scored.
-- [[ON TOP OF]] is determined using the [[ON TOP OF]] definition.
+- [[ON TOP OF]] is determined using the [[ON TOP OF]] definition, except for the following:
+  - A scoring stack for this mission requires flat-face-to-flat-face contact between the upper and lower cube. A cube balanced across the edges of two lower cubes does not satisfy this requirement, even if it is physically elevated above the field surface.
 - Both cubes used for scoring must originate from the spilled cube area.
 - The stack must still exist at final scoring to receive Bonus Mission points.
 - The lower cube must be touching the black line to satisfy the Bonus Mission.
