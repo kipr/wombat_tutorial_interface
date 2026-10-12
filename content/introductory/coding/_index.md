@@ -20,4 +20,4 @@ hub_feature:
   label: "Open the full build guide →"
 ---
 
-**Strand complete.** All 17 projects are here. Together they cover every base, bonus, and advanced bonus in the 2026-2027 Fall Game --- all 301 points.
+**Strand complete.** All 17 projects are here. Together they cover every base, bonus, and advanced bonus in the 2026-2027 Game --- all 301 points.
