@@ -1,8 +1,8 @@
 <nav class="nav no-print" aria-label="Main">
-  <a class="nav-brand" href="{{ partial "relative-url.html" (dict "source" . "path" "index.html") }}">
-    <img src="{{ partial "relative-url.html" (dict "source" . "path" "kipr-logo.webp") }}" alt="KIPR" />
-    <span>Botball Explorer{{ with site.Params.brandSuffix }} {{ . }}{{ end }} 2026-2027</span>
-  </a>
+  <div class="nav-brand">
+    <a href="https://kipr.org/botball-explorer"><img src="{{ partial "relative-url.html" (dict "source" . "path" "kipr-logo.webp") }}" alt="KIPR" /></a>
+    <a class="nav-brand-title" href="{{ partial "relative-url.html" (dict "source" . "path" "index.html") }}">Botball Explorer{{ with site.Params.brandSuffix }} {{ . }}{{ end }}</a>
+  </div>
   <div class="nav-links">
   {{- range hugo.Data.nav }}
     {{ partial "navigation-link.html" (dict "source" $ "item" . "activeClass" "active") }}
