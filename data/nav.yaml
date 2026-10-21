@@ -19,3 +19,6 @@
 - id: glossary
   name: Glossary
   page: /glossary
+- id: simulator
+  name: Simulator
+  url: https://botballacademy.org

@@ -10,7 +10,9 @@
 {{- if $hasPage -}}
   {{- $target := partial "resolve-page.html" (dict "reference" .item.page "position" (printf "navigation entry %q" .item.id)) -}}
   {{- $href = partial "relative-url.html" (dict "source" .source "target" $target) -}}
+{{- else if hasPrefix .item.url "https://" -}}
+  {{- $href = .item.url -}}
 {{- else -}}
   {{- $href = partial "relative-url.html" (dict "source" .source "path" .item.url) -}}
 {{- end -}}
-<a href="{{ $href }}"{{ if $active }} class="{{ .activeClass }}" aria-current="page"{{ end }}>{{ .item.name }}</a>
+<a href="{{ $href }}"{{ if $active }} class="{{ .activeClass }}" aria-current="page"{{ end }}{{ if and $hasURL (hasPrefix .item.url "https://") }} target="_blank" rel="noopener"{{ end }}>{{ .item.name }}</a>
