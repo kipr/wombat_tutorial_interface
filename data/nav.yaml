@@ -22,3 +22,6 @@
 - id: simulator
   name: Simulator
   url: https://botballacademy.org
+- id: dashboard
+  name: My Dashboard
+  url: https://kipr.org/my-dashboard
