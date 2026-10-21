@@ -1,5 +1,6 @@
 ---
 title: "Introductory Projects — KIPR Botball Explorer 2026-2027"
+linkTitle: "Introductory Projects"
 nav: introductory
 hub: true
 styles: ["site-base", "hub", "introductory"]

@@ -1,5 +1,6 @@
 ---
 title: "Educator Resources — KIPR Botball Explorer 2026-2027"
+linkTitle: "Educator Resources"
 nav: home
 hub: true
 styles: ["site-base", "hub"]

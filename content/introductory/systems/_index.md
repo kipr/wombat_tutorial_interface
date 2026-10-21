@@ -1,5 +1,6 @@
 ---
 title: "Systems Projects — Introductory · KIPR Botball Explorer 2026-2027"
+linkTitle: "Systems Projects"
 index_label: "All Systems Projects"
 nav: introductory
 hub: true

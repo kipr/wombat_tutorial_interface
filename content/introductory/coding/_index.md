@@ -1,5 +1,6 @@
 ---
 title: "Coding Projects — Introductory Wombat Track · KIPR Botball Explorer 2026-2027"
+linkTitle: "Wombat Coding"
 index_label: "All Wombat Coding Projects"
 nav: introductory
 hub: true

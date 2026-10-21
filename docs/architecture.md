@@ -91,7 +91,11 @@ files or subdirectories fail the build. There is no separate YAML catalog for
 those downloads.
 
 Pages with `hub: true` use hub navigation and the hub footer. Other pages use
-the worksheet top bar. A card or navigation entry must define exactly one of a
+the worksheet top bar. Both headers start with the shared
+`_partials/breadcrumbs.html` trail: kipr.org, Botball Explorer, each rendered
+ancestor section, then the current page. Each crumb label is the page's
+`short_title`, else `linkTitle`, else `title`, so give a section with a long
+`title` a short `linkTitle`. A card or navigation entry must define exactly one of a
 Hugo `page` reference or a literal `url` for a static legacy target.
 
 ### Worksheets

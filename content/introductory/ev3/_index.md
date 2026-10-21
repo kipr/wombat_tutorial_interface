@@ -1,5 +1,6 @@
 ---
 title: "Coding Projects — Introductory EV3 Track · KIPR Botball Explorer 2026-2027"
+linkTitle: "EV3 Coding"
 index_label: "All EV3 Coding Projects"
 nav: "introductory"
 hub: true

@@ -1,0 +1,22 @@
+{{- /*
+  Header breadcrumb trail shared by the hub nav and the worksheet top bar:
+  kipr.org › Botball Explorer › section(s) › current page.
+  Labels prefer `short_title`, then Hugo's `linkTitle`, then `title`.
+  Ancestors with no content file or no rendered page are skipped.
+*/ -}}
+{{- $page := . -}}
+{{- $home := site.Home -}}
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    <li class="crumb-kipr"><a href="https://kipr.org/botball-explorer"><img src="{{ partial "relative-url.html" (dict "source" $page "path" "kipr-logo.webp") }}" alt="" /><span class="crumb-kipr-label">kipr.org</span></a></li>
+    <li class="crumb-site"><a href="{{ partial "relative-url.html" (dict "source" $page "target" $home) }}"{{ if $page.IsHome }} aria-current="page"{{ end }}>Botball Explorer{{ with site.Params.brandSuffix }} {{ . }}{{ end }}</a></li>
+  {{- if not $page.IsHome }}
+    {{- range $page.Ancestors.Reverse }}
+      {{- if and (not .IsHome) .File .RelPermalink }}
+    <li><a href="{{ partial "relative-url.html" (dict "source" $page "target" .) }}">{{ .Params.short_title | default .LinkTitle }}</a></li>
+      {{- end }}
+    {{- end }}
+    <li><a href="{{ partial "relative-url.html" (dict "source" $page "target" $page) }}" aria-current="page">{{ $page.Params.short_title | default $page.LinkTitle }}</a></li>
+  {{- end }}
+  </ol>
+</nav>

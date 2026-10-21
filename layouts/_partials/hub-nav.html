@@ -1,12 +1,11 @@
-<nav class="nav no-print" aria-label="Main">
-  <div class="nav-brand">
-    <a href="https://kipr.org/botball-explorer"><img src="{{ partial "relative-url.html" (dict "source" . "path" "kipr-logo.webp") }}" alt="KIPR" /></a>
-    <a class="nav-brand-title" href="{{ partial "relative-url.html" (dict "source" . "path" "index.html") }}">Botball Explorer{{ with site.Params.brandSuffix }} {{ . }}{{ end }}</a>
+<header class="nav no-print">
+  {{ partial "breadcrumbs.html" . }}
+  <div class="nav-end">
+    <nav class="nav-links" aria-label="Main">
+    {{- range hugo.Data.nav }}
+      {{ partial "navigation-link.html" (dict "source" $ "item" . "activeClass" "active") }}
+    {{- end }}
+    </nav>
+    {{ partial "theme-toggle.html" . }}
   </div>
-  <div class="nav-links">
-  {{- range hugo.Data.nav }}
-    {{ partial "navigation-link.html" (dict "source" $ "item" . "activeClass" "active") }}
-  {{- end }}
-  </div>
-  {{ partial "theme-toggle.html" . }}
-</nav>
+</header>

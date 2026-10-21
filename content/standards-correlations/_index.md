@@ -1,5 +1,6 @@
 ---
 title: "Standards Correlations — KIPR Botball Explorer 2026-2027"
+linkTitle: "Standards Correlations"
 nav: home
 hub: true
 styles: ["site-base", "hub"]

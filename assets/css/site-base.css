@@ -158,7 +158,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
   padding: 0.6rem 2rem;
   min-height: 56px;
   height: auto;
@@ -167,22 +168,60 @@ body {
   z-index: 100;
   border-bottom: 3px solid var(--gold);
 }
-.nav-brand {
+/* ---------- Header breadcrumbs (hub nav and worksheet top bar) ---------- */
+/* When the trail and the main links don't fit on one row, the links wrap to a
+   second row; on phones the trail itself wraps instead of hiding crumbs. */
+.crumbs { flex: 0 1 auto; min-width: 0; margin-right: auto; }
+.crumbs ol {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem;
-  text-decoration: none;
-}
-.nav-brand a { display: flex; align-items: center; text-decoration: none; }
-.nav-brand img { height: 28px; filter: brightness(0) invert(1); }
-.nav-brand-title {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+}
+.crumbs li { display: flex; align-items: center; min-width: 0; }
+.crumbs li + li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.38em;
+  height: 0.38em;
+  margin: 0 0.65em 0 0.4em;
+  border-top: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+  transform: rotate(45deg);
+}
+.crumbs a {
+  display: block;
+  min-width: 0;
+  padding: 5px 0;
+  overflow: hidden;
+  color: var(--text-on-dark-muted);
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 3px;
+}
+.crumbs a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.crumbs a:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+.crumbs a[aria-current="page"] { color: var(--text-on-dark); }
+.crumbs .crumb-kipr a { display: flex; align-items: center; gap: 0.5rem; padding: 2px 0; }
+.crumbs .crumb-kipr img { height: 28px; width: auto; filter: brightness(0) invert(1); }
+.crumbs .crumb-site a {
   color: var(--text-on-dark);
+  font-size: 1.1rem;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+
+/* Main links and theme toggle wrap to a second row together. */
+.nav-end { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
 .nav-links { display: flex; justify-content: flex-end; gap: 1.5rem; flex-wrap: wrap; align-items: center; margin-left: auto; }
 .nav-links a {
   color: var(--text-on-dark-muted);
@@ -283,8 +322,27 @@ body {
 
 @media (max-width: 820px) {
   .nav { padding: 0.6rem 1rem; height: auto; min-height: 56px; flex-wrap: wrap; gap: 0.5rem; }
-  /* Full-width row so link items can wrap instead of staying one long line */
-  .nav-links { order: 3; gap: 0.75rem 1rem; flex: 1 1 100%; min-width: 0; }
+  /* Trail shares the first row with the theme toggle; links get a full row. */
+  .nav-end { display: contents; }
+  .crumbs { flex: 1 1 0; }
+  .nav-links, .mainnav { order: 3; flex: 1 1 100%; min-width: 0; justify-content: flex-start; margin-left: 0; }
+  .nav-links { gap: 0.75rem 1rem; }
+}
+
+@media (max-width: 600px) {
+  .crumbs ol { font-size: 0.85rem; letter-spacing: 0.02em; }
+  .crumbs .crumb-site a { font-size: 0.95rem; letter-spacing: 0.03em; }
+  .crumbs li + li::before { margin: 0 0.45em 0 0.25em; }
+  /* Logo alone stands for kipr.org; the label stays for screen readers. */
+  .crumbs .crumb-kipr-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
 }
 
 
@@ -301,31 +359,13 @@ body {
 .topbar-inner {
     width: 100%;
     margin: 0;
-    padding: 0 2rem;
+    padding: 6px 2rem;
     min-height: 56px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 4px 16px;
     flex-wrap: wrap;
   }
-
-.topbar .brand {
-    display: inline-flex;
-    align-items: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 19px;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    margin-right: auto;
-    color: var(--text-on-dark);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-.topbar a.brand:hover { color: #fff; opacity: 0.92; }
-
-.topbar .brand span { color: var(--gold); }
 
 
 /* ---------- Page shell ---------- */
@@ -494,7 +534,6 @@ li { margin: 4px 0; }
     .meta dd { border-left: none; border-top: 1px solid var(--border-default); }
     .hero h1 { font-size: 30px; }
     .topbar-inner { padding: 8px 16px; min-height: 56px; }
-    .topbar .brand { font-size: 17px; }
     .theme-toggle { padding-inline: 8px; }
   }
 
@@ -536,31 +575,13 @@ li { margin: 4px 0; }
 
 .def-body{padding:1rem 1.1rem 1.25rem;font-size:.95rem;color:var(--text-primary);line-height:1.65}
 
-.crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;
-          font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
-
-.crumbs a{color:var(--text-on-dark-muted);text-decoration:none;padding:4px 2px;border-radius:3px}
-
-.crumbs a:hover{color:#fff;text-decoration:underline}
-
-.crumbs .sep{color:rgba(255,255,255,.35)}
-
-.crumbs .here{color:var(--text-on-dark-accent);font-weight:700}
-
-.crumbs .gloss{margin-left:6px;color:var(--text-on-dark-accent);border:1px solid rgba(192,57,43,.5);
-                 padding:4px 9px;border-radius:4px;font-weight:700}
-
-.crumbs .gloss:hover{background:rgba(192,57,43,.16);color:var(--text-on-dark-accent);text-decoration:none}
-
 @media (max-width:600px){
     .def-overlay{align-items:flex-end;padding:0}
     .def-box{border-radius:12px 12px 0 0;max-width:100%}
     .def-body{padding:1rem 1.1rem 2rem}
   }
 
-@media (max-width:700px){ .crumbs{font-size:12.5px;gap:4px} .crumbs .gloss{padding:3px 7px} }
-
-@media print{ .crumbs,.def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
+@media print{ .def-overlay{display:none} .def-term{border-bottom:1px dotted #999} }
 
 .mission-ref{color:var(--text-accent);font-weight:700;text-decoration:underline;text-decoration-style:dotted;
   text-underline-offset:.16em}
@@ -614,7 +635,7 @@ li { margin: 4px 0; }
 
 .mainnav a.here{color:var(--text-on-dark-accent);border-bottom-color:var(--gold)}
 
-@media (max-width:820px){ .mainnav{order:3;flex:1 1 100%;font-size:12.5px;gap:3px 13px} }
+@media (max-width:820px){ .mainnav{font-size:12.5px;gap:3px 13px} }
 
 @media print{ .mainnav{display:none} }
 
