@@ -1,9 +1,5 @@
 # The main navigation, defined once instead of once per page.
 # `id` is matched against a page's `nav` front matter to set the "here" class.
-- id: home
-  name: Home
-  page: /
-
 - id: missions
   name: 2027 Missions
   page: /botball_explorer_2027
