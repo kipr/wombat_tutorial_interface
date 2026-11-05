@@ -1,0 +1,54 @@
+<svg viewBox="0 0 620 300" role="img" aria-label="Top view. A stationary base at the left anchors two pivots. Links reach out to the right carrying a grabber, which extends to a pom three inches away and then draws it back toward the base." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="pullBack" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1E8449"></path>
+          </marker>
+          <marker id="tkA" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M1,0 L1,10" stroke="#444" stroke-width="1.6"></path>
+          </marker>
+          <marker id="tkB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M9,0 L9,10" stroke="#444" stroke-width="1.6"></path>
+          </marker>
+        </defs>
+
+        
+        <rect x="46" y="96" width="132" height="128" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <text x="112" y="152" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">STATIONARY</text>
+        <text x="112" y="172" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">BASE</text>
+
+        
+        <line x1="178" y1="118" x2="178" y2="204" stroke="#1C1C1C" stroke-width="3" stroke-dasharray="9 6"></line>
+
+        
+        <line x1="178" y1="204" x2="306" y2="188" stroke="#BBB" stroke-width="6" stroke-linecap="round" stroke-dasharray="9 6"></line>
+        <line x1="178" y1="118" x2="306" y2="102" stroke="#BBB" stroke-width="6" stroke-linecap="round" stroke-dasharray="9 6"></line>
+        <line x1="306" y1="102" x2="306" y2="188" stroke="#BBB" stroke-width="6" stroke-linecap="round" stroke-dasharray="9 6"></line>
+
+        
+        <line x1="178" y1="204" x2="392" y2="196" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
+        <line x1="178" y1="118" x2="392" y2="110" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
+        <line x1="392" y1="110" x2="392" y2="196" stroke="#C0392B" stroke-width="8" stroke-linecap="round"></line>
+
+        
+        <circle cx="178" cy="118" r="8" fill="#fff" stroke="#1C1C1C" stroke-width="3"></circle>
+        <circle cx="178" cy="204" r="8" fill="#fff" stroke="#1C1C1C" stroke-width="3"></circle>
+        <circle cx="392" cy="110" r="7" fill="#444"></circle>
+        <circle cx="392" cy="196" r="7" fill="#444"></circle>
+
+        <text x="392" y="92" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">GRABBER</text>
+        <text x="392" y="228" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#C0392B">2″ wide, or a cup</text>
+
+        
+        <circle cx="440" cy="153" r="15" fill="#fff" stroke="#888" stroke-width="2"></circle>
+        <text x="440" y="192" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">pom</text>
+
+        
+        <line x1="470" y1="132" x2="330" y2="132" stroke="#1E8449" stroke-width="2.5" marker-end="url(#pullBack)"></line>
+        <text x="400" y="122" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1E8449">pull back</text>
+
+        
+        <line x1="306" y1="262" x2="440" y2="262" stroke="#444" stroke-width="1.6" marker-start="url(#tkA)" marker-end="url(#tkB)"></line>
+        <text x="373" y="284" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="14" font-weight="600" fill="#444">3″</text>
+
+        <text x="540" y="264" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">TOP VIEW</text>
+      </svg>

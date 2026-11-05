@@ -1,0 +1,31 @@
+<svg viewBox="0 0 620 320" role="img" aria-label="Two rectangles of equal area. The wide flat one represents a small force applied over a long distance. The narrow tall one represents a large force applied over a short distance. Because their areas are equal, they represent the same amount of work." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="tkG" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M1,0 L1,10" stroke="#888" stroke-width="1.6"></path>
+          </marker>
+          <marker id="tkH" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M9,0 L9,10" stroke="#888" stroke-width="1.6"></path>
+          </marker>
+        </defs>
+
+        
+        <rect x="70" y="196" width="220" height="60" fill="#dbe3f0" stroke="#1F2D5A" stroke-width="2.5"></rect>
+        <text x="180" y="232" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1F2D5A">AT THE MOTOR</text>
+        <line x1="70" y1="284" x2="290" y2="284" stroke="#888" stroke-width="1.6" marker-start="url(#tkG)" marker-end="url(#tkH)"></line>
+        <text x="180" y="304" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#666">long distance</text>
+        <line x1="46" y1="196" x2="46" y2="256" stroke="#888" stroke-width="1.6" marker-start="url(#tkG)" marker-end="url(#tkH)"></line>
+        <text x="30" y="226" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#666" transform="rotate(-90 30 226)">small force</text>
+
+        
+        <text x="330" y="228" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="34" font-weight="700" fill="#1C1C1C">=</text>
+
+        
+        <rect x="382" y="36" width="60" height="220" fill="#f7d9d4" stroke="#C0392B" stroke-width="2.5"></rect>
+        <text x="412" y="152" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B" transform="rotate(-90 412 152)">AT THE PLATFORM</text>
+        <line x1="382" y1="284" x2="442" y2="284" stroke="#888" stroke-width="1.6" marker-start="url(#tkG)" marker-end="url(#tkH)"></line>
+        <text x="412" y="304" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#666">short distance</text>
+        <line x1="470" y1="36" x2="470" y2="256" stroke="#888" stroke-width="1.6" marker-start="url(#tkG)" marker-end="url(#tkH)"></line>
+        <text x="500" y="146" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#666" transform="rotate(-90 500 146)">large force</text>
+
+        <text x="310" y="24" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="18" font-weight="700" fill="#1C1C1C">SAME AREA — SAME WORK</text>
+      </svg>

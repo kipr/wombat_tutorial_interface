@@ -1,0 +1,53 @@
+<svg viewBox="0 0 620 340" role="img" aria-label="Top view. A stationary base at the left carries a central gear with a rack on each side. Two arms extend to the right, past the edge of the base, and close on a four inch cube that sits entirely outside the base footprint." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="udC" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto">
+            <path d="M0,9 L5,0 L10,9 z" fill="#1C1C1C"></path>
+          </marker>
+          <marker id="tkM" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M1,0 L1,10" stroke="#1E8449" stroke-width="1.6"></path>
+          </marker>
+          <marker id="tkN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M9,0 L9,10" stroke="#1E8449" stroke-width="1.6"></path>
+          </marker>
+        </defs>
+
+        
+        <rect x="34" y="122" width="150" height="140" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <text x="109" y="184" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">STATIONARY</text>
+        <text x="109" y="204" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">BASE</text>
+
+        
+        <line x1="184" y1="84" x2="184" y2="300" stroke="#1E8449" stroke-width="2" stroke-dasharray="9 6"></line>
+        <text x="184" y="76" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" font-weight="600" fill="#1E8449">edge of the base</text>
+
+        
+        <circle cx="246" cy="192" r="32" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="11 11"></circle>
+        <circle cx="246" cy="192" r="5" fill="#444"></circle>
+
+        
+        <rect x="196" y="112" width="16" height="160" rx="2" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <line x1="217" y1="118" x2="217" y2="266" stroke="#444" stroke-width="10" stroke-dasharray="9 11"></line>
+        <rect x="280" y="112" width="16" height="160" rx="2" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <line x1="275" y1="118" x2="275" y2="266" stroke="#444" stroke-width="10" stroke-dasharray="9 11"></line>
+
+        
+        <rect x="196" y="96" width="290" height="16" rx="2" fill="#888" stroke="#666" stroke-width="1.5"></rect>
+        <rect x="280" y="272" width="206" height="16" rx="2" fill="#888" stroke="#666" stroke-width="1.5"></rect>
+
+        
+        <rect x="196" y="134" width="290" height="16" rx="2" fill="none" stroke="#C0392B" stroke-width="2.5" stroke-dasharray="10 7"></rect>
+        <rect x="280" y="234" width="206" height="16" rx="2" fill="none" stroke="#C0392B" stroke-width="2.5" stroke-dasharray="10 7"></rect>
+
+        
+        <rect x="374" y="150" width="100" height="100" fill="#F8F8F8" stroke="#444" stroke-width="2"></rect>
+        <text x="424" y="206" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#444">4″ × 4″</text>
+
+        
+        <line x1="516" y1="104" x2="516" y2="280" stroke="#1C1C1C" stroke-width="2.5" marker-start="url(#udC)" marker-end="url(#udC)"></line>
+
+        
+        <line x1="184" y1="318" x2="486" y2="318" stroke="#1E8449" stroke-width="1.8" marker-start="url(#tkM)" marker-end="url(#tkN)"></line>
+        <text x="335" y="336" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1E8449">reach beyond the base</text>
+
+        <text x="560" y="192" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#1C1C1C" transform="rotate(-90 560 192)">TOP VIEW</text>
+      </svg>

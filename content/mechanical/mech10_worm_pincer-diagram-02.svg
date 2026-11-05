@@ -1,0 +1,47 @@
+<svg viewBox="0 0 620 380" role="img" aria-label="Top view. A stationary base at the left carries a worm running to the right. One gear sits above the worm and one below, each carrying a long arm that extends to the right. The two arms splay apart when open and swing together to grip an object between their tips." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="ud1" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto">
+            <path d="M0,9 L5,0 L10,9 z" fill="#1C1C1C"></path>
+          </marker>
+        </defs>
+
+        
+        <rect x="46" y="118" width="140" height="152" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <text x="116" y="186" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">STATIONARY</text>
+        <text x="116" y="206" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">BASE</text>
+
+        
+        <rect x="186" y="178" width="128" height="34" rx="3" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></rect>
+        <g stroke="#C0392B" stroke-width="1.8">
+          <line x1="198" y1="212" x2="216" y2="178"></line><line x1="222" y1="212" x2="240" y2="178"></line>
+          <line x1="246" y1="212" x2="264" y2="178"></line><line x1="270" y1="212" x2="288" y2="178"></line>
+        </g>
+        <text x="250" y="240" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">WORM</text>
+
+        
+        <circle cx="268" cy="136" r="42" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="13.2 13.2"></circle>
+        <circle cx="268" cy="136" r="6" fill="#444"></circle>
+        <circle cx="268" cy="254" r="42" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="13.2 13.2"></circle>
+        <circle cx="268" cy="254" r="6" fill="#444"></circle>
+
+        
+        <line x1="268" y1="136" x2="504" y2="84" stroke="#888" stroke-width="8" stroke-linecap="round"></line>
+        <line x1="268" y1="254" x2="504" y2="306" stroke="#888" stroke-width="8" stroke-linecap="round"></line>
+
+        
+        <line x1="268" y1="136" x2="504" y2="168" stroke="#C0392B" stroke-width="8" stroke-linecap="round" stroke-dasharray="11 8"></line>
+        <line x1="268" y1="254" x2="504" y2="222" stroke="#C0392B" stroke-width="8" stroke-linecap="round" stroke-dasharray="11 8"></line>
+
+        
+        <circle cx="520" cy="195" r="27" fill="#F2F2F2" stroke="#444" stroke-width="2" stroke-dasharray="6 5"></circle>
+        <text x="520" y="200" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">2–3″</text>
+
+        
+        <line x1="576" y1="98" x2="576" y2="292" stroke="#1C1C1C" stroke-width="2.5" marker-start="url(#ud1)" marker-end="url(#ud1)"></line>
+        <text x="596" y="200" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1C1C1C" transform="rotate(-90 596 200)">tips open and close</text>
+
+        
+        <text x="392" y="70" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">open</text>
+        <text x="392" y="152" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#C0392B">closed</text>
+        <text x="116" y="330" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">TOP VIEW</text>
+      </svg>

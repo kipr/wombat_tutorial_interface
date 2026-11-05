@@ -1,0 +1,44 @@
+<svg viewBox="0 0 620 340" role="img" aria-label="Side view. A starting envelope 12 inches tall sits at the left, with the machine required to fit entirely inside it before the run. A container at the right has its opening 17 inches above the floor. The difference of more than 5 inches must be gained after the run begins." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="dimA" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M1,0 L1,10" stroke="#444" stroke-width="1.6"></path>
+          </marker>
+          <marker id="dimB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M9,0 L9,10" stroke="#444" stroke-width="1.6"></path>
+          </marker>
+          <marker id="upArrow" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto">
+            <path d="M0,9 L5,0 L10,9 z" fill="#1E8449"></path>
+          </marker>
+        </defs>
+
+        
+        <line x1="30" y1="290" x2="592" y2="290" stroke="#1C1C1C" stroke-width="3"></line>
+        <text x="30" y="310" font-family="'Barlow',sans-serif" font-size="13" fill="#888">floor</text>
+
+        
+        <rect x="70" y="134" width="150" height="156" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5" stroke-dasharray="8 5"></rect>
+        <text x="145" y="196" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#C0392B">STARTING</text>
+        <text x="145" y="216" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#C0392B">ENVELOPE</text>
+        <text x="145" y="238" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">everything fits in here</text>
+        <text x="145" y="256" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">before the run starts</text>
+
+        
+        <line x1="52" y1="134" x2="52" y2="290" stroke="#444" stroke-width="1.6" marker-start="url(#dimA)" marker-end="url(#dimB)"></line>
+        <text x="44" y="216" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="15" font-weight="600" fill="#444" transform="rotate(-90 44 216)">under 12″</text>
+
+        
+        <line x1="420" y1="69" x2="560" y2="69" stroke="#1C1C1C" stroke-width="2.5"></line>
+        <path d="M430,69 L430,290 M550,69 L550,290" stroke="#1C1C1C" stroke-width="2.5" fill="none"></path>
+        <text x="490" y="180" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">CONTAINER</text>
+
+        
+        <line x1="588" y1="69" x2="588" y2="290" stroke="#444" stroke-width="1.6" marker-start="url(#dimA)" marker-end="url(#dimB)"></line>
+        <text x="580" y="180" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="15" font-weight="600" fill="#444" transform="rotate(-90 580 180)">17″ to the top</text>
+
+        
+        <line x1="290" y1="134" x2="290" y2="69" stroke="#1E8449" stroke-width="2.5" marker-end="url(#upArrow)"></line>
+        <line x1="240" y1="134" x2="330" y2="134" stroke="#1E8449" stroke-width="1.4" stroke-dasharray="5 4"></line>
+        <line x1="240" y1="69" x2="420" y2="69" stroke="#1E8449" stroke-width="1.4" stroke-dasharray="5 4"></line>
+        <text x="302" y="104" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1E8449">gain this</text>
+        <text x="302" y="124" font-family="'Barlow',sans-serif" font-size="13" fill="#1E8449">after the run begins</text>
+      </svg>

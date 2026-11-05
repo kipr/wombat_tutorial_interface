@@ -1,0 +1,29 @@
+<svg viewBox="0 0 620 280" role="img" aria-label="A flat platform seen from above, with three arrows showing its three possible motions: sliding side to side, sliding forward and back, and rotating in place." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="dblA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1F2D5A"></path>
+          </marker>
+          <marker id="rotH" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
+          </marker>
+        </defs>
+
+        
+        <rect x="248" y="112" width="140" height="80" rx="5" fill="#F2F2F2" stroke="#444" stroke-width="2.5"></rect>
+        <text x="318" y="158" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">PLATFORM</text>
+
+        
+        <line x1="214" y1="76" x2="422" y2="76" stroke="#1F2D5A" stroke-width="3" marker-start="url(#dblA)" marker-end="url(#dblA)"></line>
+        <text x="318" y="60" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1F2D5A">1 · SIDE TO SIDE</text>
+
+        
+        <line x1="196" y1="92" x2="196" y2="212" stroke="#1F2D5A" stroke-width="3" marker-start="url(#dblA)" marker-end="url(#dblA)"></line>
+        <text x="120" y="148" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1F2D5A">2 · FORWARD</text>
+        <text x="120" y="168" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1F2D5A">AND BACK</text>
+
+        
+        <path d="M502,118 A34,34 0 1 1 468,152" fill="none" stroke="#C0392B" stroke-width="3" marker-end="url(#rotH)"></path>
+        <text x="516" y="196" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">3 · ROTATION</text>
+
+        <text x="318" y="248" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13.5" font-weight="600" fill="#1C1C1C">Three independent motions. There is no fourth.</text>
+      </svg>

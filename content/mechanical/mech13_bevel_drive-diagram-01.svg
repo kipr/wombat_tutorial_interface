@@ -1,0 +1,42 @@
+<svg viewBox="0 0 620 320" role="img" aria-label="A comparison of two right-angle drives. In a worm drive the worm's axis and the wheel's axis are perpendicular but offset, so they never meet. In a bevel drive the two axes are perpendicular and cross at a single point where the two cones meet." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="tkC" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M0,1 L10,1" stroke="#444" stroke-width="1.6"></path>
+          </marker>
+        </defs>
+
+        
+        <rect x="8" y="8" width="296" height="304" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="24" y="34" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">WORM — axes never meet</text>
+
+        <rect x="56" y="126" width="140" height="34" rx="3" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></rect>
+        <g stroke="#C0392B" stroke-width="1.8">
+          <line x1="66" y1="160" x2="82" y2="126"></line><line x1="94" y1="160" x2="110" y2="126"></line>
+          <line x1="122" y1="160" x2="138" y2="126"></line><line x1="150" y1="160" x2="166" y2="126"></line>
+        </g>
+        <line x1="34" y1="143" x2="216" y2="143" stroke="#888" stroke-width="1.6" stroke-dasharray="9 6"></line>
+        <text x="34" y="118" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">worm axis</text>
+
+        <circle cx="132" cy="232" r="44" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="13.8 13.8"></circle>
+        <circle cx="132" cy="232" r="12" fill="none" stroke="#888" stroke-width="1.6" stroke-dasharray="4 4"></circle>
+        <circle cx="132" cy="232" r="4" fill="#888"></circle>
+        <text x="132" y="296" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#888">wheel axis points out of the page</text>
+
+        <line x1="248" y1="143" x2="248" y2="232" stroke="#444" stroke-width="1.6" marker-start="url(#tkC)" marker-end="url(#tkC)"></line>
+        <text x="262" y="194" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#444">offset</text>
+
+        
+        <rect x="316" y="8" width="296" height="304" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="332" y="34" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">BEVEL — axes cross</text>
+
+        
+        <path d="M424,180 L400,100 L500,100 L476,180 Z" fill="#F2F2F2" stroke="#1C1C1C" stroke-width="2.5"></path>
+        
+        <path d="M478,182 L558,158 L558,250 L478,226 Z" fill="#F2F2F2" stroke="#1C1C1C" stroke-width="2.5"></path>
+
+        <line x1="450" y1="76" x2="450" y2="258" stroke="#888" stroke-width="1.6" stroke-dasharray="9 6"></line>
+        <line x1="572" y1="204" x2="404" y2="204" stroke="#888" stroke-width="1.6" stroke-dasharray="9 6"></line>
+        <circle cx="450" cy="204" r="7" fill="#C0392B"></circle>
+        <text x="352" y="284" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#C0392B">the two axes meet at one point</text>
+        <text x="352" y="70" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">teeth cut on a slanted face</text>
+      </svg>

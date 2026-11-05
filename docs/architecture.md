@@ -117,6 +117,18 @@ content, previous/next navigation, and credit. It then:
 element carrying `data-key` is saved in `localStorage`, exported in the result
 JSON, and restored on reload by `static/js/lab.js`.
 
+### Mechanical Design worksheets
+
+`content/mechanical/` reuses the `labs` page family through its section cascade.
+The hub uses the existing unit/card renderer; worksheets use the shared shell,
+fields, tables, calculations, figures, and glossary dialogs. Extracted SVG
+diagrams are section resources, and demonstration clips use Hugo's built-in
+YouTube shortcode with privacy-enhanced embeds. The section is also mounted in
+the preview build for Challenges 1 and 2 and the gear-mounting PreLab.
+
+See [Mechanical migration](mechanical-migration.md) for source provenance,
+availability gaps, and the frozen compatibility inventory.
+
 ### Explorer missions and rules
 
 The Explorer root is the only mission index. Its layout requires exactly 18

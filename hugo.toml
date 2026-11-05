@@ -4,6 +4,9 @@ title = 'KIPR · Botball Explorer'
 
 disableKinds = ['taxonomy', 'term', 'rss', 'sitemap']
 
+[privacy.youtube]
+  privacyEnhanced = true
+
 [markup.goldmark.parser]
   wrapStandAloneImageWithinParagraph = false
 

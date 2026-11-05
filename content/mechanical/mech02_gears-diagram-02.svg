@@ -1,0 +1,14 @@
+<svg viewBox="0 0 620 280" role="img" aria-label="A 10-tooth gear meshed with an 8-tooth gear. For the 10-tooth gear to make one full rotation, ten teeth must pass through the mesh. Those same ten clicks pass through the 8-tooth gear, which only needs eight clicks per rotation." xmlns="http://www.w3.org/2000/svg">
+        <circle cx="220" cy="150" r="80" fill="#fbeef0" stroke="#C0392B" stroke-width="2.5"></circle>
+        <circle cx="220" cy="150" r="6" fill="#1C1C1C"></circle>
+        <text x="220" y="120" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="19" font-weight="700" fill="#C0392B">10 teeth</text>
+        <text x="220" y="192" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">one full rotation</text>
+        <text x="220" y="209" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">= 10 clicks through the mesh</text>
+        <circle cx="366" cy="150" r="66" fill="#F2F2F2" stroke="#444" stroke-width="2.5"></circle>
+        <circle cx="366" cy="150" r="6" fill="#1C1C1C"></circle>
+        <text x="366" y="124" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="19" font-weight="700" fill="#444">8 teeth</text>
+        <text x="366" y="188" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#444">one full rotation</text>
+        <text x="366" y="205" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#444">= 8 clicks</text>
+        <line x1="298" y1="96" x2="298" y2="204" stroke="#888" stroke-width="1.5" stroke-dasharray="5 4"></line>
+        <text x="298" y="232" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#888">every click passes through both gears</text>
+      </svg>

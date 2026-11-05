@@ -1,0 +1,24 @@
+<svg viewBox="0 0 620 300" role="img" aria-label="Two pincer arms, each mounted on a gear at its base. The two gears mesh at the center. The left gear turns clockwise and its arm swings inward; the meshed right gear is forced to turn counterclockwise, so its arm swings inward too, and the jaws close together." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="garr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
+          </marker>
+        </defs>
+        
+        <circle cx="240" cy="200" r="58" fill="#fbeef0" stroke="#C0392B" stroke-width="2.5"></circle>
+        <circle cx="240" cy="200" r="6" fill="#1C1C1C"></circle>
+        
+        <circle cx="380" cy="200" r="58" fill="#F2F2F2" stroke="#444" stroke-width="2.5"></circle>
+        <circle cx="380" cy="200" r="6" fill="#1C1C1C"></circle>
+        
+        <line x1="310" y1="160" x2="310" y2="240" stroke="#888" stroke-width="1.5" stroke-dasharray="5 4"></line>
+        <text x="310" y="266" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#888">the mesh — teeth interlock here</text>
+        
+        <line x1="240" y1="200" x2="180" y2="52" stroke="#C0392B" stroke-width="7" stroke-linecap="round"></line>
+        <line x1="380" y1="200" x2="440" y2="52" stroke="#444" stroke-width="7" stroke-linecap="round"></line>
+        
+        <path d="M196,166 A56,56 0 0 1 250,144" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#garr)"></path>
+        <text x="150" y="150" font-family="'Barlow',sans-serif" font-size="13.5" font-weight="600" fill="#C0392B">clockwise</text>
+        <path d="M424,166 A56,56 0 0 0 370,144" fill="none" stroke="#444" stroke-width="2.5" marker-end="url(#garr)"></path>
+        <text x="430" y="128" font-family="'Barlow',sans-serif" font-size="13.5" font-weight="600" fill="#444">forced the other way</text>
+      </svg>

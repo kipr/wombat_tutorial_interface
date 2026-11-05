@@ -1,0 +1,57 @@
+<svg viewBox="0 0 620 440" role="img" aria-label="Four strategies for gaining height. A pivoting arm swings up through an arc. A telescoping section slides up out of another. A scissor linkage unfolds upward. A tipping bin rotates to pour its contents out at height." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="up2" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M0,9 L5,0 L10,9 z" fill="#C0392B"></path>
+          </marker>
+        </defs>
+
+        
+        <rect x="8" y="8" width="296" height="200" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="20" y="30" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">1 · Pivoting arm</text>
+        <line x1="30" y1="180" x2="285" y2="180" stroke="#1C1C1C" stroke-width="2"></line>
+        <rect x="52" y="158" width="46" height="22" fill="#F2F2F2" stroke="#444" stroke-width="1.5"></rect>
+        <circle cx="75" cy="158" r="4" fill="#444"></circle>
+        <line x1="75" y1="158" x2="205" y2="146" stroke="#888" stroke-width="4" stroke-linecap="round"></line>
+        <line x1="75" y1="158" x2="118" y2="52" stroke="#C0392B" stroke-width="4" stroke-linecap="round"></line>
+        <path d="M205,146 A140,140 0 0 0 118,52" fill="none" stroke="#C0392B" stroke-width="1.6" stroke-dasharray="6 5"></path>
+        <circle cx="118" cy="52" r="7" fill="#C0392B"></circle>
+        <text x="140" y="52" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">load ends up here</text>
+        <text x="20" y="200" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">Cost: the load swings sideways as well as up.</text>
+
+        
+        <rect x="316" y="8" width="296" height="200" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="328" y="30" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">2 · Telescoping slide</text>
+        <line x1="338" y1="180" x2="593" y2="180" stroke="#1C1C1C" stroke-width="2"></line>
+        <rect x="430" y="110" width="46" height="70" fill="#F2F2F2" stroke="#444" stroke-width="1.5"></rect>
+        <rect x="440" y="46" width="26" height="70" fill="#fbeef0" stroke="#C0392B" stroke-width="2"></rect>
+        <line x1="500" y1="120" x2="500" y2="52" stroke="#C0392B" stroke-width="2.5" marker-end="url(#up2)"></line>
+        <text x="512" y="86" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">slides straight up</text>
+        <text x="328" y="200" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">Cost: hard to build without binding or wobble.</text>
+
+        
+        <rect x="8" y="220" width="296" height="200" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="20" y="242" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">3 · Scissor linkage</text>
+        <line x1="30" y1="392" x2="285" y2="392" stroke="#1C1C1C" stroke-width="2"></line>
+        <g stroke="#C0392B" stroke-width="3.5" stroke-linecap="round" fill="none">
+          <path d="M120,392 L170,330 M170,392 L120,330"></path>
+          <path d="M120,330 L170,268 M170,330 L120,268"></path>
+        </g>
+        <circle cx="145" cy="330" r="4.5" fill="#444"></circle>
+        <rect x="108" y="256" width="74" height="12" rx="2" fill="#F2F2F2" stroke="#444" stroke-width="1.5"></rect>
+        <text x="196" y="300" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">platform stays level</text>
+        <text x="20" y="412" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">Cost: many joints, and every joint adds slop.</text>
+
+        
+        <rect x="316" y="220" width="296" height="200" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="328" y="242" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">4 · Tipping bin</text>
+        <line x1="338" y1="392" x2="593" y2="392" stroke="#1C1C1C" stroke-width="2"></line>
+        <g transform="rotate(-38 452 330)">
+          <path d="M418,300 L486,300 L486,352 L418,352 Z" fill="#fbeef0" stroke="#C0392B" stroke-width="2.5"></path>
+        </g>
+        <circle cx="452" cy="352" r="4.5" fill="#444"></circle>
+        <circle cx="500" cy="286" r="6" fill="#888"></circle>
+        <circle cx="516" cy="306" r="6" fill="#888"></circle>
+        <circle cx="527" cy="330" r="6" fill="#888"></circle>
+        <text x="404" y="272" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">contents pour out</text>
+        <text x="328" y="412" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">Cost: you control when it dumps, not where each pom lands.</text>
+      </svg>

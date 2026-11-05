@@ -25,7 +25,8 @@
     display: none !important;
   }
 
-  .mission-summary-video {
+  .mission-summary-video,
+  .sheet div:has(> iframe) {
     display: none !important;
   }
 

@@ -1,0 +1,44 @@
+<svg viewBox="0 0 620 300" role="img" aria-label="Side view of a crank and slider. The pin sits offset from the wheel center. When the pin is at the far right of its circle the slider is at one end of its travel; when the pin is at the far left the slider is at the other end. The distance between those two slider positions equals twice the pin offset." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="tk1" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M1,0 L1,10" stroke="#444" stroke-width="1.6"></path>
+          </marker>
+          <marker id="tk2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M9,0 L9,10" stroke="#444" stroke-width="1.6"></path>
+          </marker>
+        </defs>
+
+        
+        <line x1="280" y1="118" x2="460" y2="118" stroke="#CCC" stroke-width="3"></line>
+        <line x1="280" y1="162" x2="460" y2="162" stroke="#CCC" stroke-width="3"></line>
+
+        
+        <circle cx="150" cy="140" r="70" fill="#F8F8F8" stroke="#888" stroke-width="2"></circle>
+        <circle cx="150" cy="140" r="45" fill="none" stroke="#C0392B" stroke-width="1.6" stroke-dasharray="6 5"></circle>
+        <circle cx="150" cy="140" r="6" fill="#444"></circle>
+        <text x="150" y="228" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#888">crank wheel</text>
+
+        
+        <line x1="105" y1="140" x2="305" y2="140" stroke="#BBB" stroke-width="6" stroke-linecap="round" stroke-dasharray="10 7"></line>
+        <rect x="293" y="124" width="24" height="32" rx="3" fill="none" stroke="#BBB" stroke-width="2" stroke-dasharray="6 4"></rect>
+        <circle cx="105" cy="140" r="8" fill="#fff" stroke="#BBB" stroke-width="2.5"></circle>
+
+        
+        <line x1="195" y1="140" x2="395" y2="140" stroke="#888" stroke-width="6" stroke-linecap="round"></line>
+        <rect x="383" y="124" width="24" height="32" rx="3" fill="#C0392B" stroke="#922B21" stroke-width="2"></rect>
+        <circle cx="195" cy="140" r="8" fill="#C0392B"></circle>
+
+        
+        <line x1="150" y1="196" x2="195" y2="196" stroke="#444" stroke-width="1.6" marker-start="url(#tk1)" marker-end="url(#tk2)"></line>
+        <text x="172" y="216" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">offset</text>
+
+        
+        <line x1="305" y1="238" x2="395" y2="238" stroke="#444" stroke-width="1.6" marker-start="url(#tk1)" marker-end="url(#tk2)"></line>
+        <text x="350" y="262" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="18" font-weight="700" fill="#C0392B">stroke = 2 × offset</text>
+
+        
+        <text x="255" y="98" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#888">connecting rod</text>
+        <text x="430" y="112" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#C0392B">pusher</text>
+        <text x="472" y="140" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">slides only</text>
+        <text x="472" y="158" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">left and right</text>
+      </svg>

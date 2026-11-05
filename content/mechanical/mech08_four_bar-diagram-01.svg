@@ -1,0 +1,52 @@
+<svg viewBox="0 0 620 330" role="img" aria-label="A four-bar linkage. Two pivots are anchored to the base and the dashed line between them is the ground link. A short crank turns at the left anchor, a coupler spans across, and a rocker swings at the right anchor." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="rotA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
+          </marker>
+        </defs>
+
+        
+        <line x1="90" y1="272" x2="470" y2="272" stroke="#1C1C1C" stroke-width="2.5"></line>
+        <g stroke="#888" stroke-width="1.6">
+          <line x1="100" y1="272" x2="88" y2="288"></line><line x1="130" y1="272" x2="118" y2="288"></line>
+          <line x1="160" y1="272" x2="148" y2="288"></line><line x1="190" y1="272" x2="178" y2="288"></line>
+          <line x1="220" y1="272" x2="208" y2="288"></line><line x1="250" y1="272" x2="238" y2="288"></line>
+          <line x1="280" y1="272" x2="268" y2="288"></line><line x1="310" y1="272" x2="298" y2="288"></line>
+          <line x1="340" y1="272" x2="328" y2="288"></line><line x1="370" y1="272" x2="358" y2="288"></line>
+          <line x1="400" y1="272" x2="388" y2="288"></line><line x1="430" y1="272" x2="418" y2="288"></line>
+          <line x1="460" y1="272" x2="448" y2="288"></line>
+        </g>
+
+        
+        <line x1="150" y1="240" x2="410" y2="240" stroke="#1C1C1C" stroke-width="4" stroke-dasharray="12 8"></line>
+        <text x="280" y="264" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">GROUND LINK — the fourth bar</text>
+
+        
+        <line x1="150" y1="240" x2="212" y2="130" stroke="#C0392B" stroke-width="9" stroke-linecap="round"></line>
+        
+        <line x1="212" y1="130" x2="372" y2="158" stroke="#888" stroke-width="9" stroke-linecap="round"></line>
+        
+        <line x1="372" y1="158" x2="410" y2="240" stroke="#1F2D5A" stroke-width="9" stroke-linecap="round"></line>
+
+        
+        <circle cx="150" cy="240" r="9" fill="#fff" stroke="#1C1C1C" stroke-width="3"></circle>
+        <circle cx="410" cy="240" r="9" fill="#fff" stroke="#1C1C1C" stroke-width="3"></circle>
+        <circle cx="212" cy="130" r="8" fill="#444"></circle>
+        <circle cx="372" cy="158" r="8" fill="#444"></circle>
+
+        
+        <text x="118" y="182" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#C0392B">CRANK</text>
+        <text x="118" y="202" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#C0392B">motor drives this</text>
+        <text x="286" y="118" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#666">COUPLER</text>
+        <text x="286" y="138" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">carries the motion across</text>
+        <text x="470" y="180" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1F2D5A">ROCKER</text>
+        <text x="470" y="200" font-family="'Barlow',sans-serif" font-size="12.5" fill="#1F2D5A">swings back and forth</text>
+
+        
+        <path d="M112,206 A62,62 0 0 1 186,182" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rotA)"></path>
+        <path d="M444,196 A66,66 0 0 0 452,232" fill="none" stroke="#1F2D5A" stroke-width="2.5" marker-end="url(#rotA)"></path>
+
+        
+        <text x="150" y="308" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">anchored</text>
+        <text x="410" y="308" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">anchored</text>
+      </svg>

@@ -1,0 +1,17 @@
+<svg viewBox="0 0 620 300" role="img" aria-label="Two mountings compared. Left, concentric: the gear's center sits on the axis of rotation and the rim sweeps one clean circle. Right, eccentric: the gear's center sits beside the axis, so the rim sweeps a wobbling ring — too far from the meshing gear on one side of the revolution and too close on the other." xmlns="http://www.w3.org/2000/svg">
+        
+        <circle cx="160" cy="130" r="72" fill="#F2F2F2" stroke="#444" stroke-width="2.5"></circle>
+        <circle cx="160" cy="130" r="72" fill="none" stroke="#1E8449" stroke-width="1.8" stroke-dasharray="6 5"></circle>
+        <circle cx="160" cy="130" r="5" fill="#1E8449"></circle>
+        <text x="160" y="240" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="18" font-weight="700" fill="#1E8449">CONCENTRIC</text>
+        <text x="160" y="260" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#1E8449">gear center on the axis</text>
+        <text x="160" y="277" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#1E8449">rim sweeps one clean circle</text>
+        
+        <circle cx="452" cy="130" r="72" fill="#F2F2F2" stroke="#444" stroke-width="2.5"></circle>
+        <circle cx="440" cy="118" r="5" fill="#C0392B"></circle>
+        <circle cx="440" cy="118" r="89" fill="none" stroke="#C0392B" stroke-width="1.8" stroke-dasharray="6 5"></circle>
+        <circle cx="440" cy="118" r="55" fill="none" stroke="#C0392B" stroke-width="1.2" stroke-dasharray="3 4"></circle>
+        <text x="452" y="240" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="18" font-weight="700" fill="#C0392B">ECCENTRIC</text>
+        <text x="452" y="260" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">axis misses the gear center</text>
+        <text x="452" y="277" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">rim sweeps far on one side, near on the other</text>
+      </svg>

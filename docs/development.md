@@ -73,7 +73,8 @@ hugo --buildDrafts --destination "$build_dir" --printPathWarnings --logLevel err
 ### Preview build target
 
 The optional `preview` target publishes a curated set of missions, educator
-resources, labs, and Introductory projects. It also adds `Preview` to every
+resources, labs, Introductory projects, and Mechanical Challenges 1 and 2 plus
+the gear-mounting PreLab. It also adds `Preview` to every
 generated page title and to the shared site branding, and asks search engines
 not to index the preview. It does not change the default build or filter files
 below `static/`.
@@ -171,6 +172,7 @@ node tests/test_lab_persistence.js
 node tests/test_glossary_dialog.js
 node tests/test_introductory_import.js
 node tests/test_wordblocks_markup.js "$build_dir"
+node tests/test_mechanical_migration.js "$build_dir"
 ```
 
 What they cover:
@@ -184,6 +186,7 @@ What they cover:
 | `test_glossary_dialog.js` | Semantic activation, close behavior, Escape, and focus return. |
 | `test_introductory_import.js` | Pandoc Lua writer conversion of the 40 EV3/SPIKE HTML sources, inventories, and failure fixtures. |
 | `test_wordblocks_markup.js` | Rendered `wordblocks` shortcode: categories, nested controls, accessible name, and `aria-hidden` internals. |
+| `test_mechanical_migration.js` | Mechanical source prose, persistence IDs, fields (including generated trial rows), units, diagrams, video targets, and hub links. |
 
 The Node tests execute `static/js/lab.js` in small mocked DOMs. They do not
 require a browser or npm dependencies.

@@ -1,0 +1,42 @@
+<svg viewBox="0 0 620 320" role="img" aria-label="Top view of the sliding platform. A motor on a base turns a pinion, which drives a rack fixed under a long flat platform. Guide rails run along both edges of the platform. The platform is seven inches long, two inches wide, and travels at least two inches." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="tkO" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M1,0 L1,10" stroke="#1E8449" stroke-width="1.6"></path>
+          </marker>
+          <marker id="tkP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M9,0 L9,10" stroke="#1E8449" stroke-width="1.6"></path>
+          </marker>
+        </defs>
+
+        
+        <rect x="228" y="96" width="356" height="12" rx="2" fill="#1C1C1C"></rect>
+        <rect x="228" y="214" width="356" height="12" rx="2" fill="#1C1C1C"></rect>
+        <text x="406" y="88" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" font-weight="600" fill="#1C1C1C">guide rail</text>
+        <text x="406" y="242" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" font-weight="600" fill="#1C1C1C">guide rail</text>
+
+        
+        <rect x="248" y="114" width="316" height="94" rx="4" fill="#F2F2F2" stroke="#444" stroke-width="2.5"></rect>
+        <g fill="none" stroke="#888" stroke-width="1.8">
+          <circle cx="292" cy="161" r="7"></circle><circle cx="336" cy="161" r="7"></circle>
+          <circle cx="380" cy="161" r="7"></circle><circle cx="424" cy="161" r="7"></circle>
+          <circle cx="468" cy="161" r="7"></circle><circle cx="512" cy="161" r="7"></circle>
+        </g>
+        <text x="406" y="140" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#666">mount points</text>
+        <text x="406" y="196" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">7″ × 2″ PLATFORM</text>
+
+        
+        <line x1="256" y1="256" x2="556" y2="256" stroke="#444" stroke-width="12" stroke-dasharray="10 12"></line>
+        <text x="580" y="260" text-anchor="end" font-family="'Barlow',sans-serif" font-size="12" fill="#666">rack</text>
+
+        
+        <rect x="34" y="192" width="150" height="96" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <text x="109" y="246" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">MOTOR</text>
+        <circle cx="216" cy="282" r="28" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="11 11"></circle>
+        <circle cx="216" cy="282" r="5" fill="#444"></circle>
+        <text x="216" y="316" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#666">pinion</text>
+        <line x1="184" y1="240" x2="216" y2="262" stroke="#444" stroke-width="5"></line>
+
+        
+        <line x1="248" y1="60" x2="330" y2="60" stroke="#1E8449" stroke-width="1.8" marker-start="url(#tkO)" marker-end="url(#tkP)"></line>
+        <text x="289" y="48" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1E8449">2″ travel</text>
+      </svg>
