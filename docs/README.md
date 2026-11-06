@@ -16,6 +16,8 @@ Start with the document that matches the work:
   with the most common forms and parameters.
 - [Migration contracts](migration-contracts.md) records what must survive an
   HTML-to-Hugo migration and how the migration tools fit together.
+- [Mechanical migration](mechanical-migration.md) records the Mechanical Design
+  source, available worksheets, and compatibility checks.
 
 `MIGRATION.md` remains the long-form source for component schemas, examples,
 expected build failures, and migration rationale. These files organize the

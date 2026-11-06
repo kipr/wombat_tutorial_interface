@@ -1,0 +1,37 @@
+<svg viewBox="0 0 620 260" role="img" aria-label="Three gears in a row. The left gear turns clockwise, the middle idler gear turns counterclockwise, and the right gear turns clockwise again. The two outer gears turn the same direction as each other." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="rot2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
+          </marker>
+        </defs>
+
+        
+        <circle cx="170" cy="132" r="46" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="14.4 14.4"></circle>
+        <circle cx="170" cy="132" r="38" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
+        <circle cx="170" cy="132" r="6" fill="#444"></circle>
+
+        <circle cx="262" cy="132" r="46" fill="#FDF2F2" stroke="#C0392B" stroke-width="6" stroke-dasharray="14.4 14.4"></circle>
+        <circle cx="262" cy="132" r="38" fill="#FDF2F2" stroke="#E8B4AE" stroke-width="1.5"></circle>
+        <circle cx="262" cy="132" r="6" fill="#C0392B"></circle>
+
+        <circle cx="354" cy="132" r="46" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="14.4 14.4"></circle>
+        <circle cx="354" cy="132" r="38" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
+        <circle cx="354" cy="132" r="6" fill="#444"></circle>
+
+        
+        <path d="M144,180 A30,30 0 1 1 196,180" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rot2)"></path>
+        <text x="170" y="212" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">CW</text>
+        <path d="M288,180 A30,30 0 1 0 236,180" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rot2)"></path>
+        <text x="262" y="212" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">CCW</text>
+        <path d="M328,180 A30,30 0 1 1 380,180" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rot2)"></path>
+        <text x="354" y="212" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">CW</text>
+
+        
+        <text x="170" y="62" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">driven by motor</text>
+        <text x="262" y="62" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">IDLER</text>
+        <text x="354" y="62" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">same way as the first</text>
+
+        
+        <path d="M170,238 L170,246 L354,246 L354,238" fill="none" stroke="#1E8449" stroke-width="2"></path>
+        <text x="262" y="238" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1E8449">these two now match</text>
+      </svg>

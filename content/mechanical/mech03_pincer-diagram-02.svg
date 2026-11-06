@@ -1,0 +1,37 @@
+<svg viewBox="0 0 620 280" role="img" aria-label="Two meshed gears, each carrying an arm. When the left gear turns clockwise, the right gear is forced counterclockwise, and the two arms swing toward each other to close on a pom." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="rot" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
+          </marker>
+        </defs>
+
+        
+        <line x1="214" y1="186" x2="181" y2="97" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
+        <line x1="306" y1="186" x2="339" y2="97" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
+        <line x1="214" y1="186" x2="230" y2="92" stroke="#C0392B" stroke-width="7" stroke-linecap="round" stroke-dasharray="10 7"></line>
+        <line x1="306" y1="186" x2="290" y2="92" stroke="#C0392B" stroke-width="7" stroke-linecap="round" stroke-dasharray="10 7"></line>
+
+        
+        <circle cx="260" cy="86" r="18" fill="#F2F2F2" stroke="#444" stroke-width="2"></circle>
+        <text x="260" y="52" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#444">pom</text>
+
+        
+        <circle cx="214" cy="186" r="46" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="14.4 14.4"></circle>
+        <circle cx="214" cy="186" r="38" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
+        <circle cx="214" cy="186" r="6" fill="#444"></circle>
+        <circle cx="306" cy="186" r="46" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="14.4 14.4"></circle>
+        <circle cx="306" cy="186" r="38" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
+        <circle cx="306" cy="186" r="6" fill="#444"></circle>
+
+        
+        <path d="M186,232 A34,34 0 1 1 242,232" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rot)"></path>
+        <text x="214" y="262" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">CLOCKWISE</text>
+        <path d="M334,232 A34,34 0 1 0 278,232" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rot)"></path>
+        <text x="306" y="262" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">COUNTER-CW</text>
+
+        
+        <text x="120" y="120" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#888">open</text>
+        <text x="410" y="120" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">closed</text>
+        <text x="460" y="186" font-family="'Barlow',sans-serif" font-size="13" fill="#444">drive only</text>
+        <text x="460" y="204" font-family="'Barlow',sans-serif" font-size="13" fill="#444">one gear</text>
+      </svg>

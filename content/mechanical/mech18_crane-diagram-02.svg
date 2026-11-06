@@ -1,0 +1,39 @@
+<svg viewBox="0 0 620 310" role="img" aria-label="The same crane at three positions carrying the same eight ounce load. As the boom reaches further out, the horizontal distance from the pivot to the load grows from four inches to eight to ten, and the torque grows from thirty-two to sixty-four to eighty ounce-inches." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="tkI" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M1,0 L1,10" stroke="#444" stroke-width="1.6"></path>
+          </marker>
+          <marker id="tkJ" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M9,0 L9,10" stroke="#444" stroke-width="1.6"></path>
+          </marker>
+        </defs>
+
+        <text x="310" y="24" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">SAME 8 oz LOAD — THREE POSITIONS</text>
+
+        
+        <line x1="60" y1="236" x2="108" y2="115" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
+        <circle cx="60" cy="236" r="7" fill="#1C1C1C"></circle>
+        <circle cx="108" cy="115" r="12" fill="#F2F2F2" stroke="#444" stroke-width="2"></circle>
+        <line x1="108" y1="127" x2="108" y2="236" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5 4"></line>
+        <line x1="60" y1="262" x2="108" y2="262" stroke="#444" stroke-width="1.6" marker-start="url(#tkI)" marker-end="url(#tkJ)"></line>
+        <text x="84" y="282" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">4 in</text>
+        <text x="84" y="302" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1E8449">32 oz-in</text>
+
+        
+        <line x1="250" y1="236" x2="346" y2="148" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
+        <circle cx="250" cy="236" r="7" fill="#1C1C1C"></circle>
+        <circle cx="346" cy="148" r="12" fill="#F2F2F2" stroke="#444" stroke-width="2"></circle>
+        <line x1="346" y1="160" x2="346" y2="236" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5 4"></line>
+        <line x1="250" y1="262" x2="346" y2="262" stroke="#444" stroke-width="1.6" marker-start="url(#tkI)" marker-end="url(#tkJ)"></line>
+        <text x="298" y="282" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">8 in</text>
+        <text x="298" y="302" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C79A1E">64 oz-in</text>
+
+        
+        <line x1="430" y1="236" x2="550" y2="186" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
+        <circle cx="430" cy="236" r="7" fill="#1C1C1C"></circle>
+        <circle cx="550" cy="186" r="12" fill="#F2F2F2" stroke="#444" stroke-width="2"></circle>
+        <line x1="550" y1="198" x2="550" y2="236" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5 4"></line>
+        <line x1="430" y1="262" x2="550" y2="262" stroke="#444" stroke-width="1.6" marker-start="url(#tkI)" marker-end="url(#tkJ)"></line>
+        <text x="490" y="282" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">10 in</text>
+        <text x="490" y="302" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">80 oz-in</text>
+      </svg>

@@ -1,0 +1,46 @@
+<svg viewBox="0 0 620 600" role="img" aria-label="Flowchart of the five-step engineering design process. Step one, clearly define the problem. Step two, determine the needs to be met. Step three, determine the constraints. Step four, break the project into manageable and attainable steps. Step five, a decision: does the result meet the needs? If yes, the process ends. If no, the process returns to step one." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1C1C1C"></path>
+          </marker>
+        </defs>
+
+        
+        <rect x="150" y="14" width="340" height="56" rx="6" fill="#fbeef0" stroke="#C0392B" stroke-width="2"></rect>
+        <text x="320" y="38" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="15" font-weight="600" fill="#1C1C1C">1  Clearly define the problem</text>
+        <text x="320" y="58" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="15" font-weight="600" fill="#1C1C1C">to be solved</text>
+        <line x1="320" y1="70" x2="320" y2="94" stroke="#1C1C1C" stroke-width="2" marker-end="url(#ar)"></line>
+
+        
+        <rect x="150" y="98" width="340" height="46" rx="6" fill="#fff" stroke="#CCCCCC" stroke-width="2"></rect>
+        <text x="320" y="127" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="15" font-weight="600" fill="#1C1C1C">2  Determine the needs to be met</text>
+        <line x1="320" y1="144" x2="320" y2="168" stroke="#1C1C1C" stroke-width="2" marker-end="url(#ar)"></line>
+
+        
+        <rect x="150" y="172" width="340" height="46" rx="6" fill="#fff" stroke="#CCCCCC" stroke-width="2"></rect>
+        <text x="320" y="201" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="15" font-weight="600" fill="#1C1C1C">3  Determine the constraints</text>
+        <line x1="320" y1="218" x2="320" y2="242" stroke="#1C1C1C" stroke-width="2" marker-end="url(#ar)"></line>
+
+        
+        <rect x="150" y="246" width="340" height="56" rx="6" fill="#fff" stroke="#CCCCCC" stroke-width="2"></rect>
+        <text x="320" y="270" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="15" font-weight="600" fill="#1C1C1C">4  Break the project down into</text>
+        <text x="320" y="290" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="15" font-weight="600" fill="#1C1C1C">manageable, attainable steps</text>
+        <line x1="320" y1="302" x2="320" y2="326" stroke="#1C1C1C" stroke-width="2" marker-end="url(#ar)"></line>
+
+        
+        <path d="M320,330 L500,420 L320,510 L140,420 Z" fill="#fbeef0" stroke="#C0392B" stroke-width="2"></path>
+        <text x="320" y="405" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="15" font-weight="600" fill="#1C1C1C">5  Does the result meet</text>
+        <text x="320" y="425" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="15" font-weight="600" fill="#1C1C1C">the needs you defined,</text>
+        <text x="320" y="445" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="15" font-weight="600" fill="#1C1C1C">within the constraints?</text>
+
+        
+        <line x1="320" y1="510" x2="320" y2="534" stroke="#1C1C1C" stroke-width="2" marker-end="url(#ar)"></line>
+        <text x="334" y="528" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1E8449">YES</text>
+        <rect x="200" y="538" width="240" height="44" rx="6" fill="#eef4ee" stroke="#1E8449" stroke-width="2"></rect>
+        <text x="320" y="566" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="15" font-weight="600" fill="#1C1C1C">End of the process</text>
+
+        
+        <path d="M140,420 L64,420 L64,42 L146,42" fill="none" stroke="#C0392B" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#ar)"></path>
+        <text x="74" y="410" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">NO</text>
+        <text x="74" y="240" font-family="'Barlow Condensed',sans-serif" font-size="14" font-weight="600" fill="#C0392B" transform="rotate(-90 74 240)" text-anchor="middle">refine · redo · rethink · rebuild</text>
+      </svg>

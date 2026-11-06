@@ -12,6 +12,9 @@
 - id: python
   name: Python Labs
   page: /python_labs
+- id: mechanical
+  name: Mechanical
+  page: /mechanical
 - id: glossary
   name: Glossary
   page: /glossary

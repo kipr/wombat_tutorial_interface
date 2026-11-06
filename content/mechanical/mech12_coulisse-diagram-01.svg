@@ -1,0 +1,56 @@
+<svg viewBox="0 0 620 380" role="img" aria-label="A coulisse mechanism. A pin travels around a circle at constant speed while riding inside a slot cut in a long arm pivoted below. The arm swings between two extreme positions. The crank spends about two hundred twenty six degrees of each turn driving the arm one way and only about one hundred thirty four degrees driving it back, so one stroke is much faster than the other." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="rotF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#888"></path>
+          </marker>
+        </defs>
+
+        
+        <circle cx="250" cy="140" r="70" fill="none" stroke="#CCC" stroke-width="1.6" stroke-dasharray="7 6"></circle>
+
+        
+        <path d="M185.5,167.3 A70,70 0 1 1 314.5,167.3" fill="none" stroke="#1F2D5A" stroke-width="7"></path>
+        
+        <path d="M314.5,167.3 A70,70 0 0 1 185.5,167.3" fill="none" stroke="#C0392B" stroke-width="7"></path>
+
+        
+        <line x1="250" y1="320" x2="137" y2="53" stroke="#BBB" stroke-width="5" stroke-linecap="round" stroke-dasharray="10 7"></line>
+        <line x1="250" y1="320" x2="363" y2="53" stroke="#BBB" stroke-width="5" stroke-linecap="round" stroke-dasharray="10 7"></line>
+
+        
+        <line x1="250" y1="320" x2="250" y2="40" stroke="#444" stroke-width="16" stroke-linecap="round"></line>
+        <line x1="250" y1="300" x2="250" y2="52" stroke="#fff" stroke-width="7" stroke-linecap="round"></line>
+        <text x="196" y="264" text-anchor="end" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">SLOTTED ARM</text>
+        <text x="196" y="284" text-anchor="end" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">the white gap is the slot</text>
+
+        
+        <line x1="250" y1="140" x2="250" y2="70" stroke="#888" stroke-width="5"></line>
+        <circle cx="250" cy="140" r="6" fill="#444"></circle>
+        <circle cx="250" cy="70" r="10" fill="#C0392B" stroke="#922B21" stroke-width="2"></circle>
+        <text x="272" y="66" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">PIN</text>
+
+        
+        <circle cx="250" cy="320" r="9" fill="#fff" stroke="#1C1C1C" stroke-width="3"></circle>
+        <line x1="206" y1="336" x2="294" y2="336" stroke="#1C1C1C" stroke-width="2.5"></line>
+        <g stroke="#888" stroke-width="1.6">
+          <line x1="214" y1="336" x2="204" y2="350"></line><line x1="234" y1="336" x2="224" y2="350"></line>
+          <line x1="254" y1="336" x2="244" y2="350"></line><line x1="274" y1="336" x2="264" y2="350"></line>
+          <line x1="294" y1="336" x2="284" y2="350"></line>
+        </g>
+        <text x="250" y="370" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">pivot</text>
+
+        
+        <path d="M330,206 A94,94 0 0 0 344,150" fill="none" stroke="#888" stroke-width="2.5" marker-end="url(#rotF)"></path>
+
+        
+        <rect x="404" y="88" width="26" height="10" fill="#1F2D5A"></rect>
+        <text x="440" y="98" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1F2D5A">SLOW STROKE</text>
+        <text x="440" y="118" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">about 226° of the turn</text>
+
+        <rect x="404" y="152" width="26" height="10" fill="#C0392B"></rect>
+        <text x="440" y="162" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">FAST STROKE</text>
+        <text x="440" y="182" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">about 134° of the turn</text>
+
+        <text x="404" y="228" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1C1C1C">Same wheel speed.</text>
+        <text x="404" y="248" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1C1C1C">Unequal time.</text>
+      </svg>

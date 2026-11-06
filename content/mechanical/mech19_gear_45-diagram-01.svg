@@ -1,0 +1,31 @@
+<svg viewBox="0 0 620 260" role="img" aria-label="Three shaft arrangements compared. At zero degrees the shafts are in line and ordinary gears or a coupling will do. At ninety degrees bevel gears are made for exactly that corner. At forty-five degrees neither fits, and a joint is needed instead." xmlns="http://www.w3.org/2000/svg">
+        
+        <rect x="8" y="8" width="192" height="244" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="104" y="34" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">0° — IN LINE</text>
+        <line x1="34" y1="140" x2="104" y2="140" stroke="#888" stroke-width="9" stroke-linecap="round"></line>
+        <line x1="104" y1="140" x2="174" y2="140" stroke="#1F2D5A" stroke-width="9" stroke-linecap="round"></line>
+        <circle cx="104" cy="140" r="10" fill="#fff" stroke="#444" stroke-width="2.5"></circle>
+        <text x="104" y="196" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">spur gears</text>
+        <text x="104" y="214" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">or a coupling</text>
+
+        
+        <rect x="212" y="8" width="192" height="244" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="308" y="34" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">90° — RIGHT ANGLE</text>
+        <line x1="238" y1="164" x2="308" y2="164" stroke="#888" stroke-width="9" stroke-linecap="round"></line>
+        <line x1="308" y1="164" x2="308" y2="86" stroke="#1F2D5A" stroke-width="9" stroke-linecap="round"></line>
+        <path d="M288,164 L288,144 L308,144" fill="none" stroke="#444" stroke-width="2"></path>
+        <circle cx="308" cy="164" r="10" fill="#fff" stroke="#444" stroke-width="2.5"></circle>
+        <text x="308" y="212" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1E8449">bevel gears</text>
+        <text x="308" y="230" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#666">Challenge 13</text>
+
+        
+        <rect x="416" y="8" width="196" height="244" rx="8" fill="#FDF2F2" stroke="#C0392B" stroke-width="2"></rect>
+        <text x="514" y="34" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#C0392B">45° — IN BETWEEN</text>
+        <line x1="442" y1="176" x2="512" y2="176" stroke="#888" stroke-width="9" stroke-linecap="round"></line>
+        <line x1="512" y1="176" x2="568" y2="120" stroke="#1F2D5A" stroke-width="9" stroke-linecap="round"></line>
+        <path d="M544,176 A32,32 0 0 0 534,154" fill="none" stroke="#444" stroke-width="2"></path>
+        <text x="556" y="170" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#444">45°</text>
+        <circle cx="512" cy="176" r="10" fill="#fff" stroke="#C0392B" stroke-width="2.5"></circle>
+        <text x="514" y="216" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#C0392B">no gear is cut</text>
+        <text x="514" y="234" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#C0392B">for this angle</text>
+      </svg>

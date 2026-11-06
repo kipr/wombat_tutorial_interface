@@ -1,0 +1,36 @@
+<svg viewBox="0 0 620 320" role="img" aria-label="A wheel turning in one direction only, with a pin near its rim connected by a rod to a platform above. As the pin goes round, the platform rises and falls, even though the wheel never reverses." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="rotK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
+          </marker>
+          <marker id="udD" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto">
+            <path d="M0,9 L5,0 L10,9 z" fill="#1E8449"></path>
+          </marker>
+        </defs>
+
+        
+        <circle cx="180" cy="212" r="58" fill="#F8F8F8" stroke="#888" stroke-width="2.5"></circle>
+        <circle cx="180" cy="212" r="6" fill="#444"></circle>
+        <path d="M112,246 A76,76 0 0 1 104,192" fill="none" stroke="#C0392B" stroke-width="3" marker-end="url(#rotK)"></path>
+        <text x="64" y="288" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">ONE DIRECTION</text>
+        <text x="64" y="306" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">ONLY</text>
+
+        
+        <circle cx="180" cy="154" r="9" fill="#C0392B"></circle>
+        <line x1="180" y1="154" x2="180" y2="96" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
+        <rect x="112" y="76" width="176" height="18" rx="3" fill="#dbe3f0" stroke="#1F2D5A" stroke-width="2.5"></rect>
+
+        
+        <circle cx="180" cy="270" r="9" fill="none" stroke="#BBB" stroke-width="3"></circle>
+        <line x1="180" y1="270" x2="180" y2="212" stroke="#BBB" stroke-width="6" stroke-linecap="round" stroke-dasharray="8 6"></line>
+        <rect x="112" y="192" width="176" height="18" rx="3" fill="none" stroke="#BBB" stroke-width="2.5" stroke-dasharray="9 6"></rect>
+
+        
+        <line x1="330" y1="200" x2="330" y2="88" stroke="#1E8449" stroke-width="3" marker-start="url(#udD)" marker-end="url(#udD)"></line>
+        <text x="352" y="148" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1E8449">UP AND DOWN</text>
+        <text x="352" y="170" font-family="'Barlow',sans-serif" font-size="13" fill="#666">the platform reverses</text>
+        <text x="352" y="188" font-family="'Barlow',sans-serif" font-size="13" fill="#666">even though the wheel never does</text>
+
+        <text x="352" y="240" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1C1C1C">Lift = twice the pin offset</text>
+        <text x="352" y="258" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">the same rule as the crank in Challenge 6</text>
+      </svg>

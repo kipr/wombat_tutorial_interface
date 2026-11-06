@@ -1,0 +1,43 @@
+<svg viewBox="0 0 620 340" role="img" aria-label="Two machine layouts compared. On the left, a serial arm where each joint carries the next in a single chain. On the right, a parallel mechanism where three separate legs all attach to one platform." xmlns="http://www.w3.org/2000/svg">
+        
+        <rect x="8" y="8" width="296" height="324" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="24" y="34" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">SERIAL — one chain</text>
+
+        <rect x="62" y="256" width="92" height="40" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <line x1="108" y1="256" x2="176" y2="176" stroke="#888" stroke-width="10" stroke-linecap="round"></line>
+        <line x1="176" y1="176" x2="252" y2="128" stroke="#888" stroke-width="10" stroke-linecap="round"></line>
+        <circle cx="108" cy="256" r="8" fill="#C0392B"></circle>
+        <circle cx="176" cy="176" r="8" fill="#C0392B"></circle>
+        <circle cx="252" cy="128" r="8" fill="#C0392B"></circle>
+        <text x="108" y="316" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#888">base</text>
+        <text x="152" y="86" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">each joint carries</text>
+        <text x="152" y="104" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">everything after it</text>
+        <text x="24" y="222" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1F2D5A">Long reach.</text>
+        <text x="24" y="240" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#C0392B">Errors add up.</text>
+
+        
+        <rect x="316" y="8" width="296" height="324" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="332" y="34" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">PARALLEL — three legs</text>
+
+        
+        <rect x="418" y="98" width="104" height="34" rx="4" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></rect>
+        <text x="470" y="120" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="14" font-weight="700" fill="#C0392B">PLATFORM</text>
+
+        
+        <rect x="342" y="272" width="56" height="26" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <rect x="442" y="284" width="56" height="26" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <rect x="540" y="272" width="56" height="26" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+
+        
+        <line x1="370" y1="272" x2="428" y2="132" stroke="#888" stroke-width="8" stroke-linecap="round"></line>
+        <line x1="470" y1="284" x2="470" y2="132" stroke="#888" stroke-width="8" stroke-linecap="round"></line>
+        <line x1="568" y1="272" x2="512" y2="132" stroke="#888" stroke-width="8" stroke-linecap="round"></line>
+
+        <circle cx="428" cy="132" r="7" fill="#C0392B"></circle>
+        <circle cx="470" cy="132" r="7" fill="#C0392B"></circle>
+        <circle cx="512" cy="132" r="7" fill="#C0392B"></circle>
+
+        <text x="470" y="326" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#888">three drives, one platform</text>
+        <text x="332" y="222" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1F2D5A">Stiff and accurate.</text>
+        <text x="332" y="240" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#C0392B">Smaller reach.</text>
+      </svg>

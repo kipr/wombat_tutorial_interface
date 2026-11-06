@@ -49,6 +49,7 @@
             node tests/test_glossary_dialog.js
             node tests/test_introductory_import.js
             node tests/test_wordblocks_markup.js "${RUNNER_TEMP}/verify"
+            node tests/test_mechanical_migration.js "${RUNNER_TEMP}/verify"
 
             hugo --config hugo.toml,build-targets/preview.toml \
               --destination "${RUNNER_TEMP}/preview-verify" \

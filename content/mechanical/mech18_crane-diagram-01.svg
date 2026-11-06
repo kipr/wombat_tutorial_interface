@@ -1,0 +1,52 @@
+<svg viewBox="0 0 620 320" role="img" aria-label="A crane built from a four-bar linkage. Two pivots are anchored to a stationary base. A short driving link runs up from the left pivot and is turned by a motor. A coupler links across and continues past its joint to form the boom, which carries a load at its tip. A dashed arc shows the range the tip travels between contracted and extended." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="rotJ" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
+          </marker>
+          <marker id="dnA" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="9" markerHeight="9" orient="auto">
+            <path d="M0,0 L5,10 L10,0 z" fill="#444"></path>
+          </marker>
+        </defs>
+
+        
+        <rect x="90" y="250" width="190" height="46" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <text x="185" y="278" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">STATIONARY BASE</text>
+
+        
+        <line x1="130" y1="250" x2="230" y2="250" stroke="#1C1C1C" stroke-width="4" stroke-dasharray="10 7"></line>
+
+        
+        <line x1="130" y1="250" x2="164" y2="152" stroke="#1F2D5A" stroke-width="10" stroke-linecap="round"></line>
+        
+        <line x1="230" y1="250" x2="286" y2="166" stroke="#888" stroke-width="9" stroke-linecap="round"></line>
+        
+        <line x1="164" y1="152" x2="470" y2="112" stroke="#888" stroke-width="9" stroke-linecap="round"></line>
+
+        
+        <circle cx="130" cy="250" r="9" fill="#fff" stroke="#1C1C1C" stroke-width="3"></circle>
+        <circle cx="230" cy="250" r="9" fill="#fff" stroke="#1C1C1C" stroke-width="3"></circle>
+        <circle cx="164" cy="152" r="8" fill="#444"></circle>
+        <circle cx="286" cy="166" r="8" fill="#444"></circle>
+
+        
+        <rect x="72" y="230" width="46" height="40" rx="4" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></rect>
+        <text x="95" y="255" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="12" font-weight="700" fill="#C0392B">MOTOR</text>
+        <path d="M104,212 A44,44 0 0 1 148,196" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rotJ)"></path>
+
+        
+        <circle cx="470" cy="112" r="7" fill="#444"></circle>
+        <line x1="470" y1="120" x2="470" y2="170" stroke="#444" stroke-width="3" marker-end="url(#dnA)"></line>
+        <text x="486" y="150" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">LOAD</text>
+
+        
+        <path d="M392,178 A230,230 0 0 1 480,104" fill="none" stroke="#1E8449" stroke-width="2.5" stroke-dasharray="9 6"></path>
+        <text x="360" y="196" text-anchor="end" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1E8449">contracted</text>
+        <text x="496" y="92" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1E8449">extended</text>
+
+        
+        <text x="140" y="122" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#1F2D5A">DRIVING LINK</text>
+        <text x="140" y="140" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="11.5" fill="#1F2D5A">the blue rod</text>
+        <text x="330" y="88" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#666">COUPLER, EXTENDED AS THE BOOM</text>
+        <text x="316" y="212" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#888">rocker</text>
+        <text x="180" y="234" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="11.5" fill="#888">ground link</text>
+      </svg>

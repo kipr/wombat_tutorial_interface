@@ -1,0 +1,39 @@
+<svg viewBox="0 0 620 300" role="img" aria-label="Two arrangements. On the left a single universal joint carries drive from a horizontal input shaft to an output shaft at forty-five degrees, and the output speed varies through each turn. On the right two joints are used with an intermediate shaft, and the second joint cancels the variation of the first." xmlns="http://www.w3.org/2000/svg">
+        
+        <rect x="8" y="8" width="296" height="284" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="24" y="34" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">ONE JOINT</text>
+
+        <line x1="40" y1="190" x2="130" y2="190" stroke="#888" stroke-width="11" stroke-linecap="round"></line>
+        <circle cx="152" cy="190" r="20" fill="#fff" stroke="#C0392B" stroke-width="3"></circle>
+        <line x1="140" y1="190" x2="164" y2="190" stroke="#C0392B" stroke-width="3"></line>
+        <line x1="152" y1="178" x2="152" y2="202" stroke="#C0392B" stroke-width="3"></line>
+        <line x1="168" y1="174" x2="244" y2="98" stroke="#1F2D5A" stroke-width="11" stroke-linecap="round"></line>
+
+        <text x="70" y="172" font-family="'Barlow',sans-serif" font-size="12" fill="#666">input</text>
+        <text x="212" y="146" font-family="'Barlow',sans-serif" font-size="12" fill="#1F2D5A">output</text>
+        <text x="24" y="240" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#C0392B">The output speeds up and slows</text>
+        <text x="24" y="258" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#C0392B">down twice in every turn.</text>
+        <text x="24" y="278" font-family="'Barlow',sans-serif" font-size="12" fill="#666">The bigger the angle, the worse it gets.</text>
+
+        
+        <rect x="316" y="8" width="296" height="284" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="332" y="34" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">TWO JOINTS</text>
+
+        <line x1="340" y1="212" x2="410" y2="212" stroke="#888" stroke-width="11" stroke-linecap="round"></line>
+        <circle cx="430" cy="212" r="17" fill="#fff" stroke="#C0392B" stroke-width="3"></circle>
+        <line x1="420" y1="212" x2="440" y2="212" stroke="#C0392B" stroke-width="2.5"></line>
+        <line x1="430" y1="202" x2="430" y2="222" stroke="#C0392B" stroke-width="2.5"></line>
+
+        <line x1="444" y1="198" x2="494" y2="148" stroke="#1E8449" stroke-width="11" stroke-linecap="round"></line>
+
+        <circle cx="510" cy="132" r="17" fill="#fff" stroke="#C0392B" stroke-width="3"></circle>
+        <line x1="500" y1="132" x2="520" y2="132" stroke="#C0392B" stroke-width="2.5"></line>
+        <line x1="510" y1="122" x2="510" y2="142" stroke="#C0392B" stroke-width="2.5"></line>
+
+        <line x1="530" y1="132" x2="596" y2="132" stroke="#1F2D5A" stroke-width="11" stroke-linecap="round"></line>
+
+        <text x="452" y="176" font-family="'Barlow',sans-serif" font-size="12" font-weight="600" fill="#1E8449">middle shaft</text>
+        <text x="332" y="240" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1E8449">Equal and opposite bends.</text>
+        <text x="332" y="258" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1E8449">The second joint undoes what</text>
+        <text x="332" y="276" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1E8449">the first one did.</text>
+      </svg>

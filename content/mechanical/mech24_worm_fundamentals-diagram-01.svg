@@ -1,0 +1,41 @@
+<svg viewBox="0 0 620 300" role="img" aria-label="A drive train splitting into two branches from one motor. The upper branch runs straight to a spinning striker and turns at full motor speed. The lower branch passes through a worm gear before reaching the wheels, so they turn far more slowly." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="flowB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#444"></path>
+          </marker>
+        </defs>
+
+        
+        <rect x="34" y="122" width="112" height="64" rx="4" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <text x="90" y="160" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">MOTOR</text>
+
+        
+        <rect x="146" y="147" width="84" height="14" rx="2" fill="#888" stroke="#666" stroke-width="1.5"></rect>
+        <circle cx="236" cy="154" r="9" fill="#C0392B"></circle>
+        <text x="236" y="188" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" font-weight="600" fill="#C0392B">the split</text>
+
+        
+        <line x1="242" y1="146" x2="242" y2="72" stroke="#888" stroke-width="10" stroke-linecap="round"></line>
+        <line x1="242" y1="72" x2="356" y2="72" stroke="#888" stroke-width="10" stroke-linecap="round"></line>
+        <line x1="360" y1="72" x2="404" y2="72" stroke="#444" stroke-width="2" marker-end="url(#flowB)"></line>
+        <line x1="428" y1="34" x2="428" y2="110" stroke="#1F2D5A" stroke-width="9" stroke-linecap="round"></line>
+        <rect x="414" y="98" width="28" height="24" rx="2" fill="#1F2D5A"></rect>
+        <text x="466" y="60" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1F2D5A">STRIKER</text>
+        <text x="466" y="80" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1F2D5A">1 : 1 — full motor speed</text>
+
+        
+        <line x1="242" y1="162" x2="242" y2="232" stroke="#888" stroke-width="10" stroke-linecap="round"></line>
+        <rect x="248" y="216" width="96" height="32" rx="3" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></rect>
+        <g stroke="#C0392B" stroke-width="1.8">
+          <line x1="258" y1="248" x2="274" y2="216"></line><line x1="282" y1="248" x2="298" y2="216"></line>
+          <line x1="306" y1="248" x2="322" y2="216"></line>
+        </g>
+        <text x="296" y="208" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" font-weight="700" fill="#C0392B">WORM</text>
+        <line x1="350" y1="232" x2="394" y2="232" stroke="#444" stroke-width="2" marker-end="url(#flowB)"></line>
+        <circle cx="432" cy="232" r="30" fill="#1C1C1C"></circle>
+        <circle cx="432" cy="232" r="10" fill="#888"></circle>
+        <text x="480" y="222" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">WHEELS</text>
+        <text x="480" y="242" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#C0392B">24 : 1 — a slow crawl</text>
+
+        <text x="310" y="290" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1C1C1C">One motor. Two branches. Two speeds, at the same moment.</text>
+      </svg>

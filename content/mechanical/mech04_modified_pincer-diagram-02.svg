@@ -1,0 +1,34 @@
+<svg viewBox="0 0 620 300" role="img" aria-label="Two gear pairs. On the left, an eight tooth gear meshes with a sixteen tooth gear, giving a two to one ratio. On the right, an eight tooth gear meshes with a thirty tooth gear, giving a three point seven five to one ratio." xmlns="http://www.w3.org/2000/svg">
+        
+        <rect x="8" y="8" width="296" height="284" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="22" y="32" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">8 teeth → 16 teeth</text>
+
+        <circle cx="88" cy="160" r="32" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="12.56 12.56"></circle>
+        <circle cx="88" cy="160" r="25" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
+        <circle cx="88" cy="160" r="5" fill="#444"></circle>
+        <text x="88" y="110" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">8</text>
+
+        <circle cx="184" cy="160" r="64" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="12.56 12.56"></circle>
+        <circle cx="184" cy="160" r="55" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
+        <circle cx="184" cy="160" r="5" fill="#444"></circle>
+        <text x="184" y="84" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">16</text>
+
+        <text x="156" y="250" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="20" font-weight="700" fill="#C0392B">16 : 8  =  2 : 1</text>
+        <text x="156" y="272" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#666">1 turn left = ½ turn right</text>
+
+        
+        <rect x="316" y="8" width="296" height="284" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="330" y="32" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">8 teeth → 30 teeth</text>
+
+        <circle cx="376" cy="152" r="24" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="9.42 9.42"></circle>
+        <circle cx="376" cy="152" r="18" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
+        <circle cx="376" cy="152" r="4" fill="#444"></circle>
+        <text x="376" y="112" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">8</text>
+
+        <circle cx="490" cy="152" r="90" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="9.42 9.42"></circle>
+        <circle cx="490" cy="152" r="80" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
+        <circle cx="490" cy="152" r="5" fill="#444"></circle>
+        <text x="490" y="158" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">30</text>
+
+        <text x="464" y="270" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="20" font-weight="700" fill="#C0392B">30 : 8  =  3.75 : 1</text>
+      </svg>

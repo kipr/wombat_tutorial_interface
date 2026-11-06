@@ -1,0 +1,22 @@
+<svg viewBox="0 0 620 260" role="img" aria-label="Three parts side by side. A LEGO gear with a cross-shaped axle hole at its center. A servo output shaft, a short splined cylinder. Between them, a black servo horn: its center matches the shaft, and its body gives the gear something to screw onto." xmlns="http://www.w3.org/2000/svg">
+        
+        <circle cx="120" cy="120" r="76" fill="#F2F2F2" stroke="#444" stroke-width="2.5"></circle>
+        <path d="M112,104 h16 v8 h8 v16 h-8 v8 h-16 v-8 h-8 v-16 h8 z" fill="#fff" stroke="#1C1C1C" stroke-width="2"></path>
+        <text x="120" y="228" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13.5" font-weight="600" fill="#1C1C1C">LEGO gear</text>
+        <text x="120" y="245" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">center: cross axle hole</text>
+        
+        <circle cx="310" cy="120" r="52" fill="#1C1C1C" stroke="#000" stroke-width="2"></circle>
+        <circle cx="310" cy="120" r="10" fill="#fff"></circle>
+        <circle cx="310" cy="88" r="4.5" fill="#888"></circle>
+        <circle cx="310" cy="152" r="4.5" fill="#888"></circle>
+        <circle cx="278" cy="120" r="4.5" fill="#888"></circle>
+        <circle cx="342" cy="120" r="4.5" fill="#888"></circle>
+        <text x="310" y="228" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13.5" font-weight="600" fill="#1C1C1C">servo horn</text>
+        <text x="310" y="245" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">the bridge — soft black plastic</text>
+        
+        <rect x="452" y="60" width="90" height="120" rx="8" fill="#F2F2F2" stroke="#444" stroke-width="2.5"></rect>
+        <circle cx="497" cy="120" r="16" fill="#fff" stroke="#1C1C1C" stroke-width="2.5" stroke-dasharray="2.5 2.5"></circle>
+        <circle cx="497" cy="120" r="4" fill="#1C1C1C"></circle>
+        <text x="497" y="228" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13.5" font-weight="600" fill="#1C1C1C">servo / motor shaft</text>
+        <text x="497" y="245" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">splined cylinder — grips the horn</text>
+      </svg>

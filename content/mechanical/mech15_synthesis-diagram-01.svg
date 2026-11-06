@@ -1,0 +1,30 @@
+<svg viewBox="0 0 620 230" role="img" aria-label="Three blocks in a row connected by arrows: mechanism one, mechanism two, and the output. The two connection points between the blocks are marked as interfaces, where most failures happen." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="flowA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#444"></path>
+          </marker>
+        </defs>
+
+        <rect x="40" y="66" width="140" height="88" rx="6" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <text x="110" y="104" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">MECHANISM 1</text>
+        <text x="110" y="126" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">the motor drives this</text>
+
+        <line x1="188" y1="110" x2="234" y2="110" stroke="#444" stroke-width="2.5" marker-end="url(#flowA)"></line>
+
+        <rect x="242" y="66" width="140" height="88" rx="6" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <text x="312" y="104" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">MECHANISM 2</text>
+        <text x="312" y="126" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">driven by the first</text>
+
+        <line x1="390" y1="110" x2="436" y2="110" stroke="#444" stroke-width="2.5" marker-end="url(#flowA)"></line>
+
+        <rect x="444" y="66" width="140" height="88" rx="6" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></rect>
+        <text x="514" y="104" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">OUTPUT</text>
+        <text x="514" y="126" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#C0392B">more than 6 inches</text>
+
+        <circle cx="211" cy="110" r="9" fill="#C0392B"></circle>
+        <circle cx="413" cy="110" r="9" fill="#C0392B"></circle>
+        <text x="211" y="46" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="14" font-weight="700" fill="#C0392B">INTERFACE</text>
+        <text x="413" y="46" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="14" font-weight="700" fill="#C0392B">INTERFACE</text>
+
+        <text x="312" y="196" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13.5" font-weight="600" fill="#1C1C1C">Almost every failure happens at a red dot, not inside a box.</text>
+      </svg>

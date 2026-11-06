@@ -1,0 +1,38 @@
+<svg viewBox="0 0 620 240" role="img" aria-label="Two claw types compared. In a fixed claw, one jaw is stationary and the moving jaw shoves the object sideways until it is pinned against the fixed jaw. In a pincer, both jaws close inward and the object stays where it started." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="mA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
+          </marker>
+          <marker id="mG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#888"></path>
+          </marker>
+        </defs>
+
+        
+        <rect x="8" y="8" width="296" height="224" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="22" y="32" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">FIXED CLAW — one side moves</text>
+        
+        <rect x="70" y="70" width="14" height="96" fill="#444"></rect>
+        <text x="77" y="188" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#444">fixed</text>
+        
+        <rect x="240" y="70" width="14" height="96" fill="#C0392B"></rect>
+        <line x1="232" y1="118" x2="196" y2="118" stroke="#C0392B" stroke-width="2.5" marker-end="url(#mA)"></line>
+        <text x="247" y="188" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#C0392B">moves</text>
+        
+        <circle cx="160" cy="118" r="19" fill="#fff" stroke="#888" stroke-width="2" stroke-dasharray="5 4"></circle>
+        <circle cx="105" cy="118" r="19" fill="#F2F2F2" stroke="#444" stroke-width="2"></circle>
+        <line x1="138" y1="86" x2="124" y2="86" stroke="#888" stroke-width="2" marker-end="url(#mG)"></line>
+        <text x="156" y="62" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">object gets shoved</text>
+
+        
+        <rect x="316" y="8" width="296" height="224" rx="8" fill="#fff" stroke="#CCC"></rect>
+        <text x="330" y="32" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">PINCER — both sides move</text>
+        <rect x="378" y="70" width="14" height="96" fill="#C0392B"></rect>
+        <line x1="400" y1="118" x2="432" y2="118" stroke="#C0392B" stroke-width="2.5" marker-end="url(#mA)"></line>
+        <rect x="548" y="70" width="14" height="96" fill="#C0392B"></rect>
+        <line x1="540" y1="118" x2="508" y2="118" stroke="#C0392B" stroke-width="2.5" marker-end="url(#mA)"></line>
+        <circle cx="470" cy="118" r="19" fill="#F2F2F2" stroke="#444" stroke-width="2"></circle>
+        <text x="470" y="62" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#1E8449">object stays put</text>
+        <text x="385" y="188" font-family="'Barlow',sans-serif" font-size="12.5" fill="#C0392B">moves</text>
+        <text x="520" y="188" font-family="'Barlow',sans-serif" font-size="12.5" fill="#C0392B">also moves</text>
+      </svg>

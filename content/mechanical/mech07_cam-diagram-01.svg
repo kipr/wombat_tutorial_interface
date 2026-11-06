@@ -1,0 +1,36 @@
+<svg viewBox="0 0 620 320" role="img" aria-label="A cam wheel with a raised lobe at the top spanning forty-five degrees of its rotation. A follower rests on the cam edge. While the lobe passes underneath, the follower is pushed up; for the rest of the turn it sits low." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="up3" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto">
+            <path d="M0,9 L5,0 L10,9 z" fill="#C0392B"></path>
+          </marker>
+          <marker id="rot3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#888"></path>
+          </marker>
+        </defs>
+
+        
+        <path d="M223.0,204.6 L235.2,175.0 A92,92 0 0 0 164.8,175.0 L177.0,204.6 A60,60 0 1 0 223.0,204.6 Z" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></path>
+        <circle cx="200" cy="260" r="6" fill="#444"></circle>
+        <text x="200" y="300" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#888">cam, turning on its axle</text>
+
+        
+        <line x1="200" y1="260" x2="235.2" y2="175.0" stroke="#888" stroke-width="1.4" stroke-dasharray="5 4"></line>
+        <line x1="200" y1="260" x2="164.8" y2="175.0" stroke="#888" stroke-width="1.4" stroke-dasharray="5 4"></line>
+        <path d="M214.9,225.9 A32,32 0 0 0 185.1,225.9" fill="none" stroke="#1C1C1C" stroke-width="2"></path>
+        <text x="200" y="248" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="19" font-weight="700" fill="#1C1C1C">45°</text>
+
+        
+        <path d="M118,296 A96,96 0 0 1 104,244" fill="none" stroke="#888" stroke-width="2.5" marker-end="url(#rot3)"></path>
+
+        
+        <rect x="172" y="140" width="56" height="22" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <rect x="192" y="86" width="16" height="56" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <text x="248" y="118" font-family="'Barlow',sans-serif" font-size="14" font-weight="600" fill="#444">follower</text>
+        <line x1="290" y1="150" x2="290" y2="98" stroke="#C0392B" stroke-width="2.5" marker-end="url(#up3)"></line>
+        <text x="302" y="128" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">pushed up by the lobe</text>
+
+        
+        <text x="430" y="196" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">THE OTHER 315°</text>
+        <text x="430" y="218" font-family="'Barlow',sans-serif" font-size="13.5" fill="#666">the follower rides the round part</text>
+        <text x="430" y="236" font-family="'Barlow',sans-serif" font-size="13.5" fill="#666">and sits still, doing nothing</text>
+      </svg>

@@ -1,0 +1,48 @@
+<svg viewBox="0 0 620 300" role="img" aria-label="Side view. A motor lies flat on the table driving a worm. The worm turns a wheel whose shaft points straight up. An arm on that shaft carries a marker down onto the paper, where it traces a circle." xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="rotC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
+          </marker>
+        </defs>
+
+        
+        <line x1="30" y1="248" x2="592" y2="248" stroke="#1C1C1C" stroke-width="3"></line>
+        
+        <rect x="200" y="238" width="360" height="10" fill="#F8F8F8" stroke="#CCC" stroke-width="1"></rect>
+        <text x="70" y="268" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">table</text>
+
+        
+        <ellipse cx="356" cy="243" rx="146" ry="26" fill="none" stroke="#C0392B" stroke-width="2" stroke-dasharray="9 6"></ellipse>
+
+        
+        <rect x="86" y="200" width="94" height="46" rx="4" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
+        <text x="133" y="228" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">MOTOR</text>
+        <text x="133" y="188" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">lies flat</text>
+
+        
+        <rect x="180" y="210" width="104" height="28" rx="3" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></rect>
+        <g stroke="#C0392B" stroke-width="1.8">
+          <line x1="192" y1="238" x2="208" y2="210"></line><line x1="212" y1="238" x2="228" y2="210"></line>
+          <line x1="232" y1="238" x2="248" y2="210"></line><line x1="252" y1="238" x2="268" y2="210"></line>
+        </g>
+
+        
+        <ellipse cx="322" cy="224" rx="42" ry="13" fill="#fff" stroke="#1C1C1C" stroke-width="3"></ellipse>
+        <text x="322" y="196" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">worm wheel</text>
+
+        
+        <line x1="322" y1="224" x2="322" y2="128" stroke="#444" stroke-width="6"></line>
+        <text x="286" y="120" text-anchor="end" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">shaft points</text>
+        <text x="286" y="136" text-anchor="end" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">straight up</text>
+
+        
+        <line x1="322" y1="132" x2="500" y2="132" stroke="#888" stroke-width="8" stroke-linecap="round"></line>
+        
+        <rect x="491" y="132" width="18" height="106" rx="3" fill="#C0392B" stroke="#922B21" stroke-width="2"></rect>
+        <text x="530" y="176" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">MARKER</text>
+        <text x="530" y="194" font-family="'Barlow',sans-serif" font-size="12.5" fill="#C0392B">held by rubber bands</text>
+
+        
+        <path d="M356,110 A56,56 0 0 1 424,102" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rotC)"></path>
+        <text x="392" y="86" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#C0392B">more than 60 seconds per turn</text>
+      </svg>
