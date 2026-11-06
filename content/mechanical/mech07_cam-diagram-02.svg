@@ -1,38 +1,105 @@
-<svg viewBox="0 0 620 330" role="img" aria-label="Side view. A stationary base sits at the lower left. A cam-driven arm rises from it to reach an object resting on a horizontal surface above the base. Rubber bands at the tip of the arm give it grip, and the object slides to the right along the surface." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="arrowR2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#444"></path>
-          </marker>
-        </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 510" role="img" aria-labelledby="cam-pusher-title cam-pusher-description">
+  <title id="cam-pusher-title">A cam-driven arm gives an object a repeated push</title>
+  <desc id="cam-pusher-description">Side view of a stationary base supporting a rotating cam and a pivoting arm. The raised lobe presses against a roller under the arm. The solid arm is raised, with rubber bands on its tip touching the left side of an object on an elevated horizontal surface. The dashed arm shows the lowered position between pushes. The tip rises and moves right to push the object. Gravity or a rubber band returns the arm.</desc>
+  <defs>
+    <marker id="cam-pusher-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#a83a30"/>
+    </marker>
+    <marker id="cam-return-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#697580"/>
+    </marker>
+  </defs>
+  <rect width="720" height="510" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="24" y="30" font-size="23" font-weight="600">The cam turns. The arm gives one push.</text>
+    <text x="24" y="55" font-size="14" fill="#697580">SIDE VIEW · Solid arm = raised · Dashed arm = between pushes</text>
 
-        
-        <line x1="236" y1="128" x2="596" y2="128" stroke="#1C1C1C" stroke-width="4"></line>
-        <text x="560" y="150" text-anchor="end" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">horizontal plane</text>
+    <!-- Elevated surface starts beyond the arm's path, leaving clearance
+         for the low tip. The raised rubber pad touches the object's left face. -->
+    <rect x="222" y="215" width="474" height="10" rx="2" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <path d="M222 215H696" stroke="#36434f" stroke-width="2.5"/>
+    <path d="M650 225V452M666 225V452" stroke="#b7c1c9" stroke-width="2"/>
+    <text x="565" y="249" font-size="14" fill="#697580">horizontal plane</text>
+    <rect x="220" y="166" width="62" height="48" rx="4" fill="#f3f5f6" stroke="#697580" stroke-width="1.75"/>
+    <path d="M226 172H276V208" fill="none" stroke="#e0e5e8" stroke-width="1.5"/>
+    <text x="251" y="149" text-anchor="middle">object</text>
+    <path d="M305 188H496" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#cam-pusher-arrow)"/>
+    <text x="305" y="172" font-size="14" fill="#a83a30">direction of object movement</text>
 
-        
-        <rect x="322" y="90" width="58" height="36" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <text x="351" y="80" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#444">object</text>
+    <!-- Fixed slate structure supports both the axle and the arm pivot. -->
+    <rect x="333" y="333" width="34" height="67" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <rect x="258" y="342" width="24" height="58" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <rect x="40" y="400" width="350" height="52" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.75"/>
+    <rect x="49" y="409" width="332" height="34" rx="3" fill="none" stroke="#e0e5e8"/>
+    <g fill="#fff" stroke="#b7c1c9" stroke-width="1.25">
+      <circle cx="56" cy="416" r="3"/>
+      <circle cx="374" cy="416" r="3"/>
+      <circle cx="56" cy="436" r="3"/>
+      <circle cx="374" cy="436" r="3"/>
+    </g>
+    <text x="215" y="432" text-anchor="middle" font-size="17" font-weight="600">STATIONARY BASE</text>
+    <path d="M40 453H390M60 453 52 462M84 453 76 462M108 453 100 462M132 453 124 462M156 453 148 462M180 453 172 462M204 453 196 462M228 453 220 462M252 453 244 462M276 453 268 462M300 453 292 462M324 453 316 462M348 453 340 462M372 453 364 462" fill="none" stroke="#b7c1c9" stroke-width="1.25"/>
 
-        
-        <line x1="398" y1="108" x2="520" y2="108" stroke="#444" stroke-width="2.5" marker-end="url(#arrowR2)"></line>
-        <text x="459" y="98" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#444">direction of object movement</text>
+    <!-- Same smooth 45° profile as the concept figure, at half scale.
+         Cam tip y=280 touches the roller's bottom, also y=280. -->
+    <g transform="translate(270 342) scale(.5)">
+      <path d="M-33.676 -81.301 L-32.646 -81.827 L-31.677 -82.522 L-30.763 -83.387 L-29.894 -84.419 L-29.062 -85.613 L-28.256 -86.962 L-27.467 -88.457 L-26.685 -90.087 L-25.901 -91.837 L-25.105 -93.695 L-24.290 -95.642 L-23.447 -97.663 L-22.568 -99.736 L-21.647 -101.843 L-20.680 -103.963 L-19.660 -106.075 L-18.585 -108.157 L-17.452 -110.189 L-16.261 -112.149 L-15.011 -114.016 L-13.703 -115.772 L-12.339 -117.398 L-10.923 -118.876 L-9.459 -120.191 L-7.952 -121.328 L-6.408 -122.276 L-4.834 -123.024 L-3.236 -123.564 L-1.622 -123.891 L0.000 -124.000 L1.622 -123.891 L3.236 -123.564 L4.834 -123.024 L6.408 -122.276 L7.952 -121.328 L9.459 -120.191 L10.923 -118.876 L12.339 -117.398 L13.703 -115.772 L15.011 -114.016 L16.261 -112.149 L17.452 -110.189 L18.585 -108.157 L19.660 -106.075 L20.680 -103.963 L21.647 -101.843 L22.568 -99.736 L23.447 -97.663 L24.290 -95.642 L25.105 -93.695 L25.901 -91.837 L26.685 -90.087 L27.467 -88.457 L28.256 -86.962 L29.062 -85.613 L29.894 -84.419 L30.763 -83.387 L31.677 -82.522 L32.646 -81.827 L33.676 -81.301 A88 88 0 1 1 -33.676 -81.301Z" fill="#f3f5f6" stroke="#697580" stroke-width="3"/>
+      <path d="M-33.676 -81.301 L-32.646 -81.827 L-31.677 -82.522 L-30.763 -83.387 L-29.894 -84.419 L-29.062 -85.613 L-28.256 -86.962 L-27.467 -88.457 L-26.685 -90.087 L-25.901 -91.837 L-25.105 -93.695 L-24.290 -95.642 L-23.447 -97.663 L-22.568 -99.736 L-21.647 -101.843 L-20.680 -103.963 L-19.660 -106.075 L-18.585 -108.157 L-17.452 -110.189 L-16.261 -112.149 L-15.011 -114.016 L-13.703 -115.772 L-12.339 -117.398 L-10.923 -118.876 L-9.459 -120.191 L-7.952 -121.328 L-6.408 -122.276 L-4.834 -123.024 L-3.236 -123.564 L-1.622 -123.891 L0.000 -124.000 L1.622 -123.891 L3.236 -123.564 L4.834 -123.024 L6.408 -122.276 L7.952 -121.328 L9.459 -120.191 L10.923 -118.876 L12.339 -117.398 L13.703 -115.772 L15.011 -114.016 L16.261 -112.149 L17.452 -110.189 L18.585 -108.157 L19.660 -106.075 L20.680 -103.963 L21.647 -101.843 L22.568 -99.736 L23.447 -97.663 L24.290 -95.642 L25.105 -93.695 L25.901 -91.837 L26.685 -90.087 L27.467 -88.457 L28.256 -86.962 L29.062 -85.613 L29.894 -84.419 L30.763 -83.387 L31.677 -82.522 L32.646 -81.827 L33.676 -81.301 A88 88 0 0 0 -33.676 -81.301Z" fill="#fae8e3" stroke="#a83a30" stroke-width="3"/>
+      <circle r="88" fill="none" stroke="#b7c1c9" stroke-width="2" stroke-dasharray="6 6"/>
+      <g fill="#fff" stroke="#b7c1c9" stroke-width="2.5">
+        <circle cx="-52" r="11"/>
+        <circle cx="52" r="11"/>
+        <circle cy="52" r="11"/>
+      </g>
+      <circle r="12" fill="#e9edf0" stroke="#697580" stroke-width="3"/>
+      <path d="M-3 -9H3V-3H9V3H3V9H-3V3H-9V-3H-3Z" fill="#36434f"/>
+    </g>
+    <path d="M213.618 362.521A60 60 0 0 1 213.618 321.479" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#cam-pusher-arrow)"/>
+    <text x="185" y="387" font-size="14" fill="#a83a30">Cam turns</text>
 
-        
-        <rect x="70" y="212" width="190" height="96" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <text x="165" y="252" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="18" font-weight="700" fill="#444">STATIONARY</text>
-        <text x="165" y="273" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="18" font-weight="700" fill="#444">BASE</text>
+    <!-- One rigid rocker, pivoting about (350,350). Lowered arm is 13.6°
+         counterclockwise from raised; raising moves the tip up AND right. -->
+    <g transform="rotate(-13.6 350 350)" fill="none" stroke="#a83a30" stroke-width="1.5" stroke-dasharray="5 4">
+      <path d="M343.05 355.72 203.05 185.72A9 9 0 0 1 216.95 174.28L356.95 344.28A9 9 0 0 1 343.05 355.72Z"/>
+      <circle cx="210" cy="180" r="10"/>
+    </g>
+    <path d="M270 253V270" stroke="#a83a30" stroke-width="10" stroke-linecap="round"/>
+    <path d="M350 350 210 180" stroke="#8e3027" stroke-width="22" stroke-linecap="round"/>
+    <path d="M350 350 210 180" stroke="#fae8e3" stroke-width="18" stroke-linecap="round"/>
+    <path d="M346 346 214 186" stroke="#dca99f" stroke-width="1.5"/>
+    <g fill="#fff" stroke="#a83a30" stroke-width="1.5">
+      <circle cx="322" cy="316" r="3.5"/>
+      <circle cx="294" cy="282" r="3.5"/>
+      <circle cx="266" cy="248" r="3.5"/>
+      <circle cx="238" cy="214" r="3.5"/>
+    </g>
+    <circle cx="270" cy="270" r="10" fill="#e9edf0" stroke="#36434f" stroke-width="2"/>
+    <circle cx="270" cy="270" r="3" fill="#697580"/>
+    <circle cx="350" cy="350" r="12" fill="#e9edf0" stroke="#697580" stroke-width="2"/>
+    <circle cx="350" cy="350" r="5" fill="#36434f" stroke="#fff" stroke-width="1.5"/>
 
-        
-        <line x1="150" y1="212" x2="330" y2="140" stroke="#C0392B" stroke-width="8" stroke-linecap="round"></line>
-        <circle cx="150" cy="212" r="7" fill="#1C1C1C"></circle>
-        <path d="M232,96 q10,0 10,10 v10 q0,10 10,10 q-10,0 -10,10 v10 q0,10 -10,10" fill="none" stroke="#C0392B" stroke-width="2.2"></path>
-        <text x="224" y="132" text-anchor="end" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#C0392B">MOVING</text>
-        <text x="224" y="152" text-anchor="end" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#C0392B">COMPONENT</text>
+    <!-- Rubber loops around the grip pad; the rightmost edge is x=220. -->
+    <circle cx="210" cy="180" r="10" fill="#a83a30" stroke="#8e3027" stroke-width="1.5"/>
+    <g fill="none" stroke="#e8b95b" stroke-width="2" transform="rotate(-39.47 210 180)">
+      <ellipse cx="206" cy="180" rx="2" ry="8"/>
+      <ellipse cx="210" cy="180" rx="2" ry="9"/>
+      <ellipse cx="214" cy="180" rx="2" ry="8"/>
+    </g>
+    <text x="24" y="100" font-size="15" fill="#a83a30">rubber bands here to grip the object</text>
+    <path d="M163 108 198 164" fill="none" stroke="#a83a30" stroke-width="1.25"/>
+    <path d="M155 224Q159 201 178 184" fill="none" stroke="#a83a30" stroke-width="2" marker-end="url(#cam-pusher-arrow)"/>
+    <path d="M135 185Q118 205 115 230" fill="none" stroke="#697580" stroke-width="1.5" marker-end="url(#cam-return-arrow)"/>
+    <text x="40" y="257" font-size="14" fill="#697580">Arm returns</text>
 
-        
-        <circle cx="330" cy="140" r="10" fill="none" stroke="#C0392B" stroke-width="2.5" stroke-dasharray="4 3"></circle>
-        <line x1="344" y1="166" x2="382" y2="196" stroke="#888" stroke-width="1.4"></line>
-        <text x="388" y="202" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">rubber bands here to grip the object</text>
-
-        <text x="480" y="262" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">SIDE VIEW</text>
-      </svg>
+    <path d="M260 270H166L151 285" fill="none" stroke="#697580" stroke-width="1.25"/>
+    <text x="24" y="303" font-size="14">Roller follows the cam edge</text>
+    <text x="440" y="324" font-size="18" font-weight="600" fill="#a83a30">MOVING COMPONENT</text>
+    <text x="440" y="348" font-size="15">The arm pivots to lift and push.</text>
+    <path d="M428 330H390L329 309" fill="none" stroke="#a83a30" stroke-width="1.25"/>
+    <path d="M361 355 409 380" fill="none" stroke="#697580" stroke-width="1.25"/>
+    <text x="423" y="386" font-size="14" fill="#697580">Fixed pivot</text>
+    <text x="440" y="421" font-size="15">Gravity or a rubber band</text>
+    <text x="440" y="444" font-size="15">brings the arm back down.</text>
+    <text x="24" y="492" font-size="15" fill="#46535f">The motor keeps turning. The object moves only when the arm reaches it.</text>
+  </g>
+</svg>

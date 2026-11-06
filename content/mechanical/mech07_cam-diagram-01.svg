@@ -1,36 +1,73 @@
-<svg viewBox="0 0 620 320" role="img" aria-label="A cam wheel with a raised lobe at the top spanning forty-five degrees of its rotation. A follower rests on the cam edge. While the lobe passes underneath, the follower is pushed up; for the rest of the turn it sits low." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="up3" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto">
-            <path d="M0,9 L5,0 L10,9 z" fill="#C0392B"></path>
-          </marker>
-          <marker id="rot3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#888"></path>
-          </marker>
-        </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="cam-title cam-description">
+  <title id="cam-title">A 45° lobe lifts the follower once per turn</title>
+  <desc id="cam-description">The raised lobe spans 45 degrees measured at the fixed axle. Its rounded tip touches the follower shoe and pushes it up through a fixed guide. The dashed shoe marks the low position on the round part. For the other 315 degrees the follower stays low. Gravity or a rubber band keeps it against the cam as the lobe turns away.</desc>
+  <defs>
+    <marker id="cam-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#a83a30"/>
+    </marker>
+  </defs>
+  <rect width="720" height="480" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="24" y="30" font-size="23" font-weight="600">One raised section. One lift per turn.</text>
+    <text x="24" y="55" fill="#697580">Measure the lobe angle at the axle, between its two edges.</text>
 
-        
-        <path d="M223.0,204.6 L235.2,175.0 A92,92 0 0 0 164.8,175.0 L177.0,204.6 A60,60 0 1 0 223.0,204.6 Z" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></path>
-        <circle cx="200" cy="260" r="6" fill="#444"></circle>
-        <text x="200" y="300" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#888">cam, turning on its axle</text>
+    <!-- The follower shoe is tangent to the lobe at y=192.
+         Base radius 88; maximum radius 124; lobe edges at ±22.5°. -->
+    <g transform="translate(215 316)">
+      <path d="M-33.676 -81.301 L-32.646 -81.827 L-31.677 -82.522 L-30.763 -83.387 L-29.894 -84.419 L-29.062 -85.613 L-28.256 -86.962 L-27.467 -88.457 L-26.685 -90.087 L-25.901 -91.837 L-25.105 -93.695 L-24.290 -95.642 L-23.447 -97.663 L-22.568 -99.736 L-21.647 -101.843 L-20.680 -103.963 L-19.660 -106.075 L-18.585 -108.157 L-17.452 -110.189 L-16.261 -112.149 L-15.011 -114.016 L-13.703 -115.772 L-12.339 -117.398 L-10.923 -118.876 L-9.459 -120.191 L-7.952 -121.328 L-6.408 -122.276 L-4.834 -123.024 L-3.236 -123.564 L-1.622 -123.891 L0.000 -124.000 L1.622 -123.891 L3.236 -123.564 L4.834 -123.024 L6.408 -122.276 L7.952 -121.328 L9.459 -120.191 L10.923 -118.876 L12.339 -117.398 L13.703 -115.772 L15.011 -114.016 L16.261 -112.149 L17.452 -110.189 L18.585 -108.157 L19.660 -106.075 L20.680 -103.963 L21.647 -101.843 L22.568 -99.736 L23.447 -97.663 L24.290 -95.642 L25.105 -93.695 L25.901 -91.837 L26.685 -90.087 L27.467 -88.457 L28.256 -86.962 L29.062 -85.613 L29.894 -84.419 L30.763 -83.387 L31.677 -82.522 L32.646 -81.827 L33.676 -81.301 A88 88 0 1 1 -33.676 -81.301Z" fill="#f3f5f6" stroke="#697580" stroke-width="2"/>
+      <path d="M-33.676 -81.301 L-32.646 -81.827 L-31.677 -82.522 L-30.763 -83.387 L-29.894 -84.419 L-29.062 -85.613 L-28.256 -86.962 L-27.467 -88.457 L-26.685 -90.087 L-25.901 -91.837 L-25.105 -93.695 L-24.290 -95.642 L-23.447 -97.663 L-22.568 -99.736 L-21.647 -101.843 L-20.680 -103.963 L-19.660 -106.075 L-18.585 -108.157 L-17.452 -110.189 L-16.261 -112.149 L-15.011 -114.016 L-13.703 -115.772 L-12.339 -117.398 L-10.923 -118.876 L-9.459 -120.191 L-7.952 -121.328 L-6.408 -122.276 L-4.834 -123.024 L-3.236 -123.564 L-1.622 -123.891 L0.000 -124.000 L1.622 -123.891 L3.236 -123.564 L4.834 -123.024 L6.408 -122.276 L7.952 -121.328 L9.459 -120.191 L10.923 -118.876 L12.339 -117.398 L13.703 -115.772 L15.011 -114.016 L16.261 -112.149 L17.452 -110.189 L18.585 -108.157 L19.660 -106.075 L20.680 -103.963 L21.647 -101.843 L22.568 -99.736 L23.447 -97.663 L24.290 -95.642 L25.105 -93.695 L25.901 -91.837 L26.685 -90.087 L27.467 -88.457 L28.256 -86.962 L29.062 -85.613 L29.894 -84.419 L30.763 -83.387 L31.677 -82.522 L32.646 -81.827 L33.676 -81.301 A88 88 0 0 0 -33.676 -81.301Z" fill="#fae8e3" stroke="#a83a30" stroke-width="2"/>
+      <circle r="88" fill="none" stroke="#b7c1c9" stroke-width="1.25" stroke-dasharray="5 5"/>
+      <g fill="#fff" stroke="#b7c1c9" stroke-width="1.5">
+        <circle cx="-52" r="11"/>
+        <circle cx="52" r="11"/>
+        <circle cy="52" r="11"/>
+      </g>
+    </g>
 
-        
-        <line x1="200" y1="260" x2="235.2" y2="175.0" stroke="#888" stroke-width="1.4" stroke-dasharray="5 4"></line>
-        <line x1="200" y1="260" x2="164.8" y2="175.0" stroke="#888" stroke-width="1.4" stroke-dasharray="5 4"></line>
-        <path d="M214.9,225.9 A32,32 0 0 0 185.1,225.9" fill="none" stroke="#1C1C1C" stroke-width="2"></path>
-        <text x="200" y="248" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="19" font-weight="700" fill="#1C1C1C">45°</text>
+    <!-- Dashed shoe: low position, touching the circular part at y=228. -->
+    <rect x="194" y="214" width="42" height="14" rx="3" fill="none" stroke="#697580" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <rect x="207" y="89" width="16" height="89" rx="2" fill="#e9edf0" stroke="#36434f" stroke-width="1.5"/>
+    <path d="M212 93V174" stroke="#fff" stroke-width="2"/>
+    <rect x="194" y="178" width="42" height="14" rx="3" fill="#e9edf0" stroke="#36434f" stroke-width="2"/>
+    <path d="M198 183H232" stroke="#fff" stroke-width="2"/>
 
-        
-        <path d="M118,296 A96,96 0 0 1 104,244" fill="none" stroke="#888" stroke-width="2.5" marker-end="url(#rot3)"></path>
+    <!-- Fixed guide stays put while the stem slides vertically. -->
+    <g fill="#f3f5f6" stroke="#697580" stroke-width="1.5">
+      <rect x="183" y="111" width="24" height="43" rx="2"/>
+      <rect x="223" y="111" width="24" height="43" rx="2"/>
+    </g>
+    <g fill="#697580">
+      <circle cx="195" cy="121" r="2.5"/>
+      <circle cx="195" cy="144" r="2.5"/>
+      <circle cx="235" cy="121" r="2.5"/>
+      <circle cx="235" cy="144" r="2.5"/>
+    </g>
+    <text x="38" y="116" font-size="15">Fixed guide</text>
+    <path d="M125 120 181 132" fill="none" stroke="#697580" stroke-width="1.25"/>
+    <text x="432" y="105" font-size="19" font-weight="600">follower</text>
+    <path d="M422 110H267L224 98" fill="none" stroke="#697580" stroke-width="1.25"/>
+    <path d="M290 180V125" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#cam-arrow)"/>
+    <text x="310" y="155" fill="#a83a30">pushed up by the lobe</text>
 
-        
-        <rect x="172" y="140" width="56" height="22" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <rect x="192" y="86" width="16" height="56" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <text x="248" y="118" font-family="'Barlow',sans-serif" font-size="14" font-weight="600" fill="#444">follower</text>
-        <line x1="290" y1="150" x2="290" y2="98" stroke="#C0392B" stroke-width="2.5" marker-end="url(#up3)"></line>
-        <text x="302" y="128" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">pushed up by the lobe</text>
+    <!-- These rays meet the actual beginning and end of the raised profile. -->
+    <path d="M160.659 184.809 215 316 269.341 184.809" fill="none" stroke="#a83a30" stroke-width="1.25" stroke-dasharray="4 4"/>
+    <path d="M195.866 269.806A50 50 0 0 1 234.134 269.806" fill="none" stroke="#a83a30" stroke-width="2"/>
+    <text x="215" y="258" text-anchor="middle" font-size="22" font-weight="600" fill="#a83a30">45°</text>
+    <circle cx="215" cy="316" r="12" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <path d="M212 307H218V313H224V319H218V325H212V319H206V313H212Z" fill="#36434f"/>
+    <path d="M225 326 252 357H312" fill="none" stroke="#697580" stroke-width="1.25"/>
+    <text x="322" y="362" font-size="15">Fixed axle</text>
+    <path d="M107.875 354.991A114 114 0 0 1 107.875 277.009" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#cam-arrow)"/>
+    <text x="215" y="451" text-anchor="middle">cam, turning on its axle</text>
 
-        
-        <text x="430" y="196" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">THE OTHER 315°</text>
-        <text x="430" y="218" font-family="'Barlow',sans-serif" font-size="13.5" fill="#666">the follower rides the round part</text>
-        <text x="430" y="236" font-family="'Barlow',sans-serif" font-size="13.5" fill="#666">and sits still, doing nothing</text>
-      </svg>
+    <path d="M410 216H696" stroke="#d0d4d8"/>
+    <text x="432" y="247" font-size="19" font-weight="600">THE OTHER 315°</text>
+    <text x="432" y="275">the follower rides the round part</text>
+    <text x="432" y="299">and sits still, doing nothing</text>
+    <text x="432" y="326" font-size="14" fill="#697580">Dashed shoe = low position</text>
+    <path d="M410 350H696" stroke="#d0d4d8"/>
+    <text x="432" y="383" font-size="18" font-weight="600">Return force</text>
+    <text x="432" y="409">Gravity or a rubber band keeps</text>
+    <text x="432" y="433">the follower against the edge.</text>
+  </g>
+</svg>
