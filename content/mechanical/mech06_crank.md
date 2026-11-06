@@ -108,13 +108,13 @@ How far the pin sits from the center of the wheel decides exactly how far your p
 
 {{< figrow tall=true >}}
 - src: "mech06_crank-diagram-01.svg"
-  alt: "Side view of a crank and slider. The pin sits offset from the wheel center. When the pin is at the far right of its circle the slider is at one end of its travel; when the pin is at the far left the slider is at the other end. The distance between those two slider positions equals twice the pin offset."
-  caption: "Move the pin out and the push gets longer. Move it in toward the center and the push gets shorter."
+  alt: "Three snapshots of the same crank turning counterclockwise. The fixed axle and guide stay in place. With the pin pointing right, the pusher is farthest out. After a quarter-turn, the pin is above the axle, the rod tilts, and the pusher moves inward. After a half-turn, the pin points left and the pusher is farthest in. Both rod ends pivot; the next half-turn brings the pusher back out. Stroke is twice the axle-to-pin offset."
+  caption: "Follow snapshots 1–3: the wheel keeps turning in one direction while the pusher moves in, then back out on the next half-turn. Move the pin out and the push gets longer. Move it in toward the center and the push gets shorter."
 {{< /figrow >}}
 
 ### The Two Dead Points
 
-Look at the diagram again. In both of the positions drawn, the connecting rod and the crank arm are lined up in a straight row. Those two moments are called [[DEAD POINT|dead points]], and they are where the mechanism has the least ability to push.
+Look at the diagram again. In snapshots 1 and 3, the connecting rod and the crank arm are lined up in a straight row. Those two moments are called [[DEAD POINT|dead points]], and they are where the mechanism has the least ability to push.
 
 It matters for two reasons. A crank started from a dead point may just jam instead of turning. And the pusher does not travel at a steady speed --- it is slowest at the ends of its stroke and fastest in the middle.
 

@@ -1,44 +1,109 @@
-<svg viewBox="0 0 620 300" role="img" aria-label="Side view of a crank and slider. The pin sits offset from the wheel center. When the pin is at the far right of its circle the slider is at one end of its travel; when the pin is at the far left the slider is at the other end. The distance between those two slider positions equals twice the pin offset." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="tk1" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M1,0 L1,10" stroke="#444" stroke-width="1.6"></path>
-          </marker>
-          <marker id="tk2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M9,0 L9,10" stroke="#444" stroke-width="1.6"></path>
-          </marker>
-        </defs>
+<svg viewBox="0 0 720 850" role="img" aria-labelledby="crank-title crank-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="crank-title">How a crank turns rotation into a straight push</title>
+  <desc id="crank-desc">Three snapshots of the same crank turning counterclockwise. The fixed axle and guide stay in place. In snapshot 1 the pin points right and the pusher is farthest out. After a quarter-turn, the pin is above the axle, the connecting rod tilts, and the pusher moves inward. After a half-turn, the pin points left and the pusher is farthest in. Both rod ends pivot. The next half-turn brings the pusher back out. The stroke between the two extreme pusher positions is twice the axle-to-pin offset.</desc>
+  <defs>
+    <marker id="crank-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#343A40"/>
+    </marker>
+    <g id="crank-fixed-parts">
+      <!-- The wheel and guides occupy the same coordinates in every snapshot. -->
+      <circle cx="140" cy="0" r="64" fill="#F5F5F5" stroke="#666" stroke-width="2"/>
+      <circle cx="140" cy="0" r="48" fill="none" stroke="#777" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <rect x="308" y="-22" width="202" height="44" fill="#EBEDEF"/>
+      <path d="M308 -22H510M308 22H510" fill="none" stroke="#606870" stroke-width="3"/>
+      <path d="M320 -22V-29M344 -22V-29M368 -22V-29M392 -22V-29M416 -22V-29M440 -22V-29M464 -22V-29M488 -22V-29M320 22V29M344 22V29M368 22V29M392 22V29M416 22V29M440 22V29M464 22V29M488 22V29" stroke="#606870" stroke-width="1.5"/>
+    </g>
+    <g id="crank-axle">
+      <circle cx="140" cy="0" r="7" fill="#343A40" stroke="#FFF" stroke-width="2"/>
+    </g>
+    <g id="crank-joint">
+      <circle r="7" fill="#FFF" stroke="#343A40" stroke-width="2.5"/>
+    </g>
+    <g id="crank-pusher">
+      <rect x="-16" y="-17" width="32" height="34" rx="3" fill="#E8B95B" stroke="#71501A" stroke-width="2"/>
+      <use href="#crank-joint"/>
+    </g>
+  </defs>
+  <rect width="720" height="850" fill="#FFF"/>
+  <g font-family="'Barlow',Arial,sans-serif" fill="#343A40" font-size="18">
+    <text x="24" y="30" font-size="24" font-weight="700">One wheel turns. The pusher goes out and back.</text>
+    <text x="24" y="56">Read down: these are three moments in the same motion.</text>
 
-        
-        <line x1="280" y1="118" x2="460" y2="118" stroke="#CCC" stroke-width="3"></line>
-        <line x1="280" y1="162" x2="460" y2="162" stroke="#CCC" stroke-width="3"></line>
+    <!-- 1: pin offset 48; rod length 240; pusher x = 140 + 48 + 240. -->
+    <text x="24" y="93" font-size="21" font-weight="700">1. Pin points right — pusher farthest out</text>
+    <g transform="translate(0 183)">
+      <use href="#crank-fixed-parts"/>
+      <path d="M188 0H428" stroke="#244A68" stroke-width="10" stroke-linecap="round"/>
+      <path d="M140 0H188" stroke="#B33328" stroke-width="10" stroke-linecap="round"/>
+      <use href="#crank-axle"/>
+      <use href="#crank-joint" x="188"/>
+      <use href="#crank-pusher" x="428"/>
+    </g>
+    <g fill="none" stroke="#606870" stroke-width="1.5">
+      <path d="M73 130 136 176"/>
+      <path d="M223 132 190 175"/>
+      <path d="M271 151V175"/>
+      <path d="M462 147 438 164"/>
+      <path d="M217 231 166 191"/>
+      <path d="M535 215 505 207"/>
+    </g>
+    <text x="24" y="124">Fixed axle</text>
+    <text x="210" y="126" fill="#B33328">Off-center pin</text>
+    <text x="271" y="145" fill="#244A68">connecting rod</text>
+    <text x="453" y="141">Pusher</text>
+    <text x="140" y="266" text-anchor="middle">crank wheel</text>
+    <text x="218" y="246" fill="#B33328">Crank arm</text>
+    <text x="535" y="216" font-weight="700">Fixed guide</text>
+    <text x="535" y="238">Pusher slides only</text>
+    <text x="535" y="260">left and right.</text>
 
-        
-        <circle cx="150" cy="140" r="70" fill="#F8F8F8" stroke="#888" stroke-width="2"></circle>
-        <circle cx="150" cy="140" r="45" fill="none" stroke="#C0392B" stroke-width="1.6" stroke-dasharray="6 5"></circle>
-        <circle cx="150" cy="140" r="6" fill="#444"></circle>
-        <text x="150" y="228" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#888">crank wheel</text>
+    <path d="M24 282H696" stroke="#D0D4D8"/>
+    <!-- 2: x = 140 + sqrt(240² - 48²) = 375.151; rod keeps its length. -->
+    <text x="24" y="315" font-size="21" font-weight="700">2. After a quarter-turn — pusher moves inward</text>
+    <g transform="translate(0 400)">
+      <use href="#crank-fixed-parts"/>
+      <path d="M140 -48 375.151 0" stroke="#244A68" stroke-width="10" stroke-linecap="round"/>
+      <path d="M140 0V-48" stroke="#B33328" stroke-width="10" stroke-linecap="round"/>
+      <use href="#crank-axle"/>
+      <use href="#crank-joint" x="140" y="-48"/>
+      <use href="#crank-pusher" x="375.151"/>
+      <path d="M82 -58A82 82 0 0 0 58 0" fill="none" stroke="#343A40" stroke-width="2.5" marker-end="url(#crank-arrow)"/>
+      <path d="M436 51H350" fill="none" stroke="#343A40" stroke-width="2.5" marker-end="url(#crank-arrow)"/>
+    </g>
+    <text x="235" y="351" fill="#244A68">The rod tilts.</text>
+    <text x="535" y="382">Both rod ends</text>
+    <text x="535" y="404">can pivot.</text>
+    <text x="140" y="486" text-anchor="middle">Wheel keeps turning</text>
+    <text x="392" y="481" text-anchor="middle">Pusher moves left</text>
 
-        
-        <line x1="105" y1="140" x2="305" y2="140" stroke="#BBB" stroke-width="6" stroke-linecap="round" stroke-dasharray="10 7"></line>
-        <rect x="293" y="124" width="24" height="32" rx="3" fill="none" stroke="#BBB" stroke-width="2" stroke-dasharray="6 4"></rect>
-        <circle cx="105" cy="140" r="8" fill="#fff" stroke="#BBB" stroke-width="2.5"></circle>
+    <path d="M24 502H696" stroke="#D0D4D8"/>
+    <!-- 3: pin x = 140 - 48; pusher x = 140 - 48 + 240. -->
+    <text x="24" y="535" font-size="21" font-weight="700">3. After a half-turn — pusher farthest in</text>
+    <g transform="translate(0 620)">
+      <use href="#crank-fixed-parts"/>
+      <path d="M92 0H332" stroke="#244A68" stroke-width="10" stroke-linecap="round"/>
+      <path d="M140 0H92" stroke="#B33328" stroke-width="10" stroke-linecap="round"/>
+      <use href="#crank-axle"/>
+      <use href="#crank-joint" x="92"/>
+      <use href="#crank-pusher" x="332"/>
+      <path d="M82 -58A82 82 0 0 0 58 0" fill="none" stroke="#343A40" stroke-width="2.5" marker-end="url(#crank-arrow)"/>
+    </g>
+    <text x="535" y="598">The next half-turn</text>
+    <text x="535" y="620">brings the pusher</text>
+    <text x="535" y="642">back out.</text>
 
-        
-        <line x1="195" y1="140" x2="395" y2="140" stroke="#888" stroke-width="6" stroke-linecap="round"></line>
-        <rect x="383" y="124" width="24" height="32" rx="3" fill="#C0392B" stroke="#922B21" stroke-width="2"></rect>
-        <circle cx="195" cy="140" r="8" fill="#C0392B"></circle>
+    <!-- Compare pusher joint positions from snapshots 1 and 3 at the same scale. -->
+    <path d="M428 690V724M332 651V724" fill="none" stroke="#71501A" stroke-width="1.5" stroke-dasharray="4 5"/>
+    <path d="M332 704H428M332 695V713M428 695V713" fill="none" stroke="#343A40" stroke-width="2"/>
+    <text x="332" y="682" text-anchor="middle">In (3)</text>
+    <text x="428" y="682" text-anchor="middle">Out (1)</text>
+    <text x="380" y="747" text-anchor="middle" font-size="20" font-weight="700">Stroke: distance from one end of travel to the other</text>
 
-        
-        <line x1="150" y1="196" x2="195" y2="196" stroke="#444" stroke-width="1.6" marker-start="url(#tk1)" marker-end="url(#tk2)"></line>
-        <text x="172" y="216" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">offset</text>
-
-        
-        <line x1="305" y1="238" x2="395" y2="238" stroke="#444" stroke-width="1.6" marker-start="url(#tk1)" marker-end="url(#tk2)"></line>
-        <text x="350" y="262" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="18" font-weight="700" fill="#C0392B">stroke = 2 × offset</text>
-
-        
-        <text x="255" y="98" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#888">connecting rod</text>
-        <text x="430" y="112" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#C0392B">pusher</text>
-        <text x="472" y="140" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">slides only</text>
-        <text x="472" y="158" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">left and right</text>
-      </svg>
+    <!-- Offset is a radius; stroke above is twice that length at the same scale. -->
+    <path d="M92 633V704M140 633V704" fill="none" stroke="#B33328" stroke-width="1.5"/>
+    <path d="M92 690H140M92 682V698M140 682V698" fill="none" stroke="#B33328" stroke-width="2"/>
+    <text x="116" y="729" text-anchor="middle" fill="#B33328">Pin offset</text>
+    <text x="24" y="775" fill="#B33328">Pin offset = distance from axle to pin</text>
+    <text x="360" y="816" text-anchor="middle" font-size="25" font-weight="700">stroke = 2 × offset</text>
+  </g>
+</svg>

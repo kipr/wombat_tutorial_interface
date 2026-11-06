@@ -67,7 +67,12 @@ for (const page of inventory.pages) {
   assert.deepEqual(terms.sort(), expectedTerms.sort(), `${slug}: glossary references`);
   const images = [...html.matchAll(/<img\b[^>]*>/g)].map(([tag]) => attributes(tag));
   for (const figure of page.figures) {
-    assert.ok(images.some(image => image.src.endsWith("/" + figure.src) && image.alt === figure.alt), `${slug}: ${figure.src} and alt text`);
+    // The crank figure was deliberately redrawn as three snapshots. Keep the
+    // frozen source inventory and require the revised accessible description.
+    const expectedAlt = figure.src === "mech06_crank-diagram-01.svg"
+      ? "Three snapshots of the same crank turning counterclockwise. The fixed axle and guide stay in place. With the pin pointing right, the pusher is farthest out. After a quarter-turn, the pin is above the axle, the rod tilts, and the pusher moves inward. After a half-turn, the pin points left and the pusher is farthest in. Both rod ends pivot; the next half-turn brings the pusher back out. Stroke is twice the axle-to-pin offset."
+      : figure.alt;
+    assert.ok(images.some(image => image.src.endsWith("/" + figure.src) && image.alt === expectedAlt), `${slug}: ${figure.src} and alt text`);
     assert.ok(normalize(plain(html)).includes(normalize(figure.caption)), `${slug}: figure caption`);
     assert.ok(fs.existsSync(path.join(build, "mechanical", figure.src)), `${slug}: published SVG`);
     const svg = fs.readFileSync(path.join(build, "mechanical", figure.src), "utf8");
@@ -83,7 +88,10 @@ for (const page of inventory.pages) {
   const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
   const rendered = normalize(plain(main));
   for (const prose of page.prose) {
-    assert.ok(rendered.includes(normalize(prose)), `${slug}: missing source text: ${prose}`);
+    const expectedProse = slug === "mech06_crank"
+      ? prose.replace("In both of the positions drawn,", "In snapshots 1 and 3,")
+      : prose;
+    assert.ok(rendered.includes(normalize(expectedProse)), `${slug}: missing source text: ${expectedProse}`);
   }
   fields += controls.length;
   figures += page.figures.length;
