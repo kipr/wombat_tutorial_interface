@@ -1,37 +1,402 @@
-<svg viewBox="0 0 620 280" role="img" aria-label="Two meshed gears, each carrying an arm. When the left gear turns clockwise, the right gear is forced counterclockwise, and the two arms swing toward each other to close on a pom." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="rot" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
-          </marker>
-        </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 450" role="img" aria-labelledby="gear-title gear-description">
+  <title id="gear-title">Meshed gears close both pincer jaws</title>
+  <desc id="gear-description">Two meshed gears, each carrying an arm. When the left gear turns clockwise, the right gear is forced counterclockwise, and the two arms swing toward each other to close on a pom. Solid arms show the open position; dashed arms show the closed position. Drive only one gear.</desc>
+  <defs>
+    <marker id="red-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#b4382b"/>
+    </marker>
+    <marker id="dark-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#36434f"/>
+    </marker>
+    <!-- Involute flanks, rounded roots, and equal tooth spacing. -->
+    <path id="gear-outline" d="M73.02,-8.39
+      Q73.21,-6.57 78.62,-7.05
+      L80.89,-6.89
+      L83.18,-6.42
+      L85.48,-5.72
+      L87.78,-4.83
+      L90.08,-3.77
+      L92.36,-2.55
+      A92.4,92.4 0 0 1 92.36,2.55
+      L90.08,3.77
+      L87.78,4.83
+      L85.48,5.72
+      L83.18,6.42
+      L80.89,6.89
+      L78.62,7.05
+      Q73.21,6.57 73.02,8.39
+      A73.5,73.5 0 0 1 72.04,14.58
+      L72.04,14.58
+      Q71.65,16.38 76.95,17.59
+      L79.06,18.44
+      L81.09,19.60
+      L83.06,20.97
+      L84.98,22.53
+      L86.83,24.25
+      L88.63,26.12
+      A92.4,92.4 0 0 1 87.06,30.97
+      L84.50,31.42
+      L81.99,31.72
+      L79.53,31.85
+      L77.12,31.80
+      L74.80,31.55
+      L72.59,31.00
+      Q67.59,28.87 66.85,30.55
+      A73.5,73.5 0 0 1 64.01,36.13
+      L64.01,36.13
+      Q63.08,37.72 67.75,40.51
+      L69.49,41.97
+      L71.06,43.70
+      L72.51,45.61
+      L73.85,47.69
+      L75.09,49.89
+      L76.22,52.23
+      A92.4,92.4 0 0 1 73.23,56.35
+      L70.66,56.00
+      L68.17,55.50
+      L65.79,54.87
+      L63.52,54.08
+      L61.39,53.12
+      L59.46,51.92
+      Q55.37,48.34 54.14,49.71
+      A73.5,73.5 0 0 1 49.71,54.14
+      L49.71,54.14
+      Q48.34,55.37 51.92,59.46
+      L53.12,61.39
+      L54.08,63.52
+      L54.87,65.79
+      L55.50,68.17
+      L56.00,70.66
+      L56.35,73.23
+      A92.4,92.4 0 0 1 52.23,76.22
+      L49.89,75.09
+      L47.69,73.85
+      L45.61,72.51
+      L43.70,71.06
+      L41.97,69.49
+      L40.51,67.75
+      Q37.72,63.08 36.13,64.01
+      A73.5,73.5 0 0 1 30.55,66.85
+      L30.55,66.85
+      Q28.87,67.59 31.00,72.59
+      L31.55,74.80
+      L31.80,77.12
+      L31.85,79.53
+      L31.72,81.99
+      L31.42,84.50
+      L30.97,87.06
+      A92.4,92.4 0 0 1 26.12,88.63
+      L24.25,86.83
+      L22.53,84.98
+      L20.97,83.06
+      L19.60,81.09
+      L18.44,79.06
+      L17.59,76.95
+      Q16.38,71.65 14.58,72.04
+      A73.5,73.5 0 0 1 8.39,73.02
+      L8.39,73.02
+      Q6.57,73.21 7.05,78.62
+      L6.89,80.89
+      L6.42,83.18
+      L5.72,85.48
+      L4.83,87.78
+      L3.77,90.08
+      L2.55,92.36
+      A92.4,92.4 0 0 1 -2.55,92.36
+      L-3.77,90.08
+      L-4.83,87.78
+      L-5.72,85.48
+      L-6.42,83.18
+      L-6.89,80.89
+      L-7.05,78.62
+      Q-6.57,73.21 -8.39,73.02
+      A73.5,73.5 0 0 1 -14.58,72.04
+      L-14.58,72.04
+      Q-16.38,71.65 -17.59,76.95
+      L-18.44,79.06
+      L-19.60,81.09
+      L-20.97,83.06
+      L-22.53,84.98
+      L-24.25,86.83
+      L-26.12,88.63
+      A92.4,92.4 0 0 1 -30.97,87.06
+      L-31.42,84.50
+      L-31.72,81.99
+      L-31.85,79.53
+      L-31.80,77.12
+      L-31.55,74.80
+      L-31.00,72.59
+      Q-28.87,67.59 -30.55,66.85
+      A73.5,73.5 0 0 1 -36.13,64.01
+      L-36.13,64.01
+      Q-37.72,63.08 -40.51,67.75
+      L-41.97,69.49
+      L-43.70,71.06
+      L-45.61,72.51
+      L-47.69,73.85
+      L-49.89,75.09
+      L-52.23,76.22
+      A92.4,92.4 0 0 1 -56.35,73.23
+      L-56.00,70.66
+      L-55.50,68.17
+      L-54.87,65.79
+      L-54.08,63.52
+      L-53.12,61.39
+      L-51.92,59.46
+      Q-48.34,55.37 -49.71,54.14
+      A73.5,73.5 0 0 1 -54.14,49.71
+      L-54.14,49.71
+      Q-55.37,48.34 -59.46,51.92
+      L-61.39,53.12
+      L-63.52,54.08
+      L-65.79,54.87
+      L-68.17,55.50
+      L-70.66,56.00
+      L-73.23,56.35
+      A92.4,92.4 0 0 1 -76.22,52.23
+      L-75.09,49.89
+      L-73.85,47.69
+      L-72.51,45.61
+      L-71.06,43.70
+      L-69.49,41.97
+      L-67.75,40.51
+      Q-63.08,37.72 -64.01,36.13
+      A73.5,73.5 0 0 1 -66.85,30.55
+      L-66.85,30.55
+      Q-67.59,28.87 -72.59,31.00
+      L-74.80,31.55
+      L-77.12,31.80
+      L-79.53,31.85
+      L-81.99,31.72
+      L-84.50,31.42
+      L-87.06,30.97
+      A92.4,92.4 0 0 1 -88.63,26.12
+      L-86.83,24.25
+      L-84.98,22.53
+      L-83.06,20.97
+      L-81.09,19.60
+      L-79.06,18.44
+      L-76.95,17.59
+      Q-71.65,16.38 -72.04,14.58
+      A73.5,73.5 0 0 1 -73.02,8.39
+      L-73.02,8.39
+      Q-73.21,6.57 -78.62,7.05
+      L-80.89,6.89
+      L-83.18,6.42
+      L-85.48,5.72
+      L-87.78,4.83
+      L-90.08,3.77
+      L-92.36,2.55
+      A92.4,92.4 0 0 1 -92.36,-2.55
+      L-90.08,-3.77
+      L-87.78,-4.83
+      L-85.48,-5.72
+      L-83.18,-6.42
+      L-80.89,-6.89
+      L-78.62,-7.05
+      Q-73.21,-6.57 -73.02,-8.39
+      A73.5,73.5 0 0 1 -72.04,-14.58
+      L-72.04,-14.58
+      Q-71.65,-16.38 -76.95,-17.59
+      L-79.06,-18.44
+      L-81.09,-19.60
+      L-83.06,-20.97
+      L-84.98,-22.53
+      L-86.83,-24.25
+      L-88.63,-26.12
+      A92.4,92.4 0 0 1 -87.06,-30.97
+      L-84.50,-31.42
+      L-81.99,-31.72
+      L-79.53,-31.85
+      L-77.12,-31.80
+      L-74.80,-31.55
+      L-72.59,-31.00
+      Q-67.59,-28.87 -66.85,-30.55
+      A73.5,73.5 0 0 1 -64.01,-36.13
+      L-64.01,-36.13
+      Q-63.08,-37.72 -67.75,-40.51
+      L-69.49,-41.97
+      L-71.06,-43.70
+      L-72.51,-45.61
+      L-73.85,-47.69
+      L-75.09,-49.89
+      L-76.22,-52.23
+      A92.4,92.4 0 0 1 -73.23,-56.35
+      L-70.66,-56.00
+      L-68.17,-55.50
+      L-65.79,-54.87
+      L-63.52,-54.08
+      L-61.39,-53.12
+      L-59.46,-51.92
+      Q-55.37,-48.34 -54.14,-49.71
+      A73.5,73.5 0 0 1 -49.71,-54.14
+      L-49.71,-54.14
+      Q-48.34,-55.37 -51.92,-59.46
+      L-53.12,-61.39
+      L-54.08,-63.52
+      L-54.87,-65.79
+      L-55.50,-68.17
+      L-56.00,-70.66
+      L-56.35,-73.23
+      A92.4,92.4 0 0 1 -52.23,-76.22
+      L-49.89,-75.09
+      L-47.69,-73.85
+      L-45.61,-72.51
+      L-43.70,-71.06
+      L-41.97,-69.49
+      L-40.51,-67.75
+      Q-37.72,-63.08 -36.13,-64.01
+      A73.5,73.5 0 0 1 -30.55,-66.85
+      L-30.55,-66.85
+      Q-28.87,-67.59 -31.00,-72.59
+      L-31.55,-74.80
+      L-31.80,-77.12
+      L-31.85,-79.53
+      L-31.72,-81.99
+      L-31.42,-84.50
+      L-30.97,-87.06
+      A92.4,92.4 0 0 1 -26.12,-88.63
+      L-24.25,-86.83
+      L-22.53,-84.98
+      L-20.97,-83.06
+      L-19.60,-81.09
+      L-18.44,-79.06
+      L-17.59,-76.95
+      Q-16.38,-71.65 -14.58,-72.04
+      A73.5,73.5 0 0 1 -8.39,-73.02
+      L-8.39,-73.02
+      Q-6.57,-73.21 -7.05,-78.62
+      L-6.89,-80.89
+      L-6.42,-83.18
+      L-5.72,-85.48
+      L-4.83,-87.78
+      L-3.77,-90.08
+      L-2.55,-92.36
+      A92.4,92.4 0 0 1 2.55,-92.36
+      L3.77,-90.08
+      L4.83,-87.78
+      L5.72,-85.48
+      L6.42,-83.18
+      L6.89,-80.89
+      L7.05,-78.62
+      Q6.57,-73.21 8.39,-73.02
+      A73.5,73.5 0 0 1 14.58,-72.04
+      L14.58,-72.04
+      Q16.38,-71.65 17.59,-76.95
+      L18.44,-79.06
+      L19.60,-81.09
+      L20.97,-83.06
+      L22.53,-84.98
+      L24.25,-86.83
+      L26.12,-88.63
+      A92.4,92.4 0 0 1 30.97,-87.06
+      L31.42,-84.50
+      L31.72,-81.99
+      L31.85,-79.53
+      L31.80,-77.12
+      L31.55,-74.80
+      L31.00,-72.59
+      Q28.87,-67.59 30.55,-66.85
+      A73.5,73.5 0 0 1 36.13,-64.01
+      L36.13,-64.01
+      Q37.72,-63.08 40.51,-67.75
+      L41.97,-69.49
+      L43.70,-71.06
+      L45.61,-72.51
+      L47.69,-73.85
+      L49.89,-75.09
+      L52.23,-76.22
+      A92.4,92.4 0 0 1 56.35,-73.23
+      L56.00,-70.66
+      L55.50,-68.17
+      L54.87,-65.79
+      L54.08,-63.52
+      L53.12,-61.39
+      L51.92,-59.46
+      Q48.34,-55.37 49.71,-54.14
+      A73.5,73.5 0 0 1 54.14,-49.71
+      L54.14,-49.71
+      Q55.37,-48.34 59.46,-51.92
+      L61.39,-53.12
+      L63.52,-54.08
+      L65.79,-54.87
+      L68.17,-55.50
+      L70.66,-56.00
+      L73.23,-56.35
+      A92.4,92.4 0 0 1 76.22,-52.23
+      L75.09,-49.89
+      L73.85,-47.69
+      L72.51,-45.61
+      L71.06,-43.70
+      L69.49,-41.97
+      L67.75,-40.51
+      Q63.08,-37.72 64.01,-36.13
+      A73.5,73.5 0 0 1 66.85,-30.55
+      L66.85,-30.55
+      Q67.59,-28.87 72.59,-31.00
+      L74.80,-31.55
+      L77.12,-31.80
+      L79.53,-31.85
+      L81.99,-31.72
+      L84.50,-31.42
+      L87.06,-30.97
+      A92.4,92.4 0 0 1 88.63,-26.12
+      L86.83,-24.25
+      L84.98,-22.53
+      L83.06,-20.97
+      L81.09,-19.60
+      L79.06,-18.44
+      L76.95,-17.59
+      Q71.65,-16.38 72.04,-14.58
+      A73.5,73.5 0 0 1 73.02,-8.39
+      Z"/>
+  </defs>
 
-        
-        <line x1="214" y1="186" x2="181" y2="97" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
-        <line x1="306" y1="186" x2="339" y2="97" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
-        <line x1="214" y1="186" x2="230" y2="92" stroke="#C0392B" stroke-width="7" stroke-linecap="round" stroke-dasharray="10 7"></line>
-        <line x1="306" y1="186" x2="290" y2="92" stroke="#C0392B" stroke-width="7" stroke-linecap="round" stroke-dasharray="10 7"></line>
+  <g font-family="Barlow, Arial, sans-serif" text-anchor="middle">
+    <text x="310" y="24" font-size="16" font-weight="600" fill="#263340">Both jaws close together</text>
+    <path d="M185 43H251" fill="none" stroke="#b4382b" stroke-width="2.5" marker-end="url(#red-arrow)"/>
+    <path d="M435 43H369" fill="none" stroke="#36434f" stroke-width="2.5" marker-end="url(#dark-arrow)"/>
 
-        
-        <circle cx="260" cy="86" r="18" fill="#F2F2F2" stroke="#444" stroke-width="2"></circle>
-        <text x="260" y="52" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#444">pom</text>
+    <!-- Pitch radii are 84; the second gear is phased by half a tooth. -->
+    <use href="#gear-outline" transform="translate(226 230)" fill="#fae8e3" stroke="#a83a30" stroke-width="1.5" stroke-linejoin="round"/>
+    <use href="#gear-outline" transform="translate(394 230) rotate(9)" fill="#e9edf0" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="226" cy="230" r="58" fill="none" stroke="#dca99f" stroke-width="1"/>
+    <circle cx="394" cy="230" r="58" fill="none" stroke="#b7c1c9" stroke-width="1"/>
 
-        
-        <circle cx="214" cy="186" r="46" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="14.4 14.4"></circle>
-        <circle cx="214" cy="186" r="38" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
-        <circle cx="214" cy="186" r="6" fill="#444"></circle>
-        <circle cx="306" cy="186" r="46" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="14.4 14.4"></circle>
-        <circle cx="306" cy="186" r="38" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
-        <circle cx="306" cy="186" r="6" fill="#444"></circle>
+    <!-- Dashed arms rotate about the same axles to show the closed position. -->
+    <g fill="none" stroke-width="8" stroke-linejoin="round" stroke-dasharray="8 6">
+      <path d="M226 230 166 73H220V90" transform="rotate(25 226 230)" stroke="#a83a30"/>
+      <path d="M394 230 454 73H400V90" transform="rotate(-25 394 230)" stroke="#36434f"/>
+    </g>
+    <circle cx="310" cy="101" r="18" fill="#f3f5f6" stroke="#46535f" stroke-width="1.5"/>
+    <text x="310" y="72" font-size="14" fill="#46535f">pom</text>
+    <text x="103" y="90" font-size="14" fill="#46535f">open</text>
+    <path d="M125 94 151 94" fill="none" stroke="#697580" stroke-width="1.25"/>
+    <text x="510" y="90" font-size="14" fill="#46535f">closed</text>
+    <path d="M486 96 359 114" fill="none" stroke="#697580" stroke-width="1.25" stroke-dasharray="4 3"/>
 
-        
-        <path d="M186,232 A34,34 0 1 1 242,232" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rot)"></path>
-        <text x="214" y="262" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">CLOCKWISE</text>
-        <path d="M334,232 A34,34 0 1 0 278,232" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rot)"></path>
-        <text x="306" y="262" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">COUNTER-CW</text>
+    <!-- Arms fasten to the gear faces; the inward-facing tips are the jaws. -->
+    <path d="M226 230 166 73H220V90" fill="none" stroke="#a83a30" stroke-width="18" stroke-linejoin="round"/>
+    <path d="M226 230 166 73H220V90" fill="none" stroke="#e7b3a9" stroke-width="13" stroke-linejoin="round"/>
+    <path d="M394 230 454 73H400V90" fill="none" stroke="#36434f" stroke-width="18" stroke-linejoin="round"/>
+    <path d="M394 230 454 73H400V90" fill="none" stroke="#c3cdd4" stroke-width="13" stroke-linejoin="round"/>
 
-        
-        <text x="120" y="120" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#888">open</text>
-        <text x="410" y="120" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">closed</text>
-        <text x="460" y="186" font-family="'Barlow',sans-serif" font-size="13" fill="#444">drive only</text>
-        <text x="460" y="204" font-family="'Barlow',sans-serif" font-size="13" fill="#444">one gear</text>
-      </svg>
+    <circle cx="226" cy="230" r="17" fill="#fff" stroke="#a83a30" stroke-width="2"/>
+    <circle cx="394" cy="230" r="17" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="226" cy="230" r="6" fill="#263340"/>
+    <circle cx="394" cy="230" r="6" fill="#263340"/>
+
+    <!-- The lower arcs show clockwise (left) and counterclockwise (right). -->
+    <path d="M265 252.5A45 45 0 0 1 187 252.5" fill="none" stroke="#b4382b" stroke-width="3" stroke-linecap="round" marker-end="url(#red-arrow)"/>
+    <path d="M355 252.5A45 45 0 0 0 433 252.5" fill="none" stroke="#36434f" stroke-width="3" stroke-linecap="round" marker-end="url(#dark-arrow)"/>
+    <text x="222" y="351" font-size="16" font-weight="600" fill="#a83a30">CLOCKWISE</text>
+    <text x="402" y="351" font-size="15" font-weight="600" fill="#36434f">COUNTER-CW</text>
+    <text x="402" y="372" font-size="13" fill="#36434f">counterclockwise</text>
+
+    <!-- The leader stops below the engagement so every tooth stays visible. -->
+    <path d="M310 274V380" fill="none" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="310" cy="274" r="2.5" fill="#697580"/>
+    <text x="310" y="400" font-size="14" fill="#46535f">the mesh — teeth interlock here</text>
+    <text x="310" y="435" font-size="15" font-weight="600" fill="#263340">drive only one gear</text>
+  </g>
+</svg>
