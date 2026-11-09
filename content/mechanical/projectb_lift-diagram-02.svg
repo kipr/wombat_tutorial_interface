@@ -1,57 +1,103 @@
-<svg viewBox="0 0 620 440" role="img" aria-label="Four strategies for gaining height. A pivoting arm swings up through an arc. A telescoping section slides up out of another. A scissor linkage unfolds upward. A tipping bin rotates to pour its contents out at height." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="up2" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M0,9 L5,0 L10,9 z" fill="#C0392B"></path>
-          </marker>
-        </defs>
-
-        
-        <rect x="8" y="8" width="296" height="200" rx="8" fill="#fff" stroke="#CCC"></rect>
-        <text x="20" y="30" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">1 · Pivoting arm</text>
-        <line x1="30" y1="180" x2="285" y2="180" stroke="#1C1C1C" stroke-width="2"></line>
-        <rect x="52" y="158" width="46" height="22" fill="#F2F2F2" stroke="#444" stroke-width="1.5"></rect>
-        <circle cx="75" cy="158" r="4" fill="#444"></circle>
-        <line x1="75" y1="158" x2="205" y2="146" stroke="#888" stroke-width="4" stroke-linecap="round"></line>
-        <line x1="75" y1="158" x2="118" y2="52" stroke="#C0392B" stroke-width="4" stroke-linecap="round"></line>
-        <path d="M205,146 A140,140 0 0 0 118,52" fill="none" stroke="#C0392B" stroke-width="1.6" stroke-dasharray="6 5"></path>
-        <circle cx="118" cy="52" r="7" fill="#C0392B"></circle>
-        <text x="140" y="52" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">load ends up here</text>
-        <text x="20" y="200" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">Cost: the load swings sideways as well as up.</text>
-
-        
-        <rect x="316" y="8" width="296" height="200" rx="8" fill="#fff" stroke="#CCC"></rect>
-        <text x="328" y="30" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">2 · Telescoping slide</text>
-        <line x1="338" y1="180" x2="593" y2="180" stroke="#1C1C1C" stroke-width="2"></line>
-        <rect x="430" y="110" width="46" height="70" fill="#F2F2F2" stroke="#444" stroke-width="1.5"></rect>
-        <rect x="440" y="46" width="26" height="70" fill="#fbeef0" stroke="#C0392B" stroke-width="2"></rect>
-        <line x1="500" y1="120" x2="500" y2="52" stroke="#C0392B" stroke-width="2.5" marker-end="url(#up2)"></line>
-        <text x="512" y="86" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">slides straight up</text>
-        <text x="328" y="200" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">Cost: hard to build without binding or wobble.</text>
-
-        
-        <rect x="8" y="220" width="296" height="200" rx="8" fill="#fff" stroke="#CCC"></rect>
-        <text x="20" y="242" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">3 · Scissor linkage</text>
-        <line x1="30" y1="392" x2="285" y2="392" stroke="#1C1C1C" stroke-width="2"></line>
-        <g stroke="#C0392B" stroke-width="3.5" stroke-linecap="round" fill="none">
-          <path d="M120,392 L170,330 M170,392 L120,330"></path>
-          <path d="M120,330 L170,268 M170,330 L120,268"></path>
-        </g>
-        <circle cx="145" cy="330" r="4.5" fill="#444"></circle>
-        <rect x="108" y="256" width="74" height="12" rx="2" fill="#F2F2F2" stroke="#444" stroke-width="1.5"></rect>
-        <text x="196" y="300" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">platform stays level</text>
-        <text x="20" y="412" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">Cost: many joints, and every joint adds slop.</text>
-
-        
-        <rect x="316" y="220" width="296" height="200" rx="8" fill="#fff" stroke="#CCC"></rect>
-        <text x="328" y="242" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">4 · Tipping bin</text>
-        <line x1="338" y1="392" x2="593" y2="392" stroke="#1C1C1C" stroke-width="2"></line>
-        <g transform="rotate(-38 452 330)">
-          <path d="M418,300 L486,300 L486,352 L418,352 Z" fill="#fbeef0" stroke="#C0392B" stroke-width="2.5"></path>
-        </g>
-        <circle cx="452" cy="352" r="4.5" fill="#444"></circle>
-        <circle cx="500" cy="286" r="6" fill="#888"></circle>
-        <circle cx="516" cy="306" r="6" fill="#888"></circle>
-        <circle cx="527" cy="330" r="6" fill="#888"></circle>
-        <text x="404" y="272" font-family="'Barlow',sans-serif" font-size="13" fill="#C0392B">contents pour out</text>
-        <text x="328" y="412" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">Cost: you control when it dumps, not where each pom lands.</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 820" role="img" aria-labelledby="lift-strategies-title lift-strategies-description">
+  <title id="lift-strategies-title">Lift the load, then release it</title>
+  <desc id="lift-strategies-description">Four concepts, with grey dashed starting positions and blue deployed parts. The pivoting arm keeps the same length as it rises along a circular arc. The telescoping section retains overlap with its sleeve. Each scissor bar keeps the same length; midpoint pins join the crossed bars, and right ends slide in tracks to keep the platform level. The open tipping bin rotates about its supported bottom pivot and pours poms into a receiving container. Mount the bin on a lift to reach the required height.</desc>
+  <defs><marker id="lift-strategies-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#357458"/></marker></defs>
+  <rect width="800" height="820" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="17">
+    <text x="400" y="34" text-anchor="middle" font-size="24" font-weight="600">Lift the load. Then release it.</text>
+    <path d="M140 69H182" fill="none" stroke="#b7c1c9" stroke-width="3" stroke-dasharray="6 5"/>
+    <text x="192" y="75" fill="#697580" font-size="16">starting position</text>
+    <path d="M414 69H456" fill="none" stroke="#3d617e" stroke-width="4" />
+    <text x="466" y="75" fill="#3d617e" font-size="16">deployed position</text>
+    <rect x="24" y="106" width="368" height="298" rx="4" fill="#fff" stroke="#e0e5e8" stroke-width="1.5" />
+    <rect x="408" y="106" width="368" height="298" rx="4" fill="#fff" stroke="#e0e5e8" stroke-width="1.5" />
+    <rect x="24" y="432" width="368" height="320" rx="4" fill="#fff" stroke="#e0e5e8" stroke-width="1.5" />
+    <rect x="408" y="432" width="368" height="320" rx="4" fill="#fff" stroke="#e0e5e8" stroke-width="1.5" />
+    <text x="42" y="136" font-size="20" font-weight="600">1 · Pivoting arm</text>
+    <!-- Arm length 148; angles -10 and -70 degrees about (90,330). -->
+    <path d="M44 344H370" fill="none" stroke="#697580" stroke-width="1.5" />
+    <rect x="62" y="330" width="94" height="14" rx="4" fill="#f3f5f6" stroke="#697580" stroke-width="1.5" />
+    <path d="M90 330L235.751 304.3" fill="none" stroke="#b7c1c9" stroke-width="7" stroke-dasharray="6 5" stroke-linecap="round"/>
+    <circle cx="235.751" cy="304.3" r="7" fill="#fff" stroke="#b7c1c9" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <path d="M235.751 304.3A148 148 0 0 0 140.619 190.925" fill="none" stroke="#357458" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#lift-strategies-arrow)"/>
+    <path d="M90 330 140.619 190.925" fill="none" stroke="#3d617e" stroke-width="12" stroke-linecap="round"/><path d="M90 330 140.619 190.925" fill="none" stroke="#eaf0f5" stroke-width="8" stroke-linecap="round"/><circle cx="100.124" cy="302.185" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="110.248" cy="274.37" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="120.371" cy="246.555" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="130.495" cy="218.74" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/>
+    <circle cx="90" cy="330" r="7" fill="#fff" stroke="#263340" stroke-width="1.6"/><circle cx="90" cy="330" r="1.8" fill="#263340"/>
+    <circle cx="140.619" cy="190.925" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <text x="184" y="181" font-size="16" fill="#3d617e">load ends up here</text>
+    <path d="M182 187L152 192" fill="none" stroke="#3d617e" stroke-width="1" />
+    <text x="42" y="383" font-size="16" fill="#697580">Cost: the load swings sideways as well as up.</text>
+    <text x="426" y="136" font-size="20" font-weight="600">2 · Telescoping slide</text>
+    <path d="M428 344H754" fill="none" stroke="#697580" stroke-width="1.5" />
+    <rect x="504" y="334" width="102" height="10" rx="4" fill="#f3f5f6" stroke="#697580" stroke-width="1.5" />
+    <rect x="528" y="248" width="52" height="86" rx="4" fill="#f3f5f6" stroke="#697580" stroke-width="1.5" />
+    <!-- Inner section length 86; rises 72 units and retains 14 units of sleeve overlap. -->
+    <rect x="542" y="248" width="24" height="86" rx="4" fill="none" stroke="#b7c1c9" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <rect x="522" y="236" width="68" height="12" rx="4" fill="none" stroke="#b7c1c9" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <rect x="542" y="176" width="24" height="86" rx="4" fill="#eaf0f5" stroke="#3d617e" stroke-width="1.5" />
+    <rect x="522" y="164" width="68" height="12" rx="4" fill="#eaf0f5" stroke="#3d617e" stroke-width="1.5" />
+    <path d="M542 250V262M566 250V262" fill="none" stroke="#3d617e" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <circle cx="534" cy="157" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <circle cx="550" cy="157" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <circle cx="566" cy="157" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <circle cx="582" cy="157" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <path d="M616 300V184" fill="none" stroke="#357458" stroke-width="2" marker-end="url(#lift-strategies-arrow)"/>
+    <text x="632" y="218" font-size="16" fill="#3d617e">slides straight up</text>
+    <text x="610" y="320" font-size="15" fill="#697580">keep overlap</text>
+    <path d="M607 313L573 259" fill="none" stroke="#697580" stroke-width="1" />
+    <text x="426" y="383" font-size="16" fill="#697580">Cost: hard to build without binding or wobble.</text>
+    <text x="42" y="462" font-size="20" font-weight="600">3 · Scissor linkage</text>
+    <!-- Each scissor link is 130 units. Stage rises 26 -> 76; spans sqrt(130²-rise²). -->
+    <path d="M44 680H370" fill="none" stroke="#697580" stroke-width="1.5" />
+    <rect x="76" y="668" width="170" height="12" rx="4" fill="#f3f5f6" stroke="#697580" stroke-width="1.5" />
+    <path d="M90 668L217.373 642L90 616M217.373 668L90 642L217.373 616" fill="none" stroke="#b7c1c9" stroke-width="5" stroke-dasharray="5 4" stroke-linecap="round"/>
+    <rect x="76" y="604" width="170" height="12" rx="4" fill="none" stroke="#b7c1c9" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <path d="M90 668H230M90 516H230" fill="none" stroke="#697580" stroke-width="3" />
+    <path d="M90 668 195.47 592" fill="none" stroke="#3d617e" stroke-width="12" stroke-linecap="round"/><path d="M90 668 195.47 592" fill="none" stroke="#eaf0f5" stroke-width="8" stroke-linecap="round"/><circle cx="111.094" cy="652.8" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="132.188" cy="637.6" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="153.282" cy="622.4" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="174.376" cy="607.2" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/>
+    <path d="M195.47 668 90 592" fill="none" stroke="#3d617e" stroke-width="12" stroke-linecap="round"/><path d="M195.47 668 90 592" fill="none" stroke="#eaf0f5" stroke-width="8" stroke-linecap="round"/><circle cx="174.376" cy="652.8" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="153.282" cy="637.6" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="132.188" cy="622.4" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="111.094" cy="607.2" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/>
+    <path d="M90 592 195.47 516" fill="none" stroke="#3d617e" stroke-width="12" stroke-linecap="round"/><path d="M90 592 195.47 516" fill="none" stroke="#eaf0f5" stroke-width="8" stroke-linecap="round"/><circle cx="111.094" cy="576.8" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="132.188" cy="561.6" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="153.282" cy="546.4" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="174.376" cy="531.2" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/>
+    <path d="M195.47 592 90 516" fill="none" stroke="#3d617e" stroke-width="12" stroke-linecap="round"/><path d="M195.47 592 90 516" fill="none" stroke="#eaf0f5" stroke-width="8" stroke-linecap="round"/><circle cx="174.376" cy="576.8" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="153.282" cy="561.6" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="132.188" cy="546.4" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/><circle cx="111.094" cy="531.2" r="2.3" fill="#fff" stroke="#3d617e" stroke-width="1"/>
+    <rect x="76" y="504" width="170" height="12" rx="4" fill="#eaf0f5" stroke="#3d617e" stroke-width="1.5" />
+    <circle cx="104" cy="497" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <circle cx="124" cy="497" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <circle cx="144" cy="497" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <circle cx="164" cy="497" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <rect x="185.47" y="661" width="20" height="14" rx="4" fill="#fff" stroke="#357458" stroke-width="1.5" />
+    <rect x="185.47" y="509" width="20" height="14" rx="4" fill="#fff" stroke="#357458" stroke-width="1.5" />
+    <circle cx="90" cy="668" r="5" fill="#fff" stroke="#263340" stroke-width="1.6"/><circle cx="90" cy="668" r="1.8" fill="#263340"/>
+    <circle cx="90" cy="516" r="5" fill="#fff" stroke="#263340" stroke-width="1.6"/><circle cx="90" cy="516" r="1.8" fill="#263340"/>
+    <circle cx="195.47" cy="668" r="4" fill="#fff" stroke="#357458" stroke-width="1.6"/><circle cx="195.47" cy="668" r="1.8" fill="#357458"/>
+    <circle cx="195.47" cy="516" r="4" fill="#fff" stroke="#357458" stroke-width="1.6"/><circle cx="195.47" cy="516" r="1.8" fill="#357458"/>
+    <circle cx="90" cy="592" r="5" fill="#fff" stroke="#263340" stroke-width="1.6"/><circle cx="90" cy="592" r="1.8" fill="#263340"/>
+    <circle cx="195.47" cy="592" r="5" fill="#fff" stroke="#263340" stroke-width="1.6"/><circle cx="195.47" cy="592" r="1.8" fill="#263340"/>
+    <circle cx="142.735" cy="630" r="6" fill="#fff" stroke="#263340" stroke-width="1.6"/><circle cx="142.735" cy="630" r="1.8" fill="#263340"/>
+    <circle cx="142.735" cy="554" r="6" fill="#fff" stroke="#263340" stroke-width="1.6"/><circle cx="142.735" cy="554" r="1.8" fill="#263340"/>
+    <text x="260" y="546" font-size="15" fill="#3d617e" text-anchor="middle">platform stays level</text>
+    <path d="M266 531L242 510" fill="none" stroke="#3d617e" stroke-width="1" />
+    <path d="M276 626V570" fill="none" stroke="#357458" stroke-width="2" marker-end="url(#lift-strategies-arrow)"/>
+    <text x="261" y="663" font-size="15" fill="#357458">ends slide</text>
+    <path d="M258 658L207 668" fill="none" stroke="#357458" stroke-width="1" />
+    <text x="42" y="730" font-size="16" fill="#697580">Cost: many joints, and every joint adds slop.</text>
+    <text x="426" y="462" font-size="20" font-weight="600">4 · Tipping bin</text>
+    <path d="M428 680H754" fill="none" stroke="#697580" stroke-width="1.5" />
+    <rect x="476" y="668" width="102" height="12" rx="4" fill="#f3f5f6" stroke="#697580" stroke-width="1.5" />
+    <path d="M494 668V604L550 586M568 668L550 586" fill="none" stroke="#697580" stroke-width="8" stroke-linejoin="round"/>
+    <!-- Both bin positions rotate about the supported pivot (550,586). The top is open. -->
+    <path d="M510 536V586H590V536" fill="none" stroke="#b7c1c9" stroke-width="2" stroke-dasharray="6 5"/>
+    <g transform="rotate(55 550 586)"><path d="M510 536V586H590V536" fill="#eaf0f5" stroke="#3d617e" stroke-width="3"/><path d="M517 542V579H583V542" fill="none" stroke="#b7c1c9" stroke-width="1"/></g>
+    <circle cx="550" cy="586" r="7" fill="#fff" stroke="#263340" stroke-width="1.6"/><circle cx="550" cy="586" r="1.8" fill="#263340"/>
+    <path d="M531 515A74 74 0 0 1 613 548" fill="none" stroke="#357458" stroke-width="2" marker-end="url(#lift-strategies-arrow)"/>
+    <text x="646" y="519" font-size="16" fill="#3d617e" text-anchor="middle">contents pour out</text>
+    <path d="M676 527L629 599" fill="none" stroke="#3d617e" stroke-width="1" />
+    <path d="M610 630V680H690V630" fill="none" stroke="#697580" stroke-width="2" />
+    <path d="M607 581Q637 613 651 659" fill="none" stroke="#357458" stroke-width="1.5" stroke-dasharray="4 5"/>
+    <circle cx="608" cy="582" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <circle cx="624" cy="605" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <circle cx="637" cy="630" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <circle cx="650" cy="657" r="6" fill="#fae8e3" stroke="#a83a30" stroke-width="1.3"/>
+    <text x="434" y="641" font-size="15" fill="#697580">mount on a lift</text>
+    <path d="M481 647L497 655" fill="none" stroke="#697580" stroke-width="1" />
+    <text x="426" y="710" font-size="16" fill="#697580">Cost: you control when it dumps,</text>
+    <text x="426" y="732" font-size="16" fill="#697580">not where each pom lands.</text>
+    <text x="400" y="785" text-anchor="middle" font-size="17" fill="#697580">A tipping bin releases the load; combine it with a lift to reach the opening.</text>
+  </g>
+</svg>

@@ -84,8 +84,8 @@ Machines that start small and end tall use one of a handful of tricks. Here are 
 
 {{< figrow tall=true >}}
 - src: "projectb_lift-diagram-02.svg"
-  alt: "Four strategies for gaining height. A pivoting arm swings up through an arc. A telescoping section slides up out of another. A scissor linkage unfolds upward. A tipping bin rotates to pour its contents out at height."
-  caption: "Four ways to end up taller than you started. Most real designs combine two."
+  alt: "Four concepts for lifting and releasing poms, with dashed starting positions. A fixed-length arm pivots upward. A telescoping section slides up while staying partly inside its sleeve. A scissor linkage unfolds on midpoint pins, with sliding ends keeping the platform level. An open tipping bin rotates about a supported pivot to pour poms into a container; combine it with a lift to release at height."
+  caption: "Three ways to gain height, plus a tipping bin to release the load. Most real designs combine two."
 {{< /figrow >}}
 
 Which of the four would you try first, and what is the biggest risk in that choice?

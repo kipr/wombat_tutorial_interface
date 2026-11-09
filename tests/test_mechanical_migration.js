@@ -41,6 +41,7 @@ let figures = 0;
 // These specific redrawn figures deliberately correct the source descriptions.
 // Keep the frozen inventory as evidence and require the revised wording exactly.
 const revisedFigureAlts = {
+  "projectb_lift-diagram-02.svg": "Four concepts for lifting and releasing poms, with dashed starting positions. A fixed-length arm pivots upward. A telescoping section slides up while staying partly inside its sleeve. A scissor linkage unfolds on midpoint pins, with sliding ends keeping the platform level. An open tipping bin rotates about a supported pivot to pour poms into a container; combine it with a lift to release at height.",
   "mech06_crank-diagram-01.svg": "Three snapshots of the same crank turning counterclockwise. The fixed axle and guide stay in place. With the pin pointing right, the pusher is farthest out. After a quarter-turn, the pin is above the axle, the rod tilts, and the pusher moves inward. After a half-turn, the pin points left and the pusher is farthest in. Both rod ends pivot; the next half-turn brings the pusher back out. Stroke is twice the axle-to-pin offset.",
   "mech19_gear_45-diagram-01.svg": "Three shaft arrangements compared. In-line shafts use a coupling; spur gears use parallel axes. The kit's bevel gears connect shafts at ninety degrees. A universal joint connects shafts at forty-five degrees; the kit's ninety-degree bevel gears do not fit that bend.",
   "mech19_gear_45-diagram-02.svg": "Two arrangements. On the left a single universal joint connects shafts at forty-five degrees, and output speed varies twice per turn. On the right two joints connect parallel end shafts through equal and opposite forty-five-degree bends. The yokes on the middle shaft are aligned so the second joint cancels the first joint's speed variation.",
@@ -54,6 +55,7 @@ const revisedFigureAlts = {
   "mech24_worm_fundamentals-diagram-02.svg": "Scaled side view of a car creeping right while its front striker rotates clockwise. The one-inch-tall face reaches the top pom of a three-pom stack while clearing the lower two. The lowest point of its dashed circular sweep is one and a quarter inches above the ground. The face is two inches wide across the car, out of this side view."
 };
 const revisedFigureCaptions = {
+  "projectb_lift-diagram-02.svg": "Three ways to gain height, plus a tipping bin to release the load. Most real designs combine two.",
   "mech21_parallelogram-diagram-02.svg": "Both are four-bar linkages. Changing the link lengths and the tracing point changes the path. The unequal-link example travels nearly straight during part of its cycle.",
   "mech23_gear_linkage-diagram-02.svg": "Both may hold the cube. Test whether your drive locks or your structure flexes under load."
 };
