@@ -1,49 +1,45 @@
-<svg viewBox="0 0 620 320" role="img" aria-label="A lever on a pivot. The input is applied close to the pivot and moves a short distance. The output at the far end of the lever moves three times as far, because its arm is three times as long, but it pushes with one third the force." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="udA" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto">
-            <path d="M0,9 L5,0 L10,9 z" fill="#1F2D5A"></path>
-          </marker>
-          <marker id="udB" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto">
-            <path d="M0,9 L5,0 L10,9 z" fill="#C0392B"></path>
-          </marker>
-          <marker id="tkD" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M1,0 L1,10" stroke="#888" stroke-width="1.6"></path>
-          </marker>
-          <marker id="tkE" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M9,0 L9,10" stroke="#888" stroke-width="1.6"></path>
-          </marker>
-        </defs>
-
-        
-        <rect x="180" y="172" width="330" height="16" rx="3" fill="#888" stroke="#666" stroke-width="1.5"></rect>
-
-        
-        <path d="M280,188 L262,222 L298,222 Z" fill="#1C1C1C"></path>
-        <line x1="248" y1="222" x2="312" y2="222" stroke="#1C1C1C" stroke-width="2.5"></line>
-        <g stroke="#888" stroke-width="1.6">
-          <line x1="256" y1="222" x2="246" y2="236"></line><line x1="276" y1="222" x2="266" y2="236"></line>
-          <line x1="296" y1="222" x2="286" y2="236"></line><line x1="312" y1="222" x2="302" y2="236"></line>
-        </g>
-        <text x="280" y="256" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">pivot</text>
-
-        
-        <line x1="210" y1="160" x2="210" y2="120" stroke="#1F2D5A" stroke-width="3" marker-end="url(#udA)"></line>
-        <line x1="210" y1="200" x2="210" y2="240" stroke="#1F2D5A" stroke-width="3"></line>
-        <text x="150" y="112" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1F2D5A">INPUT</text>
-        <text x="150" y="132" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1F2D5A">2″ stroke</text>
-        <text x="150" y="150" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#666">from mechanism 1</text>
-
-        
-        <line x1="490" y1="160" x2="490" y2="60" stroke="#C0392B" stroke-width="3" marker-end="url(#udB)"></line>
-        <line x1="490" y1="200" x2="490" y2="300" stroke="#C0392B" stroke-width="3"></line>
-        <text x="556" y="104" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">OUTPUT</text>
-        <text x="556" y="124" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#C0392B">6″ stroke</text>
-
-        
-        <line x1="210" y1="284" x2="280" y2="284" stroke="#888" stroke-width="1.6" marker-start="url(#tkD)" marker-end="url(#tkE)"></line>
-        <text x="245" y="304" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#888">1 part</text>
-        <line x1="280" y1="284" x2="490" y2="284" stroke="#888" stroke-width="1.6" marker-start="url(#tkD)" marker-end="url(#tkE)"></line>
-        <text x="385" y="304" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#888">3 parts</text>
-
-        <text x="310" y="44" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="18" font-weight="700" fill="#1C1C1C">3 times the distance — and one third the push</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 505" role="img" aria-labelledby="lever-strokes-title lever-strokes-description">
+  <title id="lever-strokes-title">A 1-to-3 lever multiplies full stroke by three</title>
+  <desc id="lever-strokes-description">A lever has input and output arms in an exact one-to-three length ratio. Dashed positions at plus and minus 30 degrees show a two-inch full input stroke and a six-inch full output stroke in the opposite direction. The force is ideally one third as large. This example equals six inches; the challenge needs more than six.</desc>
+  <defs>
+  </defs>
+  <rect width="720" height="505" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="360" y="30" font-size="23" fill="#263340" text-anchor="middle" font-weight="600">3 times the distance — and one third the push</text>
+    <text x="24" y="57" font-size="16" fill="#697580" >Measure each stroke from one end position to the other.</text>
+    <path d="M245.718 290L522.846 130" fill="none" stroke="#b7c1c9" stroke-width="8" stroke-dasharray="7 6" stroke-linecap="round"/>
+    <path d="M245.718 210L522.846 370" fill="none" stroke="#b7c1c9" stroke-width="8" stroke-dasharray="7 6" stroke-linecap="round"/>
+    <rect x="278" y="280" width="74" height="34" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <rect x="287" y="289" width="56" height="16" rx="3" fill="none" stroke="#e0e5e8"/>
+    <circle cx="294" cy="296" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="336" cy="296" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="294" cy="298" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="336" cy="298" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <path d="M315 256 295 280H335Z" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <path d="M235 250 555 250" fill="none" stroke="#36434f" stroke-width="18" stroke-linecap="round"/>
+    <path d="M235 250 555 250" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="299" cy="250" r="3.25" fill="#fff" stroke="#36434f" stroke-width="1.25"/>
+    <circle cx="363" cy="250" r="3.25" fill="#fff" stroke="#36434f" stroke-width="1.25"/>
+    <circle cx="427" cy="250" r="3.25" fill="#fff" stroke="#36434f" stroke-width="1.25"/>
+    <circle cx="491" cy="250" r="3.25" fill="#fff" stroke="#36434f" stroke-width="1.25"/>
+    <circle cx="315" cy="250" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="315" cy="250" r="4" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <path d="M245.718 210A80 80 0 0 0 245.718 290" fill="none" stroke="#a83a30" stroke-width="1.5" />
+    <path d="M522.846 130A240 240 0 0 1 522.846 370" fill="none" stroke="#a83a30" stroke-width="1.5" />
+    <path d="M192 210L192 290M197 210L187 210M197 290L187 290" fill="none" stroke="#36434f" stroke-width="1.25" />
+    <path d="M605 130L605 370M610 130L600 130M610 370L600 370" fill="none" stroke="#a83a30" stroke-width="1.25" />
+    <path d="M192 210H239M192 290H239M533 130H611M533 370H611" fill="none" stroke="#b7c1c9" stroke-width="1" stroke-dasharray="4 4"/>
+    <text x="119" y="185" font-size="18" fill="#36434f" text-anchor="middle" font-weight="600">INPUT</text>
+    <text x="119" y="210" font-size="17" fill="#36434f" text-anchor="middle">2″ stroke</text>
+    <text x="110" y="320" font-size="15" fill="#697580" text-anchor="middle">from mechanism 1</text>
+    <text x="637" y="103" font-size="18" fill="#a83a30" text-anchor="middle" font-weight="600">OUTPUT</text>
+    <text x="637" y="126" font-size="17" fill="#a83a30" text-anchor="middle">6″ stroke</text>
+    <text x="315" y="340" font-size="15" fill="#697580" text-anchor="middle">pivot</text>
+    <path d="M235 399L315 399M235 394L235 404M315 394L315 404" fill="none" stroke="#697580" stroke-width="1.25" />
+    <path d="M315 399L555 399M315 394L315 404M555 394L555 404" fill="none" stroke="#697580" stroke-width="1.25" />
+    <text x="275" y="425" font-size="16" fill="#697580" text-anchor="middle">1 part</text>
+    <text x="435" y="425" font-size="16" fill="#697580" text-anchor="middle">3 parts</text>
+    <text x="360" y="459" font-size="16" fill="#a83a30" text-anchor="middle">This example reaches 6″. Your challenge requires more than 6″.</text>
+    <text x="360" y="482" font-size="15" fill="#697580" text-anchor="middle">Ideal force ratio: 1/3. Allow for friction in your build.</text>
+  </g>
+</svg>

@@ -1,42 +1,40 @@
-<svg viewBox="0 0 620 320" role="img" aria-label="Side view. A stationary base at the left carries an effector arm that extends to the right at a set height. Two poms rest on the ground with a third balanced on top of them. The arm passes above the bottom two poms and strikes only the top one, knocking it clear." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="hitA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
-          </marker>
-          <marker id="tk3" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M0,1 L10,1" stroke="#444" stroke-width="1.6"></path>
-          </marker>
-        </defs>
-
-        
-        <line x1="60" y1="250" x2="596" y2="250" stroke="#1C1C1C" stroke-width="3"></line>
-
-        
-        <rect x="80" y="130" width="150" height="120" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <text x="155" y="182" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">STATIONARY</text>
-        <text x="155" y="202" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">BASE</text>
-
-        
-        <rect x="230" y="166" width="160" height="24" rx="2" fill="#C0392B" stroke="#922B21" stroke-width="2"></rect>
-        <text x="300" y="156" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">EFFECTOR ARM</text>
-
-        
-        <line x1="410" y1="166" x2="410" y2="190" stroke="#444" stroke-width="1.6" marker-start="url(#tk3)" marker-end="url(#tk3)"></line>
-        <text x="420" y="184" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#444">¾–2″ tall</text>
-        <line x1="410" y1="190" x2="410" y2="250" stroke="#444" stroke-width="1.6" marker-start="url(#tk3)" marker-end="url(#tk3)"></line>
-        <text x="420" y="226" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#444">1¼–1¾″ off the ground</text>
-
-        
-        <circle cx="480" cy="224" r="26" fill="#fff" stroke="#888" stroke-width="2.5"></circle>
-        <circle cx="534" cy="224" r="26" fill="#fff" stroke="#888" stroke-width="2.5"></circle>
-        <text x="507" y="288" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">these must not move</text>
-
-        
-        <circle cx="507" cy="178" r="26" fill="#FADBD8" stroke="#C0392B" stroke-width="2.5"></circle>
-        <text x="507" y="140" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#C0392B">only this one</text>
-
-        
-        <line x1="396" y1="178" x2="452" y2="178" stroke="#C0392B" stroke-width="3" marker-end="url(#hitA)"></line>
-
-        <text x="155" y="290" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">SIDE VIEW</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" role="img" aria-labelledby="coulisse-poms-title coulisse-poms-description">
+  <title id="coulisse-poms-title">The arm’s height window isolates the top pom</title>
+  <desc id="coulisse-poms-description">Side view of an effector arm on a stationary base. Its underside is one and a half inches above the ground and its height is one and a quarter inches, both inside the lesson’s allowed ranges. It clears the two touching bottom poms and strikes the third balanced on top.</desc>
+  <defs>
+    <marker id="pom-hit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#a83a30"/>
+    </marker>
+  </defs>
+  <rect width="720" height="470" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <!-- Scale 40 units/inch; bottom poms diameter 1.25 inches; top pom tangent to both. -->
+    <text x="24" y="30" font-size="23" fill="#263340" font-weight="600">Strike the top pom. Clear the bottom layer.</text>
+    <text x="24" y="55" font-size="16" fill="#697580" >Set the arm’s underside above the lower poms before you run it.</text>
+    <path d="M48 340H686" fill="none" stroke="#36434f" stroke-width="2.5" />
+    <rect x="63" y="170" width="152" height="170" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <rect x="72" y="179" width="134" height="152" rx="3" fill="none" stroke="#e0e5e8"/>
+    <circle cx="79" cy="186" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="199" cy="186" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="79" cy="324" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="199" cy="324" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <text x="139" y="307" font-size="15" fill="#697580" text-anchor="middle" font-weight="600">STATIONARY</text>
+    <text x="139" y="327" font-size="15" fill="#697580" text-anchor="middle" font-weight="600">BASE</text>
+    <rect x="215" y="230" width="216" height="50" rx="3" fill="#fae8e3" stroke="#a83a30" stroke-width="1.5" />
+    <text x="321" y="213" font-size="17" fill="#a83a30" text-anchor="middle" font-weight="600">EFFECTOR ARM</text>
+    <path d="M232 242H418" fill="none" stroke="#a83a30" stroke-width="1" />
+    <path d="M450 255H494" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#pom-hit)"/>
+    <circle cx="533" cy="315" r="25" fill="#fff" stroke="#697580" stroke-width="1.5"/>
+    <circle cx="583" cy="315" r="25" fill="#fff" stroke="#697580" stroke-width="1.5"/>
+    <circle cx="558" cy="271.699" r="25" fill="#fae8e3" stroke="#a83a30" stroke-width="2"/>
+    <text x="558" y="225" font-size="16" fill="#a83a30" text-anchor="middle" font-weight="600">only this one</text>
+    <text x="558" y="373" font-size="16" fill="#697580" text-anchor="middle">these must not move</text>
+    <path d="M257 230L257 280M262 230L252 230M262 280L252 280" fill="none" stroke="#a83a30" stroke-width="1.25" />
+    <text x="270" y="258" font-size="16" fill="#a83a30" >¾–2″ tall</text>
+    <path d="M336 280L336 340M341 280L331 280M341 340L331 340" fill="none" stroke="#697580" stroke-width="1.25" />
+    <text x="216" y="407" font-size="16" fill="#36434f" >1¼–1¾″ off the ground</text>
+    <path d="M334 386V344" fill="none" stroke="#697580" stroke-width="1.25" />
+    <text x="63" y="407" font-size="15" fill="#36434f" font-weight="600">SIDE VIEW</text>
+    <text x="24" y="447" font-size="15" fill="#697580" >Shown: a 1¼″ tall arm with its underside 1½″ above the ground.</text>
+  </g>
+</svg>

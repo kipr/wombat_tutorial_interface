@@ -1,42 +1,41 @@
-<svg viewBox="0 0 620 340" role="img" aria-label="A Geneva drive. A driver wheel on the left carries a pin near its rim and a raised lock disc. A slotted cross on the right has four slots cut in from the rim. The pin enters a slot, turns the cross a quarter turn, then leaves, and the lock disc holds the cross still until the next pass." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="rotG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
-          </marker>
-        </defs>
-
-        
-        <circle cx="330" cy="180" r="100" fill="#F2F2F2" stroke="#1C1C1C" stroke-width="3"></circle>
-        
-        <rect x="222" y="169" width="88" height="22" fill="#fff" stroke="#1C1C1C" stroke-width="2"></rect>
-        <rect x="319" y="72" width="22" height="88" fill="#fff" stroke="#1C1C1C" stroke-width="2"></rect>
-        <rect x="350" y="169" width="88" height="22" fill="#fff" stroke="#1C1C1C" stroke-width="2"></rect>
-        <rect x="319" y="200" width="22" height="88" fill="#fff" stroke="#1C1C1C" stroke-width="2"></rect>
-        <circle cx="330" cy="180" r="14" fill="#fff" stroke="#1C1C1C" stroke-width="2"></circle>
-        <circle cx="330" cy="180" r="5" fill="#444"></circle>
-
-        
-        <line x1="330" y1="180" x2="420" y2="92" stroke="#C0392B" stroke-width="8" stroke-linecap="round"></line>
-        <circle cx="420" cy="92" r="7" fill="#C0392B"></circle>
-
-        
-        <circle cx="170" cy="180" r="58" fill="#fff" stroke="#1C1C1C" stroke-width="3"></circle>
-        <circle cx="170" cy="180" r="36" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></circle>
-        <circle cx="170" cy="180" r="5" fill="#444"></circle>
-        <circle cx="222" cy="180" r="11" fill="#C0392B" stroke="#922B21" stroke-width="2"></circle>
-
-        
-        <path d="M118,232 A74,74 0 0 1 106,158" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rotG)"></path>
-        <path d="M330,300 A120,120 0 0 0 434,246" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rotG)"></path>
-
-        
-        <text x="170" y="102" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">DRIVER</text>
-        <text x="170" y="120" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#666">turns steadily</text>
-        <text x="118" y="286" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="14" font-weight="700" fill="#C0392B">LOCK DISC</text>
-        <text x="222" y="326" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="14" font-weight="700" fill="#C0392B">DRIVE PIN</text>
-        <line x1="222" y1="192" x2="222" y2="312" stroke="#C0392B" stroke-width="1.4"></line>
-        <line x1="140" y1="200" x2="118" y2="274" stroke="#C0392B" stroke-width="1.4"></line>
-        <text x="462" y="176" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">SLOTTED CROSS</text>
-        <text x="462" y="196" font-family="'Barlow',sans-serif" font-size="12" fill="#666">four slots, four stops</text>
-        <text x="446" y="76" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">ARM</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-labelledby="geneva-drive-title geneva-drive-description">
+  <title id="geneva-drive-title">A four-slot Geneva drive indexes and locks</title>
+  <desc id="geneva-drive-description">A driver on the left turns clockwise and carries a pin at radius equal to the shaft spacing divided by square root of two. The pin is at the mouth of the upper-left slot on the four-slot cross. It drives the cross counterclockwise through 90 degrees. A relieved raised lock disc fits the concave cutout between slots during dwell. A clock arm is fixed to the cross.</desc>
+  <defs>
+    <marker id="geneva-driver-turn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#a83a30"/>
+    </marker>
+    <marker id="geneva-cross-turn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#36434f"/>
+    </marker>
+  </defs>
+  <rect width="720" height="500" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="24" y="30" font-size="23" fill="#263340" font-weight="600">One pass through a slot. One quarter turn.</text>
+    <text x="24" y="55" font-size="16" fill="#697580" >Four driver turns make one full turn of the clock arm.</text>
+    <!-- Center distance 190; pin radius 190/√2. Shown at entry, with four slots 90° apart. Lock relief faces the pin; concave cross cutouts match the lock disc. -->
+    <circle cx="245" cy="270" r="143" fill="#f3f5f6" stroke="#b7c1c9" stroke-width="1.25"/>
+    <path d="M245 270L351.252 298.47A110 110 0 1 1 216.53 163.748Z" fill="#fae8e3" stroke="#a83a30" stroke-width="1.5"/>
+    <path d="M117.318 85.214A145 145 0 0 1 107.361 97.461L43.134 33.234A7 7 0 0 0 33.234 43.134L97.461 107.361A145 145 0 0 1 85.214 117.318A112 112 0 0 0 -85.214 117.318A145 145 0 0 1 -97.461 107.361L-33.234 43.134A7 7 0 0 0 -43.134 33.234L-107.361 97.461A145 145 0 0 1 -117.318 85.214A112 112 0 0 0 -117.318 -85.214A145 145 0 0 1 -107.361 -97.461L-43.134 -33.234A7 7 0 0 0 -33.234 -43.134L-97.461 -107.361A145 145 0 0 1 -85.214 -117.318A112 112 0 0 0 85.214 -117.318A145 145 0 0 1 97.461 -107.361L33.234 -43.134A7 7 0 0 0 43.134 -33.234L107.361 -97.461A145 145 0 0 1 117.318 -85.214A112 112 0 0 0 117.318 85.214Z" transform="translate(435 270)" fill="#e9edf0" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M435 270 435 118" fill="none" stroke="#a83a30" stroke-width="18" stroke-linecap="round"/>
+    <path d="M435 270 435 118" fill="none" stroke="#fae8e3" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="435" cy="270" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="435" cy="270" r="3.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="245" cy="270" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="245" cy="270" r="3.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="340" cy="175" r="6" fill="#a83a30" stroke="#fff" stroke-width="2"/>
+    <path d="M122 198A143 143 0 0 1 215 130" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#geneva-driver-turn)"/>
+    <path d="M551 337A135 135 0 0 0 552 203" fill="none" stroke="#36434f" stroke-width="2.5" marker-end="url(#geneva-cross-turn)"/>
+    <text x="54" y="116" font-size="18" fill="#36434f" font-weight="600">DRIVER</text>
+    <text x="54" y="138" font-size="15" fill="#697580" >turns steadily</text>
+    <text x="40" y="342" font-size="17" fill="#a83a30" font-weight="600">LOCK DISC</text>
+    <path d="M141 338 193 315" fill="none" stroke="#a83a30" stroke-width="1.25" />
+    <text x="40" y="431" font-size="17" fill="#a83a30" font-weight="600">DRIVE PIN</text>
+    <path d="M148 425 185 425 340 184" fill="none" stroke="#a83a30" stroke-width="1.25" />
+    <text x="578" y="145" font-size="17" fill="#a83a30" font-weight="600">ARM</text>
+    <path d="M565 141 447 126" fill="none" stroke="#a83a30" stroke-width="1.25" />
+    <text x="544" y="396" font-size="17" fill="#36434f" font-weight="600">SLOTTED CROSS</text>
+    <text x="544" y="419" font-size="15" fill="#697580" >four slots, four stops</text>
+    <text x="260" y="474" font-size="17" fill="#36434f" text-anchor="middle">Pin enters. Cross indexes. Lock holds.</text>
+  </g>
+</svg>
