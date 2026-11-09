@@ -30,6 +30,11 @@ cards:
     desc: "The same Botball Explorer curriculum, written in Python — fill in on screen, then click Download to save your answers locally. Give the file to your teacher; it is not sent automatically. You can also save a PDF from the print dialog."
     arrow: "Open Python Labs →"
     page: /python_labs
+  - kicker: "Classroom · Mechanical Design"
+    title: "Mechanical Design Challenges"
+    desc: "Design, build, test, and measure mechanisms — from gears and linkages to open design projects."
+    arrow: "Open Mechanical Challenges →"
+    page: /mechanical
   - kicker: "Competition Tool"
     title: "Explorer Scoring App"
     desc: "Score a Botball Explorer run mission by mission and see your total update live."

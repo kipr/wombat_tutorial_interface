@@ -348,6 +348,10 @@
 "SLOT":
   title: "Program Slot"
   body: "A numbered parking space on the hub where a program is stored. The hub holds many programs at once and can run any of them from its own buttons, with no tablet connected."
+  senses:
+    mechanical:
+      title: "Slot"
+      body: "A long narrow opening a pin can travel along. Because the pin can slide as well as push, a slot lets two parts stay connected while the distance between them changes."
 "SOFTWARE":
   title: "Software"
   body: "The instructions a machine follows. Software can decide things but cannot move anything on its own."
@@ -404,3 +408,311 @@
 "ZERO RADIUS TURN":
   title: "Zero Radius Turn"
   body: "The two wheels turn in opposite directions, so the robot spins in place without traveling forward or backward. Also called a pivot turn or spin turn. This is the turn you use when you need an exact angle."
+
+# Mechanical Design curriculum: canonical definitions imported from the challenge sheets.
+"ENGINEERING":
+  title: "Engineering"
+  body: "The branch of STEM concerned with designing, building, and using engines, machines, and structures. Science asks what is true. Engineering asks what can be made."
+"ENGINEERING DESIGN PROCESS":
+  title: "Engineering Design Process"
+  body: "A repeatable way of working through a design problem: define the problem, determine the needs, determine the constraints, break it into steps, then check whether the result meets the needs. If it does not, go back and refine."
+"NEED":
+  title: "Need"
+  body: "What a design has to accomplish, written plainly enough that you can tell whether it happened. \"Lift four poms into a container\" is a need. \"Be good at lifting\" is not."
+"ADDED VALUE":
+  title: "Added Value"
+  body: "Something beyond the minimum requirement that makes a design genuinely better. Meeting the need gets you a working machine. Added value gets you a good one."
+"ITERATION":
+  title: "Iteration"
+  body: "Building a version, testing it, learning something, and building a better version. Engineers expect the first version to be wrong. That is what it is for."
+"SUCCESS RATE":
+  title: "Success Rate"
+  body: "How often a machine actually works, measured by running it a set number of times and counting the successes. Nine successes out of ten runs is a 90% success rate. It is a count, not an impression."
+"MESH":
+  title: "Mesh"
+  body: "The place where the teeth of two gears interlock. Once two gears mesh, neither can turn without turning the other."
+"GEAR RATIO":
+  title: "Gear Ratio"
+  body: "The comparison of tooth counts between two meshed gears, written driven:drive. A 16-tooth gear driven by an 8-tooth gear is 16:8, or 2:1 — the drive gear turns twice for every one turn of the driven gear."
+"TORQUE":
+  title: "Torque"
+  body: "Just as a linear force is a push or a pull, a torque can be thought of as a twist to an object. Gearing down trades rotation speed for a stronger twist."
+"IDLER GEAR":
+  title: "Idler Gear"
+  body: "A gear placed between two others. It reverses the direction of rotation twice, so the two outer gears end up turning the same way. It changes direction without changing speed."
+"COMPOUND GEARING":
+  title: "Compound Gearing"
+  body: "Two or more gear stages chained by putting two gears on a shared axle so they turn at the same rate. The stage ratios multiply: two 3.75:1 stages make a 14.06:1 train."
+"DRIVE GEAR":
+  title: "Drive Gear"
+  body: "The gear in a pair that is turned by the motor or by the previous stage. It is where the motion comes in."
+"DRIVEN GEAR":
+  title: "Driven Gear"
+  body: "The gear in a pair that gets turned by the drive gear. It is where the motion goes out — slower and stronger, or faster and weaker, depending on the ratio."
+"PINCER":
+  title: "Pincer"
+  body: "A grabber in which both sides of the claw move toward each other. In a simpler claw, one side is fixed and only the other moves — which shoves the object sideways as it closes."
+"DEPLOYMENT":
+  title: "Deployment"
+  body: "The moment a machine changes from its folded starting shape into its working shape. A robot that unfolds an arm after the match begins is deploying it."
+"REACH":
+  title: "Reach"
+  body: "The farthest point a machine can get to — how high, or how far out. Reach is measured when the machine is fully extended, not when it is folded up."
+"CENTER OF GRAVITY":
+  title: "Center of Gravity"
+  body: "The single point where all of an object’s weight can be treated as acting. If that point stays above the base, the object stands. If it passes beyond the edge of the base, the object tips."
+"STABILITY":
+  title: "Stability"
+  body: "How well a machine resists tipping, shifting, or wobbling while it works. A stable machine does not need a hand on it."
+"MOMENT ARM":
+  title: "Moment Arm"
+  body: "The distance from a pivot to where a load sits. The longer the moment arm, the harder a motor has to work to hold the same weight."
+"BACKLASH":
+  title: "Backlash"
+  body: "The small amount of free play between meshed gear teeth. It lets a part wiggle slightly before the gear catches, which is why a mechanism may not stop in exactly the same spot every time."
+"RANGE OF MOTION":
+  title: "Range of Motion"
+  body: "How far a part can travel from one end of its movement to the other, usually measured in degrees for something that rotates."
+"DEGREES OF FREEDOM":
+  title: "Degrees of Freedom"
+  body: "The number of independent ways a mechanism can move. Count the joints that can be driven separately — if two parts are geared together so one cannot move without the other, they count as one, not two."
+"OUNCE INCH":
+  title: "Ounce-Inch"
+  body: "The unit of torque used in this challenge, written oz-in. One ounce of weight sitting one inch from the pivot is one ounce-inch. Ten ounces at twelve inches is 120 oz-in."
+"COUNTERWEIGHT":
+  title: "Counterweight"
+  body: "Weight placed on the opposite side of a pivot from the load. Its torque works in the other direction, so it subtracts from the total the motor has to fight."
+"GEAR REDUCTION":
+  title: "Gear Reduction"
+  body: "Gearing arranged so the output turns slower than the input, which multiplies torque. A 3.75:1 reduction means the motor feels 3.75 times less torque — and must turn 3.75 times as far."
+"CRANK":
+  title: "Crank"
+  body: "A wheel or arm with a pin set off to one side of its center. As the wheel turns, the pin travels in a circle, and anything linked to that pin gets driven back and forth."
+"ROTARY MOTION":
+  title: "Rotary Motion"
+  body: "Motion that turns around a center point. A spinning axle, a wheel, a motor shaft. This is the only kind of motion a motor makes on its own."
+"LINEAR MOTION":
+  title: "Linear Motion"
+  body: "Motion in a straight line. Sliding, pushing, lifting straight up. Most jobs a robot has to do need this kind of motion, not turning."
+"STROKE":
+  title: "Stroke"
+  body: "How far a pushing part travels from the back of its motion to the front. In a crank, the stroke is exactly twice the distance from the wheel’s center to its pin."
+"CONNECTING ROD":
+  title: "Connecting Rod"
+  body: "The link between the pin on a turning wheel and the part that slides. It is what carries the motion from the circle to the straight line."
+"DEAD POINT":
+  title: "Dead Point"
+  body: "A position where the connecting rod and the crank arm line up straight. At that instant the mechanism has almost no ability to push, and a crank started there may jam instead of turning. Every crank has two, half a turn apart."
+"CAM":
+  title: "Cam"
+  body: "A wheel that is not perfectly round. As it turns, the bulges in its edge push whatever is resting against it. The shape of the edge decides exactly when that push happens."
+"FOLLOWER":
+  title: "Follower"
+  body: "The part that rides against the edge of a cam and gets pushed by it. It can be a rod, a wheel, or the end of an arm."
+"CAM PROFILE":
+  title: "Cam Profile"
+  body: "The shape of a cam’s outer edge. A perfectly round profile does nothing. A profile with a raised section lifts the follower while that section passes underneath."
+"INTERMITTENT MOTION":
+  title: "Intermittent Motion"
+  body: "Movement that happens now and then rather than continuously. A motor spinning steadily can produce intermittent motion at the other end of a cam."
+"RETURN FORCE":
+  title: "Return Force"
+  body: "Whatever brings a follower back down after the cam has pushed it up. A cam can only push, never pull, so gravity, a spring, or a rubber band has to do the returning."
+"FOUR-BAR LINKAGE":
+  title: "Four-Bar Linkage"
+  body: "A mechanism made of four links joined by four pivots. Three of the links move; the fourth is the fixed distance between the two anchored pivots. The lengths of the four links determine everything the mechanism can do."
+"LINK":
+  title: "Link"
+  body: "One rigid bar in a mechanism. Links are joined at pivots, and each one keeps its length no matter how the mechanism moves."
+"GROUND LINK":
+  title: "Ground Link"
+  body: "The link that does not move — the fixed distance between the two pivots anchored to the base. It is usually built into the frame rather than being a separate bar, which is why it is easy to miss when counting."
+"COUPLER":
+  title: "Coupler"
+  body: "The link joining the crank to the rocker. It is the only link not attached to anything fixed, so points on it trace the most interesting paths in the mechanism."
+"ROCKER":
+  title: "Rocker"
+  body: "The output link of a four-bar. It swings back and forth through part of a circle rather than turning all the way around."
+"PARALLELOGRAM LINKAGE":
+  title: "Parallelogram Linkage"
+  body: "A four-bar where the crank and rocker are equal in length and the coupler and ground link are equal in length. The coupler then stays parallel to the ground link throughout the whole motion — useful for keeping a gripper or platform level."
+"WORM":
+  title: "Worm"
+  body: "The screw half of a worm gear set. It looks like a threaded rod, and it is the part your motor turns. One full turn of the worm advances the wheel by exactly one tooth."
+"WORM WHEEL":
+  title: "Worm Wheel"
+  body: "The toothed wheel driven by a worm. Its tooth count is the gear ratio of the pair — a 24-tooth wheel gives 24:1. People sometimes call the whole set a “worm gear,” so say worm wheel when you mean this part specifically."
+"RIGHT-ANGLE DRIVE":
+  title: "Right-Angle Drive"
+  body: "A gear arrangement where the output shaft points 90° away from the input shaft. A worm gear is always a right-angle drive, which lets a motor lying flat turn something that spins about a vertical axis."
+"SELF-LOCKING":
+  title: "Self-Locking"
+  body: "A drive that works in one direction only: the input can turn the output, but the output cannot turn the input. A worm gear holds its position with the power off, because the wheel simply cannot push the screw around."
+"RACK":
+  title: "Rack"
+  body: "A straight bar with gear teeth along one edge. Think of it as a gear that has been unrolled flat — the teeth work exactly the same way, they are just arranged in a line instead of a circle."
+"PINION":
+  title: "Pinion"
+  body: "The round gear that meshes with a rack. Turning the pinion walks its teeth along the rack and slides the rack sideways. One full turn moves the rack by the pinion’s own tooth count."
+"TRANSLATION":
+  title: "Translation"
+  body: "Motion where every point on a part moves the same distance in the same direction, with no rotation at all. A part that only translates points the same way at the end of its travel as it did at the start."
+"COULISSE":
+  title: "Coulisse"
+  body: "A mechanism built around a pin that rides inside a slot. The word is French for a groove or a slide. It is also called a slotted lever, because the slot is usually cut into a pivoted arm."
+"CRANK PIN":
+  title: "Crank Pin"
+  body: "A pin fixed near the edge of a turning wheel, so that it travels in a circle. It is the part that carries the motion out of the wheel and into whatever the wheel is driving."
+"OSCILLATION":
+  title: "Oscillation"
+  body: "Motion that repeats back and forth between two limits, like a pendulum or a swinging arm. It is different from rotation, which keeps going the same direction forever."
+"QUICK RETURN":
+  title: "Quick Return"
+  body: "A cycle in which one stroke takes noticeably less time than the other, even though the driving wheel turns at a steady rate. It is useful when only one direction of the motion does real work."
+"BEVEL GEAR":
+  title: "Bevel Gear"
+  body: "A gear whose teeth are cut on a slanted, cone-shaped face rather than a straight rim. Two of them meshed together carry a drive around a 90° corner while keeping the speed set by their tooth counts."
+"INTERSECTING AXES":
+  title: "Intersecting Axes"
+  body: "Two shafts whose center lines cross at a single point. Bevel gears have intersecting axes. A worm and its wheel are also perpendicular, but their axes never meet — the worm sits off to one side."
+"EFFICIENCY":
+  title: "Efficiency"
+  body: "How much of the energy going into a mechanism comes out the other end as useful work. Bevel gear teeth roll against each other and lose very little. A worm’s thread slides against the teeth, and much more is lost as heat."
+"BACK-DRIVABLE":
+  title: "Back-Drivable"
+  body: "A drive whose output can turn its input. Bevel gears are back-drivable, so a vehicle can coast and can be pushed by hand. A worm gear is not, which is exactly what you want on a gripper and exactly what you do not want on a wheel."
+"CHASSIS":
+  title: "Chassis"
+  body: "The frame of a vehicle — the structure everything else is mounted to. If the chassis flexes, gears shift out of mesh and the vehicle wanders, no matter how good the mechanism is."
+"GENEVA DRIVE":
+  title: "Geneva Drive"
+  body: "A mechanism where a pin on a turning wheel enters slots cut into a second wheel, advancing it one exact step per turn and leaving it locked in between. Also called the Maltese cross mechanism, because of the shape of the slotted wheel."
+"DWELL":
+  title: "Dwell"
+  body: "The part of a cycle where the output does not move at all. In a Geneva drive most of every cycle is dwell — the output holds still far longer than it moves."
+"INDEXING":
+  title: "Indexing"
+  body: "Moving something forward by one exact, repeatable step. An indexing mechanism does not stop wherever you switch it off; it stops at the positions built into its parts."
+"DRIVE PIN":
+  title: "Drive Pin"
+  body: "The pin near the rim of the driving wheel. It swings into a slot, pushes the slotted wheel around by one step, and swings back out again."
+"LOCKING":
+  title: "Locking"
+  body: "Physically preventing a part from moving by means of shape rather than friction or motor effort. In a Geneva drive a raised disc on the driver blocks the slotted wheel between steps, so nothing can nudge it out of position."
+"DISPLACEMENT":
+  title: "Displacement"
+  body: "How far something ends up from where it started — measured from the beginning of a stroke to the end of it. Not the length of any part, and not how far the motor turned."
+"SERIES":
+  title: "Series"
+  body: "Two or more mechanisms arranged so the output of one becomes the input of the next. The motor drives the first, the first drives the second, and the last one does the actual job."
+"INTERFACE":
+  title: "Interface"
+  body: "The place where one mechanism connects to another. Interfaces are where most machines fail, because each one is a join that can loosen, bind, or come apart."
+"PLANAR MOTION":
+  title: "Planar Motion"
+  body: "Movement that stays within a single flat surface. An object moving this way can slide two directions and rotate, and nothing else — three motions in total."
+"PARALLEL MECHANISM":
+  title: "Parallel Mechanism"
+  body: "A machine where several drives all connect to the same output platform at once. The load is shared between them, which makes it stiff and accurate, but it cannot reach as far as a chain of the same size."
+"SERIAL MECHANISM":
+  title: "Serial Mechanism"
+  body: "A machine where joints are stacked one after another, each carrying everything past it. It reaches a long way, but it flexes at the far end and its errors add up along the chain."
+"WORKSPACE":
+  title: "Workspace"
+  body: "The whole region a machine’s output can actually reach. A parallel mechanism trades a smaller workspace for stiffness and accuracy inside it."
+"SCISSOR LIFT":
+  title: "Scissor Lift"
+  body: "A lift built from pairs of links crossed in an X and pinned at their centres. Pushing the bottom ends together raises the stack; letting them spread folds it flat. The platform stays level because both sides of every X are the same length."
+"MECHANICAL ADVANTAGE":
+  title: "Mechanical Advantage"
+  body: "How many times more force comes out of a machine than went into it. A mechanical advantage of 10 means a 1-pound push produces a 10-pound lift — over one tenth of the distance."
+"WORK":
+  title: "Work"
+  body: "Force multiplied by distance. A machine cannot give out more work than is put in, which is why every gain in force is paid for with distance and every gain in speed is paid for with force."
+"LOAD":
+  title: "Load"
+  body: "The weight or force a mechanism has to move or hold. Sizing a mechanism starts with knowing the load, because everything else follows from it."
+"SLIDING END":
+  title: "Sliding End"
+  body: "The end of a link that is free to travel rather than being pinned in place. A scissor lift needs one fixed end and one sliding end at each level, or it cannot change height at all."
+"DRIVING LINK":
+  title: "Driving Link"
+  body: "The link a motor turns — the input to the whole mechanism. In this crane it is the short link running down to the base pivot, shown blue in the video. Every other part follows from where it is pointing."
+"UNIVERSAL JOINT":
+  title: "Universal Joint"
+  body: "A coupling made of two forked ends joined by a cross-shaped pin. It carries rotation from one shaft to another through a bend, at almost any angle, without either shaft having to line up with the other."
+"YOKE":
+  title: "Yoke"
+  body: "One of the forked ends of a universal joint. Each yoke pivots on one arm of the cross in the middle, and because the two arms are at right angles, the pair can bend in any direction."
+"SHAFT ANGLE":
+  title: "Shaft Angle"
+  body: "The angle between an input shaft and the shaft it drives. Gears are manufactured for one particular shaft angle — spur gears for zero, bevel gears for ninety — so anything in between needs a joint instead."
+"CONSTANT VELOCITY":
+  title: "Constant Velocity"
+  body: "A drive whose output stays exactly in step with its input at every instant. A single universal joint is not constant velocity: its output runs ahead and then falls behind, twice per revolution."
+"DOUBLE JOINT":
+  title: "Double Joint"
+  body: "Two universal joints with equal and opposite bends, connected by a short shaft between them. The second joint undoes the unevenness the first one introduced, so the output comes out very nearly in step with the input."
+"LINEAR TEETH":
+  title: "Linear Teeth"
+  body: "Gear teeth arranged in a straight line along a bar rather than around a wheel — a rack. Driven by a gear, a rack can travel out of its housing and make the whole mechanism longer than it started."
+"EXTENSION":
+  title: "Extension"
+  body: "How far a mechanism grows beyond its retracted size. It is measured from where the machine ends when folded to where it ends when fully out."
+"STAGE":
+  title: "Stage"
+  body: "One sliding section of an extending mechanism. Each stage is carried by the one before it, so a stage starts its own travel from wherever the previous one finished — which is why their reaches add together."
+"OVERHANG":
+  title: "Overhang"
+  body: "The part of a machine that sticks out past its base with nothing underneath it. The further the overhang, the harder the base has to work to stay down."
+"FOOTPRINT":
+  title: "Footprint"
+  body: "The area a machine actually stands on — the outline of its base seen from above. Anything reaching outside the footprint is overhang."
+"UNIDIRECTIONAL DRIVE":
+  title: "Unidirectional Drive"
+  body: "A drive whose motor turns one way and never reverses. The mechanism, not the motor, is what makes the output change direction — which means nothing has to decide when to reverse."
+"RECIPROCATION":
+  title: "Reciprocation"
+  body: "Back-and-forth motion between two limits. A crank turns continuous rotation into reciprocation, which is how a one-way motor drives something that has to go up and then down."
+"COUPLER CURVE":
+  title: "Coupler Curve"
+  body: "The path traced by a point on the coupler of a linkage as the mechanism runs. It is usually neither a circle nor a straight line, and changing the link lengths changes its shape."
+"STRAIGHT-LINE LINKAGE":
+  title: "Straight-Line Linkage"
+  body: "A four-bar with deliberately unequal links, arranged so that a chosen point on the coupler travels along a path that is very nearly a straight line. The cost is that the coupler rotates as it goes, so anything mounted on it tilts."
+"LINEAR SLIDE":
+  title: "Linear Slide"
+  body: "A platform built to travel back and forth along one straight path and to do nothing else. The drive supplies the motion; the guides take away everything the drive did not ask for."
+"GUIDE":
+  title: "Guide"
+  body: "A rail, track, or pair of surfaces that force a moving part to follow one path. Guides work best when they are long and set well apart — two short guides close together let a platform twist between them."
+"SKEW":
+  title: "Skew"
+  body: "A moving part sitting crooked in its guides instead of square to them. A little is unavoidable; too much and the corners dig in."
+"BINDING":
+  title: "Binding"
+  body: "When a mechanism jams because its parts are pressing against each other instead of sliding past. A slide that binds does not slow down gradually — it stops completely."
+"CYCLICAL MOTION":
+  title: "Cyclical Motion"
+  body: "Motion that repeats the same sequence over and over without needing to be told to. A one-way motor driving a linkage produces it, which means nothing has to decide when to reverse."
+"STIFFNESS":
+  title: "Stiffness"
+  body: "How much a structure resists bending under load. A stiff mechanism can appear to hold position without anything locking — but it gives way once the load is large enough, and it flexes a little even before then."
+"DRIVE TRAIN":
+  title: "Drive Train"
+  body: "Everything between the motor and the thing being driven — shafts, gears, chains, and couplings. It does not have to be a single line from one to the other."
+"BRANCHED DRIVE":
+  title: "Branched Drive"
+  body: "A drive train that splits, so one motor powers two or more outputs. Each branch can have its own gearing and therefore its own speed — but they all start and stop together, because they share the motor."
+"TIP SPEED":
+  title: "Tip Speed"
+  body: "How fast the far end of a rotating arm is actually travelling. The shaft may turn slowly, but a point further out covers a much bigger circle in the same time, so it moves much faster."
+"CONCENTRICITY":
+  title: "Concentricity"
+  body: "Two or more circular parts sharing exactly the same center. A mounted gear is concentric when its center sits on the axis its shaft spins around — so the rim stays the same distance from the axis all the way around."
+"ECCENTRIC":
+  title: "Eccentric"
+  body: "Mounted off-center. An eccentric gear still spins, but not around its own middle — its rim sweeps closer and farther once per revolution, so a mesh alternately jams and gaps on a steady beat."
+"AXIS OF ROTATION":
+  title: "Axis of Rotation"
+  body: "The invisible straight line a spinning part rotates around. For a servo or motor, it runs straight through the middle of the output shaft."
