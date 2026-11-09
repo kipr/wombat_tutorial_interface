@@ -1,53 +1,66 @@
-<svg viewBox="0 0 620 340" role="img" aria-label="Top view. A stationary base at the left carries a central gear with a rack on each side. Two arms extend to the right, past the edge of the base, and close on a four inch cube that sits entirely outside the base footprint." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="udC" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto">
-            <path d="M0,9 L5,0 L10,9 z" fill="#1C1C1C"></path>
-          </marker>
-          <marker id="tkM" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M1,0 L1,10" stroke="#1E8449" stroke-width="1.6"></path>
-          </marker>
-          <marker id="tkN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M9,0 L9,10" stroke="#1E8449" stroke-width="1.6"></path>
-          </marker>
-        </defs>
-
-        
-        <rect x="34" y="122" width="150" height="140" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <text x="109" y="184" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">STATIONARY</text>
-        <text x="109" y="204" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">BASE</text>
-
-        
-        <line x1="184" y1="84" x2="184" y2="300" stroke="#1E8449" stroke-width="2" stroke-dasharray="9 6"></line>
-        <text x="184" y="76" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" font-weight="600" fill="#1E8449">edge of the base</text>
-
-        
-        <circle cx="246" cy="192" r="32" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="11 11"></circle>
-        <circle cx="246" cy="192" r="5" fill="#444"></circle>
-
-        
-        <rect x="196" y="112" width="16" height="160" rx="2" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <line x1="217" y1="118" x2="217" y2="266" stroke="#444" stroke-width="10" stroke-dasharray="9 11"></line>
-        <rect x="280" y="112" width="16" height="160" rx="2" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <line x1="275" y1="118" x2="275" y2="266" stroke="#444" stroke-width="10" stroke-dasharray="9 11"></line>
-
-        
-        <rect x="196" y="96" width="290" height="16" rx="2" fill="#888" stroke="#666" stroke-width="1.5"></rect>
-        <rect x="280" y="272" width="206" height="16" rx="2" fill="#888" stroke="#666" stroke-width="1.5"></rect>
-
-        
-        <rect x="196" y="134" width="290" height="16" rx="2" fill="none" stroke="#C0392B" stroke-width="2.5" stroke-dasharray="10 7"></rect>
-        <rect x="280" y="234" width="206" height="16" rx="2" fill="none" stroke="#C0392B" stroke-width="2.5" stroke-dasharray="10 7"></rect>
-
-        
-        <rect x="374" y="150" width="100" height="100" fill="#F8F8F8" stroke="#444" stroke-width="2"></rect>
-        <text x="424" y="206" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#444">4″ × 4″</text>
-
-        
-        <line x1="516" y1="104" x2="516" y2="280" stroke="#1C1C1C" stroke-width="2.5" marker-start="url(#udC)" marker-end="url(#udC)"></line>
-
-        
-        <line x1="184" y1="318" x2="486" y2="318" stroke="#1E8449" stroke-width="1.8" marker-start="url(#tkM)" marker-end="url(#tkN)"></line>
-        <text x="335" y="336" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1E8449">reach beyond the base</text>
-
-        <text x="560" y="192" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#1C1C1C" transform="rotate(-90 560 192)">TOP VIEW</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 595" role="img" aria-labelledby="extension-grabber-title extension-grabber-description">
+  <title id="extension-grabber-title">A supported rack-and-pinion grabber reaches beyond its base</title>
+  <desc id="extension-grabber-description">Top view of a stationary base ending at the green line. A supported 24-tooth pinion lies inside the footprint, between two guided racks with matching tooth pitch and tooth-to-gap phase. Turning counterclockwise moves the left rack down and the right rack up. Both jaws close by 72 drawing units onto a four-inch cube lying entirely beyond the base. Solid grey jaws are open; dashed red jaws are closed.</desc>
+  <defs>
+    <path id="extension-pinion-24" d="M42.779 -4.351Q42.875 -3.28 44.974 -3.441 L46.716 -3.249 L48.474 -2.77 L50.233 -2.086 L51.986 -1.223 A52 52 0 0 1 51.986 1.223 L50.233 2.086 L48.474 2.77 L46.716 3.249 L44.974 3.441 Q42.875 3.28 42.779 4.351A43 43 0 0 1 42.448 6.87 L42.448 6.87Q42.263 7.929 44.332 8.317 L45.965 8.953 L47.539 9.87 L49.061 10.986 L50.531 12.274 A52 52 0 0 1 49.898 14.636 L47.981 15.016 L46.105 15.222 L44.283 15.229 L42.551 14.963 Q40.565 14.265 40.196 15.275A43 43 0 0 1 39.223 17.622 L39.223 17.622Q38.771 18.597 40.669 19.507 L42.082 20.545 L43.364 21.838 L44.546 23.31 L45.632 24.934 A52 52 0 0 1 44.409 27.052 L42.46 26.923 L40.594 26.636 L38.833 26.171 L37.228 25.467 Q35.491 24.278 34.873 25.158A43 43 0 0 1 33.326 27.173 L33.326 27.173Q32.636 27.998 34.234 29.368 L35.33 30.736 L36.235 32.317 L36.995 34.045 L37.624 35.895 A52 52 0 0 1 35.895 37.624 L34.045 36.995 L32.317 36.235 L30.736 35.33 L29.368 34.234 Q27.998 32.636 27.173 33.326A43 43 0 0 1 25.158 34.873 L25.158 34.873Q24.278 35.491 25.467 37.228 L26.171 38.833 L26.636 40.594 L26.923 42.46 L27.052 44.409 A52 52 0 0 1 24.934 45.632 L23.31 44.546 L21.838 43.364 L20.545 42.082 L19.507 40.669 Q18.597 38.771 17.622 39.223A43 43 0 0 1 15.275 40.196 L15.275 40.196Q14.265 40.565 14.963 42.551 L15.229 44.283 L15.222 46.105 L15.016 47.981 L14.636 49.898 A52 52 0 0 1 12.274 50.531 L10.986 49.061 L9.87 47.539 L8.953 45.965 L8.317 44.332 Q7.929 42.263 6.87 42.448A43 43 0 0 1 4.351 42.779 L4.351 42.779Q3.28 42.875 3.441 44.974 L3.249 46.716 L2.77 48.474 L2.086 50.233 L1.223 51.986 A52 52 0 0 1 -1.223 51.986 L-2.086 50.233 L-2.77 48.474 L-3.249 46.716 L-3.441 44.974 Q-3.28 42.875 -4.351 42.779A43 43 0 0 1 -6.87 42.448 L-6.87 42.448Q-7.929 42.263 -8.317 44.332 L-8.953 45.965 L-9.87 47.539 L-10.986 49.061 L-12.274 50.531 A52 52 0 0 1 -14.636 49.898 L-15.016 47.981 L-15.222 46.105 L-15.229 44.283 L-14.963 42.551 Q-14.265 40.565 -15.275 40.196A43 43 0 0 1 -17.622 39.223 L-17.622 39.223Q-18.597 38.771 -19.507 40.669 L-20.545 42.082 L-21.838 43.364 L-23.31 44.546 L-24.934 45.632 A52 52 0 0 1 -27.052 44.409 L-26.923 42.46 L-26.636 40.594 L-26.171 38.833 L-25.467 37.228 Q-24.278 35.491 -25.158 34.873A43 43 0 0 1 -27.173 33.326 L-27.173 33.326Q-27.998 32.636 -29.368 34.234 L-30.736 35.33 L-32.317 36.235 L-34.045 36.995 L-35.895 37.624 A52 52 0 0 1 -37.624 35.895 L-36.995 34.045 L-36.235 32.317 L-35.33 30.736 L-34.234 29.368 Q-32.636 27.998 -33.326 27.173A43 43 0 0 1 -34.873 25.158 L-34.873 25.158Q-35.491 24.278 -37.228 25.467 L-38.833 26.171 L-40.594 26.636 L-42.46 26.923 L-44.409 27.052 A52 52 0 0 1 -45.632 24.934 L-44.546 23.31 L-43.364 21.838 L-42.082 20.545 L-40.669 19.507 Q-38.771 18.597 -39.223 17.622A43 43 0 0 1 -40.196 15.275 L-40.196 15.275Q-40.565 14.265 -42.551 14.963 L-44.283 15.229 L-46.105 15.222 L-47.981 15.016 L-49.898 14.636 A52 52 0 0 1 -50.531 12.274 L-49.061 10.986 L-47.539 9.87 L-45.965 8.953 L-44.332 8.317 Q-42.263 7.929 -42.448 6.87A43 43 0 0 1 -42.779 4.351 L-42.779 4.351Q-42.875 3.28 -44.974 3.441 L-46.716 3.249 L-48.474 2.77 L-50.233 2.086 L-51.986 1.223 A52 52 0 0 1 -51.986 -1.223 L-50.233 -2.086 L-48.474 -2.77 L-46.716 -3.249 L-44.974 -3.441 Q-42.875 -3.28 -42.779 -4.351A43 43 0 0 1 -42.448 -6.87 L-42.448 -6.87Q-42.263 -7.929 -44.332 -8.317 L-45.965 -8.953 L-47.539 -9.87 L-49.061 -10.986 L-50.531 -12.274 A52 52 0 0 1 -49.898 -14.636 L-47.981 -15.016 L-46.105 -15.222 L-44.283 -15.229 L-42.551 -14.963 Q-40.565 -14.265 -40.196 -15.275A43 43 0 0 1 -39.223 -17.622 L-39.223 -17.622Q-38.771 -18.597 -40.669 -19.507 L-42.082 -20.545 L-43.364 -21.838 L-44.546 -23.31 L-45.632 -24.934 A52 52 0 0 1 -44.409 -27.052 L-42.46 -26.923 L-40.594 -26.636 L-38.833 -26.171 L-37.228 -25.467 Q-35.491 -24.278 -34.873 -25.158A43 43 0 0 1 -33.326 -27.173 L-33.326 -27.173Q-32.636 -27.998 -34.234 -29.368 L-35.33 -30.736 L-36.235 -32.317 L-36.995 -34.045 L-37.624 -35.895 A52 52 0 0 1 -35.895 -37.624 L-34.045 -36.995 L-32.317 -36.235 L-30.736 -35.33 L-29.368 -34.234 Q-27.998 -32.636 -27.173 -33.326A43 43 0 0 1 -25.158 -34.873 L-25.158 -34.873Q-24.278 -35.491 -25.467 -37.228 L-26.171 -38.833 L-26.636 -40.594 L-26.923 -42.46 L-27.052 -44.409 A52 52 0 0 1 -24.934 -45.632 L-23.31 -44.546 L-21.838 -43.364 L-20.545 -42.082 L-19.507 -40.669 Q-18.597 -38.771 -17.622 -39.223A43 43 0 0 1 -15.275 -40.196 L-15.275 -40.196Q-14.265 -40.565 -14.963 -42.551 L-15.229 -44.283 L-15.222 -46.105 L-15.016 -47.981 L-14.636 -49.898 A52 52 0 0 1 -12.274 -50.531 L-10.986 -49.061 L-9.87 -47.539 L-8.953 -45.965 L-8.317 -44.332 Q-7.929 -42.263 -6.87 -42.448A43 43 0 0 1 -4.351 -42.779 L-4.351 -42.779Q-3.28 -42.875 -3.441 -44.974 L-3.249 -46.716 L-2.77 -48.474 L-2.086 -50.233 L-1.223 -51.986 A52 52 0 0 1 1.223 -51.986 L2.086 -50.233 L2.77 -48.474 L3.249 -46.716 L3.441 -44.974 Q3.28 -42.875 4.351 -42.779A43 43 0 0 1 6.87 -42.448 L6.87 -42.448Q7.929 -42.263 8.317 -44.332 L8.953 -45.965 L9.87 -47.539 L10.986 -49.061 L12.274 -50.531 A52 52 0 0 1 14.636 -49.898 L15.016 -47.981 L15.222 -46.105 L15.229 -44.283 L14.963 -42.551 Q14.265 -40.565 15.275 -40.196A43 43 0 0 1 17.622 -39.223 L17.622 -39.223Q18.597 -38.771 19.507 -40.669 L20.545 -42.082 L21.838 -43.364 L23.31 -44.546 L24.934 -45.632 A52 52 0 0 1 27.052 -44.409 L26.923 -42.46 L26.636 -40.594 L26.171 -38.833 L25.467 -37.228 Q24.278 -35.491 25.158 -34.873A43 43 0 0 1 27.173 -33.326 L27.173 -33.326Q27.998 -32.636 29.368 -34.234 L30.736 -35.33 L32.317 -36.235 L34.045 -36.995 L35.895 -37.624 A52 52 0 0 1 37.624 -35.895 L36.995 -34.045 L36.235 -32.317 L35.33 -30.736 L34.234 -29.368 Q32.636 -27.998 33.326 -27.173A43 43 0 0 1 34.873 -25.158 L34.873 -25.158Q35.491 -24.278 37.228 -25.467 L38.833 -26.171 L40.594 -26.636 L42.46 -26.923 L44.409 -27.052 A52 52 0 0 1 45.632 -24.934 L44.546 -23.31 L43.364 -21.838 L42.082 -20.545 L40.669 -19.507 Q38.771 -18.597 39.223 -17.622A43 43 0 0 1 40.196 -15.275 L40.196 -15.275Q40.565 -14.265 42.551 -14.963 L44.283 -15.229 L46.105 -15.222 L47.981 -15.016 L49.898 -14.636 A52 52 0 0 1 50.531 -12.274 L49.061 -10.986 L47.539 -9.87 L45.965 -8.953 L44.332 -8.317 Q42.263 -7.929 42.448 -6.87A43 43 0 0 1 42.779 -4.351Z"/>
+    <marker id="extension-travel" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#357458"/>
+    </marker>
+    <marker id="extension-turn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#a83a30"/>
+    </marker>
+  </defs>
+  <rect width="720" height="595" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <!-- 24 teeth; module 4; pitch radius 48; rack pitch 4π. Both rack gaps centered at the gear centerline. Cube scale 30 units/in. -->
+    <text x="360" y="31" font-size="23" fill="#263340" text-anchor="middle" font-weight="600">Reach past the base, then close on the cube</text>
+    <text x="24" y="62" font-size="15" fill="#36434f" font-weight="600">TOP VIEW</text>
+    <text x="360" y="62" font-size="16" fill="#697580" text-anchor="middle">Counterclockwise turn closes both jaws equally.</text>
+    <rect x="50" y="90" width="305" height="400" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <rect x="59" y="99" width="287" height="382" rx="3" fill="none" stroke="#e0e5e8"/>
+    <circle cx="66" cy="106" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="339" cy="106" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="66" cy="474" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="339" cy="474" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <text x="121" y="118" font-size="15" fill="#697580" text-anchor="middle" font-weight="600">STATIONARY</text>
+    <text x="121" y="140" font-size="15" fill="#697580" text-anchor="middle" font-weight="600">BASE</text>
+    <path d="M355 82V504" fill="none" stroke="#357458" stroke-width="2" stroke-dasharray="6 5"/>
+    <text x="370" y="105" font-size="16" fill="#357458" >edge of the base</text>
+    <path d="M-144 75V53H-136.608L-133.333 44H-130.561L-127.285 53H-124.042L-120.766 44H-117.995L-114.719 53H-111.476L-108.2 44H-105.428L-102.153 53H-98.909L-95.633 44H-92.862L-89.586 53H-86.343L-83.067 44H-80.296L-77.02 53H-73.776L-70.501 44H-67.729L-64.454 53H-61.21L-57.934 44H-55.163L-51.887 53H-48.644L-45.368 44H-42.597L-39.321 53H-36.077L-32.802 44H-30.03L-26.754 53H-23.511L-20.235 44H-17.464L-14.188 53H-10.945L-7.669 44H-4.897L-1.622 53H1.622L4.897 44H7.669L10.945 53H14.188L17.464 44H20.235L23.511 53H26.754L30.03 44H32.802L36.077 53H39.321L42.597 44H45.368L48.644 53H51.887L55.163 44H57.934L61.21 53H64.454L67.729 44H70.501L73.776 53H77.02L80.296 44H83.067L86.343 53H89.586L92.862 44H95.633L98.909 53H102.153L105.428 44H108.2L111.476 53H120V75Z" fill="#e9edf0" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round" transform="translate(255 300) rotate(90)"/>
+    <path d="M-120 75V53H-124.042L-120.766 44H-117.995L-114.719 53H-111.476L-108.2 44H-105.428L-102.153 53H-98.909L-95.633 44H-92.862L-89.586 53H-86.343L-83.067 44H-80.296L-77.02 53H-73.776L-70.501 44H-67.729L-64.454 53H-61.21L-57.934 44H-55.163L-51.887 53H-48.644L-45.368 44H-42.597L-39.321 53H-36.077L-32.802 44H-30.03L-26.754 53H-23.511L-20.235 44H-17.464L-14.188 53H-10.945L-7.669 44H-4.897L-1.622 53H1.622L4.897 44H7.669L10.945 53H14.188L17.464 44H20.235L23.511 53H26.754L30.03 44H32.802L36.077 53H39.321L42.597 44H45.368L48.644 53H51.887L55.163 44H57.934L61.21 53H64.454L67.729 44H70.501L73.776 53H77.02L80.296 44H83.067L86.343 53H89.586L92.862 44H95.633L98.909 53H102.153L105.428 44H108.2L111.476 53H114.719L117.995 44H120.766L124.042 53H127.285L130.561 44H133.333L136.608 53H144V75Z" fill="#e9edf0" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round" transform="translate(255 300) rotate(-90)"/>
+    <g transform="translate(255 300)">
+      <use href="#extension-pinion-24" transform="rotate(0)" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle cx="0" cy="0" r="34.56" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+      <circle cx="23.04" cy="0" r="4.8" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="23.04" r="4.8" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="-23.04" cy="0" r="4.8" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="-23.04" r="4.8" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="0" r="13" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+      <path d="M-3 -8H3V-3H8V3H3V8H-3V3H-8V-3H-3Z" fill="#36434f"/>
+    </g>
+    <rect x="173" y="218" width="32" height="24" rx="3" fill="none" stroke="#697580" stroke-width="1.5" />
+    <path d="M178 223h22" fill="none" stroke="#b7c1c9" stroke-width="1" />
+    <rect x="173" y="360" width="32" height="24" rx="3" fill="none" stroke="#697580" stroke-width="1.5" />
+    <path d="M178 365h22" fill="none" stroke="#b7c1c9" stroke-width="1" />
+    <rect x="300" y="218" width="32" height="24" rx="3" fill="none" stroke="#697580" stroke-width="1.5" />
+    <path d="M305 223h22" fill="none" stroke="#b7c1c9" stroke-width="1" />
+    <rect x="300" y="360" width="32" height="24" rx="3" fill="none" stroke="#697580" stroke-width="1.5" />
+    <path d="M305 365h22" fill="none" stroke="#b7c1c9" stroke-width="1" />
+    <rect x="180" y="140" width="450" height="16" rx="3" fill="#c9d2d8" stroke="#697580" stroke-width="1.5" />
+    <rect x="308" y="420" width="322" height="16" rx="3" fill="#c9d2d8" stroke="#697580" stroke-width="1.5" />
+    <rect x="180" y="212" width="450" height="16" rx="3" fill="none" stroke="#a83a30" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <rect x="308" y="348" width="322" height="16" rx="3" fill="none" stroke="#a83a30" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <rect x="490" y="228" width="120" height="120" rx="3" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" />
+    <text x="550" y="293" font-size="20" fill="#36434f" text-anchor="middle" font-weight="600">4″ × 4″</text>
+    <path d="M156 266V319" fill="none" stroke="#357458" stroke-width="2.2" marker-end="url(#extension-travel)"/>
+    <path d="M345 332V278" fill="none" stroke="#357458" stroke-width="2.2" marker-end="url(#extension-travel)"/>
+    <path d="M213 248A67 67 0 0 0 188 300" fill="none" stroke="#a83a30" stroke-width="2.2" marker-end="url(#extension-turn)"/>
+    <text x="644" y="152" font-size="15" fill="#697580" >open</text>
+    <text x="644" y="225" font-size="15" fill="#a83a30" >grip</text>
+    <text x="493" y="187" font-size="15" fill="#697580" text-anchor="middle">Both jaws move 72 units.</text>
+    <text x="493" y="395" font-size="15" fill="#a83a30" text-anchor="middle">Dashed red: closed position</text>
+    <path d="M355 522L630 522M355 517L355 527M630 517L630 527" fill="none" stroke="#357458" stroke-width="1.25" />
+    <text x="493" y="547" font-size="16" fill="#357458" text-anchor="middle">reach beyond the base</text>
+    <text x="24" y="574" font-size="15" fill="#697580" >24-tooth pinion shown. Matching rack pitch; guides prevent tooth separation.</text>
+  </g>
+</svg>

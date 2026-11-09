@@ -1,29 +1,36 @@
-<svg viewBox="0 0 620 280" role="img" aria-label="A flat platform seen from above, with three arrows showing its three possible motions: sliding side to side, sliding forward and back, and rotating in place." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="dblA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#1F2D5A"></path>
-          </marker>
-          <marker id="rotH" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
-          </marker>
-        </defs>
-
-        
-        <rect x="248" y="112" width="140" height="80" rx="5" fill="#F2F2F2" stroke="#444" stroke-width="2.5"></rect>
-        <text x="318" y="158" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">PLATFORM</text>
-
-        
-        <line x1="214" y1="76" x2="422" y2="76" stroke="#1F2D5A" stroke-width="3" marker-start="url(#dblA)" marker-end="url(#dblA)"></line>
-        <text x="318" y="60" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1F2D5A">1 · SIDE TO SIDE</text>
-
-        
-        <line x1="196" y1="92" x2="196" y2="212" stroke="#1F2D5A" stroke-width="3" marker-start="url(#dblA)" marker-end="url(#dblA)"></line>
-        <text x="120" y="148" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1F2D5A">2 · FORWARD</text>
-        <text x="120" y="168" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1F2D5A">AND BACK</text>
-
-        
-        <path d="M502,118 A34,34 0 1 1 468,152" fill="none" stroke="#C0392B" stroke-width="3" marker-end="url(#rotH)"></path>
-        <text x="516" y="196" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">3 · ROTATION</text>
-
-        <text x="318" y="248" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13.5" font-weight="600" fill="#1C1C1C">Three independent motions. There is no fourth.</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 450" role="img" aria-labelledby="planar-freedoms-title planar-freedoms-description">
+  <title id="planar-freedoms-title">A platform can translate in two directions and rotate</title>
+  <desc id="planar-freedoms-description">Top view of a flat platform. A horizontal arrow marks side-to-side translation; a vertical arrow marks forward-and-back translation. A curved arrow centered on the platform marks rotation within the same plane.</desc>
+  <defs>
+    <marker id="planar-slide" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#36434f"/>
+    </marker>
+    <marker id="planar-rotate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#a83a30"/>
+    </marker>
+  </defs>
+  <rect width="720" height="450" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="360" y="32" font-size="23" fill="#263340" text-anchor="middle" font-weight="600">Three independent motions in one plane</text>
+    <text x="360" y="59" font-size="16" fill="#697580" text-anchor="middle">TOP VIEW — the platform stays on the surface.</text>
+    <rect x="270" y="195" width="180" height="100" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <rect x="279" y="204" width="162" height="82" rx="3" fill="none" stroke="#e0e5e8"/>
+    <circle cx="286" cy="211" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="434" cy="211" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="286" cy="279" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="434" cy="279" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <path d="M351 245h18M360 236v18" fill="none" stroke="#b7c1c9" stroke-width="1" />
+    <text x="360" y="252" font-size="19" fill="#36434f" text-anchor="middle" font-weight="600">PLATFORM</text>
+    <path d="M362 128H234" fill="none" stroke="#36434f" stroke-width="2.2" marker-end="url(#planar-slide)"/>
+    <path d="M362 128H490" fill="none" stroke="#36434f" stroke-width="2.2" marker-end="url(#planar-slide)"/>
+    <text x="360" y="107" font-size="17" fill="#36434f" text-anchor="middle" font-weight="600">1 · SIDE TO SIDE</text>
+    <path d="M185 246V176" fill="none" stroke="#36434f" stroke-width="2.2" marker-end="url(#planar-slide)"/>
+    <path d="M185 246V316" fill="none" stroke="#36434f" stroke-width="2.2" marker-end="url(#planar-slide)"/>
+    <text x="92" y="238" font-size="16" fill="#36434f" text-anchor="middle" font-weight="600">2 · FORWARD</text>
+    <text x="92" y="262" font-size="16" fill="#36434f" text-anchor="middle" font-weight="600">AND BACK</text>
+    <path d="M485.332 157.241A153 153 0 0 1 424.66 383.665" fill="none" stroke="#a83a30" stroke-width="2.2" marker-end="url(#planar-rotate)"/>
+    <text x="593" y="240" font-size="17" fill="#a83a30" text-anchor="middle" font-weight="600">3 · ROTATION</text>
+    <text x="593" y="265" font-size="15" fill="#697580" text-anchor="middle">about the center</text>
+    <text x="360" y="422" font-size="17" fill="#36434f" text-anchor="middle">Three independent motions. There is no fourth.</text>
+  </g>
+</svg>

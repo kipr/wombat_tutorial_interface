@@ -38,6 +38,19 @@ function normalize(text) {
 
 let fields = 0;
 let figures = 0;
+// These specific redrawn figures deliberately correct the source descriptions.
+// Keep the frozen inventory as evidence and require the revised wording exactly.
+const revisedFigureAlts = {
+  "mech06_crank-diagram-01.svg": "Three snapshots of the same crank turning counterclockwise. The fixed axle and guide stay in place. With the pin pointing right, the pusher is farthest out. After a quarter-turn, the pin is above the axle, the rod tilts, and the pusher moves inward. After a half-turn, the pin points left and the pusher is farthest in. Both rod ends pivot; the next half-turn brings the pusher back out. Stroke is twice the axle-to-pin offset.",
+  "mech19_gear_45-diagram-01.svg": "Three shaft arrangements compared. In-line shafts use a coupling; spur gears use parallel axes. The kit's bevel gears connect shafts at ninety degrees. A universal joint connects shafts at forty-five degrees; the kit's ninety-degree bevel gears do not fit that bend.",
+  "mech19_gear_45-diagram-02.svg": "Two arrangements. On the left a single universal joint connects shafts at forty-five degrees, and output speed varies twice per turn. On the right two joints connect parallel end shafts through equal and opposite forty-five-degree bends. The yokes on the middle shaft are aligned so the second joint cancels the first joint's speed variation."
+};
+const revisedFigureLabels = {
+  "mech19_gear_45-diagram-01.svg": {
+    "no gear is cut": "kit bevel gears",
+    "for this angle": "fit 90°, not 45°."
+  }
+};
 for (const page of inventory.pages) {
   const slug = page.file.replace(/\.md$/, "");
   const file = path.join(build, "mechanical", slug, "index.html");
@@ -67,18 +80,15 @@ for (const page of inventory.pages) {
   assert.deepEqual(terms.sort(), expectedTerms.sort(), `${slug}: glossary references`);
   const images = [...html.matchAll(/<img\b[^>]*>/g)].map(([tag]) => attributes(tag));
   for (const figure of page.figures) {
-    // The crank figure was deliberately redrawn as three snapshots. Keep the
-    // frozen source inventory and require the revised accessible description.
-    const expectedAlt = figure.src === "mech06_crank-diagram-01.svg"
-      ? "Three snapshots of the same crank turning counterclockwise. The fixed axle and guide stay in place. With the pin pointing right, the pusher is farthest out. After a quarter-turn, the pin is above the axle, the rod tilts, and the pusher moves inward. After a half-turn, the pin points left and the pusher is farthest in. Both rod ends pivot; the next half-turn brings the pusher back out. Stroke is twice the axle-to-pin offset."
-      : figure.alt;
+    const expectedAlt = revisedFigureAlts[figure.src] ?? figure.alt;
     assert.ok(images.some(image => image.src.endsWith("/" + figure.src) && image.alt === expectedAlt), `${slug}: ${figure.src} and alt text`);
     assert.ok(normalize(plain(html)).includes(normalize(figure.caption)), `${slug}: figure caption`);
     assert.ok(fs.existsSync(path.join(build, "mechanical", figure.src)), `${slug}: published SVG`);
     const svg = fs.readFileSync(path.join(build, "mechanical", figure.src), "utf8");
     assert.doesNotMatch(svg, /&amp;(?:\w+|#\d+);/, `${slug}: no double-escaped diagram labels`);
     for (const label of figure.text) {
-      assert.ok(normalize(plain(svg)).includes(normalize(label)), `${slug}: diagram label ${label}`);
+      const expectedLabel = revisedFigureLabels[figure.src]?.[label] ?? label;
+      assert.ok(normalize(plain(svg)).includes(normalize(expectedLabel)), `${slug}: diagram label ${expectedLabel}`);
     }
   }
   for (const video of page.videos) {

@@ -1,39 +1,137 @@
-<svg viewBox="0 0 620 310" role="img" aria-label="The same crane at three positions carrying the same eight ounce load. As the boom reaches further out, the horizontal distance from the pivot to the load grows from four inches to eight to ten, and the torque grows from thirty-two to sixty-four to eighty ounce-inches." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="tkI" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M1,0 L1,10" stroke="#444" stroke-width="1.6"></path>
-          </marker>
-          <marker id="tkJ" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M9,0 L9,10" stroke="#444" stroke-width="1.6"></path>
-          </marker>
-        </defs>
-
-        <text x="310" y="24" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">SAME 8 oz LOAD — THREE POSITIONS</text>
-
-        
-        <line x1="60" y1="236" x2="108" y2="115" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
-        <circle cx="60" cy="236" r="7" fill="#1C1C1C"></circle>
-        <circle cx="108" cy="115" r="12" fill="#F2F2F2" stroke="#444" stroke-width="2"></circle>
-        <line x1="108" y1="127" x2="108" y2="236" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5 4"></line>
-        <line x1="60" y1="262" x2="108" y2="262" stroke="#444" stroke-width="1.6" marker-start="url(#tkI)" marker-end="url(#tkJ)"></line>
-        <text x="84" y="282" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">4 in</text>
-        <text x="84" y="302" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1E8449">32 oz-in</text>
-
-        
-        <line x1="250" y1="236" x2="346" y2="148" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
-        <circle cx="250" cy="236" r="7" fill="#1C1C1C"></circle>
-        <circle cx="346" cy="148" r="12" fill="#F2F2F2" stroke="#444" stroke-width="2"></circle>
-        <line x1="346" y1="160" x2="346" y2="236" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5 4"></line>
-        <line x1="250" y1="262" x2="346" y2="262" stroke="#444" stroke-width="1.6" marker-start="url(#tkI)" marker-end="url(#tkJ)"></line>
-        <text x="298" y="282" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">8 in</text>
-        <text x="298" y="302" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C79A1E">64 oz-in</text>
-
-        
-        <line x1="430" y1="236" x2="550" y2="186" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
-        <circle cx="430" cy="236" r="7" fill="#1C1C1C"></circle>
-        <circle cx="550" cy="186" r="12" fill="#F2F2F2" stroke="#444" stroke-width="2"></circle>
-        <line x1="550" y1="198" x2="550" y2="236" stroke="#CCC" stroke-width="1.5" stroke-dasharray="5 4"></line>
-        <line x1="430" y1="262" x2="550" y2="262" stroke="#444" stroke-width="1.6" marker-start="url(#tkI)" marker-end="url(#tkJ)"></line>
-        <text x="490" y="282" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#444">10 in</text>
-        <text x="490" y="302" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">80 oz-in</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-labelledby="crane-load-moments-title crane-load-moments-description">
+  <title id="crane-load-moments-title">The same four-bar crane at four, eight and ten inches of reach</title>
+  <desc id="crane-load-moments-description">Three positions preserve exactly the same four link lengths and the same boom length. At a scale of 13 drawing units per inch, the load lines are 52, 104 and 130 units horizontally from the left base pivot. The same eight-ounce load creates moments of 32, 64 and 80 ounce-inches about that pivot. These load moments are not a direct calculation of the motor torque.</desc>
+  <defs>
+    <marker id="crane-weight" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#a83a30"/>
+    </marker>
+  </defs>
+  <rect width="720" height="500" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <!-- Fixed drawing scale 13 units/in; same four-bar geometry as crane-linkage. -->
+    <text x="360" y="31" font-size="23" fill="#263340" text-anchor="middle" font-weight="600">SAME 8 oz LOAD — THREE POSITIONS</text>
+    <text x="360" y="59" font-size="16" fill="#697580" text-anchor="middle">Measure horizontally to the load’s vertical line of action.</text>
+    <rect x="22" y="299" width="100" height="25" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <rect x="31" y="308" width="82" height="7" rx="3" fill="none" stroke="#e0e5e8"/>
+    <circle cx="38" cy="315" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="106" cy="315" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="38" cy="308" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="106" cy="308" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <path d="M40,299L105,299" fill="none" stroke="#697580" stroke-width="2" stroke-dasharray="6 5"/>
+    <path d="M105 299 81.892 222.41" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round"/>
+    <path d="M105 299 81.892 222.41" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="100.378" cy="283.682" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="95.757" cy="268.364" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="91.135" cy="253.046" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="86.514" cy="237.728" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <path d="M76.276 282.147 92 114.884" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round"/>
+    <path d="M76.276 282.147 92 114.884" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="79.421" cy="248.694" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="82.566" cy="215.242" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="85.71" cy="181.789" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="88.855" cy="148.337" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <path d="M40 299 76.276 282.147" fill="none" stroke="#3d617e" stroke-width="18" stroke-linecap="round"/>
+    <path d="M40 299 76.276 282.147" fill="none" stroke="#eaf0f5" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="47.255" cy="295.629" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="54.51" cy="292.259" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="61.766" cy="288.888" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="69.021" cy="285.518" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="40" cy="299" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="40" cy="299" r="4" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="105" cy="299" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="105" cy="299" r="4" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="76.276" cy="282.147" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="76.276" cy="282.147" r="3.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="81.892" cy="222.41" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="81.892" cy="222.41" r="3.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="92" cy="114.884" r="5" fill="#fff" stroke="#36434f" stroke-width="1.5"/>
+    <path d="M92 118.884v38" fill="none" stroke="#a83a30" stroke-width="1.7" marker-end="url(#crane-weight)"/>
+    <text x="108" y="142.88400000000001" font-size="15" fill="#36434f" >8 oz</text>
+    <path d="M40 312V345M92 162.88400000000001V345" fill="none" stroke="#b7c1c9" stroke-width="1" stroke-dasharray="6 5"/>
+    <path d="M40 341L92 341M40 336L40 346M92 336L92 346" fill="none" stroke="#697580" stroke-width="1.25" />
+    <text x="66" y="369" font-size="18" fill="#36434f" text-anchor="middle" font-weight="600">4 in</text>
+    <text x="125" y="403" font-size="20" fill="#a83a30" text-anchor="middle" font-weight="600">32 oz-in</text>
+    <rect x="261" y="299" width="100" height="25" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <rect x="270" y="308" width="82" height="7" rx="3" fill="none" stroke="#e0e5e8"/>
+    <circle cx="277" cy="315" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="345" cy="315" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="277" cy="308" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="345" cy="308" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <path d="M279,299L344,299" fill="none" stroke="#697580" stroke-width="2" stroke-dasharray="6 5"/>
+    <path d="M344 299 335.904 219.411" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round"/>
+    <path d="M344 299 335.904 219.411" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="342.381" cy="283.082" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="340.762" cy="267.164" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="339.142" cy="251.247" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="337.523" cy="235.329" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <path d="M309.739 273.405 383 122.22" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round"/>
+    <path d="M309.739 273.405 383 122.22" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="324.391" cy="243.168" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="339.043" cy="212.931" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="353.696" cy="182.694" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="368.348" cy="152.457" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <path d="M279 299 309.739 273.405" fill="none" stroke="#3d617e" stroke-width="18" stroke-linecap="round"/>
+    <path d="M279 299 309.739 273.405" fill="none" stroke="#eaf0f5" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="285.148" cy="293.881" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="291.296" cy="288.762" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="297.443" cy="283.643" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="303.591" cy="278.524" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="279" cy="299" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="279" cy="299" r="4" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="344" cy="299" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="344" cy="299" r="4" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="309.739" cy="273.405" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="309.739" cy="273.405" r="3.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="335.904" cy="219.411" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="335.904" cy="219.411" r="3.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="383" cy="122.22" r="5" fill="#fff" stroke="#36434f" stroke-width="1.5"/>
+    <path d="M383 126.22v38" fill="none" stroke="#a83a30" stroke-width="1.7" marker-end="url(#crane-weight)"/>
+    <text x="399" y="150.22" font-size="15" fill="#36434f" >8 oz</text>
+    <path d="M279 312V345M383 170.22V345" fill="none" stroke="#b7c1c9" stroke-width="1" stroke-dasharray="6 5"/>
+    <path d="M279 341L383 341M279 336L279 346M383 336L383 346" fill="none" stroke="#697580" stroke-width="1.25" />
+    <text x="331" y="369" font-size="18" fill="#36434f" text-anchor="middle" font-weight="600">8 in</text>
+    <text x="364" y="403" font-size="20" fill="#a83a30" text-anchor="middle" font-weight="600">64 oz-in</text>
+    <rect x="500" y="299" width="100" height="25" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <rect x="509" y="308" width="82" height="7" rx="3" fill="none" stroke="#e0e5e8"/>
+    <circle cx="516" cy="315" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="584" cy="315" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="516" cy="308" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="584" cy="308" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <path d="M518,299L583,299" fill="none" stroke="#697580" stroke-width="2" stroke-dasharray="6 5"/>
+    <path d="M583 299 577.672 219.178" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round"/>
+    <path d="M583 299 577.672 219.178" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="581.934" cy="283.036" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="580.869" cy="267.071" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="579.803" cy="251.107" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="578.738" cy="235.142" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <path d="M538.6 264.713 648 137.215" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round"/>
+    <path d="M538.6 264.713 648 137.215" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="560.48" cy="239.213" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="582.36" cy="213.714" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="604.24" cy="188.214" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="626.12" cy="162.715" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <path d="M518 299 538.6 264.713" fill="none" stroke="#3d617e" stroke-width="18" stroke-linecap="round"/>
+    <path d="M518 299 538.6 264.713" fill="none" stroke="#eaf0f5" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="522.12" cy="292.143" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="526.24" cy="285.285" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="530.36" cy="278.428" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="534.48" cy="271.57" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="518" cy="299" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="518" cy="299" r="4" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="583" cy="299" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="583" cy="299" r="4" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="538.6" cy="264.713" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="538.6" cy="264.713" r="3.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="577.672" cy="219.178" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="577.672" cy="219.178" r="3.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="648" cy="137.215" r="5" fill="#fff" stroke="#36434f" stroke-width="1.5"/>
+    <path d="M648 141.215v38" fill="none" stroke="#a83a30" stroke-width="1.7" marker-end="url(#crane-weight)"/>
+    <text x="664" y="165.215" font-size="15" fill="#36434f" >8 oz</text>
+    <path d="M518 312V345M648 185.215V345" fill="none" stroke="#b7c1c9" stroke-width="1" stroke-dasharray="6 5"/>
+    <path d="M518 341L648 341M518 336L518 346M648 336L648 346" fill="none" stroke="#697580" stroke-width="1.25" />
+    <text x="583" y="369" font-size="18" fill="#36434f" text-anchor="middle" font-weight="600">10 in</text>
+    <text x="603" y="403" font-size="20" fill="#a83a30" text-anchor="middle" font-weight="600">80 oz-in</text>
+    <text x="360" y="449" font-size="16" fill="#36434f" text-anchor="middle">Load moment about the marked base pivot = 8 oz × horizontal reach.</text>
+    <text x="360" y="475" font-size="15" fill="#697580" text-anchor="middle">The linkage geometry also affects the torque needed at the motor.</text>
+  </g>
+</svg>

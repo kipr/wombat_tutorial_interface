@@ -90,7 +90,7 @@ The angle between an input shaft and an output shaft is the [[SHAFT ANGLE|shaft 
 
 {{< figrow tall=true >}}
 - src: "mech19_gear_45-diagram-01.svg"
-  alt: "Three shaft arrangements compared. At zero degrees the shafts are in line and ordinary gears or a coupling will do. At ninety degrees bevel gears are made for exactly that corner. At forty-five degrees neither fits, and a joint is needed instead."
+  alt: "Three shaft arrangements compared. In-line shafts use a coupling; spur gears use parallel axes. The kit's bevel gears connect shafts at ninety degrees. A universal joint connects shafts at forty-five degrees; the kit's ninety-degree bevel gears do not fit that bend."
   caption: "Gears are manufactured for a particular shaft angle. Between the standard ones, you need a mechanism that bends."
 {{< /figrow >}}
 
@@ -102,7 +102,7 @@ Turn one shaft and the cross carries the twist round to the other, whatever angl
 
 {{< figrow tall=true >}}
 - src: "mech19_gear_45-diagram-02.svg"
-  alt: "Two arrangements. On the left a single universal joint carries drive from a horizontal input shaft to an output shaft at forty-five degrees, and the output speed varies through each turn. On the right two joints are used with an intermediate shaft, and the second joint cancels the variation of the first."
+  alt: "Two arrangements. On the left a single universal joint connects shafts at forty-five degrees, and output speed varies twice per turn. On the right two joints connect parallel end shafts through equal and opposite forty-five-degree bends. The yokes on the middle shaft are aligned so the second joint cancels the first joint's speed variation."
   caption: "One joint gets you round the corner. Two get you round it smoothly."
 {{< /figrow >}}
 

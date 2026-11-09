@@ -1,39 +1,80 @@
-<svg viewBox="0 0 620 300" role="img" aria-label="Two arrangements. On the left a single universal joint carries drive from a horizontal input shaft to an output shaft at forty-five degrees, and the output speed varies through each turn. On the right two joints are used with an intermediate shaft, and the second joint cancels the variation of the first." xmlns="http://www.w3.org/2000/svg">
-        
-        <rect x="8" y="8" width="296" height="284" rx="8" fill="#fff" stroke="#CCC"></rect>
-        <text x="24" y="34" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">ONE JOINT</text>
-
-        <line x1="40" y1="190" x2="130" y2="190" stroke="#888" stroke-width="11" stroke-linecap="round"></line>
-        <circle cx="152" cy="190" r="20" fill="#fff" stroke="#C0392B" stroke-width="3"></circle>
-        <line x1="140" y1="190" x2="164" y2="190" stroke="#C0392B" stroke-width="3"></line>
-        <line x1="152" y1="178" x2="152" y2="202" stroke="#C0392B" stroke-width="3"></line>
-        <line x1="168" y1="174" x2="244" y2="98" stroke="#1F2D5A" stroke-width="11" stroke-linecap="round"></line>
-
-        <text x="70" y="172" font-family="'Barlow',sans-serif" font-size="12" fill="#666">input</text>
-        <text x="212" y="146" font-family="'Barlow',sans-serif" font-size="12" fill="#1F2D5A">output</text>
-        <text x="24" y="240" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#C0392B">The output speeds up and slows</text>
-        <text x="24" y="258" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#C0392B">down twice in every turn.</text>
-        <text x="24" y="278" font-family="'Barlow',sans-serif" font-size="12" fill="#666">The bigger the angle, the worse it gets.</text>
-
-        
-        <rect x="316" y="8" width="296" height="284" rx="8" fill="#fff" stroke="#CCC"></rect>
-        <text x="332" y="34" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">TWO JOINTS</text>
-
-        <line x1="340" y1="212" x2="410" y2="212" stroke="#888" stroke-width="11" stroke-linecap="round"></line>
-        <circle cx="430" cy="212" r="17" fill="#fff" stroke="#C0392B" stroke-width="3"></circle>
-        <line x1="420" y1="212" x2="440" y2="212" stroke="#C0392B" stroke-width="2.5"></line>
-        <line x1="430" y1="202" x2="430" y2="222" stroke="#C0392B" stroke-width="2.5"></line>
-
-        <line x1="444" y1="198" x2="494" y2="148" stroke="#1E8449" stroke-width="11" stroke-linecap="round"></line>
-
-        <circle cx="510" cy="132" r="17" fill="#fff" stroke="#C0392B" stroke-width="3"></circle>
-        <line x1="500" y1="132" x2="520" y2="132" stroke="#C0392B" stroke-width="2.5"></line>
-        <line x1="510" y1="122" x2="510" y2="142" stroke="#C0392B" stroke-width="2.5"></line>
-
-        <line x1="530" y1="132" x2="596" y2="132" stroke="#1F2D5A" stroke-width="11" stroke-linecap="round"></line>
-
-        <text x="452" y="176" font-family="'Barlow',sans-serif" font-size="12" font-weight="600" fill="#1E8449">middle shaft</text>
-        <text x="332" y="240" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1E8449">Equal and opposite bends.</text>
-        <text x="332" y="258" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1E8449">The second joint undoes what</text>
-        <text x="332" y="276" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1E8449">the first one did.</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 535" role="img" aria-labelledby="cardan-joints-title cardan-joints-description">
+  <title id="cardan-joints-title">One Cardan joint varies speed; a phased pair cancels it</title>
+  <desc id="cardan-joints-description">Left: a universal joint has two forked yokes and a cross with perpendicular pin axes, connecting shafts at forty-five degrees. A steady input produces two speed cycles per turn. Right: equal and opposite forty-five-degree bends connect parallel end shafts. The two yokes on the intermediate shaft have aligned trunnion axes, so the second joint cancels the first joint’s speed variation. These are projected mechanism schematics.</desc>
+  <rect width="720" height="535" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="360" y="31" font-size="23" fill="#263340" text-anchor="middle" font-weight="600">A second joint can cancel the speed variation</text>
+    <path d="M360 76V451" fill="none" stroke="#b7c1c9" stroke-width="1" />
+    <text x="24" y="90" font-size="20" fill="#36434f" font-weight="600">ONE JOINT</text>
+    <text x="384" y="90" font-size="20" fill="#36434f" font-weight="600">TWO JOINTS</text>
+    <path d="M45 268L150 268" fill="none" stroke="#36434f" stroke-width="10" stroke-linecap="round"/>
+    <path d="M45 266L150 266" fill="none" stroke="#c9d2d8" stroke-width="2" />
+    <path d="M212 238L300 150" fill="none" stroke="#3d617e" stroke-width="10" stroke-linecap="round"/>
+    <path d="M212 236L300 148" fill="none" stroke="#9eafbf" stroke-width="2" />
+    <path d="M129.5 268L148.25 268" fill="none" stroke="#36434f" stroke-width="12.5" stroke-linecap="round"/>
+    <path d="M145.75 268L148.438 278.563L174.688 278.563" fill="none" stroke="#36434f" stroke-width="6.25" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M145.75 268L163.063 257.438L189.313 257.438" fill="none" stroke="#36434f" stroke-width="6.25" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M219.123 230.877L205.865 244.135" fill="none" stroke="#3d617e" stroke-width="12.5" stroke-linecap="round"/>
+    <path d="M207.633 242.367L189.071 237.948L170.51 256.51" fill="none" stroke="#3d617e" stroke-width="6.25" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M207.633 242.367L212.052 260.929L193.49 279.49" fill="none" stroke="#3d617e" stroke-width="6.25" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M174.688 278.563L189.313 257.438" fill="none" stroke="#a83a30" stroke-width="5" stroke-linecap="round"/>
+    <path d="M170.51 256.51L193.49 279.49" fill="none" stroke="#a83a30" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="182" cy="268" r="3.75" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <circle cx="174.688" cy="278.563" r="3.75" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <circle cx="189.313" cy="257.438" r="3.75" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <circle cx="170.51" cy="256.51" r="3.75" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <circle cx="193.49" cy="279.49" r="3.75" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <text x="79" y="243" font-size="16" fill="#697580" text-anchor="middle">input</text>
+    <text x="277" y="211" font-size="16" fill="#3d617e" text-anchor="middle">output</text>
+    <path d="M182 268H283" fill="none" stroke="#b7c1c9" stroke-width="1" stroke-dasharray="6 5"/>
+    <path d="M247 268A65 65 0 0 0 227.962 222.038" fill="none" stroke="#697580" stroke-width="1.2" />
+    <text x="274" y="251" font-size="16" fill="#697580" text-anchor="middle">45°</text>
+    <text x="183" y="144" font-size="16" fill="#a83a30" text-anchor="middle" font-weight="600">Steady input, uneven output</text>
+    <text x="24" y="359" font-size="16" fill="#a83a30" >The output speeds up and slows</text>
+    <text x="24" y="382" font-size="16" fill="#a83a30" >down twice in every turn.</text>
+    <text x="24" y="418" font-size="15" fill="#697580" >The bigger the angle, the worse it gets.</text>
+    <path d="M388 287L424 287" fill="none" stroke="#36434f" stroke-width="10" stroke-linecap="round"/>
+    <path d="M388 285L424 285" fill="none" stroke="#c9d2d8" stroke-width="2" />
+    <path d="M483.214 258.786L566.786 175.214" fill="none" stroke="#357458" stroke-width="10" stroke-linecap="round"/>
+    <path d="M483.214 256.786L566.786 173.214" fill="none" stroke="#c9d2d8" stroke-width="2" />
+    <path d="M620 147L688 147" fill="none" stroke="#3d617e" stroke-width="10" stroke-linecap="round"/>
+    <path d="M620 145L688 145" fill="none" stroke="#9eafbf" stroke-width="2" />
+    <path d="M415.1 287L429.35 287" fill="none" stroke="#36434f" stroke-width="9.5" stroke-linecap="round"/>
+    <path d="M427.45 287L429.493 295.027L449.442 295.027" fill="none" stroke="#36434f" stroke-width="4.75" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M427.45 287L440.608 278.973L460.558 278.973" fill="none" stroke="#36434f" stroke-width="4.75" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M483.214 258.786L473.137 268.863" fill="none" stroke="#3d617e" stroke-width="9.5" stroke-linecap="round"/>
+    <path d="M474.481 267.519L460.374 264.16L446.267 278.267" fill="none" stroke="#3d617e" stroke-width="4.75" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M474.481 267.519L477.84 281.626L463.733 295.733" fill="none" stroke="#3d617e" stroke-width="4.75" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M449.442 295.027L460.558 278.973" fill="none" stroke="#a83a30" stroke-width="3.8" stroke-linecap="round"/>
+    <path d="M446.267 278.267L463.733 295.733" fill="none" stroke="#a83a30" stroke-width="3.8" stroke-linecap="round"/>
+    <circle cx="455" cy="287" r="2.8499999999999996" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <circle cx="449.442" cy="295.027" r="2.8499999999999996" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <circle cx="460.558" cy="278.973" r="2.8499999999999996" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <circle cx="446.267" cy="278.267" r="2.8499999999999996" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <circle cx="463.733" cy="295.733" r="2.8499999999999996" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <path d="M566.786 175.214L576.863 165.137" fill="none" stroke="#36434f" stroke-width="9.5" stroke-linecap="round"/>
+    <path d="M575.519 166.481L572.16 152.374L586.267 138.267" fill="none" stroke="#36434f" stroke-width="4.75" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M575.519 166.481L589.626 169.84L603.733 155.733" fill="none" stroke="#36434f" stroke-width="4.75" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M634.9 147L620.65 147" fill="none" stroke="#3d617e" stroke-width="9.5" stroke-linecap="round"/>
+    <path d="M622.55 147L609.393 155.028L589.442 155.028" fill="none" stroke="#3d617e" stroke-width="4.75" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M622.55 147L620.508 138.972L600.558 138.972" fill="none" stroke="#3d617e" stroke-width="4.75" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M589.442 155.028L600.558 138.972" fill="none" stroke="#a83a30" stroke-width="3.8" stroke-linecap="round"/>
+    <path d="M586.267 138.267L603.733 155.733" fill="none" stroke="#a83a30" stroke-width="3.8" stroke-linecap="round"/>
+    <circle cx="595" cy="147" r="2.8499999999999996" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <circle cx="589.442" cy="155.028" r="2.8499999999999996" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <circle cx="600.558" cy="138.972" r="2.8499999999999996" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <circle cx="586.267" cy="138.267" r="2.8499999999999996" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <circle cx="603.733" cy="155.733" r="2.8499999999999996" fill="#fff" stroke="#a83a30" stroke-width="1"/>
+    <text x="554" y="248" font-size="16" fill="#357458" text-anchor="middle">middle shaft</text>
+    <text x="398" y="213" font-size="15" fill="#697580" >45°</text>
+    <path d="M426 220 445 260" fill="none" stroke="#b7c1c9" stroke-width="1" />
+    <text x="643" y="212" font-size="15" fill="#697580" >45°</text>
+    <path d="M625 205 610 170" fill="none" stroke="#b7c1c9" stroke-width="1" />
+    <text x="384" y="359" font-size="16" fill="#357458" font-weight="600">Equal and opposite bends.</text>
+    <text x="384" y="382" font-size="16" fill="#357458" >The second joint undoes what</text>
+    <text x="384" y="405" font-size="16" fill="#357458" >the first one did.</text>
+    <text x="384" y="438" font-size="15" fill="#36434f" font-weight="600">Middle-shaft yokes must be aligned.</text>
+    <text x="360" y="483" font-size="15" fill="#697580" text-anchor="middle">Two-joint example: parallel end shafts, equal 45° bends, correctly phased yokes.</text>
+    <text x="360" y="508" font-size="15" fill="#697580" text-anchor="middle">Cross pins are red. Each fork pivots on one of two perpendicular pin axes.</text>
+  </g>
+</svg>
