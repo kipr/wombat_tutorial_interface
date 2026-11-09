@@ -1,41 +1,95 @@
-<svg viewBox="0 0 620 280" role="img" aria-label="A worm with one gear above it and one gear below. The thread pushes both gears in the same direction along the worm, but because it contacts the upper gear at its bottom and the lower gear at its top, the two gears rotate in opposite directions." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="pushA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#1E8449"></path>
-          </marker>
-          <marker id="rotD" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
-          </marker>
-        </defs>
-
-        
-        <rect x="150" y="120" width="290" height="38" rx="4" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></rect>
-        <g stroke="#C0392B" stroke-width="2">
-          <line x1="166" y1="158" x2="188" y2="120"></line><line x1="196" y1="158" x2="218" y2="120"></line>
-          <line x1="226" y1="158" x2="248" y2="120"></line><line x1="256" y1="158" x2="278" y2="120"></line>
-          <line x1="286" y1="158" x2="308" y2="120"></line><line x1="316" y1="158" x2="338" y2="120"></line>
-          <line x1="346" y1="158" x2="368" y2="120"></line><line x1="376" y1="158" x2="398" y2="120"></line>
-        </g>
-        <text x="106" y="145" text-anchor="end" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#C0392B">WORM</text>
-
-        
-        <circle cx="295" cy="78" r="42" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="13.2 13.2"></circle>
-        <circle cx="295" cy="78" r="33" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
-        <circle cx="295" cy="78" r="5" fill="#444"></circle>
-        <path d="M262,44 A44,44 0 0 0 258,96" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rotD)"></path>
-        <text x="180" y="60" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">COUNTER-CW</text>
-
-        
-        <circle cx="295" cy="200" r="42" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="13.2 13.2"></circle>
-        <circle cx="295" cy="200" r="33" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
-        <circle cx="295" cy="200" r="5" fill="#444"></circle>
-        <path d="M328,234 A44,44 0 0 0 332,182" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rotD)"></path>
-        <text x="180" y="228" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">CLOCKWISE</text>
-
-        
-        <line x1="266" y1="112" x2="324" y2="112" stroke="#1E8449" stroke-width="2.5" marker-end="url(#pushA)"></line>
-        <line x1="266" y1="166" x2="324" y2="166" stroke="#1E8449" stroke-width="2.5" marker-end="url(#pushA)"></line>
-        <text x="470" y="106" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1E8449">pushed at its bottom</text>
-        <text x="470" y="176" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1E8449">pushed at its top</text>
-        <text x="470" y="140" font-family="'Barlow',sans-serif" font-size="13" fill="#666">same push, both times</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="worm-pincer-concept-title worm-pincer-concept-description">
+  <title id="worm-pincer-concept-title">The same push turns two gears in opposite directions</title>
+  <desc id="worm-pincer-concept-description">A horizontal worm meshes with one wheel above it and another below. For the direction shown, the screw pushes both contact points right. The upper gear is pushed at its bottom and turns counterclockwise; the lower gear is pushed at its top and turns clockwise. The wheels do not touch each other.</desc>
+  <defs>
+    <path id="pincer-wheel-16" d="M53.515 -7.219Q53.679 -5.879 59.783 -6.547 L62.796 -6.236 L65.853 -5.353 L68.916 -4.05 L71.961 -2.374 A72 72 0 0 1 71.961 2.374
+       L68.916 4.05 L65.853 5.353 L62.796 6.236 L59.783 6.547 Q53.679 5.879 53.515 7.219A54 54 0 0 1 52.204 13.81 L52.204 13.81Q51.843 15.111 57.738 16.829 L60.403 18.27 L62.889 20.256 L65.22 22.631 L67.392 25.345 A72 72 0 0 1 65.575 29.732
+       L62.12 30.115 L58.792 30.146 L55.63 29.792 L52.727 28.927 Q47.343 25.973 46.679 27.149A54 54 0 0 1 42.945 32.737 L42.945 32.737Q42.114 33.8 46.902 37.643 L48.813 39.994 L50.35 42.78 L51.595 45.867 L52.563 49.205 A72 72 0 0 1 49.205 52.563
+       L45.867 51.595 L42.78 50.35 L39.994 48.813 L37.643 46.902 Q33.8 42.114 32.737 42.945A54 54 0 0 1 27.149 46.679 L27.149 46.679Q25.973 47.343 28.927 52.727 L29.792 55.63 L30.146 58.792 L30.115 62.12 L29.732 65.575 A72 72 0 0 1 25.345 67.392
+       L22.631 65.22 L20.256 62.889 L18.27 60.403 L16.829 57.738 Q15.111 51.843 13.81 52.204A54 54 0 0 1 7.219 53.515 L7.219 53.515Q5.879 53.679 6.547 59.783 L6.236 62.796 L5.353 65.853 L4.05 68.916 L2.374 71.961 A72 72 0 0 1 -2.374 71.961
+       L-4.05 68.916 L-5.353 65.853 L-6.236 62.796 L-6.547 59.783 Q-5.879 53.679 -7.219 53.515A54 54 0 0 1 -13.81 52.204 L-13.81 52.204Q-15.111 51.843 -16.829 57.738 L-18.27 60.403 L-20.256 62.889 L-22.631 65.22 L-25.345 67.392 A72 72 0 0 1 -29.732 65.575
+       L-30.115 62.12 L-30.146 58.792 L-29.792 55.63 L-28.927 52.727 Q-25.973 47.343 -27.149 46.679A54 54 0 0 1 -32.737 42.945 L-32.737 42.945Q-33.8 42.114 -37.643 46.902 L-39.994 48.813 L-42.78 50.35 L-45.867 51.595 L-49.205 52.563 A72 72 0 0 1 -52.563 49.205
+       L-51.595 45.867 L-50.35 42.78 L-48.813 39.994 L-46.902 37.643 Q-42.114 33.8 -42.945 32.737A54 54 0 0 1 -46.679 27.149 L-46.679 27.149Q-47.343 25.973 -52.727 28.927 L-55.63 29.792 L-58.792 30.146 L-62.12 30.115 L-65.575 29.732 A72 72 0 0 1 -67.392 25.345
+       L-65.22 22.631 L-62.889 20.256 L-60.403 18.27 L-57.738 16.829 Q-51.843 15.111 -52.204 13.81A54 54 0 0 1 -53.515 7.219 L-53.515 7.219Q-53.679 5.879 -59.783 6.547 L-62.796 6.236 L-65.853 5.353 L-68.916 4.05 L-71.961 2.374 A72 72 0 0 1 -71.961 -2.374
+       L-68.916 -4.05 L-65.853 -5.353 L-62.796 -6.236 L-59.783 -6.547 Q-53.679 -5.879 -53.515 -7.219A54 54 0 0 1 -52.204 -13.81 L-52.204 -13.81Q-51.843 -15.111 -57.738 -16.829 L-60.403 -18.27 L-62.889 -20.256 L-65.22 -22.631 L-67.392 -25.345 A72 72 0 0 1 -65.575 -29.732
+       L-62.12 -30.115 L-58.792 -30.146 L-55.63 -29.792 L-52.727 -28.927 Q-47.343 -25.973 -46.679 -27.149A54 54 0 0 1 -42.945 -32.737 L-42.945 -32.737Q-42.114 -33.8 -46.902 -37.643 L-48.813 -39.994 L-50.35 -42.78 L-51.595 -45.867 L-52.563 -49.205 A72 72 0 0 1 -49.205 -52.563
+       L-45.867 -51.595 L-42.78 -50.35 L-39.994 -48.813 L-37.643 -46.902 Q-33.8 -42.114 -32.737 -42.945A54 54 0 0 1 -27.149 -46.679 L-27.149 -46.679Q-25.973 -47.343 -28.927 -52.727 L-29.792 -55.63 L-30.146 -58.792 L-30.115 -62.12 L-29.732 -65.575 A72 72 0 0 1 -25.345 -67.392
+       L-22.631 -65.22 L-20.256 -62.889 L-18.27 -60.403 L-16.829 -57.738 Q-15.111 -51.843 -13.81 -52.204A54 54 0 0 1 -7.219 -53.515 L-7.219 -53.515Q-5.879 -53.679 -6.547 -59.783 L-6.236 -62.796 L-5.353 -65.853 L-4.05 -68.916 L-2.374 -71.961 A72 72 0 0 1 2.374 -71.961
+       L4.05 -68.916 L5.353 -65.853 L6.236 -62.796 L6.547 -59.783 Q5.879 -53.679 7.219 -53.515A54 54 0 0 1 13.81 -52.204 L13.81 -52.204Q15.111 -51.843 16.829 -57.738 L18.27 -60.403 L20.256 -62.889 L22.631 -65.22 L25.345 -67.392 A72 72 0 0 1 29.732 -65.575
+       L30.115 -62.12 L30.146 -58.792 L29.792 -55.63 L28.927 -52.727 Q25.973 -47.343 27.149 -46.679A54 54 0 0 1 32.737 -42.945 L32.737 -42.945Q33.8 -42.114 37.643 -46.902 L39.994 -48.813 L42.78 -50.35 L45.867 -51.595 L49.205 -52.563 A72 72 0 0 1 52.563 -49.205
+       L51.595 -45.867 L50.35 -42.78 L48.813 -39.994 L46.902 -37.643 Q42.114 -33.8 42.945 -32.737A54 54 0 0 1 46.679 -27.149 L46.679 -27.149Q47.343 -25.973 52.727 -28.927 L55.63 -29.792 L58.792 -30.146 L62.12 -30.115 L65.575 -29.732 A72 72 0 0 1 67.392 -25.345
+       L65.22 -22.631 L62.889 -20.256 L60.403 -18.27 L57.738 -16.829 Q51.843 -15.111 52.204 -13.81A54 54 0 0 1 53.515 -7.219Z"/>
+    <clipPath id="concept-worm-clip">
+      <rect x="183" y="238" width="232" height="44" rx="22"/>
+    </clipPath>
+    <g id="concept-worm">
+      <rect x="183" y="248.12" width="232" height="23.76" rx="11.88" fill="#fae8e3" stroke="#a83a30" stroke-width="1.5"/>
+      <g clip-path="url(#concept-worm-clip)" fill="#fae8e3" stroke="#a83a30" stroke-width="1.5">
+        <path d="M157.867 282C164.15 280 171.69 240 177.973 238H185.01C178.727 240 171.187 280 164.904 282Z"/>
+        <path d="M183 282C189.283 280 196.823 240 203.106 238H210.143C203.86 240 196.32 280 190.037 282Z"/>
+        <path d="M208.133 282C214.416 280 221.956 240 228.239 238H235.276C228.993 240 221.453 280 215.17 282Z"/>
+        <path d="M233.265 282C239.548 280 247.088 240 253.371 238H260.408C254.125 240 246.585 280 240.302 282Z"/>
+        <path d="M258.398 282C264.681 280 272.221 240 278.504 238H285.541C279.258 240 271.718 280 265.435 282Z"/>
+        <path d="M283.531 282C289.814 280 297.354 240 303.637 238H310.674C304.391 240 296.851 280 290.568 282Z"/>
+        <path d="M308.664 282C314.947 280 322.487 240 328.77 238H335.807C329.524 240 321.984 280 315.701 282Z"/>
+        <path d="M333.796 282C340.079 280 347.619 240 353.902 238H360.939C354.656 240 347.116 280 340.833 282Z"/>
+        <path d="M358.929 282C365.212 280 372.752 240 379.035 238H386.072C379.789 240 372.249 280 365.966 282Z"/>
+        <path d="M384.062 282C390.345 280 397.885 240 404.168 238H411.205C404.922 240 397.382 280 391.099 282Z"/>
+        <path d="M409.195 282C415.478 280 423.018 240 429.301 238H436.338C430.055 240 422.515 280 416.232 282Z"/>
+        <path d="M434.327 282C440.61 280 448.15 240 454.433 238H461.47C455.187 240 447.647 280 441.364 282Z"/>
+      </g>
+      <ellipse cx="408" cy="260" rx="7" ry="11.88" fill="#e9edf0" stroke="#a83a30" stroke-width="1.25"/>
+    </g>
+    <marker id="pincer-concept-rotation" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#a83a30"/>
+    </marker>
+    <marker id="pincer-concept-push" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#357458"/>
+    </marker>
+  </defs>
+  <rect width="720" height="480" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="24" y="30" font-size="23" fill="#263340" font-weight="600">Same push. Opposite sides. Opposite turns.</text>
+    <text x="24" y="55" font-size="15" fill="#697580">The worm does the driving. The two wheels never touch each other.</text>
+    <!-- Pitch 64, tip 72, center-to-worm distance 86; worm lead 25.133.
+         Phase the upper wheel 4.5° so both meshes seat teeth between threads. -->
+    <g transform="translate(300 174)">
+      <use href="#pincer-wheel-16" transform="rotate(94.5)" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle cx="0" cy="0" r="46.08" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+      <circle cx="30.72" cy="0" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="30.72" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="-30.72" cy="0" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="-30.72" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="0" r="13" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+      <path d="M-3 -8H3V-3H8V3H3V8H-3V3H-8V-3H-3Z" fill="#36434f"/>
+    </g>
+    <g transform="translate(300 346)">
+      <use href="#pincer-wheel-16" transform="rotate(-90)" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle cx="0" cy="0" r="46.08" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+      <circle cx="30.72" cy="0" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="30.72" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="-30.72" cy="0" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="-30.72" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="0" r="13" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+      <path d="M-3 -8H3V-3H8V3H3V8H-3V3H-8V-3H-3Z" fill="#36434f"/>
+    </g>
+    <path d="M145 260H448" fill="none" stroke="#b7c1c9" stroke-width="1" stroke-dasharray="7 5"/>
+    <use href="#concept-worm"/>
+    <text x="52" y="266" font-size="18" fill="#a83a30" font-weight="600">WORM</text>
+    <path d="M123 260H177" fill="none" stroke="#a83a30" stroke-width="1.25"/>
+    <path d="M368.944 116.149A90 90 0 0 0 231.056 116.149" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#pincer-concept-rotation)"/>
+    <path d="M368.944 403.851A90 90 0 0 1 231.056 403.851" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#pincer-concept-rotation)"/>
+    <text x="39" y="169" font-size="17" fill="#a83a30" font-weight="600">COUNTER-CW</text>
+    <text x="39" y="191" font-size="14" fill="#697580">upper gear</text>
+    <text x="39" y="351" font-size="17" fill="#a83a30" font-weight="600">CLOCKWISE</text>
+    <text x="39" y="373" font-size="14" fill="#697580">lower gear</text>
+    <path d="M283 239H437" fill="none" stroke="#357458" stroke-width="2.5" marker-end="url(#pincer-concept-push)"/>
+    <path d="M283 281H437" fill="none" stroke="#357458" stroke-width="2.5" marker-end="url(#pincer-concept-push)"/>
+    <text x="470" y="185" font-size="16" fill="#357458">pushed at its bottom</text>
+    <path d="M394 239 453 190" fill="none" stroke="#357458" stroke-width="1.25"/>
+    <text x="470" y="265" font-size="16" fill="#357458" font-weight="600">same push, both times</text>
+    <text x="470" y="343" font-size="16" fill="#357458">pushed at its top</text>
+    <path d="M394 281 453 337" fill="none" stroke="#357458" stroke-width="1.25"/>
+    <text x="167" y="463" font-size="16" fill="#36434f">Reverse the worm to reverse both gears.</text>
+  </g>
+</svg>

@@ -1,48 +1,112 @@
-<svg viewBox="0 0 620 300" role="img" aria-label="Side view. A motor lies flat on the table driving a worm. The worm turns a wheel whose shaft points straight up. An arm on that shaft carries a marker down onto the paper, where it traces a circle." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="rotC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
-          </marker>
-        </defs>
-
-        
-        <line x1="30" y1="248" x2="592" y2="248" stroke="#1C1C1C" stroke-width="3"></line>
-        
-        <rect x="200" y="238" width="360" height="10" fill="#F8F8F8" stroke="#CCC" stroke-width="1"></rect>
-        <text x="70" y="268" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">table</text>
-
-        
-        <ellipse cx="356" cy="243" rx="146" ry="26" fill="none" stroke="#C0392B" stroke-width="2" stroke-dasharray="9 6"></ellipse>
-
-        
-        <rect x="86" y="200" width="94" height="46" rx="4" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <text x="133" y="228" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">MOTOR</text>
-        <text x="133" y="188" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">lies flat</text>
-
-        
-        <rect x="180" y="210" width="104" height="28" rx="3" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></rect>
-        <g stroke="#C0392B" stroke-width="1.8">
-          <line x1="192" y1="238" x2="208" y2="210"></line><line x1="212" y1="238" x2="228" y2="210"></line>
-          <line x1="232" y1="238" x2="248" y2="210"></line><line x1="252" y1="238" x2="268" y2="210"></line>
-        </g>
-
-        
-        <ellipse cx="322" cy="224" rx="42" ry="13" fill="#fff" stroke="#1C1C1C" stroke-width="3"></ellipse>
-        <text x="322" y="196" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">worm wheel</text>
-
-        
-        <line x1="322" y1="224" x2="322" y2="128" stroke="#444" stroke-width="6"></line>
-        <text x="286" y="120" text-anchor="end" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">shaft points</text>
-        <text x="286" y="136" text-anchor="end" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">straight up</text>
-
-        
-        <line x1="322" y1="132" x2="500" y2="132" stroke="#888" stroke-width="8" stroke-linecap="round"></line>
-        
-        <rect x="491" y="132" width="18" height="106" rx="3" fill="#C0392B" stroke="#922B21" stroke-width="2"></rect>
-        <text x="530" y="176" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">MARKER</text>
-        <text x="530" y="194" font-family="'Barlow',sans-serif" font-size="12.5" fill="#C0392B">held by rubber bands</text>
-
-        
-        <path d="M356,110 A56,56 0 0 1 424,102" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rotC)"></path>
-        <text x="392" y="86" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#C0392B">more than 60 seconds per turn</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 530" role="img" aria-labelledby="circle-drawer-title circle-drawer-description">
+  <title id="circle-drawer-title">A horizontal motor turns a vertical shaft to draw a circle</title>
+  <desc id="circle-drawer-description">Side view, with the paper and wheel shown in perspective. A motor rests flat on the table. Its worm meshes with the front rim of a wheel on a vertical shaft. An arm on that shaft holds a marker with rubber bands. The marker tip touches the paper at the end of a circular path centered on the shaft. The fixed arm length sets the radius; the goal is more than 60 seconds per turn.</desc>
+  <defs>
+    <path id="drawer-wheel" d="M64.169 -6.526Q64.312 -4.92 67.461 -5.161 L70.074 -4.873 L72.71 -4.155 L75.35 -3.129 L77.978 -1.834 A78 78 0 0 1 77.978 1.834
+       L75.35 3.129 L72.71 4.155 L70.074 4.873 L67.461 5.161 Q64.312 4.92 64.169 6.526A64.5 64.5 0 0 1 63.672 10.304 L63.672 10.304Q63.394 11.893 66.498 12.475 L68.948 13.43 L71.308 14.805 L73.592 16.479 L75.796 18.41 A78 78 0 0 1 74.847 21.954
+       L71.972 22.525 L69.157 22.832 L66.425 22.844 L63.826 22.445 Q60.847 21.398 60.293 22.912A64.5 64.5 0 0 1 58.835 26.433 L58.835 26.433Q58.156 27.895 61.003 29.261 L63.123 30.817 L65.047 32.757 L66.819 34.965 L68.449 37.401 A78 78 0 0 1 66.614 40.578
+       L63.69 40.385 L60.891 39.954 L58.25 39.257 L55.842 38.2 Q53.236 36.417 52.309 37.736A64.5 64.5 0 0 1 49.989 40.76 L49.989 40.76Q48.955 41.996 51.351 44.053 L52.996 46.104 L54.352 48.476 L55.493 51.067 L56.436 53.842 A78 78 0 0 1 53.842 56.436
+       L51.067 55.493 L48.476 54.352 L46.104 52.996 L44.053 51.351 Q41.996 48.955 40.76 49.989A64.5 64.5 0 0 1 37.736 52.309 L37.736 52.309Q36.417 53.236 38.2 55.842 L39.257 58.25 L39.954 60.891 L40.385 63.69 L40.578 66.614 A78 78 0 0 1 37.401 68.449
+       L34.965 66.819 L32.757 65.047 L30.817 63.123 L29.261 61.003 Q27.895 58.156 26.433 58.835A64.5 64.5 0 0 1 22.912 60.293 L22.912 60.293Q21.398 60.847 22.445 63.826 L22.844 66.425 L22.832 69.157 L22.525 71.972 L21.954 74.847 A78 78 0 0 1 18.41 75.796
+       L16.479 73.592 L14.805 71.308 L13.43 68.948 L12.475 66.498 Q11.893 63.394 10.304 63.672A64.5 64.5 0 0 1 6.526 64.169 L6.526 64.169Q4.92 64.312 5.161 67.461 L4.873 70.074 L4.155 72.71 L3.129 75.35 L1.834 77.978 A78 78 0 0 1 -1.834 77.978
+       L-3.129 75.35 L-4.155 72.71 L-4.873 70.074 L-5.161 67.461 Q-4.92 64.312 -6.526 64.169A64.5 64.5 0 0 1 -10.304 63.672 L-10.304 63.672Q-11.893 63.394 -12.475 66.498 L-13.43 68.948 L-14.805 71.308 L-16.479 73.592 L-18.41 75.796 A78 78 0 0 1 -21.954 74.847
+       L-22.525 71.972 L-22.832 69.157 L-22.844 66.425 L-22.445 63.826 Q-21.398 60.847 -22.912 60.293A64.5 64.5 0 0 1 -26.433 58.835 L-26.433 58.835Q-27.895 58.156 -29.261 61.003 L-30.817 63.123 L-32.757 65.047 L-34.965 66.819 L-37.401 68.449 A78 78 0 0 1 -40.578 66.614
+       L-40.385 63.69 L-39.954 60.891 L-39.257 58.25 L-38.2 55.842 Q-36.417 53.236 -37.736 52.309A64.5 64.5 0 0 1 -40.76 49.989 L-40.76 49.989Q-41.996 48.955 -44.053 51.351 L-46.104 52.996 L-48.476 54.352 L-51.067 55.493 L-53.842 56.436 A78 78 0 0 1 -56.436 53.842
+       L-55.493 51.067 L-54.352 48.476 L-52.996 46.104 L-51.351 44.053 Q-48.955 41.996 -49.989 40.76A64.5 64.5 0 0 1 -52.309 37.736 L-52.309 37.736Q-53.236 36.417 -55.842 38.2 L-58.25 39.257 L-60.891 39.954 L-63.69 40.385 L-66.614 40.578 A78 78 0 0 1 -68.449 37.401
+       L-66.819 34.965 L-65.047 32.757 L-63.123 30.817 L-61.003 29.261 Q-58.156 27.895 -58.835 26.433A64.5 64.5 0 0 1 -60.293 22.912 L-60.293 22.912Q-60.847 21.398 -63.826 22.445 L-66.425 22.844 L-69.157 22.832 L-71.972 22.525 L-74.847 21.954 A78 78 0 0 1 -75.796 18.41
+       L-73.592 16.479 L-71.308 14.805 L-68.948 13.43 L-66.498 12.475 Q-63.394 11.893 -63.672 10.304A64.5 64.5 0 0 1 -64.169 6.526 L-64.169 6.526Q-64.312 4.92 -67.461 5.161 L-70.074 4.873 L-72.71 4.155 L-75.35 3.129 L-77.978 1.834 A78 78 0 0 1 -77.978 -1.834
+       L-75.35 -3.129 L-72.71 -4.155 L-70.074 -4.873 L-67.461 -5.161 Q-64.312 -4.92 -64.169 -6.526A64.5 64.5 0 0 1 -63.672 -10.304 L-63.672 -10.304Q-63.394 -11.893 -66.498 -12.475 L-68.948 -13.43 L-71.308 -14.805 L-73.592 -16.479 L-75.796 -18.41 A78 78 0 0 1 -74.847 -21.954
+       L-71.972 -22.525 L-69.157 -22.832 L-66.425 -22.844 L-63.826 -22.445 Q-60.847 -21.398 -60.293 -22.912A64.5 64.5 0 0 1 -58.835 -26.433 L-58.835 -26.433Q-58.156 -27.895 -61.003 -29.261 L-63.123 -30.817 L-65.047 -32.757 L-66.819 -34.965 L-68.449 -37.401 A78 78 0 0 1 -66.614 -40.578
+       L-63.69 -40.385 L-60.891 -39.954 L-58.25 -39.257 L-55.842 -38.2 Q-53.236 -36.417 -52.309 -37.736A64.5 64.5 0 0 1 -49.989 -40.76 L-49.989 -40.76Q-48.955 -41.996 -51.351 -44.053 L-52.996 -46.104 L-54.352 -48.476 L-55.493 -51.067 L-56.436 -53.842 A78 78 0 0 1 -53.842 -56.436
+       L-51.067 -55.493 L-48.476 -54.352 L-46.104 -52.996 L-44.053 -51.351 Q-41.996 -48.955 -40.76 -49.989A64.5 64.5 0 0 1 -37.736 -52.309 L-37.736 -52.309Q-36.417 -53.236 -38.2 -55.842 L-39.257 -58.25 L-39.954 -60.891 L-40.385 -63.69 L-40.578 -66.614 A78 78 0 0 1 -37.401 -68.449
+       L-34.965 -66.819 L-32.757 -65.047 L-30.817 -63.123 L-29.261 -61.003 Q-27.895 -58.156 -26.433 -58.835A64.5 64.5 0 0 1 -22.912 -60.293 L-22.912 -60.293Q-21.398 -60.847 -22.445 -63.826 L-22.844 -66.425 L-22.832 -69.157 L-22.525 -71.972 L-21.954 -74.847 A78 78 0 0 1 -18.41 -75.796
+       L-16.479 -73.592 L-14.805 -71.308 L-13.43 -68.948 L-12.475 -66.498 Q-11.893 -63.394 -10.304 -63.672A64.5 64.5 0 0 1 -6.526 -64.169 L-6.526 -64.169Q-4.92 -64.312 -5.161 -67.461 L-4.873 -70.074 L-4.155 -72.71 L-3.129 -75.35 L-1.834 -77.978 A78 78 0 0 1 1.834 -77.978
+       L3.129 -75.35 L4.155 -72.71 L4.873 -70.074 L5.161 -67.461 Q4.92 -64.312 6.526 -64.169A64.5 64.5 0 0 1 10.304 -63.672 L10.304 -63.672Q11.893 -63.394 12.475 -66.498 L13.43 -68.948 L14.805 -71.308 L16.479 -73.592 L18.41 -75.796 A78 78 0 0 1 21.954 -74.847
+       L22.525 -71.972 L22.832 -69.157 L22.844 -66.425 L22.445 -63.826 Q21.398 -60.847 22.912 -60.293A64.5 64.5 0 0 1 26.433 -58.835 L26.433 -58.835Q27.895 -58.156 29.261 -61.003 L30.817 -63.123 L32.757 -65.047 L34.965 -66.819 L37.401 -68.449 A78 78 0 0 1 40.578 -66.614
+       L40.385 -63.69 L39.954 -60.891 L39.257 -58.25 L38.2 -55.842 Q36.417 -53.236 37.736 -52.309A64.5 64.5 0 0 1 40.76 -49.989 L40.76 -49.989Q41.996 -48.955 44.053 -51.351 L46.104 -52.996 L48.476 -54.352 L51.067 -55.493 L53.842 -56.436 A78 78 0 0 1 56.436 -53.842
+       L55.493 -51.067 L54.352 -48.476 L52.996 -46.104 L51.351 -44.053 Q48.955 -41.996 49.989 -40.76A64.5 64.5 0 0 1 52.309 -37.736 L52.309 -37.736Q53.236 -36.417 55.842 -38.2 L58.25 -39.257 L60.891 -39.954 L63.69 -40.385 L66.614 -40.578 A78 78 0 0 1 68.449 -37.401
+       L66.819 -34.965 L65.047 -32.757 L63.123 -30.817 L61.003 -29.261 Q58.156 -27.895 58.835 -26.433A64.5 64.5 0 0 1 60.293 -22.912 L60.293 -22.912Q60.847 -21.398 63.826 -22.445 L66.425 -22.844 L69.157 -22.832 L71.972 -22.525 L74.847 -21.954 A78 78 0 0 1 75.796 -18.41
+       L73.592 -16.479 L71.308 -14.805 L68.948 -13.43 L66.498 -12.475 Q63.394 -11.893 63.672 -10.304A64.5 64.5 0 0 1 64.169 -6.526Z"/>
+    <clipPath id="drawer-worm-clip">
+      <rect x="243" y="376" width="218" height="28" rx="14"/>
+    </clipPath>
+    <g id="drawer-worm">
+      <rect x="243" y="382.44" width="218" height="15.120000000000001" rx="7.5600000000000005" fill="#fae8e3" stroke="#a83a30" stroke-width="1.5"/>
+      <g clip-path="url(#drawer-worm-clip)" fill="#fae8e3" stroke="#a83a30" stroke-width="1.5">
+        <path d="M224.15 404C228.862 402 234.517 378 239.23 376H244.508C239.795 378 234.14 402 229.428 404Z"/>
+        <path d="M243 404C247.712 402 253.367 378 258.08 376H263.358C258.645 378 252.99 402 248.278 404Z"/>
+        <path d="M261.85 404C266.562 402 272.217 378 276.93 376H282.208C277.495 378 271.84 402 267.128 404Z"/>
+        <path d="M280.699 404C285.411 402 291.066 378 295.779 376H301.057C296.344 378 290.689 402 285.977 404Z"/>
+        <path d="M299.549 404C304.261 402 309.916 378 314.629 376H319.907C315.194 378 309.539 402 304.827 404Z"/>
+        <path d="M318.398 404C323.11 402 328.765 378 333.478 376H338.756C334.043 378 328.388 402 323.676 404Z"/>
+        <path d="M337.248 404C341.96 402 347.615 378 352.328 376H357.606C352.893 378 347.238 402 342.526 404Z"/>
+        <path d="M356.097 404C360.809 402 366.464 378 371.177 376H376.455C371.742 378 366.087 402 361.375 404Z"/>
+        <path d="M374.947 404C379.659 402 385.314 378 390.027 376H395.305C390.592 378 384.937 402 380.225 404Z"/>
+        <path d="M393.796 404C398.508 402 404.163 378 408.876 376H414.154C409.441 378 403.786 402 399.074 404Z"/>
+        <path d="M412.646 404C417.358 402 423.013 378 427.726 376H433.004C428.291 378 422.636 402 417.924 404Z"/>
+        <path d="M431.496 404C436.208 402 441.863 378 446.576 376H451.854C447.141 378 441.486 402 436.774 404Z"/>
+        <path d="M450.345 404C455.057 402 460.712 378 465.425 376H470.703C465.99 378 460.335 402 455.623 404Z"/>
+        <path d="M469.195 404C473.907 402 479.562 378 484.275 376H489.553C484.84 378 479.185 402 474.473 404Z"/>
+      </g>
+      <ellipse cx="454" cy="390" rx="7" ry="7.5600000000000005" fill="#e9edf0" stroke="#a83a30" stroke-width="1.25"/>
+    </g>
+    <marker id="drawer-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#a83a30"/>
+    </marker>
+  </defs>
+  <rect width="720" height="530" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="24" y="30" font-size="23" fill="#263340" font-weight="600">A flat motor. A vertical shaft. A circle.</text>
+    <text x="24" y="55" font-size="14" fill="#697580">SIDE VIEW · Paper and wheel shown in perspective</text>
+    <path d="M202 418H676L657 474H183Z" fill="#fafbfc" stroke="#b7c1c9" stroke-width="1.25"/>
+    <ellipse cx="400" cy="444" rx="190" ry="22" fill="none" stroke="#a83a30" stroke-width="1.75" stroke-dasharray="6 5"/>
+    <path d="M28 479H696" fill="none" stroke="#36434f" stroke-width="2"/>
+    <text x="47" y="502" font-size="14" fill="#697580">table</text>
+    <text x="649" y="456" font-size="13" fill="#697580" text-anchor="end">paper</text>
+    <rect x="386" y="398" width="28" height="43" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <rect x="369" y="441" width="62" height="10" rx="2" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <circle cx="377" cy="446" r="2" fill="#fff" stroke="#697580" stroke-width="1"/>
+    <circle cx="423" cy="446" r="2" fill="#fff" stroke="#697580" stroke-width="1"/>
+    <path d="M322 374V383A78 17 0 0 0 478 383V374" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <g transform="translate(400 374) scale(1 .22)">
+      <use href="#drawer-wheel" fill="#f3f5f6" stroke="#36434f" stroke-width="3"/>
+      <circle r="52" fill="none" stroke="#b7c1c9" stroke-width="4"/>
+    </g>
+    <path d="M400 374V150" fill="none" stroke="#36434f" stroke-width="9"/>
+    <path d="M397 369V157" fill="none" stroke="#b7c1c9" stroke-width="2"/>
+    <path d="M180 390H243" fill="none" stroke="#36434f" stroke-width="8"/>
+    <rect x="60" y="366" width="120" height="79" rx="5" fill="#e9edf0" stroke="#36434f" stroke-width="1.5"/>
+    <path d="M68 374H171V437" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+    <path d="M68 376V435" fill="none" stroke="#697580" stroke-width="2"/>
+    <text x="120" y="411.5" font-size="17" fill="#36434f" text-anchor="middle" font-weight="600">MOTOR</text>
+    <text x="120" y="351" font-size="15" fill="#697580" text-anchor="middle">lies flat</text>
+    <use href="#drawer-worm"/>
+    <path d="M400 150 590 150" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round"/>
+    <path d="M400 150 590 150" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="438" cy="150" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="476" cy="150" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="514" cy="150" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="552" cy="150" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="400" cy="150" r="12" fill="#e9edf0" stroke="#36434f" stroke-width="1.5"/>
+    <rect x="581" y="158" width="18" height="274" rx="4" fill="#fae8e3" stroke="#a83a30" stroke-width="1.75"/>
+    <path d="M581 432 590 444 599 432Z" fill="#a83a30"/>
+    <path d="M585 165V425" fill="none" stroke="#fff" stroke-width="2"/>
+    <g fill="none" stroke="#b4822b" stroke-width="2">
+      <ellipse cx="590" cy="188" rx="13" ry="4"/>
+      <ellipse cx="590" cy="202" rx="13" ry="4"/>
+    </g>
+    <text x="133" y="239" font-size="16" fill="#697580">shaft points</text>
+    <text x="133" y="261" font-size="16" fill="#697580">straight up</text>
+    <path d="M241 247H325L393 267" fill="none" stroke="#697580" stroke-width="1.25"/>
+    <text x="454" y="314" font-size="16" fill="#697580">worm wheel</text>
+    <path d="M498 322 454 363" fill="none" stroke="#697580" stroke-width="1.25"/>
+    <text x="472" y="248" font-size="18" fill="#a83a30" font-weight="600">MARKER</text>
+    <text x="448" y="271" font-size="14" fill="#a83a30">held by rubber bands</text>
+    <path d="M556 255 578 206" fill="none" stroke="#a83a30" stroke-width="1.25"/>
+    <path d="M421 118Q493 92 557 121" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#drawer-arrow)"/>
+    <text x="400" y="91" font-size="17" fill="#a83a30">more than 60 seconds per turn</text>
+    <text x="242" y="348" font-size="14" fill="#a83a30">Worm</text>
+    <path d="M278 352 301 375" fill="none" stroke="#a83a30" stroke-width="1.25"/>
+    <text x="264" y="508" font-size="16" fill="#36434f">Keep the arm length fixed to keep the circle round.</text>
+  </g>
+</svg>

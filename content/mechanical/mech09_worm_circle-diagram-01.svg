@@ -1,48 +1,104 @@
-<svg viewBox="0 0 620 300" role="img" aria-label="Top view of a worm gear set. A motor turns a threaded worm whose axis runs left to right. The worm meshes with the rim of a toothed wheel whose axis points straight up out of the surface. One full turn of the worm advances the wheel by exactly one tooth." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="axA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#888"></path>
-          </marker>
-          <marker id="rotB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
-          </marker>
-        </defs>
-
-        
-        <circle cx="400" cy="176" r="82" fill="#fff" stroke="#1C1C1C" stroke-width="7" stroke-dasharray="10.7 10.7"></circle>
-        <circle cx="400" cy="176" r="70" fill="#fff" stroke="#CCC" stroke-width="1.5"></circle>
-        <circle cx="400" cy="176" r="7" fill="#C0392B"></circle>
-        <text x="400" y="182" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#888">24 teeth</text>
-
-        
-        <rect x="70" y="66" width="86" height="56" rx="4" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <text x="113" y="100" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">MOTOR</text>
-
-        
-        <rect x="156" y="76" width="180" height="36" rx="4" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></rect>
-        <g stroke="#C0392B" stroke-width="2">
-          <line x1="172" y1="112" x2="192" y2="76"></line><line x1="196" y1="112" x2="216" y2="76"></line>
-          <line x1="220" y1="112" x2="240" y2="76"></line><line x1="244" y1="112" x2="264" y2="76"></line>
-          <line x1="268" y1="112" x2="288" y2="76"></line><line x1="292" y1="112" x2="312" y2="76"></line>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="worm-drive-title worm-drive-description">
+  <title id="worm-drive-title">One turn of the worm advances the wheel by one tooth</title>
+  <desc id="worm-drive-description">Top view of a motor driving a horizontal single-start worm, meshed with a 24-tooth wheel. The worm axis runs left to right. A dot in a circle marks the wheel axis pointing out of the table, perpendicular to the worm axis. Twenty-four worm turns produce one complete wheel turn: a 24 to 1 reduction.</desc>
+  <defs>
+    <path id="worm-wheel-24" d="M77.538 -7.886Q77.71 -5.945 81.515 -6.236 L84.673 -5.888 L87.858 -5.021 L91.047 -3.781 L94.224 -2.217 A94.25 94.25 0 0 1 94.224 2.217
+       L91.047 3.781 L87.858 5.021 L84.673 5.888 L81.515 6.236 Q77.71 5.945 77.538 7.886A77.938 77.938 0 0 1 76.936 12.451 L76.936 12.451Q76.601 14.37 80.352 15.074 L83.312 16.227 L86.164 17.89 L88.924 19.912 L91.587 22.246 A94.25 94.25 0 0 1 90.44 26.528
+       L86.966 27.217 L83.565 27.589 L80.264 27.603 L77.123 27.121 Q73.524 25.855 72.855 27.685A77.938 77.938 0 0 1 71.092 31.939 L71.092 31.939Q70.272 33.707 73.712 35.357 L76.273 37.237 L78.598 39.581 L80.74 42.249 L82.709 45.192 A94.25 94.25 0 0 1 80.492 49.032
+       L76.959 48.798 L73.577 48.277 L70.385 47.436 L67.476 46.158 Q64.327 44.004 63.207 45.598A77.938 77.938 0 0 1 60.403 49.251 L60.403 49.251Q59.153 50.746 62.049 53.23 L64.036 55.709 L65.675 58.575 L67.054 61.706 L68.194 65.059 A94.25 94.25 0 0 1 65.059 68.194
+       L61.706 67.054 L58.575 65.675 L55.709 64.036 L53.23 62.049 Q50.746 59.153 49.251 60.403A77.938 77.938 0 0 1 45.598 63.207 L45.598 63.207Q44.004 64.327 46.158 67.476 L47.436 70.385 L48.277 73.577 L48.798 76.959 L49.032 80.492 A94.25 94.25 0 0 1 45.192 82.709
+       L42.249 80.74 L39.581 78.598 L37.237 76.273 L35.357 73.712 Q33.707 70.272 31.939 71.092A77.938 77.938 0 0 1 27.685 72.855 L27.685 72.855Q25.855 73.524 27.121 77.123 L27.603 80.264 L27.589 83.565 L27.217 86.966 L26.528 90.44 A94.25 94.25 0 0 1 22.246 91.587
+       L19.912 88.924 L17.89 86.164 L16.227 83.312 L15.074 80.352 Q14.37 76.601 12.451 76.936A77.938 77.938 0 0 1 7.886 77.538 L7.886 77.538Q5.945 77.71 6.236 81.515 L5.888 84.673 L5.021 87.858 L3.781 91.047 L2.217 94.224 A94.25 94.25 0 0 1 -2.217 94.224
+       L-3.781 91.047 L-5.021 87.858 L-5.888 84.673 L-6.236 81.515 Q-5.945 77.71 -7.886 77.538A77.938 77.938 0 0 1 -12.451 76.936 L-12.451 76.936Q-14.37 76.601 -15.074 80.352 L-16.227 83.312 L-17.89 86.164 L-19.912 88.924 L-22.246 91.587 A94.25 94.25 0 0 1 -26.528 90.44
+       L-27.217 86.966 L-27.589 83.565 L-27.603 80.264 L-27.121 77.123 Q-25.855 73.524 -27.685 72.855A77.938 77.938 0 0 1 -31.939 71.092 L-31.939 71.092Q-33.707 70.272 -35.357 73.712 L-37.237 76.273 L-39.581 78.598 L-42.249 80.74 L-45.192 82.709 A94.25 94.25 0 0 1 -49.032 80.492
+       L-48.798 76.959 L-48.277 73.577 L-47.436 70.385 L-46.158 67.476 Q-44.004 64.327 -45.598 63.207A77.938 77.938 0 0 1 -49.251 60.403 L-49.251 60.403Q-50.746 59.153 -53.23 62.049 L-55.709 64.036 L-58.575 65.675 L-61.706 67.054 L-65.059 68.194 A94.25 94.25 0 0 1 -68.194 65.059
+       L-67.054 61.706 L-65.675 58.575 L-64.036 55.709 L-62.049 53.23 Q-59.153 50.746 -60.403 49.251A77.938 77.938 0 0 1 -63.207 45.598 L-63.207 45.598Q-64.327 44.004 -67.476 46.158 L-70.385 47.436 L-73.577 48.277 L-76.959 48.798 L-80.492 49.032 A94.25 94.25 0 0 1 -82.709 45.192
+       L-80.74 42.249 L-78.598 39.581 L-76.273 37.237 L-73.712 35.357 Q-70.272 33.707 -71.092 31.939A77.938 77.938 0 0 1 -72.855 27.685 L-72.855 27.685Q-73.524 25.855 -77.123 27.121 L-80.264 27.603 L-83.565 27.589 L-86.966 27.217 L-90.44 26.528 A94.25 94.25 0 0 1 -91.587 22.246
+       L-88.924 19.912 L-86.164 17.89 L-83.312 16.227 L-80.352 15.074 Q-76.601 14.37 -76.936 12.451A77.938 77.938 0 0 1 -77.538 7.886 L-77.538 7.886Q-77.71 5.945 -81.515 6.236 L-84.673 5.888 L-87.858 5.021 L-91.047 3.781 L-94.224 2.217 A94.25 94.25 0 0 1 -94.224 -2.217
+       L-91.047 -3.781 L-87.858 -5.021 L-84.673 -5.888 L-81.515 -6.236 Q-77.71 -5.945 -77.538 -7.886A77.938 77.938 0 0 1 -76.936 -12.451 L-76.936 -12.451Q-76.601 -14.37 -80.352 -15.074 L-83.312 -16.227 L-86.164 -17.89 L-88.924 -19.912 L-91.587 -22.246 A94.25 94.25 0 0 1 -90.44 -26.528
+       L-86.966 -27.217 L-83.565 -27.589 L-80.264 -27.603 L-77.123 -27.121 Q-73.524 -25.855 -72.855 -27.685A77.938 77.938 0 0 1 -71.092 -31.939 L-71.092 -31.939Q-70.272 -33.707 -73.712 -35.357 L-76.273 -37.237 L-78.598 -39.581 L-80.74 -42.249 L-82.709 -45.192 A94.25 94.25 0 0 1 -80.492 -49.032
+       L-76.959 -48.798 L-73.577 -48.277 L-70.385 -47.436 L-67.476 -46.158 Q-64.327 -44.004 -63.207 -45.598A77.938 77.938 0 0 1 -60.403 -49.251 L-60.403 -49.251Q-59.153 -50.746 -62.049 -53.23 L-64.036 -55.709 L-65.675 -58.575 L-67.054 -61.706 L-68.194 -65.059 A94.25 94.25 0 0 1 -65.059 -68.194
+       L-61.706 -67.054 L-58.575 -65.675 L-55.709 -64.036 L-53.23 -62.049 Q-50.746 -59.153 -49.251 -60.403A77.938 77.938 0 0 1 -45.598 -63.207 L-45.598 -63.207Q-44.004 -64.327 -46.158 -67.476 L-47.436 -70.385 L-48.277 -73.577 L-48.798 -76.959 L-49.032 -80.492 A94.25 94.25 0 0 1 -45.192 -82.709
+       L-42.249 -80.74 L-39.581 -78.598 L-37.237 -76.273 L-35.357 -73.712 Q-33.707 -70.272 -31.939 -71.092A77.938 77.938 0 0 1 -27.685 -72.855 L-27.685 -72.855Q-25.855 -73.524 -27.121 -77.123 L-27.603 -80.264 L-27.589 -83.565 L-27.217 -86.966 L-26.528 -90.44 A94.25 94.25 0 0 1 -22.246 -91.587
+       L-19.912 -88.924 L-17.89 -86.164 L-16.227 -83.312 L-15.074 -80.352 Q-14.37 -76.601 -12.451 -76.936A77.938 77.938 0 0 1 -7.886 -77.538 L-7.886 -77.538Q-5.945 -77.71 -6.236 -81.515 L-5.888 -84.673 L-5.021 -87.858 L-3.781 -91.047 L-2.217 -94.224 A94.25 94.25 0 0 1 2.217 -94.224
+       L3.781 -91.047 L5.021 -87.858 L5.888 -84.673 L6.236 -81.515 Q5.945 -77.71 7.886 -77.538A77.938 77.938 0 0 1 12.451 -76.936 L12.451 -76.936Q14.37 -76.601 15.074 -80.352 L16.227 -83.312 L17.89 -86.164 L19.912 -88.924 L22.246 -91.587 A94.25 94.25 0 0 1 26.528 -90.44
+       L27.217 -86.966 L27.589 -83.565 L27.603 -80.264 L27.121 -77.123 Q25.855 -73.524 27.685 -72.855A77.938 77.938 0 0 1 31.939 -71.092 L31.939 -71.092Q33.707 -70.272 35.357 -73.712 L37.237 -76.273 L39.581 -78.598 L42.249 -80.74 L45.192 -82.709 A94.25 94.25 0 0 1 49.032 -80.492
+       L48.798 -76.959 L48.277 -73.577 L47.436 -70.385 L46.158 -67.476 Q44.004 -64.327 45.598 -63.207A77.938 77.938 0 0 1 49.251 -60.403 L49.251 -60.403Q50.746 -59.153 53.23 -62.049 L55.709 -64.036 L58.575 -65.675 L61.706 -67.054 L65.059 -68.194 A94.25 94.25 0 0 1 68.194 -65.059
+       L67.054 -61.706 L65.675 -58.575 L64.036 -55.709 L62.049 -53.23 Q59.153 -50.746 60.403 -49.251A77.938 77.938 0 0 1 63.207 -45.598 L63.207 -45.598Q64.327 -44.004 67.476 -46.158 L70.385 -47.436 L73.577 -48.277 L76.959 -48.798 L80.492 -49.032 A94.25 94.25 0 0 1 82.709 -45.192
+       L80.74 -42.249 L78.598 -39.581 L76.273 -37.237 L73.712 -35.357 Q70.272 -33.707 71.092 -31.939A77.938 77.938 0 0 1 72.855 -27.685 L72.855 -27.685Q73.524 -25.855 77.123 -27.121 L80.264 -27.603 L83.565 -27.589 L86.966 -27.217 L90.44 -26.528 A94.25 94.25 0 0 1 91.587 -22.246
+       L88.924 -19.912 L86.164 -17.89 L83.312 -16.227 L80.352 -15.074 Q76.601 -14.37 76.936 -12.451A77.938 77.938 0 0 1 77.538 -7.886Z"/>
+    <clipPath id="circle-worm-clip">
+      <rect x="248" y="168" width="235" height="46" rx="23"/>
+    </clipPath>
+    <g id="circle-worm">
+      <rect x="248" y="178.57999999999998" width="235" height="24.840000000000003" rx="12.420000000000002" fill="#fae8e3" stroke="#a83a30" stroke-width="1.5"/>
+      <g clip-path="url(#circle-worm-clip)" fill="#fae8e3" stroke="#a83a30" stroke-width="1.5">
+        <!-- Half a lead (22.777 / 2) phases the crests into the wheel gaps.
+             Keep the clipping sleeve fixed while shifting only the thread. -->
+        <g transform="translate(11.388 0)">
+          <path d="M225.223 214C230.917 212 237.75 170 243.444 168H249.822C244.128 170 237.295 212 231.6 214Z"/>
+          <path d="M248 214C253.694 212 260.527 170 266.221 168H272.599C266.905 170 260.072 212 254.377 214Z"/>
+          <path d="M270.777 214C276.471 212 283.304 170 288.998 168H295.376C289.682 170 282.849 212 277.154 214Z"/>
+          <path d="M293.553 214C299.247 212 306.08 170 311.774 168H318.152C312.458 170 305.625 212 299.93 214Z"/>
+          <path d="M316.33 214C322.024 212 328.857 170 334.551 168H340.929C335.235 170 328.402 212 322.707 214Z"/>
+          <path d="M339.106 214C344.8 212 351.633 170 357.327 168H363.705C358.011 170 351.178 212 345.483 214Z"/>
+          <path d="M361.883 214C367.577 212 374.41 170 380.104 168H386.482C380.788 170 373.955 212 368.26 214Z"/>
+          <path d="M384.659 214C390.353 212 397.186 170 402.88 168H409.258C403.564 170 396.731 212 391.036 214Z"/>
+          <path d="M407.436 214C413.13 212 419.963 170 425.657 168H432.035C426.341 170 419.508 212 413.813 214Z"/>
+          <path d="M430.212 214C435.906 212 442.739 170 448.433 168H454.811C449.117 170 442.284 212 436.589 214Z"/>
+          <path d="M452.989 214C458.683 212 465.516 170 471.21 168H477.588C471.894 170 465.061 212 459.366 214Z"/>
+          <path d="M475.765 214C481.459 212 488.292 170 493.986 168H500.364C494.67 170 487.837 212 482.142 214Z"/>
+          <path d="M498.542 214C504.236 212 511.069 170 516.763 168H523.141C517.447 170 510.614 212 504.919 214Z"/>
         </g>
-        <text x="246" y="62" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#C0392B">WORM — a screw</text>
-
-        
-        <line x1="60" y1="94" x2="352" y2="94" stroke="#888" stroke-width="1.5" stroke-dasharray="8 6" marker-end="url(#axA)"></line>
-        <text x="120" y="140" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">worm axis — lies flat</text>
-
-        
-        <circle cx="400" cy="176" r="16" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="5 4"></circle>
-        <text x="470" y="252" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">wheel axis points</text>
-        <text x="470" y="270" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">straight up out of the table</text>
-        <line x1="424" y1="192" x2="452" y2="238" stroke="#888" stroke-width="1.4"></line>
-
-        
-        <path d="M370,262 A46,46 0 0 0 430,262" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rotB)"></path>
-
-        
-        <text x="524" y="106" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">1 TURN</text>
-        <text x="524" y="126" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1C1C1C">= 1 TOOTH</text>
-        <text x="524" y="148" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">so 24 teeth</text>
-        <text x="524" y="164" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">means 24 : 1</text>
-      </svg>
+      </g>
+      <ellipse cx="476" cy="191" rx="7" ry="12.420000000000002" fill="#e9edf0" stroke="#a83a30" stroke-width="1.25"/>
+    </g>
+    <marker id="worm-drive-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#a83a30"/>
+    </marker>
+  </defs>
+  <rect width="720" height="480" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="24" y="30" font-size="23" fill="#263340" font-weight="600">A screw turns a wheel, one tooth at a time.</text>
+    <text x="24" y="55" font-size="15" fill="#697580">TOP VIEW · A single-start worm gives a large reduction in one step.</text>
+    <path d="M32 191H516" fill="none" stroke="#b7c1c9" stroke-width="1" stroke-dasharray="7 5"/>
+    <!-- 24 teeth, pitch radius 87; worm lead = 2π × 87 / 24 = 22.777.
+         Thread crests enter tooth gaps rather than overlapping tooth tips. -->
+    <g transform="translate(390 300)">
+      <use href="#worm-wheel-24" transform="rotate(-90)" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle cx="0" cy="0" r="62.64" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+      <circle cx="41.76" cy="0" r="8.7" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="41.76" r="8.7" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="-41.76" cy="0" r="8.7" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="-41.76" r="8.7" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="0" r="13" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+      <path d="M-3 -8H3V-3H8V3H3V8H-3V3H-8V-3H-3Z" fill="#36434f"/>
+    </g>
+    <path d="M164 191H248" fill="none" stroke="#36434f" stroke-width="9"/>
+    <path d="M169 188H239" fill="none" stroke="#b7c1c9" stroke-width="2"/>
+    <rect x="52" y="160" width="112" height="64" rx="5" fill="#e9edf0" stroke="#36434f" stroke-width="1.5"/>
+    <path d="M60 168H155V216" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+    <path d="M60 170V214" fill="none" stroke="#697580" stroke-width="2"/>
+    <text x="108" y="198" font-size="17" fill="#36434f" text-anchor="middle" font-weight="600">MOTOR</text>
+    <use href="#circle-worm"/>
+    <text x="249" y="110" font-size="18" fill="#a83a30" font-weight="600">WORM — a screw</text>
+    <path d="M328 119 345 164" fill="none" stroke="#a83a30" stroke-width="1.25"/>
+    <text x="44" y="264" font-size="15" fill="#697580">worm axis — lies flat</text>
+    <path d="M174 250 208 197" fill="none" stroke="#697580" stroke-width="1.25"/>
+    <text x="390" y="421" font-size="16" fill="#36434f" text-anchor="middle">24 teeth</text>
+    <circle cx="390" cy="300" r="7" fill="#fff" stroke="#36434f" stroke-width="1.5"/>
+    <circle cx="390" cy="300" r="2.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <rect x="530" y="102" width="166" height="134" rx="5" fill="#f3f5f6" stroke="#e0e5e8"/>
+    <text x="547" y="131" font-size="21" fill="#a83a30" font-weight="600">1 TURN</text>
+    <text x="547" y="158" font-size="21" fill="#a83a30" font-weight="600">= 1 TOOTH</text>
+    <text x="547" y="189" font-size="16" fill="#36434f">so 24 teeth</text>
+    <text x="547" y="213" font-size="16" fill="#36434f">means 24 : 1</text>
+    <path d="M469.196 379.196A112 112 0 0 0 502 300" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#worm-drive-arrow)"/>
+    <text x="530" y="305" font-size="16" fill="#a83a30">Wheel turns</text>
+    <text x="530" y="328" font-size="16" fill="#a83a30">slowly</text>
+    <path d="M398 309 470 408H510" fill="none" stroke="#697580" stroke-width="1.25"/>
+    <text x="520" y="409" font-size="15" fill="#697580">wheel axis points</text>
+    <text x="520" y="431" font-size="14" fill="#697580">straight up out of the table</text>
+    <text x="24" y="461" font-size="16" fill="#36434f">The shafts are at 90°: one lies flat, one points up.</text>
+  </g>
+</svg>

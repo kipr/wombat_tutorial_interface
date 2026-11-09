@@ -1,54 +1,76 @@
-<svg viewBox="0 0 620 300" role="img" aria-label="Top view. A stationary base at the left anchors two pivots. Links reach out to the right carrying a grabber, which extends to a pom three inches away and then draws it back toward the base." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="pullBack" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#1E8449"></path>
-          </marker>
-          <marker id="tkA" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M1,0 L1,10" stroke="#444" stroke-width="1.6"></path>
-          </marker>
-          <marker id="tkB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M9,0 L9,10" stroke="#444" stroke-width="1.6"></path>
-          </marker>
-        </defs>
-
-        
-        <rect x="46" y="96" width="132" height="128" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <text x="112" y="152" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">STATIONARY</text>
-        <text x="112" y="172" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">BASE</text>
-
-        
-        <line x1="178" y1="118" x2="178" y2="204" stroke="#1C1C1C" stroke-width="3" stroke-dasharray="9 6"></line>
-
-        
-        <line x1="178" y1="204" x2="306" y2="188" stroke="#BBB" stroke-width="6" stroke-linecap="round" stroke-dasharray="9 6"></line>
-        <line x1="178" y1="118" x2="306" y2="102" stroke="#BBB" stroke-width="6" stroke-linecap="round" stroke-dasharray="9 6"></line>
-        <line x1="306" y1="102" x2="306" y2="188" stroke="#BBB" stroke-width="6" stroke-linecap="round" stroke-dasharray="9 6"></line>
-
-        
-        <line x1="178" y1="204" x2="392" y2="196" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
-        <line x1="178" y1="118" x2="392" y2="110" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
-        <line x1="392" y1="110" x2="392" y2="196" stroke="#C0392B" stroke-width="8" stroke-linecap="round"></line>
-
-        
-        <circle cx="178" cy="118" r="8" fill="#fff" stroke="#1C1C1C" stroke-width="3"></circle>
-        <circle cx="178" cy="204" r="8" fill="#fff" stroke="#1C1C1C" stroke-width="3"></circle>
-        <circle cx="392" cy="110" r="7" fill="#444"></circle>
-        <circle cx="392" cy="196" r="7" fill="#444"></circle>
-
-        <text x="392" y="92" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">GRABBER</text>
-        <text x="392" y="228" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#C0392B">2″ wide, or a cup</text>
-
-        
-        <circle cx="440" cy="153" r="15" fill="#fff" stroke="#888" stroke-width="2"></circle>
-        <text x="440" y="192" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">pom</text>
-
-        
-        <line x1="470" y1="132" x2="330" y2="132" stroke="#1E8449" stroke-width="2.5" marker-end="url(#pullBack)"></line>
-        <text x="400" y="122" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1E8449">pull back</text>
-
-        
-        <line x1="306" y1="262" x2="440" y2="262" stroke="#444" stroke-width="1.6" marker-start="url(#tkA)" marker-end="url(#tkB)"></line>
-        <text x="373" y="284" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="14" font-weight="600" fill="#444">3″</text>
-
-        <text x="540" y="264" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">TOP VIEW</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 550" role="img" aria-labelledby="four-bar-grabber-title four-bar-grabber-description">
+  <title id="four-bar-grabber-title">A four-bar linkage reaches out and draws the pom back</title>
+  <desc id="four-bar-grabber-description">Top view. Two pivots on the right edge of a stationary base support equal-length links and a grabber on the coupler. The solid linkage reaches a pom three inches from the base. The grey dashed linkage shows the same links rotated back, carrying the grabber and pom toward the base. The grabber can be two inches wide or use a cup.</desc>
+  <defs>
+    <marker id="four-bar-pull" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#357458"/>
+    </marker>
+    <g id="four-bar-pom">
+      <path d="M0 -14Q5 -18 8 -12Q14 -13 14 -7Q19 -3 14 1Q18 7 11 9Q11 16 5 14Q0 19 -4 14Q-11 17 -12 10Q-18 8 -14 2Q-19 -3 -13 -7Q-13 -14 -7 -12Q-4 -18 0 -14Z"/>
+      <path d="M-7 -3Q-1 -9 5 -4M-4 6Q2 1 8 5" fill="none" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <rect width="720" height="550" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="24" y="30" font-size="23" fill="#263340" font-weight="600">Reach out. Catch the pom. Draw it back.</text>
+    <text x="24" y="55" font-size="14" fill="#697580">TOP VIEW · Grey dashed = retracted · Solid = extended</text>
+    <rect x="50" y="280" width="140" height="200" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <rect x="59" y="289" width="122" height="182" rx="3" fill="none" stroke="#e0e5e8"/>
+    <circle cx="66" cy="296" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="174" cy="296" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="66" cy="464" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="174" cy="464" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <text x="120" y="365" font-size="16" fill="#36434f" text-anchor="middle" font-weight="600">STATIONARY</text>
+    <text x="120" y="388" font-size="16" fill="#36434f" text-anchor="middle" font-weight="600">BASE</text>
+    <!-- Each side link has length sqrt(210² + 90²) in both poses.
+         Retracted (90,-210) and extended (210,-90) are rotations, not stretching. -->
+    <path d="M190 300V460" fill="none" stroke="#36434f" stroke-width="2" stroke-dasharray="8 6"/>
+    <g fill="none" stroke="#697580" stroke-width="2" stroke-dasharray="6 5" stroke-linecap="round">
+      <path d="M190 300 280 90V250L190 460"/>
+      <path d="M454 268H416Q405 268 405 279V301Q405 312 416 312H454" transform="translate(-120 -120)"/>
+    </g>
+    <use href="#four-bar-pom" x="310" y="170" fill="none" stroke="#697580" stroke-width="1.25" stroke-dasharray="3 3"/>
+    <path d="M190 300 400 210" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round"/>
+    <path d="M190 300 400 210" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="232" cy="282" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="274" cy="264" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="316" cy="246" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="358" cy="228" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <path d="M190 460 400 370" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round"/>
+    <path d="M190 460 400 370" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="232" cy="442" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="274" cy="424" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="316" cy="406" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="358" cy="388" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <path d="M400 210 400 370" fill="none" stroke="#a83a30" stroke-width="18" stroke-linecap="round"/>
+    <path d="M400 210 400 370" fill="none" stroke="#fae8e3" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="400" cy="242" r="3.25" fill="#fff" stroke="#a83a30" stroke-width="1.25"/>
+    <circle cx="400" cy="274" r="3.25" fill="#fff" stroke="#a83a30" stroke-width="1.25"/>
+    <circle cx="400" cy="306" r="3.25" fill="#fff" stroke="#a83a30" stroke-width="1.25"/>
+    <circle cx="400" cy="338" r="3.25" fill="#fff" stroke="#a83a30" stroke-width="1.25"/>
+    <path d="M454 268H416Q405 268 405 279V301Q405 312 416 312H454" fill="none" stroke="#a83a30" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M417 273H450M417 307H450" fill="none" stroke="#b4822b" stroke-width="6"/>
+    <circle cx="190" cy="300" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="190" cy="300" r="4" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="190" cy="460" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="190" cy="460" r="4" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="400" cy="210" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="400" cy="210" r="3.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="400" cy="370" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="400" cy="370" r="3.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <use href="#four-bar-pom" x="430" y="290" fill="#fff" stroke="#697580" stroke-width="1.5"/>
+    <text x="489" y="258" font-size="18" fill="#a83a30" font-weight="600">GRABBER</text>
+    <text x="489" y="280" font-size="15" fill="#a83a30">2″ wide, or a cup</text>
+    <path d="M479 267 456 275" fill="none" stroke="#a83a30" stroke-width="1.25"/>
+    <text x="478" y="336" font-size="16" fill="#697580">pom</text>
+    <path d="M468 329 441 302" fill="none" stroke="#697580" stroke-width="1.25"/>
+    <path d="M524 212Q464 111 342 108" fill="none" stroke="#357458" stroke-width="2.5" marker-end="url(#four-bar-pull)"/>
+    <text x="495" y="136" font-size="17" fill="#357458" font-weight="600">pull back</text>
+    <text x="165" y="135" font-size="14" fill="#697580">retracted</text>
+    <text x="336" y="442" font-size="14" fill="#697580">extended</text>
+    <path d="M190 483V514M430 328V514" fill="none" stroke="#b7c1c9" stroke-width="1" stroke-dasharray="4 4"/>
+    <path d="M190 503H430M190 497V509M430 497V509" fill="none" stroke="#36434f" stroke-width="1.5"/>
+    <text x="310" y="495" font-size="18" fill="#36434f" text-anchor="middle" font-weight="600">3″</text>
+    <text x="310" y="538" font-size="14" fill="#697580" text-anchor="middle">Measure from the base to the pom.</text>
+  </g>
+</svg>

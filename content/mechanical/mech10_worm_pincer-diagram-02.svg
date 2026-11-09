@@ -1,47 +1,129 @@
-<svg viewBox="0 0 620 380" role="img" aria-label="Top view. A stationary base at the left carries a worm running to the right. One gear sits above the worm and one below, each carrying a long arm that extends to the right. The two arms splay apart when open and swing together to grip an object between their tips." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="ud1" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto">
-            <path d="M0,9 L5,0 L10,9 z" fill="#1C1C1C"></path>
-          </marker>
-        </defs>
-
-        
-        <rect x="46" y="118" width="140" height="152" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <text x="116" y="186" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">STATIONARY</text>
-        <text x="116" y="206" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#444">BASE</text>
-
-        
-        <rect x="186" y="178" width="128" height="34" rx="3" fill="#FDF2F2" stroke="#C0392B" stroke-width="2.5"></rect>
-        <g stroke="#C0392B" stroke-width="1.8">
-          <line x1="198" y1="212" x2="216" y2="178"></line><line x1="222" y1="212" x2="240" y2="178"></line>
-          <line x1="246" y1="212" x2="264" y2="178"></line><line x1="270" y1="212" x2="288" y2="178"></line>
-        </g>
-        <text x="250" y="240" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">WORM</text>
-
-        
-        <circle cx="268" cy="136" r="42" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="13.2 13.2"></circle>
-        <circle cx="268" cy="136" r="6" fill="#444"></circle>
-        <circle cx="268" cy="254" r="42" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="13.2 13.2"></circle>
-        <circle cx="268" cy="254" r="6" fill="#444"></circle>
-
-        
-        <line x1="268" y1="136" x2="504" y2="84" stroke="#888" stroke-width="8" stroke-linecap="round"></line>
-        <line x1="268" y1="254" x2="504" y2="306" stroke="#888" stroke-width="8" stroke-linecap="round"></line>
-
-        
-        <line x1="268" y1="136" x2="504" y2="168" stroke="#C0392B" stroke-width="8" stroke-linecap="round" stroke-dasharray="11 8"></line>
-        <line x1="268" y1="254" x2="504" y2="222" stroke="#C0392B" stroke-width="8" stroke-linecap="round" stroke-dasharray="11 8"></line>
-
-        
-        <circle cx="520" cy="195" r="27" fill="#F2F2F2" stroke="#444" stroke-width="2" stroke-dasharray="6 5"></circle>
-        <text x="520" y="200" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">2–3″</text>
-
-        
-        <line x1="576" y1="98" x2="576" y2="292" stroke="#1C1C1C" stroke-width="2.5" marker-start="url(#ud1)" marker-end="url(#ud1)"></line>
-        <text x="596" y="200" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1C1C1C" transform="rotate(-90 596 200)">tips open and close</text>
-
-        
-        <text x="392" y="70" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#888">open</text>
-        <text x="392" y="152" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12.5" fill="#C0392B">closed</text>
-        <text x="116" y="330" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1C1C1C">TOP VIEW</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="worm-pincer-build-title worm-pincer-build-description">
+  <title id="worm-pincer-build-title">One worm closes two arms around an object</title>
+  <desc id="worm-pincer-build-description">Top view of a stationary base carrying a motor, braced horizontal worm and two matching wheels on fixed axles. The grey solid arms are open. The red dashed arms are the same rigid arms rotated closed, with their grip pads touching opposite sides of a two-to-three-inch object. Both arms move; reversing the worm opens them again. Test the hold after switching off the motor.</desc>
+  <defs>
+    <path id="pincer-wheel-16" d="M53.515 -7.219Q53.679 -5.879 59.783 -6.547 L62.796 -6.236 L65.853 -5.353 L68.916 -4.05 L71.961 -2.374 A72 72 0 0 1 71.961 2.374
+       L68.916 4.05 L65.853 5.353 L62.796 6.236 L59.783 6.547 Q53.679 5.879 53.515 7.219A54 54 0 0 1 52.204 13.81 L52.204 13.81Q51.843 15.111 57.738 16.829 L60.403 18.27 L62.889 20.256 L65.22 22.631 L67.392 25.345 A72 72 0 0 1 65.575 29.732
+       L62.12 30.115 L58.792 30.146 L55.63 29.792 L52.727 28.927 Q47.343 25.973 46.679 27.149A54 54 0 0 1 42.945 32.737 L42.945 32.737Q42.114 33.8 46.902 37.643 L48.813 39.994 L50.35 42.78 L51.595 45.867 L52.563 49.205 A72 72 0 0 1 49.205 52.563
+       L45.867 51.595 L42.78 50.35 L39.994 48.813 L37.643 46.902 Q33.8 42.114 32.737 42.945A54 54 0 0 1 27.149 46.679 L27.149 46.679Q25.973 47.343 28.927 52.727 L29.792 55.63 L30.146 58.792 L30.115 62.12 L29.732 65.575 A72 72 0 0 1 25.345 67.392
+       L22.631 65.22 L20.256 62.889 L18.27 60.403 L16.829 57.738 Q15.111 51.843 13.81 52.204A54 54 0 0 1 7.219 53.515 L7.219 53.515Q5.879 53.679 6.547 59.783 L6.236 62.796 L5.353 65.853 L4.05 68.916 L2.374 71.961 A72 72 0 0 1 -2.374 71.961
+       L-4.05 68.916 L-5.353 65.853 L-6.236 62.796 L-6.547 59.783 Q-5.879 53.679 -7.219 53.515A54 54 0 0 1 -13.81 52.204 L-13.81 52.204Q-15.111 51.843 -16.829 57.738 L-18.27 60.403 L-20.256 62.889 L-22.631 65.22 L-25.345 67.392 A72 72 0 0 1 -29.732 65.575
+       L-30.115 62.12 L-30.146 58.792 L-29.792 55.63 L-28.927 52.727 Q-25.973 47.343 -27.149 46.679A54 54 0 0 1 -32.737 42.945 L-32.737 42.945Q-33.8 42.114 -37.643 46.902 L-39.994 48.813 L-42.78 50.35 L-45.867 51.595 L-49.205 52.563 A72 72 0 0 1 -52.563 49.205
+       L-51.595 45.867 L-50.35 42.78 L-48.813 39.994 L-46.902 37.643 Q-42.114 33.8 -42.945 32.737A54 54 0 0 1 -46.679 27.149 L-46.679 27.149Q-47.343 25.973 -52.727 28.927 L-55.63 29.792 L-58.792 30.146 L-62.12 30.115 L-65.575 29.732 A72 72 0 0 1 -67.392 25.345
+       L-65.22 22.631 L-62.889 20.256 L-60.403 18.27 L-57.738 16.829 Q-51.843 15.111 -52.204 13.81A54 54 0 0 1 -53.515 7.219 L-53.515 7.219Q-53.679 5.879 -59.783 6.547 L-62.796 6.236 L-65.853 5.353 L-68.916 4.05 L-71.961 2.374 A72 72 0 0 1 -71.961 -2.374
+       L-68.916 -4.05 L-65.853 -5.353 L-62.796 -6.236 L-59.783 -6.547 Q-53.679 -5.879 -53.515 -7.219A54 54 0 0 1 -52.204 -13.81 L-52.204 -13.81Q-51.843 -15.111 -57.738 -16.829 L-60.403 -18.27 L-62.889 -20.256 L-65.22 -22.631 L-67.392 -25.345 A72 72 0 0 1 -65.575 -29.732
+       L-62.12 -30.115 L-58.792 -30.146 L-55.63 -29.792 L-52.727 -28.927 Q-47.343 -25.973 -46.679 -27.149A54 54 0 0 1 -42.945 -32.737 L-42.945 -32.737Q-42.114 -33.8 -46.902 -37.643 L-48.813 -39.994 L-50.35 -42.78 L-51.595 -45.867 L-52.563 -49.205 A72 72 0 0 1 -49.205 -52.563
+       L-45.867 -51.595 L-42.78 -50.35 L-39.994 -48.813 L-37.643 -46.902 Q-33.8 -42.114 -32.737 -42.945A54 54 0 0 1 -27.149 -46.679 L-27.149 -46.679Q-25.973 -47.343 -28.927 -52.727 L-29.792 -55.63 L-30.146 -58.792 L-30.115 -62.12 L-29.732 -65.575 A72 72 0 0 1 -25.345 -67.392
+       L-22.631 -65.22 L-20.256 -62.889 L-18.27 -60.403 L-16.829 -57.738 Q-15.111 -51.843 -13.81 -52.204A54 54 0 0 1 -7.219 -53.515 L-7.219 -53.515Q-5.879 -53.679 -6.547 -59.783 L-6.236 -62.796 L-5.353 -65.853 L-4.05 -68.916 L-2.374 -71.961 A72 72 0 0 1 2.374 -71.961
+       L4.05 -68.916 L5.353 -65.853 L6.236 -62.796 L6.547 -59.783 Q5.879 -53.679 7.219 -53.515A54 54 0 0 1 13.81 -52.204 L13.81 -52.204Q15.111 -51.843 16.829 -57.738 L18.27 -60.403 L20.256 -62.889 L22.631 -65.22 L25.345 -67.392 A72 72 0 0 1 29.732 -65.575
+       L30.115 -62.12 L30.146 -58.792 L29.792 -55.63 L28.927 -52.727 Q25.973 -47.343 27.149 -46.679A54 54 0 0 1 32.737 -42.945 L32.737 -42.945Q33.8 -42.114 37.643 -46.902 L39.994 -48.813 L42.78 -50.35 L45.867 -51.595 L49.205 -52.563 A72 72 0 0 1 52.563 -49.205
+       L51.595 -45.867 L50.35 -42.78 L48.813 -39.994 L46.902 -37.643 Q42.114 -33.8 42.945 -32.737A54 54 0 0 1 46.679 -27.149 L46.679 -27.149Q47.343 -25.973 52.727 -28.927 L55.63 -29.792 L58.792 -30.146 L62.12 -30.115 L65.575 -29.732 A72 72 0 0 1 67.392 -25.345
+       L65.22 -22.631 L62.889 -20.256 L60.403 -18.27 L57.738 -16.829 Q51.843 -15.111 52.204 -13.81A54 54 0 0 1 53.515 -7.219Z"/>
+    <clipPath id="build-worm-clip">
+      <rect x="233" y="262" width="138" height="44" rx="22"/>
+    </clipPath>
+    <g id="build-worm">
+      <rect x="233" y="272.12" width="138" height="23.76" rx="11.88" fill="#fae8e3" stroke="#a83a30" stroke-width="1.5"/>
+      <g clip-path="url(#build-worm-clip)" fill="#fae8e3" stroke="#a83a30" stroke-width="1.5">
+        <path d="M207.867 306C214.15 304 221.69 264 227.973 262H235.01C228.727 264 221.187 304 214.904 306Z"/>
+        <path d="M233 306C239.283 304 246.823 264 253.106 262H260.143C253.86 264 246.32 304 240.037 306Z"/>
+        <path d="M258.133 306C264.416 304 271.956 264 278.239 262H285.276C278.993 264 271.453 304 265.17 306Z"/>
+        <path d="M283.265 306C289.548 304 297.088 264 303.371 262H310.408C304.125 264 296.585 304 290.302 306Z"/>
+        <path d="M308.398 306C314.681 304 322.221 264 328.504 262H335.541C329.258 264 321.718 304 315.435 306Z"/>
+        <path d="M333.531 306C339.814 304 347.354 264 353.637 262H360.674C354.391 264 346.851 304 340.568 306Z"/>
+        <path d="M358.664 306C364.947 304 372.487 264 378.77 262H385.807C379.524 264 371.984 304 365.701 306Z"/>
+        <path d="M383.796 306C390.079 304 397.619 264 403.902 262H410.939C404.656 264 397.116 304 390.833 306Z"/>
+      </g>
+      <ellipse cx="364" cy="284" rx="7" ry="11.88" fill="#e9edf0" stroke="#a83a30" stroke-width="1.25"/>
+    </g>
+    <marker id="pincer-close-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#a83a30"/>
+    </marker>
+  </defs>
+  <rect width="720" height="540" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="24" y="30" font-size="23" fill="#263340" font-weight="600">One worm closes both jaws.</text>
+    <text x="24" y="55" font-size="14" fill="#697580">TOP VIEW · Grey = open · Red dashed = closed</text>
+    <rect x="40" y="134" width="368" height="314" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <rect x="49" y="143" width="350" height="296" rx="3" fill="none" stroke="#e0e5e8"/>
+    <circle cx="56" cy="150" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="392" cy="150" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="56" cy="432" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="392" cy="432" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <text x="123" y="183" font-size="16" fill="#36434f" text-anchor="middle" font-weight="600">STATIONARY</text>
+    <text x="123" y="206" font-size="16" fill="#36434f" text-anchor="middle" font-weight="600">BASE</text>
+    <!-- Pitch 64, tip 72, center-to-worm distance 86; worm lead 25.133.
+         Phase the upper wheel 4.5° so both meshes seat teeth between threads. -->
+    <g transform="translate(300 198)">
+      <use href="#pincer-wheel-16" transform="rotate(94.5)" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle cx="0" cy="0" r="46.08" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+      <circle cx="30.72" cy="0" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="30.72" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="-30.72" cy="0" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="-30.72" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="0" r="13" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+      <path d="M-3 -8H3V-3H8V3H3V8H-3V3H-8V-3H-3Z" fill="#36434f"/>
+    </g>
+    <g transform="translate(300 370)">
+      <use href="#pincer-wheel-16" transform="rotate(-90)" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle cx="0" cy="0" r="46.08" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+      <circle cx="30.72" cy="0" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="30.72" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="-30.72" cy="0" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="-30.72" r="6.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+      <circle cx="0" cy="0" r="13" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+      <path d="M-3 -8H3V-3H8V3H3V8H-3V3H-8V-3H-3Z" fill="#36434f"/>
+    </g>
+    <path d="M182 284H389" fill="none" stroke="#36434f" stroke-width="8"/>
+    <rect x="68" y="257" width="114" height="54" rx="5" fill="#e9edf0" stroke="#36434f" stroke-width="1.5"/>
+    <path d="M76 265H173V303" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+    <path d="M76 267V301" fill="none" stroke="#697580" stroke-width="2"/>
+    <text x="125" y="290" font-size="17" fill="#36434f" text-anchor="middle" font-weight="600">MOTOR</text>
+    <use href="#build-worm"/>
+    <g fill="#e9edf0" stroke="#697580" stroke-width="1.5">
+      <rect x="216" y="263" width="16" height="42" rx="2"/>
+      <rect x="373" y="263" width="16" height="42" rx="2"/>
+    </g>
+    <text x="125" y="368" font-size="17" fill="#a83a30" text-anchor="middle" font-weight="600">WORM</text>
+    <path d="M155 355 257 309" fill="none" stroke="#a83a30" stroke-width="1.25"/>
+    <!-- Arms are 310 units long. Closed pads at y=238 and 330 are tangent
+         to the object (center 620,284; radius 38), with pad radius 8. -->
+    <g transform="rotate(-22.414 300 198)">
+      <path d="M300 198 607.409 238H620" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M300 198 607.409 238H620" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="361.482" cy="206" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+      <circle cx="422.964" cy="214" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+      <circle cx="484.445" cy="222" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+      <circle cx="545.927" cy="230" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+      <circle cx="620" cy="238" r="8" fill="#697580" stroke="#36434f" stroke-width="1.5"/>
+    </g>
+    <g transform="rotate(22.414 300 370)">
+      <path d="M300 370 607.409 330H620" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M300 370 607.409 330H620" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="361.482" cy="362" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+      <circle cx="422.964" cy="354" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+      <circle cx="484.445" cy="346" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+      <circle cx="545.927" cy="338" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+      <circle cx="620" cy="330" r="8" fill="#697580" stroke="#36434f" stroke-width="1.5"/>
+    </g>
+    <g fill="none" stroke="#a83a30" stroke-width="2" stroke-dasharray="6 5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M300 198 607.409 238H620"/>
+      <path d="M300 370 607.409 330H620"/>
+      <circle cx="620" cy="238" r="8"/>
+      <circle cx="620" cy="330" r="8"/>
+    </g>
+    <circle cx="300" cy="198" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="300" cy="198" r="3.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="300" cy="370" r="11" fill="#fff" stroke="#36434f" stroke-width="2"/>
+    <circle cx="300" cy="370" r="3.5" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="620" cy="284" r="38" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <text x="620" y="290" font-size="17" fill="#36434f" text-anchor="middle">2–3″</text>
+    <text x="489" y="101" font-size="15" fill="#697580">open</text>
+    <text x="492" y="218" font-size="15" fill="#a83a30">closed</text>
+    <path d="M643 128Q666 178 643 222" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#pincer-close-arrow)"/>
+    <path d="M643 440Q666 390 643 346" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#pincer-close-arrow)"/>
+    <text x="693" y="284" font-size="15" fill="#36434f" text-anchor="middle" transform="rotate(-90 693 284)">tips open and close</text>
+    <text x="68" y="490" font-size="16" fill="#36434f">Brace the worm at both ends.</text>
+    <text x="68" y="515" font-size="16" fill="#36434f">Close the jaws, switch off, and test the hold.</text>
+  </g>
+</svg>
