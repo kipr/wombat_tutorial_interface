@@ -1,44 +1,89 @@
-<svg viewBox="0 0 620 330" role="img" aria-label="Side view of the mechanism. A gear on the structure drives a linkage arm carrying a claw. In the down position the claw is at ground level holding a one inch cube; in the up position, shown dashed, the claw is raised. An arrow shows the whole structure being moved so that the parked claw drags the cube along." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="rotM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
-          </marker>
-          <marker id="dragA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#1E8449"></path>
-          </marker>
-        </defs>
-
-        
-        <line x1="40" y1="266" x2="584" y2="266" stroke="#1C1C1C" stroke-width="3"></line>
-
-        
-        <rect x="58" y="118" width="140" height="148" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <text x="128" y="180" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">STRUCTURE</text>
-        <text x="128" y="200" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">+ MOTOR</text>
-
-        
-        <circle cx="240" cy="170" r="36" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="12 12"></circle>
-        <circle cx="240" cy="170" r="5" fill="#444"></circle>
-        <path d="M288,132 A60,60 0 0 1 296,178" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rotM)"></path>
-        <text x="308" y="126" font-family="'Barlow',sans-serif" font-size="12" font-weight="600" fill="#C0392B">one direction only</text>
-
-        
-        <circle cx="240" cy="134" r="8" fill="none" stroke="#BBB" stroke-width="3"></circle>
-        <line x1="240" y1="134" x2="424" y2="158" stroke="#BBB" stroke-width="7" stroke-linecap="round" stroke-dasharray="10 7"></line>
-        <path d="M424,146 L446,158 L424,170" fill="none" stroke="#BBB" stroke-width="3" stroke-dasharray="7 5"></path>
-        <text x="466" y="150" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#888">up</text>
-
-        
-        <circle cx="240" cy="206" r="8" fill="#C0392B"></circle>
-        <line x1="240" y1="206" x2="424" y2="240" stroke="#888" stroke-width="8" stroke-linecap="round"></line>
-        <path d="M424,224 L450,240 L424,256" fill="none" stroke="#C0392B" stroke-width="3.5"></path>
-        <text x="392" y="212" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">DOWN — PARKED</text>
-
-        
-        <rect x="452" y="234" width="32" height="32" fill="#F8F8F8" stroke="#444" stroke-width="2"></rect>
-        <text x="468" y="292" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#666">1″ cube</text>
-
-        
-        <line x1="300" y1="312" x2="512" y2="312" stroke="#1E8449" stroke-width="3" marker-end="url(#dragA)"></line>
-        <text x="406" y="330" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1E8449">move the whole machine — the cube comes too</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 478" role="img" aria-labelledby="parked-claw-title parked-claw-description">
+  <title id="parked-claw-title">Cycle the claw, then test it with the power off</title>
+  <desc id="parked-claw-description">Side view of a constrained gear-driven parallelogram claw. A 12-tooth motor pinion meshes with a 24-tooth crank gear at matching pitch and tooth-to-gap phase. Two equal cranks lift a level coupler and claw; grey shows the raised position. In the solid parked position the claw grips a one-inch cube on the ground. Moving the entire structure right creates a leftward drag load on the claw. The motor is off during this test.</desc>
+  <defs>
+    <!-- 12/24 teeth at common module 4.5: pitch radii 27/54, centres 81 apart.
+         The 12-tooth pinion is phased 15° so its gap faces a crank-gear tooth.
+         Both linkage cranks are 40 long; ground and coupler spans are 170. -->
+    <path id="claw-pinion" d="M21.078 -3.549Q21.16 -3.021 25.117 -3.586 L26.683 -3.439 L28.282 -2.958 L29.885 -2.227 L31.474 -1.271 A31.5 31.5 0 0 1 31.474 1.271 L29.885 2.227 L28.282 2.958 L26.683 3.439 L25.117 3.586 Q21.16 3.021 21.078 3.549A21.375 21.375 0 0 1 20.029 7.466 L20.029 7.466Q19.836 7.964 23.545 9.453 L24.828 10.363 L25.972 11.579 L26.995 13.014 L27.893 14.637 A31.5 31.5 0 0 1 26.622 16.838 L24.768 16.871 L23.013 16.703 L21.389 16.32 L19.959 15.664 Q16.815 13.196 16.48 13.613A21.375 21.375 0 0 1 13.613 16.48 L13.613 16.48Q13.196 16.815 15.664 19.959 L16.32 21.389 L16.703 23.013 L16.871 24.768 L16.838 26.622 A31.5 31.5 0 0 1 14.637 27.893 L13.014 26.995 L11.579 25.972 L10.363 24.828 L9.453 23.545 Q7.964 19.836 7.466 20.029A21.375 21.375 0 0 1 3.549 21.078 L3.549 21.078Q3.021 21.16 3.586 25.117 L3.439 26.683 L2.958 28.282 L2.227 29.885 L1.271 31.474 A31.5 31.5 0 0 1 -1.271 31.474 L-2.227 29.885 L-2.958 28.282 L-3.439 26.683 L-3.586 25.117 Q-3.021 21.16 -3.549 21.078A21.375 21.375 0 0 1 -7.466 20.029 L-7.466 20.029Q-7.964 19.836 -9.453 23.545 L-10.363 24.828 L-11.579 25.972 L-13.014 26.995 L-14.637 27.893 A31.5 31.5 0 0 1 -16.838 26.622 L-16.871 24.768 L-16.703 23.013 L-16.32 21.389 L-15.664 19.959 Q-13.196 16.815 -13.613 16.48A21.375 21.375 0 0 1 -16.48 13.613 L-16.48 13.613Q-16.815 13.196 -19.959 15.664 L-21.389 16.32 L-23.013 16.703 L-24.768 16.871 L-26.622 16.838 A31.5 31.5 0 0 1 -27.893 14.637 L-26.995 13.014 L-25.972 11.579 L-24.828 10.363 L-23.545 9.453 Q-19.836 7.964 -20.029 7.466A21.375 21.375 0 0 1 -21.078 3.549 L-21.078 3.549Q-21.16 3.021 -25.117 3.586 L-26.683 3.439 L-28.282 2.958 L-29.885 2.227 L-31.474 1.271 A31.5 31.5 0 0 1 -31.474 -1.271 L-29.885 -2.227 L-28.282 -2.958 L-26.683 -3.439 L-25.117 -3.586 Q-21.16 -3.021 -21.078 -3.549A21.375 21.375 0 0 1 -20.029 -7.466 L-20.029 -7.466Q-19.836 -7.964 -23.545 -9.453 L-24.828 -10.363 L-25.972 -11.579 L-26.995 -13.014 L-27.893 -14.637 A31.5 31.5 0 0 1 -26.622 -16.838 L-24.768 -16.871 L-23.013 -16.703 L-21.389 -16.32 L-19.959 -15.664 Q-16.815 -13.196 -16.48 -13.613A21.375 21.375 0 0 1 -13.613 -16.48 L-13.613 -16.48Q-13.196 -16.815 -15.664 -19.959 L-16.32 -21.389 L-16.703 -23.013 L-16.871 -24.768 L-16.838 -26.622 A31.5 31.5 0 0 1 -14.637 -27.893 L-13.014 -26.995 L-11.579 -25.972 L-10.363 -24.828 L-9.453 -23.545 Q-7.964 -19.836 -7.466 -20.029A21.375 21.375 0 0 1 -3.549 -21.078 L-3.549 -21.078Q-3.021 -21.16 -3.586 -25.117 L-3.439 -26.683 L-2.958 -28.282 L-2.227 -29.885 L-1.271 -31.474 A31.5 31.5 0 0 1 1.271 -31.474 L2.227 -29.885 L2.958 -28.282 L3.439 -26.683 L3.586 -25.117 Q3.021 -21.16 3.549 -21.078A21.375 21.375 0 0 1 7.466 -20.029 L7.466 -20.029Q7.964 -19.836 9.453 -23.545 L10.363 -24.828 L11.579 -25.972 L13.014 -26.995 L14.637 -27.893 A31.5 31.5 0 0 1 16.838 -26.622 L16.871 -24.768 L16.703 -23.013 L16.32 -21.389 L15.664 -19.959 Q13.196 -16.815 13.613 -16.48A21.375 21.375 0 0 1 16.48 -13.613 L16.48 -13.613Q16.815 -13.196 19.959 -15.664 L21.389 -16.32 L23.013 -16.703 L24.768 -16.871 L26.622 -16.838 A31.5 31.5 0 0 1 27.893 -14.637 L26.995 -13.014 L25.972 -11.579 L24.828 -10.363 L23.545 -9.453 Q19.836 -7.964 20.029 -7.466A21.375 21.375 0 0 1 21.078 -3.549Z"/><path id="claw-gear" d="M48.127 -4.895Q48.234 -3.69 50.596 -3.871 L52.556 -3.655 L54.533 -3.116 L56.512 -2.347 L58.484 -1.376 A58.5 58.5 0 0 1 58.484 1.376 L56.512 2.347 L54.533 3.116 L52.556 3.655 L50.596 3.871 Q48.234 3.69 48.127 4.895A48.375 48.375 0 0 1 47.754 7.728 L47.754 7.728Q47.546 8.92 49.873 9.356 L51.711 10.072 L53.481 11.104 L55.194 12.359 L56.847 13.808 A58.5 58.5 0 0 1 56.135 16.466 L53.979 16.894 L51.868 17.124 L49.819 17.133 L47.87 16.834 Q45.635 16.048 45.22 17.184A48.375 48.375 0 0 1 44.126 19.825 L44.126 19.825Q43.617 20.921 45.752 21.946 L47.342 23.113 L48.785 24.568 L50.114 26.223 L51.336 28.05 A58.5 58.5 0 0 1 49.961 30.433 L47.767 30.289 L45.669 29.965 L43.687 29.443 L41.882 28.65 Q39.927 27.313 39.232 28.302A48.375 48.375 0 0 1 37.492 30.57 L37.492 30.57Q36.716 31.497 38.513 33.039 L39.747 34.578 L40.764 36.357 L41.62 38.3 L42.327 40.381 A58.5 58.5 0 0 1 40.381 42.327 L38.3 41.62 L36.357 40.764 L34.578 39.747 L33.039 38.513 Q31.497 36.716 30.57 37.492A48.375 48.375 0 0 1 28.302 39.232 L28.302 39.232Q27.313 39.927 28.65 41.882 L29.443 43.687 L29.965 45.669 L30.289 47.767 L30.433 49.961 A58.5 58.5 0 0 1 28.05 51.336 L26.223 50.114 L24.568 48.785 L23.113 47.342 L21.946 45.752 Q20.921 43.617 19.825 44.126A48.375 48.375 0 0 1 17.184 45.22 L17.184 45.22Q16.048 45.635 16.834 47.87 L17.133 49.819 L17.124 51.868 L16.894 53.979 L16.466 56.135 A58.5 58.5 0 0 1 13.808 56.847 L12.359 55.194 L11.104 53.481 L10.072 51.711 L9.356 49.873 Q8.92 47.546 7.728 47.754A48.375 48.375 0 0 1 4.895 48.127 L4.895 48.127Q3.69 48.234 3.871 50.596 L3.655 52.556 L3.116 54.533 L2.347 56.512 L1.376 58.484 A58.5 58.5 0 0 1 -1.376 58.484 L-2.347 56.512 L-3.116 54.533 L-3.655 52.556 L-3.871 50.596 Q-3.69 48.234 -4.895 48.127A48.375 48.375 0 0 1 -7.728 47.754 L-7.728 47.754Q-8.92 47.546 -9.356 49.873 L-10.072 51.711 L-11.104 53.481 L-12.359 55.194 L-13.808 56.847 A58.5 58.5 0 0 1 -16.466 56.135 L-16.894 53.979 L-17.124 51.868 L-17.133 49.819 L-16.834 47.87 Q-16.048 45.635 -17.184 45.22A48.375 48.375 0 0 1 -19.825 44.126 L-19.825 44.126Q-20.921 43.617 -21.946 45.752 L-23.113 47.342 L-24.568 48.785 L-26.223 50.114 L-28.05 51.336 A58.5 58.5 0 0 1 -30.433 49.961 L-30.289 47.767 L-29.965 45.669 L-29.443 43.687 L-28.65 41.882 Q-27.313 39.927 -28.302 39.232A48.375 48.375 0 0 1 -30.57 37.492 L-30.57 37.492Q-31.497 36.716 -33.039 38.513 L-34.578 39.747 L-36.357 40.764 L-38.3 41.62 L-40.381 42.327 A58.5 58.5 0 0 1 -42.327 40.381 L-41.62 38.3 L-40.764 36.357 L-39.747 34.578 L-38.513 33.039 Q-36.716 31.497 -37.492 30.57A48.375 48.375 0 0 1 -39.232 28.302 L-39.232 28.302Q-39.927 27.313 -41.882 28.65 L-43.687 29.443 L-45.669 29.965 L-47.767 30.289 L-49.961 30.433 A58.5 58.5 0 0 1 -51.336 28.05 L-50.114 26.223 L-48.785 24.568 L-47.342 23.113 L-45.752 21.946 Q-43.617 20.921 -44.126 19.825A48.375 48.375 0 0 1 -45.22 17.184 L-45.22 17.184Q-45.635 16.048 -47.87 16.834 L-49.819 17.133 L-51.868 17.124 L-53.979 16.894 L-56.135 16.466 A58.5 58.5 0 0 1 -56.847 13.808 L-55.194 12.359 L-53.481 11.104 L-51.711 10.072 L-49.873 9.356 Q-47.546 8.92 -47.754 7.728A48.375 48.375 0 0 1 -48.127 4.895 L-48.127 4.895Q-48.234 3.69 -50.596 3.871 L-52.556 3.655 L-54.533 3.116 L-56.512 2.347 L-58.484 1.376 A58.5 58.5 0 0 1 -58.484 -1.376 L-56.512 -2.347 L-54.533 -3.116 L-52.556 -3.655 L-50.596 -3.871 Q-48.234 -3.69 -48.127 -4.895A48.375 48.375 0 0 1 -47.754 -7.728 L-47.754 -7.728Q-47.546 -8.92 -49.873 -9.356 L-51.711 -10.072 L-53.481 -11.104 L-55.194 -12.359 L-56.847 -13.808 A58.5 58.5 0 0 1 -56.135 -16.466 L-53.979 -16.894 L-51.868 -17.124 L-49.819 -17.133 L-47.87 -16.834 Q-45.635 -16.048 -45.22 -17.184A48.375 48.375 0 0 1 -44.126 -19.825 L-44.126 -19.825Q-43.617 -20.921 -45.752 -21.946 L-47.342 -23.113 L-48.785 -24.568 L-50.114 -26.223 L-51.336 -28.05 A58.5 58.5 0 0 1 -49.961 -30.433 L-47.767 -30.289 L-45.669 -29.965 L-43.687 -29.443 L-41.882 -28.65 Q-39.927 -27.313 -39.232 -28.302A48.375 48.375 0 0 1 -37.492 -30.57 L-37.492 -30.57Q-36.716 -31.497 -38.513 -33.039 L-39.747 -34.578 L-40.764 -36.357 L-41.62 -38.3 L-42.327 -40.381 A58.5 58.5 0 0 1 -40.381 -42.327 L-38.3 -41.62 L-36.357 -40.764 L-34.578 -39.747 L-33.039 -38.513 Q-31.497 -36.716 -30.57 -37.492A48.375 48.375 0 0 1 -28.302 -39.232 L-28.302 -39.232Q-27.313 -39.927 -28.65 -41.882 L-29.443 -43.687 L-29.965 -45.669 L-30.289 -47.767 L-30.433 -49.961 A58.5 58.5 0 0 1 -28.05 -51.336 L-26.223 -50.114 L-24.568 -48.785 L-23.113 -47.342 L-21.946 -45.752 Q-20.921 -43.617 -19.825 -44.126A48.375 48.375 0 0 1 -17.184 -45.22 L-17.184 -45.22Q-16.048 -45.635 -16.834 -47.87 L-17.133 -49.819 L-17.124 -51.868 L-16.894 -53.979 L-16.466 -56.135 A58.5 58.5 0 0 1 -13.808 -56.847 L-12.359 -55.194 L-11.104 -53.481 L-10.072 -51.711 L-9.356 -49.873 Q-8.92 -47.546 -7.728 -47.754A48.375 48.375 0 0 1 -4.895 -48.127 L-4.895 -48.127Q-3.69 -48.234 -3.871 -50.596 L-3.655 -52.556 L-3.116 -54.533 L-2.347 -56.512 L-1.376 -58.484 A58.5 58.5 0 0 1 1.376 -58.484 L2.347 -56.512 L3.116 -54.533 L3.655 -52.556 L3.871 -50.596 Q3.69 -48.234 4.895 -48.127A48.375 48.375 0 0 1 7.728 -47.754 L7.728 -47.754Q8.92 -47.546 9.356 -49.873 L10.072 -51.711 L11.104 -53.481 L12.359 -55.194 L13.808 -56.847 A58.5 58.5 0 0 1 16.466 -56.135 L16.894 -53.979 L17.124 -51.868 L17.133 -49.819 L16.834 -47.87 Q16.048 -45.635 17.184 -45.22A48.375 48.375 0 0 1 19.825 -44.126 L19.825 -44.126Q20.921 -43.617 21.946 -45.752 L23.113 -47.342 L24.568 -48.785 L26.223 -50.114 L28.05 -51.336 A58.5 58.5 0 0 1 30.433 -49.961 L30.289 -47.767 L29.965 -45.669 L29.443 -43.687 L28.65 -41.882 Q27.313 -39.927 28.302 -39.232A48.375 48.375 0 0 1 30.57 -37.492 L30.57 -37.492Q31.497 -36.716 33.039 -38.513 L34.578 -39.747 L36.357 -40.764 L38.3 -41.62 L40.381 -42.327 A58.5 58.5 0 0 1 42.327 -40.381 L41.62 -38.3 L40.764 -36.357 L39.747 -34.578 L38.513 -33.039 Q36.716 -31.497 37.492 -30.57A48.375 48.375 0 0 1 39.232 -28.302 L39.232 -28.302Q39.927 -27.313 41.882 -28.65 L43.687 -29.443 L45.669 -29.965 L47.767 -30.289 L49.961 -30.433 A58.5 58.5 0 0 1 51.336 -28.05 L50.114 -26.223 L48.785 -24.568 L47.342 -23.113 L45.752 -21.946 Q43.617 -20.921 44.126 -19.825A48.375 48.375 0 0 1 45.22 -17.184 L45.22 -17.184Q45.635 -16.048 47.87 -16.834 L49.819 -17.133 L51.868 -17.124 L53.979 -16.894 L56.135 -16.466 A58.5 58.5 0 0 1 56.847 -13.808 L55.194 -12.359 L53.481 -11.104 L51.711 -10.072 L49.873 -9.356 Q47.546 -8.92 47.754 -7.728A48.375 48.375 0 0 1 48.127 -4.895Z"/><marker id="claw-turn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#a83a30"/></marker><marker id="claw-load" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#a83a30"/></marker><marker id="machine-drag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#357458"/></marker>
+  </defs>
+  <rect width="720" height="478" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="360" y="31" font-size="23" fill="#263340" text-anchor="middle" font-weight="600">Cycle the claw, then test it with the power off</text>
+    <text x="24" y="61" font-size="15" fill="#697580" >SIDE VIEW · the fixed pivots stay on the structure.</text>
+    <path d="M35 324H687" fill="none" stroke="#36434f" stroke-width="2" />
+    <rect x="75" y="155" width="125" height="169" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <rect x="84" y="164" width="107" height="151" rx="3" fill="none" stroke="#e0e5e8"/>
+    <circle cx="91" cy="171" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="184" cy="171" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="91" cy="308" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="184" cy="308" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <path d="M195 225 430 225" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round"/>
+    <path d="M195 225 430 225" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <path d="M195 305 430 225" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round"/>
+    <path d="M195 305 430 225" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <text x="137" y="179" font-size="15" fill="#36434f" text-anchor="middle" font-weight="600">STRUCTURE</text>
+    <text x="137" y="200" font-size="15" fill="#36434f" text-anchor="middle" font-weight="600">+ MOTOR</text>
+    <path d="M260 225V185H527M430 225V185M508 230V199H546V230M527 185V199" fill="none" stroke="#b7c1c9" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/>
+    <text x="562" y="185" font-size="17" fill="#697580" >up</text>
+    <g transform="translate(179 225)">
+    <use href="#claw-pinion" transform="rotate(15)" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="19.44" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+    <circle cx="12.96" cy="0" r="2.7" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="12.96" r="2.7" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="-12.96" cy="0" r="2.7" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="-12.96" r="2.7" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="0" r="13" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <path d="M-3 -8H3V-3H8V3H3V8H-3V3H-8V-3H-3Z" fill="#36434f"/>
+    </g>
+    <g transform="translate(260 225)">
+    <use href="#claw-gear" transform="rotate(0)" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="38.88" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+    <circle cx="25.92" cy="0" r="5.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="25.92" r="5.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="-25.92" cy="0" r="5.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="-25.92" r="5.4" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="0" r="13" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <path d="M-3 -8H3V-3H8V3H3V8H-3V3H-8V-3H-3Z" fill="#36434f"/>
+    </g>
+    <path d="M260 225 260 265" fill="none" stroke="#a83a30" stroke-width="18" stroke-linecap="round"/>
+    <path d="M260 225 260 265" fill="none" stroke="#fae8e3" stroke-width="14" stroke-linecap="round"/>
+    <path d="M430 225 430 265" fill="none" stroke="#697580" stroke-width="18" stroke-linecap="round"/>
+    <path d="M430 225 430 265" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="430" cy="233" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="430" cy="241" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="430" cy="249" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="430" cy="257" r="3.25" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <path d="M260 265 527 265" fill="none" stroke="#3d617e" stroke-width="18" stroke-linecap="round"/>
+    <path d="M260 265 527 265" fill="none" stroke="#eaf0f5" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="313.4" cy="265" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="366.8" cy="265" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="420.2" cy="265" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="473.6" cy="265" r="3.25" fill="#fff" stroke="#3d617e" stroke-width="1.25"/>
+    <circle cx="260" cy="225" r="6" fill="#fff" stroke="#36434f" stroke-width="1.5"/>
+    <circle cx="260" cy="225" r="2" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <rect x="413" y="210" width="34" height="30" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5" />
+    <circle cx="430" cy="225" r="6" fill="#fff" stroke="#36434f" stroke-width="1.5"/>
+    <circle cx="430" cy="225" r="2" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="260" cy="265" r="6" fill="#fff" stroke="#36434f" stroke-width="1.5"/>
+    <circle cx="260" cy="265" r="2" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="430" cy="265" r="6" fill="#fff" stroke="#36434f" stroke-width="1.5"/>
+    <circle cx="430" cy="265" r="2" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="527" cy="265" r="6" fill="#fff" stroke="#36434f" stroke-width="1.5"/>
+    <circle cx="527" cy="265" r="2" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <rect x="511" y="292" width="32" height="32" rx="3" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" />
+    <path d="M508 310V279H546V310" fill="none" stroke="#a83a30" stroke-width="6" />
+    <path d="M508 310V279H546V310" fill="none" stroke="#fae8e3" stroke-width="2" />
+    <path d="M527 265V279" fill="none" stroke="#36434f" stroke-width="4" />
+    <path d="M300 165A73 73 0 0 1 332 211" fill="none" stroke="#a83a30" stroke-width="2" marker-end="url(#claw-turn)"/>
+    <text x="347" y="118" font-size="17" fill="#a83a30" font-weight="600">one direction only</text>
+    <path d="M390 125L322 161" fill="none" stroke="#a83a30" stroke-width="1" />
+    <text x="300" y="360" font-size="18" fill="#a83a30" font-weight="600">DOWN — PARKED</text>
+    <text x="543" y="353" font-size="16" fill="#36434f" >1″ cube</text>
+    <text x="572" y="270" font-size="15" fill="#a83a30" >drag load</text>
+    <path d="M625 301H561" fill="none" stroke="#a83a30" stroke-width="2" marker-end="url(#claw-load)"/>
+    <path d="M160 397H567" fill="none" stroke="#357458" stroke-width="2.5" marker-end="url(#machine-drag)"/>
+    <text x="360" y="426" font-size="17" fill="#357458" text-anchor="middle" font-weight="600">move the whole machine — the cube comes too</text>
+    <text x="360" y="456" font-size="15" fill="#697580" text-anchor="middle">Dashed grey: raised position. Solid: claw parked down with the motor off.</text>
+  </g>
+</svg>

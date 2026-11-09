@@ -1,36 +1,52 @@
-<svg viewBox="0 0 620 320" role="img" aria-label="A wheel turning in one direction only, with a pin near its rim connected by a rod to a platform above. As the pin goes round, the platform rises and falls, even though the wheel never reverses." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="rotK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
-          </marker>
-          <marker id="udD" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto">
-            <path d="M0,9 L5,0 L10,9 z" fill="#1E8449"></path>
-          </marker>
-        </defs>
-
-        
-        <circle cx="180" cy="212" r="58" fill="#F8F8F8" stroke="#888" stroke-width="2.5"></circle>
-        <circle cx="180" cy="212" r="6" fill="#444"></circle>
-        <path d="M112,246 A76,76 0 0 1 104,192" fill="none" stroke="#C0392B" stroke-width="3" marker-end="url(#rotK)"></path>
-        <text x="64" y="288" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">ONE DIRECTION</text>
-        <text x="64" y="306" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#C0392B">ONLY</text>
-
-        
-        <circle cx="180" cy="154" r="9" fill="#C0392B"></circle>
-        <line x1="180" y1="154" x2="180" y2="96" stroke="#888" stroke-width="7" stroke-linecap="round"></line>
-        <rect x="112" y="76" width="176" height="18" rx="3" fill="#dbe3f0" stroke="#1F2D5A" stroke-width="2.5"></rect>
-
-        
-        <circle cx="180" cy="270" r="9" fill="none" stroke="#BBB" stroke-width="3"></circle>
-        <line x1="180" y1="270" x2="180" y2="212" stroke="#BBB" stroke-width="6" stroke-linecap="round" stroke-dasharray="8 6"></line>
-        <rect x="112" y="192" width="176" height="18" rx="3" fill="none" stroke="#BBB" stroke-width="2.5" stroke-dasharray="9 6"></rect>
-
-        
-        <line x1="330" y1="200" x2="330" y2="88" stroke="#1E8449" stroke-width="3" marker-start="url(#udD)" marker-end="url(#udD)"></line>
-        <text x="352" y="148" font-family="'Barlow Condensed',sans-serif" font-size="17" font-weight="700" fill="#1E8449">UP AND DOWN</text>
-        <text x="352" y="170" font-family="'Barlow',sans-serif" font-size="13" fill="#666">the platform reverses</text>
-        <text x="352" y="188" font-family="'Barlow',sans-serif" font-size="13" fill="#666">even though the wheel never does</text>
-
-        <text x="352" y="240" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1C1C1C">Lift = twice the pin offset</text>
-        <text x="352" y="258" font-family="'Barlow',sans-serif" font-size="12.5" fill="#666">the same rule as the crank in Challenge 6</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 510" role="img" aria-labelledby="continuous-lift-title continuous-lift-description">
+  <title id="continuous-lift-title">Continuous rotation can lift and lower</title>
+  <desc id="continuous-lift-description">A guided platform driven by a wheel through a pivoting rod. The solid upper and dashed lower positions share a 45-unit crank radius and a 160-unit connecting rod, giving 90 units of lift. The platform reverses at each end while the wheel continues in one direction. The guides constrain this slider-crank example; the next diagram compares free linkages.</desc>
+  <defs>
+    <marker id="lift-turn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#a83a30"/></marker><marker id="lift-travel" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#357458"/></marker><marker id="lift-travel-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M10 0 0 5 10 10Z" fill="#357458"/></marker>
+  </defs>
+  <rect width="720" height="510" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="360" y="31" font-size="23" fill="#263340" text-anchor="middle" font-weight="600">Continuous rotation can lift and lower</text>
+    <text x="360" y="60" font-size="16" fill="#697580" text-anchor="middle">Slider-crank example · the guides keep this platform moving vertically.</text>
+    <rect x="66" y="124" width="278" height="161" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <rect x="75" y="133" width="260" height="143" rx="3" fill="none" stroke="#e0e5e8"/>
+    <circle cx="82" cy="140" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="328" cy="140" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="82" cy="269" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="328" cy="269" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <path d="M80 132V275M330 132V275" fill="none" stroke="#36434f" stroke-width="7" />
+    <path d="M80 132V275M330 132V275" fill="none" stroke="#b7c1c9" stroke-width="3" />
+    <path d="M205 410V250" fill="none" stroke="#b7c1c9" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/>
+    <rect x="92" y="243" width="226" height="14" rx="3" fill="none" stroke="#b7c1c9" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <text x="110" y="275" font-size="15" fill="#697580" >lower position</text>
+    <circle cx="205" cy="365" r="60" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <circle cx="205" cy="365" r="45" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+    <path d="M205 365V320" fill="none" stroke="#a83a30" stroke-width="4" />
+    <path d="M205 320 205 160" fill="none" stroke="#36434f" stroke-width="18" stroke-linecap="round"/>
+    <path d="M205 320 205 160" fill="none" stroke="#e9edf0" stroke-width="14" stroke-linecap="round"/>
+    <rect x="72" y="241" width="24" height="18" rx="3" fill="none" stroke="#b7c1c9" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <rect x="314" y="241" width="24" height="18" rx="3" fill="none" stroke="#b7c1c9" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <rect x="72" y="151" width="24" height="18" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5" />
+    <rect x="314" y="151" width="24" height="18" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5" />
+    <rect x="92" y="153" width="226" height="14" rx="3" fill="#eaf0f5" stroke="#3d617e" stroke-width="1.5" />
+    <circle cx="205" cy="160" r="6" fill="#fff" stroke="#36434f" stroke-width="1.5"/>
+    <circle cx="205" cy="160" r="2" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="205" cy="320" r="7" fill="#fae8e3" stroke="#a83a30" stroke-width="1.5"/>
+    <circle cx="205" cy="365" r="6" fill="#fff" stroke="#36434f" stroke-width="1.5"/>
+    <circle cx="205" cy="365" r="2" fill="#36434f" stroke="#36434f" stroke-width="1"/>
+    <circle cx="205" cy="410" r="7" fill="#fff" stroke="#b7c1c9" stroke-width="1.5"/>
+    <path d="M139 409A79 79 0 0 1 139 321" fill="none" stroke="#a83a30" stroke-width="2.5" marker-end="url(#lift-turn)"/>
+    <text x="75" y="462" font-size="18" fill="#a83a30" font-weight="600">ONE DIRECTION</text>
+    <text x="75" y="486" font-size="18" fill="#a83a30" font-weight="600">ONLY</text>
+    <path d="M366 245V159" fill="none" stroke="#357458" stroke-width="2.2" marker-start="url(#lift-travel-start)" marker-end="url(#lift-travel)"/>
+    <text x="398" y="170" font-size="20" fill="#357458" font-weight="600">UP AND DOWN</text>
+    <text x="398" y="199" font-size="16" fill="#36434f" >the platform reverses</text>
+    <text x="398" y="223" font-size="16" fill="#697580" >even though the wheel never does</text>
+    <text x="398" y="293" font-size="18" fill="#263340" font-weight="600">Lift = twice the pin offset</text>
+    <text x="398" y="321" font-size="15" fill="#697580" >the same rule as the crank in Challenge 6</text>
+    <path d="M205 440L250 440M205 435L205 445M250 435L250 445" fill="none" stroke="#a83a30" stroke-width="1.25" />
+    <text x="252" y="445" font-size="15" fill="#a83a30" >pin offset</text>
+    <text x="398" y="378" font-size="16" fill="#36434f" >Both rod ends pivot.</text>
+    <text x="398" y="403" font-size="16" fill="#697580" >Guides prevent sideways motion.</text>
+  </g>
+</svg>

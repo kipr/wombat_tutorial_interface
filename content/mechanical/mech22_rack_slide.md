@@ -92,7 +92,7 @@ Your rack and pinion drives one of those. It does nothing at all about the other
 
 {{< figrow tall=true >}}
 - src: "mech22_rack_slide-diagram-01.svg"
-  alt: "Two platforms compared. Without guides, a platform pushed at a single point by a pinion twists out of square. With guide rails running along both edges, the platform can only travel along the rails."
+  alt: "Top views of two platforms, each attached to a rack driven by a fixed 24-tooth pinion. Without guides, a dashed outline shows unwanted platform rotation. With two long guide rails, the platform can only slide along them. The pinion teeth enter the rack gaps."
   caption: "The pinion supplies the motion. The guides remove the two you did not want."
 {{< /figrow >}}
 
@@ -152,7 +152,7 @@ Every one of these must be true for your design to count as finished.
 
 {{< figrow tall=true >}}
 - src: "mech22_rack_slide-diagram-02.svg"
-  alt: "Top view of the sliding platform. A motor on a base turns a pinion, which drives a rack fixed under a long flat platform. Guide rails run along both edges of the platform. The platform is seven inches long, two inches wide, and travels at least two inches."
+  alt: "Cutaway top view of a seven by two inch platform. A rack attached underneath meshes with a fixed 24-tooth pinion driven by a motor below the deck. Long stationary rails guide both sides over the full travel. The dashed platform outline is shifted two inches to the right."
   caption: "Top view. The rails run the length of the platform's travel; the rack is fixed under it."
 {{< /figrow >}}
 

@@ -1,42 +1,60 @@
-<svg viewBox="0 0 620 300" role="img" aria-label="Two platforms compared. Without guides, a platform pushed at a single point by a pinion twists out of square. With guide rails running along both edges, the platform can only travel along the rails." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="dblB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#1E8449"></path>
-          </marker>
-          <marker id="rotL" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"></path>
-          </marker>
-        </defs>
-
-        
-        <rect x="8" y="8" width="296" height="284" rx="8" fill="#fff" stroke="#CCC"></rect>
-        <text x="24" y="34" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#C0392B">NO GUIDE — it twists</text>
-
-        <g transform="rotate(-9 155 150)">
-          <rect x="62" y="122" width="190" height="56" rx="4" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        </g>
-        <line x1="46" y1="212" x2="266" y2="212" stroke="#444" stroke-width="11" stroke-dasharray="9 11"></line>
-        <circle cx="104" cy="238" r="24" fill="#fff" stroke="#1C1C1C" stroke-width="5" stroke-dasharray="10 10"></circle>
-        <circle cx="104" cy="238" r="4" fill="#444"></circle>
-        <circle cx="104" cy="196" r="7" fill="#C0392B"></circle>
-        <text x="128" y="200" font-family="'Barlow',sans-serif" font-size="12" font-weight="600" fill="#C0392B">pushed here only</text>
-
-        <path d="M212,96 A56,56 0 0 1 244,140" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#rotL)"></path>
-        <text x="24" y="272" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#C0392B">Free to spin about the drive point.</text>
-
-        
-        <rect x="316" y="8" width="296" height="284" rx="8" fill="#fff" stroke="#CCC"></rect>
-        <text x="332" y="34" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="700" fill="#1E8449">GUIDED — one way only</text>
-
-        <rect x="340" y="104" width="250" height="12" rx="2" fill="#1C1C1C"></rect>
-        <rect x="340" y="200" width="250" height="12" rx="2" fill="#1C1C1C"></rect>
-        <rect x="372" y="122" width="190" height="72" rx="4" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-
-        <line x1="346" y1="236" x2="586" y2="236" stroke="#444" stroke-width="11" stroke-dasharray="9 11"></line>
-        <circle cx="412" cy="262" r="24" fill="#fff" stroke="#1C1C1C" stroke-width="5" stroke-dasharray="10 10"></circle>
-        <circle cx="412" cy="262" r="4" fill="#444"></circle>
-
-        <line x1="400" y1="158" x2="534" y2="158" stroke="#1E8449" stroke-width="3" marker-start="url(#dblB)" marker-end="url(#dblB)"></line>
-        <text x="332" y="94" font-family="'Barlow',sans-serif" font-size="12" font-weight="600" fill="#1C1C1C">guide rail</text>
-        <text x="332" y="272" font-family="'Barlow',sans-serif" font-size="12.5" font-weight="600" fill="#1E8449">Two freedoms removed. One left.</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 452" role="img" aria-labelledby="slide-guides-title slide-guides-description">
+  <title id="slide-guides-title">The drive pushes. The guides keep it square.</title>
+  <desc id="slide-guides-description">Top views of two rack-driven platforms with 24-tooth pinions and matching tooth pitch. Both racks are attached to their platforms. Without guides the dashed platform outline shows unwanted rotation about the drive region. With two long guide rails the platform can only slide along them. Pinion teeth enter rack gaps.</desc>
+  <defs>
+    <!-- 24 teeth, pitch radius 33, module 2.75. Both racks have pitch 2.75π;
+         their gaps face the downward pinion teeth (90° phase). -->
+    <path id="slide-pinion" d="M29.411 -2.991Q29.476 -2.255 30.92 -2.365 L32.117 -2.233 L33.326 -1.904 L34.535 -1.434 L35.74 -0.841 A35.75 35.75 0 0 1 35.74 0.841 L34.535 1.434 L33.326 1.904 L32.117 2.233 L30.92 2.365 Q29.476 2.255 29.411 2.991A29.563 29.563 0 0 1 29.183 4.723 L29.183 4.723Q29.056 5.451 30.478 5.718 L31.601 6.155 L32.683 6.786 L33.73 7.553 L34.74 8.438 A35.75 35.75 0 0 1 34.305 10.062 L32.987 10.324 L31.697 10.465 L30.445 10.47 L29.254 10.287 Q27.888 9.807 27.634 10.501A29.563 29.563 0 0 1 26.966 12.115 L26.966 12.115Q26.655 12.785 27.96 13.411 L28.931 14.124 L29.813 15.013 L30.626 16.025 L31.372 17.142 A35.75 35.75 0 0 1 30.531 18.598 L29.191 18.51 L27.909 18.312 L26.698 17.993 L25.594 17.508 Q24.4 16.691 23.975 17.296A29.563 29.563 0 0 1 22.912 18.681 L22.912 18.681Q22.437 19.248 23.536 20.191 L24.29 21.131 L24.911 22.218 L25.434 23.406 L25.867 24.678 A35.75 35.75 0 0 1 24.678 25.867 L23.406 25.434 L22.218 24.911 L21.131 24.29 L20.191 23.536 Q19.248 22.437 18.681 22.912A29.563 29.563 0 0 1 17.296 23.975 L17.296 23.975Q16.691 24.4 17.508 25.594 L17.993 26.698 L18.312 27.909 L18.51 29.191 L18.598 30.531 A35.75 35.75 0 0 1 17.142 31.372 L16.025 30.626 L15.013 29.813 L14.124 28.931 L13.411 27.96 Q12.785 26.655 12.115 26.966A29.563 29.563 0 0 1 10.501 27.634 L10.501 27.634Q9.807 27.888 10.287 29.254 L10.47 30.445 L10.465 31.697 L10.324 32.987 L10.062 34.305 A35.75 35.75 0 0 1 8.438 34.74 L7.553 33.73 L6.786 32.683 L6.155 31.601 L5.718 30.478 Q5.451 29.056 4.723 29.183A29.563 29.563 0 0 1 2.991 29.411 L2.991 29.411Q2.255 29.476 2.365 30.92 L2.233 32.117 L1.904 33.326 L1.434 34.535 L0.841 35.74 A35.75 35.75 0 0 1 -0.841 35.74 L-1.434 34.535 L-1.904 33.326 L-2.233 32.117 L-2.365 30.92 Q-2.255 29.476 -2.991 29.411A29.563 29.563 0 0 1 -4.723 29.183 L-4.723 29.183Q-5.451 29.056 -5.718 30.478 L-6.155 31.601 L-6.786 32.683 L-7.553 33.73 L-8.438 34.74 A35.75 35.75 0 0 1 -10.062 34.305 L-10.324 32.987 L-10.465 31.697 L-10.47 30.445 L-10.287 29.254 Q-9.807 27.888 -10.501 27.634A29.563 29.563 0 0 1 -12.115 26.966 L-12.115 26.966Q-12.785 26.655 -13.411 27.96 L-14.124 28.931 L-15.013 29.813 L-16.025 30.626 L-17.142 31.372 A35.75 35.75 0 0 1 -18.598 30.531 L-18.51 29.191 L-18.312 27.909 L-17.993 26.698 L-17.508 25.594 Q-16.691 24.4 -17.296 23.975A29.563 29.563 0 0 1 -18.681 22.912 L-18.681 22.912Q-19.248 22.437 -20.191 23.536 L-21.131 24.29 L-22.218 24.911 L-23.406 25.434 L-24.678 25.867 A35.75 35.75 0 0 1 -25.867 24.678 L-25.434 23.406 L-24.911 22.218 L-24.29 21.131 L-23.536 20.191 Q-22.437 19.248 -22.912 18.681A29.563 29.563 0 0 1 -23.975 17.296 L-23.975 17.296Q-24.4 16.691 -25.594 17.508 L-26.698 17.993 L-27.909 18.312 L-29.191 18.51 L-30.531 18.598 A35.75 35.75 0 0 1 -31.372 17.142 L-30.626 16.025 L-29.813 15.013 L-28.931 14.124 L-27.96 13.411 Q-26.655 12.785 -26.966 12.115A29.563 29.563 0 0 1 -27.634 10.501 L-27.634 10.501Q-27.888 9.807 -29.254 10.287 L-30.445 10.47 L-31.697 10.465 L-32.987 10.324 L-34.305 10.062 A35.75 35.75 0 0 1 -34.74 8.438 L-33.73 7.553 L-32.683 6.786 L-31.601 6.155 L-30.478 5.718 Q-29.056 5.451 -29.183 4.723A29.563 29.563 0 0 1 -29.411 2.991 L-29.411 2.991Q-29.476 2.255 -30.92 2.365 L-32.117 2.233 L-33.326 1.904 L-34.535 1.434 L-35.74 0.841 A35.75 35.75 0 0 1 -35.74 -0.841 L-34.535 -1.434 L-33.326 -1.904 L-32.117 -2.233 L-30.92 -2.365 Q-29.476 -2.255 -29.411 -2.991A29.563 29.563 0 0 1 -29.183 -4.723 L-29.183 -4.723Q-29.056 -5.451 -30.478 -5.718 L-31.601 -6.155 L-32.683 -6.786 L-33.73 -7.553 L-34.74 -8.438 A35.75 35.75 0 0 1 -34.305 -10.062 L-32.987 -10.324 L-31.697 -10.465 L-30.445 -10.47 L-29.254 -10.287 Q-27.888 -9.807 -27.634 -10.501A29.563 29.563 0 0 1 -26.966 -12.115 L-26.966 -12.115Q-26.655 -12.785 -27.96 -13.411 L-28.931 -14.124 L-29.813 -15.013 L-30.626 -16.025 L-31.372 -17.142 A35.75 35.75 0 0 1 -30.531 -18.598 L-29.191 -18.51 L-27.909 -18.312 L-26.698 -17.993 L-25.594 -17.508 Q-24.4 -16.691 -23.975 -17.296A29.563 29.563 0 0 1 -22.912 -18.681 L-22.912 -18.681Q-22.437 -19.248 -23.536 -20.191 L-24.29 -21.131 L-24.911 -22.218 L-25.434 -23.406 L-25.867 -24.678 A35.75 35.75 0 0 1 -24.678 -25.867 L-23.406 -25.434 L-22.218 -24.911 L-21.131 -24.29 L-20.191 -23.536 Q-19.248 -22.437 -18.681 -22.912A29.563 29.563 0 0 1 -17.296 -23.975 L-17.296 -23.975Q-16.691 -24.4 -17.508 -25.594 L-17.993 -26.698 L-18.312 -27.909 L-18.51 -29.191 L-18.598 -30.531 A35.75 35.75 0 0 1 -17.142 -31.372 L-16.025 -30.626 L-15.013 -29.813 L-14.124 -28.931 L-13.411 -27.96 Q-12.785 -26.655 -12.115 -26.966A29.563 29.563 0 0 1 -10.501 -27.634 L-10.501 -27.634Q-9.807 -27.888 -10.287 -29.254 L-10.47 -30.445 L-10.465 -31.697 L-10.324 -32.987 L-10.062 -34.305 A35.75 35.75 0 0 1 -8.438 -34.74 L-7.553 -33.73 L-6.786 -32.683 L-6.155 -31.601 L-5.718 -30.478 Q-5.451 -29.056 -4.723 -29.183A29.563 29.563 0 0 1 -2.991 -29.411 L-2.991 -29.411Q-2.255 -29.476 -2.365 -30.92 L-2.233 -32.117 L-1.904 -33.326 L-1.434 -34.535 L-0.841 -35.74 A35.75 35.75 0 0 1 0.841 -35.74 L1.434 -34.535 L1.904 -33.326 L2.233 -32.117 L2.365 -30.92 Q2.255 -29.476 2.991 -29.411A29.563 29.563 0 0 1 4.723 -29.183 L4.723 -29.183Q5.451 -29.056 5.718 -30.478 L6.155 -31.601 L6.786 -32.683 L7.553 -33.73 L8.438 -34.74 A35.75 35.75 0 0 1 10.062 -34.305 L10.324 -32.987 L10.465 -31.697 L10.47 -30.445 L10.287 -29.254 Q9.807 -27.888 10.501 -27.634A29.563 29.563 0 0 1 12.115 -26.966 L12.115 -26.966Q12.785 -26.655 13.411 -27.96 L14.124 -28.931 L15.013 -29.813 L16.025 -30.626 L17.142 -31.372 A35.75 35.75 0 0 1 18.598 -30.531 L18.51 -29.191 L18.312 -27.909 L17.993 -26.698 L17.508 -25.594 Q16.691 -24.4 17.296 -23.975A29.563 29.563 0 0 1 18.681 -22.912 L18.681 -22.912Q19.248 -22.437 20.191 -23.536 L21.131 -24.29 L22.218 -24.911 L23.406 -25.434 L24.678 -25.867 A35.75 35.75 0 0 1 25.867 -24.678 L25.434 -23.406 L24.911 -22.218 L24.29 -21.131 L23.536 -20.191 Q22.437 -19.248 22.912 -18.681A29.563 29.563 0 0 1 23.975 -17.296 L23.975 -17.296Q24.4 -16.691 25.594 -17.508 L26.698 -17.993 L27.909 -18.312 L29.191 -18.51 L30.531 -18.598 A35.75 35.75 0 0 1 31.372 -17.142 L30.626 -16.025 L29.813 -15.013 L28.931 -14.124 L27.96 -13.411 Q26.655 -12.785 26.966 -12.115A29.563 29.563 0 0 1 27.634 -10.501 L27.634 -10.501Q27.888 -9.807 29.254 -10.287 L30.445 -10.47 L31.697 -10.465 L32.987 -10.324 L34.305 -10.062 A35.75 35.75 0 0 1 34.74 -8.438 L33.73 -7.553 L32.683 -6.786 L31.601 -6.155 L30.478 -5.718 Q29.056 -5.451 29.183 -4.723A29.563 29.563 0 0 1 29.411 -2.991Z"/><marker id="slide-twist" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#a83a30"/></marker><marker id="slide-go" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#357458"/></marker><marker id="slide-go-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M10 0 0 5 10 10Z" fill="#357458"/></marker>
+  </defs>
+  <rect width="720" height="452" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="360" y="31" font-size="23" fill="#263340" text-anchor="middle" font-weight="600">The drive pushes. The guides keep it square.</text>
+    <text x="360" y="59" font-size="15" fill="#697580" text-anchor="middle">TOP VIEW · grey dashed outlines show the motion each platform can try to make.</text>
+    <path d="M360 83V399" fill="none" stroke="#b7c1c9" stroke-width="1" />
+    <text x="25" y="99" font-size="19" fill="#a83a30" font-weight="600">NO GUIDE — it twists</text>
+    <g transform="rotate(9 135 203)">
+    <rect x="70" y="242" width="240" height="61" rx="3" fill="none" stroke="#b7c1c9" stroke-width="1.5" stroke-dasharray="6 5"/>
+    </g>
+    <path d="M280 179A69 69 0 0 1 306 210" fill="none" stroke="#a83a30" stroke-width="2" marker-end="url(#slide-twist)"/>
+    <rect x="70" y="242" width="240" height="61" rx="3" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" />
+    <rect x="82" y="222" width="14" height="20" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5" />
+    <rect x="280" y="222" width="14" height="20" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5" />
+    <path d="M60 228.4375V206.4375H58.454L60.706 200.25H62.424L64.676 206.4375H67.094L69.346 200.25H71.064L73.316 206.4375H75.733L77.985 200.25H79.703L81.955 206.4375H84.372L86.624 200.25H88.342L90.594 206.4375H93.012L95.264 200.25H96.982L99.234 206.4375H101.651L103.903 200.25H105.621L107.873 206.4375H110.291L112.543 200.25H114.26L116.513 206.4375H118.93L121.182 200.25H122.9L125.152 206.4375H127.569L129.821 200.25H131.539L133.791 206.4375H136.209L138.461 200.25H140.179L142.431 206.4375H144.848L147.1 200.25H148.818L151.07 206.4375H153.487L155.74 200.25H157.457L159.709 206.4375H162.127L164.379 200.25H166.097L168.349 206.4375H170.766L173.018 200.25H174.736L176.988 206.4375H179.406L181.658 200.25H183.376L185.628 206.4375H188.045L190.297 200.25H192.015L194.267 206.4375H196.684L198.936 200.25H200.654L202.906 206.4375H205.324L207.576 200.25H209.294L211.546 206.4375H213.963L216.215 200.25H217.933L220.185 206.4375H222.602L224.855 200.25H226.572L228.824 206.4375H231.242L233.494 200.25H235.212L237.464 206.4375H239.881L242.133 200.25H243.851L246.103 206.4375H248.521L250.773 200.25H252.491L254.743 206.4375H257.16L259.412 200.25H261.13L263.382 206.4375H265.799L268.051 200.25H269.769L272.021 206.4375H274.439L276.691 200.25H278.409L280.661 206.4375H283.078L285.33 200.25H287.048L289.3 206.4375H291.718L293.97 200.25H295.687L297.94 206.4375H300.357L302.609 200.25H304.327L306.579 206.4375H315V228.4375Z" fill="#e9edf0" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round" />
+    <g transform="translate(135 170)">
+    <use href="#slide-pinion" transform="rotate(90)" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="23.76" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+    <circle cx="15.84" cy="0" r="3.3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="15.84" r="3.3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="-15.84" cy="0" r="3.3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="-15.84" r="3.3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="0" r="13" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <path d="M-3 -8H3V-3H8V3H3V8H-3V3H-8V-3H-3Z" fill="#36434f"/>
+    </g>
+    <circle cx="135" cy="203" r="3" fill="#a83a30" stroke="#a83a30" stroke-width="1"/>
+    <text x="25" y="352" font-size="16" fill="#a83a30" >pushed here only</text>
+    <path d="M139 335L135 213" fill="none" stroke="#a83a30" stroke-width="1" />
+    <text x="25" y="384" font-size="16" fill="#a83a30" font-weight="600">Free to spin about the drive point.</text>
+    <text x="380" y="99" font-size="19" fill="#357458" font-weight="600">GUIDED — one way only</text>
+    <rect x="385" y="230" width="305" height="10" rx="3" fill="#e9edf0" stroke="#36434f" stroke-width="1.5" />
+    <rect x="385" y="305" width="305" height="10" rx="3" fill="#e9edf0" stroke="#36434f" stroke-width="1.5" />
+    <text x="605" y="145" font-size="15" fill="#697580" >guide rail</text>
+    <path d="M641 151L667 226" fill="none" stroke="#697580" stroke-width="1" />
+    <rect x="425" y="242" width="240" height="61" rx="3" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" />
+    <rect x="437" y="222" width="14" height="20" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5" />
+    <rect x="635" y="222" width="14" height="20" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5" />
+    <path d="M415 228.4375V206.4375H413.454L415.706 200.25H417.424L419.676 206.4375H422.094L424.346 200.25H426.064L428.316 206.4375H430.733L432.985 200.25H434.703L436.955 206.4375H439.372L441.624 200.25H443.342L445.594 206.4375H448.012L450.264 200.25H451.982L454.234 206.4375H456.651L458.903 200.25H460.621L462.873 206.4375H465.291L467.543 200.25H469.26L471.513 206.4375H473.93L476.182 200.25H477.9L480.152 206.4375H482.569L484.821 200.25H486.539L488.791 206.4375H491.209L493.461 200.25H495.179L497.431 206.4375H499.848L502.1 200.25H503.818L506.07 206.4375H508.487L510.74 200.25H512.457L514.709 206.4375H517.127L519.379 200.25H521.097L523.349 206.4375H525.766L528.018 200.25H529.736L531.988 206.4375H534.406L536.658 200.25H538.376L540.628 206.4375H543.045L545.297 200.25H547.015L549.267 206.4375H551.684L553.936 200.25H555.654L557.906 206.4375H560.324L562.576 200.25H564.294L566.546 206.4375H568.963L571.215 200.25H572.933L575.185 206.4375H577.602L579.855 200.25H581.572L583.824 206.4375H586.242L588.494 200.25H590.212L592.464 206.4375H594.881L597.133 200.25H598.851L601.103 206.4375H603.521L605.773 200.25H607.491L609.743 206.4375H612.16L614.412 200.25H616.13L618.382 206.4375H620.799L623.051 200.25H624.769L627.021 206.4375H629.439L631.691 200.25H633.409L635.661 206.4375H638.078L640.33 200.25H642.048L644.3 206.4375H646.718L648.97 200.25H650.687L652.94 206.4375H655.357L657.609 200.25H659.327L661.579 206.4375H670V228.4375Z" fill="#e9edf0" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round" />
+    <g transform="translate(490 170)">
+    <use href="#slide-pinion" transform="rotate(90)" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="23.76" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+    <circle cx="15.84" cy="0" r="3.3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="15.84" r="3.3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="-15.84" cy="0" r="3.3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="-15.84" r="3.3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="0" r="13" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <path d="M-3 -8H3V-3H8V3H3V8H-3V3H-8V-3H-3Z" fill="#36434f"/>
+    </g>
+    <path d="M456 273H615" fill="none" stroke="#357458" stroke-width="2.2" marker-start="url(#slide-go-start)" marker-end="url(#slide-go)"/>
+    <text x="380" y="384" font-size="16" fill="#357458" font-weight="600">Two freedoms removed. One left.</text>
+    <text x="360" y="430" font-size="15" fill="#697580" text-anchor="middle">Each rack is attached to its platform. Each pinion axle stays on the stationary base.</text>
+  </g>
+</svg>

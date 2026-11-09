@@ -101,7 +101,7 @@ height="340"
      font-size="13px"
      font-weight="600"
      fill="#1c1c1c"
-     id="text4">Rear axle</text>
+     id="text4">rear axle</text>
   <text
      x="-18536.588"
      y="-13399.054"
@@ -109,7 +109,7 @@ height="340"
      font-size="14px"
      font-weight="600"
      fill="#888888"
-     id="text5">Inner wheel</text>
+     id="text5">inner wheel</text>
   <text
      x="-18536.588"
      y="-13380.054"
@@ -124,7 +124,7 @@ height="340"
      font-size="14px"
      font-weight="600"
      fill="#c0392b"
-     id="text7">Outer wheel</text>
+     id="text7">outer wheel</text>
   <text
      x="-18299.762"
      y="-13469"

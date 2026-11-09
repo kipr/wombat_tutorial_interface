@@ -90,7 +90,7 @@ A motor that only spins one direction seems like a poor way to build something t
 
 {{< figrow tall=true >}}
 - src: "mech21_parallelogram-diagram-01.svg"
-  alt: "A wheel turning in one direction only, with a pin near its rim connected by a rod to a platform above. As the pin goes round, the platform rises and falls, even though the wheel never reverses."
+  alt: "A slider-crank lifts a guided platform. The solid upper and dashed lower positions share the same wheel axle, pin offset, and rod length. The platform reverses at each end while the wheel keeps turning in one direction. Guides prevent sideways motion; lift is twice the pin offset."
   caption: "The wheel does the same thing forever. The platform gets its two directions from where the pin happens to be."
 {{< /figrow >}}
 
@@ -112,8 +112,8 @@ That curve is not usually a circle, and it is not usually a straight line. And h
 
 {{< figrow tall=true >}}
 - src: "mech21_parallelogram-diagram-02.svg"
-  alt: "Two four-bar linkages compared. In a parallelogram, where both moving links are equal, the platform stays level but swings through an arc. With unequal links, a point on the coupler traces a path that is very nearly a straight vertical line, but the platform tilts as it moves."
-  caption: "Both are four-bar linkages. The only difference is the link lengths — and the paths come out completely different."
+  alt: "Two four-bar linkages with their traced paths and an alternate position in grey. The parallelogram keeps its blue platform level while its marked midpoint follows an arc. The unequal-link example traces a nearly vertical segment with the tip of its extended blue coupler, which tilts. The grey return path curves away from that segment."
+  caption: "Both are four-bar linkages. Changing the link lengths and the tracing point changes the path. The unequal-link example travels nearly straight during part of its cycle."
 {{< /figrow >}}
 
 {{< callout title="You Cannot Have Both, Easily" >}}

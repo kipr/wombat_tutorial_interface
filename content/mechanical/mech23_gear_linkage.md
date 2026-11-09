@@ -90,7 +90,7 @@ Your effector runs a cycle: down, hold, up, round, down again. That part is Chal
 
 {{< figrow tall=true >}}
 - src: "mech23_gear_linkage-diagram-01.svg"
-  alt: "Side view of the mechanism. A gear on the structure drives a linkage arm carrying a claw. In the down position the claw is at ground level holding a one inch cube; in the up position, shown dashed, the claw is raised. An arrow shows the whole structure being moved so that the parked claw drags the cube along."
+  alt: "Side view of a gear-driven parallelogram claw with two fixed pivots. A 12-tooth motor pinion meshes with a 24-tooth crank gear. Equal cranks raise and lower a level coupler; grey shows the raised position. The solid claw is parked around a one-inch cube on the ground. With the motor off, moving the structure right creates a leftward drag load on the claw."
   caption: "Parked in the down position with the motor off, the claw has to resist being pushed backwards by the cube."
 {{< /figrow >}}
 
@@ -100,8 +100,8 @@ When you drag the machine, the cube pushes back against the claw. Something has 
 
 {{< figrow tall=true >}}
 - src: "mech23_gear_linkage-diagram-02.svg"
-  alt: "Two explanations compared. On the left, a self-locking drive train such as a worm gear physically prevents the output from turning the input, so the effector cannot move at all. On the right, a stiff braced structure resists the load by not bending, though it may flex slightly and spring back."
-  caption: "Both machines hold the cube. Only one of them will still be holding it when the load doubles."
+  alt: "Two ways to resist a load. A self-locking worm drive at left prevents the output from turning the input backwards; test whether your own drive holds. At right, a triangular brace limits bending. Its grey dashed outline exaggerates the elastic deflection under a leftward force."
+  caption: "Both may hold the cube. Test whether your drive locks or your structure flexes under load."
 {{< /figrow >}}
 
 {{< callout title="How to Tell Which One You Built" >}}

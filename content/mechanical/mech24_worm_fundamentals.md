@@ -95,7 +95,7 @@ They do not have to be. Take power off the motor shaft at two points and you hav
 
 {{< figrow tall=true >}}
 - src: "mech24_worm_fundamentals-diagram-01.svg"
-  alt: "A drive train splitting into two branches from one motor. The upper branch runs straight to a spinning striker and turns at full motor speed. The lower branch passes through a worm gear before reaching the wheels, so they turn far more slowly."
+  alt: "Power-flow schematic of one motor driving two branches at once. The direct branch drives the striker at motor speed. The slow branch uses a single-start worm and a wheel with exactly 24 teeth, giving one wheel-axle turn per 24 motor turns. Arrows trace power paths rather than physical shaft layouts."
   caption: "The branch point is where the design decision lives. Everything after it is just gearing."
 {{< /figrow >}}
 
@@ -159,7 +159,7 @@ The difference this time is that the whole machine is moving while it happens. T
 
 {{< figrow tall=true >}}
 - src: "mech24_worm_fundamentals-diagram-02.svg"
-  alt: "Side view of the car. The striker arm rotates on the front, its face sweeping down to about one and a quarter inches above the surface, where it strikes the top pom of a three pom stack while the car creeps forward."
+  alt: "Scaled side view of a car creeping right while its front striker rotates clockwise. The one-inch-tall face reaches the top pom of a three-pom stack while clearing the lower two. The lowest point of its dashed circular sweep is one and a quarter inches above the ground. The face is two inches wide across the car, out of this side view."
   caption: "The face sweeps through the gap between the top pom and the two beneath it, once every revolution."
 {{< /figrow >}}
 

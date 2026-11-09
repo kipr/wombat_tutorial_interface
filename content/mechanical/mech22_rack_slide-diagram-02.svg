@@ -1,42 +1,67 @@
-<svg viewBox="0 0 620 320" role="img" aria-label="Top view of the sliding platform. A motor on a base turns a pinion, which drives a rack fixed under a long flat platform. Guide rails run along both edges of the platform. The platform is seven inches long, two inches wide, and travels at least two inches." xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="tkO" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M1,0 L1,10" stroke="#1E8449" stroke-width="1.6"></path>
-          </marker>
-          <marker id="tkP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-            <path d="M9,0 L9,10" stroke="#1E8449" stroke-width="1.6"></path>
-          </marker>
-        </defs>
-
-        
-        <rect x="228" y="96" width="356" height="12" rx="2" fill="#1C1C1C"></rect>
-        <rect x="228" y="214" width="356" height="12" rx="2" fill="#1C1C1C"></rect>
-        <text x="406" y="88" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" font-weight="600" fill="#1C1C1C">guide rail</text>
-        <text x="406" y="242" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" font-weight="600" fill="#1C1C1C">guide rail</text>
-
-        
-        <rect x="248" y="114" width="316" height="94" rx="4" fill="#F2F2F2" stroke="#444" stroke-width="2.5"></rect>
-        <g fill="none" stroke="#888" stroke-width="1.8">
-          <circle cx="292" cy="161" r="7"></circle><circle cx="336" cy="161" r="7"></circle>
-          <circle cx="380" cy="161" r="7"></circle><circle cx="424" cy="161" r="7"></circle>
-          <circle cx="468" cy="161" r="7"></circle><circle cx="512" cy="161" r="7"></circle>
-        </g>
-        <text x="406" y="140" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#666">mount points</text>
-        <text x="406" y="196" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">7″ × 2″ PLATFORM</text>
-
-        
-        <line x1="256" y1="256" x2="556" y2="256" stroke="#444" stroke-width="12" stroke-dasharray="10 12"></line>
-        <text x="580" y="260" text-anchor="end" font-family="'Barlow',sans-serif" font-size="12" fill="#666">rack</text>
-
-        
-        <rect x="34" y="192" width="150" height="96" rx="3" fill="#F2F2F2" stroke="#444" stroke-width="2"></rect>
-        <text x="109" y="246" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="15" font-weight="700" fill="#444">MOTOR</text>
-        <circle cx="216" cy="282" r="28" fill="#fff" stroke="#1C1C1C" stroke-width="6" stroke-dasharray="11 11"></circle>
-        <circle cx="216" cy="282" r="5" fill="#444"></circle>
-        <text x="216" y="316" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="#666">pinion</text>
-        <line x1="184" y1="240" x2="216" y2="262" stroke="#444" stroke-width="5"></line>
-
-        
-        <line x1="248" y1="60" x2="330" y2="60" stroke="#1E8449" stroke-width="1.8" marker-start="url(#tkO)" marker-end="url(#tkP)"></line>
-        <text x="289" y="48" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="13" font-weight="600" fill="#1E8449">2″ travel</text>
-      </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 507" role="img" aria-labelledby="supported-platform-title supported-platform-description">
+  <title id="supported-platform-title">Support the slide over its full travel</title>
+  <desc id="supported-platform-description">Cutaway top view of a seven by two inch platform, drawn at 48 units per inch. The rack is attached underneath it and meshes with a fixed 24-tooth pinion driven by a motor below the deck. Long stationary rails guide both sides throughout two inches of travel. The grey dashed outline is shifted exactly two inches to the right.</desc>
+  <defs>
+    <!-- 24 teeth, pitch radius 42, module 3.5. Rack pitch is 3.5π;
+         a rack gap is centred below the pinion's downward tooth. -->
+    <path id="platform-pinion" d="M37.432 -3.807Q37.515 -2.87 39.352 -3.011 L40.877 -2.843 L42.414 -2.424 L43.954 -1.826 L45.487 -1.07 A45.5 45.5 0 0 1 45.487 1.07 L43.954 1.826 L42.414 2.424 L40.877 2.843 L39.352 3.011 Q37.515 2.87 37.432 3.807A37.625 37.625 0 0 1 37.142 6.011 L37.142 6.011Q36.98 6.937 38.79 7.277 L40.219 7.834 L41.596 8.636 L42.929 9.613 L44.214 10.739 A45.5 45.5 0 0 1 43.661 12.807 L41.984 13.139 L40.342 13.319 L38.748 13.325 L37.232 13.093 Q35.494 12.482 35.171 13.365A37.625 37.625 0 0 1 34.32 15.419 L34.32 15.419Q33.924 16.272 35.585 17.069 L36.821 17.977 L37.944 19.108 L38.978 20.396 L39.928 21.817 A45.5 45.5 0 0 1 38.858 23.67 L37.152 23.558 L35.52 23.306 L33.979 22.9 L32.575 22.283 Q31.054 21.243 30.514 22.013A37.625 37.625 0 0 1 29.16 23.776 L29.16 23.776Q28.557 24.498 29.955 25.697 L30.914 26.894 L31.705 28.278 L32.371 29.789 L32.921 31.408 A45.5 45.5 0 0 1 31.408 32.921 L29.789 32.371 L28.278 31.705 L26.894 30.914 L25.697 29.955 Q24.498 28.557 23.776 29.16A37.625 37.625 0 0 1 22.013 30.514 L22.013 30.514Q21.243 31.054 22.283 32.575 L22.9 33.979 L23.306 35.52 L23.558 37.152 L23.67 38.858 A45.5 45.5 0 0 1 21.817 39.928 L20.396 38.978 L19.108 37.944 L17.977 36.821 L17.069 35.585 Q16.272 33.924 15.419 34.32A37.625 37.625 0 0 1 13.365 35.171 L13.365 35.171Q12.482 35.494 13.093 37.232 L13.325 38.748 L13.319 40.342 L13.139 41.984 L12.807 43.661 A45.5 45.5 0 0 1 10.739 44.214 L9.613 42.929 L8.636 41.596 L7.834 40.219 L7.277 38.79 Q6.937 36.98 6.011 37.142A37.625 37.625 0 0 1 3.807 37.432 L3.807 37.432Q2.87 37.515 3.011 39.352 L2.843 40.877 L2.424 42.414 L1.826 43.954 L1.07 45.487 A45.5 45.5 0 0 1 -1.07 45.487 L-1.826 43.954 L-2.424 42.414 L-2.843 40.877 L-3.011 39.352 Q-2.87 37.515 -3.807 37.432A37.625 37.625 0 0 1 -6.011 37.142 L-6.011 37.142Q-6.937 36.98 -7.277 38.79 L-7.834 40.219 L-8.636 41.596 L-9.613 42.929 L-10.739 44.214 A45.5 45.5 0 0 1 -12.807 43.661 L-13.139 41.984 L-13.319 40.342 L-13.325 38.748 L-13.093 37.232 Q-12.482 35.494 -13.365 35.171A37.625 37.625 0 0 1 -15.419 34.32 L-15.419 34.32Q-16.272 33.924 -17.069 35.585 L-17.977 36.821 L-19.108 37.944 L-20.396 38.978 L-21.817 39.928 A45.5 45.5 0 0 1 -23.67 38.858 L-23.558 37.152 L-23.306 35.52 L-22.9 33.979 L-22.283 32.575 Q-21.243 31.054 -22.013 30.514A37.625 37.625 0 0 1 -23.776 29.16 L-23.776 29.16Q-24.498 28.557 -25.697 29.955 L-26.894 30.914 L-28.278 31.705 L-29.789 32.371 L-31.408 32.921 A45.5 45.5 0 0 1 -32.921 31.408 L-32.371 29.789 L-31.705 28.278 L-30.914 26.894 L-29.955 25.697 Q-28.557 24.498 -29.16 23.776A37.625 37.625 0 0 1 -30.514 22.013 L-30.514 22.013Q-31.054 21.243 -32.575 22.283 L-33.979 22.9 L-35.52 23.306 L-37.152 23.558 L-38.858 23.67 A45.5 45.5 0 0 1 -39.928 21.817 L-38.978 20.396 L-37.944 19.108 L-36.821 17.977 L-35.585 17.069 Q-33.924 16.272 -34.32 15.419A37.625 37.625 0 0 1 -35.171 13.365 L-35.171 13.365Q-35.494 12.482 -37.232 13.093 L-38.748 13.325 L-40.342 13.319 L-41.984 13.139 L-43.661 12.807 A45.5 45.5 0 0 1 -44.214 10.739 L-42.929 9.613 L-41.596 8.636 L-40.219 7.834 L-38.79 7.277 Q-36.98 6.937 -37.142 6.011A37.625 37.625 0 0 1 -37.432 3.807 L-37.432 3.807Q-37.515 2.87 -39.352 3.011 L-40.877 2.843 L-42.414 2.424 L-43.954 1.826 L-45.487 1.07 A45.5 45.5 0 0 1 -45.487 -1.07 L-43.954 -1.826 L-42.414 -2.424 L-40.877 -2.843 L-39.352 -3.011 Q-37.515 -2.87 -37.432 -3.807A37.625 37.625 0 0 1 -37.142 -6.011 L-37.142 -6.011Q-36.98 -6.937 -38.79 -7.277 L-40.219 -7.834 L-41.596 -8.636 L-42.929 -9.613 L-44.214 -10.739 A45.5 45.5 0 0 1 -43.661 -12.807 L-41.984 -13.139 L-40.342 -13.319 L-38.748 -13.325 L-37.232 -13.093 Q-35.494 -12.482 -35.171 -13.365A37.625 37.625 0 0 1 -34.32 -15.419 L-34.32 -15.419Q-33.924 -16.272 -35.585 -17.069 L-36.821 -17.977 L-37.944 -19.108 L-38.978 -20.396 L-39.928 -21.817 A45.5 45.5 0 0 1 -38.858 -23.67 L-37.152 -23.558 L-35.52 -23.306 L-33.979 -22.9 L-32.575 -22.283 Q-31.054 -21.243 -30.514 -22.013A37.625 37.625 0 0 1 -29.16 -23.776 L-29.16 -23.776Q-28.557 -24.498 -29.955 -25.697 L-30.914 -26.894 L-31.705 -28.278 L-32.371 -29.789 L-32.921 -31.408 A45.5 45.5 0 0 1 -31.408 -32.921 L-29.789 -32.371 L-28.278 -31.705 L-26.894 -30.914 L-25.697 -29.955 Q-24.498 -28.557 -23.776 -29.16A37.625 37.625 0 0 1 -22.013 -30.514 L-22.013 -30.514Q-21.243 -31.054 -22.283 -32.575 L-22.9 -33.979 L-23.306 -35.52 L-23.558 -37.152 L-23.67 -38.858 A45.5 45.5 0 0 1 -21.817 -39.928 L-20.396 -38.978 L-19.108 -37.944 L-17.977 -36.821 L-17.069 -35.585 Q-16.272 -33.924 -15.419 -34.32A37.625 37.625 0 0 1 -13.365 -35.171 L-13.365 -35.171Q-12.482 -35.494 -13.093 -37.232 L-13.325 -38.748 L-13.319 -40.342 L-13.139 -41.984 L-12.807 -43.661 A45.5 45.5 0 0 1 -10.739 -44.214 L-9.613 -42.929 L-8.636 -41.596 L-7.834 -40.219 L-7.277 -38.79 Q-6.937 -36.98 -6.011 -37.142A37.625 37.625 0 0 1 -3.807 -37.432 L-3.807 -37.432Q-2.87 -37.515 -3.011 -39.352 L-2.843 -40.877 L-2.424 -42.414 L-1.826 -43.954 L-1.07 -45.487 A45.5 45.5 0 0 1 1.07 -45.487 L1.826 -43.954 L2.424 -42.414 L2.843 -40.877 L3.011 -39.352 Q2.87 -37.515 3.807 -37.432A37.625 37.625 0 0 1 6.011 -37.142 L6.011 -37.142Q6.937 -36.98 7.277 -38.79 L7.834 -40.219 L8.636 -41.596 L9.613 -42.929 L10.739 -44.214 A45.5 45.5 0 0 1 12.807 -43.661 L13.139 -41.984 L13.319 -40.342 L13.325 -38.748 L13.093 -37.232 Q12.482 -35.494 13.365 -35.171A37.625 37.625 0 0 1 15.419 -34.32 L15.419 -34.32Q16.272 -33.924 17.069 -35.585 L17.977 -36.821 L19.108 -37.944 L20.396 -38.978 L21.817 -39.928 A45.5 45.5 0 0 1 23.67 -38.858 L23.558 -37.152 L23.306 -35.52 L22.9 -33.979 L22.283 -32.575 Q21.243 -31.054 22.013 -30.514A37.625 37.625 0 0 1 23.776 -29.16 L23.776 -29.16Q24.498 -28.557 25.697 -29.955 L26.894 -30.914 L28.278 -31.705 L29.789 -32.371 L31.408 -32.921 A45.5 45.5 0 0 1 32.921 -31.408 L32.371 -29.789 L31.705 -28.278 L30.914 -26.894 L29.955 -25.697 Q28.557 -24.498 29.16 -23.776A37.625 37.625 0 0 1 30.514 -22.013 L30.514 -22.013Q31.054 -21.243 32.575 -22.283 L33.979 -22.9 L35.52 -23.306 L37.152 -23.558 L38.858 -23.67 A45.5 45.5 0 0 1 39.928 -21.817 L38.978 -20.396 L37.944 -19.108 L36.821 -17.977 L35.585 -17.069 Q33.924 -16.272 34.32 -15.419A37.625 37.625 0 0 1 35.171 -13.365 L35.171 -13.365Q35.494 -12.482 37.232 -13.093 L38.748 -13.325 L40.342 -13.319 L41.984 -13.139 L43.661 -12.807 A45.5 45.5 0 0 1 44.214 -10.739 L42.929 -9.613 L41.596 -8.636 L40.219 -7.834 L38.79 -7.277 Q36.98 -6.937 37.142 -6.011A37.625 37.625 0 0 1 37.432 -3.807Z"/>
+  </defs>
+  <rect width="720" height="507" fill="#fff"/>
+  <g font-family="Barlow, Arial, sans-serif" fill="#263340" font-size="16">
+    <text x="360" y="31" font-size="23" fill="#263340" text-anchor="middle" font-weight="600">Support the slide over its full travel</text>
+    <text x="360" y="59" font-size="16" fill="#697580" text-anchor="middle">TOP VIEW · deck cut away to show the drive underneath.</text>
+    <rect x="130" y="159" width="490" height="168" rx="6" fill="#f3f5f6" stroke="#697580" stroke-width="1.5"/>
+    <rect x="139" y="168" width="472" height="150" rx="3" fill="none" stroke="#e0e5e8"/>
+    <circle cx="146" cy="175" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="604" cy="175" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="146" cy="311" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="604" cy="311" r="3" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <rect x="130" y="177" width="490" height="13" rx="3" fill="#e9edf0" stroke="#36434f" stroke-width="1.5" />
+    <rect x="130" y="296" width="490" height="13" rx="3" fill="#e9edf0" stroke="#36434f" stroke-width="1.5" />
+    <text x="520" y="146" font-size="16" fill="#697580" >guide rail</text>
+    <path d="M556 151L575 174" fill="none" stroke="#697580" stroke-width="1" />
+    <text x="520" y="352" font-size="16" fill="#697580" >guide rail</text>
+    <path d="M557 336L575 312" fill="none" stroke="#697580" stroke-width="1" />
+    <rect x="251" y="195" width="336" height="96" rx="3" fill="none" stroke="#b7c1c9" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <rect x="155" y="195" width="336" height="96" rx="3" fill="#f3f5f6" stroke="#697580" stroke-width="1.5" fill-opacity="0.65"/>
+    <rect x="206" y="164" width="78" height="85" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5" />
+    <path d="M214 171H276V239" fill="none" stroke="#b7c1c9" stroke-width="1" />
+    <path d="M166 276.375V254.375H169.488L172.354 246.5H174.704L177.57 254.375H180.483L183.349 246.5H185.699L188.566 254.375H191.479L194.345 246.5H196.695L199.561 254.375H202.474L205.34 246.5H207.69L210.557 254.375H213.47L216.336 246.5H218.686L221.552 254.375H224.465L227.332 246.5H229.682L232.548 254.375H235.461L238.327 246.5H240.677L243.543 254.375H246.457L249.323 246.5H251.673L254.539 254.375H257.452L260.318 246.5H262.668L265.535 254.375H268.448L271.314 246.5H273.664L276.53 254.375H279.443L282.31 246.5H284.66L287.526 254.375H290.439L293.305 246.5H295.655L298.521 254.375H301.434L304.301 246.5H306.651L309.517 254.375H312.43L315.296 246.5H317.646L320.512 254.375H323.426L326.292 246.5H328.642L331.508 254.375H334.421L337.287 246.5H339.637L342.504 254.375H345.417L348.283 246.5H350.633L353.499 254.375H356.412L359.279 246.5H361.629L364.495 254.375H367.408L370.274 246.5H372.624L375.49 254.375H378.403L381.27 246.5H383.62L386.486 254.375H389.399L392.265 246.5H394.615L397.482 254.375H400.395L403.261 246.5H405.611L408.477 254.375H411.39L414.256 246.5H416.606L419.473 254.375H422.386L425.252 246.5H427.602L430.468 254.375H433.381L436.248 246.5H438.598L441.464 254.375H444.377L447.243 246.5H449.593L452.459 254.375H455.372L458.239 246.5H460.589L463.455 254.375H466.368L469.234 246.5H471.584L474.451 254.375H480V276.375Z" fill="#e9edf0" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round" />
+    <g transform="translate(245 208)">
+    <use href="#platform-pinion" transform="rotate(90)" fill="#f3f5f6" stroke="#36434f" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="30.24" fill="none" stroke="#b7c1c9" stroke-width="1"/>
+    <circle cx="20.16" cy="0" r="4.2" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="20.16" r="4.2" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="-20.16" cy="0" r="4.2" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="-20.16" r="4.2" fill="#fff" stroke="#b7c1c9" stroke-width="1.25"/>
+    <circle cx="0" cy="0" r="13" fill="#e9edf0" stroke="#697580" stroke-width="1.5"/>
+    <path d="M-3 -8H3V-3H8V3H3V8H-3V3H-8V-3H-3Z" fill="#36434f"/>
+    </g>
+    <rect x="168" y="274" width="13" height="12" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5" />
+    <rect x="465" y="274" width="13" height="12" rx="3" fill="#e9edf0" stroke="#697580" stroke-width="1.5" />
+    <circle cx="360" cy="218" r="5" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="400" cy="218" r="5" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="440" cy="218" r="5" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <circle cx="475" cy="218" r="5" fill="#fff" stroke="#697580" stroke-width="1.25"/>
+    <text x="405" y="126" font-size="16" fill="#697580" text-anchor="middle">mount points</text>
+    <path d="M405 133V208" fill="none" stroke="#697580" stroke-width="1" />
+    <text x="45" y="203" font-size="17" fill="#36434f" font-weight="600">MOTOR</text>
+    <text x="45" y="226" font-size="15" fill="#697580" >fixed below</text>
+    <text x="45" y="246" font-size="15" fill="#697580" >the deck</text>
+    <path d="M134 221L200 195" fill="none" stroke="#697580" stroke-width="1" />
+    <text x="255" y="384" font-size="16" fill="#36434f" text-anchor="middle">pinion</text>
+    <path d="M255 365L250 255" fill="none" stroke="#697580" stroke-width="1" />
+    <text x="407" y="384" font-size="16" fill="#36434f" text-anchor="middle">rack</text>
+    <path d="M407 366V280" fill="none" stroke="#697580" stroke-width="1" />
+    <text x="398" y="240" font-size="17" fill="#36434f" text-anchor="middle" font-weight="600">7″ × 2″ PLATFORM</text>
+    <path d="M155 192V96M251 192V96" fill="none" stroke="#b7c1c9" stroke-width="1" stroke-dasharray="6 5"/>
+    <path d="M155 102L251 102M155 97L155 107M251 97L251 107" fill="none" stroke="#357458" stroke-width="1.25" />
+    <text x="203" y="89" font-size="16" fill="#357458" text-anchor="middle" font-weight="600">2″ travel</text>
+    <path d="M650 195L650 291M655 195L645 195M655 291L645 291" fill="none" stroke="#36434f" stroke-width="1.25" />
+    <path d="M591 195H655M591 291H655" fill="none" stroke="#b7c1c9" stroke-width="1" />
+    <text x="665" y="248" font-size="16" fill="#36434f" >2″</text>
+    <path d="M155 418L491 418M155 413L155 423M491 413L491 423" fill="none" stroke="#36434f" stroke-width="1.25" />
+    <text x="323" y="445" font-size="16" fill="#36434f" text-anchor="middle">7″</text>
+    <text x="360" y="485" font-size="15" fill="#697580" text-anchor="middle">Grey dashed: platform after 2″ of travel. The rack moves with it; the motor stays fixed.</text>
+  </g>
+</svg>
