@@ -11,8 +11,10 @@ The supported container is defined by `Dockerfile` and `.devcontainer/`:
   local copy of the custom-writer documentation under
   `/usr/local/share/doc/pandoc/`.
 
-There is no package installation step and no task runner. If working outside
-the container, use the pinned Hugo version to avoid template or Goldmark drift.
+There is no package installation step. The optional `Justfile` provides build
+and serve shortcuts; Hugo and Node commands can also run directly. If working
+outside the container, use the pinned Hugo version to avoid template or
+Goldmark drift.
 Install or refresh Pandoc with:
 
 ```sh
@@ -114,6 +116,56 @@ just build-all
 # Preview:   public/preview/
 ```
 
+### Standalone Mechanical build target
+
+The `mechanical` target renders the existing mechanical catalog directly at the
+site root and at `/mechanical/`, with all 28 worksheets at their existing
+`/mechanical/<worksheet>/` paths. It uses **KIPR Mechanical Design** branding,
+Mechanical-only navigation, and inline glossary dialogs without a separate
+glossary page. Generated curriculum pages request `noindex`.
+
+It excludes unrelated Hugo content, but deliberately copies shared `static/`
+files unchanged. Unlinked static apps and downloads remain directly accessible;
+this is a focused interface, not a minimal or access-controlled artifact. The
+planned integration is a link from a restricted WordPress Botball member page.
+See the [planning record](mechanical-standalone-plan.md) for agreed boundaries.
+
+Local shortcuts:
+
+```sh
+just serve-mechanical
+just build-mechanical
+# Standalone output: dist/mechanical/ (outside the existing public/ artifact)
+```
+
+The target defaults to a root-relative base URL because its final deployment URL
+is not assigned. The serve shortcut uses `http://localhost:1313/`. Both shortcuts
+accept additional Hugo arguments; set the real base URL when preparing a
+hosting handoff:
+
+```sh
+just build-mechanical --baseURL https://kipr.org/ACTUAL-DEPLOYMENT-PATH/
+```
+
+`ACTUAL-DEPLOYMENT-PATH` is a placeholder, not a reserved URL. For a fresh
+verification build without `just`:
+
+```sh
+mechanical_dir="$(mktemp -d)"
+hugo --config hugo.toml,build-targets/mechanical.toml \
+  --destination "$mechanical_dir" --printPathWarnings --logLevel error
+node tools/check_internal_links.js "$mechanical_dir"
+node tests/test_mechanical_migration.js "$mechanical_dir"
+node tests/test_mechanical_target.js "$mechanical_dir"
+```
+
+CI verifies this target at a nested base URL as well as checking the existing
+full and preview variants. It does **not** publish the mechanical target to
+GitHub Pages. `just build-all` also remains full-plus-preview only. Deployment
+to `kipr.org`, its exact URL, and the WordPress member link require coordination
+with the hosting maintainer. Publish a fresh standalone artifact separately;
+do not overlay it on the full BEX artifact.
+
 ## Page exists but the browser shows 404
 
 A successful build does not prove that every discovered content page produced
@@ -187,6 +239,7 @@ What they cover:
 | `test_introductory_import.js` | Pandoc Lua writer conversion of the 40 EV3/SPIKE HTML sources, inventories, and failure fixtures. |
 | `test_wordblocks_markup.js` | Rendered `wordblocks` shortcode: categories, nested controls, accessible name, and `aria-hidden` internals. |
 | `test_mechanical_migration.js` | Mechanical source prose, persistence IDs, fields (including generated trial rows), units, diagrams, video targets, and hub links. |
+| `test_mechanical_target.js` | Standalone catalogs, content exclusions, Mechanical-only shell, noindex, relative URLs, and inline glossary availability. Run against the standalone build, not the full build. |
 
 The Node tests execute `static/js/lab.js` in small mocked DOMs. They do not
 require a browser or npm dependencies.

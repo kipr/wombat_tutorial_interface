@@ -126,6 +126,26 @@ diagrams are section resources, and demonstration clips use Hugo's built-in
 YouTube shortcode with privacy-enhanced embeds. The section is also mounted in
 the preview build for Challenges 1 and 2 and the gear-mounting PreLab.
 
+The standalone target in `build-targets/mechanical.toml` mounts the same full
+section plus a minimal target-specific home. `homeCatalog` makes the root render
+that section's catalog through the shared `hub-catalog.html` partial, also used
+by the lab section layout. Catalog metadata, units, and worksheet order remain
+canonical in the mechanical section. Links are relative to the rendered page,
+not to the catalog's source section.
+
+Target configuration selects canonical navigation entries with `navigationIDs`
+and configures shell branding with `brandName`, `organizationURL`, and
+`footerText`. Unknown navigation IDs still fail the build. `catalogEyebrow`
+overrides the standalone catalog's introductory label; its section document
+title uses the target site title. `inlineGlossaryOnly` omits the worksheet's
+standalone glossary-page link without affecting inline definitions or dialogs.
+Unset parameters preserve the full and preview variants' existing behavior.
+
+The mechanical variant excludes unrelated Hugo sections, keeps shared static
+files, requests noindex, and is verified but not deployed by the Pages workflow.
+See the [standalone plan](mechanical-standalone-plan.md) and
+[build instructions](development.md#standalone-mechanical-build-target).
+
 See [Mechanical migration](mechanical-migration.md) for source provenance,
 availability gaps, and the frozen compatibility inventory.
 

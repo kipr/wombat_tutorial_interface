@@ -3,7 +3,7 @@
   <div class="topbar-inner">
     {{ partial "breadcrumbs.html" . }}
     <div class="nav-end">
-      <nav class="mainnav" aria-label="Main">{{ range hugo.Data.nav }}{{ partial "navigation-link.html" (dict "source" $ "item" . "activeClass" "here") }}{{ end }}</nav>
+      <nav class="mainnav" aria-label="Main">{{ range (partial "navigation-items.html" .) }}{{ partial "navigation-link.html" (dict "source" $ "item" . "activeClass" "here") }}{{ end }}</nav>
       {{ partial "theme-toggle.html" . }}
     </div>
   </div>

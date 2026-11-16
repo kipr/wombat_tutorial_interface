@@ -1,0 +1,11 @@
+{{- /* Select entries by ID without duplicating the canonical navigation. */ -}}
+{{- $items := hugo.Data.nav -}}
+{{- with site.Params.navigationIDs -}}
+  {{- range . -}}
+    {{- if not (where $items "id" .) -}}
+      {{- errorf "navigationIDs contains unknown navigation ID %q" . -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $items = where $items "id" "in" . -}}
+{{- end -}}
+{{- return $items -}}

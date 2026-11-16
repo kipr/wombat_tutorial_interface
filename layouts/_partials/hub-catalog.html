@@ -1,0 +1,39 @@
+{{- $page := .page -}}
+{{- $catalog := .catalog -}}
+{{- $standalone := eq $catalog.Path (site.Params.homeCatalog | default "") -}}
+<main class="wrap">
+  <p class="page-eyebrow">{{ if $standalone }}{{ site.Params.catalogEyebrow | default $catalog.Params.eyebrow }}{{ else }}{{ $catalog.Params.eyebrow }}{{ end }}</p>
+  <h1 class="page-title">{{ $catalog.Params.heading }} <span>· {{ $catalog.Params.edition }}</span></h1>
+  <p class="page-sub">{{ $catalog.Params.subheading }}</p>
+  {{- with $catalog.Params.hub_feature }}
+  {{- partial "hub-feature-link.html" (dict "page" $page "feature" . "position" $catalog.File.Path) }}
+  {{- end }}
+  {{- if not $standalone }}
+  {{- with $catalog.Params.toggle_text }}
+  {{- $toggle := partial "resolve-page.html" (dict "reference" $catalog.Params.toggle_page "position" (printf "%s toggle_page" $catalog.File.Path)) }}
+  <p class="toggle-line">{{ . }} <a href="{{ partial "relative-url.html" (dict "source" $page "target" $toggle) }}">{{ $catalog.Params.toggle_link_text }}</a></p>
+  {{- end }}
+  {{- end }}
+
+{{- $pages := $catalog.RegularPages.ByWeight }}
+{{- range $unit := $catalog.Params.units }}
+  {{- $unitPages := where $pages ".Params.hub_unit" $unit.number }}
+  {{- with $unitPages }}
+  <section class="hub-unit">
+    <h2 class="unit-label">{{ $unit.label }}</h2>
+    <div class="card-grid">
+    {{- range . }}
+      {{- $cardTitle := .Params.hub_title | default (replaceRE `^.* — ` "" .Title) }}
+      {{- $cardLabel := .Params.hub_label | default (.Params.eyebrow | default .Params.short_title | replaceRE `^Unit [0-9]+ · ` "") }}
+      <a class="lab-card" href="{{ partial "relative-url.html" (dict "source" $page "target" .) }}">
+        <span class="lab-num">{{ $cardLabel }}</span>
+        <span class="lab-title">{{ $cardTitle }}</span>
+        <span class="lab-desc">{{ .Description }}</span>
+        <span class="lab-arrow">{{ if eq $unit.number 0 }}Open PreLab{{ else }}Open Lab{{ end }} →</span>
+      </a>
+    {{- end }}
+    </div>
+  </section>
+  {{- end }}
+  {{- end }}
+</main>

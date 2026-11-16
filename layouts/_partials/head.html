@@ -1,7 +1,9 @@
 {{- $page := . -}}
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>{{ .Title }}{{ with site.Params.titleSuffix }} · {{ . }}{{ end }}</title>
+{{- $title := .Title -}}
+{{- if eq .Path (site.Params.homeCatalog | default "") }}{{ $title = site.Title }}{{ end }}
+<title>{{ $title }}{{ with site.Params.titleSuffix }} · {{ . }}{{ end }}</title>
 {{- if site.Params.noIndex }}
 <meta name="robots" content="noindex, nofollow" />
 {{- end }}
