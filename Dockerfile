@@ -1,44 +1,48 @@
-FROM ghcr.io/gohugoio/hugo:v0.164.0 AS hugo_base
+# Development container for the Hugo site. See .devcontainer/README.md.
+#
+# Node 22 matches the Node bundled in the ghcr.io/gohugoio/hugo image this
+# replaced; the repo's tools/ and tests/ use only Node built-ins. The site uses
+# no Sass, PostCSS, or Hugo modules, so Dart Sass and Go are not installed.
+FROM node:22-trixie-slim AS dev
 
-# Fix broken non-root user
-USER 0
-RUN sed -i \
-    's|^hugo:x:1000:65533:hugo:/var/hugo:/sbin/nologin$|hugo:x:1000:1000:hugo:/var/hugo:/bin/sh|' \
-    /etc/passwd
+# just: runs the Justfile build targets.
+# imagemagick, svgo (below): image and SVG optimization for static assets.
+# procps: the Codex app-server daemon reads process start times with ps.
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    bubblewrap ca-certificates curl fd-find fish fzf git gnupg imagemagick jq just \
+    openssh-client procps ripgrep wget \
+  && ln -s "$(command -v fdfind)" /usr/local/bin/fd \
+  && rm -rf /var/lib/apt/lists/*
 
-USER hugo:hugo
-
-FROM hugo_base AS hugo_dev
-
-USER 0
-
-# procps-ng: the Codex app-server daemon reads process start times with
-# `ps -o lstart= -p <pid>`, which BusyBox ps does not support.
-RUN apk add bash fish fzf fd git gnupg ripgrep just jq bubblewrap imagemagick imagemagick-webp imagemagick-jpeg pandoc-cli curl procps-ng \
-    && mkdir -p /usr/local/share/doc/pandoc \
-    && curl -fsSL -o /usr/local/share/doc/pandoc/custom-writers.html https://pandoc.org/custom-writers.html \
-    && curl -fsSL -o /usr/local/share/doc/pandoc/lua-filters.html https://pandoc.org/lua-filters.html \
-    && curl -fsSL -o /usr/local/share/doc/pandoc/MANUAL.html https://pandoc.org/MANUAL.html
+# Hugo extended and Pandoc 3.6.4 (plus its custom-writer docs). The version
+# pins live in these scripts, which CI and the Cloud Agent VM also use.
+COPY tools/cloud-install.sh tools/install-pandoc.sh /tmp/tools/
+RUN sh /tmp/tools/cloud-install.sh \
+  && rm -rf /tmp/tools \
+  && hugo version
 
 RUN npm install -g @openai/codex svgo \
   && npm cache clean --force
 
-# Agent state lives in the named volumes shared by every devcontainer on this
-# machine. They hold absolute paths, so they mount at /home/code like everywhere
-# else, even though this image's user is hugo with home /var/hugo. A new volume
-# inherits this ownership.
-RUN mkdir -p /home/code/.claude /home/code/.codex \
-  && chown -R hugo:hugo /home/code
+# node:* ships a `node` user at UID 1000; remove it so the shared `code` user
+# can take that UID.
+# Docker publishes port 1313 (appPort), which only reaches servers listening on
+# all interfaces. Hugo has no env/config for this, so the Justfile serve
+# targets pass it as --bind; plain `hugo server` needs `--bind 0.0.0.0`.
+ENV DEV_SERVER_BIND=0.0.0.0
 
-USER hugo:hugo
+RUN userdel -r node \
+  && groupadd --gid 1000 code \
+  && useradd --uid 1000 --gid code --create-home --shell /usr/bin/fish code
 
+USER code
+# Agent state lives in named volumes; a new volume inherits this ownership.
 # CLAUDE_CONFIG_DIR also moves ~/.claude.json inside the volume.
-# Alpine: the native Claude build uses the system ripgrep, not its bundled one.
 ENV CLAUDE_CONFIG_DIR=/home/code/.claude \
     CODEX_HOME=/home/code/.codex \
-    USE_BUILTIN_RIPGREP=0 \
-    PATH=/var/hugo/.local/bin:$PATH
-# Installed as hugo so the binary lands in that user's ~/.local/bin.
-RUN curl -fsSL https://claude.ai/install.sh | bash \
+    PATH=/home/code/.local/bin:$PATH
+RUN mkdir -p "$CLAUDE_CONFIG_DIR" "$CODEX_HOME" \
+  && curl -fsSL https://claude.ai/install.sh | bash \
   && claude --version \
   && codex --version

@@ -1,7 +1,9 @@
 {
   "build": {
     "dockerfile": "../Dockerfile",
-    "target": "hugo_dev"
+    // The Dockerfile copies tools/ install scripts from the repo root.
+    "context": "..",
+    "target": "dev"
   },
   "customizations": {
     "vscode": {
@@ -29,7 +31,10 @@
     "source=claude-config,target=/home/code/.claude,type=volume",
     "source=codex-config,target=/home/code/.codex,type=volume"
   ],
-  "forwardPorts": [
+  // appPort (published by Docker) rather than forwardPorts (tunnelled by
+  // VS Code only), so `hugo server` is reachable from Zed and the CLI too.
+  // The server must bind 0.0.0.0; see DEV_SERVER_BIND in the Dockerfile.
+  "appPort": [
     1313
   ]
 }

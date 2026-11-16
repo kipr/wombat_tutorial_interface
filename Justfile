@@ -6,8 +6,11 @@ build-preview:
 
 build-all: build build-preview
 
+# The devcontainer sets DEV_SERVER_BIND=0.0.0.0 so its published port works.
+bind := env("DEV_SERVER_BIND", "127.0.0.1")
+
 serve:
-	hugo server --disableFastRender --noHTTPCache
+	hugo server --bind {{bind}} --disableFastRender --noHTTPCache
 
 serve-preview:
-	hugo server --config hugo.toml,build-targets/preview.toml --disableFastRender --noHTTPCache
+	hugo server --bind {{bind}} --config hugo.toml,build-targets/preview.toml --disableFastRender --noHTTPCache
