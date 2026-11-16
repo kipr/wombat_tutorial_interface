@@ -18,6 +18,9 @@ Start with the document that matches the work:
   HTML-to-Hugo migration and how the migration tools fit together.
 - [Mechanical migration](mechanical-migration.md) records the Mechanical Design
   source, available worksheets, and compatibility checks.
+- [Standalone Mechanical interface plan](mechanical-standalone-plan.md) records
+  agreed scope, WordPress entry-point integration, packaging policy, and remaining
+  deployment work for the alternate publication.
 
 `MIGRATION.md` remains the long-form source for component schemas, examples,
 expected build failures, and migration rationale. These files organize the

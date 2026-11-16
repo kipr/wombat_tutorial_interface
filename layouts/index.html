@@ -1,4 +1,8 @@
 {{ define "main" }}
+  {{- with site.Params.homeCatalog }}
+    {{- $catalog := partial "resolve-page.html" (dict "reference" . "position" "homeCatalog") }}
+    {{- partial "hub-catalog.html" (dict "page" $ "catalog" $catalog) }}
+  {{- else }}
   {{- with .Params.cheat_sheet }}
   <a class="cheat-banner" href="{{ partial "relative-url.html" (dict "source" $ "path" .path) }}" download>
     <span>{{ .label }}</span>
@@ -38,4 +42,5 @@
       </div>
     </div>
   </section>
+  {{- end }}
 {{ end }}

@@ -57,6 +57,23 @@
               --logLevel error
             node tools/check_internal_links.js "${RUNNER_TEMP}/preview-verify"
 
+            hugo --config hugo.toml,build-targets/mechanical.toml \
+              --destination "${RUNNER_TEMP}/mechanical-verify" \
+              --baseURL "https://kipr.org/mechanical-verification/" \
+              --printPathWarnings \
+              --logLevel error
+            node tools/check_internal_links.js "${RUNNER_TEMP}/mechanical-verify"
+            node tests/test_mechanical_migration.js "${RUNNER_TEMP}/mechanical-verify"
+            node tests/test_mechanical_target.js "${RUNNER_TEMP}/mechanical-verify"
+
+            hugo --config hugo.toml,build-targets/mechanical.toml \
+              --minify \
+              --destination "${RUNNER_TEMP}/mechanical-minified-verify" \
+              --printPathWarnings \
+              --logLevel error
+            node tools/check_internal_links.js "${RUNNER_TEMP}/mechanical-minified-verify"
+            node tests/test_mechanical_target.js "${RUNNER_TEMP}/mechanical-minified-verify"
+
         - name: Build production site
           env:
             HUGO_ENVIRONMENT: production

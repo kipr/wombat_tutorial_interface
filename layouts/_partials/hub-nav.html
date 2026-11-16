@@ -2,7 +2,7 @@
   {{ partial "breadcrumbs.html" . }}
   <div class="nav-end">
     <nav class="nav-links" aria-label="Main">
-    {{- range hugo.Data.nav }}
+    {{- range (partial "navigation-items.html" .) }}
       {{ partial "navigation-link.html" (dict "source" $ "item" . "activeClass" "active") }}
     {{- end }}
     </nav>

@@ -1,0 +1,25 @@
+title = 'KIPR Mechanical Design'
+# The final kipr.org deployment path is not assigned yet. Override with --baseURL.
+baseURL = '/'
+
+[params]
+  buildTarget = 'mechanical'
+  brandName = 'KIPR Mechanical Design'
+  organizationURL = 'https://kipr.org/'
+  footerText = 'KIPR Mechanical Design · All rights reserved'
+  navigationIDs = ['mechanical']
+  homeCatalog = '/mechanical'
+  catalogEyebrow = 'KIPR · Mechanical Design'
+  inlineGlossaryOnly = true
+  noIndex = true
+
+# Preserve the section cascade and diagram resources; only the home is replaced.
+[[module.mounts]]
+  source = 'content'
+  target = 'content'
+  files = ['mechanical/**']
+
+[[module.mounts]]
+  source = 'build-targets/mechanical'
+  target = 'content'
+  files = ['_index.md']
