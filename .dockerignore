@@ -1,0 +1,5 @@
+# The image only needs the install scripts; the workspace is bind-mounted.
+# Keeping the context to these files avoids sending public/ and .git/.
+*
+!tools/cloud-install.sh
+!tools/install-pandoc.sh

@@ -2,14 +2,14 @@
 
 ## Environment
 
-The supported container is defined by `Dockerfile` and `.devcontainer/`:
+The supported container is the Debian-based `dev` stage of `Dockerfile`, opened
+through `.devcontainer/` (see [its README](../.devcontainer/README.md)):
 
-- Hugo `v0.164.0` from the official extended image;
+- Hugo `v0.164.0` extended, installed by `tools/cloud-install.sh`;
 - Node for the dependency-free build-output validator and browser-behavior
   tests;
-- Pandoc `3.6.4` (Debian/Ubuntu and CI) or `pandoc-cli` (Alpine image) plus a
-  local copy of the custom-writer documentation under
-  `/usr/local/share/doc/pandoc/`.
+- Pandoc `3.6.4` plus a local copy of the custom-writer documentation under
+  `/usr/local/share/doc/pandoc/`, installed by `tools/install-pandoc.sh`.
 
 There is no package installation step and no task runner. If working outside
 the container, use the pinned Hugo version to avoid template or Goldmark drift.

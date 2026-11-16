@@ -1,7 +1,9 @@
 {
   "build": {
     "dockerfile": "../Dockerfile",
-    "target": "hugo_dev"
+    // The Dockerfile copies tools/ install scripts from the repo root.
+    "context": "..",
+    "target": "dev"
   },
   "customizations": {
     "vscode": {
