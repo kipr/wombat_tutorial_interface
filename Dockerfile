@@ -27,6 +27,11 @@ RUN npm install -g @openai/codex svgo \
 
 # node:* ships a `node` user at UID 1000; remove it so the shared `code` user
 # can take that UID.
+# Docker publishes port 1313 (appPort), which only reaches servers listening on
+# all interfaces. Hugo has no env/config for this, so the Justfile serve
+# targets pass it as --bind; plain `hugo server` needs `--bind 0.0.0.0`.
+ENV DEV_SERVER_BIND=0.0.0.0
+
 RUN userdel -r node \
   && groupadd --gid 1000 code \
   && useradd --uid 1000 --gid code --create-home --shell /usr/bin/fish code

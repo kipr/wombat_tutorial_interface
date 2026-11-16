@@ -44,8 +44,15 @@ node tools/check_internal_links.js "$build_dir"
 node tests/test_lab_persistence.js
 ```
 
-Preview on the forwarded port 1313 with `hugo server --buildDrafts`
-(pages are under `/wombat-tutorial-interface/`).
+Docker publishes port 1313 to the host (`appPort`), which works in any editor
+or from the CLI. Inside a container the server must listen on all interfaces:
+
+```sh
+just serve                                   # binds $DEV_SERVER_BIND (0.0.0.0 here)
+hugo server --buildDrafts --bind 0.0.0.0     # plain Hugo needs the flag
+```
+
+Then open <http://localhost:1313/wombat-tutorial-interface/> on the host.
 
 ## Agent CLIs
 
@@ -68,6 +75,11 @@ codex sandbox -- true
 Concurrent sessions in different containers write the same volume files.
 
 ## Caveats
+
+- Host port 1313 is published, so a `hugo server` already running on the host
+  (or a second copy of this container) blocks the container from starting.
+- Editors don't rebuild on config changes. After editing this directory or the
+  `Dockerfile`, rebuild the container (Zed: restart it manually).
 
 - The agent sandboxes use bubblewrap, so the container runs with
   `seccomp=unconfined` and `systempaths=unconfined`. This disables Docker's
